@@ -8,7 +8,11 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CACHE = path.join(ROOT, '.cache'); fs.mkdirSync(CACHE, { recursive: true });
 const ctx = { window: {} }; vm.createContext(ctx);
-vm.runInContext(fs.readFileSync(path.join(ROOT, 'data', 'questions.js'), 'utf8'), ctx);
+// every bank file, in load order: questions.js, then questions-set2.js, set3 ... (each later set appends to window.SAT_QUESTIONS)
+const bankFiles = fs.readdirSync(path.join(ROOT, 'data')).filter(f => /^questions(-set\d+)?\.js$/.test(f))
+  .sort((a, b) => (+(a.match(/set(\d+)/)?.[1] || 1)) - (+(b.match(/set(\d+)/)?.[1] || 1)));
+for (const f of bankFiles) vm.runInContext(fs.readFileSync(path.join(ROOT, 'data', f), 'utf8'), ctx);
+console.log('bank files:', bankFiles.join(', '));
 const items = ctx.window.SAT_QUESTIONS;
 
 const wordsOf = s => s.replace(/_/g, '').toLowerCase().replace(/[^a-z0-9’'\s-]/g, ' ').split(/\s+/).filter(Boolean).join(' ');

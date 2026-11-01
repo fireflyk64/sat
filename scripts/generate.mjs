@@ -26,18 +26,25 @@ import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const OUT = path.join(ROOT, 'data', 'questions.js');
+const SET_ARG = process.argv.includes('--set') ? +process.argv[process.argv.indexOf('--set') + 1] : 1;
+const OUT = path.join(ROOT, 'data', SET_ARG > 1 ? `questions-set${SET_ARG}.js` : 'questions.js');
+const DATA_DIR = path.join(ROOT, 'data');
 const CACHE = path.join(ROOT, '.cache');
 
 // Poirot novels/collections that are public domain in the US (published before 1931).
 // NB: Murder on the Orient Express (1934) is still in copyright in the US, so it is not usable.
 const BOOKS = {
   863: 'The Mysterious Affair at Styles', 58866: 'The Murder on the Links', 61262: 'Poirot Investigates',
-  69087: 'The Murder of Roger Ackroyd', 70114: 'The Big Four', 72824: 'The Mystery of the Blue Train'
+  69087: 'The Murder of Roger Ackroyd', 70114: 'The Big Four', 72824: 'The Mystery of the Blue Train',
+  // more Christie, all published before 1931 (public domain in the US); used from set 2 onwards
+  1155: 'The Secret Adversary', 61168: 'The Man in the Brown Suit', 65238: 'The Secret of Chimneys',
+  75288: 'The Seven Dials Mystery', 78220: 'The Murder at the Vicarage', 78342: 'Partners in Crime',
+  78084: 'The Mysterious Mr. Quin'
 };
 const args = parseArgs(process.argv.slice(2));
 // How many NEW items of each kind to build. With the 6 hand-checked seeds this totals exactly 1200.
 const TARGETS = { mark: 299, agree: 119, tense: 119, mc: 259, forge: 139, vocab: 259 };
+for (const kv of String(args.targets || '').split(',').filter(Boolean)) { const [k, v] = kv.split('='); TARGETS[k] = +v; }
 const KEYS = Object.keys(TARGETS);
 // Top-up mode: --need mark=120,agree=30 overrides how many items to aim for; --exclude DIR skips sentences already in DIR's batches
 const NEED = Object.fromEntries(String(args.need || '').split(',').filter(Boolean).map(kv => kv.split('=')).map(([k, v]) => [k, +v]));
@@ -140,6 +147,7 @@ RULES
   disputed, OMIT that candidate (do not output an item for it). Quality over quantity: omit freely.
 - Keep Christie's words exactly. You may only change punctuation/capitalization (and, in "forge"/"tense" items, plant errors as described).
 - "rule" is a 1-3 sentence explanation for a teenager: name the rule, then apply it to this sentence. No em dashes.
+- A later independent reviewer REJECTS: optional/arguable commas (short introductory phrases, compound predicates, serial commas, "so that"/"as" clauses, not-clearly-nonessential phrases), any item with a second defensible answer, stems that end in a colon or depend on dialogue, fragments, and "rule" text that mentions people or context not in the item's own sentence. Fewer, cleaner items beat many arguable ones.
 - Output ONLY a JSON array of item objects; every item carries the "cid" of the candidate it came from.`;
 
 const SPEC = {
@@ -187,7 +195,9 @@ Fields: {"cid", "stem", "options", "answer", "definitions", "rule"}
 - stem: the sentence with that word (exactly as written, same inflection) replaced by ___ . Exactly one ___ .
 - options: 4 words of the same part of speech and inflection: the answer + 3 plausible distractors that FAIL on meaning given the context clues (e.g. an opposite, or a word that fits the surface but not the clue). Make sure no distractor also fits.
 - answer: the original word (lowercase unless it begins the sentence... use lowercase). definitions: an object giving a short teen-friendly definition for ALL FOUR options (keys = the options).
-- rule: point out the context clue in the sentence that signals the meaning.`
+- The game shows the definition of the answer ABOVE the sentence, so exactly one option may have that meaning: no distractor may be a synonym or near-synonym of the answer, and every distractor's own definition must clearly differ. Use only clues INSIDE the sentence; never rely on the previous or next sentence.
+- You do not need to worry about a/an before the blank (the game moves the article into each choice).
+- rule: point out the context clue in the sentence that signals the meaning, mentioning only things that appear in the sentence.`
 };
 
 // ---------------------------------------------------------------- validation + finalisation (shared by every path)
@@ -297,6 +307,15 @@ async function buildCandidates() {
       const [b, pi, i] = c.cid.split('-'); used.add(c.cid); used.add(`${b}-${pi}-${+i + 1}`);
     }
   }
+  // never reuse a sentence that already appears in another bank file (earlier sets)
+  for (const f of fs.readdirSync(DATA_DIR).filter(f => /^questions(-set\d+)?\.js$/.test(f))) {
+    if (path.join(DATA_DIR, f) === OUT) continue;
+    const c2 = { window: {} }; vm.createContext(c2); vm.runInContext(fs.readFileSync(path.join(DATA_DIR, f), 'utf8'), c2);
+    for (const q of c2.window.SAT_QUESTIONS || []) {
+      const m = q.id.match(/-(\d+-\d+-\d+)$/);
+      if (m) { const [b, pi, i] = m[1].split('-'); used.add(m[1]); used.add(`${b}-${pi}-${+i + 1}`); }
+    }
+  }
   const out = {};
   const mk = (c, id) => ({ cid: `${id}-${c.pi}-${c.i}`, s: c.s, prev: c.prev, next: c.next, book: +id });
   const pool = key => {
@@ -349,6 +368,11 @@ function loadExisting() {
   const ctx = { window: {} }; vm.createContext(ctx); vm.runInContext(fs.readFileSync(OUT, 'utf8'), ctx);
   return ctx.window.SAT_QUESTIONS || [];
 }
+const writeBank = (file, header, items) => fs.writeFileSync(file,
+  SET_ARG > 1 ? `${header}\nwindow.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat(${JSON.stringify(items, null, 1)});\n`
+              : `${header}\nwindow.SAT_QUESTIONS = ${JSON.stringify(items, null, 1)};\n`);
+const headerOf = () => (fs.existsSync(OUT) && fs.readFileSync(OUT, 'utf8').match(/^\/\*[\s\S]*?\*\//)?.[0]) ||
+  `/* Question set ${SET_ARG}: generated by scripts/generate.mjs (see README). */`;
 const isSeed = q => !/-\d+-\d+-\d+$/.test(q.id);
 
 // ---------------------------------------------------------------- modes
@@ -396,6 +420,11 @@ function modeImport(dirs) {
   const existing = loadExisting().filter(isSeed);
   const have = new Set(existing.map(q => q.id));
   const per = {}, vocabUse = {}, seenSentence = new Set(), added = [];
+  for (const f of fs.readdirSync(DATA_DIR).filter(f => /^questions(-set\d+)?\.js$/.test(f))) {   // a word already used in another set counts toward the 2-per-word cap
+    if (path.join(DATA_DIR, f) === OUT) continue;
+    const c2 = { window: {} }; vm.createContext(c2); vm.runInContext(fs.readFileSync(path.join(DATA_DIR, f), 'utf8'), c2);
+    for (const q of c2.window.SAT_QUESTIONS || []) if (q.type === 'vocab') vocabUse[q.answer] = (vocabUse[q.answer] || 0) + 1;
+  }
   const files = dirs.split(',').flatMap(dir => fs.readdirSync(dir).filter(f => /^batch-.*\.json$/.test(f)).sort((a, b) => a.localeCompare(b, undefined, { numeric: true })).map(f => [dir, f]));
   let rejected = 0;
   for (const [dir, f] of files) {
@@ -424,8 +453,7 @@ function modeImport(dirs) {
   }
   Object.keys(per).forEach(k => delete per[k]); added.forEach(it => { const k = kindOf(it); per[k] = (per[k] || 0) + 1; });
   const merged = existing.concat(added);
-  const header = fs.readFileSync(OUT, 'utf8').match(/^\/\*[\s\S]*?\*\//)?.[0] || '/* Generated by scripts/generate.mjs */';
-  fs.writeFileSync(args.out ? String(args.out) : OUT, `${header}\nwindow.SAT_QUESTIONS = ${JSON.stringify(merged, null, 1)};\n`);
+  writeBank(args.out ? String(args.out) : OUT, headerOf(), merged);
   console.log('imported per kind:', JSON.stringify(per), ' targets:', JSON.stringify(TARGETS));
   console.log(`rejected by validators: ${rejected}. Bank now has ${merged.length} items (${existing.length} seeds).`);
   console.log('Next: node tests/verify-quotes.mjs');
@@ -469,8 +497,7 @@ async function modeApi() {
       }
     }
   }
-  const header = fs.readFileSync(OUT, 'utf8').match(/^\/\*[\s\S]*?\*\//)?.[0] || '';
-  fs.writeFileSync(OUT, `${header}\nwindow.SAT_QUESTIONS = ${JSON.stringify(existing.concat(created), null, 1)};\n`);
+  writeBank(OUT, headerOf(), existing.concat(created));
   console.log(`Wrote ${existing.length + created.length} items (${created.length} new).`);
 }
 

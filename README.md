@@ -38,32 +38,37 @@ Answer keys follow **modern SAT Standard English Conventions**, not Christie's 1
 `scripts/generate.mjs` tells the model to skip any sentence whose punctuation is dated or arguable, and a second
 model call audits each key before it is written.
 
-## The question bank (exactly 1200 items)
-`data/questions.js` holds 6 hand-checked seed items plus 1194 items drafted by Claude (Sonnet) from real sentences in six
-public-domain Poirot books (about 160-220 per book).
+## The question bank (2400 items in two sets of 1200)
+* **Set 1** (`data/questions.js`): 6 seed items + 1194 drafted items from six Poirot books.
+* **Set 2** (`data/questions-set2.js`): 1200 more, built from *different sentences* (none are reused) in seven more Christie
+  novels that are public domain in the US (*The Secret Adversary*, *The Man in the Brown Suit*, *The Secret of Chimneys*,
+  *The Seven Dials Mystery*, *The Murder at the Vicarage*, *Partners in Crime*, *The Mysterious Mr. Quin*) plus unused
+  sentences from the Poirot books. The page loads every set; more sets can be added the same way (`--set 3`).
 
-| kind | what it trains | items |
-|---|---|---|
-| `mark` | tap commas + capitals | 255 |
-| `mc` | SAT-style conventions choice | 301 |
-| `forge` | find 3 planted errors | 203 |
-| `vocab` | SAT words (about 180 distinct). Two styles from the same data: the missing word's *meaning is shown above the sentence* (so only one option fits both the definition and the blank), or pick the word that matches a meaning | 196 |
-| `tapfix` agreement | find the real subject, pick the verb | 120 |
-| `tapfix` tense | spot the odd verb, pick the fix | 123 |
+| kind | what it trains | set 1 | set 2 |
+|---|---|---|---|
+| `mark` | tap commas + capitals | 255 | 194 |
+| `mc` | SAT-style conventions choice | 301 | 173 |
+| `forge` | find 3 planted errors | 203 | 338 |
+| `vocab` | SAT words: the missing word's meaning is shown above the sentence (so only one option fits both the definition and the blank), or pick the word that matches a meaning | 196 | 175 |
+| `tapfix` agreement | find the real subject, pick the verb | 120 | 244 |
+| `tapfix` tense | spot the odd verb, pick the fix | 123 | 76 |
 
-How quality was controlled:
+How quality was controlled (both sets):
 
 1. **Mechanical validators** (`scripts/generate.mjs`, run on every draft): the sentence is word-for-word from the book;
    `forge` errors are exactly the three real differences between forged and correct text; `tense` changes exactly one verb;
    `agree`/`mc`/`vocab` answers reproduce the original sentence and sit among distinct options. A blocklist keeps dated
-   ethnic terms from the 1920s texts out. `node tests/verify-quotes.mjs` re-checks all 1200 against Project Gutenberg.
-2. **Independent audit**: every item was then reviewed by a separate adversarial reviewer under modern SAT rules, and
-   224 items (optional/arguable commas, a second defensible option, context that is not in the sentence) were dropped
-   (`data/audit-dropped.json`).
-3. **Vocab uniqueness review**: two further reviewers checked every vocab item so that only one option can have the shown
-   meaning (no synonym distractors, accurate definitions, same part of speech). 23 items had distractors swapped, 1 was
-   removed. When the sentence has "a"/"an" before the blank, the game moves the article into every choice ("an ingenuous" / "a tender"), chosen by sound (an hour, a unique), so it can never hint at the answer.
-4. **Gameplay check**: all 1200 items were solved through the real UI with the right answer (all graded correct), and
+   ethnic terms from the 1920s texts out. `node tests/verify-quotes.mjs` re-checks every item in every set against Project
+   Gutenberg and fails on duplicate ids.
+2. **Independent audit**: every item was reviewed by a separate adversarial reviewer under modern SAT rules; items with
+   optional/arguable commas, a second defensible option, or context outside the sentence were dropped
+   (`data/audit-dropped.json`, `data/audit-dropped-set2.json`). Set 1 lost 224 items, set 2 lost 119 (set 2's drafters were
+   given the audit's lessons up front).
+3. **Vocab uniqueness review**: reviewers checked that exactly one option can have the shown meaning (no synonym
+   distractors, accurate definitions). When the sentence has "a"/"an" before the blank, the game moves the article into every
+   choice ("an ingenuous" / "a tender"), chosen by sound (an hour, a unique), so it can never hint at the answer.
+4. **Gameplay check**: all 2400 items were solved through the real UI with the right answer (all graded correct), and
    option order is shuffled every time an item is shown so the key is never in a predictable slot.
 
 This is a review by AI, not by a teacher: grammar keys are judgement calls, so spot-check the "Correct version" line and
@@ -81,13 +86,15 @@ Batch-file workflow (what produced the 1200; no key needed, any Claude session c
     #   drafter reads a batch and writes work/out/batch-<kind>-<n>.json (array of items)
     node scripts/generate.mjs --check work/batch-mark-1.json work/out/batch-mark-1.json   # lint one file
     node scripts/generate.mjs --import work/        # validate everything and merge into data/questions.js
+    # a new set: add --set 2 (or 3...) to export/import; it writes data/questions-set2.js and skips every sentence used in other sets
     node scripts/generate.mjs --dry-run             # just preview candidates
     # top-ups: --exclude work/ --loose|--looser --need mark=50,vocab=40   (new sentences only, wider pools)
     # final merge: --import work/,work2/ --drop dropped.json --total 1200   (apply audit drops, trim to an exact total)
 
 ## Sources / copyright
-Only texts that are public domain in the US are used (published before 1931): *Styles*, *Murder on the Links*,
-*Poirot Investigates*, *Roger Ackroyd*, *The Big Four*, *The Mystery of the Blue Train*.
+Only texts that are public domain in the US are used (published before 1931). Set 1: *Styles*, *Murder on the Links*,
+*Poirot Investigates*, *Roger Ackroyd*, *The Big Four*, *The Mystery of the Blue Train*. Set 2 adds the seven novels/collections
+listed above.
 *Murder on the Orient Express* (1934) is still under copyright in the US, so it is not included.
 
 ## Physics
