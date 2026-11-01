@@ -43,6 +43,10 @@ for (const q of items) {
   if (q.type === 'vocab') {
     // (an "a"/"an" before the blank is folded into each choice at runtime, so it cannot hint at the answer)
     if (!q.definitions || q.options.some(o => !q.definitions[o])) problems.push('missing definition');
+    if (q.options.length !== 4 || new Set(q.options).size !== 4) problems.push('needs four different choices');
+    if (!q.options.includes(q.answer)) problems.push('the answer is not one of the choices');
+    if (q.definitions && Object.keys(q.definitions).some(k => !q.options.includes(k))) problems.push('a definition belongs to a word that is no longer a choice');
+    if (q.definitions && q.options.some(o => o !== q.answer && q.definitions[o] && q.definitions[o] === q.definitions[q.answer])) problems.push('a wrong choice has the answer\u2019s meaning');
   }
   kinds[q.type + '/' + q.skill] = (kinds[q.type + '/' + q.skill] || 0) + 1;
   if (problems.length) { bad++; console.log('PROBLEM', q.id, problems.join('; ')); }

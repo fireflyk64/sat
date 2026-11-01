@@ -120,6 +120,14 @@ model call audits each key before it is written.
 * **Vocabulary gets extra turns:** about a third of the new questions he is given. Of those, most are the SAT-style set below.
 * **Set 4** (`data/questions-set4.js`): a 314-question hard-word drill. Real SAT-level words in Christie sentences, with wrong choices as hard as the answer so it cannot stick out. Rebuild it with `node scripts/apply-hard-vocab.mjs data/vocab-hard-drafts.json data/vocab-hard-fixes.json`, which also applies an independent review's corrections.
 * **Set 5** (`data/questions-set5.js`): vocabulary in the format of the digital SAT's Words in Context questions: a short passage, one blank, four choices, and **no meaning shown**, so the passage alone decides. Half are from Sherlock Holmes (all public domain in the US since 2023, used for vocabulary only because the punctuation is too dated to test grammar on) and half from Christie. Before release a reviewer solved every question blind, with no answer key. Target words were chosen with help from a college-level word list; the definitions are written for this game, not copied from it.
+* **The wrong choices are tempting on purpose.** In every question that shows the meaning (sets 1, 2 and 4), the wrong words are
+  ones that also read plausibly in the sentence and share its tone, but whose meaning is not the one shown. An answer
+  like *ensconced* ("settled snugly in a place") is up against *sequestered*, *entrenched* and *stationed*, not three gloomy
+  words that give it away. Wrong choices were drafted to that rule, then every question was solved blind by a separate
+  reviewer who rated how naturally each rival reads in the sentence and flagged any that could be a second right answer;
+  questions that failed were redone, and four whose meaning or sentence only allowed near-synonyms were dropped.
+  `scripts/apply-distractors.mjs data/vocab-distractors.json` checks the drafts and applies them (rerun it after
+  rebuilding set 4). The game always shows four choices, like the real test, and puts "a"/"an" inside each choice so the article never hints.
 * **Set 3** (`data/questions-set3.js`): 133 conjunction questions, hand-picked from all 13 books (see below).
 
 Sets 1 and 2 by kind (set 3 is all `mc`):

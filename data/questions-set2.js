@@ -10031,16 +10031,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "They were very much what you would expect to find--some very ___ landscapes, some oleographs, and a few cheaply framed reproductions.",
   "options": [
    "mediocre",
-   "exquisite",
-   "daring",
-   "radiant"
+   "garish",
+   "sentimental",
+   "pastoral"
   ],
   "answer": "mediocre",
   "definitions": {
    "mediocre": "only average or ordinary in quality",
-   "exquisite": "extremely beautiful and finely made",
-   "daring": "bold and willing to take risks",
-   "radiant": "shining brightly"
+   "garish": "loud and unpleasantly bright in color",
+   "sentimental": "overly tender or nostalgic in feeling",
+   "pastoral": "showing peaceful scenes of country life"
   },
   "fixed": "They were very much what you would expect to find--some very mediocre landscapes, some oleographs, and a few cheaply framed reproductions.",
   "rule": "The phrase \"cheaply framed reproductions\" and \"very much what you would expect\" signal ordinary, unremarkable art, which is what mediocre means.",
@@ -10058,16 +10058,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Her clothes were perfect, and she had all the ease of manner of a well-bred woman, and yet there was something about her that was ___ and baffling.",
   "options": [
    "incongruous",
-   "harmonious",
-   "predictable",
-   "conventional"
+   "enigmatic",
+   "disconcerting",
+   "ambiguous"
   ],
   "answer": "incongruous",
   "definitions": {
    "incongruous": "out of place or not fitting with the rest",
-   "harmonious": "fitting together in a pleasing way",
-   "predictable": "easy to guess in advance",
-   "conventional": "following accepted, ordinary customs"
+   "enigmatic": "mysterious and hard to understand",
+   "disconcerting": "causing unease or confusion",
+   "ambiguous": "open to more than one interpretation"
   },
   "fixed": "Her clothes were perfect, and she had all the ease of manner of a well-bred woman, and yet there was something about her that was incongruous and baffling.",
   "rule": "\"And yet\" signals a contrast with her perfect clothes and ease of manner, and \"baffling\" adds to it, so the missing word means something that does not fit: incongruous.",
@@ -10085,16 +10085,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "She had chosen to tell her story to me, believing that I should be a more sympathetic and ___ audience than the police.",
   "options": [
    "lenient",
-   "severe",
-   "skeptical",
-   "hostile"
+   "discreet",
+   "impartial",
+   "attentive"
   ],
   "answer": "lenient",
   "definitions": {
    "lenient": "gentle and forgiving, not strict in judging",
-   "severe": "harsh and strict",
-   "skeptical": "doubtful and unwilling to believe",
-   "hostile": "unfriendly and opposed"
+   "discreet": "careful not to reveal secrets",
+   "impartial": "not favoring either side",
+   "attentive": "careful to notice and listen"
   },
   "fixed": "She had chosen to tell her story to me, believing that I should be a more sympathetic and lenient audience than the police.",
   "rule": "The word \"sympathetic\" and the comparison with the police show she expects a forgiving listener, so the word must mean not strict: lenient.",
@@ -10112,16 +10112,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Church-going was compulsory on Sunday morning--Colonel Protheroe was ___ on that point--but I had never seen Lettice at evening service before.",
   "options": [
    "adamant",
-   "flexible",
-   "indifferent",
-   "hesitant"
+   "explicit",
+   "candid",
+   "exacting"
   ],
   "answer": "adamant",
   "definitions": {
    "adamant": "refusing to change one's mind; firmly insistent",
-   "flexible": "willing to bend or change",
-   "indifferent": "not caring either way",
-   "hesitant": "slow to act because of uncertainty"
+   "explicit": "clear and direct in what is stated",
+   "candid": "frank and open in speech",
+   "exacting": "demanding great care and accuracy"
   },
   "fixed": "Church-going was compulsory on Sunday morning--Colonel Protheroe was adamant on that point--but I had never seen Lettice at evening service before.",
   "rule": "Church-going being \"compulsory\" shows that his position was fixed and unbending, which is the meaning of adamant.",
@@ -10139,16 +10139,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Mr. Satterthwaite asked himself once more--and the only answer that came seemed to him so vague and so inherently ___ that he almost put it aside.",
   "options": [
    "preposterous",
-   "plausible",
-   "reliable",
-   "convincing"
+   "contradictory",
+   "melodramatic",
+   "unorthodox"
   ],
   "answer": "preposterous",
   "definitions": {
    "preposterous": "absurd and completely unreasonable",
-   "plausible": "believable and likely to be true",
-   "reliable": "able to be trusted",
-   "convincing": "able to persuade someone it is true"
+   "contradictory": "containing parts that conflict with each other",
+   "melodramatic": "exaggerated and overly theatrical",
+   "unorthodox": "departing from usual or accepted methods"
   },
   "fixed": "Mr. Satterthwaite asked himself once more--and the only answer that came seemed to him so vague and so inherently preposterous that he almost put it aside.",
   "rule": "He almost put the answer aside, and it was \"vague,\" so the missing word must mean absurd or unbelievable: preposterous.",
@@ -10166,16 +10166,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He has attained to his present position through hard work and ___ attention to duty.",
   "options": [
    "zealous",
-   "negligent",
-   "occasional",
-   "reluctant"
+   "scrupulous",
+   "methodical",
+   "punctual"
   ],
   "answer": "zealous",
   "definitions": {
    "zealous": "full of eager, energetic devotion",
-   "negligent": "careless and failing to give proper attention",
-   "occasional": "happening only now and then",
-   "reluctant": "unwilling and hesitant"
+   "scrupulous": "careful to do what is right",
+   "methodical": "done in an orderly, systematic way",
+   "punctual": "arriving or acting exactly on time"
   },
   "fixed": "He has attained to his present position through hard work and zealous attention to duty.",
   "rule": "The phrase \"hard work\" and the fact that it earned him his position show his attention to duty was eager and devoted: zealous.",
@@ -10193,16 +10193,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "But for the episode of the chocolates, I might have believed these deaths to be the result of severe ptomaine poisoning--but ptomaine poisoning of an unusually ___ kind.",
   "options": [
    "virulent",
-   "mild",
-   "harmless",
-   "familiar"
+   "contagious",
+   "chronic",
+   "baffling"
   ],
   "answer": "virulent",
   "definitions": {
    "virulent": "extremely poisonous or harmful",
-   "mild": "gentle and not severe",
-   "harmless": "not able to cause damage",
-   "familiar": "well known and common"
+   "contagious": "spreading easily from one person to another",
+   "chronic": "lasting for a long time",
+   "baffling": "confusing and hard to explain"
   },
   "fixed": "But for the episode of the chocolates, I might have believed these deaths to be the result of severe ptomaine poisoning--but ptomaine poisoning of an unusually virulent kind.",
   "rule": "The sentence already says the poisoning was \"severe\" and caused deaths, so \"unusually\" points to an even more deadly kind: virulent.",
@@ -10219,17 +10219,17 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "prompt": "Which choice completes the text with the most logical and precise word?",
   "stem": "In a few ___ words, Melchett explained the situation.",
   "options": [
-   "verbose",
    "succinct",
-   "rambling",
-   "elaborate"
+   "lucid",
+   "eloquent",
+   "cogent"
   ],
   "answer": "succinct",
   "definitions": {
    "succinct": "brief and to the point",
-   "verbose": "using far more words than needed",
-   "rambling": "wandering and unfocused in speech",
-   "elaborate": "detailed and complicated"
+   "lucid": "clear and easy to understand",
+   "eloquent": "fluent and persuasive in speaking",
+   "cogent": "logical, clear, and convincing"
   },
   "fixed": "In a few succinct words, Melchett explained the situation.",
   "rule": "The phrase \"a few\" words signals that the explanation was short, so the word must mean brief and clear.",
@@ -10246,17 +10246,17 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "prompt": "Which choice completes the text with the most logical and precise word?",
   "stem": "Brady called him a most ___ quack, and said he, personally, wouldn't be surprised at anything.",
   "options": [
-   "principled",
    "unscrupulous",
-   "reputable",
-   "humble"
+   "eccentric",
+   "flamboyant",
+   "charismatic"
   ],
   "answer": "unscrupulous",
   "definitions": {
    "unscrupulous": "willing to act dishonestly",
-   "principled": "guided by strong moral rules",
-   "reputable": "having a good name",
-   "humble": "modest, not proud"
+   "eccentric": "odd or unconventional in behavior",
+   "flamboyant": "showy and attention-seeking",
+   "charismatic": "having great personal charm and appeal"
   },
   "fixed": "Brady called him a most unscrupulous quack, and said he, personally, wouldn't be surprised at anything.",
   "rule": "A \"quack\" is a fake doctor, and not being surprised at \"anything\" suggests he would do dishonest things.",
@@ -10273,17 +10273,17 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "prompt": "Which choice completes the text with the most logical and precise word?",
   "stem": "I played the part of the ___ sleuth with all my might--swallowed her rather impossible story and permitted her to lure me here, carefully leaving behind full instructions for dealing with the situation.",
   "options": [
-   "skeptical",
-   "cautious",
-   "vigilant",
-   "credulous"
+   "credulous",
+   "inept",
+   "earnest",
+   "gallant"
   ],
   "answer": "credulous",
   "definitions": {
    "credulous": "too ready to believe what one is told",
-   "skeptical": "doubtful, unwilling to believe",
-   "cautious": "careful to avoid risk",
-   "vigilant": "watchful and alert"
+   "inept": "clumsy and lacking skill",
+   "earnest": "serious and sincere in purpose",
+   "gallant": "brave and chivalrous in manner"
   },
   "fixed": "I played the part of the credulous sleuth with all my might--swallowed her rather impossible story and permitted her to lure me here, carefully leaving behind full instructions for dealing with the situation.",
   "rule": "The speaker \"swallowed her rather impossible story,\" which is what a person who believes too easily would do.",
@@ -10300,17 +10300,17 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "prompt": "Which choice completes the text with the most logical and precise word?",
   "stem": "He is a man who gave us great trouble in the War, a ___ kind of fellow who turned up all over the place where we least wanted him.",
   "options": [
-   "elusive",
-   "reclusive",
    "ubiquitous",
-   "obscure"
+   "meddlesome",
+   "notorious",
+   "shadowy"
   ],
   "answer": "ubiquitous",
   "definitions": {
    "ubiquitous": "seeming to be everywhere at once",
-   "elusive": "hard to find or catch",
-   "reclusive": "living apart from others",
-   "obscure": "little known"
+   "meddlesome": "interfering in other people's affairs",
+   "notorious": "famous for something bad",
+   "shadowy": "mysterious and hard to identify"
   },
   "fixed": "He is a man who gave us great trouble in the War, a ubiquitous kind of fellow who turned up all over the place where we least wanted him.",
   "rule": "The clause \"turned up all over the place\" describes someone who seems to be everywhere.",
@@ -10328,16 +10328,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "In and out, round nerve-shattering curves, upward, ever upward on the ___ winding road.",
   "options": [
    "tortuous",
-   "straight",
-   "level",
-   "smooth"
+   "precipitous",
+   "treacherous",
+   "rugged"
   ],
   "answer": "tortuous",
   "definitions": {
    "tortuous": "full of twists and turns",
-   "straight": "going in one line without bending",
-   "level": "flat, with no rise or fall",
-   "smooth": "even and free of bumps"
+   "precipitous": "very steep, with a sharp drop",
+   "treacherous": "dangerous in hidden or unexpected ways",
+   "rugged": "rough, uneven, and rocky"
   },
   "fixed": "In and out, round nerve-shattering curves, upward, ever upward on the tortuous winding road.",
   "rule": "The \"nerve-shattering curves\" and the word \"winding\" point to a road full of twists and turns.",
@@ -10354,17 +10354,17 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "prompt": "Which choice completes the text with the most logical and precise word?",
   "stem": "He was a ___ little gentleman, and he liked filling his box with the élite of the great world to which he belonged, and also with the aristocracy of the artistic world, in which he was equally at home.",
   "options": [
-   "reclusive",
-   "frugal",
-   "timid",
-   "gregarious"
+   "gregarious",
+   "dapper",
+   "snobbish",
+   "pompous"
   ],
   "answer": "gregarious",
   "definitions": {
    "gregarious": "sociable, enjoying the company of others",
-   "reclusive": "preferring to be alone",
-   "frugal": "careful about spending money",
-   "timid": "shy and fearful"
+   "dapper": "neat and stylish in dress",
+   "snobbish": "looking down on those of lower status",
+   "pompous": "self-important in speech and manner"
   },
   "fixed": "He was a gregarious little gentleman, and he liked filling his box with the élite of the great world to which he belonged, and also with the aristocracy of the artistic world, in which he was equally at home.",
   "rule": "He liked filling his box with other people and was \"at home\" in two social worlds, so he enjoys company.",
@@ -10381,17 +10381,17 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "prompt": "Which choice completes the text with the most logical and precise word?",
   "stem": "He rose and poured himself out another drink, splashing the whisky in with a ___ hand.",
   "options": [
-   "sparing",
-   "meager",
    "liberal",
-   "cautious"
+   "shaky",
+   "deft",
+   "bold"
   ],
   "answer": "liberal",
   "definitions": {
    "liberal": "generous, giving freely",
-   "sparing": "careful to use only a little",
-   "meager": "too small in amount",
-   "cautious": "careful to avoid risk"
+   "shaky": "trembling and not firmly controlled",
+   "deft": "quick and skillful with the hands",
+   "bold": "confident and willing to take risks"
   },
   "fixed": "He rose and poured himself out another drink, splashing the whisky in with a liberal hand.",
   "rule": "\"Splashing\" the whisky in suggests pouring a lot, which fits a generous hand.",
@@ -10408,17 +10408,17 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "prompt": "Which choice completes the text with the most logical and precise word?",
   "stem": "It was something else--something much more ___ and intangible than beauty.",
   "options": [
-   "obvious",
-   "concrete",
    "elusive",
-   "ordinary"
+   "profound",
+   "poignant",
+   "sublime"
   ],
   "answer": "elusive",
   "definitions": {
    "elusive": "hard to pin down or capture",
-   "obvious": "easy to see or understand",
-   "concrete": "real and solid",
-   "ordinary": "common, nothing special"
+   "profound": "deep and weighty in meaning",
+   "poignant": "sharply moving to the feelings",
+   "sublime": "so excellent that it inspires awe"
   },
   "fixed": "It was something else--something much more elusive and intangible than beauty.",
   "rule": "The word \"intangible\" (not able to be touched or grasped) is a clue that the missing word means something similarly hard to grasp.",
@@ -10435,17 +10435,17 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "prompt": "Which choice completes the text with the most logical and precise word?",
   "stem": "These alkaloids are deadly and ___ poisons, and are, in addition, almost untraceable.",
   "options": [
-   "harmless",
    "virulent",
-   "mild",
-   "beneficial"
+   "volatile",
+   "soluble",
+   "synthetic"
   ],
   "answer": "virulent",
   "definitions": {
    "virulent": "extremely poisonous or harmful",
-   "harmless": "unable to cause harm",
-   "mild": "gentle, not severe",
-   "beneficial": "helpful, good for you"
+   "volatile": "evaporating quickly or easily",
+   "soluble": "able to dissolve in liquid",
+   "synthetic": "made artificially rather than found naturally"
   },
   "fixed": "These alkaloids are deadly and virulent poisons, and are, in addition, almost untraceable.",
   "rule": "The word \"deadly\" and the word \"poisons\" show that the missing word describes something extremely harmful.",
@@ -10462,17 +10462,17 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "prompt": "Which choice completes the text with the most logical and precise word?",
   "stem": "Well, to go on with my story, I'm the kind of ___ brute who likes his own way.",
   "options": [
-   "flexible",
-   "agreeable",
-   "indecisive",
-   "obstinate"
+   "obstinate",
+   "domineering",
+   "belligerent",
+   "boorish"
   ],
   "answer": "obstinate",
   "definitions": {
    "obstinate": "stubborn, refusing to change one's mind",
-   "flexible": "willing to adapt",
-   "agreeable": "pleasant and easy to please",
-   "indecisive": "unable to make up one's mind"
+   "domineering": "controlling others in an overbearing way",
+   "belligerent": "eager to pick fights",
+   "boorish": "rude and insensitive in manner"
   },
   "fixed": "Well, to go on with my story, I'm the kind of obstinate brute who likes his own way.",
   "rule": "Someone who \"likes his own way\" insists on getting it, which describes a stubborn person.",
@@ -10489,17 +10489,17 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "prompt": "Which choice completes the text with the most logical and precise word?",
   "stem": "For the first time he had a premonition of tragedy, coming swift and ___, not to be gainsaid.",
   "options": [
-   "avoidable",
-   "tentative",
    "inexorable",
-   "uncertain"
+   "stealthy",
+   "inscrutable",
+   "unforeseen"
   ],
   "answer": "inexorable",
   "definitions": {
    "inexorable": "impossible to stop or prevent",
-   "avoidable": "able to be prevented",
-   "tentative": "hesitant, not firm",
-   "uncertain": "not sure or not settled"
+   "stealthy": "moving quietly to avoid being noticed",
+   "inscrutable": "impossible to read or fully understand",
+   "unforeseen": "not expected or predicted"
   },
   "fixed": "For the first time he had a premonition of tragedy, coming swift and inexorable, not to be gainsaid.",
   "rule": "The phrase \"not to be gainsaid\" (not to be denied) shows that the tragedy is coming and cannot be stopped.",
@@ -10517,16 +10517,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "She has always been the same, beautiful, unscrupulous, completely ___, interested solely in herself.",
   "options": [
    "callous",
-   "sympathetic",
-   "generous",
-   "timid"
+   "vain",
+   "mercenary",
+   "capricious"
   ],
   "answer": "callous",
   "definitions": {
    "callous": "emotionally hard and unfeeling toward others",
-   "sympathetic": "showing care and understanding for others' feelings",
-   "generous": "willing to give freely to others",
-   "timid": "shy and easily frightened"
+   "vain": "too proud of one's own looks",
+   "mercenary": "motivated mainly by the desire for money",
+   "capricious": "changing moods or plans without warning"
   },
   "fixed": "She has always been the same, beautiful, unscrupulous, completely callous, interested solely in herself.",
   "rule": "The phrase \"interested solely in herself\" is the clue: someone who cares only about herself is unfeeling toward others, which is what callous means.",
@@ -10544,16 +10544,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Quite ___ of her question he was watching her with adoring eyes.",
   "options": [
    "oblivious",
-   "wary",
    "appreciative",
-   "resentful"
+   "dismissive",
+   "respectful"
   ],
   "answer": "oblivious",
   "definitions": {
    "oblivious": "completely unaware of something",
-   "wary": "cautious and suspicious",
    "appreciative": "thankful and showing gratitude",
-   "resentful": "bitter and angry about being treated unfairly"
+   "dismissive": "treating something as unworthy of attention",
+   "respectful": "showing proper regard for others"
   },
   "fixed": "Quite oblivious of her question he was watching her with adoring eyes.",
   "rule": "He is busy \"watching her with adoring eyes,\" so he does not notice her question at all. Oblivious means unaware.",
@@ -10571,16 +10571,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Guy Pagett is my secretary, a ___, painstaking, hard-working fellow, admirable in every respect.",
   "options": [
    "zealous",
-   "lazy",
-   "careless",
-   "reluctant"
+   "dependable",
+   "discreet",
+   "methodical"
   ],
   "answer": "zealous",
   "definitions": {
    "zealous": "full of energy and eager enthusiasm for a task",
-   "lazy": "unwilling to work or use effort",
-   "careless": "not taking enough care to avoid mistakes",
-   "reluctant": "unwilling and hesitant"
+   "dependable": "able to be counted on",
+   "discreet": "careful not to reveal secrets or attract notice",
+   "methodical": "done in an orderly, step-by-step way"
   },
   "fixed": "Guy Pagett is my secretary, a zealous, painstaking, hard-working fellow, admirable in every respect.",
   "rule": "The words \"painstaking, hard-working\" and \"admirable in every respect\" describe someone devoted to his work. Zealous fits that list of praise.",
@@ -10598,16 +10598,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Our friend is particularly ___, and can play a double game as well, or better, than you can.",
   "options": [
    "astute",
-   "naive",
-   "gullible",
-   "careless"
+   "devious",
+   "treacherous",
+   "ruthless"
   ],
   "answer": "astute",
   "definitions": {
    "astute": "clever and sharp at judging situations",
-   "naive": "lacking experience and too trusting",
-   "gullible": "easily tricked",
-   "careless": "not paying enough attention"
+   "devious": "sly and dishonest in methods",
+   "treacherous": "betraying trust or loyalty",
+   "ruthless": "showing no pity or mercy"
   },
   "fixed": "Our friend is particularly astute, and can play a double game as well, or better, than you can.",
   "rule": "Someone who can \"play a double game as well, or better, than you can\" must be clever and shrewd. Astute matches that clue.",
@@ -10625,16 +10625,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "After slumping against Tommy's shoulder in a kind of ___, he awoke clear headed and refreshed.",
   "options": [
    "stupor",
-   "rage",
-   "triumph",
-   "rehearsal"
+   "slumber",
+   "lethargy",
+   "reverie"
   ],
   "answer": "stupor",
   "definitions": {
    "stupor": "a dazed, half-conscious state",
-   "rage": "violent, uncontrolled anger",
-   "triumph": "a great victory or success",
-   "rehearsal": "a practice run before a performance"
+   "slumber": "deep, peaceful sleep",
+   "lethargy": "a heavy, sluggish lack of energy",
+   "reverie": "a state of pleasant daydreaming"
   },
   "fixed": "After slumping against Tommy's shoulder in a kind of stupor, he awoke clear headed and refreshed.",
   "rule": "He was slumping and then \"awoke clear headed,\" so the state before was a dazed, sleepy one. That is a stupor.",
@@ -10652,16 +10652,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He was eloquent and subtle and ___ as to detail.",
   "options": [
    "meticulous",
-   "careless",
-   "forgetful",
-   "impatient"
+   "lavish",
+   "ingenious",
+   "vivid"
   ],
   "answer": "meticulous",
   "definitions": {
    "meticulous": "extremely careful and precise about small details",
-   "careless": "not taking care to be accurate",
-   "forgetful": "often failing to remember things",
-   "impatient": "unwilling to wait or be slowed down"
+   "lavish": "generous to an extravagant degree",
+   "ingenious": "clever and inventive",
+   "vivid": "producing strong, clear mental pictures"
   },
   "fixed": "He was eloquent and subtle and meticulous as to detail.",
   "rule": "The sentence lists admirable qualities, \"eloquent and subtle,\" and the phrase \"as to detail\" shows this quality is about handling details. Meticulous means very careful with details.",
@@ -10679,16 +10679,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He was of too ___ a temperament to find interest in the sordid details of the average crime.",
   "options": [
    "fastidious",
-   "coarse",
-   "curious",
-   "reckless"
+   "cerebral",
+   "contemplative",
+   "idealistic"
   ],
   "answer": "fastidious",
   "definitions": {
    "fastidious": "very hard to please and easily disgusted by anything unclean or unpleasant",
-   "coarse": "rough and crude in manner",
-   "curious": "eager to learn or know things",
-   "reckless": "careless about danger or consequences"
+   "cerebral": "intellectual rather than emotional",
+   "contemplative": "deeply and quietly thoughtful",
+   "idealistic": "guided by lofty principles and hopes"
   },
   "fixed": "He was of too fastidious a temperament to find interest in the sordid details of the average crime.",
   "rule": "He found no interest in the \"sordid details,\" so he must be someone easily put off by unpleasant things. That is the meaning of fastidious.",
@@ -10706,16 +10706,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Bill's response to this was to ___ his grasp of her and recoil violently.",
   "options": [
    "relinquish",
-   "tighten",
-   "increase",
-   "renew"
+   "loosen",
+   "adjust",
+   "shift"
   ],
   "answer": "relinquish",
   "definitions": {
    "relinquish": "to let go of or give up",
-   "tighten": "to make firmer or more secure",
-   "increase": "to make greater",
-   "renew": "to start again or restore"
+   "loosen": "to make less tight or firm",
+   "adjust": "to change slightly to fit better",
+   "shift": "to move from one position to another"
   },
   "fixed": "Bill's response to this was to relinquish his grasp of her and recoil violently.",
   "rule": "The word \"recoil\" shows he pulls away from her, so his grasp must be released. Relinquish means to let go.",
@@ -10733,16 +10733,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "The deep tan of his face was somewhat unusual looking amongst these ___ Londoners and it had attracted the fellow’s attention.",
   "options": [
    "pallid",
-   "tanned",
-   "weathered",
-   "ruddy"
+   "sedentary",
+   "jaded",
+   "harried"
   ],
   "answer": "pallid",
   "definitions": {
    "pallid": "pale, lacking healthy color",
-   "tanned": "having skin darkened by the sun",
-   "weathered": "toughened and darkened by outdoor exposure",
-   "ruddy": "having a healthy reddish color"
+   "sedentary": "spending much time sitting down",
+   "jaded": "worn out and bored by overexposure",
+   "harried": "constantly rushed and under pressure"
   },
   "fixed": "The deep tan of his face was somewhat unusual looking amongst these pallid Londoners and it had attracted the fellow’s attention.",
   "rule": "His \"deep tan\" was \"unusual\" among these people, so they must have looked the opposite. Pallid means pale.",
@@ -10760,16 +10760,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He was a good cricketer and a scratch golfer, he had pleasant manners, and an ___ disposition, but his position in the Foreign Office had been gained, not by brains, but by good connections.",
   "options": [
    "amiable",
-   "hostile",
-   "sullen",
-   "arrogant"
+   "optimistic",
+   "indolent",
+   "impulsive"
   ],
   "answer": "amiable",
   "definitions": {
    "amiable": "friendly and pleasant",
-   "hostile": "unfriendly and aggressive",
-   "sullen": "gloomy and bad-tempered",
-   "arrogant": "overly proud and looking down on others"
+   "optimistic": "expecting good things; hopeful",
+   "indolent": "lazy and avoiding effort",
+   "impulsive": "acting suddenly without thinking"
   },
   "fixed": "He was a good cricketer and a scratch golfer, he had pleasant manners, and an amiable disposition, but his position in the Foreign Office had been gained, not by brains, but by good connections.",
   "rule": "The list includes \"pleasant manners,\" so the disposition described alongside it is also agreeable. Amiable means friendly.",
@@ -10787,16 +10787,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Although she had no doubts of her own powers to ___ a role indefinitely, she had too much common sense not to recognize the force of Mr. Carter’s arguments.",
   "options": [
    "sustain",
-   "abandon",
-   "forget",
-   "reject"
+   "assume",
+   "portray",
+   "embellish"
   ],
   "answer": "sustain",
   "definitions": {
    "sustain": "to keep going over a long time",
-   "abandon": "to give up completely",
-   "forget": "to fail to remember",
-   "reject": "to refuse to accept"
+   "assume": "to take on or begin to have",
+   "portray": "to represent in a play or story",
+   "embellish": "to decorate or add details to"
   },
   "fixed": "Although she had no doubts of her own powers to sustain a role indefinitely, she had too much common sense not to recognize the force of Mr. Carter’s arguments.",
   "rule": "The word \"indefinitely\" shows she can keep the role going without end. Sustain means to keep something going.",
@@ -10814,16 +10814,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "If only Tuppence could have been at his side to share in the triumphant conclusion of their joint ___!",
   "options": [
    "venture",
-   "quarrel",
-   "holiday",
-   "apology"
+   "inquiry",
+   "expedition",
+   "crusade"
   ],
   "answer": "venture",
   "definitions": {
    "venture": "a risky or daring project",
-   "quarrel": "an angry argument",
-   "holiday": "a period of rest away from work",
-   "apology": "a statement saying sorry"
+   "inquiry": "a formal search for information",
+   "expedition": "a journey made for a purpose",
+   "crusade": "a determined campaign for a cause"
   },
   "fixed": "If only Tuppence could have been at his side to share in the triumphant conclusion of their joint venture!",
   "rule": "Something with a \"triumphant conclusion\" that two people share is a project they undertook together. A venture is a daring undertaking.",
@@ -10841,16 +10841,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He took out one with a large brim and curling feathers--an ___ Ascot hat.",
   "options": [
    "elaborate",
-   "plain",
-   "drab",
-   "tiny"
+   "outlandish",
+   "opulent",
+   "ostentatious"
   ],
   "answer": "elaborate",
   "definitions": {
    "elaborate": "detailed and complicated, with lots of decoration",
-   "plain": "simple and without decoration",
-   "drab": "dull and lacking color",
-   "tiny": "very small"
+   "outlandish": "strange and far from the ordinary",
+   "opulent": "luxuriously rich in appearance",
+   "ostentatious": "showy in order to impress others"
   },
   "fixed": "He took out one with a large brim and curling feathers--an elaborate Ascot hat.",
   "rule": "A hat with \"a large brim and curling feathers\" is heavily decorated. Elaborate describes something full of detail.",
@@ -10868,19 +10868,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "So ___ was Lord Caterham of being consulted by George that he spent the whole morning making a tour of his estate.",
   "options": [
    "apprehensive",
-   "eager",
-   "grateful",
-   "careless"
+   "weary",
+   "resentful",
+   "intolerant"
   ],
   "answer": "apprehensive",
   "definitions": {
    "apprehensive": "anxious or fearful about something that might happen",
-   "eager": "very keen and excited to do something",
-   "grateful": "thankful",
-   "careless": "not taking enough care"
+   "weary": "tired of or bored with something",
+   "resentful": "feeling bitter anger over unfair treatment",
+   "intolerant": "unwilling to put up with something"
   },
   "fixed": "So apprehensive was Lord Caterham of being consulted by George that he spent the whole morning making a tour of his estate.",
-  "rule": "The clue is that he spent the whole morning touring his estate, which suggests he was avoiding being consulted. That fits someone anxious about it, not someone eager or grateful.",
+  "rule": "The clue is that he spent the whole morning touring his estate, which suggests he was avoiding being consulted.",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -10895,19 +10895,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He becomes more ___, and yet his silence seems to say more than speech might do.",
   "options": [
    "taciturn",
-   "talkative",
-   "generous",
-   "impatient"
+   "pensive",
+   "enigmatic",
+   "solemn"
   ],
   "answer": "taciturn",
   "definitions": {
    "taciturn": "saying very little; habitually quiet",
-   "talkative": "fond of talking a lot",
-   "generous": "willing to give freely",
-   "impatient": "unable to wait calmly"
+   "pensive": "deeply thoughtful, often with sadness",
+   "enigmatic": "puzzling and hard to read",
+   "solemn": "serious and dignified"
   },
   "fixed": "He becomes more taciturn, and yet his silence seems to say more than speech might do.",
-  "rule": "The clue is the word silence: the blank describes someone whose quietness says a great deal. That means a person who speaks very little, not a talkative one.",
+  "rule": "The clue is the word silence: the blank describes someone whose quietness says a great deal.",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -10922,19 +10922,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "But Pagett, his energy unimpaired by his recent misfortunes, was all for ___ measures.",
   "options": [
    "vigorous",
-   "lenient",
-   "timid",
-   "secretive"
+   "stringent",
+   "prompt",
+   "punitive"
   ],
   "answer": "vigorous",
   "definitions": {
    "vigorous": "strong, energetic, and forceful",
-   "lenient": "mild and not strict",
-   "timid": "shy and lacking courage",
-   "secretive": "fond of keeping things hidden"
+   "stringent": "strict and demanding",
+   "prompt": "done at once, without delay",
+   "punitive": "meant to punish"
   },
   "fixed": "But Pagett, his energy unimpaired by his recent misfortunes, was all for vigorous measures.",
-  "rule": "The clue is his energy unimpaired, meaning his energy was still strong. A man full of energy would favor forceful, energetic measures, not mild or timid ones.",
+  "rule": "The clue is his energy unimpaired, meaning his energy was still strong.",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -10949,16 +10949,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Virginia looked at him in astonishment, but some impulse ___ the retort that sprang to her lips.",
   "options": [
    "quelled",
-   "sparked",
-   "recorded",
-   "hastened"
+   "softened",
+   "prompted",
+   "delayed"
   ],
   "answer": "quelled",
   "definitions": {
    "quelled": "put an end to; suppressed",
-   "sparked": "set off or caused to start",
-   "recorded": "wrote down or saved for later",
-   "hastened": "made happen sooner"
+   "softened": "made less harsh or severe",
+   "prompted": "caused or encouraged to happen",
+   "delayed": "made late or held up"
   },
   "fixed": "Virginia looked at him in astonishment, but some impulse quelled the retort that sprang to her lips.",
   "rule": "The word but signals a contrast: a retort sprang to her lips, but something stopped it. Quelled means suppressed, which fits that contrast.",
@@ -10976,16 +10976,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "I went down to my cabin and began looking for a broad band of ribbon, or a motor-veil, with which I could restrain my ___ locks.",
   "options": [
    "rebellious",
-   "obedient",
-   "fragrant",
-   "brittle"
+   "tousled",
+   "luxuriant",
+   "wispy"
   ],
   "answer": "rebellious",
   "definitions": {
    "rebellious": "refusing to obey or be controlled",
-   "obedient": "doing what one is told",
-   "fragrant": "having a pleasant smell",
-   "brittle": "hard but easily broken"
+   "tousled": "messy and untidy",
+   "luxuriant": "thick, rich, and abundant in growth",
+   "wispy": "thin and light, in faint strands"
   },
   "fixed": "I went down to my cabin and began looking for a broad band of ribbon, or a motor-veil, with which I could restrain my rebellious locks.",
   "rule": "The clue is restrain: she needs a ribbon to hold her hair down, so it must be hair that will not stay in place. Rebellious means refusing to be controlled.",
@@ -11003,16 +11003,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "So prepared was it to go on repeating the statement indefinitely that Jimmy resigned himself to the ___.",
   "options": [
    "inevitable",
-   "avoidable",
-   "laughable",
-   "enjoyable"
+   "intolerable",
+   "preposterous",
+   "interminable"
   ],
   "answer": "inevitable",
   "definitions": {
    "inevitable": "certain to happen; unable to be avoided",
-   "avoidable": "able to be prevented",
-   "laughable": "so silly it makes people laugh",
-   "enjoyable": "pleasant to experience"
+   "intolerable": "too unpleasant or painful to endure",
+   "preposterous": "wildly absurd and contrary to reason",
+   "interminable": "seeming to go on without end"
   },
   "fixed": "So prepared was it to go on repeating the statement indefinitely that Jimmy resigned himself to the inevitable.",
   "rule": "The clue is resigned himself: people resign themselves to something they cannot change. Because the statement would repeat indefinitely, he accepted what could not be avoided.",
@@ -11030,19 +11030,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Bill responded with ___, and made various suggestions as to lunch, tea, dinner and dancing.",
   "options": [
    "alacrity",
-   "reluctance",
-   "hostility",
-   "confusion"
+   "gallantry",
+   "audacity",
+   "civility"
   ],
   "answer": "alacrity",
   "definitions": {
    "alacrity": "quick, cheerful readiness",
-   "reluctance": "unwillingness to do something",
-   "hostility": "unfriendly opposition",
-   "confusion": "a state of not understanding"
+   "gallantry": "brave, courteous behavior toward others",
+   "audacity": "bold willingness to take daring risks",
+   "civility": "polite and courteous behavior"
   },
   "fixed": "Bill responded with alacrity, and made various suggestions as to lunch, tea, dinner and dancing.",
-  "rule": "The clue is that he made various suggestions for lunch, tea, dinner and dancing, which shows he was keen. Alacrity means cheerful readiness, so reluctance or hostility would not fit.",
+  "rule": "The clue is that he made various suggestions for lunch, tea, dinner and dancing, which shows he was keen.",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -11057,16 +11057,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "The doctor’s eyes held the ___ accorded to a really rich man.",
   "options": [
    "deference",
-   "contempt",
-   "amusement",
-   "indifference"
+   "envy",
+   "scrutiny",
+   "indulgence"
   ],
   "answer": "deference",
   "definitions": {
    "deference": "respectful submission to someone",
-   "contempt": "a feeling that someone is worthless",
-   "amusement": "the feeling of finding something funny",
-   "indifference": "lack of interest or concern"
+   "envy": "resentful longing for what another has",
+   "scrutiny": "close, careful examination",
+   "indulgence": "willingness to give in to someone's wishes"
   },
   "fixed": "The doctor’s eyes held the deference accorded to a really rich man.",
   "rule": "The phrase \"accorded to a really rich man\" signals a respectful treatment given to someone important, which is what deference means.",
@@ -11084,19 +11084,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He leaned out of the window, and gave new directions to the taxi driver, who acknowledged them with a snort of ___.",
   "options": [
    "contempt",
-   "admiration",
-   "gratitude",
-   "sympathy"
+   "amusement",
+   "impatience",
+   "resignation"
   ],
   "answer": "contempt",
   "definitions": {
    "contempt": "a feeling that someone is worthless or beneath notice",
-   "admiration": "warm respect for someone",
-   "gratitude": "thankfulness",
-   "sympathy": "sharing in another person's sorrow"
+   "amusement": "enjoyment from finding something funny",
+   "impatience": "restless annoyance at delay or slowness",
+   "resignation": "calm acceptance of something unwelcome"
   },
   "fixed": "He leaned out of the window, and gave new directions to the taxi driver, who acknowledged them with a snort of contempt.",
-  "rule": "A \"snort\" is a scornful sound, so the driver's response shows disdain. Contempt fits that tone, while admiration, gratitude, and sympathy are warm feelings.",
+  "rule": "A \"snort\" is a scornful sound, so the driver's response shows disdain.",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -11111,19 +11111,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He was an easy-going man, and one whom an ___ secretary might be able to twist round his little finger.",
   "options": [
    "adroit",
-   "inept",
-   "timid",
-   "tactless"
+   "ambitious",
+   "indispensable",
+   "attentive"
   ],
   "answer": "adroit",
   "definitions": {
    "adroit": "clever and skillful in handling people or situations",
-   "inept": "clumsy and unskilled",
-   "timid": "shy and easily frightened",
-   "tactless": "careless about others' feelings"
+   "ambitious": "determined to achieve success or power",
+   "indispensable": "absolutely necessary and impossible to replace",
+   "attentive": "careful to notice and listen"
   },
   "fixed": "He was an easy-going man, and one whom an adroit secretary might be able to twist round his little finger.",
-  "rule": "Twisting an easy-going man \"round his little finger\" takes cleverness and skill, so the secretary must be adroit. An inept or tactless secretary could not manage it.",
+  "rule": "Twisting an easy-going man \"round his little finger\" takes cleverness and skill, so the secretary must be adroit.",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -11138,19 +11138,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "This was such a ___ description of Lord Caterham that Anthony had to turn his head away to conceal a smile.",
   "options": [
    "ludicrous",
-   "tragic",
-   "solemn",
-   "tedious"
+   "vivid",
+   "scathing",
+   "perceptive"
   ],
   "answer": "ludicrous",
   "definitions": {
    "ludicrous": "so absurd that it is laughable",
-   "tragic": "causing great sadness",
-   "solemn": "serious and formal",
-   "tedious": "boring and tiresome"
+   "vivid": "producing strong, clear mental pictures",
+   "scathing": "severely and harshly critical",
+   "perceptive": "quick to notice and understand things"
   },
   "fixed": "This was such a ludicrous description of Lord Caterham that Anthony had to turn his head away to conceal a smile.",
-  "rule": "Anthony must hide a smile, so the description struck him as funny. Ludicrous means laughably absurd; tragic, solemn, and tedious would not make someone smile.",
+  "rule": "Anthony must hide a smile, so the description struck him as funny.",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -11165,16 +11165,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "So have I for that matter, but I flatter myself that my choice of dishes was more ___ than yours.",
   "options": [
    "judicious",
-   "reckless",
-   "hasty",
-   "ignorant"
+   "adventurous",
+   "wholesome",
+   "extravagant"
   ],
   "answer": "judicious",
   "definitions": {
    "judicious": "showing good judgment and sense",
-   "reckless": "acting without care about consequences",
-   "hasty": "done too quickly without thought",
-   "ignorant": "lacking knowledge"
+   "adventurous": "willing to try new and risky things",
+   "wholesome": "good for one's health",
+   "extravagant": "spending or using far too much"
   },
   "fixed": "So have I for that matter, but I flatter myself that my choice of dishes was more judicious than yours.",
   "rule": "The speaker \"flatter[s]\" himself, meaning he is proud of his choice, so it was a wise one. Judicious means showing good judgment.",
@@ -11192,16 +11192,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "A proud-spirited young American girl might find your rules and regulations in war time rather ___, and get up against it.",
   "options": [
    "irksome",
-   "reassuring",
-   "amusing",
-   "flattering"
+   "arbitrary",
+   "demeaning",
+   "restrictive"
   ],
   "answer": "irksome",
   "definitions": {
    "irksome": "annoying and tiresome",
-   "reassuring": "comforting",
-   "amusing": "entertaining",
-   "flattering": "praising in a way that pleases"
+   "arbitrary": "based on whim, not on reason",
+   "demeaning": "lowering a person's dignity",
+   "restrictive": "limiting freedom or movement"
   },
   "fixed": "A proud-spirited young American girl might find your rules and regulations in war time rather irksome, and get up against it.",
   "rule": "The girl would \"get up against\" the rules, meaning she would resist them, so she must find them annoying. Irksome means irritating.",
@@ -11219,16 +11219,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "The relief of getting away from Pagett with his ___ nosing out of intrigues was enormous, and Miss Pettigrew is certainly a useful creature.",
   "options": [
    "incessant",
-   "occasional",
-   "fleeting",
-   "polite"
+   "inquisitive",
+   "furtive",
+   "officious"
   ],
   "answer": "incessant",
   "definitions": {
    "incessant": "continuing without pause",
-   "occasional": "happening now and then",
-   "fleeting": "lasting only a very short time",
-   "polite": "showing good manners"
+   "inquisitive": "curious and asking many questions",
+   "furtive": "sneaky and secretive",
+   "officious": "too eager to give orders or interfere"
   },
   "fixed": "The relief of getting away from Pagett with his incessant nosing out of intrigues was enormous, and Miss Pettigrew is certainly a useful creature.",
   "rule": "The relief was \"enormous,\" which suggests the nosing never stopped. Incessant means continuing without a break.",
@@ -11246,16 +11246,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "What I meant was that we work like moles in the dark, and that he has no suspicion of our ___ schemes.",
   "options": [
    "nefarious",
-   "benevolent",
-   "lawful",
-   "honorable"
+   "clandestine",
+   "intricate",
+   "audacious"
   ],
   "answer": "nefarious",
   "definitions": {
    "nefarious": "wicked or criminal",
-   "benevolent": "kind and generous",
-   "lawful": "allowed by the law",
-   "honorable": "deserving respect for honesty"
+   "clandestine": "carried out in secret",
+   "intricate": "complex, with many small parts",
+   "audacious": "boldly daring and willing to take risks"
   },
   "fixed": "What I meant was that we work like moles in the dark, and that he has no suspicion of our nefarious schemes.",
   "rule": "Working \"like moles in the dark\" suggests secrecy, and the schemes must be hidden from him. Nefarious means wicked, which fits secret plotting.",
@@ -11273,19 +11273,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Lunch-time found the young couple attacking a steak and chips in an obscure hostelry with ___.",
   "options": [
    "avidity",
-   "reluctance",
-   "disdain",
-   "caution"
+   "diligence",
+   "ferocity",
+   "dexterity"
   ],
   "answer": "avidity",
   "definitions": {
    "avidity": "great eagerness",
-   "reluctance": "unwillingness",
-   "disdain": "scornful dislike",
-   "caution": "care to avoid danger"
+   "diligence": "steady, careful effort",
+   "ferocity": "wild, fierce intensity",
+   "dexterity": "skill in using the hands"
   },
   "fixed": "Lunch-time found the young couple attacking a steak and chips in an obscure hostelry with avidity.",
-  "rule": "The word \"attacking\" shows the couple eating hungrily, so they ate with great eagerness. Avidity means eagerness; reluctance, disdain, and caution do not match \"attacking.\"",
+  "rule": "The word \"attacking\" shows the couple eating hungrily, so they ate with great eagerness.",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -11300,19 +11300,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He is always spoken of by the ___ title of ‘Mr. Brown.’ But one thing is certain, he is the master criminal of this age.",
   "options": [
    "unassuming",
-   "pompous",
-   "elaborate",
-   "grandiose"
+   "cryptic",
+   "generic",
+   "fictitious"
   ],
   "answer": "unassuming",
   "definitions": {
    "unassuming": "modest and not showy",
-   "pompous": "self-important in a show-off way",
-   "elaborate": "detailed and complicated",
-   "grandiose": "impressive in a grand, exaggerated way"
+   "cryptic": "puzzling, with a hidden meaning",
+   "generic": "general rather than specific",
+   "fictitious": "invented rather than real"
   },
   "fixed": "He is always spoken of by the unassuming title of ‘Mr. Brown.’ But one thing is certain, he is the master criminal of this age.",
-  "rule": "The word \"But\" sets the plain title \"Mr. Brown\" against his being a master criminal. A simple, ordinary title is unassuming, not pompous or grandiose.",
+  "rule": "The word \"But\" sets the plain title \"Mr. Brown\" against his being a master criminal.",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -11327,16 +11327,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "The gag was half choking me and the stiffness and pain were ___.",
   "options": [
    "unendurable",
-   "negligible",
-   "soothing",
-   "mild"
+   "persistent",
+   "intermittent",
+   "numbing"
   ],
   "answer": "unendurable",
   "definitions": {
    "unendurable": "too severe to bear",
-   "negligible": "so small it is not worth noticing",
-   "soothing": "calming and comforting",
-   "mild": "gentle, not severe"
+   "persistent": "continuing without letting up",
+   "intermittent": "stopping and starting at intervals",
+   "numbing": "causing loss of feeling"
   },
   "fixed": "The gag was half choking me and the stiffness and pain were unendurable.",
   "rule": "Being half choked by a gag along with stiffness and pain describes suffering that is too much to bear. Unendurable means impossible to endure.",
@@ -11354,16 +11354,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Getting down, he first ___ the number-plate with mud.",
   "options": [
    "obscured",
-   "polished",
-   "illuminated",
-   "displayed"
+   "defaced",
+   "splattered",
+   "stained"
   ],
   "answer": "obscured",
   "definitions": {
    "obscured": "made hard to see; hid",
-   "polished": "made shiny by rubbing",
-   "illuminated": "lit up",
-   "displayed": "showed openly"
+   "defaced": "spoiled the surface or appearance of",
+   "splattered": "splashed with drops of liquid",
+   "stained": "left with marks that are hard to remove"
   },
   "fixed": "Getting down, he first obscured the number-plate with mud.",
   "rule": "Covering a number-plate with mud makes it unreadable, so he hid it. Obscured means made hard to see.",
@@ -11381,19 +11381,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Superintendent Battle will tell you that a ___ plot was formed to keep Mrs. Revel from coming to Chimneys.",
   "options": [
    "deliberate",
-   "accidental",
-   "spontaneous",
-   "haphazard"
+   "devious",
+   "sinister",
+   "complex"
   ],
   "answer": "deliberate",
   "definitions": {
    "deliberate": "done on purpose and planned",
-   "accidental": "happening by chance",
-   "spontaneous": "done suddenly without planning",
-   "haphazard": "lacking any order or plan"
+   "devious": "sly and dishonest in methods",
+   "sinister": "suggesting evil or danger",
+   "complex": "made of many connected parts"
   },
   "fixed": "Superintendent Battle will tell you that a deliberate plot was formed to keep Mrs. Revel from coming to Chimneys.",
-  "rule": "A plot that \"was formed to keep\" someone away was planned with a purpose. Deliberate means intentional, the opposite of accidental or spontaneous.",
+  "rule": "A plot that \"was formed to keep\" someone away was planned with a purpose.",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -11408,19 +11408,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "The keen rush through the air brought a new ___ to Tuppence.",
   "options": [
    "exhilaration",
-   "boredom",
-   "sorrow",
-   "suspicion"
+   "alertness",
+   "clarity",
+   "confidence"
   ],
   "answer": "exhilaration",
   "definitions": {
    "exhilaration": "a feeling of excited, lively joy",
-   "boredom": "the feeling of being uninterested and weary",
-   "sorrow": "deep sadness",
-   "suspicion": "a feeling that something is wrong or someone cannot be trusted"
+   "alertness": "watchful readiness and quick attention",
+   "clarity": "clearness of thought or understanding",
+   "confidence": "firm belief in one's own ability"
   },
   "fixed": "The keen rush through the air brought a new exhilaration to Tuppence.",
-  "rule": "The clue is the \"keen rush through the air,\" which describes a fresh, energizing sensation. That brings a thrill, so exhilaration fits, while boredom, sorrow, and suspicion do not match.",
+  "rule": "The clue is the \"keen rush through the air,\" which describes a fresh, energizing sensation.",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -11435,16 +11435,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "She is full of coaxing ways that mask an ___ determination.",
   "options": [
    "invincible",
-   "wavering",
-   "feeble",
-   "casual"
+   "underlying",
+   "ardent",
+   "unspoken"
   ],
   "answer": "invincible",
   "definitions": {
    "invincible": "impossible to defeat or overcome",
-   "wavering": "unsteady and unsure",
-   "feeble": "weak",
-   "casual": "relaxed and not serious"
+   "underlying": "lying beneath the surface; basic",
+   "ardent": "full of passion and enthusiasm",
+   "unspoken": "understood but not stated aloud"
   },
   "fixed": "She is full of coaxing ways that mask an invincible determination.",
   "rule": "The word \"mask\" signals a contrast: the gentle, coaxing ways hide something much harder underneath. Only invincible means a determination that cannot be beaten, while the other choices describe weak or relaxed determination.",
@@ -11462,16 +11462,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "And from that point he would not budge in spite of ___ and insult.",
   "options": [
    "cajolery",
-   "hesitation",
-   "boredom",
-   "applause"
+   "bribery",
+   "coercion",
+   "ridicule"
   ],
   "answer": "cajolery",
   "definitions": {
    "cajolery": "persuading someone with sweet talk and coaxing",
-   "hesitation": "a pause caused by uncertainty",
-   "boredom": "the feeling of being uninterested and weary",
-   "applause": "clapping to show approval"
+   "bribery": "offering money or gifts to win favors",
+   "coercion": "forcing someone through pressure or threats",
+   "ridicule": "mocking, scornful laughter at someone"
   },
   "fixed": "And from that point he would not budge in spite of cajolery and insult.",
   "rule": "The phrase \"would not budge in spite of\" tells you that something was being used to try to move him, and it is paired with insult as another kind of pressure. Cajolery means coaxing someone, so it fits as an attempt to change his mind.",
@@ -11489,19 +11489,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "His air of ___ good nature fascinated her.",
   "options": [
    "irrepressible",
-   "reluctant",
-   "fragile",
-   "scarce"
+   "infectious",
+   "disarming",
+   "unaffected"
   ],
   "answer": "irrepressible",
   "definitions": {
    "irrepressible": "impossible to hold back or keep down",
-   "reluctant": "unwilling and hesitant",
-   "fragile": "easily broken",
-   "scarce": "in short supply"
+   "infectious": "spreading easily to others",
+   "disarming": "charming enough to remove suspicion",
+   "unaffected": "natural and free of pretense"
   },
   "fixed": "His air of irrepressible good nature fascinated her.",
-  "rule": "The word \"fascinated\" shows that his good nature is striking and lively, something that keeps bubbling out. Irrepressible means cannot be held back, which fits, while reluctant and fragile suggest the opposite.",
+  "rule": "The word \"fascinated\" shows that his good nature is striking and lively, something that keeps bubbling out.",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -11516,19 +11516,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "In spite of herself, a thousand ___ preyed on her mind.",
   "options": [
    "apprehensions",
-   "reassurances",
-   "celebrations",
-   "instructions"
+   "regrets",
+   "grievances",
+   "recollections"
   ],
   "answer": "apprehensions",
   "definitions": {
    "apprehensions": "anxious fears about what might happen",
-   "reassurances": "comforting words that remove worry",
-   "celebrations": "joyful events or parties",
-   "instructions": "directions telling someone what to do"
+   "regrets": "feelings of sorrow over past actions",
+   "grievances": "complaints about unfair treatment",
+   "recollections": "things remembered from the past"
   },
   "fixed": "In spite of herself, a thousand apprehensions preyed on her mind.",
-  "rule": "The clue is \"preyed on her mind,\" which describes worries that trouble someone against her will. Apprehensions are anxious fears, so they fit, while reassurances and celebrations would not prey on a mind.",
+  "rule": "The clue is \"preyed on her mind,\" which describes worries that trouble someone against her will.",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
@@ -11543,19 +11543,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "One by one the drawers yielded to his ___.",
   "options": [
    "manipulations",
-   "protests",
-   "prayers",
-   "complaints"
+   "entreaties",
+   "exertions",
+   "probings"
   ],
   "answer": "manipulations",
   "definitions": {
    "manipulations": "skillful handling or working of something with the hands",
-   "protests": "objections spoken against something",
-   "prayers": "requests made to a higher power",
-   "complaints": "statements of dissatisfaction"
+   "entreaties": "earnest requests or pleas",
+   "exertions": "hard physical or mental efforts",
+   "probings": "careful searches or investigations"
   },
   "fixed": "One by one the drawers yielded to his manipulations.",
-  "rule": "The phrase \"One by one the drawers yielded\" describes locks giving way because of something he physically did. Manipulations are skillful handling, so they fit, while protests, prayers, and complaints are only words.",
+  "rule": "The phrase \"One by one the drawers yielded\" describes locks giving way because of something he physically did.",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -11570,16 +11570,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "His ideas and Bundle’s on the subject of careful driving hardly ___.",
   "options": [
    "coincided",
-   "collapsed",
-   "apologized",
-   "trembled"
+   "coexisted",
+   "intersected",
+   "collided"
   ],
   "answer": "coincided",
   "definitions": {
    "coincided": "matched or agreed",
-   "collapsed": "fell down or broke apart",
-   "apologized": "said sorry",
-   "trembled": "shook slightly"
+   "coexisted": "existed together at the same time",
+   "intersected": "crossed at a single point",
+   "collided": "crashed into each other"
   },
   "fixed": "His ideas and Bundle’s on the subject of careful driving hardly coincided.",
   "rule": "The sentence compares two sets of ideas on the same subject, and the word \"hardly\" signals that they did not match. Only \"coincided\" means to agree or line up.",
@@ -11597,16 +11597,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He talked well, albeit with a certain bitterness, as he described the various ways in which the detective bureau had been ___.",
   "options": [
    "outwitted",
-   "rewarded",
-   "mourned",
-   "installed"
+   "undermined",
+   "obstructed",
+   "bypassed"
   ],
   "answer": "outwitted",
   "definitions": {
    "outwitted": "beaten by being cleverer",
-   "rewarded": "given a prize or payment",
-   "mourned": "grieved over",
-   "installed": "put in place for use"
+   "undermined": "weakened gradually, often in secret",
+   "obstructed": "blocked the progress of",
+   "bypassed": "avoided by going around"
   },
   "fixed": "He talked well, albeit with a certain bitterness, as he described the various ways in which the detective bureau had been outwitted.",
   "rule": "The \"certain bitterness\" in his voice as he describes ways the detective bureau was handled points to a defeat. \"Outwitted\" means beaten by cleverness, which fits.",
@@ -11624,16 +11624,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "My prayers must have been ___, for we reached the shore without adventure, and drew ourselves up wet and dripping on the bank.",
   "options": [
    "efficacious",
-   "futile",
-   "lengthy",
-   "humble"
+   "fervent",
+   "sincere",
+   "heeded"
   ],
   "answer": "efficacious",
   "definitions": {
    "efficacious": "effective; producing the desired result",
-   "futile": "useless; having no effect",
-   "lengthy": "long",
-   "humble": "modest and not proud"
+   "fervent": "showing intense, passionate feeling",
+   "sincere": "honest and free from pretense",
+   "heeded": "listened to and taken seriously"
   },
   "fixed": "My prayers must have been efficacious, for we reached the shore without adventure, and drew ourselves up wet and dripping on the bank.",
   "rule": "The word \"for\" introduces the evidence: they reached the shore safely. That success shows the prayers worked, so \"efficacious\" (effective) fits.",
@@ -11651,16 +11651,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "The cold ___ of her manner sent an unpleasant chill down Tuppence’s spine, but she was not going to give in to it.",
   "options": [
    "malignity",
-   "sincerity",
-   "hospitality",
-   "humility"
+   "detachment",
+   "formality",
+   "composure"
   ],
   "answer": "malignity",
   "definitions": {
    "malignity": "deep ill will; a desire to harm",
-   "sincerity": "honest, genuine feeling",
-   "hospitality": "friendly welcome toward guests",
-   "humility": "modesty; lack of pride"
+   "detachment": "emotional distance from others",
+   "formality": "strict attention to polite rules",
+   "composure": "calm and steady self-control"
   },
   "fixed": "The cold malignity of her manner sent an unpleasant chill down Tuppence’s spine, but she was not going to give in to it.",
   "rule": "The clues \"cold\" and \"an unpleasant chill down Tuppence’s spine\" show the manner was hostile. \"Malignity\" means ill will.",
@@ -11678,16 +11678,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "By an easy ___ he induces Madame Kettering to bring the stones with her.",
   "options": [
    "stratagem",
-   "treaty",
-   "rebuke",
-   "inheritance"
+   "invitation",
+   "appeal",
+   "assurance"
   ],
   "answer": "stratagem",
   "definitions": {
    "stratagem": "a clever trick or plan to get something done",
-   "treaty": "a formal agreement between nations",
-   "rebuke": "a sharp scolding",
-   "inheritance": "money or property received from someone who has died"
+   "invitation": "a request to attend or take part",
+   "appeal": "an earnest request for help",
+   "assurance": "a promise meant to inspire confidence"
   },
   "fixed": "By an easy stratagem he induces Madame Kettering to bring the stones with her.",
   "rule": "He \"induces\" someone to do something by an \"easy\" means, which describes a trick or scheme. \"Stratagem\" means a clever plan to achieve a goal.",
@@ -11705,16 +11705,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "As Colonel Melrose had ___, the whole affair was very simple.",
   "options": [
    "predicted",
-   "concealed",
-   "doubted",
-   "demanded"
+   "remarked",
+   "insisted",
+   "suspected"
   ],
   "answer": "predicted",
   "definitions": {
    "predicted": "said in advance what would happen",
-   "concealed": "kept hidden",
-   "doubted": "did not believe",
-   "demanded": "asked for forcefully"
+   "remarked": "said as a casual observation",
+   "insisted": "claimed firmly and repeatedly",
+   "suspected": "thought likely without proof"
   },
   "fixed": "As Colonel Melrose had predicted, the whole affair was very simple.",
   "rule": "The phrase \"As ... had ___\" followed by what turned out to be true means he said it beforehand. \"Predicted\" means said in advance what would happen.",
@@ -11732,16 +11732,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "With the first faint ___ of dawn, Sir James drew aside the curtains.",
   "options": [
    "glimmerings",
-   "blasts",
-   "echoes",
-   "burdens"
+   "mists",
+   "murmurs",
+   "zephyrs"
   ],
   "answer": "glimmerings",
   "definitions": {
    "glimmerings": "weak, small beginnings of light",
-   "blasts": "sudden strong bursts",
-   "echoes": "repeated sounds bouncing back",
-   "burdens": "heavy loads"
+   "mists": "clouds of tiny water drops",
+   "murmurs": "soft, low, indistinct sounds",
+   "zephyrs": "soft, gentle breezes"
   },
   "fixed": "With the first faint glimmerings of dawn, Sir James drew aside the curtains.",
   "rule": "The words \"first faint\" and \"dawn\" point to the weak beginnings of daylight. \"Glimmerings\" means faint flickers of light.",
@@ -11759,16 +11759,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Virginia stood back a little, and a slip of paper, ___ with a stone, fell accurately at her feet.",
   "options": [
    "weighted",
-   "erased",
-   "dampened",
-   "frozen"
+   "wrapped",
+   "tied",
+   "balanced"
   ],
   "answer": "weighted",
   "definitions": {
    "weighted": "made heavier by adding something",
-   "erased": "rubbed out",
-   "dampened": "made slightly wet",
-   "frozen": "turned to ice"
+   "wrapped": "covered by folding something around",
+   "tied": "fastened with string or cord",
+   "balanced": "kept steady and even"
   },
   "fixed": "Virginia stood back a little, and a slip of paper, weighted with a stone, fell accurately at her feet.",
   "rule": "A light slip of paper fell \"accurately\" at her feet, so something heavy must have been added; the clue is \"with a stone.\" \"Weighted\" means made heavier.",
@@ -11786,16 +11786,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "I’m doing you a favour because you’ve made a ___ impression on me, Mr. Cade.",
   "options": [
    "favourable",
-   "hostile",
-   "dismal",
-   "forgettable"
+   "lasting",
+   "striking",
+   "memorable"
   ],
   "answer": "favourable",
   "definitions": {
    "favourable": "positive; showing approval",
-   "hostile": "unfriendly",
-   "dismal": "gloomy and depressing",
-   "forgettable": "not worth remembering"
+   "lasting": "continuing for a long time",
+   "striking": "attracting attention because unusual",
+   "memorable": "easy to remember; worth recalling"
   },
   "fixed": "I’m doing you a favour because you’ve made a favourable impression on me, Mr. Cade.",
   "rule": "He is \"doing you a favour\" because of the impression made, so the impression must have been a good one. \"Favourable\" means positive.",
@@ -11813,16 +11813,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Stick as near to the truth as possible--it ___ the danger of ‘slips.’ I suggest that you should represent yourself to be what you are, a former V.A.D., who has chosen domestic service as a profession.",
   "options": [
    "minimizes",
-   "magnifies",
-   "postpones",
-   "resembles"
+   "anticipates",
+   "acknowledges",
+   "exposes"
   ],
   "answer": "minimizes",
   "definitions": {
    "minimizes": "reduces to the smallest amount",
-   "magnifies": "makes larger",
-   "postpones": "delays until later",
-   "resembles": "looks like"
+   "anticipates": "expects and prepares for in advance",
+   "acknowledges": "admits or accepts that something exists",
+   "exposes": "makes visible or open to danger"
   },
   "fixed": "Stick as near to the truth as possible--it minimizes the danger of ‘slips.’ I suggest that you should represent yourself to be what you are, a former V.A.D., who has chosen domestic service as a profession.",
   "rule": "The advice is to stay close to the truth, so the danger of slips gets smaller; the clue is \"danger of slips.\" \"Minimizes\" means reduces as much as possible.",
@@ -11840,16 +11840,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "The Superintendent waited patiently till a pause occurred in George's ___.",
   "options": [
    "loquacity",
-   "frugality",
-   "gullibility",
-   "modesty"
+   "tirade",
+   "indignation",
+   "bewilderment"
   ],
   "answer": "loquacity",
   "definitions": {
    "loquacity": "a tendency to talk a great deal",
-   "frugality": "careful, thrifty use of money",
-   "gullibility": "readiness to believe anything",
-   "modesty": "a humble, unshowy attitude"
+   "tirade": "a long, angry speech",
+   "indignation": "anger at unfair treatment",
+   "bewilderment": "a state of puzzled confusion"
   },
   "fixed": "The Superintendent waited patiently till a pause occurred in George's loquacity.",
   "rule": "The clue is that the Superintendent had to wait patiently for a pause in George's ___. Only a habit of nonstop talking would require waiting for a pause, so the word is loquacity.",
@@ -11867,16 +11867,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "As she drew nearer and nearer to Hyde Park corner, the temptation to return to South Audley Mansions was almost ___.",
   "options": [
    "irresistible",
-   "negligible",
-   "avoidable",
-   "trivial"
+   "inexplicable",
+   "irrational",
+   "agonizing"
   ],
   "answer": "irresistible",
   "definitions": {
    "irresistible": "too strong to be resisted",
-   "negligible": "so small it can be ignored",
-   "avoidable": "able to be steered clear of",
-   "trivial": "of little importance"
+   "inexplicable": "impossible to explain",
+   "irrational": "not based on reason",
+   "agonizing": "causing extreme pain or distress"
   },
   "fixed": "As she drew nearer and nearer to Hyde Park corner, the temptation to return to South Audley Mansions was almost irresistible.",
   "rule": "The phrase \"nearer and nearer\" shows the temptation growing stronger, and the word \"almost\" pushes it to an extreme. A temptation that is too strong to fight is irresistible.",
@@ -11894,16 +11894,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "What his real name is, no one knows, but he is a man of singular courage and daring, one who speaks five languages and is ___ in the art of disguise.",
   "options": [
    "unequalled",
-   "inexperienced",
-   "hesitant",
-   "uninterested"
+   "versed",
+   "steeped",
+   "fluent"
   ],
   "answer": "unequalled",
   "definitions": {
    "unequalled": "better than any other; without a rival",
-   "inexperienced": "lacking skill gained from practice",
-   "hesitant": "slow to act because of doubt",
-   "uninterested": "not caring about something"
+   "versed": "experienced and knowledgeable",
+   "steeped": "thoroughly immersed or absorbed",
+   "fluent": "able to speak smoothly and easily"
   },
   "fixed": "What his real name is, no one knows, but he is a man of singular courage and daring, one who speaks five languages and is unequalled in the art of disguise.",
   "rule": "The sentence praises the man with phrases like \"singular courage and daring\" and five languages. In that list of strengths, being ___ in disguise means no one else matches him.",
@@ -11921,16 +11921,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "If anyone spoke to him he was quick to rebuff the ___.",
   "options": [
    "overture",
-   "tantrum",
-   "verdict",
-   "rumor"
+   "intrusion",
+   "interruption",
+   "insinuation"
   ],
   "answer": "overture",
   "definitions": {
    "overture": "a friendly approach meant to start a conversation or relationship",
-   "tantrum": "an outburst of bad temper",
-   "verdict": "a final decision on a case",
-   "rumor": "a story passed around without proof"
+   "intrusion": "an unwelcome entering into someone's space",
+   "interruption": "an act of breaking into a conversation",
+   "insinuation": "an indirect hint of something unpleasant"
   },
   "fixed": "If anyone spoke to him he was quick to rebuff the overture.",
   "rule": "The sentence begins with \"If anyone spoke to him,\" so the thing he rebuffs is someone's attempt to be friendly. That opening approach is an overture.",
@@ -11948,16 +11948,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He was sent down from Oxford, I believe, for some wild ___.",
   "options": [
    "escapade",
-   "curriculum",
-   "tuition",
-   "endowment"
+   "indiscretion",
+   "outburst",
+   "extravagance"
   ],
   "answer": "escapade",
   "definitions": {
    "escapade": "a reckless or mischievous adventure",
-   "curriculum": "the set of courses a school teaches",
-   "tuition": "the fee paid for instruction",
-   "endowment": "money given to support an institution"
+   "indiscretion": "a careless or unwise act",
+   "outburst": "a sudden release of strong emotion",
+   "extravagance": "excessive spending or lavishness"
   },
   "fixed": "He was sent down from Oxford, I believe, for some wild escapade.",
   "rule": "The clue is \"wild,\" together with being sent down from the university, which suggests punishment for misbehavior. A wild, daring prank is an escapade.",
@@ -11975,16 +11975,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "And, of course, in a small village, with nothing to distract one, one has such ample opportunity for becoming what I might call ___ in one's study.",
   "options": [
    "proficient",
-   "reluctant",
-   "ignorant",
-   "oblivious"
+   "engrossed",
+   "secluded",
+   "complacent"
   ],
   "answer": "proficient",
   "definitions": {
    "proficient": "skilled and capable through practice",
-   "reluctant": "unwilling and hesitant",
-   "ignorant": "lacking knowledge",
-   "oblivious": "unaware of what is happening"
+   "engrossed": "completely absorbed in an activity",
+   "secluded": "kept apart from other people",
+   "complacent": "smugly satisfied with oneself"
   },
   "fixed": "And, of course, in a small village, with nothing to distract one, one has such ample opportunity for becoming what I might call proficient in one's study.",
   "rule": "The clues are \"ample opportunity\" and \"nothing to distract one.\" Plenty of time and focus for study leads to becoming skilled, which is proficient.",
@@ -12002,16 +12002,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He has ___ who do his dirty work for him.",
   "options": [
    "underlings",
-   "rivals",
-   "mentors",
-   "creditors"
+   "informants",
+   "apprentices",
+   "intermediaries"
   ],
   "answer": "underlings",
   "definitions": {
    "underlings": "people of lower rank who carry out a boss's orders",
-   "rivals": "people competing against someone",
-   "mentors": "experienced people who guide others",
-   "creditors": "people who are owed money"
+   "informants": "people who secretly pass facts to others",
+   "apprentices": "people learning a trade from an expert",
+   "intermediaries": "go-betweens who act between two parties"
   },
   "fixed": "He has underlings who do his dirty work for him.",
   "rule": "The clue is that these people \"do his dirty work for him.\" People who take orders and do tasks for a boss are underlings.",
@@ -12029,16 +12029,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "It was a sporting idea, but, on the face of it, ___.",
   "options": [
    "impracticable",
-   "admirable",
-   "inspired",
-   "harmless"
+   "foolhardy",
+   "hazardous",
+   "frivolous"
   ],
   "answer": "impracticable",
   "definitions": {
    "impracticable": "not able to be carried out in reality",
-   "admirable": "deserving respect",
-   "inspired": "showing brilliant creativity",
-   "harmless": "unlikely to cause damage"
+   "foolhardy": "rash and bold in a reckless way",
+   "hazardous": "full of danger or risk",
+   "frivolous": "not serious; silly"
   },
   "fixed": "It was a sporting idea, but, on the face of it, impracticable.",
   "rule": "The word \"but\" signals a contrast with the positive \"sporting idea.\" The idea sounds fun but cannot realistically be done, which is impracticable.",
@@ -12056,16 +12056,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "I saw a perplexed frown dimming the ___ of his face.",
   "options": [
    "radiance",
-   "wrinkles",
-   "outline",
-   "gloom"
+   "serenity",
+   "geniality",
+   "animation"
   ],
   "answer": "radiance",
   "definitions": {
    "radiance": "a bright, glowing quality",
-   "wrinkles": "small folds or lines in the skin",
-   "outline": "the outer edge of a shape",
-   "gloom": "darkness or sadness"
+   "serenity": "a state of calm peacefulness",
+   "geniality": "a friendly, cheerful manner",
+   "animation": "liveliness and energy"
   },
   "fixed": "I saw a perplexed frown dimming the radiance of his face.",
   "rule": "The clue is the verb \"dimming,\" which means making something less bright. What a frown dims on a face is its brightness, or radiance.",
@@ -12083,16 +12083,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "One fact had emerged from the countess's flood of ___.",
   "options": [
    "volubility",
-   "reticence",
-   "humility",
-   "frugality"
+   "recrimination",
+   "hysteria",
+   "invective"
   ],
   "answer": "volubility",
   "definitions": {
    "volubility": "a great readiness to talk, with words pouring out",
-   "reticence": "a tendency to keep thoughts and feelings to oneself",
-   "humility": "a modest view of one's own importance",
-   "frugality": "careful, thrifty use of money"
+   "recrimination": "angry accusations made in return",
+   "hysteria": "uncontrolled, panicky emotion",
+   "invective": "harsh, abusive language"
   },
   "fixed": "One fact had emerged from the countess's flood of volubility.",
   "rule": "The phrase \"flood of\" signals an overwhelming outpouring, and a fact emerging from it suggests a stream of talk. Volubility means talkativeness; the other choices describe holding back, modesty, or thrift.",
@@ -12110,19 +12110,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "The Comrades of the Red Hand, furious at her ___, twice attempted her life.",
   "options": [
    "betrayal",
-   "devotion",
-   "generosity",
-   "patience"
+   "confession",
+   "defiance",
+   "interference"
   ],
   "answer": "betrayal",
   "definitions": {
    "betrayal": "an act of disloyalty that harms those who trusted you",
-   "devotion": "deep loyalty and love",
-   "generosity": "willingness to give freely",
-   "patience": "calm ability to wait or endure"
+   "confession": "an admission of guilt",
+   "defiance": "open refusal to obey",
+   "interference": "unwanted involvement in others' affairs"
   },
   "fixed": "The Comrades of the Red Hand, furious at her betrayal, twice attempted her life.",
-  "rule": "The Comrades are furious enough to try to kill her, so she must have done something hostile to them. Only betrayal gives a reason for that anger; devotion, generosity, and patience would not.",
+  "rule": "The Comrades are furious enough to try to kill her, so she must have done something hostile to them.",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -12137,19 +12137,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "I have a certain talent for deduction, and Dr. Bauerstein’s manner had started a flock of wild ___ in my mind.",
   "options": [
    "surmises",
-   "verdicts",
-   "pardons",
-   "ceremonies"
+   "fantasies",
+   "misgivings",
+   "impulses"
   ],
   "answer": "surmises",
   "definitions": {
    "surmises": "guesses made on thin evidence",
-   "verdicts": "official decisions reached after a trial",
-   "pardons": "official forgiveness of a crime",
-   "ceremonies": "formal public events"
+   "fantasies": "imaginary events pictured in the mind",
+   "misgivings": "feelings of doubt or unease",
+   "impulses": "sudden urges to act"
   },
   "fixed": "I have a certain talent for deduction, and Dr. Bauerstein’s manner had started a flock of wild surmises in my mind.",
-  "rule": "The word \"wild\" and the mention of a talent for deduction point to guesses reached without proof. Surmises are such guesses; verdicts, pardons, and ceremonies do not start up in someone's mind.",
+  "rule": "The word \"wild\" and the mention of a talent for deduction point to guesses reached without proof.",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
@@ -12164,19 +12164,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "And the boy, like the proud young fool that he was, remained silent, disdaining to protest his innocence in the face of his father’s ___.",
   "options": [
    "disbelief",
-   "approval",
-   "admiration",
-   "sympathy"
+   "reproach",
+   "wrath",
+   "scorn"
   ],
   "answer": "disbelief",
   "definitions": {
    "disbelief": "refusal to accept that something is true",
-   "approval": "a favorable opinion",
-   "admiration": "respect and warm regard",
-   "sympathy": "feeling sorry for someone's troubles"
+   "reproach": "an expression of disapproval",
+   "wrath": "intense, burning anger",
+   "scorn": "a strong feeling that someone is inferior"
   },
   "fixed": "And the boy, like the proud young fool that he was, remained silent, disdaining to protest his innocence in the face of his father’s disbelief.",
-  "rule": "The boy is declining to protest his innocence, which only makes sense if his father refuses to accept it. Disbelief fits that clue; approval, admiration, or sympathy would leave nothing to protest.",
+  "rule": "The boy is declining to protest his innocence, which only makes sense if his father refuses to accept it.",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -12191,19 +12191,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Mr. Satterthwaite was still in a flutter of ___, despite the fact that his role was clearly to be that of a glorified courier.",
   "options": [
    "gratification",
-   "resentment",
-   "dismay",
-   "boredom"
+   "anticipation",
+   "vanity",
+   "curiosity"
   ],
   "answer": "gratification",
   "definitions": {
    "gratification": "pleasure or satisfaction",
-   "resentment": "bitter anger at being treated unfairly",
-   "dismay": "distress and discouragement",
-   "boredom": "the weariness of having nothing interesting to do"
+   "anticipation": "eager expectation of something to come",
+   "vanity": "excessive pride in oneself",
+   "curiosity": "a strong wish to know something"
   },
   "fixed": "Mr. Satterthwaite was still in a flutter of gratification, despite the fact that his role was clearly to be that of a glorified courier.",
-  "rule": "The word \"despite\" sets his modest role against his feeling, so the feeling must be a pleasant one that survives the disappointment. Gratification means pleasure; resentment, dismay, and boredom would not contrast with it.",
+  "rule": "The word \"despite\" sets his modest role against his feeling, so the feeling must be a pleasant one that survives the disappointment.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -12218,19 +12218,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Lady Coote had been disciplined to regard unpunctuality as a deadly sin of the most ___ nature.",
   "options": [
    "unpardonable",
-   "trivial",
-   "excusable",
-   "harmless"
+   "insidious",
+   "flagrant",
+   "unseemly"
   ],
   "answer": "unpardonable",
   "definitions": {
    "unpardonable": "too serious to be forgiven",
-   "trivial": "of little importance",
-   "excusable": "able to be forgiven",
-   "harmless": "unlikely to cause damage"
+   "insidious": "spreading harm slowly and unnoticed",
+   "flagrant": "glaringly and openly offensive",
+   "unseemly": "not proper or polite for the occasion"
   },
   "fixed": "Lady Coote had been disciplined to regard unpunctuality as a deadly sin of the most unpardonable nature.",
-  "rule": "The phrase \"deadly sin\" signals the most serious kind of wrongdoing. Unpardonable means beyond forgiveness; trivial, excusable, and harmless all contradict \"deadly.\"",
+  "rule": "The phrase \"deadly sin\" signals the most serious kind of wrongdoing.",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -12245,19 +12245,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He had thought of her always as an intellectual actress, one who ___ and got inside the soul of her part.",
   "options": [
    "comprehended",
-   "disregarded",
-   "mocked",
-   "neglected"
+   "rehearsed",
+   "pondered",
+   "relished"
   ],
   "answer": "comprehended",
   "definitions": {
    "comprehended": "understood fully",
-   "disregarded": "paid no attention to",
-   "mocked": "made fun of",
-   "neglected": "failed to take care of"
+   "rehearsed": "practiced in advance",
+   "pondered": "thought over carefully",
+   "relished": "enjoyed with great pleasure"
   },
   "fixed": "He had thought of her always as an intellectual actress, one who comprehended and got inside the soul of her part.",
-  "rule": "An intellectual actress who gets \"inside the soul of her part\" has first grasped it. Comprehended means understood; disregarded, mocked, and neglected would not lead to getting inside a role.",
+  "rule": "An intellectual actress who gets \"inside the soul of her part\" has first grasped it.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -12272,16 +12272,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "An outlying picture house provided them with ___ for the evening.",
   "options": [
    "recreation",
-   "nourishment",
-   "employment",
-   "shelter"
+   "refuge",
+   "refreshment",
+   "solitude"
   ],
   "answer": "recreation",
   "definitions": {
    "recreation": "enjoyable activity done for relaxation",
-   "nourishment": "food needed to stay healthy",
-   "employment": "paid work",
-   "shelter": "protection from weather or danger"
+   "refuge": "a place of safety or protection",
+   "refreshment": "light food and drink",
+   "solitude": "the state of being alone"
   },
   "fixed": "An outlying picture house provided them with recreation for the evening.",
   "rule": "A picture house, or movie theater, offers entertainment for an evening out. Recreation means leisure activity; food, a job, or protection from weather are not what a picture house provides.",
@@ -12299,19 +12299,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Life is a ___ of physical and mental experience.",
   "options": [
    "compound",
-   "absence",
-   "shortage",
-   "denial"
+   "chronicle",
+   "spectrum",
+   "reservoir"
   ],
   "answer": "compound",
   "definitions": {
    "compound": "a mixture of two or more things combined into one",
-   "absence": "the state of being missing or not present",
-   "shortage": "a lack of enough of something",
-   "denial": "a refusal to accept that something is true"
+   "chronicle": "a record of events in order",
+   "spectrum": "a wide range of related things",
+   "reservoir": "a large store or supply held back"
   },
   "fixed": "Life is a compound of physical and mental experience.",
-  "rule": "The phrase \"of physical and mental experience\" names two parts that make up life, which signals a mixture of elements. A compound is a combination, so it fits, while absence, shortage, and denial do not describe two things blended together.",
+  "rule": "The phrase \"of physical and mental experience\" names two parts that make up life, which signals a mixture of elements.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -22645,16 +22645,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Bundle drank obediently and a tinge of colour came into her ___ face.",
   "options": [
    "pallid",
-   "ruddy",
-   "sturdy",
-   "jovial"
+   "gaunt",
+   "haggard",
+   "stricken"
   ],
   "answer": "pallid",
   "definitions": {
    "pallid": "pale, lacking color",
-   "ruddy": "healthy red in color",
-   "sturdy": "strong and solidly built",
-   "jovial": "cheerful and friendly"
+   "gaunt": "thin and bony, as from illness",
+   "haggard": "worn out and exhausted in appearance",
+   "stricken": "overcome by grief, fear, or illness"
   },
   "fixed": "Bundle drank obediently and a tinge of colour came into her pallid face.",
   "rule": "The phrase \"a tinge of colour came into\" her face shows it had lacked color before, so the missing word means pale.",
@@ -22672,16 +22672,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "George was ___ to answer, but did not see his way to avoid the question.",
   "options": [
    "reluctant",
-   "eager",
-   "grateful",
-   "delighted"
+   "unprepared",
+   "ashamed",
+   "unqualified"
   ],
   "answer": "reluctant",
   "definitions": {
    "reluctant": "unwilling and hesitant",
-   "eager": "keen and enthusiastic",
-   "grateful": "thankful",
-   "delighted": "very pleased and happy"
+   "unprepared": "not ready or properly equipped",
+   "ashamed": "feeling guilty or embarrassed",
+   "unqualified": "lacking the needed skills or authority"
   },
   "fixed": "George was reluctant to answer, but did not see his way to avoid the question.",
   "rule": "The word \"but\" and the phrase \"did not see his way to avoid the question\" show he answered unwillingly, so the missing word means hesitant.",
@@ -22699,16 +22699,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "And yet, if you studied the girl's face, you saw that there was strength of purpose in the small, ___ jaw and the lips that closed together so firmly.",
   "options": [
    "resolute",
-   "timid",
-   "languid",
-   "fickle"
+   "angular",
+   "prominent",
+   "delicate"
   ],
   "answer": "resolute",
   "definitions": {
    "resolute": "firmly determined",
-   "timid": "shy and fearful",
-   "languid": "slow and lacking energy",
-   "fickle": "changing one's mind often"
+   "angular": "sharp-cornered and bony",
+   "prominent": "sticking out; easily noticed",
+   "delicate": "finely made and easily harmed"
   },
   "fixed": "And yet, if you studied the girl's face, you saw that there was strength of purpose in the small, resolute jaw and the lips that closed together so firmly.",
   "rule": "\"Strength of purpose\" and lips that \"closed together so firmly\" point to a jaw that shows determination.",
@@ -22726,16 +22726,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He was disposed to be extraordinarily ___, and seemed to be embarrassed by my questions.",
   "options": [
    "taciturn",
-   "talkative",
-   "jubilant",
-   "generous"
+   "evasive",
+   "defensive",
+   "irritable"
   ],
   "answer": "taciturn",
   "definitions": {
    "taciturn": "saying very little",
-   "talkative": "eager to talk a lot",
-   "jubilant": "extremely joyful",
-   "generous": "willing to give freely"
+   "evasive": "avoiding direct answers",
+   "defensive": "quick to protect oneself from criticism",
+   "irritable": "easily annoyed or made angry"
   },
   "fixed": "He was disposed to be extraordinarily taciturn, and seemed to be embarrassed by my questions.",
   "rule": "He was \"embarrassed by my questions,\" which fits a person who says very little in reply.",
@@ -22753,16 +22753,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "It was a somewhat ___ scrawl, not so precise as Protheroe's writing usually was.",
   "options": [
    "illegible",
-   "meticulous",
-   "flawless",
-   "graceful"
+   "hasty",
+   "shaky",
+   "cramped"
   ],
   "answer": "illegible",
   "definitions": {
    "illegible": "too messy to read",
-   "meticulous": "extremely careful and precise",
-   "flawless": "without any faults",
-   "graceful": "smooth and elegant"
+   "hasty": "done in a rush",
+   "shaky": "trembling and unsteady",
+   "cramped": "squeezed into too small a space"
   },
   "fixed": "It was a somewhat illegible scrawl, not so precise as Protheroe's writing usually was.",
   "rule": "The word \"scrawl\" and the phrase \"not so precise\" show the writing was hard to read.",
@@ -22780,16 +22780,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "This other stuff, it's good enough of its kind, genuine, solid, no fake about it--but ___.",
   "options": [
    "mediocre",
-   "exceptional",
-   "counterfeit",
-   "antique"
+   "derivative",
+   "unfashionable",
+   "overpriced"
   ],
   "answer": "mediocre",
   "definitions": {
    "mediocre": "only average, not very good",
-   "exceptional": "unusually excellent",
-   "counterfeit": "fake",
-   "antique": "very old"
+   "derivative": "copied from others; not original",
+   "unfashionable": "no longer in current style",
+   "overpriced": "costing more than it is worth"
   },
   "fixed": "This other stuff, it's good enough of its kind, genuine, solid, no fake about it--but mediocre.",
   "rule": "The word \"but\" contrasts the praise \"good enough,\" \"genuine,\" and \"solid\" with a weakness, so the missing word means merely average.",
@@ -22807,16 +22807,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "The blinds had been drawn and the whole room had a ___ aspect.",
   "options": [
    "funereal",
-   "cheerful",
-   "spacious",
-   "luxurious"
+   "stately",
+   "hushed",
+   "forbidding"
   ],
   "answer": "funereal",
   "definitions": {
    "funereal": "gloomy, like a funeral",
-   "cheerful": "happy and bright",
-   "spacious": "having a lot of room",
-   "luxurious": "very rich and comfortable"
+   "stately": "dignified and impressive",
+   "hushed": "very quiet and still",
+   "forbidding": "unfriendly and threatening in appearance"
   },
   "fixed": "The blinds had been drawn and the whole room had a funereal aspect.",
   "rule": "Drawn blinds make a room dark and somber, which gives it a gloomy, funeral-like look.",
@@ -22834,16 +22834,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Whether it was worth while having a maid at the price of her not being able to cook, and having a habit of throwing dishes and remarks at one with the same disconcerting abruptness was a ___ matter.",
   "options": [
    "debatable",
-   "undeniable",
-   "trivial",
-   "urgent"
+   "delicate",
+   "domestic",
+   "petty"
   ],
   "answer": "debatable",
   "definitions": {
    "debatable": "open to argument",
-   "undeniable": "certain, impossible to dispute",
-   "trivial": "of little importance",
-   "urgent": "needing immediate attention"
+   "delicate": "needing careful, tactful handling",
+   "domestic": "relating to the home",
+   "petty": "small and unimportant"
   },
   "fixed": "Whether it was worth while having a maid at the price of her not being able to cook, and having a habit of throwing dishes and remarks at one with the same disconcerting abruptness was a debatable matter.",
   "rule": "The sentence begins with \"Whether it was worth while,\" a question with no clear answer, so the matter is open to argument.",
@@ -22861,16 +22861,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Under the ___ of being a doctor, I managed to search his pockets.",
   "options": [
    "pretext",
-   "reward",
-   "warning",
-   "remedy"
+   "premise",
+   "authority",
+   "banner"
   ],
   "answer": "pretext",
   "definitions": {
    "pretext": "a false reason given to hide the real one",
-   "reward": "a prize for good work",
-   "warning": "a sign of danger ahead",
-   "remedy": "a cure"
+   "premise": "an assumption that an argument rests on",
+   "authority": "the power to give orders",
+   "banner": "a flag or slogan representing a cause"
   },
   "fixed": "Under the pretext of being a doctor, I managed to search his pockets.",
   "rule": "He claims to be a doctor only so he can search the man's pockets, so the claim is a false reason hiding his real aim.",
@@ -22888,16 +22888,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He looked at her--her strength, her beauty, her vitality--her ___ courage and will.",
   "options": [
    "indomitable",
-   "fragile",
-   "timid",
-   "reckless"
+   "boundless",
+   "tireless",
+   "fierce"
   ],
   "answer": "indomitable",
   "definitions": {
    "indomitable": "impossible to defeat",
-   "fragile": "easily broken or harmed",
-   "timid": "shy and afraid",
-   "reckless": "careless about danger"
+   "boundless": "having no limits or end",
+   "tireless": "never growing weary",
+   "fierce": "intense and aggressive"
   },
   "fixed": "He looked at her--her strength, her beauty, her vitality--her indomitable courage and will.",
   "rule": "The sentence lists \"her strength, her beauty, her vitality,\" so her courage and will are admired as unbeatable.",
@@ -22915,16 +22915,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "When the car had driven off he relapsed into a frowning absorption, but in his eyes was that faint green light which was always the ___ of the triumph to be.",
   "options": [
    "precursor",
-   "aftermath",
-   "rival",
-   "substitute"
+   "emblem",
+   "prerequisite",
+   "catalyst"
   ],
   "answer": "precursor",
   "definitions": {
    "precursor": "something that comes before and signals what follows",
-   "aftermath": "the results that come afterward",
-   "rival": "a competitor",
-   "substitute": "a replacement"
+   "emblem": "a symbol that represents an idea",
+   "prerequisite": "something required beforehand",
+   "catalyst": "something that speeds up change"
   },
   "fixed": "When the car had driven off he relapsed into a frowning absorption, but in his eyes was that faint green light which was always the precursor of the triumph to be.",
   "rule": "The light came before \"the triumph to be,\" a future event, so it is a sign that comes first.",
@@ -22942,16 +22942,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "That explains away any ___ of voice or manner which otherwise might awaken suspicion.",
   "options": [
    "incongruities",
-   "similarities",
-   "compliments",
-   "privileges"
+   "mannerisms",
+   "hesitations",
+   "tremors"
   ],
   "answer": "incongruities",
   "definitions": {
    "incongruities": "things that do not fit together",
-   "similarities": "likenesses",
-   "compliments": "words of praise",
-   "privileges": "special rights"
+   "mannerisms": "habitual gestures or ways of acting",
+   "hesitations": "pauses caused by uncertainty",
+   "tremors": "slight shaking movements"
   },
   "fixed": "That explains away any incongruities of voice or manner which otherwise might awaken suspicion.",
   "rule": "Things \"which otherwise might awaken suspicion\" are oddities that do not fit, so the missing word means inconsistencies.",
@@ -22969,16 +22969,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Through his almost-closed lids he ___ carefully.",
   "options": [
    "reconnoitred",
-   "slept",
-   "mumbled",
-   "forgot"
+   "squinted",
+   "eavesdropped",
+   "listened"
   ],
   "answer": "reconnoitred",
   "definitions": {
    "reconnoitred": "looked over to gather information",
-   "slept": "was asleep",
-   "mumbled": "spoke unclearly",
-   "forgot": "failed to remember"
+   "squinted": "looked with eyes partly closed",
+   "eavesdropped": "listened secretly to others' talk",
+   "listened": "paid attention to sounds"
   },
   "fixed": "Through his almost-closed lids he reconnoitred carefully.",
   "rule": "He watched \"through his almost-closed lids\" and did so \"carefully,\" so he was secretly scouting his surroundings.",
@@ -22996,16 +22996,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "That is ___, and I don't intend to dispute it.",
   "options": [
    "indisputable",
-   "questionable",
-   "trivial",
-   "unlikely"
+   "indispensable",
+   "inexcusable",
+   "inevitable"
   ],
   "answer": "indisputable",
   "definitions": {
    "indisputable": "impossible to argue against",
-   "questionable": "open to doubt or debate",
-   "trivial": "of little importance",
-   "unlikely": "not probably going to happen"
+   "indispensable": "impossible to do without",
+   "inexcusable": "impossible to forgive or justify",
+   "inevitable": "impossible to avoid or prevent"
   },
   "fixed": "That is indisputable, and I don't intend to dispute it.",
   "rule": "The speaker says \"I don't intend to dispute it,\" which shows the thing is something that cannot be disputed.",
@@ -23023,16 +23023,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Mr. Ryder came from Alabama, and from the first he was disposed to make a friend and ___ of Tommy.",
   "options": [
    "confidant",
-   "rival",
-   "creditor",
-   "tenant"
+   "mentor",
+   "benefactor",
+   "accomplice"
   ],
   "answer": "confidant",
   "definitions": {
    "confidant": "a person you trust with your secrets",
-   "rival": "a person who competes against you",
-   "creditor": "a person who is owed money",
-   "tenant": "a person who rents a home"
+   "mentor": "a person who guides someone less experienced",
+   "benefactor": "a person who gives money or help to others",
+   "accomplice": "a person who helps carry out a crime"
   },
   "fixed": "Mr. Ryder came from Alabama, and from the first he was disposed to make a friend and confidant of Tommy.",
   "rule": "The phrase \"a friend and ___\" pairs the missing word with \"friend,\" so it means a close, trusted companion.",
@@ -23050,16 +23050,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He would doubtless lay further traps for me, but I was ___.",
   "options": [
    "forewarned",
-   "forgiven",
-   "flattered",
-   "fatigued"
+   "unscathed",
+   "undeterred",
+   "reassured"
   ],
   "answer": "forewarned",
   "definitions": {
    "forewarned": "told about a danger in advance",
-   "forgiven": "pardoned for a wrong",
-   "flattered": "praised too much",
-   "fatigued": "very tired"
+   "unscathed": "left without any harm or injury",
+   "undeterred": "not discouraged from carrying on",
+   "reassured": "given back confidence and calm"
   },
   "fixed": "He would doubtless lay further traps for me, but I was forewarned.",
   "rule": "The sentence says he would \"lay further traps,\" yet \"but I was ___\" shows the speaker was ready because of an earlier warning.",
@@ -23077,16 +23077,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He was a little annoyed at the absolutely ___ calm preserved by the other.",
   "options": [
    "unruffled",
-   "agitated",
-   "boastful",
-   "hurried"
+   "uncanny",
+   "complacent",
+   "unparalleled"
   ],
   "answer": "unruffled",
   "definitions": {
    "unruffled": "calm and not disturbed",
-   "agitated": "nervous and upset",
-   "boastful": "proud and showing off",
-   "hurried": "done in a rush"
+   "uncanny": "strange in an unsettling way",
+   "complacent": "pleased with oneself and unaware of problems",
+   "unparalleled": "having no equal or rival"
   },
   "fixed": "He was a little annoyed at the absolutely unruffled calm preserved by the other.",
   "rule": "The word \"calm\" right after the blank, and the fact that he was \"annoyed\" by it, show the other man stayed undisturbed.",
@@ -23104,16 +23104,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "But it was still possible for her to have connived at it, or to have been the ___ with an accomplice.",
   "options": [
    "instigator",
-   "victim",
-   "witness",
-   "bystander"
+   "dupe",
+   "decoy",
+   "informant"
   ],
   "answer": "instigator",
   "definitions": {
    "instigator": "a person who starts or causes something",
-   "victim": "a person who is harmed",
-   "witness": "a person who sees something happen",
-   "bystander": "a person who watches without taking part"
+   "dupe": "a person who is easily tricked",
+   "decoy": "a person used to lure others into a trap",
+   "informant": "a person who secretly passes on information"
   },
   "fixed": "But it was still possible for her to have connived at it, or to have been the instigator with an accomplice.",
   "rule": "Being the ___ \"with an accomplice\" means being the one who started the plan, since an accomplice is a helper.",
@@ -23131,16 +23131,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Very simply dressed in black, tall, upright and independent as ever, with her big dark eyes and an ___ flush of color in her usually pale cheeks, I realized that as a girl she must have been startlingly handsome.",
   "options": [
    "unwonted",
-   "habitual",
-   "permanent",
-   "constant"
+   "incipient",
+   "exquisite",
+   "intermittent"
   ],
   "answer": "unwonted",
   "definitions": {
    "unwonted": "unusual; not typical",
-   "habitual": "done out of long habit",
-   "permanent": "lasting forever",
-   "constant": "happening all the time"
+   "incipient": "just beginning to appear",
+   "exquisite": "extremely delicate and beautiful",
+   "intermittent": "stopping and starting at intervals"
   },
   "fixed": "Very simply dressed in black, tall, upright and independent as ever, with her big dark eyes and an unwonted flush of color in her usually pale cheeks, I realized that as a girl she must have been startlingly handsome.",
   "rule": "The cheeks are \"usually pale,\" so a flush of color there would be something out of the ordinary.",
@@ -23158,16 +23158,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "A very beautiful and charming young creature, but terribly ___ by this sad catastrophe.",
   "options": [
    "unstrung",
-   "soothed",
-   "amused",
-   "strengthened"
+   "disfigured",
+   "subdued",
+   "burdened"
   ],
   "answer": "unstrung",
   "definitions": {
    "unstrung": "very upset, with nerves shaken",
-   "soothed": "made calm",
-   "amused": "entertained",
-   "strengthened": "made stronger"
+   "disfigured": "badly damaged in appearance",
+   "subdued": "made quieter and less lively than before",
+   "burdened": "weighed down by worries or duties"
   },
   "fixed": "A very beautiful and charming young creature, but terribly unstrung by this sad catastrophe.",
   "rule": "\"Terribly ___ by this sad catastrophe\" shows the girl was badly shaken by a disaster.",
@@ -23185,16 +23185,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "I was, of course, aware that I was bound to be an object of suspicion, but that in a way ___ my plan since it would not put people I was after on their guard.",
   "options": [
    "furthered",
-   "hindered",
-   "abandoned",
-   "revealed"
+   "safeguarded",
+   "disguised",
+   "complemented"
   ],
   "answer": "furthered",
   "definitions": {
    "furthered": "helped something move forward",
-   "hindered": "got in the way of",
-   "abandoned": "gave up on",
-   "revealed": "let people see"
+   "safeguarded": "protected from harm or loss",
+   "disguised": "hid by changing how it looks",
+   "complemented": "went well with and completed"
   },
   "fixed": "I was, of course, aware that I was bound to be an object of suspicion, but that in a way furthered my plan since it would not put people I was after on their guard.",
   "rule": "The suspicion \"would not put people I was after on their guard,\" so it helped the plan, which is what the contrast with the \"but\" signals.",
@@ -23212,16 +23212,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "His brain positively ___ with bright ideas.",
   "options": [
    "scintillates",
-   "stagnates",
-   "withers",
-   "trembles"
+   "teems",
+   "brims",
+   "seethes"
   ],
   "answer": "scintillates",
   "definitions": {
    "scintillates": "sparkles brilliantly",
-   "stagnates": "stays still and unchanging",
-   "withers": "dries up and fades",
-   "trembles": "shakes slightly"
+   "teems": "is crowded with great numbers of things",
+   "brims": "is filled right up to the edge",
+   "seethes": "churns and bubbles as if boiling"
   },
   "fixed": "His brain positively scintillates with bright ideas.",
   "rule": "The brain is full of \"bright ideas,\" which matches the idea of sparkling.",
@@ -23239,16 +23239,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He stared once more straight ahead of him, like a man trying to read the answer to a riddle that ___ him, yet which exists only in his own brain.",
   "options": [
    "perplexes",
-   "comforts",
-   "bores",
-   "insults"
+   "haunts",
+   "tantalizes",
+   "daunts"
   ],
   "answer": "perplexes",
   "definitions": {
    "perplexes": "confuses or puzzles",
-   "comforts": "gives relief to",
-   "bores": "makes weary and uninterested",
-   "insults": "speaks rudely to"
+   "haunts": "keeps returning to the mind",
+   "tantalizes": "teases with something just out of reach",
+   "daunts": "makes feel discouraged or intimidated"
   },
   "fixed": "He stared once more straight ahead of him, like a man trying to read the answer to a riddle that perplexes him, yet which exists only in his own brain.",
   "rule": "The man is \"trying to read the answer to a riddle,\" so the riddle is something that puzzles him.",
@@ -23266,16 +23266,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Miss Cram seemed momentarily ___, but recovered herself with her usual archness.",
   "options": [
    "discomfited",
-   "delighted",
-   "relieved",
-   "victorious"
+   "stunned",
+   "crestfallen",
+   "daunted"
   ],
   "answer": "discomfited",
   "definitions": {
    "discomfited": "embarrassed and uneasy",
-   "delighted": "very happy",
-   "relieved": "freed from worry",
-   "victorious": "having won"
+   "stunned": "so shocked as to be unable to react",
+   "crestfallen": "suddenly disappointed and low in spirits",
+   "daunted": "made to feel afraid or discouraged"
   },
   "fixed": "Miss Cram seemed momentarily discomfited, but recovered herself with her usual archness.",
   "rule": "She \"recovered herself,\" so she must first have been thrown off balance and embarrassed, and \"momentarily\" shows it did not last.",
@@ -23293,16 +23293,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He could not explain his own feeling--the ___ idea that the K.C.’s presence would somehow have averted the catastrophe.",
   "options": [
    "illogical",
-   "practical",
-   "provable",
-   "familiar"
+   "morbid",
+   "nagging",
+   "superstitious"
   ],
   "answer": "illogical",
   "definitions": {
    "illogical": "not following sound reasoning",
-   "practical": "useful and realistic",
-   "provable": "able to be shown true",
-   "familiar": "well known"
+   "morbid": "unhealthily focused on death or gloom",
+   "nagging": "repeatedly troubling the mind",
+   "superstitious": "based on belief in luck or magic"
   },
   "fixed": "He could not explain his own feeling--the illogical idea that the K.C.’s presence would somehow have averted the catastrophe.",
   "rule": "He \"could not explain\" the idea, which suggests it did not make rational sense.",
@@ -23320,16 +23320,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "And his comfortable little soul shrank back ___.",
   "options": [
    "appalled",
-   "delighted",
-   "relieved",
-   "indifferent"
+   "abashed",
+   "affronted",
+   "bewildered"
   ],
   "answer": "appalled",
   "definitions": {
    "appalled": "shocked and horrified",
-   "delighted": "very pleased",
-   "relieved": "freed from worry",
-   "indifferent": "not caring at all"
+   "abashed": "embarrassed and ashamed",
+   "affronted": "insulted and offended",
+   "bewildered": "thrown into complete confusion"
   },
   "fixed": "And his comfortable little soul shrank back appalled.",
   "rule": "His soul \"shrank back,\" which shows a reaction of shock and horror.",
@@ -23347,16 +23347,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "They looked at each other warily, as ___ seek to measure their opponents’ strength.",
   "options": [
    "antagonists",
-   "allies",
-   "spectators",
-   "relatives"
+   "negotiators",
+   "gladiators",
+   "strategists"
   ],
   "answer": "antagonists",
   "definitions": {
    "antagonists": "people who oppose each other",
-   "allies": "partners who work together",
-   "spectators": "people who watch an event",
-   "relatives": "members of the same family"
+   "negotiators": "people who bargain to reach an agreement",
+   "gladiators": "armed fighters who battle for public entertainment",
+   "strategists": "people who plan carefully how to win"
   },
   "fixed": "They looked at each other warily, as antagonists seek to measure their opponents’ strength.",
   "rule": "The clue is 'their opponents' strength': people who measure an opponent's strength are enemies, or antagonists.",
@@ -23374,16 +23374,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "I wondered for a moment whether he could have been drinking, but ___ the idea immediately.",
   "options": [
    "repudiated",
-   "embraced",
-   "enjoyed",
-   "postponed"
+   "suppressed",
+   "shunned",
+   "resented"
   ],
   "answer": "repudiated",
   "definitions": {
    "repudiated": "firmly rejected as untrue",
-   "embraced": "eagerly accepted",
-   "enjoyed": "took pleasure in",
-   "postponed": "put off until later"
+   "suppressed": "held back or kept from showing",
+   "shunned": "deliberately avoided or kept away from",
+   "resented": "felt bitter or angry about"
   },
   "fixed": "I wondered for a moment whether he could have been drinking, but repudiated the idea immediately.",
   "rule": "The word 'but' signals a contrast with 'wondered whether he could have been drinking', so the speaker rejected the idea.",
@@ -23401,16 +23401,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Dressed precisely the same as in London, he carried a small clothes-brush in his pocket and waged an unceasing war on the dust which ___ on his dark apparel.",
   "options": [
    "accumulated",
-   "vanished",
-   "evaporated",
-   "sparkled"
+   "settled",
+   "clung",
+   "lingered"
   ],
   "answer": "accumulated",
   "definitions": {
    "accumulated": "gathered up gradually",
-   "vanished": "disappeared completely",
-   "evaporated": "turned into vapor",
-   "sparkled": "shone brightly"
+   "settled": "came to rest on a surface",
+   "clung": "held tightly to a surface",
+   "lingered": "stayed on longer than expected"
   },
   "fixed": "Dressed precisely the same as in London, he carried a small clothes-brush in his pocket and waged an unceasing war on the dust which accumulated on his dark apparel.",
   "rule": "He waged 'an unceasing war' on the dust, which makes sense only if the dust kept piling up, or accumulating.",
@@ -23428,16 +23428,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Her own meek ___ in the tame rôle assigned to her gave her an infinity of pleasure, though she wondered scornfully how either of the two men could be so easily deceived.",
   "options": [
    "acquiescence",
-   "defiance",
-   "ignorance",
-   "disappointment"
+   "complicity",
+   "participation",
+   "impersonation"
   ],
   "answer": "acquiescence",
   "definitions": {
    "acquiescence": "quiet acceptance without protest",
-   "defiance": "open resistance",
-   "ignorance": "lack of knowledge",
-   "disappointment": "sadness when hopes fail"
+   "complicity": "involvement with others in wrongdoing",
+   "participation": "the act of taking part in something",
+   "impersonation": "the act of pretending to be someone else"
   },
   "fixed": "Her own meek acquiescence in the tame rôle assigned to her gave her an infinity of pleasure, though she wondered scornfully how either of the two men could be so easily deceived.",
   "rule": "The words 'meek' and 'tame' signal quiet, unresisting acceptance.",
@@ -23455,16 +23455,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "I may mention that inquiries at the Agency in London bore out Poirot’s ___.",
   "options": [
    "prognostication",
-   "reprimand",
-   "bargain",
-   "disguise"
+   "suspicion",
+   "deduction",
+   "assertion"
   ],
   "answer": "prognostication",
   "definitions": {
    "prognostication": "a prediction of what will happen",
-   "reprimand": "a stern scolding",
-   "bargain": "a deal that is a good price",
-   "disguise": "a costume that hides identity"
+   "suspicion": "a feeling that something is wrong",
+   "deduction": "a conclusion reached by careful reasoning",
+   "assertion": "a confident statement that something is true"
   },
   "fixed": "I may mention that inquiries at the Agency in London bore out Poirot’s prognostication.",
   "rule": "Inquiries that 'bore out' something confirmed an earlier prediction, which is what a prognostication is.",
@@ -23482,16 +23482,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "In all probability Number Four did not even know the ___ of the game.",
   "options": [
    "rudiments",
-   "luxuries",
-   "triumphs",
-   "symptoms"
+   "objectives",
+   "stakes",
+   "intricacies"
   ],
   "answer": "rudiments",
   "definitions": {
    "rudiments": "the most basic parts of a subject",
-   "luxuries": "expensive extras",
-   "triumphs": "great victories",
-   "symptoms": "signs of an illness"
+   "objectives": "goals that players are trying to reach",
+   "stakes": "what a player stands to win or lose",
+   "intricacies": "small, complicated details"
   },
   "fixed": "In all probability Number Four did not even know the rudiments of the game.",
   "rule": "The phrase 'did not even know' suggests the most basic facts of the game, its rudiments.",
@@ -23509,16 +23509,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "She was dressed in white--a mere straight slip of marocain, such as a debutante might have worn, and her gleaming white neck and arms were ___.",
   "options": [
    "unadorned",
-   "bejeweled",
-   "bandaged",
-   "sunburned"
+   "unblemished",
+   "powdered",
+   "uncovered"
   ],
   "answer": "unadorned",
   "definitions": {
    "unadorned": "without decoration",
-   "bejeweled": "decorated with jewels",
-   "bandaged": "wrapped in cloth",
-   "sunburned": "burned by the sun"
+   "unblemished": "free from marks or flaws",
+   "powdered": "dusted with fine, soft powder",
+   "uncovered": "not covered by clothing"
   },
   "fixed": "She was dressed in white--a mere straight slip of marocain, such as a debutante might have worn, and her gleaming white neck and arms were unadorned.",
   "rule": "The 'mere straight slip' of a dress points to a plain look, so her neck and arms had no decoration.",
@@ -23536,16 +23536,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Albert lowered his voice, and ___ information in a friendly fashion.",
   "options": [
    "imparted",
-   "withheld",
-   "destroyed",
-   "demanded"
+   "extracted",
+   "solicited",
+   "fabricated"
   ],
   "answer": "imparted",
   "definitions": {
    "imparted": "passed along (information)",
-   "withheld": "kept back",
-   "destroyed": "ruined completely",
-   "demanded": "asked for forcefully"
+   "extracted": "drew out with effort or pressure",
+   "solicited": "asked for, often politely",
+   "fabricated": "made up in order to deceive"
   },
   "fixed": "Albert lowered his voice, and imparted information in a friendly fashion.",
   "rule": "Lowering his voice and speaking 'in a friendly fashion' shows he was sharing information, not keeping it back.",
@@ -23563,16 +23563,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Mr. Satterthwaite was not much wiser, and yet a faint ___ seemed to linger round the name.",
   "options": [
    "familiarity",
-   "hostility",
-   "disgust",
-   "amusement"
+   "glamour",
+   "notoriety",
+   "menace"
   ],
   "answer": "familiarity",
   "definitions": {
    "familiarity": "a feeling of knowing something already",
-   "hostility": "unfriendly feeling",
-   "disgust": "strong dislike",
-   "amusement": "enjoyment of something funny"
+   "glamour": "exciting, attractive charm",
+   "notoriety": "fame for something bad",
+   "menace": "a sense of threat or danger"
   },
   "fixed": "Mr. Satterthwaite was not much wiser, and yet a faint familiarity seemed to linger round the name.",
   "rule": "'Not much wiser, and yet' signals that something about the name still felt known, a faint familiarity.",
@@ -23590,16 +23590,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "It is a pity that a doctor is ___ by his profession from being able sometimes to say what he really thinks.",
   "options": [
    "precluded",
-   "encouraged",
-   "reminded",
-   "tempted"
+   "inhibited",
+   "deterred",
+   "disqualified"
   ],
   "answer": "precluded",
   "definitions": {
    "precluded": "made impossible; ruled out",
-   "encouraged": "given support or confidence to do something",
-   "reminded": "made to remember something",
-   "tempted": "drawn toward doing something wrong or appealing"
+   "inhibited": "held back from acting freely",
+   "deterred": "put off by fear or doubt",
+   "disqualified": "declared unfit to take part"
   },
   "fixed": "It is a pity that a doctor is precluded by his profession from being able sometimes to say what he really thinks.",
   "rule": "The phrase 'a pity' and 'from being able sometimes to say what he really thinks' show that his profession blocks him from speaking freely, which is what precluded means.",
@@ -23617,16 +23617,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Poirot alone seemed unconscious of any sense of strain, and chatted pleasantly in a ___ attempt to put every one at his ease.",
   "options": [
    "laudable",
-   "sinister",
-   "reckless",
-   "unpleasant"
+   "desperate",
+   "deliberate",
+   "feeble"
   ],
   "answer": "laudable",
   "definitions": {
    "laudable": "deserving praise",
-   "sinister": "suggesting something evil or threatening",
-   "reckless": "careless about danger",
-   "unpleasant": "not enjoyable or agreeable"
+   "desperate": "driven by hopeless urgency",
+   "deliberate": "done on purpose, not by accident",
+   "feeble": "weak and lacking strength"
   },
   "fixed": "Poirot alone seemed unconscious of any sense of strain, and chatted pleasantly in a laudable attempt to put every one at his ease.",
   "rule": "He chatted pleasantly to put everyone at ease, which is a kind and admirable goal, so the attempt deserves praise.",
@@ -23644,16 +23644,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "On the other hand, Mrs. Cavendish believed that the slip of paper to which her mother-in-law clung so ___ was a written proof of her own husband’s infidelity.",
   "options": [
    "tenaciously",
-   "carelessly",
-   "briefly",
-   "gently"
+   "desperately",
+   "jealously",
+   "protectively"
   ],
   "answer": "tenaciously",
   "definitions": {
    "tenaciously": "holding on firmly and stubbornly",
-   "carelessly": "without paying attention or care",
-   "briefly": "for a short time",
-   "gently": "in a soft, mild way"
+   "desperately": "in a way showing urgent need and little hope",
+   "jealously": "in a possessive way, unwilling to share",
+   "protectively": "in a way meant to guard from harm"
   },
   "fixed": "On the other hand, Mrs. Cavendish believed that the slip of paper to which her mother-in-law clung so tenaciously was a written proof of her own husband’s infidelity.",
   "rule": "The verb 'clung' and the word 'so' point to a firm, stubborn grip on the paper, which is what tenaciously means.",
@@ -23671,16 +23671,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "It was very nice to be kissed by Cynthia, but the publicity of the salute rather ___ the pleasure.",
   "options": [
    "impaired",
-   "enhanced",
-   "doubled",
-   "announced"
+   "tinged",
+   "interrupted",
+   "complicated"
   ],
   "answer": "impaired",
   "definitions": {
    "impaired": "damaged or made weaker",
-   "enhanced": "made better or stronger",
-   "doubled": "made twice as large",
-   "announced": "made known publicly"
+   "tinged": "colored slightly with another feeling",
+   "interrupted": "stopped for a short time",
+   "complicated": "made more difficult or confusing"
   },
   "fixed": "It was very nice to be kissed by Cynthia, but the publicity of the salute rather impaired the pleasure.",
   "rule": "The word 'but' signals a contrast with 'very nice,' so the publicity must have spoiled or weakened the pleasure.",
@@ -23698,16 +23698,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "We ___ a good deal, but there grew up between us a real and lasting comradeship such as I could never have believed possible.",
   "options": [
    "bickered",
-   "collaborated",
-   "celebrated",
-   "corresponded"
+   "bantered",
+   "sulked",
+   "conferred"
   ],
   "answer": "bickered",
   "definitions": {
    "bickered": "argued over small matters",
-   "collaborated": "worked together on something",
-   "celebrated": "marked an occasion with festivity",
-   "corresponded": "exchanged letters"
+   "bantered": "exchanged playful, teasing remarks",
+   "sulked": "stayed silent and moody out of annoyance",
+   "conferred": "talked together to share views"
   },
   "fixed": "We bickered a good deal, but there grew up between us a real and lasting comradeship such as I could never have believed possible.",
   "rule": "The word 'but' sets the lasting comradeship against the first action, so the first action must be something unfriendly like petty arguing.",
@@ -23725,16 +23725,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Miss Viner was ___ majestically in the drawing-room, wearing a complete set of the cameos which had been so providentially preserved in the family.",
   "options": [
    "enthroned",
-   "imprisoned",
-   "abandoned",
-   "crumpled"
+   "arrayed",
+   "poised",
+   "perched"
   ],
   "answer": "enthroned",
   "definitions": {
    "enthroned": "seated in a grand, throne-like position",
-   "imprisoned": "locked up",
-   "abandoned": "left behind",
-   "crumpled": "crushed into folds"
+   "arrayed": "dressed in impressive clothing",
+   "poised": "balanced and steady, held calmly in place",
+   "perched": "sitting lightly on the edge of something"
   },
   "fixed": "Miss Viner was enthroned majestically in the drawing-room, wearing a complete set of the cameos which had been so providentially preserved in the family.",
   "rule": "The adverb 'majestically' and her display of family cameos suggest she sat like a queen on a throne.",
@@ -23752,49 +23752,22 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He removed the rope, hauled the victim to his feet, and ___ him briskly through the outer office.",
   "options": [
    "propelled",
-   "persuaded",
-   "informed",
-   "abandoned"
+   "ushered",
+   "dragged",
+   "paraded"
   ],
   "answer": "propelled",
   "definitions": {
    "propelled": "pushed or drove forward",
-   "persuaded": "convinced by reasoning",
-   "informed": "told something",
-   "abandoned": "left behind"
+   "ushered": "led politely to a place",
+   "dragged": "pulled along with force or effort",
+   "paraded": "led about so as to be seen"
   },
   "fixed": "He removed the rope, hauled the victim to his feet, and propelled him briskly through the outer office.",
   "rule": "He hauled the man to his feet and moved him 'briskly through the outer office,' so the verb describes physically pushing him forward.",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
-  }
- },
- {
-  "id": "vocab-863-2367-4",
-  "type": "vocab",
-  "skill": "vocab",
-  "title": "Word in context",
-  "prompt": "Which choice completes the text with the most logical and precise word?",
-  "stem": "To begin with, the fragment ___ exactly with a tear in Mrs. Cavendish’s armlet.",
-  "options": [
-   "corresponds",
-   "contrasts",
-   "interferes",
-   "dissolves"
-  ],
-  "answer": "corresponds",
-  "definitions": {
-   "corresponds": "matches or fits with",
-   "contrasts": "stands out as different",
-   "interferes": "gets in the way",
-   "dissolves": "melts away into a liquid"
-  },
-  "fixed": "To begin with, the fragment corresponds exactly with a tear in Mrs. Cavendish’s armlet.",
-  "rule": "A fragment compared with a tear in the armlet is evidence only if the two fit together, and 'exactly' signals a precise match.",
-  "source": {
-   "book": "The Mysterious Affair at Styles",
-   "gutenberg": 863
   }
  },
  {
@@ -23806,16 +23779,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Bill was striding up and down the library, clearly in a very ___ state of mind.",
   "options": [
    "perturbed",
-   "tranquil",
-   "drowsy",
-   "contented"
+   "indignant",
+   "contemplative",
+   "determined"
   ],
   "answer": "perturbed",
   "definitions": {
    "perturbed": "worried and unsettled",
-   "tranquil": "calm and peaceful",
-   "drowsy": "sleepy",
-   "contented": "happily satisfied"
+   "indignant": "angry at unfair or insulting treatment",
+   "contemplative": "deep in quiet thought",
+   "determined": "firmly set on reaching a goal"
   },
   "fixed": "Bill was striding up and down the library, clearly in a very perturbed state of mind.",
   "rule": "Striding up and down is how an anxious person behaves, so his state of mind must be worried or agitated.",
@@ -23833,16 +23806,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Part of me was ___ at the sudden disaster, and another part of me was coolly and dispassionately interested in the methods employed for lifting the man off the live rail and back onto the platform.",
   "options": [
    "appalled",
-   "delighted",
-   "bored",
-   "amused"
+   "mesmerized",
+   "saddened",
+   "baffled"
   ],
   "answer": "appalled",
   "definitions": {
    "appalled": "shocked and horrified",
-   "delighted": "very pleased",
-   "bored": "uninterested and weary",
-   "amused": "entertained"
+   "mesmerized": "held completely spellbound",
+   "saddened": "made sorrowful and downcast",
+   "baffled": "left completely puzzled"
   },
   "fixed": "Part of me was appalled at the sudden disaster, and another part of me was coolly and dispassionately interested in the methods employed for lifting the man off the live rail and back onto the platform.",
   "rule": "The sentence contrasts this reaction with a part that was 'coolly and dispassionately interested,' and a sudden disaster would naturally cause shock and horror.",
@@ -23860,16 +23833,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "We turned up a side road, and in the failing light I ___ a second car, waiting by the side of the road.",
   "options": [
    "discerned",
-   "polished",
-   "borrowed",
-   "purchased"
+   "imagined",
+   "suspected",
+   "approached"
   ],
   "answer": "discerned",
   "definitions": {
    "discerned": "managed to see or make out",
-   "polished": "rubbed to make shiny",
-   "borrowed": "took temporarily with permission",
-   "purchased": "bought"
+   "imagined": "formed a picture of in the mind",
+   "suspected": "thought likely without having proof",
+   "approached": "moved closer to"
   },
   "fixed": "We turned up a side road, and in the failing light I discerned a second car, waiting by the side of the road.",
   "rule": "The 'failing light' makes seeing difficult, so the verb means making out the car with some effort.",
@@ -23887,16 +23860,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He had already felt hurt by Ruth's lack of frankness, and this chance information which had come to him did nothing to allay his ___.",
   "options": [
    "misgivings",
-   "triumphs",
-   "savings",
-   "talents"
+   "grievances",
+   "frustrations",
+   "jealousies"
   ],
   "answer": "misgivings",
   "definitions": {
    "misgivings": "feelings of doubt or worry",
-   "triumphs": "great victories",
-   "savings": "money set aside",
-   "talents": "natural abilities"
+   "grievances": "complaints about unfair treatment",
+   "frustrations": "feelings of annoyance at being blocked",
+   "jealousies": "resentful fears of losing affection"
   },
   "fixed": "He had already felt hurt by Ruth's lack of frankness, and this chance information which had come to him did nothing to allay his misgivings.",
   "rule": "He felt hurt by her lack of frankness, and 'allay' means to calm, so the thing he could not calm is a set of doubts or worries.",
@@ -23914,16 +23887,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "I distrusted my own judgment and for the first time a feeling of loneliness and ___ crept over me.",
   "options": [
    "desolation",
-   "excitement",
-   "amusement",
-   "pride"
+   "foreboding",
+   "helplessness",
+   "bewilderment"
   ],
   "answer": "desolation",
   "definitions": {
    "desolation": "deep sadness and emptiness",
-   "excitement": "eager, thrilled feeling",
-   "amusement": "enjoyment of something funny",
-   "pride": "satisfaction in oneself"
+   "foreboding": "a feeling that something bad will happen",
+   "helplessness": "the state of being unable to act",
+   "bewilderment": "a state of complete confusion"
   },
   "fixed": "I distrusted my own judgment and for the first time a feeling of loneliness and desolation crept over me.",
   "rule": "The word 'loneliness' sits right beside the blank, and distrusting his own judgment adds to a gloomy mood, so the missing noun is a similar bleak feeling.",
@@ -23941,16 +23914,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "With a great thump on the table, Poirot ___ his carefully built up edifice.",
   "options": [
    "demolished",
-   "admired",
-   "inherited",
-   "decorated"
+   "undermined",
+   "discredited",
+   "jeopardized"
   ],
   "answer": "demolished",
   "definitions": {
    "demolished": "tore down completely",
-   "admired": "looked at with approval",
-   "inherited": "received from someone who has died",
-   "decorated": "made more attractive with ornaments"
+   "undermined": "weakened gradually from beneath",
+   "discredited": "damaged the reputation of",
+   "jeopardized": "put at risk of harm or loss"
   },
   "fixed": "With a great thump on the table, Poirot demolished his carefully built up edifice.",
   "rule": "A great thump contrasts with something 'carefully built up,' which suggests the structure was knocked down.",
@@ -23968,16 +23941,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Inattention in such important matters cannot be too highly ___.",
   "options": [
    "censured",
-   "praised",
-   "imitated",
-   "rewarded"
+   "stressed",
+   "lamented",
+   "publicized"
   ],
   "answer": "censured",
   "definitions": {
    "censured": "strongly criticized",
-   "praised": "spoken of with approval",
-   "imitated": "copied",
-   "rewarded": "given a prize or payment for good behavior"
+   "stressed": "given extra emphasis or importance",
+   "lamented": "expressed deep sorrow or regret about",
+   "publicized": "made widely known to the public"
   },
   "fixed": "Inattention in such important matters cannot be too highly censured.",
   "rule": "Inattention to important matters is a fault, and the phrase 'cannot be too highly' means the criticism can hardly be strong enough.",
@@ -23995,16 +23968,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Later, I think, he persuaded her that her suspicions were ___, and she consented to marry him.",
   "options": [
    "unfounded",
-   "accurate",
-   "ancient",
-   "secret"
+   "exaggerated",
+   "unjust",
+   "premature"
   ],
   "answer": "unfounded",
   "definitions": {
    "unfounded": "having no basis in fact",
-   "accurate": "correct and true",
-   "ancient": "very old",
-   "secret": "kept hidden from others"
+   "exaggerated": "made to seem greater than reality",
+   "unjust": "not fair or deserved",
+   "premature": "coming too soon or too early"
   },
   "fixed": "Later, I think, he persuaded her that her suspicions were unfounded, and she consented to marry him.",
   "rule": "She consented to marry him after being persuaded, so her suspicions must have had no real basis; that is what unfounded means.",
@@ -24022,16 +23995,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "It lasted some time and was heated and ___.",
   "options": [
    "acrimonious",
-   "cordial",
-   "rambling",
-   "secretive"
+   "inconclusive",
+   "chaotic",
+   "protracted"
   ],
   "answer": "acrimonious",
   "definitions": {
    "acrimonious": "bitter and angry in tone",
-   "cordial": "warm and friendly",
-   "rambling": "wandering and unfocused",
-   "secretive": "keeping things hidden"
+   "inconclusive": "not leading to a firm result",
+   "chaotic": "completely disordered and confused",
+   "protracted": "lasting longer than expected"
   },
   "fixed": "It lasted some time and was heated and acrimonious.",
   "rule": "The word heated, joined by and, signals an angry, bitter exchange, which is what acrimonious means.",
@@ -24049,16 +24022,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "In a few minutes, the headwaiter, a slight smile of ___ on his lips, retired, and a young satellite began his ministrations.",
   "options": [
    "approbation",
-   "resentment",
-   "bewilderment",
-   "dread"
+   "condescension",
+   "indulgence",
+   "smugness"
   ],
   "answer": "approbation",
   "definitions": {
    "approbation": "approval",
-   "resentment": "bitter anger",
-   "bewilderment": "confusion",
-   "dread": "great fear"
+   "condescension": "an attitude of acting superior to others",
+   "indulgence": "willingness to let someone have their way",
+   "smugness": "irritating satisfaction with oneself"
   },
   "fixed": "In a few minutes, the headwaiter, a slight smile of approbation on his lips, retired, and a young satellite began his ministrations.",
   "rule": "A smile on his lips as he retires signals that he is pleased, so the missing word means approval.",
@@ -24076,16 +24049,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Jack did not reply at once, then he said with a ___ of manner which was piteous:",
   "options": [
    "hesitancy",
-   "boldness",
-   "cheerfulness",
-   "rudeness"
+   "awkwardness",
+   "dejection",
+   "humility"
   ],
   "answer": "hesitancy",
   "definitions": {
    "hesitancy": "a pause or reluctance before acting",
-   "boldness": "fearless confidence",
-   "cheerfulness": "a happy mood",
-   "rudeness": "impolite behavior"
+   "awkwardness": "a clumsy, uncomfortable manner",
+   "dejection": "a state of low spirits",
+   "humility": "a modest view of one's own importance"
   },
   "fixed": "Jack did not reply at once, then he said with a hesitancy of manner which was piteous:",
   "rule": "He did not reply at once, which shows a hesitant, uncertain manner.",
@@ -24103,16 +24076,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "The window could still be plainly ___, and apparently pressed against one of the panes was a man's face surmounted by a plumed Cavalier's hat.",
   "options": [
    "descried",
-   "overlooked",
-   "muffled",
-   "dismantled"
+   "silhouetted",
+   "illuminated",
+   "outlined"
   ],
   "answer": "descried",
   "definitions": {
    "descried": "caught sight of",
-   "overlooked": "failed to notice",
-   "muffled": "made quieter",
-   "dismantled": "taken apart"
+   "silhouetted": "shown as a dark shape against light",
+   "illuminated": "lit up with bright light",
+   "outlined": "marked around the edges"
   },
   "fixed": "The window could still be plainly descried, and apparently pressed against one of the panes was a man's face surmounted by a plumed Cavalier's hat.",
   "rule": "The window is seen plainly, with a face visible against a pane, so descried (made out by sight) fits.",
@@ -24130,16 +24103,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "You ___ and defied him over this girl, and by your heartless treatment of another girl, you brought about his death.",
   "options": [
    "thwarted",
-   "obeyed",
-   "flattered",
-   "pitied"
+   "provoked",
+   "slighted",
+   "deceived"
   ],
   "answer": "thwarted",
   "definitions": {
    "thwarted": "blocked from succeeding",
-   "obeyed": "did what someone said",
-   "flattered": "praised too much",
-   "pitied": "felt sorry for"
+   "provoked": "deliberately stirred up anger in",
+   "slighted": "treated as unimportant",
+   "deceived": "led to believe something false"
   },
   "fixed": "You thwarted and defied him over this girl, and by your heartless treatment of another girl, you brought about his death.",
   "rule": "The word thwarted is paired with defied, so it must describe opposing him, not obeying him.",
@@ -24157,16 +24130,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Mr. Chubby Evans listened with a very ___ comprehension, his French being of a limited order.",
   "options": [
    "imperfect",
-   "flawless",
-   "immediate",
-   "enthusiastic"
+   "laborious",
+   "intermittent",
+   "strained"
   ],
   "answer": "imperfect",
   "definitions": {
    "imperfect": "not complete or fully right",
-   "flawless": "without any flaw",
-   "immediate": "happening right away",
-   "enthusiastic": "full of eager excitement"
+   "laborious": "requiring great effort",
+   "intermittent": "stopping and starting at intervals",
+   "strained": "forced and showing effort or tension"
   },
   "fixed": "Mr. Chubby Evans listened with a very imperfect comprehension, his French being of a limited order.",
   "rule": "His French is of a limited order, so his understanding is incomplete, or imperfect.",
@@ -24184,16 +24157,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He had meant to do so on the boat coming over, but had been laid low with a touch of fever, and not at all in the mood for deciphering crabbed and ___ handwriting, for none of the manuscript was typed.",
   "options": [
    "illegible",
-   "tidy",
-   "elegant",
-   "uniform"
+   "cramped",
+   "faded",
+   "ornate"
   ],
   "answer": "illegible",
   "definitions": {
    "illegible": "too messy to read",
-   "tidy": "neat and orderly",
-   "elegant": "graceful and stylish",
-   "uniform": "the same throughout"
+   "cramped": "squeezed into too small a space",
+   "faded": "having lost its color or clearness",
+   "ornate": "richly decorated with elaborate detail"
   },
   "fixed": "He had meant to do so on the boat coming over, but had been laid low with a touch of fever, and not at all in the mood for deciphering crabbed and illegible handwriting, for none of the manuscript was typed.",
   "rule": "Deciphering suggests handwriting that is hard to read, and crabbed supports that.",
@@ -24211,16 +24184,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "The rain had made the boughs mighty slippery, and it was all I could do to keep a ___, but bit by bit I managed it, until at last there I was level with the window.",
   "options": [
    "foothold",
-   "bargain",
-   "appetite",
-   "secret"
+   "grip",
+   "perch",
+   "lookout"
   ],
   "answer": "foothold",
   "definitions": {
    "foothold": "a place to plant your feet securely",
-   "bargain": "a deal at a good price",
-   "appetite": "a desire for food",
-   "secret": "something kept hidden"
+   "grip": "a firm hold with the hands",
+   "perch": "a high place to rest or sit",
+   "lookout": "a place for keeping watch"
   },
   "fixed": "The rain had made the boughs mighty slippery, and it was all I could do to keep a foothold, but bit by bit I managed it, until at last there I was level with the window.",
   "rule": "The slippery boughs and the climb up to the window show he needed a secure place to stand.",
@@ -24238,16 +24211,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "It was full of an uneasy geniality which sat ill upon him, and which ___ me.",
   "options": [
    "nauseated",
-   "delighted",
-   "reassured",
-   "amused"
+   "irritated",
+   "unsettled",
+   "disarmed"
   ],
   "answer": "nauseated",
   "definitions": {
    "nauseated": "made feel sick",
-   "delighted": "gave great pleasure to",
-   "reassured": "made feel calm",
-   "amused": "made laugh"
+   "irritated": "made annoyed or impatient",
+   "unsettled": "made uneasy or disturbed",
+   "disarmed": "removed suspicion or anger with charm"
   },
   "fixed": "It was full of an uneasy geniality which sat ill upon him, and which nauseated me.",
   "rule": "The geniality is uneasy and sat ill upon him, so the reaction is negative: it made the speaker feel sick.",
@@ -24265,16 +24238,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "The shop, for shop it was, was a restrained and ___ one.",
   "options": [
    "unpretentious",
-   "flamboyant",
-   "luxurious",
-   "crowded"
+   "refined",
+   "exclusive",
+   "traditional"
   ],
   "answer": "unpretentious",
   "definitions": {
    "unpretentious": "modest, not showy",
-   "flamboyant": "bold and flashy",
-   "luxurious": "rich and costly",
-   "crowded": "packed with people"
+   "refined": "elegant and cultured in manner",
+   "exclusive": "limited to a select few",
+   "traditional": "following long-established customs"
   },
   "fixed": "The shop, for shop it was, was a restrained and unpretentious one.",
   "rule": "It is paired with restrained, so the shop is modest and not showy.",
@@ -24292,16 +24265,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "On the other hand, if a little time elapses, any dangers as to identity will be greatly ___.",
   "options": [
    "lessened",
-   "heightened",
-   "revealed",
-   "repeated"
+   "averted",
+   "overcome",
+   "obscured"
   ],
   "answer": "lessened",
   "definitions": {
    "lessened": "made smaller",
-   "heightened": "made greater",
-   "revealed": "shown openly",
-   "repeated": "done again"
+   "averted": "turned away or prevented",
+   "overcome": "defeated or gotten past",
+   "obscured": "made hard to see or understand"
   },
   "fixed": "On the other hand, if a little time elapses, any dangers as to identity will be greatly lessened.",
   "rule": "Time elapsing is the reason the dangers shrink, so the missing word means made smaller.",
@@ -24319,19 +24292,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "And yet everybody knows that nightmares are a direct result of ___ eating.",
   "options": [
    "injudicious",
-   "nutritious",
-   "moderate",
-   "leisurely"
+   "irregular",
+   "hasty",
+   "ravenous"
   ],
   "answer": "injudicious",
   "definitions": {
    "injudicious": "showing poor judgment; unwise",
-   "nutritious": "healthy and full of good nutrients",
-   "moderate": "not extreme; sensible in amount",
-   "leisurely": "slow and relaxed"
+   "irregular": "not happening at regular times",
+   "hasty": "done too quickly",
+   "ravenous": "extremely hungry and greedy"
   },
   "fixed": "And yet everybody knows that nightmares are a direct result of injudicious eating.",
-  "rule": "Nightmares are described as a result of eating that is bad for you, so the word must mean unwise, not healthy or moderate.",
+  "rule": "Nightmares are said to come from eating that is bad for you, so the blank means showing poor judgment: unwise eating.",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -24346,16 +24319,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Here he broke down with a bad fit of choking, the result of an ___ mouthful of kipper-bones.",
   "options": [
    "immoderate",
-   "modest",
-   "dainty",
-   "meager"
+   "inadvertent",
+   "ungainly",
+   "unseemly"
   ],
   "answer": "immoderate",
   "definitions": {
    "immoderate": "going beyond what is reasonable; excessive",
-   "modest": "small in amount; not showy",
-   "dainty": "small, delicate, and neat",
-   "meager": "too small or too little"
+   "inadvertent": "done without meaning to",
+   "ungainly": "awkward and clumsy in form",
+   "unseemly": "not proper for the occasion"
   },
   "fixed": "Here he broke down with a bad fit of choking, the result of an immoderate mouthful of kipper-bones.",
   "rule": "A bad fit of choking is the result of a mouthful that was too big, so the word means excessive, not small.",
@@ -24373,16 +24346,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "The bolt had been very cleverly filed through, so close to the socket that the join was hardly ___.",
   "options": [
    "perceptible",
-   "durable",
-   "flexible",
-   "rusty"
+   "reliable",
+   "suspicious",
+   "sturdy"
   ],
   "answer": "perceptible",
   "definitions": {
    "perceptible": "able to be noticed or detected",
-   "durable": "able to last a long time",
-   "flexible": "able to bend easily",
-   "rusty": "coated with rust"
+   "reliable": "able to be trusted to work",
+   "suspicious": "causing doubt or distrust",
+   "sturdy": "strongly and solidly built"
   },
   "fixed": "The bolt had been very cleverly filed through, so close to the socket that the join was hardly perceptible.",
   "rule": "The bolt was filed so cleverly and so close to the socket that the join was hardly noticed, which is what perceptible means.",
@@ -24400,19 +24373,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "You are all friends and ___ of the missing man.",
   "options": [
    "intimates",
-   "strangers",
-   "rivals",
-   "critics"
+   "relatives",
+   "acquaintances",
+   "colleagues"
   ],
   "answer": "intimates",
   "definitions": {
    "intimates": "close friends",
-   "strangers": "people you do not know",
-   "rivals": "people competing against you",
-   "critics": "people who judge and find fault"
+   "relatives": "members of the same family",
+   "acquaintances": "people one knows only slightly",
+   "colleagues": "people one works alongside"
   },
   "fixed": "You are all friends and intimates of the missing man.",
-  "rule": "The word follows 'friends and' and describes people close to the missing man, so it means close companions, not strangers or rivals.",
+  "rule": "The word follows 'friends and' and describes people close to the missing man, so it means close friends.",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -24427,16 +24400,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "This seemed to be carrying things a bit far, but Poirot waved aside my ___.",
   "options": [
    "remonstrances",
-   "introductions",
-   "signatures",
-   "purchases"
+   "entreaties",
+   "suggestions",
+   "inquiries"
   ],
   "answer": "remonstrances",
   "definitions": {
    "remonstrances": "protests or objections",
-   "introductions": "first meetings or formal presentations of people",
-   "signatures": "a person's name written by hand",
-   "purchases": "things that have been bought"
+   "entreaties": "earnest, pleading requests",
+   "suggestions": "ideas put forward for consideration",
+   "inquiries": "questions asked to learn something"
   },
   "fixed": "This seemed to be carrying things a bit far, but Poirot waved aside my remonstrances.",
   "rule": "The earlier part says things were being carried a bit far, so what Poirot waved aside were objections.",
@@ -24454,19 +24427,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "I brought myself back with a jerk to the ___ of the moment.",
   "options": [
    "actualities",
-   "fantasies",
-   "daydreams",
-   "memories"
+   "exigencies",
+   "responsibilities",
+   "possibilities"
   ],
   "answer": "actualities",
   "definitions": {
    "actualities": "real facts and conditions",
-   "fantasies": "things imagined that are not real",
-   "daydreams": "pleasant thoughts while awake",
-   "memories": "things remembered from the past"
+   "exigencies": "urgent demands of a situation",
+   "responsibilities": "duties one is expected to handle",
+   "possibilities": "things that might happen"
   },
   "fixed": "I brought myself back with a jerk to the actualities of the moment.",
-  "rule": "The speaker was reflecting and then came back with a jerk to what was really happening, so the word means real conditions, not fantasies.",
+  "rule": "The speaker came back with a jerk to what was really happening, so the blank means real facts and conditions.",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -24481,19 +24454,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "My suspicions were ___ a hundred-fold.",
   "options": [
    "accentuated",
-   "dispelled",
-   "abandoned",
-   "forgotten"
+   "aroused",
+   "confirmed",
+   "rekindled"
   ],
   "answer": "accentuated",
   "definitions": {
    "accentuated": "made stronger or more noticeable",
-   "dispelled": "driven away completely",
-   "abandoned": "given up",
-   "forgotten": "no longer remembered"
+   "aroused": "stirred up or awakened",
+   "confirmed": "shown to be true",
+   "rekindled": "given new life after fading"
   },
   "fixed": "My suspicions were accentuated a hundred-fold.",
-  "rule": "The phrase 'a hundred-fold' signals that the suspicions grew much stronger, so accentuated fits and dispelled does not.",
+  "rule": "The phrase 'a hundred-fold' signals that the suspicions grew much stronger, so the blank means made stronger or more noticeable.",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -24508,16 +24481,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Mrs. Price Ridley looked at me coldly, but produced the ___ of a gracious smile for the Colonel.",
   "options": [
    "semblance",
-   "refusal",
-   "expense",
-   "tradition"
+   "vestige",
+   "glimmer",
+   "remnant"
   ],
   "answer": "semblance",
   "definitions": {
    "semblance": "an outward appearance of something, often not the real thing",
-   "refusal": "a decision to say no",
-   "expense": "the amount of money something costs",
-   "tradition": "a custom passed down over time"
+   "vestige": "a tiny trace of what once was",
+   "glimmer": "a faint sign or hint",
+   "remnant": "a small part left over"
   },
   "fixed": "Mrs. Price Ridley looked at me coldly, but produced the semblance of a gracious smile for the Colonel.",
   "rule": "She looked at him coldly, so her smile was only an outward appearance of friendliness, which is what semblance means.",
@@ -24535,16 +24508,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "There had been no money or object of value there such as would excite the ___ of an ordinary thief.",
   "options": [
    "cupidity",
-   "generosity",
-   "compassion",
-   "nostalgia"
+   "curiosity",
+   "ambition",
+   "ingenuity"
   ],
   "answer": "cupidity",
   "definitions": {
    "cupidity": "greed, especially for money",
-   "generosity": "willingness to give freely",
-   "compassion": "sympathy for others who suffer",
-   "nostalgia": "a longing for the past"
+   "curiosity": "a strong desire to know",
+   "ambition": "a strong drive to achieve success",
+   "ingenuity": "cleverness at solving problems"
   },
   "fixed": "There had been no money or object of value there such as would excite the cupidity of an ordinary thief.",
   "rule": "The sentence says no money or valuables were there to excite an ordinary thief, so the word must mean greed.",
@@ -24562,19 +24535,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "But by a mere accident, he was ___, and had to leave the country hurriedly.",
   "options": [
    "unmasked",
-   "promoted",
-   "rewarded",
-   "forgiven"
+   "denounced",
+   "implicated",
+   "betrayed"
   ],
   "answer": "unmasked",
   "definitions": {
    "unmasked": "revealed as being someone or something different from what he seemed",
-   "promoted": "moved up to a higher position",
-   "rewarded": "given a prize for good behavior",
-   "forgiven": "pardoned for a wrong"
+   "denounced": "publicly condemned as guilty",
+   "implicated": "shown to be involved in a crime",
+   "betrayed": "handed over by someone trusted"
   },
   "fixed": "But by a mere accident, he was unmasked, and had to leave the country hurriedly.",
-  "rule": "He had to leave the country hurriedly after the accident, so his true nature was revealed, not rewarded.",
+  "rule": "He had to leave the country hurriedly after the accident, so his true nature was revealed: he was unmasked.",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -24589,16 +24562,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Suddenly Mrs. Inglethorp awakens and is seized with an alarming ___.",
   "options": [
    "paroxysm",
-   "lullaby",
-   "harvest",
-   "rehearsal"
+   "impulse",
+   "apprehension",
+   "intuition"
   ],
   "answer": "paroxysm",
   "definitions": {
    "paroxysm": "a sudden violent attack or fit",
-   "lullaby": "a soft song to help someone sleep",
-   "harvest": "the gathering of a crop",
-   "rehearsal": "a practice before a performance"
+   "impulse": "a sudden urge to act",
+   "apprehension": "fearful worry about the future",
+   "intuition": "a sense of knowing without reasoning"
   },
   "fixed": "Suddenly Mrs. Inglethorp awakens and is seized with an alarming paroxysm.",
   "rule": "The woman is described as seized with an alarming attack, so the word names a sudden fit, not something gentle.",
@@ -24616,19 +24589,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "I had rather an ___ cup of tea, cold and black, and at half past five the telephone rang.",
   "options": [
    "unpalatable",
-   "delicious",
-   "fragrant",
-   "refreshing"
+   "unremarkable",
+   "unwelcome",
+   "unsweetened"
   ],
   "answer": "unpalatable",
   "definitions": {
    "unpalatable": "unpleasant to taste",
-   "delicious": "very tasty",
-   "fragrant": "having a pleasant smell",
-   "refreshing": "giving new energy and coolness"
+   "unremarkable": "not special or worth noticing",
+   "unwelcome": "not wanted or gladly received",
+   "unsweetened": "without any added sugar"
   },
   "fixed": "I had rather an unpalatable cup of tea, cold and black, and at half past five the telephone rang.",
-  "rule": "The tea is described as cold and black, which suggests it tasted bad, so it was unpalatable and not delicious.",
+  "rule": "The tea is cold and black, which suggests it tasted bad, so it was unpleasant to taste: unpalatable.",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
@@ -24643,19 +24616,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "His remarks had seemed so meaningless at the moment and now, for the first time, I realized how remarkably, from a few slight incidents, he had ___ much of the mystery that surrounded the case.",
   "options": [
    "unravelled",
-   "created",
-   "deepened",
-   "ignored"
+   "anticipated",
+   "glimpsed",
+   "sensed"
   ],
   "answer": "unravelled",
   "definitions": {
    "unravelled": "solved or untangled",
-   "created": "made something new",
-   "deepened": "made greater or more intense",
-   "ignored": "paid no attention to"
+   "anticipated": "expected before it happened",
+   "glimpsed": "seen briefly or partly",
+   "sensed": "felt without clear proof"
   },
   "fixed": "His remarks had seemed so meaningless at the moment and now, for the first time, I realized how remarkably, from a few slight incidents, he had unravelled much of the mystery that surrounded the case.",
-  "rule": "He worked out much of the mystery from a few slight incidents, so he untangled it rather than created or deepened it.",
+  "rule": "He worked out much of the mystery from a few slight incidents, so he solved it, or untangled it.",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -24670,19 +24643,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "The ball, heavily topped, scudded across the lawn and disappeared into the ___ depths of a great bank of rhododendrons.",
   "options": [
    "unfathomed",
-   "shallow",
-   "trimmed",
-   "transparent"
+   "shadowy",
+   "tangled",
+   "verdant"
   ],
   "answer": "unfathomed",
   "definitions": {
    "unfathomed": "never measured; too deep to know",
-   "shallow": "not deep",
-   "trimmed": "cut neatly",
-   "transparent": "clear enough to see through"
+   "shadowy": "dark and full of shade",
+   "tangled": "twisted together in a mess",
+   "verdant": "green with growing plants"
   },
   "fixed": "The ball, heavily topped, scudded across the lawn and disappeared into the unfathomed depths of a great bank of rhododendrons.",
-  "rule": "Something disappearing into the depths of a great bank of shrubs suggests depths that cannot be measured, not shallow ones.",
+  "rule": "Something disappearing into the depths of a great bank of shrubs suggests depths too deep to measure.",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -24697,16 +24670,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "There have been hints, indiscreet ___, that seem to indicate that the menace is a real one.",
   "options": [
    "allusions",
-   "denials",
-   "apologies",
-   "invoices"
+   "disclosures",
+   "admissions",
+   "boasts"
   ],
   "answer": "allusions",
   "definitions": {
    "allusions": "indirect references or hints",
-   "denials": "statements saying something is not true",
-   "apologies": "statements of regret",
-   "invoices": "bills listing money owed"
+   "disclosures": "revealings of secret information",
+   "admissions": "statements confessing something true",
+   "boasts": "proud claims about oneself"
   },
   "fixed": "There have been hints, indiscreet allusions, that seem to indicate that the menace is a real one.",
   "rule": "The word follows 'hints' and 'indiscreet' and describes things that seem to indicate a menace, so it means indirect references.",
@@ -24724,19 +24697,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "A moment of ___, a brake that failed to hold, and--over the edge--down--down--down.",
   "options": [
    "inattention",
-   "vigilance",
-   "celebration",
-   "gratitude"
+   "panic",
+   "recklessness",
+   "miscalculation"
   ],
   "answer": "inattention",
   "definitions": {
    "inattention": "failure to pay attention",
-   "vigilance": "careful watchfulness",
-   "celebration": "a party marking a happy event",
-   "gratitude": "thankful feeling"
+   "panic": "sudden, overwhelming fear",
+   "recklessness": "disregard for danger or consequences",
+   "miscalculation": "an error in working something out"
   },
   "fixed": "A moment of inattention, a brake that failed to hold, and--over the edge--down--down--down.",
-  "rule": "A brake failed to hold and a fall followed, so the moment was a lapse in attention, the opposite of vigilance.",
+  "rule": "A brake failed to hold and a fall followed, so the moment was a lapse: a failure to pay attention.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -24751,16 +24724,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He is such a respectable fellow that his appearance is pain and ___ to him.",
   "options": [
    "tribulation",
-   "delight",
-   "pride",
-   "relief"
+   "chagrin",
+   "humiliation",
+   "inconvenience"
   ],
   "answer": "tribulation",
   "definitions": {
    "tribulation": "great trouble or suffering",
-   "delight": "great pleasure",
-   "pride": "satisfaction in oneself",
-   "relief": "freedom from worry or pain"
+   "chagrin": "annoyance mixed with embarrassment",
+   "humiliation": "the state of being made ashamed",
+   "inconvenience": "slight trouble or bother"
   },
   "fixed": "He is such a respectable fellow that his appearance is pain and tribulation to him.",
   "rule": "The word is paired with 'pain' as something his appearance causes him, so it must be negative, like trouble.",
@@ -24778,16 +24751,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He was a very ___ card player, and Tommy noticed that when the stakes were high he seldom rose from the table a loser.",
   "options": [
    "dexterous",
-   "clumsy",
-   "careless",
-   "reluctant"
+   "shrewd",
+   "fortunate",
+   "audacious"
   ],
   "answer": "dexterous",
   "definitions": {
    "dexterous": "skilled with the hands",
-   "clumsy": "awkward with the hands",
-   "careless": "not paying enough care",
-   "reluctant": "unwilling"
+   "shrewd": "sharp and clever in judging situations",
+   "fortunate": "having good luck",
+   "audacious": "boldly willing to take risks"
   },
   "fixed": "He was a very dexterous card player, and Tommy noticed that when the stakes were high he seldom rose from the table a loser.",
   "rule": "He seldom rose from the table a loser when the stakes were high, which shows skill, not clumsiness.",
@@ -24805,16 +24778,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Would they consider it likely or possible that I had started off on this mad ___ simply on the strength of a scrap of paper smelling of moth balls?",
   "options": [
    "escapade",
-   "committee",
-   "inheritance",
-   "ceremony"
+   "scheme",
+   "crusade",
+   "errand"
   ],
   "answer": "escapade",
   "definitions": {
    "escapade": "a reckless or adventurous act",
-   "committee": "a group chosen to do a task",
-   "inheritance": "money or property received from someone who has died",
-   "ceremony": "a formal event"
+   "scheme": "a plan, often secret or tricky",
+   "crusade": "a determined campaign for a cause",
+   "errand": "a short trip to do a task"
   },
   "fixed": "Would they consider it likely or possible that I had started off on this mad escapade simply on the strength of a scrap of paper smelling of moth balls?",
   "rule": "The speaker calls it 'mad' and says it was started on the strength of a scrap of paper, so it was a reckless adventure.",
@@ -24832,19 +24805,19 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Tommy bent down and removed his shoes, then, leaving them behind the curtain, he walked ___ out on his stockinged feet, and kneeling down by the closed door he laid his ear cautiously to the crack.",
   "options": [
    "gingerly",
-   "boldly",
-   "noisily",
-   "carelessly"
+   "silently",
+   "reluctantly",
+   "unsteadily"
   ],
   "answer": "gingerly",
   "definitions": {
    "gingerly": "very carefully",
-   "boldly": "in a brave, confident way",
-   "noisily": "with a lot of sound",
-   "carelessly": "without taking care"
+   "silently": "without making any sound",
+   "reluctantly": "in an unwilling way",
+   "unsteadily": "in a wobbly, unbalanced way"
   },
   "fixed": "Tommy bent down and removed his shoes, then, leaving them behind the curtain, he walked gingerly out on his stockinged feet, and kneeling down by the closed door he laid his ear cautiously to the crack.",
-  "rule": "He removed his shoes and then listened cautiously at the door, so he moved with great care, not boldly or noisily.",
+  "rule": "He took off his shoes and listened cautiously at the door, so he moved with great care.",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -24859,16 +24832,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "She is ___ in every way and extremely trying to live with.",
   "options": [
    "incompetent",
-   "efficient",
-   "graceful",
-   "cheerful"
+   "domineering",
+   "petulant",
+   "inconsiderate"
   ],
   "answer": "incompetent",
   "definitions": {
    "incompetent": "not able to do things well",
-   "efficient": "skilled and well organized",
-   "graceful": "smooth and elegant in movement",
-   "cheerful": "happy and upbeat"
+   "domineering": "bossy and controlling of others",
+   "petulant": "sulky and childishly bad-tempered",
+   "inconsiderate": "not thinking about others' feelings"
   },
   "fixed": "She is incompetent in every way and extremely trying to live with.",
   "rule": "The phrase 'extremely trying to live with' signals a negative trait, so the word must mean unable to do things well.",
@@ -24886,16 +24859,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "The vicar’s ___, though well meant, did not console me in the least.",
   "options": [
    "consolations",
-   "accusations",
-   "instructions",
-   "predictions"
+   "platitudes",
+   "exhortations",
+   "sermons"
   ],
   "answer": "consolations",
   "definitions": {
    "consolations": "words or acts meant to comfort someone",
-   "accusations": "statements blaming someone for something",
-   "instructions": "directions telling someone what to do",
-   "predictions": "statements about what will happen"
+   "platitudes": "overused remarks that lack freshness",
+   "exhortations": "strong urgings to do something",
+   "sermons": "talks on religion or morals"
   },
   "fixed": "The vicar’s consolations, though well meant, did not console me in the least.",
   "rule": "The clause 'did not console me' shows the missing noun names things meant to comfort.",
@@ -24913,16 +24886,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "I hung my head, ashamed of the ___ suspicion I had entertained.",
   "options": [
    "baseless",
-   "justified",
-   "reasonable",
-   "logical"
+   "unworthy",
+   "uncharitable",
+   "fleeting"
   ],
   "answer": "baseless",
   "definitions": {
    "baseless": "having no good reason or evidence behind it",
-   "justified": "backed up by good reasons",
-   "reasonable": "sensible and fair",
-   "logical": "following clear reasoning"
+   "unworthy": "not deserving respect or regard",
+   "uncharitable": "harsh and unkind in judging others",
+   "fleeting": "lasting only a very short time"
   },
   "fixed": "I hung my head, ashamed of the baseless suspicion I had entertained.",
   "rule": "Being ashamed of a suspicion means it turned out to have no support, so it was without evidence.",
@@ -24940,16 +24913,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "I’m an easy-going man, kind-hearted and good tempered so long as I’m not ___.",
   "options": [
    "thwarted",
-   "thanked",
-   "promoted",
-   "flattered"
+   "taunted",
+   "contradicted",
+   "interrupted"
   ],
   "answer": "thwarted",
   "definitions": {
    "thwarted": "blocked from getting what one wants",
-   "thanked": "expressed gratitude to",
-   "promoted": "moved up to a higher position",
-   "flattered": "praised, often insincerely"
+   "taunted": "mocked in order to anger",
+   "contradicted": "said the opposite of",
+   "interrupted": "broke in on while speaking"
   },
   "fixed": "I’m an easy-going man, kind-hearted and good tempered so long as I’m not thwarted.",
   "rule": "The man says he stays good tempered unless something upsets him, so the missing word describes being blocked or frustrated.",
@@ -24967,16 +24940,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "With the ___ of a conjuror he produced a small bottle and tossed it over to the girls.",
   "options": [
    "celerity",
-   "clumsiness",
-   "reluctance",
-   "solemnity"
+   "flourish",
+   "panache",
+   "nonchalance"
   ],
   "answer": "celerity",
   "definitions": {
    "celerity": "speed and quickness",
-   "clumsiness": "awkward lack of skill",
-   "reluctance": "unwillingness to act",
-   "solemnity": "serious, grave manner"
+   "flourish": "a bold, sweeping gesture",
+   "panache": "confident, stylish flair",
+   "nonchalance": "a casual, unbothered manner"
   },
   "fixed": "With the celerity of a conjuror he produced a small bottle and tossed it over to the girls.",
   "rule": "A conjuror (magician) makes things appear with quick, skilled moves, so the word means speed.",
@@ -24994,16 +24967,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "All protests being thus overborne, a quarter of an hour later saw Tommy and Tuppence comfortably ___ at a corner table in the Gold Room of the Blitz.",
   "options": [
    "ensconced",
-   "stranded",
-   "startled",
-   "exiled"
+   "sequestered",
+   "entrenched",
+   "stationed"
   ],
   "answer": "ensconced",
   "definitions": {
    "ensconced": "settled snugly in a place",
-   "stranded": "left helpless in a place",
-   "startled": "suddenly frightened",
-   "exiled": "forced to leave a place"
+   "sequestered": "shut away from others",
+   "entrenched": "firmly fixed in position",
+   "stationed": "placed in a position for a purpose"
   },
   "fixed": "All protests being thus overborne, a quarter of an hour later saw Tommy and Tuppence comfortably ensconced at a corner table in the Gold Room of the Blitz.",
   "rule": "The word 'comfortably' signals that they were settled in a cozy spot at a table.",
@@ -25021,16 +24994,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "He was the friend of a friend, and as such, was vouched for and fully ___.",
   "options": [
    "accredited",
-   "suspected",
-   "dismissed",
-   "exposed"
+   "qualified",
+   "briefed",
+   "initiated"
   ],
   "answer": "accredited",
   "definitions": {
    "accredited": "officially recognized as trustworthy",
-   "suspected": "thought to be guilty",
-   "dismissed": "sent away",
-   "exposed": "revealed to be a fraud"
+   "qualified": "having the skills or training needed",
+   "briefed": "given instructions or information beforehand",
+   "initiated": "formally admitted into a group"
   },
   "fixed": "He was the friend of a friend, and as such, was vouched for and fully accredited.",
   "rule": "Being 'vouched for' by a friend signals that he was accepted and officially trusted.",
@@ -25048,16 +25021,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "stem": "Quite by mistake I then got a good run on my board, and came out ___ with happiness.",
   "options": [
    "delirious",
-   "indifferent",
-   "resentful",
-   "drowsy"
+   "radiant",
+   "speechless",
+   "breathless"
   ],
   "answer": "delirious",
   "definitions": {
    "delirious": "wildly excited",
-   "indifferent": "not caring either way",
-   "resentful": "angry about unfair treatment",
-   "drowsy": "sleepy"
+   "radiant": "glowing with joy",
+   "speechless": "unable to speak",
+   "breathless": "short of breath"
   },
   "fixed": "Quite by mistake I then got a good run on my board, and came out delirious with happiness.",
   "rule": "The phrase 'with happiness' and the good run show an extreme joyful excitement.",
