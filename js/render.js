@@ -129,6 +129,11 @@
     c.x = wx - (cx - f.w / 2) / s1; c.y = wy - (cy - f.h / 2) / s1;
     c.follow = false; c.zoomGoal = null;
   };
+  /** Glide to a zoom: the buttons use this so the view eases between many levels instead of jumping. */
+  Renderer.prototype.zoomSmooth = function (factor, px, py) {
+    var c = this.cam, base = c.zt != null ? c.zt : c.zoom;
+    c.zt = Math.max(0.035, Math.min(3, base * factor)); c.zpx = px; c.zpy = py; c.follow = false; c.zoomGoal = null;
+  };
   Renderer.prototype.fitZoom = function (track) {
     var b = track.bounds(), f = this.fx;
     var bw = b.maxX - b.minX + 10, bh = b.maxY - b.minY + 6, base = Math.min(f.w / 26, f.h / 17);
@@ -150,6 +155,14 @@
 
   Renderer.prototype.updateCamera = function (dt, focus) {
     var c = this.cam;
+    if (c.zt != null) {
+      if (c.follow || c.zoomGoal != null) c.zt = null;
+      else {
+        var r = Math.pow(c.zt / c.zoom, 1 - Math.pow(0.002, dt));
+        if (Math.abs(r - 1) < 0.002) { r = c.zt / c.zoom; c.zt = null; }
+        this.zoomAt(r, c.zpx, c.zpy);
+      }
+    }
     if (c.zoomGoal != null) {
       var kz = 1 - Math.pow(0.02, dt);
       c.zoom += (c.zoomGoal - c.zoom) * kz;

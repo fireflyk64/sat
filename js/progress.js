@@ -30,14 +30,14 @@
   var TIERS = [
     { id: 'bonus', label: 'Big bonus', every: 10, chance: 0.33 },
     { id: 'rare', label: 'Rare', every: 20, chance: 0.25 },
-    { id: 'ultra', label: 'Ultra rare', every: 100, chance: 0.10 }
+    { id: 'ultra', label: 'Ultra rare', every: 100, chance: 0.25 }
   ];
   /* Freezes: every 5 correct IN A ROW earns one, and they stack. Playing while holding one costs nothing. They last until
      the session ends, meaning 30 minutes away: a quick page reload does not lose them. */
   var FREEZE_EVERY = 5;
   // A freeze covers FREEZE_PLAYS plays; a play beyond that costs half a Focus. A multi-target question answered partly right earns its fraction.
-  var MISS_PENALTY = 1 / 3, PLAY_COST = 0.5, FREEZE_PLAYS = 3;
-  function snap(x) { return Math.round(x * 6) / 6; }       // whole sixths: no rounding drift, however long the streak
+  var MISS_PENALTY = 1 / 3, PLAY_COST = 0.25, FREEZE_PLAYS = 3;
+  function snap(x) { return Math.round(x * 12) / 12; }       // whole twelfths (thirds and quarters): no rounding drift, however long the streak
   /* Vocabulary is the skill that pays off most directly on the real test, so it gets extra turns among new questions.
      It can't come up twice running, so a 1 in 2 pick works out to about a third of all new questions. */
   // Storylines open by total right answers. Questions tagged with a `story` stay out of the pool until it opens; after that a share
@@ -497,7 +497,8 @@
   Progress.FREEZE_PLAYS = FREEZE_PLAYS;
   /** 13.6667 -> "13⅔" */
   Progress.fmt = function (n) {
-    var w = Math.floor(n + 1e-6), sixths = Math.round((n - w) * 6), f = ['', '⅙', '⅓', '½', '⅔', '⅚'][sixths] || '';
+    var w = Math.floor(n + 1e-6), tw = Math.round((n - w) * 12), f = { 1: '', 2: '⅙', 3: '¼', 4: '⅓', 6: '½', 8: '⅔', 9: '¾', 10: '⅚' }[tw] || '';
+    if (tw === 12) { w++; f = ''; } else if (tw === 1 || tw === 5 || tw === 7 || tw === 11) f = (tw / 12).toFixed(2).replace(/^0/, '');
     return (w || !f ? String(w) : '') + f;
   };
   root.Progress = Progress;

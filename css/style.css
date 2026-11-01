@@ -273,6 +273,9 @@ button.secondary:disabled { opacity: .4; cursor: default; }
 .stem { font-size: 1.15rem; line-height: 1.7; }
 .clue { margin: 4px 0 8px; padding: 8px 12px; border-left: 3px solid var(--gold); background: rgba(255,215,64,.08); border-radius: 6px; color: var(--ink); }
 .clue b { color: var(--gold); }
+details.hint { padding: 6px 12px; }
+details.hint summary { cursor: pointer; color: var(--gold); font-weight: 600; font-size: .9rem; }
+details.hint .hinttext { display: block; margin-top: 4px; }
 .stem.meaning { font-family: Georgia, serif; font-style: italic; font-size: 1.25rem; color: var(--gold); }
 .blankline { display: inline-block; border-bottom: 2px solid var(--accent); min-width: 5em; margin: 0 2px; }
 
@@ -436,6 +439,10 @@ footer { margin-top: auto; color: var(--mute); font-size: .75rem; }
   .tabs { display: none; }
   .studynote { max-width: 720px; left: 0; right: 0; margin: 0 auto; }
   .hint { font-size: .86rem; }
+}
+/* wide enough for a side column beside the centred questions: the Focus counter sits there, always in view */
+@media (min-width: 1380px) {
+  #focus { position: fixed; top: 14px; left: calc(50% - 390px - 300px); width: 280px; z-index: 4; }
 }
 
 @media (prefers-reduced-motion: reduce) {

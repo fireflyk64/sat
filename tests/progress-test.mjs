@@ -256,38 +256,38 @@ const clock0 = () => ({ t: Date.UTC(2026, 0, 1) });
   ({ p } = fresh([0.99]));
   p.store.focus = { count: 99, bonus: 9, rare: 19, ultra: 99 }; p.rand = () => 0.09;
   r = p.record(bank[1], true);
-  check('100 correct: an ultra rare roll at 10%', r.rolls.some(x => x.tier === 'ultra' && x.chance === 0.1 && x.won));
+  check('100 correct: an ultra rare roll at 25%', r.rolls.some(x => x.tier === 'ultra' && x.chance === 0.25 && x.won));
   const ultraId = r.rolls.find(x => x.tier === 'ultra').item;
   check('...which pays out an ultra rare item', REWARDS[ultraId].tier === 'ultra');
-  p.store.focus = { count: 99, bonus: 1, rare: 1, ultra: 99 }; p.rand = () => 0.11;
+  p.store.focus = { count: 99, bonus: 1, rare: 1, ultra: 99 }; p.rand = () => 0.26;
   r = p.record(bank[2], true);
-  check('0.11 misses the 10% ultra roll', r.rolls.length === 1 && !r.rolls[0].won && p.store.focus.ultra === 100);
+  check('0.26 misses the 25% ultra roll', r.rolls.length === 1 && !r.rolls[0].won && p.store.focus.ultra === 100);
 
   // the odds over many rolls
   let wins = 0, N = 20000; const rnd = seeded(12345);
   for (let i = 0; i < N; i++) if (rnd() < Progress.TIERS[0].chance) wins++;
-  check('chance values are what you asked for', Progress.TIERS.map(t => t.every + ':' + t.chance).join() === '10:0.33,20:0.25,100:0.1' && Math.abs(wins / N - 0.33) < 0.02, Progress.TIERS.map(t => t.every + ':' + t.chance).join(' '));
+  check('chance values are what you asked for', Progress.TIERS.map(t => t.every + ':' + t.chance).join() === '10:0.33,20:0.25,100:0.25' && Math.abs(wins / N - 0.33) < 0.02, Progress.TIERS.map(t => t.every + ':' + t.chance).join(' '));
 
   // playing
   ({ p } = fresh([0.99]));
   answer(p, 4);
   const played = p.notePlay();
-  check('playing with no freeze costs ½ Focus, not everything', played.lost === 0.5 && p.store.focus.count === 3.5 && p.store.focus.bonus === 3.5 && p.store.focus.ultra === 3.5, Progress.fmt(p.store.focus.count));
+  check('playing with no freeze costs ¼ Focus, not everything', played.lost === 0.25 && p.store.focus.count === 3.75 && p.store.focus.bonus === 3.75 && p.store.focus.ultra === 3.75, Progress.fmt(p.store.focus.count));
   check('...and it can show that as a fraction', Progress.fmt(2.5) === '2½' && Progress.fmt(1.5) === '1½');
   ({ p } = fresh());
   p.record(bank[3], true);
-  p.notePlay();
+  p.notePlay(); p.notePlay(); p.notePlay();
   const small = p.notePlay(), none = p.notePlay();
-  check('...never going below zero, and only charging what he had', p.store.focus.count === 0 && small.lost === 0.5 && none.lost === 0);
+  check('...never going below zero, and only charging what he had', p.store.focus.count === 0 && small.lost === 0.25 && none.lost === 0);
   ({ p } = fresh([0.99]));
   answer(p, 10);
   p.store.freezes = 0;                     // those 10 in a row earned freezes, which would cover this play
   p.notePlay();
   answer(p, 1);
-  check('a rolled goal stays rolled after playing, so a break cannot be used to re-roll', p.store.focus.bonus === 10.5 && p.store.focus.next.bonus === 20);
+  check('a rolled goal stays rolled after playing, so a break cannot be used to re-roll', p.store.focus.bonus === 10.75 && p.store.focus.next.bonus === 20);
   ({ p } = fresh());
   answer(p, 3); p.record(bank[9], false); p.notePlay();
-  check('misses and play costs add up without rounding drift', p.store.focus.count === Math.round((3 - 1 / 3 - 0.5) * 6) / 6, Progress.fmt(p.store.focus.count));
+  check('misses and play costs add up without rounding drift', p.store.focus.count === Math.round((3 - 1 / 3 - 0.25) * 12) / 12, Progress.fmt(p.store.focus.count));
 
   // partial credit: several things to find, some found
   ({ p } = fresh([0.99]));
@@ -348,7 +348,7 @@ const clock0 = () => ({ t: Date.UTC(2026, 0, 1) });
   check('...and the fourth opens the next freeze', fourth.frozen && p.store.freezes === 1 && p.store.freezePlays === 2);
   ({ p } = fresh([0.99])); answer(p, 5); p.notePlay(); p.notePlay(); p.notePlay();
   const paid = p.notePlay();
-  check('with no freeze left, the next play costs half a Focus', !paid.frozen && paid.lost === 0.5 && p.store.focus.count === 4.5);
+  check('with no freeze left, the next play costs a quarter Focus', !paid.frozen && paid.lost === 0.25 && p.store.focus.count === 4.75);
 
   ({ p } = fresh([0.99]));
   answer(p, 4); p.record(bank[60], false); answer(p, 4);

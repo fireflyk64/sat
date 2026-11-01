@@ -456,11 +456,12 @@
   // between them freely; on a bigger screen there is no tab bar: the machine stays away for a run of questions, then a Play button
   // appears, and when he has played the machine goes away again, so he is not turning to look at it while he studies.
   var narrowQuery = window.matchMedia ? window.matchMedia('(max-width: 860px)') : null;
-  var STUDY_BEFORE_PLAY = 6;
+  // Questions to answer before the machine opens: 5 at first, rising with his Focus to a solid 12 at 100, since the more Focus he holds the more a careless play can cost.
+  function studyBefore() { var f = Math.min(100, Math.max(0, progress.store.focus.count || 0)); return Math.round(5 + 7 * f / 100); }
   function phoneNow() { return !!(narrowQuery && narrowQuery.matches); }
   function narrowNow() { return true; }
   /** Has he studied enough for a turn at the machine? (On a phone the tab is always there.) */
-  function playReady() { return phoneNow() || state.sinceBreak >= STUDY_BEFORE_PLAY; }
+  function playReady() { return phoneNow() || state.sinceBreak >= studyBefore(); }
   /** True when the machine's screen is not the one on show: a phone, on the questions tab. */
   function stageHidden() { return narrowNow() && state.view === 'study'; }
   function setView(v) {
@@ -890,7 +891,7 @@
       var bits = ['\ud83c\udfaf <b>' + Progress.fmt(s.focus.count) + '</b>', '\ud83d\udd25 <b>' + s.streak + '</b>', '\ud83e\udde9 <b>' + m.pieces.length + '/' + m.target + '</b>'];
       var my2 = mystery(); if (my2) bits.push('\ud83d\udd0e <b>' + cluesFound() + '/' + my2.clues.length + '</b>');
       if (freePlays() > 0) bits.push('\ud83e\uddca <b>' + freePlays() + '</b>');
-      if (flickable() && !playReady()) bits.push('\ud83c\udfb2 <b>' + (STUDY_BEFORE_PLAY - state.sinceBreak) + '</b> more to play');
+      if (flickable() && !playReady()) bits.push('\ud83c\udfb2 <b>' + (studyBefore() - state.sinceBreak) + '</b> more to play');
       stat.innerHTML = bits.map(function (b) { return '<span>' + b + '</span>'; }).join('');
       stat.setAttribute('aria-label', 'Focus ' + Progress.fmt(s.focus.count) + ', ' + s.streak + ' in a row, ' + m.pieces.length + ' of ' + m.target + ' pieces');
     }
@@ -1284,6 +1285,26 @@
     }
     cv.addEventListener('pointerup', up); cv.addEventListener('pointercancel', up);
 
+    // Double-click a marble that has been handed on (and rests dim where it was) to wake it up again. It is a free toy, not a play:
+    // it rolls on its own for a few seconds and then fades.
+    cv.addEventListener('dblclick', function (e) {
+      if (state.brk || state.phase === 'finale') return;
+      var p = rel(e), wp = renderer.screenToWorld(p.x, p.y), list = machine().kept || [], best = -1, bd = 1.1;
+      list.forEach(function (k, i) {
+        var s0 = track.sections.filter(function (s) { return s.id === k.pid; })[0];
+        if (!s0 || !s0.exit) return;
+        var d = Math.hypot(wp.x - (s0.exit.x + k.dx), wp.y - (s0.exit.y + k.dy));
+        if (d < bd) { bd = d; best = i; }
+      });
+      if (best < 0) return;
+      var k = list.splice(best, 1)[0], sec = track.sections.filter(function (s) { return s.id === k.pid; })[0];
+      var m = track._marble(sec, sec.exit.x + k.dx, sec.exit.y + k.dy, { role: 'revived', hue: k.hue, asleep: false });
+      m.userData.small = true; m.userData.live = true; m.userData.expire = track.time + 9;     // (small: it never rings the bell or counts as the run)
+      m.wake(); m.vx += (sec.exit.dir || 1) * 1.2;
+      Sound.kick(); renderer.sparks(m.x, m.y, 18, k.hue, 5); renderer.ring(m.x, m.y, 1.6, 0.8, 2, 2.6, 0.3, 0.1);
+      progress.save();
+    });
+
     cv.addEventListener('wheel', function (e) {
       e.preventDefault();
       var r = cv.getBoundingClientRect(), k = e.deltaMode === 1 ? 16 : 1;
@@ -1295,8 +1316,8 @@
       }
     }, { passive: false });
 
-    $('zin').addEventListener('click', function () { renderer.zoomAt(1.4); });
-    $('zout').addEventListener('click', function () { renderer.zoomAt(1 / 1.4); });
+    $('zin').addEventListener('click', function () { renderer.zoomSmooth(1.2); });
+    $('zout').addEventListener('click', function () { renderer.zoomSmooth(1 / 1.2); });
     $('fit').addEventListener('click', function () { renderer.fit(track); });
     $('follow').addEventListener('click', function () { renderer.cam.follow = true; renderer.cam.zoomGoal = 1; setTimeout(function () { renderer.cam.zoomGoal = null; renderer.cam.zoom = 1; }, 900); });
   }

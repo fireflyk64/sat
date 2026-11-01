@@ -210,7 +210,12 @@
     // SAT-style questions (level 'sat') show no meaning at all: like the real test, the passage has to decide the answer.
     var satStyle = item.level === 'sat';
     // ...but several words can look possible, so the normal card gives a very vague hint (the Water Section, like the real test, does not)
-    if (satStyle && item.hint && !(opts && opts.traditional)) host.appendChild(el('p', 'clue hint', 'Hint: it ' + item.hint + '.'));
+    if (satStyle && item.hint && !(opts && opts.traditional)) {
+      // folded away until he asks: tapping the line opens it
+      var hd = el('details', 'clue hint'), hs = el('summary', null, '\ud83d\udca1 Need a hint?');
+      hd.appendChild(hs); hd.appendChild(el('span', 'hinttext', 'It ' + item.hint + '.'));
+      host.appendChild(hd);
+    }
     var meaning = !satStyle && item.type === 'vocab' && item.definitions && item.definitions[item.answer] && Math.random() < 0.5;
     if (meaning) {
       var d = item.definitions[item.answer].replace(/\.$/, '');
