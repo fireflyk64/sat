@@ -13295,14 +13295,14 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "He took from his pocket a small cardboard box ___ opening it, extracted a rice paper capsule, which he swallowed with the aid of the water.",
+  "stem": "He took from his pocket a small cardboard box___ opening it, extracted a rice paper capsule, which he swallowed with the aid of the water.",
   "options": [
-   "and, ",
-   "and ",
-   "and; ",
-   "and: "
+   ", and",
+   " and",
+   " and,",
+   ": and"
   ],
-  "answer": "and, ",
+  "answer": " and,",
   "fixed": "He took from his pocket a small cardboard box and, opening it, extracted a rice paper capsule, which he swallowed with the aid of the water.",
   "rule": "A removable phrase in the middle of a sentence needs commas on both sides. \"Opening it\" can be removed, so it is set off with a comma before and after it.",
   "source": {
@@ -15282,27 +15282,6 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
-  }
- },
- {
-  "id": "mc-65238-1072-1",
-  "type": "mc",
-  "skill": "commas",
-  "title": "Which choice follows Standard English?",
-  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "As he is greater than Johnson___ so others are greater than Inspector Badgworthy.",
-  "options": [
-   ",",
-   "",
-   ";",
-   ":"
-  ],
-  "answer": ",",
-  "fixed": "As he is greater than Johnson, so others are greater than Inspector Badgworthy.",
-  "rule": "A dependent clause that starts with \"As\" and comes first is set off from the main clause with a comma. A semicolon or colon needs a complete sentence before it, and \"As he is greater than Johnson\" is not one.",
-  "source": {
-   "book": "The Secret of Chimneys",
-   "gutenberg": 65238
   }
  },
  {

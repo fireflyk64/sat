@@ -6647,12 +6647,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and,",
-   ": and"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "By the time I had disentangled myself, my quarry was just passing through the doorway, and the next delay was from a waiter carrying a huge pile of plates who crashed into me without the least warning.",
-  "rule": "Use a comma before a coordinating conjunction (and) that joins two complete sentences. Here \"my quarry was just passing through the doorway\" and \"the next delay was from a waiter\" can each stand alone.",
+  "rule": "Use a comma before a coordinating conjunction (and) that joins two complete sentences. Here \"my quarry was just passing through the doorway\" and \"the next delay was from a waiter\" can each stand alone. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -6710,12 +6710,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and,",
+   " and,",
    ": and"
   ],
   "answer": ", and",
   "fixed": "I saw Mrs. Maltravers give a terrified start, and my mind flew to the old superstition that a suicide cannot rest.",
-  "rule": "Put a comma before and when it joins two independent clauses. \"I saw Mrs. Maltravers give a terrified start\" and \"my mind flew to the old superstition\" are both complete.",
+  "rule": "Put a comma before and when it joins two independent clauses. \"I saw Mrs. Maltravers give a terrified start\" and \"my mind flew to the old superstition\" are both complete. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
@@ -6731,12 +6731,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and,",
-   ": and"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "Poirot gave a brief explanation, and the doctor started examining our strange visitor, who seemed quite unconscious of his presence or ours.",
-  "rule": "Use a comma before and when two independent clauses are joined. \"Poirot gave a brief explanation\" and \"the doctor started examining\" have different subjects, so each is its own sentence.",
+  "rule": "Use a comma before and when two independent clauses are joined. \"Poirot gave a brief explanation\" and \"the doctor started examining\" have different subjects, so each is its own sentence. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -6752,12 +6752,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but,",
+   " but,",
    ": but"
   ],
   "answer": ", but",
   "fixed": "Though very well preserved, she was certainly no longer young, but her charm was of the quality which is independent of age.",
-  "rule": "A comma is needed before but when it links two independent clauses. \"She was certainly no longer young\" and \"her charm was of the quality...\" both stand alone.",
+  "rule": "A comma is needed before but when it links two independent clauses. \"She was certainly no longer young\" and \"her charm was of the quality...\" both stand alone. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -6794,12 +6794,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and,",
-   ": and"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "He bent down, surveying the handle attentively, and I heard him give a grunt of satisfaction.",
-  "rule": "Place a comma before and when it joins two independent clauses. \"He bent down...\" and \"I heard him give a grunt\" have different subjects and each is complete.",
+  "rule": "Place a comma before and when it joins two independent clauses. \"He bent down...\" and \"I heard him give a grunt\" have different subjects and each is complete. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -6815,12 +6815,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and,",
-   ": and"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "That changed the course of my ideas, and I asked Poirot if he knew that Jack Renauld had been in Merlinville on the night of the crime.",
-  "rule": "A comma comes before and when it connects two complete sentences. \"That changed the course of my ideas\" and \"I asked Poirot...\" can each stand alone.",
+  "rule": "A comma comes before and when it connects two complete sentences. \"That changed the course of my ideas\" and \"I asked Poirot...\" can each stand alone. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -6836,12 +6836,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but,",
-   ": but"
+   " but,",
+   "; but,"
   ],
   "answer": ", but",
   "fixed": "Indeed, I have a theory as to the actual nature of the force we call magnetism, but it is not yet time for my discoveries to be given to the world.",
-  "rule": "Use a comma before but when it joins two independent clauses. Both \"I have a theory...\" and \"it is not yet time...\" are complete sentences.",
+  "rule": "Use a comma before but when it joins two independent clauses. Both \"I have a theory...\" and \"it is not yet time...\" are complete sentences. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -6878,12 +6878,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but,",
-   ": but"
+   " but,",
+   "; but,"
   ],
   "answer": ", but",
   "fixed": "Exactly how far she has progressed, nobody knows, but it is certain that it is much farther than has ever been given out.",
-  "rule": "Put a comma before but when it joins two independent clauses. \"Nobody knows\" is complete, and so is \"it is certain that it is much farther...\".",
+  "rule": "Put a comma before but when it joins two independent clauses. \"Nobody knows\" is complete, and so is \"it is certain that it is much farther...\". Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -6899,12 +6899,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and,",
+   " and,",
    ": and"
   ],
   "answer": ", and",
   "fixed": "All three men had taken port, and the decanter, half-full, stood before the centre plate.",
-  "rule": "A comma goes before and when it joins two independent clauses. \"All three men had taken port\" and \"the decanter stood before the centre plate\" each have their own subject and verb.",
+  "rule": "A comma goes before and when it joins two independent clauses. \"All three men had taken port\" and \"the decanter stood before the centre plate\" each have their own subject and verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
@@ -6920,12 +6920,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and,",
+   " and,",
    ": and"
   ],
   "answer": ", and",
   "fixed": "We had reached Leastways Cottage, and Poirot ushered me upstairs to his own room.",
-  "rule": "Use a comma before and when two full sentences are joined. Here the second clause has a new subject, Poirot.",
+  "rule": "Use a comma before and when two full sentences are joined. Here the second clause has a new subject, Poirot. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
@@ -6941,12 +6941,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but,",
-   ": but"
+   " but,",
+   "; but,"
   ],
   "answer": ", but",
   "fixed": "Poirot had just accused me of being imaginative, but I now felt that he was far more wildly so than I had ever been.",
-  "rule": "A comma is needed before but when it joins two independent clauses. Each side of but here has its own subject and verb.",
+  "rule": "A comma is needed before but when it joins two independent clauses. Each side of but here has its own subject and verb. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -6962,12 +6962,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", so",
    " so",
-   "; so,",
+   " so,",
    ": so"
   ],
   "answer": ", so",
   "fixed": "At one period of my life I had been private secretary to a busy member of Parliament, so I was not called upon to assume a role unfamiliar to me.",
-  "rule": "Put a comma before so when it joins two independent clauses. Both \"I had been private secretary...\" and \"I was not called upon...\" are complete sentences.",
+  "rule": "Put a comma before so when it joins two independent clauses. Both \"I had been private secretary...\" and \"I was not called upon...\" are complete sentences. Test: cover \"so\" and read what follows. It could stand alone as a sentence, so the comma goes before \"so\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -6995,27 +6995,6 @@ window.SAT_QUESTIONS = [
   }
  },
  {
-  "id": "mc-863-86-1",
-  "type": "mc",
-  "skill": "commas",
-  "title": "Which choice follows Standard English?",
-  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "She tossed off her little V.A.D. cap___ I admired the great loose waves of her auburn hair, and the smallness and whiteness of the hand she held out to claim her tea.",
-  "options": [
-   ", and",
-   " and",
-   "; and,",
-   ": and"
-  ],
-  "answer": ", and",
-  "fixed": "She tossed off her little V.A.D. cap, and I admired the great loose waves of her auburn hair, and the smallness and whiteness of the hand she held out to claim her tea.",
-  "rule": "Use a comma before and when it joins two independent clauses. \"She tossed off her little V.A.D. cap\" and \"I admired the great loose waves\" are both complete.",
-  "source": {
-   "book": "The Mysterious Affair at Styles",
-   "gutenberg": 863
-  }
- },
- {
   "id": "mc-70114-1175-4",
   "type": "mc",
   "skill": "commas",
@@ -7025,12 +7004,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and,",
-   ": and"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "Presently a doctor arrived, and Poirot handed her over to his charge and drew aside with me.",
-  "rule": "A comma goes before and when it links two independent clauses. \"Presently a doctor arrived\" is complete, and so is the clause that begins with Poirot.",
+  "rule": "A comma goes before and when it links two independent clauses. \"Presently a doctor arrived\" is complete, and so is the clause that begins with Poirot. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -7046,12 +7025,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but,",
-   ": but"
+   " but,",
+   "; but,"
   ],
   "answer": ", but",
   "fixed": "I meant to do so, but I was told that a friend was at the hall door, so I laid down the coffee on the hall table.",
-  "rule": "Use a comma before but when it joins two independent clauses. \"I meant to do so\" and \"I was told that a friend was at the hall door\" each stand alone.",
+  "rule": "Use a comma before but when it joins two independent clauses. \"I meant to do so\" and \"I was told that a friend was at the hall door\" each stand alone. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
@@ -7067,12 +7046,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and,",
+   " and,",
    ": and"
   ],
   "answer": ", and",
   "fixed": "I realised that we were penetrating into the Ardennes, and I suddenly remembered Poirot's saying that he had a brother who lived at Spa.",
-  "rule": "A comma comes before and when it joins two independent clauses. Each half here has its own subject (we, I) and verb.",
+  "rule": "A comma comes before and when it joins two independent clauses. Each half here has its own subject (we, I) and verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -7088,12 +7067,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but,",
+   " but,",
    ": but"
   ],
   "answer": ", but",
   "fixed": "On the manager’s suggestion we searched the flat, but the result was a foregone conclusion.",
-  "rule": "A comma is required before but when it joins two independent clauses. The opening phrase belongs to the first clause, so the comma goes just before but.",
+  "rule": "A comma is required before but when it joins two independent clauses. The opening phrase belongs to the first clause, so the comma goes just before but. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
@@ -7109,12 +7088,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and,",
+   " and,",
    ": and"
   ],
   "answer": ", and",
   "fixed": "It was Poirot’s voice speaking, and I knew from the gravity of his tone that he, too, was fully alive to the implications of the position.",
-  "rule": "Use a comma before and when two independent clauses are joined. \"It was Poirot's voice speaking\" and \"I knew...\" each could be a sentence.",
+  "rule": "Use a comma before and when two independent clauses are joined. \"It was Poirot's voice speaking\" and \"I knew...\" each could be a sentence. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -7130,12 +7109,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and,",
-   ": and"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "His last words were almost a question, and I was aware of the sharpness with which he darted a glance at me.",
-  "rule": "A comma goes before and when it joins two independent clauses. Both halves of this sentence are complete on their own.",
+  "rule": "A comma goes before and when it joins two independent clauses. Both halves of this sentence are complete on their own. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -7151,12 +7130,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but,",
+   " but,",
    ": but"
   ],
   "answer": ", but",
   "fixed": "It was a trap, yes, and it meant certain capture and possible death, but it was baited with the person dearest to me in the whole world, and I dared not hesitate.",
-  "rule": "Use a comma before but when it joins independent clauses. \"It meant certain capture and possible death\" and \"it was baited with the person dearest to me\" are both complete.",
+  "rule": "Use a comma before but when it joins independent clauses. \"It meant certain capture and possible death\" and \"it was baited with the person dearest to me\" are both complete. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -7172,12 +7151,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and,",
-   ": and"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "He is fighting a losing battle, and he is prepared to take any means that come to his hand, for exposure means ruin to him.",
-  "rule": "A comma comes before and when it joins two complete sentences. Each half has its own subject (He, he) and verb.",
+  "rule": "A comma comes before and when it joins two complete sentences. Each half has its own subject (He, he) and verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -7193,12 +7172,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and,",
-   ": and"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "From the very first I took a firm and rooted dislike to him, and I flatter myself that my first judgments are usually fairly shrewd.",
-  "rule": "Use a comma before and when it joins two independent clauses. Each half could stand as its own sentence.",
+  "rule": "Use a comma before and when it joins two independent clauses. Each half could stand as its own sentence. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
@@ -7214,12 +7193,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and,",
+   " and,",
    ": and"
   ],
   "answer": ", and",
   "fixed": "This fellow has an American accent all right, and he doesn’t deny that he was near King’s Abbot that night.",
-  "rule": "A comma goes before and when two independent clauses are joined. \"This fellow has an American accent\" and \"he doesn't deny...\" each have their own subject.",
+  "rule": "A comma goes before and when two independent clauses are joined. \"This fellow has an American accent\" and \"he doesn't deny...\" each have their own subject. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -7235,12 +7214,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and,",
-   ": and"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "You order through this telephone, and the dishes are sent down in the lift, one course at a time.",
-  "rule": "Put a comma before and when it joins two independent clauses. The subjects You and the dishes each have their own verb.",
+  "rule": "Put a comma before and when it joins two independent clauses. The subjects You and the dishes each have their own verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
@@ -7256,36 +7235,15 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and,",
+   " and,",
    ": and"
   ],
   "answer": ", and",
   "fixed": "He would call evidence to show who did destroy the will, and it was possible that that might open up quite a new view of the case.",
-  "rule": "A comma comes before and when it joins two complete sentences. Both \"He would call evidence...\" and \"it was possible...\" can stand alone.",
+  "rule": "A comma comes before and when it joins two complete sentences. Both \"He would call evidence...\" and \"it was possible...\" can stand alone. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
-  }
- },
- {
-  "id": "mc-58866-871-1",
-  "type": "mc",
-  "skill": "commas",
-  "title": "Which choice follows Standard English?",
-  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "Her breast heaved___ and her eyes grew wide and round.",
-  "options": [
-   ",",
-   "",
-   ";",
-   ":"
-  ],
-  "answer": ",",
-  "fixed": "Her breast heaved, and her eyes grew wide and round.",
-  "rule": "When a conjunction like and joins two independent clauses, put a comma before it. Here \"Her breast heaved\" and \"her eyes grew wide and round\" can each stand alone.",
-  "source": {
-   "book": "The Murder on the Links",
-   "gutenberg": 58866
   }
  },
  {
@@ -7294,16 +7252,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "It had been quite a complicated piece of work___ and the old gentleman had been very fussy about it.",
+  "stem": "It had been quite a complicated piece of work___ the old gentleman had been very fussy about it.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", and",
+   " and",
+   " and,",
+   ": and"
   ],
-  "answer": ",",
+  "answer": ", and",
   "fixed": "It had been quite a complicated piece of work, and the old gentleman had been very fussy about it.",
-  "rule": "Use a comma before a coordinating conjunction that joins two complete sentences. Each half here has its own subject and verb, so the comma goes before \"and\".",
+  "rule": "Use a comma before a coordinating conjunction that joins two complete sentences. Each half here has its own subject and verb, so the comma goes before \"and\". Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
@@ -7336,16 +7294,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "The Olympia sailed from Liverpool on the 23rd___ and the bonds were handed over to Philip on the morning of that day by Mr. Vavasour and Mr. Shaw, the two joint general managers of the London and Scottish Bank.",
+  "stem": "The Olympia sailed from Liverpool on the 23rd___ the bonds were handed over to Philip on the morning of that day by Mr. Vavasour and Mr. Shaw, the two joint general managers of the London and Scottish Bank.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", and",
+   " and",
+   " and,",
+   "; and,"
   ],
-  "answer": ",",
+  "answer": ", and",
   "fixed": "The Olympia sailed from Liverpool on the 23rd, and the bonds were handed over to Philip on the morning of that day by Mr. Vavasour and Mr. Shaw, the two joint general managers of the London and Scottish Bank.",
-  "rule": "Put a comma before and when it joins two independent clauses. \"The Olympia sailed\" and \"the bonds were handed over\" are both complete clauses.",
+  "rule": "Put a comma before and when it joins two independent clauses. \"The Olympia sailed\" and \"the bonds were handed over\" are both complete clauses. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
@@ -7357,16 +7315,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "The Gigantic leaves Southampton on the same day as the Olympia___ and she holds the record for the Atlantic.",
+  "stem": "The Gigantic leaves Southampton on the same day as the Olympia___ she holds the record for the Atlantic.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", and",
+   " and",
+   " and,",
+   ": and"
   ],
-  "answer": ",",
+  "answer": ", and",
   "fixed": "The Gigantic leaves Southampton on the same day as the Olympia, and she holds the record for the Atlantic.",
-  "rule": "A comma comes before a coordinating conjunction that links two independent clauses. Here the second clause has its own subject, \"she\", and its own verb, \"holds\".",
+  "rule": "A comma comes before a coordinating conjunction that links two independent clauses. Here the second clause has its own subject, \"she\", and its own verb, \"holds\". Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
@@ -7399,16 +7357,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "The lawyer was in his office___ and we were ushered in without any delay.",
+  "stem": "The lawyer was in his office___ we were ushered in without any delay.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", and",
+   " and",
+   " and,",
+   "; and,"
   ],
-  "answer": ",",
+  "answer": ", and",
   "fixed": "The lawyer was in his office, and we were ushered in without any delay.",
-  "rule": "Join two independent clauses with a comma plus a conjunction. \"The lawyer was in his office\" and \"we were ushered in\" each have their own subject and verb.",
+  "rule": "Join two independent clauses with a comma plus a conjunction. \"The lawyer was in his office\" and \"we were ushered in\" each have their own subject and verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -7420,16 +7378,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "He is inclined to be foolishly enthusiastic over my capabilities in consequence___ and I am about to trade on this attitude of his.",
+  "stem": "He is inclined to be foolishly enthusiastic over my capabilities in consequence___ I am about to trade on this attitude of his.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", and",
+   " and",
+   " and,",
+   ": and"
   ],
-  "answer": ",",
+  "answer": ", and",
   "fixed": "He is inclined to be foolishly enthusiastic over my capabilities in consequence, and I am about to trade on this attitude of his.",
-  "rule": "A comma goes before and when it joins two complete sentences. The second one begins with a new subject, \"I\".",
+  "rule": "A comma goes before and when it joins two complete sentences. The second one begins with a new subject, \"I\". Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -7441,16 +7399,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "We crossed from England by the evening boat___ and the following morning saw us in Saint-Omer, whither Jack Renauld had been taken.",
+  "stem": "We crossed from England by the evening boat___ the following morning saw us in Saint-Omer, whither Jack Renauld had been taken.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", and",
+   " and",
+   " and,",
+   "; and,"
   ],
-  "answer": ",",
+  "answer": ", and",
   "fixed": "We crossed from England by the evening boat, and the following morning saw us in Saint-Omer, whither Jack Renauld had been taken.",
-  "rule": "Place a comma before a conjunction that joins two independent clauses. \"The following morning saw us in Saint-Omer\" is a full clause with its own subject and verb.",
+  "rule": "Place a comma before a conjunction that joins two independent clauses. \"The following morning saw us in Saint-Omer\" is a full clause with its own subject and verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -7462,16 +7420,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "An audible creaking proclaimed the approach of Annie___ so I had no time to reply.",
+  "stem": "An audible creaking proclaimed the approach of Annie___ I had no time to reply.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", so",
+   " so",
+   " so,",
+   "; so,"
   ],
-  "answer": ",",
+  "answer": ", so",
   "fixed": "An audible creaking proclaimed the approach of Annie, so I had no time to reply.",
-  "rule": "A comma comes before so when it joins two independent clauses. \"I had no time to reply\" is a complete clause that follows from the first.",
+  "rule": "A comma comes before so when it joins two independent clauses. \"I had no time to reply\" is a complete clause that follows from the first. Test: cover \"so\" and read what follows. It could stand alone as a sentence, so the comma goes before \"so\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
@@ -7483,16 +7441,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "She looked up___ and her eyes met those of the woman sitting opposite.",
+  "stem": "She looked up___ her eyes met those of the woman sitting opposite.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", and",
+   " and",
+   " and,",
+   "; and,"
   ],
-  "answer": ",",
+  "answer": ", and",
   "fixed": "She looked up, and her eyes met those of the woman sitting opposite.",
-  "rule": "A comma is needed before and when it joins two independent clauses. \"She looked up\" and \"her eyes met those of the woman\" each have a subject and verb.",
+  "rule": "A comma is needed before and when it joins two independent clauses. \"She looked up\" and \"her eyes met those of the woman\" each have a subject and verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
@@ -7504,16 +7462,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "I expressed my admiration to Poirot___ and he nodded thoughtfully.",
+  "stem": "I expressed my admiration to Poirot___ he nodded thoughtfully.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", and",
+   " and",
+   " and,",
+   "; and,"
   ],
-  "answer": ",",
+  "answer": ", and",
   "fixed": "I expressed my admiration to Poirot, and he nodded thoughtfully.",
-  "rule": "Use a comma before a coordinating conjunction that joins two independent clauses. The second clause has a new subject, \"he\".",
+  "rule": "Use a comma before a coordinating conjunction that joins two independent clauses. The second clause has a new subject, \"he\". Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
@@ -7525,37 +7483,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "Katherine was waiting for him___ and they drove off at once.",
+  "stem": "Katherine was waiting for him___ they drove off at once.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", and",
+   " and",
+   " and,",
+   ": and"
   ],
-  "answer": ",",
+  "answer": ", and",
   "fixed": "Katherine was waiting for him, and they drove off at once.",
-  "rule": "A comma comes before and when it links two independent clauses. The second clause has a new subject, \"they\".",
-  "source": {
-   "book": "The Mystery of the Blue Train",
-   "gutenberg": 72824
-  }
- },
- {
-  "id": "mc-72824-1201-10",
-  "type": "mc",
-  "skill": "commas",
-  "title": "Which choice follows Standard English?",
-  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "He had not gone into the dead woman's compartment___ and it was perhaps as well that she had said nothing to the police.",
-  "options": [
-   ",",
-   "",
-   ";",
-   ":"
-  ],
-  "answer": ",",
-  "fixed": "He had not gone into the dead woman's compartment, and it was perhaps as well that she had said nothing to the police.",
-  "rule": "Use a comma before and when it joins two independent clauses. \"He had not gone\" and \"it was perhaps as well\" are separate complete thoughts.",
+  "rule": "A comma comes before and when it links two independent clauses. The second clause has a new subject, \"they\". Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
@@ -7567,16 +7504,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "His manner was grave and brooding___ and his nerves were on edge.",
+  "stem": "His manner was grave and brooding___ his nerves were on edge.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", and",
+   " and",
+   " and,",
+   "; and,"
   ],
-  "answer": ",",
+  "answer": ", and",
   "fixed": "His manner was grave and brooding, and his nerves were on edge.",
-  "rule": "A comma goes before a conjunction that joins two independent clauses. Each half here has its own subject: \"manner\" and \"nerves\".",
+  "rule": "A comma goes before a conjunction that joins two independent clauses. Each half here has its own subject: \"manner\" and \"nerves\". Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -7588,16 +7525,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "Her death was a shock and a distress___ but she would not be passionately regretted.",
+  "stem": "Her death was a shock and a distress___ she would not be passionately regretted.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", but",
+   " but",
+   " but,",
+   "; but,"
   ],
-  "answer": ",",
+  "answer": ", but",
   "fixed": "Her death was a shock and a distress, but she would not be passionately regretted.",
-  "rule": "A comma comes before but when it joins two independent clauses. \"Her death was a shock\" and \"she would not be regretted\" each stand alone.",
+  "rule": "A comma comes before but when it joins two independent clauses. \"Her death was a shock\" and \"she would not be regretted\" each stand alone. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
@@ -7609,16 +7546,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "Allow me to interest myself in my coffee-cups___ and I will respect your cocoa.",
+  "stem": "Allow me to interest myself in my coffee-cups___ I will respect your cocoa.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", and",
+   " and",
+   " and,",
+   ": and"
   ],
-  "answer": ",",
+  "answer": ", and",
   "fixed": "Allow me to interest myself in my coffee-cups, and I will respect your cocoa.",
-  "rule": "Use a comma before and when it joins two independent clauses. \"Allow me to interest myself\" is a complete command and \"I will respect your cocoa\" is a complete statement.",
+  "rule": "Use a comma before and when it joins two independent clauses. \"Allow me to interest myself\" is a complete command and \"I will respect your cocoa\" is a complete statement. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
@@ -7630,16 +7567,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "They 'phoned to Moreton___ and I came out at once.",
+  "stem": "They 'phoned to Moreton___ I came out at once.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", and",
+   " and",
+   " and,",
+   ": and"
   ],
-  "answer": ",",
+  "answer": ", and",
   "fixed": "They 'phoned to Moreton, and I came out at once.",
-  "rule": "A comma goes before and when two independent clauses are joined. \"They 'phoned\" and \"I came out\" have different subjects, so each is a full clause.",
+  "rule": "A comma goes before and when two independent clauses are joined. \"They 'phoned\" and \"I came out\" have different subjects, so each is a full clause. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -7651,16 +7588,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "Major Blunt was walking up and down the terrace smoking___ so I made a detour to get round to the side door.",
+  "stem": "Major Blunt was walking up and down the terrace smoking___ I made a detour to get round to the side door.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", so",
+   " so",
+   " so,",
+   "; so,"
   ],
-  "answer": ",",
+  "answer": ", so",
   "fixed": "Major Blunt was walking up and down the terrace smoking, so I made a detour to get round to the side door.",
-  "rule": "Put a comma before so when it joins two independent clauses. The second clause, \"I made a detour\", has its own subject and verb.",
+  "rule": "Put a comma before so when it joins two independent clauses. The second clause, \"I made a detour\", has its own subject and verb. Test: cover \"so\" and read what follows. It could stand alone as a sentence, so the comma goes before \"so\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -7672,16 +7609,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "I had brought with me all the money I had___ and I gave it to him.",
+  "stem": "I had brought with me all the money I had___ I gave it to him.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", and",
+   " and",
+   " and,",
+   ": and"
   ],
-  "answer": ",",
+  "answer": ", and",
   "fixed": "I had brought with me all the money I had, and I gave it to him.",
-  "rule": "A comma comes before and when it joins two complete sentences. Both halves have the subject \"I\" and their own verbs.",
+  "rule": "A comma comes before and when it joins two complete sentences. Both halves have the subject \"I\" and their own verbs. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -7693,16 +7630,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "Perhaps by careful wording of the letter, I could convey a warning___ and Poirot would be enabled to avoid the trap.",
+  "stem": "Perhaps by careful wording of the letter, I could convey a warning___ Poirot would be enabled to avoid the trap.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", and",
+   " and",
+   " and,",
+   "; and,"
   ],
-  "answer": ",",
+  "answer": ", and",
   "fixed": "Perhaps by careful wording of the letter, I could convey a warning, and Poirot would be enabled to avoid the trap.",
-  "rule": "Use a comma before and when it joins two independent clauses. The second clause has a new subject, \"Poirot\".",
+  "rule": "Use a comma before and when it joins two independent clauses. The second clause has a new subject, \"Poirot\". Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -7714,16 +7651,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "The chambermaid unlocked it with her pass-key___ and we entered.",
+  "stem": "The chambermaid unlocked it with her pass-key___ we entered.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", and",
+   " and",
+   " and,",
+   "; and,"
   ],
-  "answer": ",",
+  "answer": ", and",
   "fixed": "The chambermaid unlocked it with her pass-key, and we entered.",
-  "rule": "A comma goes before and when it links two independent clauses. \"We entered\" is a complete clause with its own subject and verb.",
+  "rule": "A comma goes before and when it links two independent clauses. \"We entered\" is a complete clause with its own subject and verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
@@ -7735,16 +7672,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "I was not particularly pleased with Poirot___ and I told him so.",
+  "stem": "I was not particularly pleased with Poirot___ I told him so.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", and",
+   " and",
+   " and,",
+   "; and,"
   ],
-  "answer": ",",
+  "answer": ", and",
   "fixed": "I was not particularly pleased with Poirot, and I told him so.",
-  "rule": "Put a comma before and when it joins two independent clauses. Each clause here has the subject \"I\" and its own verb.",
+  "rule": "Put a comma before and when it joins two independent clauses. Each clause here has the subject \"I\" and its own verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -7756,37 +7693,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "I wanted to___ so I accepted the invitation without further ceremony.",
+  "stem": "I wanted to___ I accepted the invitation without further ceremony.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", so",
+   " so",
+   " so,",
+   "; so,"
   ],
-  "answer": ",",
+  "answer": ", so",
   "fixed": "I wanted to, so I accepted the invitation without further ceremony.",
-  "rule": "A comma comes before so when it joins two independent clauses. \"I wanted to\" is a complete clause, and \"I accepted the invitation\" is another.",
-  "source": {
-   "book": "The Murder of Roger Ackroyd",
-   "gutenberg": 69087
-  }
- },
- {
-  "id": "mc-69087-141-0",
-  "type": "mc",
-  "skill": "commas",
-  "title": "Which choice follows Standard English?",
-  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "I didn’t think it would either___ but I protested in duty bound.",
-  "options": [
-   ",",
-   "",
-   ";",
-   ":"
-  ],
-  "answer": ",",
-  "fixed": "I didn’t think it would either, but I protested in duty bound.",
-  "rule": "Use a comma before but when it joins two independent clauses. Both halves have the subject \"I\" and their own verbs.",
+  "rule": "A comma comes before so when it joins two independent clauses. \"I wanted to\" is a complete clause, and \"I accepted the invitation\" is another. Test: cover \"so\" and read what follows. It could stand alone as a sentence, so the comma goes before \"so\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -7798,16 +7714,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "Ackroyd extends a genial patronage to the lower orders___ but he has a very great sense of his own dignity.",
+  "stem": "Ackroyd extends a genial patronage to the lower orders___ he has a very great sense of his own dignity.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", but",
+   " but",
+   " but,",
+   ": but"
   ],
-  "answer": ",",
+  "answer": ", but",
   "fixed": "Ackroyd extends a genial patronage to the lower orders, but he has a very great sense of his own dignity.",
-  "rule": "A comma goes before but when it joins two independent clauses. \"Ackroyd extends a patronage\" and \"he has a sense of dignity\" each stand alone.",
+  "rule": "A comma goes before but when it joins two independent clauses. \"Ackroyd extends a patronage\" and \"he has a sense of dignity\" each stand alone. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -7819,16 +7735,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "He looked at me keenly as he spoke___ and I was aware that I reddened under his prolonged gaze.",
+  "stem": "He looked at me keenly as he spoke___ I was aware that I reddened under his prolonged gaze.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", and",
+   " and",
+   " and,",
+   "; and,"
   ],
-  "answer": ",",
+  "answer": ", and",
   "fixed": "He looked at me keenly as he spoke, and I was aware that I reddened under his prolonged gaze.",
-  "rule": "Put a comma before and when it joins two independent clauses. The second clause begins with a new subject, \"I\".",
+  "rule": "Put a comma before and when it joins two independent clauses. The second clause begins with a new subject, \"I\". Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
@@ -7840,16 +7756,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "Colonel Melrose went in search of Raymond___ and I rang the bell once more for Parker.",
+  "stem": "Colonel Melrose went in search of Raymond___ I rang the bell once more for Parker.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", and",
+   " and",
+   " and,",
+   ": and"
   ],
-  "answer": ",",
+  "answer": ", and",
   "fixed": "Colonel Melrose went in search of Raymond, and I rang the bell once more for Parker.",
-  "rule": "A comma comes before and when two independent clauses are joined. The subjects \"Colonel Melrose\" and \"I\" show these are two separate clauses.",
+  "rule": "A comma comes before and when two independent clauses are joined. The subjects \"Colonel Melrose\" and \"I\" show these are two separate clauses. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -7861,16 +7777,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "Kettering raised his eyebrows___ but he retained his light, amused manner.",
+  "stem": "Kettering raised his eyebrows___ he retained his light, amused manner.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", but",
+   " but",
+   " but,",
+   ": but"
   ],
-  "answer": ",",
+  "answer": ", but",
   "fixed": "Kettering raised his eyebrows, but he retained his light, amused manner.",
-  "rule": "Use a comma before but when it joins two independent clauses. Each half has the subject \"Kettering\" or \"he\" with its own verb.",
+  "rule": "Use a comma before but when it joins two independent clauses. Each half has the subject \"Kettering\" or \"he\" with its own verb. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
@@ -7882,14 +7798,14 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "We come now to the evening___ and the visit of the mysterious lady.",
+  "stem": "We come now to the evening___ the visit of the mysterious lady.",
   "options": [
-   ",",
-   "",
-   ";",
-   ":"
+   ", and",
+   " and",
+   " and,",
+   ": and"
   ],
-  "answer": "",
+  "answer": " and",
   "fixed": "We come now to the evening and the visit of the mysterious lady.",
   "rule": "Do not put a comma before and when it joins only two nouns or phrases. \"The evening\" and \"the visit of the mysterious lady\" are both objects of \"to\", and no second clause follows.",
   "source": {
@@ -7924,16 +7840,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "But the inmates of the house had shoes soled with crepe rubber ___ I declined to believe in the coincidence of some one from outside having the same kind of shoes as Ralph Paton wore.",
+  "stem": "But the inmates of the house had shoes soled with crepe rubber___ I declined to believe in the coincidence of some one from outside having the same kind of shoes as Ralph Paton wore.",
   "options": [
    ", and",
-   "and",
-   "; and",
-   ", and,"
+   " and",
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "But the inmates of the house had shoes soled with crepe rubber, and I declined to believe in the coincidence of some one from outside having the same kind of shoes as Ralph Paton wore.",
-  "rule": "Put a comma before a conjunction that joins two independent clauses. Each side ('the inmates had shoes' and 'I declined to believe') is a full sentence, so the comma goes before 'and'.",
+  "rule": "Put a comma before a conjunction that joins two independent clauses. Each side ('the inmates had shoes' and 'I declined to believe') is a full sentence, so the comma goes before 'and'. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -7945,16 +7861,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "The Commissary gave a sigh of relief ___ the Examining Magistrate leaned back in his chair and adjusted a pince-nez on his long thin nose.",
+  "stem": "The Commissary gave a sigh of relief___ the Examining Magistrate leaned back in his chair and adjusted a pince-nez on his long thin nose.",
   "options": [
    ", and",
-   "and",
-   "; and",
-   ", and,"
+   " and",
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "The Commissary gave a sigh of relief, and the Examining Magistrate leaned back in his chair and adjusted a pince-nez on his long thin nose.",
-  "rule": "Use a comma before 'and' when it joins two independent clauses. 'The Commissary gave a sigh' and 'the Examining Magistrate leaned back' could each stand alone.",
+  "rule": "Use a comma before 'and' when it joins two independent clauses. 'The Commissary gave a sigh' and 'the Examining Magistrate leaned back' could each stand alone. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
@@ -7966,16 +7882,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "Caroline led the way into our small sitting-room ___ I followed.",
+  "stem": "Caroline led the way into our small sitting-room___ I followed.",
   "options": [
    ", and",
-   "and",
-   "; and",
-   ", and,"
+   " and",
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "Caroline led the way into our small sitting-room, and I followed.",
-  "rule": "A comma goes before 'and' when it links two complete sentences. 'Caroline led the way' and 'I followed' each have their own subject and verb.",
+  "rule": "A comma goes before 'and' when it links two complete sentences. 'Caroline led the way' and 'I followed' each have their own subject and verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -8008,16 +7924,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "On arrival, Dr. Durand immediately prescribed a sedative ___ we have not yet been able to question her.",
+  "stem": "On arrival, Dr. Durand immediately prescribed a sedative___ we have not yet been able to question her.",
   "options": [
    ", and",
-   "and",
-   "; and",
-   ", and,"
+   " and",
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "On arrival, Dr. Durand immediately prescribed a sedative, and we have not yet been able to question her.",
-  "rule": "Use a comma before 'and' when two independent clauses are joined. 'Dr. Durand prescribed a sedative' and 'we have not been able to question her' are both complete.",
+  "rule": "Use a comma before 'and' when two independent clauses are joined. 'Dr. Durand prescribed a sedative' and 'we have not been able to question her' are both complete. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -8029,16 +7945,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "I bounded indignantly in my seat ___ the examining magistrate was continuing his questions, undistracted by side issues.",
+  "stem": "I bounded indignantly in my seat___ the examining magistrate was continuing his questions, undistracted by side issues.",
   "options": [
    ", but",
-   "but",
-   "; but",
-   ", but,"
+   " but",
+   " but,",
+   "; but,"
   ],
   "answer": ", but",
   "fixed": "I bounded indignantly in my seat, but the examining magistrate was continuing his questions, undistracted by side issues.",
-  "rule": "Put a comma before 'but' when it joins two independent clauses. 'I bounded in my seat' and 'the magistrate was continuing' each stand alone.",
+  "rule": "Put a comma before 'but' when it joins two independent clauses. 'I bounded in my seat' and 'the magistrate was continuing' each stand alone. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -8050,16 +7966,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "The night is chilly ___ he slips on an overcoat over his underclothing, intending to cast it into the grave with the dead man.",
+  "stem": "The night is chilly___ he slips on an overcoat over his underclothing, intending to cast it into the grave with the dead man.",
   "options": [
    ", and",
-   "and",
-   "; and",
-   ", and,"
+   " and",
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "The night is chilly, and he slips on an overcoat over his underclothing, intending to cast it into the grave with the dead man.",
-  "rule": "A comma goes before 'and' when it joins two independent clauses. 'The night is chilly' and 'he slips on an overcoat' are both full sentences.",
+  "rule": "A comma goes before 'and' when it joins two independent clauses. 'The night is chilly' and 'he slips on an overcoat' are both full sentences. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -8071,16 +7987,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "He had been strangely calm so far ___ I knew him to possess marvellous self-command.",
+  "stem": "He had been strangely calm so far___ I knew him to possess marvellous self-command.",
   "options": [
    ", but",
-   "but",
-   "; but",
-   ", but,"
+   " but",
+   " but,",
+   "; but,"
   ],
   "answer": ", but",
   "fixed": "He had been strangely calm so far, but I knew him to possess marvellous self-command.",
-  "rule": "Place a comma before 'but' when it links two independent clauses. 'He had been strangely calm' and 'I knew him to possess self-command' each stand alone.",
+  "rule": "Place a comma before 'but' when it links two independent clauses. 'He had been strangely calm' and 'I knew him to possess self-command' each stand alone. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -8092,16 +8008,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "She held out a crumpled piece of newspaper ___ I recognized the paragraph that Poirot had had inserted.",
+  "stem": "She held out a crumpled piece of newspaper___ I recognized the paragraph that Poirot had had inserted.",
   "options": [
    ", and",
-   "and",
-   "; and",
-   ", and,"
+   " and",
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "She held out a crumpled piece of newspaper, and I recognized the paragraph that Poirot had had inserted.",
-  "rule": "A comma is needed before 'and' joining two independent clauses. The second clause has its own subject, 'I', so it is not just a continuing verb.",
+  "rule": "A comma is needed before 'and' joining two independent clauses. The second clause has its own subject, 'I', so it is not just a continuing verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -8113,16 +8029,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "We took chairs ___ the magistrate’s clerk established himself at a round table.",
+  "stem": "We took chairs___ the magistrate’s clerk established himself at a round table.",
   "options": [
    ", and",
-   "and",
-   "; and",
-   ", and,"
+   " and",
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "We took chairs, and the magistrate’s clerk established himself at a round table.",
-  "rule": "Use a comma before 'and' when it joins two independent clauses. 'We took chairs' and 'the clerk established himself' are both complete.",
+  "rule": "Use a comma before 'and' when it joins two independent clauses. 'We took chairs' and 'the clerk established himself' are both complete. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -8134,16 +8050,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "The papers referred to by Poirot had passed into his keeping ___ he assured me that all possible steps were being taken to deal with the approaching menace.",
+  "stem": "The papers referred to by Poirot had passed into his keeping___ he assured me that all possible steps were being taken to deal with the approaching menace.",
   "options": [
    ", and",
-   "and",
-   "; and",
-   ", and,"
+   " and",
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "The papers referred to by Poirot had passed into his keeping, and he assured me that all possible steps were being taken to deal with the approaching menace.",
-  "rule": "A comma goes before 'and' between two independent clauses. Each half has its own subject ('papers' and 'he') and verb.",
+  "rule": "A comma goes before 'and' between two independent clauses. Each half has its own subject ('papers' and 'he') and verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -8155,16 +8071,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "She had not chosen to listen to my advice ___ she was punished now for her disregard of it.",
+  "stem": "She had not chosen to listen to my advice___ she was punished now for her disregard of it.",
   "options": [
    ", and",
-   "and",
-   "; and",
-   ", and,"
+   " and",
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "She had not chosen to listen to my advice, and she was punished now for her disregard of it.",
-  "rule": "Put a comma before 'and' when it joins two independent clauses. 'She had not chosen to listen' and 'she was punished now' are each complete.",
+  "rule": "Put a comma before 'and' when it joins two independent clauses. 'She had not chosen to listen' and 'she was punished now' are each complete. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -8176,16 +8092,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "Blunt had shown several signs of restlessness whilst Poirot was speaking ___ the closing words seemed to rivet his attention.",
+  "stem": "Blunt had shown several signs of restlessness whilst Poirot was speaking___ the closing words seemed to rivet his attention.",
   "options": [
    ", but",
-   "but",
-   "; but",
-   ", but,"
+   " but",
+   " but,",
+   "; but,"
   ],
   "answer": ", but",
   "fixed": "Blunt had shown several signs of restlessness whilst Poirot was speaking, but the closing words seemed to rivet his attention.",
-  "rule": "A comma comes before 'but' joining two independent clauses. 'Blunt had shown signs of restlessness' and 'the closing words seemed to rivet his attention' are both complete.",
+  "rule": "A comma comes before 'but' joining two independent clauses. 'Blunt had shown signs of restlessness' and 'the closing words seemed to rivet his attention' are both complete. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -8197,16 +8113,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "I endeavoured to interrupt ___ Poirot swept on.",
+  "stem": "I endeavoured to interrupt___ Poirot swept on.",
   "options": [
    ", but",
-   "but",
-   "; but",
-   ", but,"
+   " but",
+   " but,",
+   ": but"
   ],
   "answer": ", but",
   "fixed": "I endeavoured to interrupt, but Poirot swept on.",
-  "rule": "Use a comma before 'but' when it connects two independent clauses. 'I endeavoured to interrupt' and 'Poirot swept on' each have their own subject.",
+  "rule": "Use a comma before 'but' when it connects two independent clauses. 'I endeavoured to interrupt' and 'Poirot swept on' each have their own subject. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
@@ -8218,16 +8134,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "Flora soon revived ___ I brought her mother to her, telling her what to do for the girl.",
+  "stem": "Flora soon revived___ I brought her mother to her, telling her what to do for the girl.",
   "options": [
    ", and",
-   "and",
-   "; and",
-   ", and,"
+   " and",
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "Flora soon revived, and I brought her mother to her, telling her what to do for the girl.",
-  "rule": "Use a comma before 'and' when two independent clauses are joined. 'Flora soon revived' and 'I brought her mother to her' each stand alone.",
+  "rule": "Use a comma before 'and' when two independent clauses are joined. 'Flora soon revived' and 'I brought her mother to her' each stand alone. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -8239,16 +8155,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "He held the gate open ___ we commenced walking towards the house.",
+  "stem": "He held the gate open___ we commenced walking towards the house.",
   "options": [
    ", and",
-   "and",
-   "; and",
-   ", and,"
+   " and",
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "He held the gate open, and we commenced walking towards the house.",
-  "rule": "Put a comma before 'and' when it joins two independent clauses. 'He held the gate open' and 'we commenced walking' have different subjects and are both complete.",
+  "rule": "Put a comma before 'and' when it joins two independent clauses. 'He held the gate open' and 'we commenced walking' have different subjects and are both complete. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -8260,16 +8176,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "But you’ve been on the spot from the first ___ you may have picked up some little hints.",
+  "stem": "But you’ve been on the spot from the first___ you may have picked up some little hints.",
   "options": [
    ", and",
-   "and",
-   "; and",
-   ", and,"
+   " and",
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "But you’ve been on the spot from the first, and you may have picked up some little hints.",
-  "rule": "A comma goes before 'and' joining two independent clauses. 'You've been on the spot' and 'you may have picked up some hints' each have a subject and verb.",
+  "rule": "A comma goes before 'and' joining two independent clauses. 'You've been on the spot' and 'you may have picked up some hints' each have a subject and verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
@@ -8281,16 +8197,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "He looked embarrassed ___ it occurred to me that he might have been listening at the door.",
+  "stem": "He looked embarrassed___ it occurred to me that he might have been listening at the door.",
   "options": [
    ", and",
-   "and",
-   "; and",
-   ", and,"
+   " and",
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "He looked embarrassed, and it occurred to me that he might have been listening at the door.",
-  "rule": "Use a comma before 'and' when it links two independent clauses. 'He looked embarrassed' and 'it occurred to me' are separate complete sentences.",
+  "rule": "Use a comma before 'and' when it links two independent clauses. 'He looked embarrassed' and 'it occurred to me' are separate complete sentences. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -8302,16 +8218,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "He refused several times point blank ___ it was only when the newspapers took it up and began making a fuss about the 'unsportsmanlike refusal' that he gave in.",
+  "stem": "He refused several times point blank___ it was only when the newspapers took it up and began making a fuss about the 'unsportsmanlike refusal' that he gave in.",
   "options": [
    ", and",
-   "and",
-   "; and",
-   ", and,"
+   " and",
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "He refused several times point blank, and it was only when the newspapers took it up and began making a fuss about the 'unsportsmanlike refusal' that he gave in.",
-  "rule": "A comma is required before 'and' when it joins two independent clauses. 'He refused several times' and 'it was only when...that he gave in' are both complete.",
+  "rule": "A comma is required before 'and' when it joins two independent clauses. 'He refused several times' and 'it was only when...that he gave in' are both complete. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -8344,16 +8260,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "He made no sign of recognition ___ I was at once aware that he was trying to speak to me.",
+  "stem": "He made no sign of recognition___ I was at once aware that he was trying to speak to me.",
   "options": [
    ", but",
-   "but",
-   "; but",
-   ", but,"
+   " but",
+   " but,",
+   "; but,"
   ],
   "answer": ", but",
   "fixed": "He made no sign of recognition, but I was at once aware that he was trying to speak to me.",
-  "rule": "A comma comes before 'but' when it joins two independent clauses. 'He made no sign' and 'I was at once aware' each stand alone.",
+  "rule": "A comma comes before 'but' when it joins two independent clauses. 'He made no sign' and 'I was at once aware' each stand alone. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -8365,16 +8281,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "At this juncture, Mrs. Inglethorp called to Cynthia from the hall ___ the girl ran out.",
+  "stem": "At this juncture, Mrs. Inglethorp called to Cynthia from the hall___ the girl ran out.",
   "options": [
    ", and",
-   "and",
-   "; and",
-   ", and,"
+   " and",
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "At this juncture, Mrs. Inglethorp called to Cynthia from the hall, and the girl ran out.",
-  "rule": "Use a comma before 'and' between two independent clauses. 'Mrs. Inglethorp called to Cynthia' and 'the girl ran out' have different subjects and are both complete.",
+  "rule": "Use a comma before 'and' between two independent clauses. 'Mrs. Inglethorp called to Cynthia' and 'the girl ran out' have different subjects and are both complete. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
@@ -8386,16 +8302,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "Her color flared up ___ she answered steadily enough.",
+  "stem": "Her color flared up___ she answered steadily enough.",
   "options": [
    ", but",
-   "but",
-   "; but",
-   ", but,"
+   " but",
+   " but,",
+   "; but,"
   ],
   "answer": ", but",
   "fixed": "Her color flared up, but she answered steadily enough.",
-  "rule": "A comma goes before 'but' when it joins two independent clauses. 'Her color flared up' and 'she answered steadily' each have their own subject and verb.",
+  "rule": "A comma goes before 'but' when it joins two independent clauses. 'Her color flared up' and 'she answered steadily' each have their own subject and verb. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -8407,16 +8323,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "The curtains and portière were of a soft dull green ___ the carpet matched them in tone.",
+  "stem": "The curtains and portière were of a soft dull green___ the carpet matched them in tone.",
   "options": [
    ", and",
-   "and",
-   "; and",
-   ", and,"
+   " and",
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "The curtains and portière were of a soft dull green, and the carpet matched them in tone.",
-  "rule": "Put a comma before 'and' when two independent clauses are joined. 'The curtains and portière were green' and 'the carpet matched them' are both complete.",
+  "rule": "Put a comma before 'and' when two independent clauses are joined. 'The curtains and portière were green' and 'the carpet matched them' are both complete. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -8449,16 +8365,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "I once sounded her on the subject ___ she said that she was obliged to support several of her husband’s poor relations.",
+  "stem": "I once sounded her on the subject___ she said that she was obliged to support several of her husband’s poor relations.",
   "options": [
    ", and",
-   "and",
-   "; and",
-   ", and,"
+   " and",
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "I once sounded her on the subject, and she said that she was obliged to support several of her husband’s poor relations.",
-  "rule": "A comma is needed before 'and' joining two independent clauses. 'I once sounded her' and 'she said that she was obliged' are each complete.",
+  "rule": "A comma is needed before 'and' joining two independent clauses. 'I once sounded her' and 'she said that she was obliged' are each complete. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -8470,16 +8386,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "Poirot's explanations were rapid, fluent, and impassioned ___ they produced no effect upon the stolid-faced official.",
+  "stem": "Poirot's explanations were rapid, fluent, and impassioned___ they produced no effect upon the stolid-faced official.",
   "options": [
    ", but",
-   "but",
-   "; but",
-   ", but,"
+   " but",
+   " but,",
+   "; but,"
   ],
   "answer": ", but",
   "fixed": "Poirot's explanations were rapid, fluent, and impassioned, but they produced no effect upon the stolid-faced official.",
-  "rule": "Use a comma before 'but' when it joins two independent clauses. The second clause has a new subject, 'they', so the comma is required.",
+  "rule": "Use a comma before 'but' when it joins two independent clauses. The second clause has a new subject, 'they', so the comma is required. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
@@ -8491,16 +8407,16 @@ window.SAT_QUESTIONS = [
   "skill": "commas",
   "title": "Which choice follows Standard English?",
   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "The whole thing was rather amusing ___ I propounded the thing as a mock problem to Poirot on the following morning.",
+  "stem": "The whole thing was rather amusing___ I propounded the thing as a mock problem to Poirot on the following morning.",
   "options": [
    ", and",
-   "and",
-   "; and",
-   ", and,"
+   " and",
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "The whole thing was rather amusing, and I propounded the thing as a mock problem to Poirot on the following morning.",
-  "rule": "Put a comma before 'and' when it joins two independent clauses. 'The whole thing was amusing' and 'I propounded the thing' each have their own subject and verb.",
+  "rule": "Put a comma before 'and' when it joins two independent clauses. 'The whole thing was amusing' and 'I propounded the thing' each have their own subject and verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
@@ -8516,12 +8432,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "The manager produced the key without more ado, and we all entered the flat.",
-  "rule": "Two complete sentences joined by \"and\" need a comma before the \"and\". Both \"The manager produced the key\" and \"we all entered the flat\" have their own subject and verb.",
+  "rule": "Two complete sentences joined by \"and\" need a comma before the \"and\". Both \"The manager produced the key\" and \"we all entered the flat\" have their own subject and verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
@@ -8537,12 +8453,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but",
-   ", but,"
+   " but,",
+   ": but"
   ],
   "answer": ", but",
   "fixed": "I retired to rest that night on a note of triumph, but I awoke to realize that I was by no means out of the wood.",
-  "rule": "When \"but\" joins two independent clauses, put a comma before it. \"I retired...\" and \"I awoke...\" each have their own subject and verb.",
+  "rule": "When \"but\" joins two independent clauses, put a comma before it. \"I retired...\" and \"I awoke...\" each have their own subject and verb. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -8558,12 +8474,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "We stopped and greeted him, and he proposed strolling with us back to our hotel.",
-  "rule": "A comma comes before \"and\" when it links two independent clauses. The second clause has a new subject, \"he\", so \"We stopped and greeted him\" is complete and needs the comma.",
+  "rule": "A comma comes before \"and\" when it links two independent clauses. The second clause has a new subject, \"he\", so \"We stopped and greeted him\" is complete and needs the comma. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -8579,12 +8495,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "He had sprung into a waiting taxi, and the chase had begun.",
-  "rule": "Join two independent clauses with a comma plus a coordinating conjunction. \"He had sprung into a waiting taxi\" and \"the chase had begun\" are both complete, so use \", and\".",
+  "rule": "Join two independent clauses with a comma plus a coordinating conjunction. \"He had sprung into a waiting taxi\" and \"the chase had begun\" are both complete, so use \", and\". Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -8600,12 +8516,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "I imparted to him my vague remembrances, and he nodded vigorously.",
-  "rule": "Put a comma before \"and\" when it connects two full clauses. The new subject \"he\" in the second clause signals that you have two independent clauses.",
+  "rule": "Put a comma before \"and\" when it connects two full clauses. The new subject \"he\" in the second clause signals that you have two independent clauses. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
@@ -8621,12 +8537,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but",
-   ", but,"
+   " but,",
+   "; but,"
   ],
   "answer": ", but",
   "fixed": "I received a vague impression that my dining there displeased her in some way, but I couldn’t imagine why.",
-  "rule": "A comma goes before \"but\" when it joins two independent clauses. Each side (\"I received...in some way\" and \"I couldn’t imagine why\") has its own subject and verb.",
+  "rule": "A comma goes before \"but\" when it joins two independent clauses. Each side (\"I received...in some way\" and \"I couldn’t imagine why\") has its own subject and verb. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -8642,12 +8558,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "A muttered oath escaped the millionaire, and his clenched fist hit the table sharply.",
-  "rule": "Use a comma before \"and\" between two independent clauses. \"A muttered oath escaped the millionaire\" and \"his clenched fist hit the table\" both work as sentences.",
+  "rule": "Use a comma before \"and\" between two independent clauses. \"A muttered oath escaped the millionaire\" and \"his clenched fist hit the table\" both work as sentences. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
@@ -8663,12 +8579,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "Our real home is near Newmarket, and we usually rent a flat in town for the season.",
-  "rule": "A comma precedes a coordinating conjunction that joins independent clauses. Here \"Our real home is near Newmarket\" and \"we usually rent a flat\" are each complete.",
+  "rule": "A comma precedes a coordinating conjunction that joins independent clauses. Here \"Our real home is near Newmarket\" and \"we usually rent a flat\" are each complete. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
@@ -8684,12 +8600,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but",
-   ", but,"
+   " but,",
+   ": but"
   ],
   "answer": ", but",
   "fixed": "Poirot looked inquiringly at me, but I said no more.",
-  "rule": "Place a comma before \"but\" when it links two independent clauses. \"Poirot looked inquiringly at me\" and \"I said no more\" each have their own subject.",
+  "rule": "Place a comma before \"but\" when it links two independent clauses. \"Poirot looked inquiringly at me\" and \"I said no more\" each have their own subject. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -8705,12 +8621,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "Very shortly I shall be in England, and I hope then to have the pleasure of meeting you once more.",
-  "rule": "Two independent clauses joined by \"and\" need a comma before it. \"I shall be in England\" and \"I hope then to have the pleasure\" both have their own subject and verb.",
+  "rule": "Two independent clauses joined by \"and\" need a comma before it. \"I shall be in England\" and \"I hope then to have the pleasure\" both have their own subject and verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
@@ -8726,12 +8642,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but",
-   ", but,"
+   " but,",
+   ": but"
   ],
   "answer": ", but",
   "fixed": "She could not have committed the crime single-handed, but the reasons against that did not debar her from being an accomplice.",
-  "rule": "Use a comma before \"but\" when it joins two independent clauses. The second clause has its own subject, \"the reasons\", so the comma is needed.",
+  "rule": "Use a comma before \"but\" when it joins two independent clauses. The second clause has its own subject, \"the reasons\", so the comma is needed. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
@@ -8747,12 +8663,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "We went into the little morning-room, and Poirot closed the door.",
-  "rule": "Put a comma before \"and\" when it joins two complete clauses. \"We went into the little morning-room\" and \"Poirot closed the door\" have different subjects and each stands alone.",
+  "rule": "Put a comma before \"and\" when it joins two complete clauses. \"We went into the little morning-room\" and \"Poirot closed the door\" have different subjects and each stands alone. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
@@ -8768,12 +8684,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but",
-   ", but,"
+   " but,",
+   "; but,"
   ],
   "answer": ", but",
   "fixed": "One of them brought food and drink and offered it to me, but I waved them aside.",
-  "rule": "A comma comes before \"but\" when it joins two independent clauses. \"One of them...offered it to me\" and \"I waved them aside\" each have a subject and verb.",
+  "rule": "A comma comes before \"but\" when it joins two independent clauses. \"One of them...offered it to me\" and \"I waved them aside\" each have a subject and verb. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -8789,12 +8705,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but",
-   ", but,"
+   " but,",
+   ": but"
   ],
   "answer": ", but",
   "fixed": "I answered that I was marrying Marthe, and not her antecedents, but he shouted me down with a peremptory refusal to discuss the matter in any way.",
-  "rule": "Use a comma before \"but\" between two independent clauses. \"I answered...antecedents\" and \"he shouted me down\" are both complete, with the new subject \"he\".",
+  "rule": "Use a comma before \"but\" between two independent clauses. \"I answered...antecedents\" and \"he shouted me down\" are both complete, with the new subject \"he\". Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -8810,12 +8726,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "Then Poirot returned the tools to his pocket, and we reascended once more to our own domain.",
-  "rule": "Two independent clauses joined by \"and\" take a comma before it. The second clause has a new subject, \"we\", so the comma is required.",
+  "rule": "Two independent clauses joined by \"and\" take a comma before it. The second clause has a new subject, \"we\", so the comma is required. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
@@ -8831,12 +8747,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "His tone was grave and earnest, and I was impressed in spite of myself.",
-  "rule": "A comma goes before \"and\" when it joins two independent clauses. \"His tone was grave and earnest\" and \"I was impressed\" can each stand as a sentence.",
+  "rule": "A comma goes before \"and\" when it joins two independent clauses. \"His tone was grave and earnest\" and \"I was impressed\" can each stand as a sentence. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -8852,12 +8768,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "The seat opposite to her was already taken, and the American gave a cursory glance at its occupant.",
-  "rule": "Use a comma before \"and\" when it links two independent clauses. The subjects \"seat\" and \"American\" each have their own verb.",
+  "rule": "Use a comma before \"and\" when it links two independent clauses. The subjects \"seat\" and \"American\" each have their own verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
@@ -8873,12 +8789,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "I wrote to Marthe, telling her what had happened, and her reply soothed me still further.",
-  "rule": "A comma precedes \"and\" when it joins two independent clauses. \"I wrote to Marthe...\" and \"her reply soothed me\" each have their own subject and verb.",
+  "rule": "A comma precedes \"and\" when it joins two independent clauses. \"I wrote to Marthe...\" and \"her reply soothed me\" each have their own subject and verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -8894,12 +8810,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "The nails were broken and discoloured, and the skin was hard.",
-  "rule": "Put a comma before \"and\" joining two independent clauses. \"The nails were broken and discoloured\" and \"the skin was hard\" are both complete.",
+  "rule": "Put a comma before \"and\" joining two independent clauses. \"The nails were broken and discoloured\" and \"the skin was hard\" are both complete. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -8915,12 +8831,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "She greeted me with a few words of pleasant welcome in a low clear voice, and I sank into a basket chair feeling distinctly glad that I had accepted John’s invitation.",
-  "rule": "A comma comes before \"and\" when it joins two independent clauses. \"She greeted me...\" and \"I sank into a basket chair\" have different subjects and both stand alone.",
+  "rule": "A comma comes before \"and\" when it joins two independent clauses. \"She greeted me...\" and \"I sank into a basket chair\" have different subjects and both stand alone. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
@@ -8936,12 +8852,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", yet",
    " yet",
-   "; yet",
-   ", yet,"
+   " yet,",
+   "; yet,"
   ],
   "answer": ", yet",
   "fixed": "Poirot’s good temper was imperturbable, yet I thought I detected a film of reserve in his manner which was new.",
-  "rule": "Use a comma before \"yet\" when it joins two independent clauses. \"Poirot’s good temper was imperturbable\" and \"I thought I detected a film of reserve\" each have a subject and verb.",
+  "rule": "Use a comma before \"yet\" when it joins two independent clauses. \"Poirot’s good temper was imperturbable\" and \"I thought I detected a film of reserve\" each have a subject and verb. Test: cover \"yet\" and read what follows. It could stand alone as a sentence, so the comma goes before \"yet\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -8957,12 +8873,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but",
-   ", but,"
+   " but,",
+   ": but"
   ],
   "answer": ", but",
   "fixed": "I was willing to risk my own life, but I had qualms about continually risking yours.",
-  "rule": "A comma goes before \"but\" when it joins two independent clauses. Both \"I was willing to risk my own life\" and \"I had qualms\" are complete.",
+  "rule": "A comma goes before \"but\" when it joins two independent clauses. Both \"I was willing to risk my own life\" and \"I had qualms\" are complete. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -8978,12 +8894,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but",
-   ", but,"
+   " but,",
+   "; but,"
   ],
   "answer": ", but",
   "fixed": "I do not usually label myself as dense, but I must confess that nothing out of the ordinary had attracted my attention.",
-  "rule": "Place a comma before \"but\" between two independent clauses. Each clause here has its own \"I\" and verb, so the comma is needed.",
+  "rule": "Place a comma before \"but\" between two independent clauses. Each clause here has its own \"I\" and verb, so the comma is needed. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
@@ -8999,12 +8915,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "His fingertips were joined together, and he was looking intently at the ceiling.",
-  "rule": "Join two independent clauses with a comma plus \"and\". \"His fingertips were joined together\" and \"he was looking intently at the ceiling\" each stand alone.",
+  "rule": "Join two independent clauses with a comma plus \"and\". \"His fingertips were joined together\" and \"he was looking intently at the ceiling\" each stand alone. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
@@ -9020,12 +8936,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "The sheets fell from my hand, and I looked across at him.",
-  "rule": "A comma precedes \"and\" when it links two independent clauses. The new subject \"I\" begins a second complete clause.",
+  "rule": "A comma precedes \"and\" when it links two independent clauses. The new subject \"I\" begins a second complete clause. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -9041,12 +8957,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "But I had noted the momentary hesitation, and I knew that there was still something she was keeping back.",
-  "rule": "Use a comma before \"and\" joining two independent clauses. \"I had noted the momentary hesitation\" and \"I knew that...\" each have their own subject and verb.",
+  "rule": "Use a comma before \"and\" joining two independent clauses. \"I had noted the momentary hesitation\" and \"I knew that...\" each have their own subject and verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -9062,12 +8978,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but",
-   ", but,"
+   " but,",
+   ": but"
   ],
   "answer": ", but",
   "fixed": "Of the intervening weeks I will say little, but my admiration and sympathy went out unfeignedly to Mary Cavendish.",
-  "rule": "A comma goes before \"but\" when it joins two independent clauses. \"I will say little\" and \"my admiration and sympathy went out\" are both complete.",
+  "rule": "A comma goes before \"but\" when it joins two independent clauses. \"I will say little\" and \"my admiration and sympathy went out\" are both complete. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
@@ -9083,12 +8999,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "Then he gave the constable some low-voiced instructions, and the latter prepared to depart.",
-  "rule": "Put a comma before \"and\" when it joins two independent clauses. The second clause has its own subject, \"the latter\".",
+  "rule": "Put a comma before \"and\" when it joins two independent clauses. The second clause has its own subject, \"the latter\". Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -9125,12 +9041,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but",
-   ", but,"
+   " but,",
+   ": but"
   ],
   "answer": ", but",
   "fixed": "It is, of course, possible that he banked the money under another name, but I am disposed to believe he spoke the truth to us.",
-  "rule": "Use a comma before a coordinating conjunction such as but when it joins two independent clauses. Here 'It is ... possible that he banked the money' and 'I am disposed to believe' can each stand alone.",
+  "rule": "Use a comma before a coordinating conjunction such as but when it joins two independent clauses. Here 'It is ... possible that he banked the money' and 'I am disposed to believe' can each stand alone. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -9146,12 +9062,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", or",
    " or",
-   "; or",
-   ", or,"
+   " or,",
+   "; or,"
   ],
   "answer": ", or",
   "fixed": "The window may have been left open after his departure and so afforded entrance to the murderer, or the same person may have returned a second time.",
-  "rule": "Put a comma before a coordinating conjunction that joins two independent clauses. Each side of 'or' here has its own subject and verb.",
+  "rule": "Put a comma before a coordinating conjunction that joins two independent clauses. Each side of 'or' here has its own subject and verb. Test: cover \"or\" and read what follows. It could stand alone as a sentence, so the comma goes before \"or\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -9167,12 +9083,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but",
-   ", but,"
+   " but,",
+   "; but,"
   ],
   "answer": ", but",
   "fixed": "The tone was light, but I read a veiled menace into the words.",
-  "rule": "Two independent clauses joined by but need a comma before but. 'The tone was light' and 'I read a veiled menace' are both complete sentences.",
+  "rule": "Two independent clauses joined by but need a comma before but. 'The tone was light' and 'I read a veiled menace' are both complete sentences. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -9188,12 +9104,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "I pointed this out to the police, and they took the other one away with them.",
-  "rule": "Use a comma before and when it links two independent clauses. Both 'I pointed this out' and 'they took the other one away' have their own subjects and verbs.",
+  "rule": "Use a comma before and when it links two independent clauses. Both 'I pointed this out' and 'they took the other one away' have their own subjects and verbs. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
@@ -9209,12 +9125,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but",
-   ", but,"
+   " but,",
+   "; but,"
   ],
   "answer": ", but",
   "fixed": "He came from the North West, I know, but I fancy that he had an unhappy childhood, for he never cared to speak of that time.",
-  "rule": "A comma goes before but when it joins two independent clauses. 'He came from the North West, I know' is complete, and so is 'I fancy that he had an unhappy childhood'.",
+  "rule": "A comma goes before but when it joins two independent clauses. 'He came from the North West, I know' is complete, and so is 'I fancy that he had an unhappy childhood'. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -9293,12 +9209,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "Her voice rose shrilly, and she flung out her arms in an extravagant gesture.",
-  "rule": "Use a comma before and when it joins two independent clauses. 'Her voice rose shrilly' and 'she flung out her arms' both have their own subjects.",
+  "rule": "Use a comma before and when it joins two independent clauses. 'Her voice rose shrilly' and 'she flung out her arms' both have their own subjects. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
@@ -9314,12 +9230,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "It was a somewhat dirty card, and the original address had been scratched out and another substituted in pencil.",
-  "rule": "Two independent clauses joined by and need a comma before the and. Each half of this sentence has its own subject and verb.",
+  "rule": "Two independent clauses joined by and need a comma before the and. Each half of this sentence has its own subject and verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -9335,12 +9251,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but",
-   ", but,"
+   " but,",
+   ": but"
   ],
   "answer": ", but",
   "fixed": "Van Aldin said nothing, but he was clearly disgusted at Poirot's extraordinary conduct.",
-  "rule": "A comma comes before but when it links two independent clauses. 'Van Aldin said nothing' and 'he was clearly disgusted' are both complete.",
+  "rule": "A comma comes before but when it links two independent clauses. 'Van Aldin said nothing' and 'he was clearly disgusted' are both complete. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
@@ -9356,12 +9272,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "She had divined only too well the ruthless egoism that was the keynote of her personality, and it repelled her.",
-  "rule": "Use a comma before and when it joins two independent clauses. 'She had divined ...' and 'it repelled her' can each stand alone.",
+  "rule": "Use a comma before and when it joins two independent clauses. 'She had divined ...' and 'it repelled her' can each stand alone. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
@@ -9377,12 +9293,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but",
-   ", but,"
+   " but,",
+   "; but,"
   ],
   "answer": ", but",
   "fixed": "I, Hercule Poirot, know, but I lack the last link in my chain.",
-  "rule": "A comma goes before but when it joins two independent clauses. 'I, Hercule Poirot, know' is a complete clause, and so is 'I lack the last link'.",
+  "rule": "A comma goes before but when it joins two independent clauses. 'I, Hercule Poirot, know' is a complete clause, and so is 'I lack the last link'. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
@@ -9440,12 +9356,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "Nothing was known of the antecedents of Miss Elsa Hardt, and she disappeared suddenly about the time of Valdarno’s death.",
-  "rule": "Use a comma before and when it joins two independent clauses. 'Nothing was known ...' and 'she disappeared suddenly' each have a subject and verb.",
+  "rule": "Use a comma before and when it joins two independent clauses. 'Nothing was known ...' and 'she disappeared suddenly' each have a subject and verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
@@ -9461,12 +9377,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "I got no answer, and I turned, a little annoyed.",
-  "rule": "A comma goes before and when it links two independent clauses. 'I got no answer' and 'I turned' are both complete.",
+  "rule": "A comma goes before and when it links two independent clauses. 'I got no answer' and 'I turned' are both complete. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
@@ -9503,12 +9419,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "Uncle Andrew warned me fairly, and I chose my own path.",
-  "rule": "Two independent clauses joined by and need a comma before and. Both halves here have their own subject and verb.",
+  "rule": "Two independent clauses joined by and need a comma before and. Both halves here have their own subject and verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
@@ -9524,12 +9440,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "I looked somewhat astonished, and she went on hurriedly.",
-  "rule": "Use a comma before and when it joins two independent clauses. 'I looked somewhat astonished' and 'she went on hurriedly' both stand alone.",
+  "rule": "Use a comma before and when it joins two independent clauses. 'I looked somewhat astonished' and 'she went on hurriedly' both stand alone. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -9587,12 +9503,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "Our captive followed, and I brought up the rear with the revolver.",
-  "rule": "A comma goes before and when it joins two independent clauses. 'Our captive followed' and 'I brought up the rear' are each complete.",
+  "rule": "A comma goes before and when it joins two independent clauses. 'Our captive followed' and 'I brought up the rear' are each complete. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
@@ -9671,36 +9587,15 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   ": and"
   ],
   "answer": ", and",
   "fixed": "Katherine had come over with her friends, and they had run into Knighton and Poirot almost immediately on arrival.",
-  "rule": "Use a comma before and when it joins two independent clauses. Each half has its own subject and verb.",
+  "rule": "Use a comma before and when it joins two independent clauses. Each half has its own subject and verb. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
-  }
- },
- {
-  "id": "mc-61262-653-0",
-  "type": "mc",
-  "skill": "commas",
-  "title": "Which choice follows Standard English?",
-  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "It was more than I was___ the woman turned to Poirot like a flash.",
-  "options": [
-   ", but",
-   " but",
-   "; but",
-   ", but,"
-  ],
-  "answer": ", but",
-  "fixed": "It was more than I was, but the woman turned to Poirot like a flash.",
-  "rule": "A comma goes before but when it joins two independent clauses. 'It was more than I was' and 'the woman turned to Poirot' are both complete.",
-  "source": {
-   "book": "Poirot Investigates",
-   "gutenberg": 61262
   }
  },
  {
@@ -9713,36 +9608,15 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but",
-   ", but,"
+   " but,",
+   "; but,"
   ],
   "answer": ", but",
   "fixed": "Then he made a movement, but Poirot flung up his hand in a warning gesture.",
-  "rule": "Two independent clauses joined by but need a comma before but. Each side has its own subject and verb.",
+  "rule": "Two independent clauses joined by but need a comma before but. Each side has its own subject and verb. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
-  }
- },
- {
-  "id": "mc-70114-713-2",
-  "type": "mc",
-  "skill": "commas",
-  "title": "Which choice follows Standard English?",
-  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
-  "stem": "She surprises us at the safe___ we gag and bind her and make away.",
-  "options": [
-   ", and",
-   " and",
-   "; and",
-   ", and,"
-  ],
-  "answer": ", and",
-  "fixed": "She surprises us at the safe, and we gag and bind her and make away.",
-  "rule": "Use a comma before and when it joins two independent clauses. 'She surprises us' and 'we gag and bind her' each have a subject.",
-  "source": {
-   "book": "The Big Four",
-   "gutenberg": 70114
   }
  },
  {
@@ -9755,12 +9629,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", and",
    " and",
-   "; and",
-   ", and,"
+   " and,",
+   "; and,"
   ],
   "answer": ", and",
   "fixed": "But Poirot's flood of language had suddenly stopped dead, and he had the appearance of a man turned to stone.",
-  "rule": "A comma comes before and when it joins two independent clauses. Both halves here can stand alone as sentences.",
+  "rule": "A comma comes before and when it joins two independent clauses. Both halves here can stand alone as sentences. Test: cover \"and\" and read what follows. It could stand alone as a sentence, so the comma goes before \"and\".",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
@@ -9776,12 +9650,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but",
-   ", but,"
+   " but,",
+   ": but"
   ],
   "answer": ", but",
   "fixed": "He was outwardly calm, but I noticed his hands, which from long force of habit were mechanically straightening the spill vases on the mantelpiece, were shaking violently.",
-  "rule": "Put a comma before but when it joins two independent clauses. 'He was outwardly calm' and 'I noticed his hands' are both complete.",
+  "rule": "Put a comma before but when it joins two independent clauses. 'He was outwardly calm' and 'I noticed his hands' are both complete. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
@@ -9797,12 +9671,12 @@ window.SAT_QUESTIONS = [
   "options": [
    ", but",
    " but",
-   "; but",
-   ", but,"
+   " but,",
+   "; but,"
   ],
   "answer": ", but",
   "fixed": "Mr. Ryland usually entertained a large party over the week-end, but the middle of the week was comparatively quiet.",
-  "rule": "A comma goes before but when it links two independent clauses. Each side of but has its own subject and verb.",
+  "rule": "A comma goes before but when it links two independent clauses. Each side of but has its own subject and verb. Test: cover \"but\" and read what follows. It could stand alone as a sentence, so the comma goes before \"but\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114

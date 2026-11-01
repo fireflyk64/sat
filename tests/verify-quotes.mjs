@@ -47,6 +47,28 @@ for (const q of items) {
   kinds[q.type + '/' + q.skill] = (kinds[q.type + '/' + q.skill] || 0) + 1;
   if (problems.length) { bad++; console.log('PROBLEM', q.id, problems.join('; ')); }
 }
+// Conjunction questions must be a real decision: the same choices every time, and the comma right only some of the time.
+const conj = {};
+for (const q of items) {
+  if (q.type !== 'mc') continue;
+  const m = q.options.map(o => /^[,;:\s]*(and|but|so|yet|or)[,;:\s]*$/i.exec(o));
+  if (!m.every(Boolean)) {
+    if (/___\s+(and|but|so|yet|or)\b/i.test(q.stem)) { bad++; console.log('PROBLEM', q.id, 'blank right before a conjunction, but the conjunction is not in the choices'); }
+    continue;
+  }
+  const w = m[0][1].toLowerCase(), want = [`, ${w}`, ` ${w}`, ` ${w},`];
+  const problems = [];
+  if (!want.every(o => q.options.includes(o))) problems.push(`choices must include ${want.map(o => JSON.stringify(o)).join(' ')}`);
+  if (q.stem.replace('___', q.answer).replace(/\s+/g, ' ').trim() !== q.fixed.replace(/\s+/g, ' ').trim()) problems.push('stem + answer does not reproduce the sentence');
+  if (problems.length) { bad++; console.log('PROBLEM', q.id, problems.join('; ')); }
+  const c = conj[w] || (conj[w] = { comma: 0, none: 0, after: 0 });
+  c[q.answer === `, ${w}` ? 'comma' : q.answer === ` ${w}` ? 'none' : 'after']++;
+}
+for (const w of ['and', 'but', 'so']) {
+  const c = conj[w] || { comma: 0, none: 0, after: 0 }, total = c.comma + c.none + c.after, share = c.comma / (total || 1);
+  console.log(`  "${w}": ${total} questions: comma first ${c.comma}, no comma ${c.none}, comma after ${c.after} (the comma is right ${Math.round(share * 100)}% of the time)`);
+  if (!total || share > 0.65 || share < 0.35) { bad++; console.log('PROBLEM', `"${w}" is unbalanced: always guessing the comma should not work`); }
+}
 console.log(`${items.length} items checked, ${bad} with problems`);
 console.log(JSON.stringify(kinds));
 process.exit(bad ? 1 : 0);

@@ -55,7 +55,7 @@ folder per project. Publish from a commit, copy only what the page needs, and st
 
     H=$(git rev-parse --short HEAD); PAGES=../fireflyk64.github.io
     (cd $PAGES && git pull -q --ff-only && rm -rf sat && mkdir sat)
-    git archive HEAD index.html css js data/questions.js data/questions-set2.js | tar -x -C $PAGES/sat
+    git archive HEAD index.html css js data/questions.js data/questions-set2.js data/questions-set3.js | tar -x -C $PAGES/sat
     (cd $PAGES && git add -A sat && git commit -m "sat: what changed (from sat $H)" && git push origin main)
 
 Leave Pages off on the `sat` repo itself: a project site at the same path could compete with this folder.
@@ -74,12 +74,15 @@ Answer keys follow **modern SAT Standard English Conventions**, not Christie's 1
 `scripts/generate.mjs` tells the model to skip any sentence whose punctuation is dated or arguable, and a second
 model call audits each key before it is written.
 
-## The question bank (2400 items in two sets of 1200)
+## The question bank (2526 items in three sets)
 * **Set 1** (`data/questions.js`): 6 seed items + 1194 drafted items from six Poirot books.
 * **Set 2** (`data/questions-set2.js`): 1200 more, built from *different sentences* (none are reused) in seven more Christie
   novels that are public domain in the US (*The Secret Adversary*, *The Man in the Brown Suit*, *The Secret of Chimneys*,
   *The Seven Dials Mystery*, *The Murder at the Vicarage*, *Partners in Crime*, *The Mysterious Mr. Quin*) plus unused
-  sentences from the Poirot books. The page loads every set; more sets can be added the same way (`--set 3`).
+  sentences from the Poirot books. The page loads every set; more sets can be added the same way (`--set 4`).
+* **Set 3** (`data/questions-set3.js`): 133 conjunction questions, hand-picked from all 13 books (see below).
+
+Sets 1 and 2 by kind (set 3 is all `mc`):
 
 | kind | what it trains | set 1 | set 2 |
 |---|---|---|---|
@@ -90,7 +93,25 @@ model call audits each key before it is written.
 | `tapfix` agreement | find the real subject, pick the verb | 120 | 244 |
 | `tapfix` tense | spot the odd verb, pick the fix | 123 | 76 |
 
-How quality was controlled (both sets):
+### Conjunction questions: the comma cannot just be guessed
+Every question with a blank at and, but, so, yet or or offers the same real choices (`, and` / `and` / `and,`, plus an
+always-wrong one), so the student has to decide. Cover the conjunction and read what follows:
+
+| what follows | choice | example |
+|---|---|---|
+| a full sentence | `, and` | The lawyer was in his office**, and** we were ushered in. |
+| no subject of its own | `and` | Tommy took the envelope **and** opened it. |
+| no subject, then an interruption | `and,` | Griselda met me in the hall **and,** with tears in her eyes, dragged me in. |
+| `so` + a full sentence | `, so` | He did not answer immediately**, so** I went on. |
+| `so that` / `so as to` (a purpose) | `so` | They left the doors ajar **so** that they could see. |
+
+The comma before the conjunction is right about half the time (and 50%, but 55%, so 59%), and `node tests/verify-quotes.mjs`
+fails if that drifts outside 35 to 65%. Keys follow modern SAT rules, so many "but" sentences drop the comma Christie herself
+wrote ("Anthony nodded, but did not speak"): no comma goes between two verbs with one subject. `scripts/apply-conjunctions.mjs`
+holds the chosen sentences and rebuilds these questions. A separate reviewer audited all of them against SAT rules: no key was
+wrong, and 13 questions were dropped as unclear out of context, open to two readings, or unsuitable for a teen.
+
+### How quality was controlled
 
 1. **Mechanical validators** (`scripts/generate.mjs`, run on every draft): the sentence is word-for-word from the book;
    `forge` errors are exactly the three real differences between forged and correct text; `tense` changes exactly one verb;
@@ -104,7 +125,7 @@ How quality was controlled (both sets):
 3. **Vocab uniqueness review**: reviewers checked that exactly one option can have the shown meaning (no synonym
    distractors, accurate definitions). When the sentence has "a"/"an" before the blank, the game moves the article into every
    choice ("an ingenuous" / "a tender"), chosen by sound (an hour, a unique), so it can never hint at the answer.
-4. **Gameplay check**: all 2400 items were solved through the real UI with the right answer (all graded correct), and
+4. **Gameplay check**: the original 2400 items were solved through the real UI with the right answer (all graded correct), and every conjunction question was then checked by clicking all four choices through the real widget. Option order is shuffled every time an item is shown so the key is never in a predictable slot.
    option order is shuffled every time an item is shown so the key is never in a predictable slot.
 
 This is a review by AI, not by a teacher: grammar keys are judgement calls, so spot-check the "Correct version" line and
@@ -152,4 +173,4 @@ No install needed for any of these:
     node tests/machine-test.mjs     # every toy and 30 random machines must run from flick to bell on real physics
     node tests/progress-test.mjs    # simulated sessions: do misses come back, survive a wiped localStorage, close correctly?
     node tests/browser-test.mjs     # real Chrome, real clicks and reloads, start to finale (needs Chrome and python3; set CHROME=/path if needed)
-    node tests/verify-quotes.mjs    # every question re-checked against the Project Gutenberg text
+    node tests/verify-quotes.mjs    # every question re-checked against the Project Gutenberg text, and conjunction answers balanced
