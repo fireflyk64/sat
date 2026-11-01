@@ -193,6 +193,7 @@
   Track.prototype._spend = function (m) {
     if (m.userData.spent || this.noSpend) return;
     m.userData.spent = this.time;
+    if (this.keepMarbles && this.onKeep && !m.userData.small) this.onKeep(m);       // the "Marbles stay" unlock: remember where it was
     m.userData.live = false;
     m.ghost = true;                 // a retired marble fades out; it must not plough the dominoes it leaves behind
   };

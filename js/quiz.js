@@ -112,8 +112,11 @@
         });
         var gotCReq = gotC.filter(function (i) { return !optional[i] || wantC.indexOf(i) >= 0; });
         var wantCReq = wantC;
+        var found = gotCReq.filter(function (i) { return wantC.indexOf(i) >= 0; }).length + gotK.filter(function (i) { return wantK.indexOf(i) >= 0; }).length;
+        var wrong = gotCReq.filter(function (i) { return wantC.indexOf(i) < 0; }).length + gotK.filter(function (i) { return wantK.indexOf(i) < 0; }).length;
         return {
           correct: setEq(gotCReq, wantCReq) && setEq(gotK, wantK),
+          partial: { found: found, total: wantC.length + wantK.length, wrong: wrong },       // for partial credit
           wantC: wantC, gotC: gotC, wantK: wantK, gotK: gotK, optional: optional
         };
       },
@@ -200,12 +203,14 @@
   }
 
   /* ---------------- mc + vocab: multiple choice ---------------- */
-  function buildChoice(item, host, onChange) {
+  function buildChoice(item, host, onChange, opts) {
     var stem = el('p', 'stem');
     // Vocab items can be asked two ways (same data, same 4 words): fill the blank, or match a meaning to its word
     var fillClue = false, artM = null;
     // SAT-style questions (level 'sat') show no meaning at all: like the real test, the passage has to decide the answer.
     var satStyle = item.level === 'sat';
+    // ...but several words can look possible, so the normal card gives a very vague hint (the Water Section, like the real test, does not)
+    if (satStyle && item.hint && !(opts && opts.traditional)) host.appendChild(el('p', 'clue hint', 'Hint: it ' + item.hint + '.'));
     var meaning = !satStyle && item.type === 'vocab' && item.definitions && item.definitions[item.answer] && Math.random() < 0.5;
     if (meaning) {
       var d = item.definitions[item.answer].replace(/\.$/, '');
@@ -295,7 +300,9 @@
       check: function () {
         var gw = sel(sent.selWords), gg = sel(sent.selGaps).filter(function (i) { return optional[i] === undefined; });
         var fine = sel(sent.selGaps).filter(function (i) { return optional[i] !== undefined; });
-        return { correct: setEq(gw, wantW) && setEq(gg, wantG), gw: gw, gg: gg, fine: fine };
+        var found = gw.filter(function (i) { return wantW.indexOf(i) >= 0; }).length + gg.filter(function (i) { return wantG.indexOf(i) >= 0; }).length;
+        var wrong = gw.filter(function (i) { return wantW.indexOf(i) < 0; }).length + gg.filter(function (i) { return wantG.indexOf(i) < 0; }).length;
+        return { correct: setEq(gw, wantW) && setEq(gg, wantG), partial: { found: found, total: wantW.length + wantG.length, wrong: wrong }, gw: gw, gg: gg, fine: fine };
       },
       reveal: function (r) {
         sent.lock();
@@ -329,7 +336,10 @@
     var want = item.answer.slice();
     return {
       ready: function () { return sel().length > 0; },
-      check: function () { var got = sel(); return { correct: setEq(got, want), got: got }; },
+      check: function () {
+        var got = sel(), found = got.filter(function (i) { return want.indexOf(i) >= 0; }).length;
+        return { correct: setEq(got, want), partial: { found: found, total: want.length, wrong: got.length - found }, got: got };
+      },
       reveal: function (r) {
         sent.lock();
         want.forEach(function (i) { sent.words[i].classList.add(r.got.indexOf(i) >= 0 ? 'ok' : 'miss'); });
@@ -345,9 +355,9 @@
       commas: 'Commas', agreement: 'Agreement', tense: 'Tense',
       proofreading: 'Proofreading', vocab: 'Vocabulary', phrases: 'Phrases'
     },
-    build: function (item, host, onChange) {
+    build: function (item, host, onChange, opts) {
       host.innerHTML = '';
-      return BUILDERS[item.type](item, host, onChange);
+      return BUILDERS[item.type](item, host, onChange, opts);
     },
     article: article,
     el: el

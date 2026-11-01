@@ -38,7 +38,7 @@ Newton's Cradle (25), Sand Timer (30: a trapdoor opens under a funnel of sand, w
 ## Focus: rewards for studying rather than playing
 **Focus** is what he builds by answering: a right answer adds 1 and a miss takes off ⅓, never going below 0. With four choices
 a blind guess is right 1 time in 4, so guessing nets exactly zero (the old SAT used ¼ because it had five choices). Playing,
-which means a flick or using an item from the chest, costs 1½ unless a freeze covers it: a fair price, not a disaster, so he
+which means a flick or using an item from the chest, costs ½ Focus unless a freeze covers it (a freeze covers three plays): a fair price, not a disaster, so he
 never has to be afraid of running the machine. Focus carries across sessions. Clear progress bars show all three rewards:
 
 | at | chance | wins |
@@ -54,7 +54,7 @@ The flick prompt stays out of the way during a study run: the marble's rings, it
 animate when Focus is under 5 or the mouse is over the play window. Otherwise there is just a still ring around the marble.
 
 **🧊 Freezes** let him take a break for free. Every 5 correct **in a row** (a miss breaks this count) earns one, and they stack.
-The next time he plays, a freeze is spent instead of the 1½ Focus. They last until the session ends, meaning 30 minutes away
+The next time he plays, a freeze is spent instead of the ½ Focus, and it then covers that play and the next two. They last until the session ends, meaning 30 minutes away
 from the game, so reloading the page does not lose them. Retrying a flick that missed the machine is free.
 
 **The chest** stays collapsed to one quiet line until it is clicked. Won items save up until he chooses to use them, each one a timed break of 45, 75 or 90 seconds. Anything goes,
@@ -107,6 +107,20 @@ Leave Pages off on the `sat` repo itself: a project site at the same path could 
 | `forge` | proofreading | finds the 1 or 2 planted errors (words or missing/extra commas); commas that are fine either way are never marked wrong |
 | `strip` | phrases | taps the words of one kind of phrase to cross them out or highlight them: prepositional phrases, the complete subject, the verb phrase, the extra phrase set off by commas, the direct object |
 | `vocab` | vocabulary | SAT "words in context" with Christie sentences; definitions shown after answering |
+
+## Studying full screen, and the rules around playing
+* **On a bigger screen the questions fill the screen and the machine is out of sight** (the same two-view layout the phone has),
+  so he is not turning his head to look at it. After six answered questions a **Play** button appears; it brings the machine up,
+  and a moment after the run is over it goes away again (a Back button is there sooner). On a phone the tab bar is always there.
+* **A freeze covers three plays**, and a play beyond that costs half a Focus.
+* **Reloading cannot win a free play.** The flick is spent and saved before the machine plays, so a reload mid-run does not give it
+  back (the Focus cost stays paid); only a flick that missed the machine is handed back, and that too is saved.
+* **Partial credit:** a question with several things to find (commas and capitals, planted errors, words to strip) that is
+  answered partly right earns the fraction he found, less a third for being imperfect and a third for each wrong mark, so
+  finding 4 of 5 still moves him forward. It still counts as a miss for the streak, and comes back as a cold case.
+* **Passage-only vocabulary gets a very vague hint** ("can mean sad and left alone") on the normal card, written to rule out the near
+  misses (`data/sat-hints.json`, `scripts/apply-hints.mjs`). The Water Section gives none, like the real test.
+* **Marbles stay** (unlocks at 12 right answers): a marble handed on to the next one rests where it was, dim, instead of fading.
 
 ## The fire storyline (opens at 100 right answers)
 A serialized inquiry, *The Fire at Hallam Wharf*: 120 numbered statements in 10 chapters (`data/fire-story.json`), from the

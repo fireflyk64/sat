@@ -35,7 +35,8 @@
   /* Freezes: every 5 correct IN A ROW earns one, and they stack. Playing while holding one costs nothing. They last until
      the session ends, meaning 30 minutes away: a quick page reload does not lose them. */
   var FREEZE_EVERY = 5;
-  var MISS_PENALTY = 1 / 3, PLAY_COST = 1.5;
+  // A freeze covers FREEZE_PLAYS plays; a play beyond that costs half a Focus. A multi-target question answered partly right earns its fraction.
+  var MISS_PENALTY = 1 / 3, PLAY_COST = 0.5, FREEZE_PLAYS = 3;
   function snap(x) { return Math.round(x * 6) / 6; }       // whole sixths: no rounding drift, however long the streak
   /* Vocabulary is the skill that pays off most directly on the real test, so it gets extra turns among new questions.
      It can't come up twice running, so a 1 in 2 pick works out to about a third of all new questions. */
@@ -71,7 +72,7 @@
       v: 2, items: {}, skills: {}, total: 0, qn: 0, cold: {}, closed: 0,
       streak: 0, bestStreak: 0, score: 0, bestRun: 0, cases: 0, sessions: 0, sinceCold: 99,
       machine: null,
-      focus: { count: 0, bonus: 0, rare: 0, ultra: 0, next: {} }, freezes: 0, lastActive: 0, chest: {}, found: {},
+      focus: { count: 0, bonus: 0, rare: 0, ultra: 0, next: {} }, freezes: 0, freezePlays: 0, lastActive: 0, chest: {}, found: {},
       section: null, sections: []      // a test section in progress (so a closed tab does not lose it), and the last few finished
     };
   }
@@ -168,7 +169,7 @@
   Progress.prototype.beginSession = function () {
     var s = this.store;
     s.sessions++; this.session = s.sessions; this.lastAnswer = this.now();
-    if (s.lastActive && this.lastAnswer - s.lastActive > SESSION_GAP) s.freezes = 0;     // freezes last until the session ends
+    if (s.lastActive && this.lastAnswer - s.lastActive > SESSION_GAP) s.freezes = 0, s.freezePlays = 0;     // freezes last until the session ends
     s.sinceCold = 99;           // the first thing in a new session is an old miss, if there is one
     this.save();
   };
@@ -296,7 +297,7 @@
 
   // ---------------------------------------------------------------- recording an answer
   /** Returns what happened: { correct, wasCold, closed, wins, needed, streak, tierUp } */
-  Progress.prototype.record = function (q, correct) {
+  Progress.prototype.record = function (q, correct, partial) {
     this._touch();
     this.store.lastActive = this.now();
     var s = this.store, now = this.now(), wasCold = !!s.cold[q.id], res = { correct: correct, wasCold: wasCold, closed: false };
@@ -329,7 +330,7 @@
       res.repeatMiss = !!old;
     }
     res.streak = s.streak;
-    this._focus(res, correct);
+    this._focus(res, correct, partial);
     this.save();
     return res;
   };
@@ -337,17 +338,20 @@
   // ---------------------------------------------------------------- Focus, freezes, the chest
   Progress.prototype._rewards = function () { return this.rewards || root.REWARDS || {}; };
 
-  Progress.prototype._focus = function (res, correct) {
-    var s = this.store, f = s.focus, self = this;
+  Progress.prototype._focus = function (res, correct, partial) {
+    var s = this.store, f = s.focus, self = this, amount = 1;
     res.rolls = [];
     if (!correct) {
-      res.focusLost = this._takeFocus(MISS_PENALTY);
-      return;
+      // Wrong by default costs a third. A question with several things to find, answered partly right, earns the fraction he
+      // found, less a third for being imperfect and a third for each wrong mark: so he can still make progress when he found 4 of 5.
+      var d = partial && partial.total > 1 ? partial.found / partial.total - MISS_PENALTY * (1 + partial.wrong) : -MISS_PENALTY;
+      if (d <= 0) { res.focusLost = this._takeFocus(d === 0 ? 0 : -d); return; }
+      amount = d; res.partialGain = snap(d);
     }
-    f.count = snap(f.count + 1);
+    f.count = snap(f.count + amount);
     var goals = f.next || (f.next = {});
     TIERS.forEach(function (t) {
-      f[t.id] = snap(f[t.id] + 1);
+      f[t.id] = snap(f[t.id] + amount);
       var goal = goals[t.id] || t.every;
       if (f[t.id] < goal - 1e-6) return;
       var won = self.rand() < t.chance, roll = { tier: t.id, label: t.label, chance: t.chance, at: f[t.id], won: won, next: goal + t.every };
@@ -355,7 +359,7 @@
       else goals[t.id] = goal + t.every;
       res.rolls.push(roll);
     });
-    if (s.streak % FREEZE_EVERY === 0) { s.freezes++; res.freezeEarned = true; }
+    if (correct && s.streak % FREEZE_EVERY === 0) { s.freezes++; res.freezeEarned = true; }
   };
 
   /** Take points off Focus and every bar, never below zero. A goal already rolled stays rolled. Returns what was really lost. */
@@ -383,10 +387,11 @@
   Progress.prototype.notePlay = function () {
     var s = this.store;
     s.lastActive = this.now();
-    if (s.freezes > 0) {
-      s.freezes--;
+    if (!(s.freezePlays > 0) && s.freezes > 0) { s.freezes--; s.freezePlays = FREEZE_PLAYS; }       // a fresh freeze covers three plays
+    if (s.freezePlays > 0) {
+      s.freezePlays--;
       this.save();
-      return { frozen: true, kept: s.focus.count, left: s.freezes };
+      return { frozen: true, kept: s.focus.count, left: s.freezes, playsLeft: s.freezePlays };
     }
     var lost = this._takeFocus(PLAY_COST);
     this.save();
@@ -470,6 +475,7 @@
     var piece = { id: 'p' + m.nextId++, kind: kind, seed: Math.floor(rand() * 1e9) };
     m.pieces.splice(slot, 0, piece);
     if (m.playFrom === null || slot <= m.playFrom) m.playFrom = slot;
+    m.spent = false; m.retry = false;       // a new right answer earns a new flick (and an old free retry is moot)
     if (m.pieces.length >= m.target) m.complete = true;
     this.save();
     return { piece: piece, slot: slot, complete: m.complete };
@@ -488,6 +494,7 @@
   Progress.FREEZE_EVERY = FREEZE_EVERY;
   Progress.MISS_PENALTY = MISS_PENALTY;
   Progress.PLAY_COST = PLAY_COST;
+  Progress.FREEZE_PLAYS = FREEZE_PLAYS;
   /** 13.6667 -> "13⅔" */
   Progress.fmt = function (n) {
     var w = Math.floor(n + 1e-6), sixths = Math.round((n - w) * 6), f = ['', '⅙', '⅓', '½', '⅔', '⅚'][sixths] || '';

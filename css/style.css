@@ -336,7 +336,11 @@ footer { margin-top: auto; color: var(--mute); font-size: .75rem; }
    the questions fill the screen, with nothing to scroll past between one question and the next, and a tab at the bottom
    swaps in the machine for when he wants to play. */
 .tabs, .studybar, .studynote { display: none; }
-@media (max-width: 860px) {
+.backstudy { font: inherit; font-size: .86rem; color: var(--ink); cursor: pointer; }
+.backstudy[hidden] { display: none; }
+.backstudy:hover { border-color: var(--accent); }
+/* the layout rules: questions and machine take turns at EVERY width (the machine is hidden while he studies) */
+@media all {
   :root { --tabs-all: calc(56px + env(safe-area-inset-bottom, 0px)); --topbars: 98px; }
   .app { display: block; position: relative; height: 100vh; height: 100dvh; }
   .stage, .panel { position: absolute; left: 0; right: 0; top: 0; bottom: var(--tabs-all); height: auto; }
@@ -372,6 +376,17 @@ footer { margin-top: auto; color: var(--mute); font-size: .75rem; }
   .opt { padding: 9px 11px; }
   .opt .def { font-size: .8rem; }
   .prompt { margin: 6px 0 8px; font-size: .92rem; }
+  .tabs { display: flex; position: absolute; left: 0; right: 0; bottom: 0; height: var(--tabs-all); padding-bottom: env(safe-area-inset-bottom, 0px); background: #0d0726; border-top: 2px solid var(--line); z-index: 9; }
+  .tab { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; gap: 7px; font: inherit; font-weight: 700; font-size: 1rem; color: var(--mute); background: none; border: 0; cursor: pointer; }
+  .tab[aria-pressed="true"] { color: #fff; box-shadow: inset 0 3px 0 var(--accent); }
+  .badge { width: 10px; height: 10px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 10px var(--gold); animation: badgepulse 1.4s ease-in-out infinite; }
+  .badge[hidden] { display: none; }
+  @keyframes badgepulse { 50% { transform: scale(1.35); opacity: .7; } }
+}
+
+/* what only a phone needs: tighter text, smaller controls */
+@media (max-width: 860px) {
+  .backstudy { display: none; }
   /* the section card keeps its header to a couple of short lines, so a question and its choices still fit without scrolling */
   .sect .wl { display: none; }
   .sect .sbar { gap: 8px; }
@@ -389,12 +404,6 @@ footer { margin-top: auto; color: var(--mute); font-size: .75rem; }
   .sentence { font-size: 1.02rem; line-height: 2.05; }
   .sentence .w { padding: 2px 3px; }
 
-  .tabs { display: flex; position: absolute; left: 0; right: 0; bottom: 0; height: var(--tabs-all); padding-bottom: env(safe-area-inset-bottom, 0px); background: #0d0726; border-top: 2px solid var(--line); z-index: 9; }
-  .tab { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; gap: 7px; font: inherit; font-weight: 700; font-size: 1rem; color: var(--mute); background: none; border: 0; cursor: pointer; }
-  .tab[aria-pressed="true"] { color: #fff; box-shadow: inset 0 3px 0 var(--accent); }
-  .badge { width: 10px; height: 10px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 10px var(--gold); animation: badgepulse 1.4s ease-in-out infinite; }
-  .badge[hidden] { display: none; }
-  @keyframes badgepulse { 50% { transform: scale(1.35); opacity: .7; } }
 
   button.icon { width: 30px; height: 30px; font-size: .85rem; }
   .hud-right { gap: 3px; }
@@ -418,6 +427,17 @@ footer { margin-top: auto; color: var(--mute); font-size: .75rem; }
   .bstat { display: none; }
   .toast { bottom: 110px; }
 }
+
+/* on a bigger screen the questions sit in a centred column, filling the screen, and there is no tab bar: a Play button appears
+   after a run of questions, and the machine goes away again when he has played */
+@media (min-width: 861px) {
+  :root { --tabs-all: 0px; --topbars: 112px; }
+  .panel { max-width: 780px; margin: 0 auto; padding: 14px 22px 14px; border-left: 2px solid var(--line); border-right: 2px solid var(--line); }
+  .tabs { display: none; }
+  .studynote { max-width: 720px; left: 0; right: 0; margin: 0 auto; }
+  .hint { font-size: .86rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .banner.show { animation-duration: 2.2s; animation-timing-function: linear; }
   .card.enter, .card.lose, .card.nudge { animation: none; }

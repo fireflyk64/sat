@@ -272,21 +272,38 @@ const clock0 = () => ({ t: Date.UTC(2026, 0, 1) });
   ({ p } = fresh([0.99]));
   answer(p, 4);
   const played = p.notePlay();
-  check('playing with no freeze costs 1½ Focus, not everything', played.lost === 1.5 && p.store.focus.count === 2.5 && p.store.focus.bonus === 2.5 && p.store.focus.ultra === 2.5, Progress.fmt(p.store.focus.count));
+  check('playing with no freeze costs ½ Focus, not everything', played.lost === 0.5 && p.store.focus.count === 3.5 && p.store.focus.bonus === 3.5 && p.store.focus.ultra === 3.5, Progress.fmt(p.store.focus.count));
   check('...and it can show that as a fraction', Progress.fmt(2.5) === '2½' && Progress.fmt(1.5) === '1½');
   ({ p } = fresh());
   p.record(bank[3], true);
-  const small = p.notePlay();
-  check('...never going below zero, and only charging what he had', p.store.focus.count === 0 && small.lost === 1);
+  p.notePlay();
+  const small = p.notePlay(), none = p.notePlay();
+  check('...never going below zero, and only charging what he had', p.store.focus.count === 0 && small.lost === 0.5 && none.lost === 0);
   ({ p } = fresh([0.99]));
   answer(p, 10);
   p.store.freezes = 0;                     // those 10 in a row earned freezes, which would cover this play
   p.notePlay();
   answer(p, 1);
-  check('a rolled goal stays rolled after playing, so a break cannot be used to re-roll', p.store.focus.bonus === 9.5 && p.store.focus.next.bonus === 20);
+  check('a rolled goal stays rolled after playing, so a break cannot be used to re-roll', p.store.focus.bonus === 10.5 && p.store.focus.next.bonus === 20);
   ({ p } = fresh());
   answer(p, 3); p.record(bank[9], false); p.notePlay();
-  check('misses and play costs add up without rounding drift', p.store.focus.count === Math.round((3 - 1 / 3 - 1.5) * 6) / 6, Progress.fmt(p.store.focus.count));
+  check('misses and play costs add up without rounding drift', p.store.focus.count === Math.round((3 - 1 / 3 - 0.5) * 6) / 6, Progress.fmt(p.store.focus.count));
+
+  // partial credit: several things to find, some found
+  ({ p } = fresh([0.99]));
+  answer(p, 3);
+  const close = p.record(bank[500], false, { found: 4, total: 5, wrong: 0 });
+  check('4 of 5 found with nothing wrong: still a miss for the streak, but it earns 4/5 less a third', close.partialGain === 0.5 && p.store.focus.count === 3.5 && p.store.streak === 0, Progress.fmt(p.store.focus.count));
+  check('...and he can make real progress that way, and it is still a cold case to come back to', p.isCold(bank[500].id));
+  const careless = p.record(bank[501], false, { found: 4, total: 5, wrong: 1 });
+  check('a wrong mark costs a third more: 4 of 5 with one wrong earns only a sixth', careless.partialGain === 1 / 6 && Math.abs(p.store.focus.count - (3.5 + 1 / 6)) < 1e-6, Progress.fmt(p.store.focus.count));
+  const bad = p.record(bank[502], false, { found: 1, total: 4, wrong: 2 });
+  check('finding little and marking a lot is a loss, not a gain', !bad.partialGain && bad.focusLost > 0.5);
+  const single = p.record(bank[503], false, { found: 0, total: 1, wrong: 0 });
+  check('a question with one thing to find is all or nothing: a third off', !single.partialGain && single.focusLost > 0.3);
+  ({ p } = fresh([0.99])); answer(p, 4);
+  const full = p.record(bank[504], true, { found: 5, total: 5, wrong: 0 });
+  check('all found is an ordinary right answer', !full.partialGain && p.store.focus.count === 5);
 
   // vocabulary gets extra turns
   {
@@ -315,7 +332,7 @@ const clock0 = () => ({ t: Date.UTC(2026, 0, 1) });
   r = answer(p, 5).at(-1);
   check('5 correct in a row earns a freeze', r.freezeEarned && p.store.freezes === 1);
   const kept = p.notePlay();
-  check('playing with a freeze costs no Focus and spends the freeze', kept.frozen && kept.kept === 5 && p.store.focus.count === 5 && p.store.freezes === 0);
+  check('playing with a freeze costs no Focus and opens the freeze, which covers three plays', kept.frozen && kept.kept === 5 && p.store.focus.count === 5 && p.store.freezes === 0 && p.store.freezePlays === 2);
   check('...and the counters are untouched', p.store.focus.bonus === 5 && p.store.focus.rare === 5);
 
   ({ p } = fresh([0.99]));
@@ -324,7 +341,14 @@ const clock0 = () => ({ t: Date.UTC(2026, 0, 1) });
   for (let k = 0; k < 12; k++) p.record(bank[200 + k], false);
   check('they do not melt, however many questions go by', p.store.freezes === 3);
   p.notePlay(); p.notePlay();
-  check('each play spends just one', p.store.freezes === 1);
+  check('a freeze covers three plays: two plays in, it has one left and the others are untouched', p.store.freezes === 2 && p.store.freezePlays === 1);
+  const third = p.notePlay();
+  check('...the third finishes it, still free', third.frozen && p.store.freezes === 2 && p.store.freezePlays === 0 && p.store.focus.count === 11);
+  const fourth = p.notePlay();
+  check('...and the fourth opens the next freeze', fourth.frozen && p.store.freezes === 1 && p.store.freezePlays === 2);
+  ({ p } = fresh([0.99])); answer(p, 5); p.notePlay(); p.notePlay(); p.notePlay();
+  const paid = p.notePlay();
+  check('with no freeze left, the next play costs half a Focus', !paid.frozen && paid.lost === 0.5 && p.store.focus.count === 4.5);
 
   ({ p } = fresh([0.99]));
   answer(p, 4); p.record(bank[60], false); answer(p, 4);

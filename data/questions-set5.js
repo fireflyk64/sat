@@ -27,7 +27,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Case-Book of Sherlock Holmes",
    "gutenberg": 69700,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean lessened, as a storm does"
  },
  {
   "id": "vocab-sat-244-166tkeo",
@@ -56,7 +57,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "A Study in Scarlet",
    "gutenberg": 244,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean to calm a worry"
  },
  {
   "id": "vocab-sat-2097-1megsdu",
@@ -85,7 +87,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Sign of the Four",
    "gutenberg": 2097,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean made less angry"
  },
  {
   "id": "vocab-sat-2852-1y7orl9",
@@ -114,7 +117,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Hound of the Baskervilles",
    "gutenberg": 2852,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean good at expressing ideas in speech"
  },
  {
   "id": "vocab-sat-69700-y2v2xq",
@@ -143,7 +147,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Case-Book of Sherlock Holmes",
    "gutenberg": 69700,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean mentally sharp"
  },
  {
   "id": "vocab-sat-108-t0shtf",
@@ -172,7 +177,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Return of Sherlock Holmes",
    "gutenberg": 108,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean strict and severe"
  },
  {
   "id": "vocab-sat-3289-1hb8w7s",
@@ -201,7 +207,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Valley of Fear",
    "gutenberg": 3289,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean lacking pity"
  },
  {
   "id": "vocab-sat-108-1kehtl1",
@@ -230,7 +237,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Return of Sherlock Holmes",
    "gutenberg": 108,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean quiet and modest"
  },
  {
   "id": "vocab-sat-108-1jgiow4",
@@ -259,7 +267,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Return of Sherlock Holmes",
    "gutenberg": 108,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean very low in spirits"
  },
  {
   "id": "vocab-sat-3289-14z8yff",
@@ -288,7 +297,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Valley of Fear",
    "gutenberg": 3289,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean full of joy"
  },
  {
   "id": "vocab-sat-3289-1vwie8z",
@@ -317,7 +327,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Valley of Fear",
    "gutenberg": 3289,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean worth copying"
  },
  {
   "id": "vocab-sat-1661-1uhpr45",
@@ -346,7 +357,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Adventures of Sherlock Holmes",
    "gutenberg": 1661,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean put on falsely"
  },
  {
   "id": "vocab-sat-108-1vqxuzc",
@@ -375,7 +387,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Return of Sherlock Holmes",
    "gutenberg": 108,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean red in the face"
  },
  {
   "id": "vocab-sat-69700-iokadd",
@@ -404,7 +417,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Case-Book of Sherlock Holmes",
    "gutenberg": 69700,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean inner strength in hard times"
  },
  {
   "id": "vocab-sat-2350-4ws71",
@@ -433,7 +447,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "His Last Bow",
    "gutenberg": 2350,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean talking too much"
  },
  {
   "id": "vocab-sat-2852-1wnpp9c",
@@ -462,7 +477,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Hound of the Baskervilles",
    "gutenberg": 2852,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean never changing"
  },
  {
   "id": "vocab-sat-244-190gf1e",
@@ -491,7 +507,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "A Study in Scarlet",
    "gutenberg": 244,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean giving orders arrogantly"
  },
  {
   "id": "vocab-sat-2350-15o66k3",
@@ -520,7 +537,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "His Last Bow",
    "gutenberg": 2350,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean acting on impulse"
  },
  {
   "id": "vocab-sat-108-bpi9qt",
@@ -549,7 +567,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Return of Sherlock Holmes",
    "gutenberg": 108,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean full of fine detail"
  },
  {
   "id": "vocab-sat-1661-nyqjqj",
@@ -578,7 +597,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Adventures of Sherlock Holmes",
    "gutenberg": 1661,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean slow and drooping"
  },
  {
   "id": "vocab-sat-2852-1qxbrgr",
@@ -607,7 +627,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Hound of the Baskervilles",
    "gutenberg": 2852,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean evil in intent"
  },
  {
   "id": "vocab-sat-2350-ugnlq1",
@@ -636,7 +657,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "His Last Bow",
    "gutenberg": 2350,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean fond of complaining"
  },
  {
   "id": "vocab-sat-244-10ojbw3",
@@ -665,7 +687,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "A Study in Scarlet",
    "gutenberg": 244,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean only on the surface"
  },
  {
   "id": "vocab-sat-2097-whir1x",
@@ -694,7 +717,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Sign of the Four",
    "gutenberg": 2097,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean free of disturbance"
  },
  {
   "id": "vocab-sat-108-1ug3fba",
@@ -723,7 +747,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Return of Sherlock Holmes",
    "gutenberg": 108,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean fervent in devotion"
  },
  {
   "id": "vocab-sat-3289-1rxen5p",
@@ -752,7 +777,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Valley of Fear",
    "gutenberg": 3289,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean noisy"
  },
  {
   "id": "vocab-sat-108-1flme7e",
@@ -781,7 +807,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Return of Sherlock Holmes",
    "gutenberg": 108,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean agreeable"
  },
  {
   "id": "vocab-sat-834-p4823i",
@@ -810,7 +837,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Memoirs of Sherlock Holmes",
    "gutenberg": 834,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean not correct"
  },
  {
   "id": "vocab-sat-69700-14y55jj",
@@ -839,7 +867,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Case-Book of Sherlock Holmes",
    "gutenberg": 69700,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean flashy in style"
  },
  {
   "id": "vocab-sat-108-g2ipzf",
@@ -868,7 +897,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Return of Sherlock Holmes",
    "gutenberg": 108,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean very lean"
  },
  {
   "id": "vocab-sat-244-q5ccmn",
@@ -897,7 +927,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "A Study in Scarlet",
    "gutenberg": 244,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean very significant"
  },
  {
   "id": "vocab-sat-108-1krywrl",
@@ -926,7 +957,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Return of Sherlock Holmes",
    "gutenberg": 108,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean sharp to the nose"
  },
  {
   "id": "vocab-sat-1661-1aoht94",
@@ -955,7 +987,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Adventures of Sherlock Holmes",
    "gutenberg": 1661,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean untidy and careless"
  },
  {
   "id": "vocab-sat-108-1ggvt2",
@@ -984,7 +1017,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Return of Sherlock Holmes",
    "gutenberg": 108,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean hard to grasp"
  },
  {
   "id": "vocab-sat-244-1jtkeoy",
@@ -1013,7 +1047,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "A Study in Scarlet",
    "gutenberg": 244,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean easy and friendly"
  },
  {
   "id": "vocab-sat-69700-1gtt32b",
@@ -1042,7 +1077,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Case-Book of Sherlock Holmes",
    "gutenberg": 69700,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean keeping apart"
  },
  {
   "id": "vocab-sat-244-pzylnu",
@@ -1071,7 +1107,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "A Study in Scarlet",
    "gutenberg": 244,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean to soothe"
  },
  {
   "id": "vocab-sat-69700-1k76ega",
@@ -1100,7 +1137,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Case-Book of Sherlock Holmes",
    "gutenberg": 69700,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean daring"
  },
  {
   "id": "vocab-sat-1661-85ztow",
@@ -1129,7 +1167,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Adventures of Sherlock Holmes",
    "gutenberg": 1661,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean wishing others well"
  },
  {
   "id": "vocab-sat-2852-rkzgxg",
@@ -1158,7 +1197,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Hound of the Baskervilles",
    "gutenberg": 2852,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean wary of risks"
  },
  {
   "id": "vocab-sat-1661-1ra3k0o",
@@ -1187,7 +1227,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Adventures of Sherlock Holmes",
    "gutenberg": 1661,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean doubting people's goodness"
  },
  {
   "id": "vocab-sat-108-1pdv3uv",
@@ -1216,7 +1257,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Return of Sherlock Holmes",
    "gutenberg": 108,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean contempt"
  },
  {
   "id": "vocab-sat-2097-qb6r39",
@@ -1245,7 +1287,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Sign of the Four",
    "gutenberg": 2097,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean cheerless"
  },
  {
   "id": "vocab-sat-834-1jxvmac",
@@ -1274,7 +1317,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Memoirs of Sherlock Holmes",
    "gutenberg": 834,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean calmness of mind"
  },
  {
   "id": "vocab-sat-244-1x7bpsl",
@@ -1303,7 +1347,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "A Study in Scarlet",
    "gutenberg": 244,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean very irritating"
  },
  {
   "id": "vocab-sat-2097-1kamyc4",
@@ -1332,7 +1377,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Sign of the Four",
    "gutenberg": 2097,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean not serious enough"
  },
  {
   "id": "vocab-sat-2097-hs4n0d",
@@ -1361,7 +1407,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Sign of the Four",
    "gutenberg": 2097,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean sad and left alone"
  },
  {
   "id": "vocab-sat-69700-kym0q",
@@ -1390,7 +1437,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Case-Book of Sherlock Holmes",
    "gutenberg": 69700,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean pointless"
  },
  {
   "id": "vocab-sat-3289-1hawuu",
@@ -1419,7 +1467,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Valley of Fear",
    "gutenberg": 3289,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean liking company"
  },
  {
   "id": "vocab-sat-108-uru16",
@@ -1448,7 +1497,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Return of Sherlock Holmes",
    "gutenberg": 108,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean to hinder"
  },
  {
   "id": "vocab-sat-3289-1xm9s6p",
@@ -1477,7 +1527,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Valley of Fear",
    "gutenberg": 3289,
    "author": "Arthur Conan Doyle"
-  }
+  },
+  "hint": "can mean impossible to soothe"
  },
  {
   "id": "vocab-sat-1155-ub4qvu",
@@ -1506,7 +1557,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Secret Adversary",
    "gutenberg": 1155,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean confused"
  },
  {
   "id": "vocab-sat-78342-1lxmjf2",
@@ -1535,7 +1587,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "Partners in Crime",
    "gutenberg": 78342,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean snobbishly proud"
  },
  {
   "id": "vocab-sat-78084-1ysf4s8",
@@ -1564,7 +1617,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean not fitting in"
  },
  {
   "id": "vocab-sat-58866-2jk793",
@@ -1593,7 +1647,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Murder on the Links",
    "gutenberg": 58866,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean made less angry"
  },
  {
   "id": "vocab-sat-70114-10eu1vy",
@@ -1622,7 +1677,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Big Four",
    "gutenberg": 70114,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean touching to the heart"
  },
  {
   "id": "vocab-sat-78342-suhvwt",
@@ -1651,7 +1707,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "Partners in Crime",
    "gutenberg": 78342,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean to let go"
  },
  {
   "id": "vocab-sat-1155-1qzp4f",
@@ -1680,7 +1737,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Secret Adversary",
    "gutenberg": 1155,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean nervous dread"
  },
  {
   "id": "vocab-sat-1155-vntw3d",
@@ -1709,7 +1767,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Secret Adversary",
    "gutenberg": 1155,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean full of life"
  },
  {
   "id": "vocab-sat-78084-188r44j",
@@ -1738,7 +1797,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean careful about duty"
  },
  {
   "id": "vocab-sat-75288-1syen8d",
@@ -1767,7 +1827,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean failing in one's duty"
  },
  {
   "id": "vocab-sat-72824-5so3pa",
@@ -1796,7 +1857,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean to collect slowly"
  },
  {
   "id": "vocab-sat-69087-d9v16b",
@@ -1825,7 +1887,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean outward manner"
  },
  {
   "id": "vocab-sat-72824-6r013",
@@ -1854,7 +1917,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean said once more"
  },
  {
   "id": "vocab-sat-72824-gi484m",
@@ -1883,7 +1947,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean without a plan"
  },
  {
   "id": "vocab-sat-58866-14s2vwx",
@@ -1912,7 +1977,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Murder on the Links",
    "gutenberg": 58866,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean mentally unsure"
  },
  {
   "id": "vocab-sat-863-maetdu",
@@ -1941,7 +2007,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean showing no feeling"
  },
  {
   "id": "vocab-sat-65238-1m21utg",
@@ -1970,7 +2037,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Secret of Chimneys",
    "gutenberg": 65238,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean spiteful"
  },
  {
   "id": "vocab-sat-1155-1wd8mnt",
@@ -1999,7 +2067,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Secret Adversary",
    "gutenberg": 1155,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean not clear"
  },
  {
   "id": "vocab-sat-78084-126mc6x",
@@ -2028,7 +2097,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean gave in quietly"
  },
  {
   "id": "vocab-sat-61168-1ci0c86",
@@ -2057,7 +2127,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean smart in design"
  },
  {
   "id": "vocab-sat-65238-1m55nji",
@@ -2086,7 +2157,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Secret of Chimneys",
    "gutenberg": 65238,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean more than needed"
  },
  {
   "id": "vocab-sat-61262-1e6hlym",
@@ -2115,7 +2187,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "Poirot Investigates",
    "gutenberg": 61262,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean very careful with details"
  },
  {
   "id": "vocab-sat-58866-178y1et",
@@ -2144,7 +2217,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Murder on the Links",
    "gutenberg": 58866,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean spelled out"
  },
  {
   "id": "vocab-sat-1155-qplej",
@@ -2173,7 +2247,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Secret Adversary",
    "gutenberg": 1155,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean lonely and barren"
  },
  {
   "id": "vocab-sat-78342-1807094",
@@ -2202,7 +2277,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "Partners in Crime",
    "gutenberg": 78342,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean bossily demanding"
  },
  {
   "id": "vocab-sat-72824-18vxl45",
@@ -2231,7 +2307,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean worn and tired in looks"
  },
  {
   "id": "vocab-sat-75288-1exdky6",
@@ -2260,7 +2337,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean good-natured"
  },
  {
   "id": "vocab-sat-1155-11onctf",
@@ -2289,7 +2367,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Secret Adversary",
    "gutenberg": 1155,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean hard to beat"
  },
  {
   "id": "vocab-sat-61262-iq6jef",
@@ -2318,7 +2397,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "Poirot Investigates",
    "gutenberg": 61262,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean answered back"
  },
  {
   "id": "vocab-sat-61262-t5bo2i",
@@ -2347,7 +2427,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "Poirot Investigates",
    "gutenberg": 61262,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean calm by nature"
  },
  {
   "id": "vocab-sat-61168-brqnxk",
@@ -2376,7 +2457,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean low in spirits"
  },
  {
   "id": "vocab-sat-78084-1ynl3r5",
@@ -2405,7 +2487,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean without error"
  },
  {
   "id": "vocab-sat-863-1ne7h06",
@@ -2434,7 +2517,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean credible"
  },
  {
   "id": "vocab-sat-69087-6431d5",
@@ -2463,7 +2547,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean to reprimand"
  },
  {
   "id": "vocab-sat-78342-1ag3cu0",
@@ -2492,7 +2577,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "Partners in Crime",
    "gutenberg": 78342,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean richly grand"
  },
  {
   "id": "vocab-sat-863-1yxuctz",
@@ -2521,7 +2607,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean making clear"
  },
  {
   "id": "vocab-sat-78342-4l2gwr",
@@ -2550,7 +2637,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "Partners in Crime",
    "gutenberg": 78342,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean settled comfortably"
  },
  {
   "id": "vocab-sat-65238-2at4ch",
@@ -2579,7 +2667,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Secret of Chimneys",
    "gutenberg": 65238,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean to hinder"
  },
  {
   "id": "vocab-sat-78342-3kaurk",
@@ -2608,7 +2697,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "Partners in Crime",
    "gutenberg": 78342,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean to turn away"
  },
  {
   "id": "vocab-sat-70114-y3t0gx",
@@ -2637,7 +2727,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Big Four",
    "gutenberg": 70114,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean sharp and to the point"
  },
  {
   "id": "vocab-sat-863-hxecs5",
@@ -2666,7 +2757,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean holding back in talk"
  },
  {
   "id": "vocab-sat-61168-1bnnfhb",
@@ -2695,7 +2787,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean tactful about secrets"
  },
  {
   "id": "vocab-sat-75288-1v4kc2o",
@@ -2724,7 +2817,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean empty-headed"
  },
  {
   "id": "vocab-sat-65238-y05bp6",
@@ -2753,7 +2847,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Secret of Chimneys",
    "gutenberg": 65238,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean unemotional"
  },
  {
   "id": "vocab-sat-65238-7gid4t",
@@ -2782,7 +2877,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Secret of Chimneys",
    "gutenberg": 65238,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean morally bad"
  },
  {
   "id": "vocab-sat-58866-r7feq5",
@@ -2811,7 +2907,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Murder on the Links",
    "gutenberg": 58866,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean looked at closely"
  },
  {
   "id": "vocab-sat-75288-v835zu",
@@ -2840,7 +2937,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean sincerely serious"
  },
  {
   "id": "vocab-sat-75288-ivj3vv",
@@ -2869,7 +2967,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean ashamed and let down"
  },
  {
   "id": "vocab-sat-78084-1jkzq5i",
@@ -2898,7 +2997,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean not wavering"
  },
  {
   "id": "vocab-sat-78220-10d7l3k",
@@ -2927,7 +3027,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean making less trusted"
  },
  {
   "id": "vocab-sat-69087-10oilr2",
@@ -2956,6 +3057,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087,
    "author": "Agatha Christie"
-  }
+  },
+  "hint": "can mean angry and offended"
  }
 ]);

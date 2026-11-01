@@ -41,8 +41,8 @@
     aim: null, pointer: null, gold: false, fast: false,
     phase: 'play', finaleUntil: 0,
     view: 'study',     // on a phone the questions and the machine take turns on screen
-    brk: null, freeRetry: false, unrevealed: {}, picked: null, hover: false,
-    grand: false, cleared: [], newClues: 0, newStatements: 0, lastStatement: 0, sect: null, solved: null, clueDue: null,     // the story: the machine's last run is under way / who it has cleared / clues not yet read
+    brk: null, unrevealed: {}, picked: null, hover: false,
+    sinceBreak: 0, grand: false, cleared: [], newClues: 0, newStatements: 0, lastStatement: 0, sect: null, solved: null, clueDue: null,     // the story: the machine's last run is under way / who it has cleared / clues not yet read
   };
 
   function tierFor(streak) { var t = TIERS[0]; TIERS.forEach(function (x) { if (streak >= x.at) t = x; }); return t; }
@@ -53,13 +53,28 @@
   function promptPulses() { return state.hover || progress.store.focus.count < CALM_AT_FOCUS; }
 
   // ---------------------------------------------------------------- building
+  // An early unlock: after this many right answers, a marble that has been handed on stays where it was instead of fading away.
+  var KEEP_MARBLES_AT = 12;
+  function keepOn() { return progress.store.total >= KEEP_MARBLES_AT; }
+  /** Hook the machine up to the unlocks that need it: where retired marbles are remembered, so they survive the machine growing. */
+  function wireTrack() {
+    track.keepMarbles = keepOn();
+    track.onKeep = function (m) {
+      var sec = track.sections[m.userData.section];
+      if (!sec || !sec.exit) return;
+      var mm = machine(), list = mm.kept || (mm.kept = []);
+      list.push({ pid: sec.id, dx: +(m.x - sec.exit.x).toFixed(2), dy: +(m.y - sec.exit.y).toFixed(2), hue: m.userData.hue | 0 });
+      if (list.length > 24) list.shift();
+      progress.save();
+    };
+  }
   function machine() { return progress.machine(); }
 
   function rebuild(opts) {
     opts = opts || {};
     var snap = renderer.snapshot(track);
     world = new Phys.World();
-    track = new Track(world, machine(), { emit: onEvent, now: nowS() });
+    track = new Track(world, machine(), { emit: onEvent, now: nowS() }); wireTrack();
     renderer.setTheme(progress.store.cases);
     renderer.tweenFrom(track, snap, nowS(), { fresh: opts.fresh });
     renderer.trails = {};
@@ -74,7 +89,7 @@
   /** The marble that is waiting to be flicked, if a right answer has earned one. */
   function flickable() {
     var m = machine();
-    return m.playFrom === null || state.running || state.brk ? null : track.marbleFor(m.playFrom);
+    return m.playFrom === null || m.spent || state.running || state.brk ? null : track.marbleFor(m.playFrom);
   }
   function restingMarble() { return flickable() || (track ? track.marbleFor(machine().playFrom || 0) : null); }
   function canFlick() { return !!flickable() && nowS() >= state.readyAt && state.phase !== 'finale'; }
@@ -99,6 +114,7 @@
       }
       fireFound = nowFound;
     }
+    if (progress.store.total === KEEP_MARBLES_AT) { track.keepMarbles = true; setTimeout(function () { Sound.unlock(); banner('MARBLES STAY', 'Marbles you hand on now rest on the machine', 'cool'); }, 1200); }
     var opened = progress.storyJustOpened(bank);
     if (opened.length) {
       var st = STORIES[opened[0]];
@@ -167,7 +183,10 @@
     var m = machine(), from = m.playFrom;
     Sound.init();
     // flicking is playing. A retry after a flick that missed the machine is free.
-    if (state.freeRetry) state.freeRetry = false; else showPlayResult(progress.notePlay());
+    // The flick is spent and saved BEFORE the game plays, so reloading mid-run cannot win a second free play. A flick that missed the
+    // machine is the one exception: it was never played, so the retry is free, and that too is saved.
+    if (m.retry) m.retry = false; else showPlayResult(progress.notePlay());
+    m.spent = true; progress.save();
     renderer.skin = state.gold ? 'gold' : tierFor(progress.store.streak).skin;
     var run = track.startRun(from, vx, vy);
     if (!run) return;
@@ -243,7 +262,7 @@
       state.running = false;
       if (state.brk) return;
       if (state.grand) hideSuspects();
-      state.freeRetry = true;
+      machine().retry = true; machine().spent = false; progress.save();
       renderer.trails = {};
       renderer.sparks(d.x, d.y, 30, 190, 5);
       toast('Missed the machine! The marble is back. Flick again.');
@@ -331,7 +350,7 @@
     banner('+' + earned.toLocaleString(), state.chain + ' dominoes down', 'cool');
     if (complete) {
       // that was the last piece: reset the whole machine and hand over the big flick
-      m.playFrom = 0; progress.save();
+      m.playFrom = 0; m.spent = false; progress.save();
       setTimeout(function () {
         banner('MACHINE COMPLETE', 'Now run the whole thing!', 'gold');
         Sound.unlock();
@@ -341,13 +360,15 @@
         setTimeout(function () { renderer.cam.zoomGoal = null; renderer.cam.follow = true; }, 1900);
       }, 1700);
     } else {
-      m.playFrom = null; progress.save();
+      m.playFrom = null; m.spent = false; m.retry = false; progress.save();
       if (state.queued) {
         var n = state.queued; state.queued = 0;
         setTimeout(function () { placeQueued(n); }, 1200);
       }
     }
     if (state.clueDue) setTimeout(showDueClue, 1500);
+    // played: after a moment the machine goes away again and he is back with the questions (a Back button is there sooner)
+    if (!phoneNow() && !params.has('stay')) setTimeout(function () { if (state.view === 'machine' && !state.running && state.phase !== 'finale' && !state.brk) setView('study'); }, 3400);
     updateHud();
   }
 
@@ -431,13 +452,21 @@
   }
 
   // ---------------------------------------------------------------- phone: the questions and the machine take turns
+  // The two-view layout (the questions fill the screen, the machine is out of sight) is used at every width. On a phone a tab bar swaps
+  // between them freely; on a bigger screen there is no tab bar: the machine stays away for a run of questions, then a Play button
+  // appears, and when he has played the machine goes away again, so he is not turning to look at it while he studies.
   var narrowQuery = window.matchMedia ? window.matchMedia('(max-width: 860px)') : null;
-  function narrowNow() { return !!(narrowQuery && narrowQuery.matches); }
+  var STUDY_BEFORE_PLAY = 6;
+  function phoneNow() { return !!(narrowQuery && narrowQuery.matches); }
+  function narrowNow() { return true; }
+  /** Has he studied enough for a turn at the machine? (On a phone the tab is always there.) */
+  function playReady() { return phoneNow() || state.sinceBreak >= STUDY_BEFORE_PLAY; }
   /** True when the machine's screen is not the one on show: a phone, on the questions tab. */
   function stageHidden() { return narrowNow() && state.view === 'study'; }
   function setView(v) {
     if (v === state.view) return;
     state.view = v;
+    if (v === 'machine') state.sinceBreak = 0;
     $('app').classList.toggle('view-study', v === 'study');
     $('app').classList.toggle('view-machine', v === 'machine');
     $('tabStudy').setAttribute('aria-pressed', v === 'study');
@@ -549,7 +578,7 @@
       var sel = host.querySelector('.opt.sel');
       S.answers[S.i] = sel ? sel.dataset.word : null;      // (no feedback: the choice is only remembered)
       saveSection(); renderSectionDots();
-    });
+    }, { traditional: true });
     var want = S.answers[S.i];
     if (want != null) { var hit = [].slice.call(host.querySelectorAll('.opt')).filter(function (x) { return x.dataset.word === want; })[0]; if (hit) hit.click(); }
     $('sBack').disabled = S.i === 0;
@@ -596,6 +625,7 @@
     var after = progress.store.total;
     if (gold) state.gold = true;
     state.queued += toys;
+    state.sinceBreak += sc.answered;
     progress.sectionLog({ at: Date.now(), right: sc.right, total: sc.total, secs: S.elapsed });
     progress.sectionClear();
     clearInterval(sectTimer);
@@ -859,11 +889,13 @@
     if (stat) {
       var bits = ['\ud83c\udfaf <b>' + Progress.fmt(s.focus.count) + '</b>', '\ud83d\udd25 <b>' + s.streak + '</b>', '\ud83e\udde9 <b>' + m.pieces.length + '/' + m.target + '</b>'];
       var my2 = mystery(); if (my2) bits.push('\ud83d\udd0e <b>' + cluesFound() + '/' + my2.clues.length + '</b>');
-      if (s.freezes > 0) bits.push('\ud83e\uddca <b>' + s.freezes + '</b>');
+      if (freePlays() > 0) bits.push('\ud83e\uddca <b>' + freePlays() + '</b>');
+      if (flickable() && !playReady()) bits.push('\ud83c\udfb2 <b>' + (STUDY_BEFORE_PLAY - state.sinceBreak) + '</b> more to play');
       stat.innerHTML = bits.map(function (b) { return '<span>' + b + '</span>'; }).join('');
       stat.setAttribute('aria-label', 'Focus ' + Progress.fmt(s.focus.count) + ', ' + s.streak + ' in a row, ' + m.pieces.length + ' of ' + m.target + ' pieces');
     }
-    var canPlay = !!flickable() && !state.running && state.phase !== 'finale';
+    var canPlay = !!flickable() && !state.running && state.phase !== 'finale' && playReady();
+    $('backStudy').hidden = phoneNow() || state.view !== 'machine' || state.running || state.phase === 'finale';
     $('playNow').hidden = !canPlay;
     $('tabBadge').hidden = !canPlay || state.view === 'machine';
 
@@ -882,7 +914,7 @@
     else if (state.brk) hint = '';
     else if (state.running) hint = 'Tap a rolling marble to shove it';
     else if (flickable()) {
-      var cost = s.freezes > 0 ? '🧊 a freeze covers this one' : s.focus.count ? 'this costs ' + Progress.fmt(Math.min(Progress.PLAY_COST, s.focus.count)) + ' Focus' : '';
+      var cost = freePlays() > 0 ? '🧊 a freeze covers this one' : s.focus.count ? 'this costs ' + Progress.fmt(Math.min(Progress.PLAY_COST, s.focus.count)) + ' Focus' : '';
       hint = (m.complete && m.playFrom === 0 ? 'Flick the top marble and run the whole machine!' : 'Pull back on the glowing marble and let go') + (cost ? ' · ' + cost : '');
     }
     else {
@@ -922,7 +954,7 @@
 
   // ---------------------------------------------------------------- Focus, freezes, the chest
   function afterRecord(rec) {
-    if (rec.freezeEarned) { Sound.freeze(); toast('🧊 Freeze earned! It covers one play for free, any time this session.', 4200); pulse('freezes'); }
+    if (rec.freezeEarned) { Sound.freeze(); toast('🧊 Freeze earned! It covers three plays for free, any time this session.', 4200); pulse('freezes'); }
     (rec.rolls || []).forEach(function (r) {
       if (r.won && r.item) state.unrevealed[r.item] = (state.unrevealed[r.item] || 0) + 1;
       rollQueue.push(r);
@@ -933,8 +965,10 @@
   function pulse(id) { var e = $(id); e.classList.remove('pulse'); void e.offsetWidth; e.classList.add('pulse'); }
 
   /** He just played: say what it cost him. */
+  /** Plays still covered by freezes: the one under way plus three for each whole freeze in hand. */
+  function freePlays() { var s = progress.store; return (s.freezePlays || 0) + s.freezes * Progress.FREEZE_PLAYS; }
   function showPlayResult(r) {
-    if (r.frozen) { Sound.freeze(); toast('🧊 Freeze used. Focus stays at ' + Progress.fmt(r.kept) + '.', 2800); pulse('focus'); }
+    if (r.frozen) { Sound.freeze(); toast('🧊 Free play' + (r.playsLeft ? ' (' + r.playsLeft + ' more after this)' : ' (the last of this freeze)') + '. Focus stays at ' + Progress.fmt(r.kept) + '.', 2800); pulse('focus'); }
     else if (r.lost > 0) { Sound.focusLost(); toast('Playing cost ' + Progress.fmt(r.lost) + ' Focus. You still have ' + Progress.fmt(r.now) + '.', 3200); pulse('focus'); }
     updateHud();
   }
@@ -985,16 +1019,16 @@
     $('miniText').textContent = Progress.fmt(into) + ' / ' + nextBonus.every + ' to the next bonus roll';
     $('miniFocus').querySelector('b').textContent = Progress.fmt(f.count);
 
-    var fz = s.freezes, line = $('freezes'), miniF = $('miniFreeze');
+    var fz = freePlays(), line = $('freezes'), miniF = $('miniFreeze');
     var more = Progress.FREEZE_EVERY - (s.streak % Progress.FREEZE_EVERY);
     if (fz > 0) {
       line.className = 'freezes ready';
-      line.textContent = '🧊 ' + (fz > 1 ? fz + ' freezes ready' : 'Freeze ready') + ': ' + (fz > 1 ? 'each covers one play' : 'it covers one play') + ' for free, any time this session. ' + more + ' more in a row earns another.';
+      line.textContent = '🧊 ' + fz + ' free play' + (fz > 1 ? 's' : '') + ' ready, any time this session. ' + more + ' more in a row earns a freeze of three more.';
       miniF.textContent = '🧊 ×' + fz;
       miniF.hidden = false;
     } else {
       line.className = 'freezes';
-      line.textContent = '🧊 ' + more + ' more in a row earns a freeze, which covers one play for free.';
+      line.textContent = '🧊 ' + more + ' more in a row earns a freeze, which covers three plays for free.';
       miniF.hidden = true;
     }
   }
@@ -1032,7 +1066,7 @@
     go.textContent = owned ? 'Play it now' : 'None left';
     $('ciCost').textContent = busy ? 'Wait for what is happening on the machine to finish.'
       : !owned ? 'Win another by keeping your Focus up.'
-      : s.freezes > 0 ? '🧊 Uses a freeze, so your Focus stays at ' + Progress.fmt(s.focus.count) + '.'
+      : freePlays() > 0 ? '🧊 A free play, so your Focus stays at ' + Progress.fmt(s.focus.count) + '.'
       : s.focus.count ? 'This costs ' + Progress.fmt(Math.min(Progress.PLAY_COST, s.focus.count)) + ' Focus.' : '';
   }
 
@@ -1085,6 +1119,7 @@
     Sound.slot();
     rebuild({});
     if (state.queued) { var n = state.queued; state.queued = 0; setTimeout(function () { placeQueued(n); }, 1000); }
+    if (!phoneNow() && !params.has('stay')) setTimeout(function () { if (state.view === 'machine' && !state.running && state.phase !== 'finale' && !state.brk) setView('study'); }, 2600);
     updateHud();
   }
 
@@ -1114,13 +1149,15 @@
     if (!ctrl.ready() || state.answered) return;
     state.answered = true;
     var res = ctrl.check(); ctrl.reveal(res);
-    var rec = progress.record(q, res.correct);
+    var rec = progress.record(q, res.correct, res.partial);
     afterRecord(rec);
+    state.sinceBreak++;
 
     var fb = $('feedback'), card = $('card'); fb.hidden = false; fb.className = res.correct ? 'good' : 'badfb';
     card.classList.remove('enter'); card.classList.add(res.correct ? 'win' : 'lose');
     var verdict;
     if (res.correct) verdict = rec.closed ? 'Case closed! Solved twice, so it stays solved.' : rec.wasCold ? 'Cracked it! One more solve next session closes this case.' : 'Elementary! Correct.';
+    else if (rec.partialGain) verdict = 'Close: ' + res.partial.found + ' of ' + res.partial.total + ' found. Focus +' + Progress.fmt(rec.partialGain) + '.';
     else verdict = 'Not quite. Study the clue below.' + (rec.focusLost ? ' Focus −' + Progress.fmt(rec.focusLost) + '.' : '');
     $('verdict').textContent = verdict;
     $('coldNote').hidden = res.correct;
@@ -1347,7 +1384,7 @@
     var fm = flickable();
     if (!stageHidden()) renderer.draw({
       track: track, pg: state.brk && state.brk.pg, flick: state.brk ? null : (fm || restingMarble()), locked: !fm || now < state.readyAt,
-      aim: state.aim, preview: aimPreview(), lead: state.running ? leadMarble() : null, pulse: promptPulses(),
+      kept: keepOn() ? machine().kept : null, aim: state.aim, preview: aimPreview(), lead: state.running ? leadMarble() : null, pulse: promptPulses(),
       grand: machine().complete && machine().playFrom === 0
     }, now);
     requestAnimationFrame(frame);
@@ -1357,8 +1394,10 @@
   function init() {
     renderer = new Renderer($('world'), { lofi: params.get('lofi') === '1', reduced: reduced, quality: params.has('q0') ? 0 : null });
     machine();
+    // loaded in the middle of a run: that flick was spent (and paid for) before it played, so it does not come back
+    (function () { var m0 = machine(); if (m0.spent) { m0.spent = false; m0.playFrom = m0.complete ? 0 : null; progress.save(); } })();
     world = new Phys.World();
-    track = new Track(world, machine(), { emit: onEvent, now: nowS() });
+    track = new Track(world, machine(), { emit: onEvent, now: nowS() }); wireTrack();
     renderer.setTheme(progress.store.cases);
     renderer.tweenFrom(track, {}, nowS(), { fresh: true });
     state.readyAt = nowS() + 1.4;
@@ -1398,6 +1437,7 @@
       this.setAttribute('aria-expanded', open);
       if (open) { state.newStatements = 0; dossierKey = ''; renderDossier(); }
     });
+    $('backStudy').addEventListener('click', function () { setView('study'); });
     $('tabStudy').addEventListener('click', function () { setView('study'); });
     $('tabMachine').addEventListener('click', function () { setView('machine'); });
     $('playNow').addEventListener('click', function () { setView('machine'); });
@@ -1419,7 +1459,7 @@
       }
     });
     document.addEventListener('keydown', function (e) {
-      if ((e.key === 'f' || e.key === 'F') && canFlick()) { var ex = track.exitFor(machine().playFrom); beginRun(ex.dir * 4.5, -2.5); return; }
+      if ((e.key === 'f' || e.key === 'F') && state.view === 'machine' && canFlick()) { var ex = track.exitFor(machine().playFrom); beginRun(ex.dir * 4.5, -2.5); return; }
       if (e.key !== 'Enter' || e.target.tagName === 'BUTTON' || state.sect) return;
       if (!$('check').hidden && !$('check').disabled) checkAnswer(); else if (!$('next').hidden) showQuestion();
     });
