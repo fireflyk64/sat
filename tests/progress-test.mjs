@@ -1,6 +1,7 @@
 // Simulated play across sessions: do misses really come back, in new sessions, until they are truly learned?
 import '../js/progress.js';
 import '../js/track.js';
+import '../js/rewards.js';
 
 let failures = 0;
 function check(name, ok, extra = '') {
@@ -13,10 +14,10 @@ const bank = Array.from({ length: 2400 }, (_, i) => ({ id: 'q' + i, skill: SKILL
 
 // A pretend browser: localStorage and cookies that survive "closing the tab"
 function browser() {
-  const b = { ls: null, cookie: '' };
+  const b = { ls: null, cookie: '', jar: {} };
   b.io = {
     read: () => b.ls, write: s => { b.ls = s; }, clear: () => { b.ls = null; },
-    readCookie: () => b.cookie, writeCookie: v => { b.cookie = v; }
+    readCookie: n => n ? (b.jar[n] || '') : b.cookie, writeCookie: (v, n) => { if (n) b.jar[n] = v; else b.cookie = v; }
   };
   return b;
 }
@@ -186,6 +187,145 @@ const clock0 = () => ({ t: Date.UTC(2026, 0, 1) });
   m.complete = true;
   const banked = p2.slotPiece(KINDS);
   check('a right answer during the finale is banked for the next machine, not lost', banked === null && m.pending === 1);
+}
+
+// --- Focus: the reward for studying rather than playing
+{
+  const fresh = (rolls = [0.99]) => {
+    const b = browser(), clock = clock0(); let i = 0;
+    const p = new Progress({ io: b.io, now: () => clock.t, rand: () => rolls[Math.min(i++, rolls.length - 1)] });
+    return { b, clock, p };
+  };
+  const answer = (p, n, right = true) => { const out = []; for (let k = 0; k < n; k++) out.push(p.record(bank[(k * 7) % 2400], right)); return out; };
+
+  let { p } = fresh();
+  answer(p, 9);
+  check('Focus counts correct answers', p.store.focus.count === 9 && p.store.focus.bonus === 9);
+  const miss = p.record(bank[50], false);
+  const near = (a, b) => Math.abs(a - b) < 1e-6;
+  check('a miss takes off a third of a point, and does not break Focus', near(p.store.focus.count, 9 - 1 / 3) && near(p.store.focus.bonus, 9 - 1 / 3) && miss.rolls.length === 0, Progress.fmt(p.store.focus.count));
+  p.record(bank[51], true);
+  check('thirds never drift, and show as fractions', near(p.store.focus.count, 9 + 2 / 3) && Progress.fmt(p.store.focus.count) === '9⅔' && Progress.fmt(1 / 3) === '⅓' && Progress.fmt(0) === '0' && Progress.fmt(12) === '12');
+  ({ p } = fresh());
+  p.record(bank[1], false);
+  check('Focus never goes below zero', p.store.focus.count === 0 && p.store.focus.bonus === 0);
+
+  // a blind guess on four choices must get nowhere
+  check('the penalty makes a blind guess on four choices worth exactly nothing', near(0.25 * 1 - 0.75 * Progress.MISS_PENALTY, 0), `1/4 - 3/4 x ${Progress.MISS_PENALTY.toFixed(3)}`);
+  const play = (hitRate, n, seed) => {
+    const b = browser(), clock = clock0(), g = seeded(seed), dice = seeded(seed + 1);
+    const q = new Progress({ io: b.io, now: () => clock.t, rand: dice });
+    let rolls = 0, items = 0;
+    for (let k = 0; k < n; k++) { const r = q.record(bank[k % 2400], g() < hitRate); rolls += r.rolls.length; items += r.rolls.filter(x => x.won).length; }
+    return { rolls, items, count: q.store.focus.count };
+  };
+  let guessRolls = 0, honestRolls = 0;
+  for (let k = 0; k < 10; k++) { guessRolls += play(0.25, 600, 100 + k * 7).rolls; honestRolls += play(0.8, 600, 300 + k * 7).rolls; }
+  check('600 questions of pure guessing earn almost nothing next to knowing 80% of the answers', guessRolls * 8 < honestRolls, `${guessRolls / 10} rolls guessing, ${honestRolls / 10} rolls studying`);
+
+  // no re-rolling a goal by dipping under it
+  ({ p } = fresh([0.99]));
+  answer(p, 10);
+  const once = p.record(bank[70], false);
+  const again = p.record(bank[71], true);
+  check('dropping below a goal and climbing back does not roll again', near(p.store.focus.bonus, 10 + 2 / 3) && once.rolls.length === 0 && again.rolls.length === 0, Progress.fmt(p.store.focus.bonus));
+  ({ p } = fresh([0.99]));
+  answer(p, 9); p.record(bank[72], false);
+  const cross = p.record(bank[73], true);
+  check('climbing past a goal with a fraction still rolls', near(p.store.focus.bonus, 9 + 2 / 3) && cross.rolls.length === 0);
+  const pass = p.record(bank[74], true);
+  check('...the moment it gets there', pass.rolls.length === 1 && pass.rolls[0].tier === 'bonus', Progress.fmt(p.store.focus.bonus));
+
+  ({ p } = fresh([0.99]));
+  let r = answer(p, 10).at(-1);
+  check('10 correct: a big bonus roll', r.rolls.length === 1 && r.rolls[0].tier === 'bonus' && r.rolls[0].chance === 0.33);
+  check('a losing roll keeps the counter climbing', !r.rolls[0].won && p.store.focus.bonus === 10 && r.rolls[0].next === 20);
+  r = answer(p, 10).at(-1);
+  check('20 correct: rolls for big bonus and rare together', r.rolls.map(x => x.tier).join() === 'bonus,rare' && r.rolls[1].chance === 0.25);
+
+  ({ p } = fresh([0.5, 0.2, 0.32, 0.0]));           // first roll loses (.5), then .2 wins the tier at 20
+  answer(p, 10);
+  check('0.5 loses a 33% roll', Object.keys(p.store.chest).length === 0);
+
+  ({ p } = fresh([0.32, 0.0, 0.99]));
+  r = answer(p, 10).at(-1);
+  check('a win at just under the chance pays out', r.rolls[0].won && REWARDS[r.rolls[0].item].tier === 'bonus' && p.store.chest[r.rolls[0].item] === 1);
+  check('winning resets that counter only', p.store.focus.bonus === 0 && p.store.focus.rare === 10 && p.store.focus.ultra === 10);
+  check('...and Focus itself carries on', p.store.focus.count === 10);
+
+  ({ p } = fresh([0.99]));
+  p.store.focus = { count: 99, bonus: 9, rare: 19, ultra: 99 }; p.rand = () => 0.09;
+  r = p.record(bank[1], true);
+  check('100 correct: an ultra rare roll at 10%', r.rolls.some(x => x.tier === 'ultra' && x.chance === 0.1 && x.won));
+  const ultraId = r.rolls.find(x => x.tier === 'ultra').item;
+  check('...which pays out an ultra rare item', REWARDS[ultraId].tier === 'ultra');
+  p.store.focus = { count: 99, bonus: 1, rare: 1, ultra: 99 }; p.rand = () => 0.11;
+  r = p.record(bank[2], true);
+  check('0.11 misses the 10% ultra roll', r.rolls.length === 1 && !r.rolls[0].won && p.store.focus.ultra === 100);
+
+  // the odds over many rolls
+  let wins = 0, N = 20000; const rnd = seeded(12345);
+  for (let i = 0; i < N; i++) if (rnd() < Progress.TIERS[0].chance) wins++;
+  check('chance values are what you asked for', Progress.TIERS.map(t => t.every + ':' + t.chance).join() === '10:0.33,20:0.25,100:0.1' && Math.abs(wins / N - 0.33) < 0.02, Progress.TIERS.map(t => t.every + ':' + t.chance).join(' '));
+
+  // playing
+  ({ p } = fresh([0.99]));
+  answer(p, 4);
+  const reset = p.notePlay();
+  check('playing with no freeze resets Focus', reset.reset && reset.lost === 4 && p.store.focus.count === 0);
+
+  // freezes
+  ({ p } = fresh([0.99]));
+  r = answer(p, 5).at(-1);
+  check('5 correct in a row earns a freeze', r.freezeEarned && p.store.freezes.length === 1 && p.store.freezes[0] === 5);
+  const kept = p.notePlay();
+  check('playing with a freeze keeps Focus and spends the freeze', kept.frozen && kept.kept === 5 && p.store.focus.count === 5 && p.store.freezes.length === 0);
+  check('...and the counters are untouched', p.store.focus.bonus === 5 && p.store.focus.rare === 5);
+
+  ({ p } = fresh([0.99]));
+  answer(p, 5);
+  const ages = []; for (let k = 0; k < 5; k++) { const x = p.record(bank[100 + k], false); ages.push(p.store.freezes.length + (x.melted ? 'm' : '')); }
+  check('an unused freeze melts after 5 questions', ages.join() === '1,1,1,1,0m', ages.join());
+  check('wrong answers age a freeze too', Math.abs(p.store.focus.count - (5 - 5 / 3)) < 1e-6, Progress.fmt(p.store.focus.count));
+
+  ({ p } = fresh([0.99]));
+  answer(p, 4); p.record(bank[60], false); answer(p, 4);
+  check('a miss breaks the "5 in a row" for a freeze', p.store.freezes.length === 0 && Math.abs(p.store.focus.count - (8 - 1 / 3)) < 1e-6);
+  answer(p, 1);
+  check('...and the next 5 in a row earns it', p.store.freezes.length === 1);
+
+  ({ p } = fresh([0.99]));
+  for (let k = 1; k <= 25; k++) { p.record(bank[k], true); if (k % 5 === 0) { const held = p.store.freezes.length; if (held > 1 && p.store.freezes[0] <= 0) failures++; } }
+  check('a steady run keeps one fresh freeze ready, so a break is always available every 5', p.store.freezes.length === 1 && p.store.freezes[0] === 5);
+  p.store.freezes = [5, 5, 5]; p.store.streak = 4; p.record(bank[0], true);
+  check('holding is capped at a few', p.store.freezes.length === 3);
+
+  // the chest and its cookie
+  const box = fresh([0.0, 0.0, 0.99]);
+  answer(box.p, 10);
+  const got = Object.keys(box.p.store.chest)[0];
+  check('won items land in the chest and are remembered as found', box.p.store.chest[got] === 1 && box.p.store.found[got] === 1);
+  check('the chest is saved in its own cookie', box.b.jar.lgc_chest === `${got}:1|${got}`, box.b.jar.lgc_chest);
+  check('using an item takes one out', box.p.useItem(got) && box.p.store.chest[got] === 0 && !box.p.useItem(got));
+  check('...and it stays found in the cookie', box.b.jar.lgc_chest === `|${got}`, box.b.jar.lgc_chest);
+
+  const wiped = fresh([0.0, 0.0, 0.99]);
+  answer(wiped.p, 10);
+  const lost = Object.keys(wiped.p.store.chest)[0];
+  wiped.b.ls = null;
+  const back = open(wiped.b, wiped.clock);
+  check('unlocks survive a wiped localStorage, via the cookie', back.store.chest[lost] === 1 && back.store.found[lost] === 1 && back.restoredChest);
+  back.reset();
+  check('reset clears the chest cookie too', !wiped.b.jar.lgc_chest && back.coldCount() === 0);
+
+  const survive = browser(), clock = clock0();
+  let q = open(survive, clock);
+  answer(q, 7);
+  clock.t += 86400000; q = open(survive, clock);
+  check('Focus carries across sessions: only playing resets it', q.store.focus.count === 7);
+  const oldSave = browser(); oldSave.ls = JSON.stringify({ v: 2, items: {}, skills: {}, total: 3, qn: 3, cold: {}, closed: 0, streak: 1, bestStreak: 2, score: 5, bestRun: 2, cases: 0, sessions: 1, sinceCold: 1, machine: null });
+  const up = open(oldSave, clock);
+  check('saves from before this feature pick it up cleanly', up.store.focus.count === 0 && Array.isArray(up.store.freezes) && up.store.total === 3);
 }
 
 process.exit(failures ? 1 : 0);

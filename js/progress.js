@@ -14,27 +14,43 @@
 (function (root) {
   'use strict';
 
-  var KEY = 'sat-grey-cells-v1', COOKIE = 'lgc_cold', COOKIE_MAX = 3600, COOKIE_DAYS = 400;
+  var KEY = 'sat-grey-cells-v1', COOKIE = 'lgc_cold', COOKIE_CHEST = 'lgc_chest', COOKIE_MAX = 3600, COOKIE_DAYS = 400;
   var DAY = 86400000, INTERVALS = [0, 1, 3, 7, 14, 30].map(function (d) { return d * DAY; });
   var SESSION_GAP = 30 * 60000;      // this long without an answer counts as a new session
   var RESPACE_MIN = 4, RESPACE_RANGE = 3;
   var WINS_TO_CLOSE = 2;
+
+  /*
+   * Focus: earned by correct answers since he last played. A right answer adds 1 and a miss takes away a third; playing
+   * resets it. With four choices a blind guess is right 1 time in 4, so guessing nets exactly zero: 1/4 - 3/4 x 1/3 = 0.
+   * Each tier has its own counter and its own next goal. Reaching the goal rolls: a win pays out and resets that counter
+   * only, and a loss moves the goal up by `every`. A goal rolls once, so dropping below it and climbing back gains nothing.
+   */
+  var TIERS = [
+    { id: 'bonus', label: 'Big bonus', every: 10, chance: 0.33 },
+    { id: 'rare', label: 'Rare', every: 20, chance: 0.25 },
+    { id: 'ultra', label: 'Ultra rare', every: 100, chance: 0.10 }
+  ];
+  /* Freezes: every 5 correct IN A ROW earns one. Playing while holding one keeps Focus. Each melts after 5 questions. */
+  var FREEZE_EVERY = 5, FREEZE_LIFE = 5, FREEZE_MAX = 3;
+  var MISS_PENALTY = 1 / 3;
+  function thirds(x) { return Math.round(x * 3) / 3; }     // no rounding drift, however long the streak
 
   function browserIO() {
     return {
       read: function () { try { return root.localStorage.getItem(KEY); } catch (e) { return null; } },
       write: function (s) { try { root.localStorage.setItem(KEY, s); } catch (e) { /* private mode, quota */ } },
       clear: function () { try { root.localStorage.removeItem(KEY); } catch (e) { /* ignore */ } },
-      readCookie: function () {
+      readCookie: function (name) {
         try {
-          var m = new RegExp('(?:^|; )' + COOKIE + '=([^;]*)').exec(root.document.cookie);
+          var m = new RegExp('(?:^|; )' + (name || COOKIE) + '=([^;]*)').exec(root.document.cookie);
           return m ? decodeURIComponent(m[1]) : '';
         } catch (e) { return ''; }
       },
-      writeCookie: function (v) {
+      writeCookie: function (v, name) {
         try {
           var path = root.location.pathname.replace(/[^/]*$/, '') || '/';
-          root.document.cookie = COOKIE + '=' + encodeURIComponent(v) + '; max-age=' + (v ? COOKIE_DAYS * 86400 : 0) + '; path=' + path + '; SameSite=Lax';
+          root.document.cookie = (name || COOKIE) + '=' + encodeURIComponent(v) + '; max-age=' + (v ? COOKIE_DAYS * 86400 : 0) + '; path=' + path + '; SameSite=Lax';
         } catch (e) { /* file:// and friends */ }
       }
     };
@@ -44,8 +60,24 @@
     return {
       v: 2, items: {}, skills: {}, total: 0, qn: 0, cold: {}, closed: 0,
       streak: 0, bestStreak: 0, score: 0, bestRun: 0, cases: 0, sessions: 0, sinceCold: 99,
-      machine: null
+      machine: null,
+      focus: { count: 0, bonus: 0, rare: 0, ultra: 0, next: {} }, freezes: [], chest: {}, found: {}
     };
+  }
+
+  /* "flood:2,sand:1|flood,sand,moon" = what is in the chest | everything ever found */
+  function packChest(s) {
+    var have = Object.keys(s.chest).filter(function (k) { return s.chest[k] > 0; }).map(function (k) { return k + ':' + s.chest[k]; });
+    return have.join(',') + '|' + Object.keys(s.found).join(',');
+  }
+  function unpackChest(text) {
+    var out = { chest: {}, found: {} }, parts = String(text || '').split('|');
+    (parts[0] || '').split(',').filter(Boolean).forEach(function (kv) {
+      var m = /^([a-z]+):(\d+)$/.exec(kv);
+      if (m) { out.chest[m[1]] = +m[2]; out.found[m[1]] = 1; }
+    });
+    (parts[1] || '').split(',').filter(Boolean).forEach(function (k) { if (/^[a-z]+$/.test(k)) out.found[k] = 1; });
+    return out;
   }
 
   /** opts: { io, now(), rand() } are injectable for tests. */
@@ -56,6 +88,7 @@
     this.rand = opts.rand || Math.random;
     this.store = this._load();
     this.restoredFromCookie = this._restored || false;
+    this.restoredChest = this._restoredChest || false;
     this.beginSession();
   }
 
@@ -67,6 +100,11 @@
     var b = blank(), k;
     for (k in b) if (s[k] === undefined) s[k] = b[k];
     if (needsMigration) this._migrate(s);
+    // the chest also survives a wiped localStorage, through its own cookie
+    if (!Object.keys(s.found).length) {
+      var saved = unpackChest(this.io.readCookie(COOKIE_CHEST));
+      if (Object.keys(saved.found).length) { s.chest = saved.chest; s.found = saved.found; this._restoredChest = true; }
+    }
     return s;
   };
 
@@ -103,10 +141,13 @@
       out += (out ? '|' : '') + ids[i];
     }
     if (out !== this._lastCookie) { this.io.writeCookie(out); this._lastCookie = out; }
+    var pack = packChest(this.store);
+    if (pack !== this._lastChest) { this.io.writeCookie(pack === '|' ? '' : pack, COOKIE_CHEST); this._lastChest = pack; }
   };
 
   Progress.prototype.reset = function () {
     this.io.clear(); this.io.writeCookie(''); this._lastCookie = '';
+    this.io.writeCookie('', COOKIE_CHEST); this._lastChest = '|';
     this.store = blank();
     this.beginSession();
   };
@@ -226,8 +267,84 @@
       res.repeatMiss = !!old;
     }
     res.streak = s.streak;
+    this._focus(res, correct);
     this.save();
     return res;
+  };
+
+  // ---------------------------------------------------------------- Focus, freezes, the chest
+  Progress.prototype._rewards = function () { return this.rewards || root.REWARDS || {}; };
+
+  Progress.prototype._focus = function (res, correct) {
+    var s = this.store, f = s.focus, self = this;
+    // freezes age with every question answered, right or wrong
+    var before = s.freezes.length;
+    s.freezes = s.freezes.map(function (n) { return n - 1; }).filter(function (n) { return n > 0; });
+    res.melted = before - s.freezes.length;
+    res.rolls = [];
+    if (!correct) {
+      res.focusLost = thirds(f.count - Math.max(0, thirds(f.count - MISS_PENALTY)));
+      f.count = Math.max(0, thirds(f.count - MISS_PENALTY));
+      TIERS.forEach(function (t) { f[t.id] = Math.max(0, thirds(f[t.id] - MISS_PENALTY)); });
+      return;
+    }
+    f.count = thirds(f.count + 1);
+    var goals = f.next || (f.next = {});
+    TIERS.forEach(function (t) {
+      f[t.id] = thirds(f[t.id] + 1);
+      var goal = goals[t.id] || t.every;
+      if (f[t.id] < goal - 1e-6) return;
+      var won = self.rand() < t.chance, roll = { tier: t.id, label: t.label, chance: t.chance, at: f[t.id], won: won, next: goal + t.every };
+      if (won) { roll.item = self._grant(t.id); f[t.id] = 0; roll.next = t.every; goals[t.id] = t.every; }
+      else goals[t.id] = goal + t.every;
+      res.rolls.push(roll);
+    });
+    if (s.streak % FREEZE_EVERY === 0) {
+      s.freezes.push(FREEZE_LIFE);
+      if (s.freezes.length > FREEZE_MAX) s.freezes.shift();
+      res.freezeEarned = true;
+    }
+  };
+
+  /** Pick an item from a tier: anything goes, but one not found yet is twice as likely. */
+  Progress.prototype._grant = function (tier) {
+    var all = this._rewards(), s = this.store;
+    var ids = Object.keys(all).filter(function (k) { return all[k].tier === tier; });
+    if (!ids.length) return null;
+    var weights = ids.map(function (k) { return s.found[k] ? 1 : 2; }), total = weights.reduce(function (a, b) { return a + b; }, 0);
+    var roll = this.rand() * total, i = 0;
+    while (i < ids.length - 1 && roll >= weights[i]) { roll -= weights[i]; i++; }
+    s.chest[ids[i]] = (s.chest[ids[i]] || 0) + 1;
+    s.found[ids[i]] = 1;
+    return ids[i];
+  };
+
+  /** He played: a freeze is spent if he has one (soonest to melt first), otherwise Focus goes back to zero. */
+  Progress.prototype.notePlay = function () {
+    var s = this.store, f = s.focus, count = f.count;
+    if (s.freezes.length) {
+      s.freezes.sort(function (a, b) { return a - b; }).shift();
+      this.save();
+      return { frozen: true, kept: count, left: s.freezes.length };
+    }
+    s.focus = { count: 0, bonus: 0, rare: 0, ultra: 0, next: {} };
+    this.save();
+    return { reset: true, lost: count };
+  };
+
+  /** How far a tier's bar is toward its next goal: 0 to `every`. */
+  Progress.prototype.tierProgress = function (t) {
+    var f = this.store.focus, goal = (f.next && f.next[t.id]) || t.every;
+    return Math.max(0, thirds(f[t.id] - (goal - t.every)));
+  };
+
+  /** Take one item out of the chest to play with. */
+  Progress.prototype.useItem = function (id) {
+    var c = this.store.chest;
+    if (!(c[id] > 0)) return false;
+    c[id]--;
+    this.save();
+    return true;
   };
 
   // ---------------------------------------------------------------- the machine's recipe
@@ -305,5 +422,14 @@
   };
 
   Progress.WINS_TO_CLOSE = WINS_TO_CLOSE;
+  Progress.TIERS = TIERS;
+  Progress.FREEZE_EVERY = FREEZE_EVERY;
+  Progress.FREEZE_LIFE = FREEZE_LIFE;
+  Progress.MISS_PENALTY = MISS_PENALTY;
+  /** 13.6667 -> "13⅔" */
+  Progress.fmt = function (n) {
+    var w = Math.floor(n + 1e-6), r = n - w, f = r > 0.6 ? '⅔' : r > 0.3 ? '⅓' : '';
+    return (w || !f ? String(w) : '') + f;
+  };
   root.Progress = Progress;
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -35,8 +35,20 @@
     <div id="announce" class="announce" role="status" aria-live="polite"><b id="announceTitle"></b><span id="announceBlurb"></span></div>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
+    <div id="breakBar" class="breakbar" role="status">
+      <div class="brow"><span id="breakIcon" aria-hidden="true"></span> <b id="breakName"></b> <span id="breakHow" class="bhow"></span> <span id="breakStatus" class="bstat"></span>
+        <span class="bright"><b id="breakTime"></b> <button id="breakEnd" class="linkish">End break</button></span></div>
+      <div class="bbar"><span id="breakFill"></span></div>
+    </div>
+
     <div class="dock">
       <div id="hint" class="hint"></div>
+      <div id="miniFocus" class="minifocus" aria-hidden="true">
+        <span class="mf">🎯 Focus <b>0</b></span>
+        <span class="mbar"><span id="miniFill"></span></span>
+        <span id="miniText" class="mt"></span>
+        <span id="miniFreeze" class="mz" hidden></span>
+      </div>
       <div id="streak" class="streak" aria-label="Streak of correct answers">
         <span class="sn"><b id="streakN">0</b><i>in a row</i></span>
         <span class="sbar"><span id="streakFill" class="fill"></span></span>
@@ -55,6 +67,7 @@
   </section>
 
   <section class="panel">
+    <div id="rollBox" class="rollbox" role="status" aria-live="polite" hidden><div id="rollHead" class="rhead"></div><div id="rollResult" class="rresult"></div></div>
     <header>
       <div class="titlerow">
         <h1>Little Grey Cells</h1>
@@ -68,7 +81,25 @@
       <div class="coldtext"><b><span id="coldN">0</span> <span id="coldWord">cold cases</span> open</b> · <span id="closedN">0</span> closed<small id="coldMsg"></small></div>
     </div>
 
-    <div id="meters" class="meters" aria-label="Skill progress"></div>
+    <section id="focus" class="focus" aria-label="Focus progress">
+      <div class="fhead"><b>🎯 Focus: <span id="focusN">0</span></b><span>since you last played. A right answer adds 1, a miss takes ⅓ off, so guessing gets you nowhere.</span></div>
+      <div id="fb-bonus" class="frow t-bonus"><span class="fname">Big bonus</span><span class="fbar"><span class="ffill"></span></span><span class="fcount"></span><span class="fodds">33%</span></div>
+      <div id="fb-rare" class="frow t-rare"><span class="fname">Rare</span><span class="fbar"><span class="ffill"></span></span><span class="fcount"></span><span class="fodds">25%</span></div>
+      <div id="fb-ultra" class="frow t-ultra"><span class="fname">Ultra rare</span><span class="fbar"><span class="ffill"></span></span><span class="fcount"></span><span class="fodds">10%</span></div>
+      <div id="freezes" class="freezes"></div>
+    </section>
+
+    <section class="chest" aria-label="Chest of saved items">
+      <button id="chestToggle" class="chead" type="button" aria-expanded="false" aria-controls="chestBody"><b>Chest</b> <span id="chestCount"></span><i class="chevron" aria-hidden="true"></i></button>
+      <div id="chestBody" hidden>
+        <div id="chestTiles" class="tiles"></div>
+        <div id="chestInfo" class="chestinfo" hidden>
+          <b id="ciName"></b>
+          <p id="ciBlurb"></p>
+          <div class="cirow"><button id="ciGo" class="primary"></button><span id="ciCost"></span></div>
+        </div>
+      </div>
+    </section>
 
     <article id="card" class="card">
       <div id="coldStamp" class="coldstamp" hidden></div>
@@ -87,13 +118,17 @@
         <p id="src" class="src"></p>
       </div>
     </article>
+    <div id="meters" class="meters" aria-label="Skill progress"></div>
     <footer>Quotations from public-domain Agatha Christie texts via Project Gutenberg. Your progress and misses are saved only in this browser.
       <button id="reset" class="linkish">Reset progress</button></footer>
   </section>
 </div>
 <script src="js/physics.js"></script>
 <script src="js/track.js"></script>
+<script src="js/rewards.js"></script>
 <script src="js/progress.js"></script>
+<script src="js/sand.js"></script>
+<script src="js/playground.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/render.js"></script>
 <script src="js/sound.js"></script>

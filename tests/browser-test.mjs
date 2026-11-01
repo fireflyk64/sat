@@ -63,7 +63,14 @@ async function shot(name) { if (!SHOTS) return; const r = await send('Page.captu
 const mouse = (type, x, y, buttons = 1) => send('Input.dispatchMouseEvent', { type, x, y, button: type === 'mouseMoved' ? 'none' : 'left', buttons: type === 'mouseReleased' ? 0 : buttons, clickCount: 1 });
 async function clickAt(x, y) { await mouse('mouseMoved', x, y, 0); await mouse('mousePressed', x, y); await mouse('mouseReleased', x, y); }
 async function clickEl(expr) {
-  const b = await js(`(()=>{const e=${expr}; e.scrollIntoView({block:'center'}); const r=e.getBoundingClientRect(); return {x:r.left+r.width/2,y:r.top+r.height/2}})()`);
+  // scroll to it and wait for it to stop moving: the panel may still be finishing a smooth scroll
+  await js(`(${expr}).scrollIntoView({block:'center'})`);
+  let b = null;
+  for (let i = 0; i < 30; i++) {
+    const r = await js(`(()=>{const r=(${expr}).getBoundingClientRect(); return {x:r.left+r.width/2,y:r.top+r.height/2}})()`);
+    if (b && Math.abs(b.x - r.x) < 0.5 && Math.abs(b.y - r.y) < 0.5) break;
+    b = r; await sleep(120);
+  }
   await clickAt(b.x, b.y);
 }
 // Real clicks on whichever multiple-choice answer we want
@@ -195,6 +202,7 @@ if (from !== 0) {
   await runToBell(500);
 }
 check('running the whole machine in one go triggers the finale', (await js(`__sat.state.phase`)) === 'finale');
+await js('__sat.advance(4)');                // the last few dominoes finish falling as the finale begins
 check('every domino in the machine went down', await js(`(()=>{let f=0,t=0;__sat.track.sections.forEach(s=>s.dominoes.forEach(d=>{t++;if(d.userData.fell||d.userData.dissolve)f++}));return f/t})()`) >= 0.93, await js(`(()=>{let f=0,t=0;__sat.track.sections.forEach(s=>s.dominoes.forEach(d=>{t++;if(d.userData.fell||d.userData.dissolve)f++}));return f+'/'+t})()`));
 check('the case-closed card appears', await js(`document.getElementById('finale').classList.contains('show')`));
 await sleep(1200);
@@ -209,11 +217,118 @@ const nextUp = await js(`JSON.stringify({ phase: __sat.state.phase, pieces: __sa
 check('next machine starts small and locked again', nextUp === JSON.stringify({ phase: 'play', pieces: 1, flick: false, cases: casesBefore }), nextUp);
 check('the next machine is bigger than the last', (await js('__sat.machine().target')) > target0, `${target0} -> ${await js('__sat.machine().target')}`);
 
-// ---------------------------------------------------------------------------------------------------------- 5: resetting
+// ------------------------------------------------------------------------------------- 5: Focus, freezes and the chest
 await js(`window.confirm=()=>true`);
 await clickEl(`document.getElementById('reset')`);
 await sleep(150);
-check('reset wipes progress and the miss cookie', (await js('__sat.progress.store.total')) === 0 && !(await js('document.cookie')).includes('lgc_cold'));
+await open('?q=vocab-78342-1164-0&noscale=1');
+const focusBar = (t) => js(`(()=>{const r=document.getElementById('fb-${t}');return {count:r.querySelector('.fcount').textContent, width:parseFloat(r.querySelector('.ffill').style.width), visible:r.getBoundingClientRect().height>0}})()`);
+check('the chest starts collapsed', await js(`document.getElementById('chestBody').hidden && document.getElementById('chestToggle').getAttribute('aria-expanded')==='false'`));
+check('Focus progress bars are on show from the start', (await focusBar('bonus')).visible && (await focusBar('rare')).visible && (await focusBar('ultra')).visible);
+await answer(true);
+check('a right answer moves every Focus bar', (await focusBar('bonus')).count === '1 / 10' && (await focusBar('rare')).count === '1 / 20' && (await focusBar('ultra')).count === '1 / 100');
+check('the bar actually fills', (await focusBar('bonus')).width === 10, (await focusBar('bonus')).width);
+await nextChoiceQuestion();
+await answer(false);
+check('a miss takes ⅓ off Focus, and the bar and the verdict both show it', (await focusBar('bonus')).count === '⅔ / 10' && (await js(`document.getElementById('focusN').textContent`)) === '⅔' && (await js(`document.getElementById('verdict').textContent`)).includes('Focus −⅓'), await js(`document.getElementById('verdict').textContent`));
+
+// no freeze yet: a flick costs him the Focus
+await ready();
+await js(`__sat.track.marbleFor(__sat.machine().playFrom) && 0`);
+const dirF = await js('__sat.track.exitFor(__sat.machine().playFrom).dir');
+check('the page warns what a flick will cost', (await js(`document.getElementById('hint').textContent`)).includes('resets your Focus'), await js(`document.getElementById('hint').textContent`));
+await mouseFlick(-dirF * 110, 70);
+check('flicking with no freeze resets Focus', (await js('__sat.state.running')) && (await js('__sat.progress.store.focus.count')) === 0 && (await focusBar('bonus')).count === '0 / 10');
+await runToBell();
+
+// five in a row: a freeze
+for (let i = 0; i < 5; i++) { await nextChoiceQuestion(); await answer(true); }
+check('5 correct in a row earns a freeze, and says so', (await js('__sat.progress.store.freezes.length')) === 1 && (await js(`document.getElementById('freezes').textContent`)).includes('Freeze ready'), await js(`document.getElementById('freezes').textContent`));
+check('the page says a flick now is safe', (await js(`document.getElementById('hint').textContent`)).includes('freeze'), await js(`document.getElementById('hint').textContent`));
+await ready();
+await shot('8-freeze-ready');
+const focusBefore = await js('__sat.progress.store.focus.count');
+const dirG = await js('__sat.track.exitFor(__sat.machine().playFrom).dir');
+await mouseFlick(-dirG * 110, 70);
+check('flicking with a freeze keeps Focus and spends the freeze', (await js('__sat.state.running')) && (await js('__sat.progress.store.focus.count')) === focusBefore && (await js('__sat.progress.store.freezes.length')) === 0, focusBefore);
+await runToBell();
+
+// A flick that misses the machine must not charge twice
+await js(`(()=>{ const s=__sat.progress.store; s.freezes=[5,5]; s.streak=0; __sat.progress.save(); })()`);
+await nextChoiceQuestion(); await answer(true); await ready();
+const dirH = await js('__sat.track.exitFor(__sat.machine().playFrom).dir');
+await mouseFlick(dirH * 150, 95);
+for (let i = 0; i < 12 && await js('__sat.state.running && !__sat.track.run.engaged'); i++) await js('__sat.advance(1)');
+if (!(await js('__sat.state.running'))) {
+  const held = await js('__sat.progress.store.freezes.length');
+  await ready();
+  await mouseFlick(-dirH * 110, 70);
+  check('retrying a missed flick is free: no second freeze spent', (await js('__sat.progress.store.freezes.length')) === held, held);
+}
+await runToBell();
+
+// A roll, won through the real UI: force the dice, watch the reveal
+await nextChoiceQuestion();
+await js(`(()=>{ const s=__sat.progress.store; s.focus={count:9,bonus:9,rare:9,ultra:9}; s.freezes=[]; __sat.progress.rand=()=>0; __sat.progress.save(); })()`);
+await answer(true);
+check('reaching 10 opens a roll on screen', await js(`!document.getElementById('rollBox').hidden`), await js(`document.getElementById('rollHead').textContent`));
+await sleep(1500);
+const prize = await js(`Object.keys(__sat.progress.store.chest).find(k=>__sat.progress.store.chest[k]>0)`);
+check('the roll reveals the item', (await js(`document.getElementById('rollResult').textContent`)).includes(await js(`REWARDS[${JSON.stringify(prize)}].name`)), await js(`document.getElementById('rollResult').textContent`));
+check('winning resets that bar, and only that bar', (await focusBar('bonus')).count === '0 / 10' && (await focusBar('rare')).count === '10 / 20', (await focusBar('rare')).count);
+check('ultra rares are exactly Upside Down and Rewind', (await js(`Object.keys(REWARDS).filter(k=>REWARDS[k].tier==='ultra').join()`)) === 'flip,rewind', await js(`Object.keys(REWARDS).filter(k=>REWARDS[k].tier==='ultra').join()`));
+check('a win does not pop the chest open', await js(`document.getElementById('chestBody').hidden`));
+check('the closed chest still says how many are saved', (await js(`document.getElementById('chestCount').textContent`)).startsWith('1 saved'), await js(`document.getElementById('chestCount').textContent`));
+await clickEl(`document.getElementById('chestToggle')`);
+await sleep(60);
+check('clicking the chest opens it, with the item inside', !(await js(`document.getElementById('chestBody').hidden`)) && await js(`!!document.querySelector('.tile.owned[data-id="${prize}"]')`));
+await clickEl(`document.getElementById('chestToggle')`);
+await sleep(60);
+check('clicking again closes it', await js(`document.getElementById('chestBody').hidden`));
+check('unlocks are saved in a cookie', (await js('document.cookie')).includes('lgc_chest') && decodeURIComponent(await js('document.cookie')).includes(prize + ':1'), decodeURIComponent(await js('document.cookie')).slice(0, 80));
+await shot('9-prize');
+await sleep(3400);
+await js(`__sat.progress.rand=Math.random`);
+
+// items save up across a reload, and survive localStorage being wiped
+await open('?noscale=1');
+check('the chest survives a reload', (await js(`__sat.progress.store.chest[${JSON.stringify(prize)}]`)) === 1);
+await js(`localStorage.removeItem('sat-grey-cells-v1')`);
+await open('?noscale=1');
+check('REOPENED with localStorage wiped: the chest comes back from its cookie', (await js(`__sat.progress.store.chest[${JSON.stringify(prize)}]`)) === 1);
+
+// deploying: every item through the real page
+for (const id of await js('Object.keys(REWARDS)')) {
+  await js(`(()=>{ const s=__sat.progress.store; s.chest[${JSON.stringify(id)}]=1; s.found[${JSON.stringify(id)}]=1; s.focus={count:4,bonus:4,rare:4,ultra:4}; s.freezes=[]; __sat.progress.save(); __sat.showQuestion(); __sat.refresh(); })()`);
+  if (await js(`document.getElementById('chestBody').hidden`)) await clickEl(`document.getElementById('chestToggle')`);
+  await clickEl(`document.querySelector('[data-id="${id}"]')`);       // a real click on the chest tile
+  await sleep(60);
+  await clickEl(`document.getElementById('ciGo')`);
+  await sleep(120);
+  const inBreak = await js(`!!__sat.state.brk && __sat.state.brk.id===${JSON.stringify(id)}`);
+  const piecesB = await js('__sat.machine().pieces.length');
+  await js(`(()=>{const r=__sat.renderer,c=r.canvas.getBoundingClientRect();window.__p={x:c.left+c.width/2,y:c.top+c.height*0.45}})()`);
+  const pt = await js('window.__p');
+  await mouse('mouseMoved', pt.x, pt.y, 0); await mouse('mousePressed', pt.x, pt.y);
+  await js('__sat.advance(2.5)');
+  await mouse('mouseMoved', pt.x + 40, pt.y + 30);
+  await js('__sat.advance(2.5)');
+  await sleep(250);
+  if (id === 'flip' || id === 'rewind') await shot('10-' + id);
+  await mouse('mouseReleased', pt.x + 40, pt.y + 30);
+  await js('__sat.advance(.5)');
+  const moved = await js(`__sat.track.toppled`);
+  check(`${id}: plays through the real page, spends the item, resets Focus`, inBreak && (await js(`__sat.progress.store.chest[${JSON.stringify(id)}]`)) === 0 && (await js('__sat.progress.store.focus.count')) === 0, `${moved} dominoes down`);
+  await clickEl(`document.getElementById('breakEnd')`);
+  await sleep(120);
+  check(`${id}: ending the break puts the machine back`, !(await js('__sat.state.brk')) && (await js(`__sat.track.statics.every(b=>b.isStatic)`)) && (await js(`__sat.track.toppled`)) === 0 && (await js('__sat.machine().pieces.length')) === piecesB);
+}
+
+// ---------------------------------------------------------------------------------------------------------- 6: resetting
+await js(`window.confirm=()=>true`);
+await clickEl(`document.getElementById('reset')`);
+await sleep(150);
+check('reset wipes progress and both cookies', (await js('__sat.progress.store.total')) === 0 && !(await js('document.cookie')).includes('lgc_cold') && !(await js('document.cookie')).includes('lgc_chest'));
 
 const realErrors = pageErrors.filter(e => !/favicon/.test(e));
 check('no JavaScript errors in the whole session', realErrors.length === 0, realErrors.slice(0, 3).join(' | '));

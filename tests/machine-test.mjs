@@ -92,6 +92,26 @@ if (!only) {
   console.log(`random machines: bell ${fin}/${N}, ${nudges} nudges in total, dominoes down ${fell}/${total} (${(100 * fell / total).toFixed(0)}%), ${kicks} marbles kicked, longest ${secs.toFixed(0)}s ${ok ? 'PASS' : 'FAIL'}`);
 }
 
+// --- 3b) nothing is left standing: a finished machine should look finished
+if (!only) {
+  let clean = 0, N = 30; const left = [];
+  for (let n = 0; n < N; n++) {
+    const rnd = rngOf(n + 900), count = 5 + Math.floor(rnd() * 8);
+    const kinds = ['dominoes', ...Array.from({ length: count }, () => KINDS[Math.floor(rnd() * KINDS.length)])];
+    const world = new Phys.World(), track = new Track(world, makeRecipe(n + 900, kinds));
+    const e = track.exitFor(0);
+    track.startRun(0, e.dir * 4, -1);
+    let steps = 0;
+    while (steps++ < 60 * 300 && !(track.run && track.run.finished)) { world.step(1 / 60); track.tick(1 / 60); if (!track.run) track.startRun(0, track.exitFor(0).dir * 4, -1); }
+    for (let i = 0; i < 60 * 5; i++) { world.step(1 / 60); track.tick(1 / 60); }
+    const standing = track.sections.flatMap(s => s.dominoes.filter(d => !d.userData.fell && !d.userData.dissolve).map(() => s.kind));
+    if (!standing.length) clean++; else left.push(`seed ${n + 900}: ${standing.length} on ${[...new Set(standing)].join('/')}`);
+  }
+  const ok = clean === N;
+  if (!ok) failures++;
+  console.log(`every domino down within 5 seconds of the bell: ${clean}/${N} machines ${ok ? 'PASS' : 'FAIL ' + left.slice(0, 6).join('; ')}`);
+}
+
 // --- 4) any forward flick lands in the machine, however hard you pull: pulling hard must never be punished
 if (!only) {
   let total = 0, missed = 0; const misses = [];

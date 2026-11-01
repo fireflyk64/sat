@@ -318,7 +318,7 @@
 
   Renderer.prototype._drawStatic = function (fx, b, sec, now, st) {
     var u = b.userData, kind = u.kind;
-    if (kind === 'sensor' || kind === 'bell') return;
+    if (kind === 'sensor' || kind === 'bell' || u.eaten) return;
     var P = this.pose(b, now), hue = sec ? sec.hue : this.theme.hue, alpha = P.alpha;
     if (alpha <= 0) return;
     var lit = sec && sec.litT ? Math.exp(-(st - sec.litT) * 1.8) : 0, sw = b.shape.hw || 0, sh = b.shape.hh || 0;
@@ -390,6 +390,7 @@
         fx.sprite(T.BALL, ballX, ballY, toy.br, toy.br, a * 2, 0.7, 0.72, 0.8, 1, 0.9, 0.93, 1, 1, 0, moving);
       }
     } else if (toy.type === 'wrecking') {
+      if (toy.ball.userData.eaten) return;
       var ball = toy.ball, wP = this.pose(ball, now), ax = ball.userData.ax, ay = ball.userData.ay;
       var dx = wP.x - ax, dy = wP.y - ay, len = Math.sqrt(dx * dx + dy * dy), links = Math.max(3, Math.floor(len / 0.34));
       for (i = 0; i <= links; i++) {
@@ -401,6 +402,7 @@
       if (sw > 1 && !ball.asleep) { c = hsl(hue, 100, 60); fx.sprite(T.GLOW, wP.x, wP.y, 1.5, 1.5, 0, c[0] * 1.6, c[1] * 1.6, c[2] * 1.6, Math.min(1, sw * 0.12), 0, 0, 0, 0, 2, 0); }
       fx.sprite(T.BALL, wP.x, wP.y, ball.shape.r, ball.shape.r, ball.a, 0.2, 0.2, 0.26, wP.alpha, 0.55, 0.6, 0.72, 1, 0, 0);
     } else if (toy.type === 'seesaw') {
+      if (toy.plank.userData.eaten) return;
       var pl = toy.plank, pp = this.pose(pl, now);
       this._slab(fx, pp, pl.shape.hw, pl.shape.hh, hue + 60, 38, 2.4, pp.alpha, 0.1);
     } else if (toy.type === 'trampoline') {
@@ -531,6 +533,9 @@
         if (vis(dm) && !dm.userData.gone) this._drawDomino(fx, dm, now, st);
       }
     }
+
+    // whatever the current break has brought along
+    if (game.pg) game.pg.draw(fx, T, now);
 
     // stars to collect with a flick
     if (track.stars) {

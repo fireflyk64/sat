@@ -323,6 +323,17 @@
       if (dx * dx + dy * dy < rr * rr) { b.wake(); this._dropArbiters(b); }
     }
   };
+  /** Tear a fixed piece loose so it can be flung around. The machine is rebuilt from its recipe afterwards. */
+  World.prototype.unpin = function (b, density) {
+    if (!b.isStatic || b.sensor) return false;
+    density = density || 0.35;
+    var c = b.shape.type === 'circle', hw = b.shape.hw, hh = b.shape.hh, r = b.shape.r;
+    var m = (c ? Math.PI * r * r : 4 * hw * hh) * density;
+    var I = c ? 0.5 * m * r * r : m * (4 * hw * hw + 4 * hh * hh) / 12;
+    b.isStatic = false; b.mass = m; b.invMass = 1 / m; b.invI = 1 / I; b._im = b.invMass; b._ii = b.invI;
+    b.asleep = false; b.sleepT = 0;
+    return true;
+  };
   /** Radial blast: a velocity change that falls off with distance, so light dominoes and heavy marbles both react. */
   World.prototype.explode = function (x, y, r, power) {
     for (var i = 0; i < this.bodies.length; i++) {

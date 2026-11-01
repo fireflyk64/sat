@@ -33,7 +33,8 @@
     running: false, runScore: 0, chain: 0, pegs: 0,
     queued: 0, focus: null, focusUntil: 0, readyAt: 0,
     aim: null, pointer: null, gold: false, fast: false,
-    phase: 'play', finaleUntil: 0
+    phase: 'play', finaleUntil: 0,
+    brk: null, freeRetry: false, unrevealed: {}, picked: null
   };
 
   function tierFor(streak) { var t = TIERS[0]; TIERS.forEach(function (x) { if (streak >= x.at) t = x; }); return t; }
@@ -63,7 +64,7 @@
   /** The marble that is waiting to be flicked, if a right answer has earned one. */
   function flickable() {
     var m = machine();
-    return m.playFrom === null || state.running ? null : track.marbleFor(m.playFrom);
+    return m.playFrom === null || state.running || state.brk ? null : track.marbleFor(m.playFrom);
   }
   function restingMarble() { return flickable() || (track ? track.marbleFor(machine().playFrom || 0) : null); }
   function canFlick() { return !!flickable() && nowS() >= state.readyAt && state.phase !== 'finale'; }
@@ -90,7 +91,7 @@
     if (tNow !== tPrev) { Sound.tierUp(); setTimeout(function () { banner(res.streak + ' IN A ROW!', tNow.name + ' · score ×' + tNow.mult, 'hot'); }, 150); }
     renderer.heatTarget = Math.min(1, res.streak / 12);
 
-    if (state.running || state.phase === 'finale') { state.queued += toSlot; toast('🧩 New toy queued: it slots in when this run ends'); updateHud(); return; }
+    if (state.running || state.brk || state.phase === 'finale') { state.queued += toSlot; toast('🧩 New toy queued: it slots in when this run ends'); updateHud(); return; }
     placeQueued(toSlot, unlocked[0]);
   }
 
@@ -139,6 +140,8 @@
   function beginRun(vx, vy) {
     var m = machine(), from = m.playFrom;
     Sound.init();
+    // flicking is playing. A retry after a flick that missed the machine is free.
+    if (state.freeRetry) state.freeRetry = false; else showPlayResult(progress.notePlay());
     renderer.skin = state.gold ? 'gold' : tierFor(progress.store.streak).skin;
     var run = track.startRun(from, vx, vy);
     if (!run) return;
@@ -210,6 +213,8 @@
       renderer.sparks(d.x, d.y, 12, 190, 4);
     } else if (type === 'lost') {
       state.running = false;
+      if (state.brk) return;
+      state.freeRetry = true;
       renderer.trails = {};
       renderer.sparks(d.x, d.y, 30, 190, 5);
       toast('Missed the machine! The marble is back. Flick again.');
@@ -260,6 +265,11 @@
   }
 
   function onBell(d) {
+    if (state.brk) {            // during a break the bell is just one more thing to hit
+      Sound.bell(false); renderer.ring(d.x, d.y, 5, 3, 2.2, 0.9, 0.7, 0.07);
+      track.bell.rung = -9;
+      return;
+    }
     var run = d.run, m = machine();
     state.running = false;
     var complete = m.complete, wasGrand = complete && run && run.from === 0;
@@ -409,14 +419,18 @@
     // what to do right now
     var hint;
     if (state.phase === 'finale') hint = '';
+    else if (state.brk) hint = '';
     else if (state.running) hint = 'Tap a rolling marble to shove it';
-    else if (flickable()) hint = m.complete && m.playFrom === 0 ? 'Flick the top marble and run the whole machine!' : 'Pull back on the glowing marble and let go';
+    else if (flickable()) {
+      var cost = s.freezes.length ? '🧊 a freeze keeps your Focus' : s.focus.count ? 'this resets your Focus (' + Progress.fmt(s.focus.count) + ')' : '';
+      hint = (m.complete && m.playFrom === 0 ? 'Flick the top marble and run the whole machine!' : 'Pull back on the glowing marble and let go') + (cost ? ' · ' + cost : '');
+    }
     else {
       var un = progress.nextUnlock(Track.KINDS);
       hint = 'Answer correctly to add a toy' + (un ? ' · ' + un.left + ' more unlocks ' + un.label : '');
     }
     $('hint').textContent = hint;
-    var locked = !flickable() && !state.running && state.phase !== 'finale';
+    var locked = !flickable() && !state.running && !state.brk && state.phase !== 'finale';
     $('stage').classList.toggle('locked', locked);
 
     // cold cases
@@ -428,6 +442,8 @@
     $('coldMsg').textContent = cc ? 'Solve one for a gold marble and a bonus toy' : 'No open cold cases. Missed questions come back here.';
     $('rank').textContent = rankFor(s.total);
     renderMeters();
+    renderFocus();
+    renderChest();
   }
   function renderMeters() {
     var host = $('meters'), s = progress.store; host.innerHTML = '';
@@ -441,6 +457,175 @@
       var sc = document.createElement('span'); sc.className = 'ms'; sc.textContent = sk.t ? sk.r + '/' + sk.t : '–';
       row.appendChild(lab); row.appendChild(cells); row.appendChild(sc); host.appendChild(row);
     });
+  }
+
+  // ---------------------------------------------------------------- Focus, freezes, the chest
+  function afterRecord(rec) {
+    if (rec.melted) { Sound.melt(); toast('🧊 A freeze melted. Earn another with 5 correct in a row.'); }
+    if (rec.freezeEarned) { Sound.freeze(); toast('🧊 Freeze earned! Play in the next ' + Progress.FREEZE_LIFE + ' questions and keep your Focus.', 4200); pulse('freezes'); }
+    (rec.rolls || []).forEach(function (r) {
+      if (r.won && r.item) state.unrevealed[r.item] = (state.unrevealed[r.item] || 0) + 1;
+      rollQueue.push(r);
+    });
+    pumpRolls();
+  }
+
+  function pulse(id) { var e = $(id); e.classList.remove('pulse'); void e.offsetWidth; e.classList.add('pulse'); }
+
+  /** He just played: say what it cost him. */
+  function showPlayResult(r) {
+    if (r.frozen) { Sound.freeze(); toast('🧊 Freeze used. Focus stays at ' + Progress.fmt(r.kept) + '.', 2800); pulse('focus'); }
+    else if (r.lost > 0) { Sound.focusLost(); toast('Focus reset from ' + Progress.fmt(r.lost) + ' back to 0.', 3200); pulse('focus'); }
+    updateHud();
+  }
+
+  var rollQueue = [], rolling = false;
+  function pumpRolls() {
+    if (rolling || !rollQueue.length) return;
+    rolling = true;
+    var r = rollQueue.shift(), box = $('rollBox'), head = $('rollHead'), result = $('rollResult');
+    box.hidden = false;
+    box.className = 'rollbox rolling t-' + r.tier;
+    head.textContent = r.label + ' roll: ' + Math.round(r.chance * 100) + '% chance';
+    result.textContent = '🎲 🎲 🎲';
+    Sound.roll();
+    setTimeout(function () {
+      box.classList.remove('rolling');
+      if (r.won && r.item) {
+        var it = REWARDS[r.item];
+        box.classList.add('won');
+        result.textContent = it.icon + ' ' + it.name + ' goes in your chest!';
+        state.unrevealed[r.item] = Math.max(0, (state.unrevealed[r.item] || 0) - 1);
+        Sound.win(r.tier);
+        banner(r.label.toUpperCase() + '!', it.icon + ' ' + it.name, r.tier === 'bonus' ? 'cool' : r.tier === 'rare' ? 'hot' : 'gold');
+        if (!reduced) renderer.confetti(renderer.cam.x, renderer.cam.y - 8, r.tier === 'ultra' ? 260 : r.tier === 'rare' ? 140 : 70, 18);
+      } else {
+        box.classList.add('lost');
+        result.textContent = 'Not this time. Next try at ' + r.next + ' Focus. Keep going!';
+        Sound.noLuck();
+      }
+      updateHud();
+      setTimeout(function () {
+        rolling = false;
+        if (rollQueue.length) pumpRolls(); else box.hidden = true;
+      }, r.won ? 3200 : 2000);
+    }, reduced ? 300 : 1050);
+  }
+
+  function renderFocus() {
+    var s = progress.store, f = s.focus;
+    $('focusN').textContent = Progress.fmt(f.count);
+    Progress.TIERS.forEach(function (t) {
+      var into = progress.tierProgress(t), row = $('fb-' + t.id);
+      row.querySelector('.ffill').style.width = (into / t.every * 100) + '%';
+      row.querySelector('.fcount').textContent = Progress.fmt(into) + ' / ' + t.every;
+    });
+    var nextBonus = Progress.TIERS[0], into = progress.tierProgress(nextBonus);
+    $('miniFill').style.width = (into / nextBonus.every * 100) + '%';
+    $('miniText').textContent = Progress.fmt(into) + ' / ' + nextBonus.every + ' to the next bonus roll';
+    $('miniFocus').querySelector('b').textContent = Progress.fmt(f.count);
+
+    var fz = s.freezes, line = $('freezes'), miniF = $('miniFreeze');
+    if (fz.length) {
+      var soonest = Math.min.apply(null, fz);
+      line.className = 'freezes ready';
+      line.textContent = '🧊 ' + (fz.length > 1 ? fz.length + ' freezes ready' : 'Freeze ready') + ': play now and keep your Focus. Melts in ' + soonest + (soonest === 1 ? ' question.' : ' questions.');
+      miniF.textContent = '🧊 ×' + fz.length;
+      miniF.hidden = false;
+    } else {
+      var more = Progress.FREEZE_EVERY - (s.streak % Progress.FREEZE_EVERY);
+      line.className = 'freezes';
+      line.textContent = '🧊 ' + more + ' more in a row earns a freeze, for a break that keeps your Focus.';
+      miniF.hidden = true;
+    }
+  }
+
+  function renderChest() {
+    var s = progress.store, host = $('chestTiles'), total = 0;
+    host.innerHTML = '';
+    Object.keys(REWARDS).forEach(function (id) {
+      var it = REWARDS[id], have = Math.max(0, (s.chest[id] || 0) - (state.unrevealed[id] || 0)), known = s.found[id] && (have > 0 || !state.unrevealed[id]);
+      total += have;
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'tile t-' + it.tier + (have ? ' owned' : '') + (state.picked === id ? ' picked' : '');
+      b.dataset.id = id;
+      b.title = known ? it.name : 'Not found yet';
+      b.setAttribute('aria-label', known ? it.name + ', ' + have + ' in the chest' : 'Item not found yet');
+      var ic = document.createElement('span'); ic.className = 'ticon'; ic.textContent = known ? it.icon : '?'; b.appendChild(ic);
+      if (have) { var n = document.createElement('b'); n.textContent = have; b.appendChild(n); }
+      b.disabled = !known;
+      b.addEventListener('click', function () { state.picked = state.picked === id ? null : id; renderChest(); });
+      host.appendChild(b);
+    });
+    $('chestCount').textContent = total ? total + ' saved for a longer break' : 'empty';
+    $('chestToggle').classList.toggle('some', total > 0);
+
+    var info = $('chestInfo'), id = state.picked;
+    if (!id || !REWARDS[id] || !s.found[id]) { info.hidden = true; return; }
+    var item = REWARDS[id], owned = s.chest[id] || 0;
+    info.hidden = false;
+    info.className = 'chestinfo t-' + item.tier;
+    $('ciName').textContent = item.icon + ' ' + item.name + ' · ' + item.secs + ' seconds';
+    $('ciBlurb').textContent = item.blurb;
+    var go = $('ciGo'), busy = state.running || state.brk || state.phase === 'finale';
+    go.disabled = !owned || busy;
+    go.textContent = owned ? 'Play it now' : 'None left';
+    $('ciCost').textContent = busy ? 'Wait for what is happening on the machine to finish.'
+      : !owned ? 'Win another by keeping your Focus up.'
+      : s.freezes.length ? '🧊 Uses a freeze, so your Focus stays at ' + Progress.fmt(s.focus.count) + '.'
+      : s.focus.count ? 'This resets your Focus from ' + Progress.fmt(s.focus.count) + ' to 0.' : '';
+  }
+
+  /** Take an item out of the chest and turn it loose on the machine. */
+  function deploy(id) {
+    var item = REWARDS[id];
+    if (!item || state.running || state.brk || state.phase === 'finale') return;
+    if (!progress.useItem(id)) return;
+    Sound.init();
+    showPlayResult(progress.notePlay());
+    state.picked = null; state.chain = 0; state.runScore = 0; state.aim = null;
+    var c = renderer.cam;
+    c.follow = false; c.zoomGoal = null; state.focus = null;
+    if (item.fresh) rebuild({});             // Rewind needs a standing machine to knock over
+    if (item.wide) { var z = renderer.fitZoom(track); c.zoom = Math.max(0.42, Math.min(0.9, z.zoom)); c.x = z.x; c.y = z.y; if (z.zoom < 0.42) c.y = track.bounds().minY + 16; }
+    else c.zoom = Math.max(0.7, Math.min(1, c.zoom));
+    var pg = new Playground(track, id, {
+      renderer: renderer, sound: Sound,
+      view: function () {
+        var f = renderer.fx, a = renderer.screenToWorld(0, 0), b = renderer.screenToWorld(f.w / f.dpr, f.h / f.dpr);
+        return { x0: a.x, y0: a.y, x1: b.x, y1: b.y };
+      },
+      onScore: function (n, x, y) { score(n, x, y, { size: 0.8, color: [3, 2.2, 0.8] }); }
+    });
+    state.brk = { id: id, pg: pg, left: item.secs, secs: item.secs };
+    if (pg.focus()) { c.follow = true; c.zoom = 0.92; }
+    $('breakIcon').textContent = item.icon;
+    $('breakName').textContent = item.name;
+    $('breakHow').textContent = item.how;
+    $('breakBar').classList.add('show');
+    $('stage').classList.add('breaking');
+    banner(item.name.toUpperCase(), item.how, item.tier === 'bonus' ? 'cool' : item.tier === 'rare' ? 'hot' : 'gold');
+    Sound.unlock();
+    updateHud();
+  }
+
+  function endBreak() {
+    var b = state.brk;
+    if (!b) return;
+    state.brk = null;
+    b.pg.end(renderer.fx);
+    $('breakBar').classList.remove('show');
+    $('stage').classList.remove('breaking');
+    if (state.runScore) { progress.bankScore(state.runScore); banner('+' + state.runScore.toLocaleString(), 'Break over. Back to the case!', 'cool'); }
+    else toast('Break over. Back to the case!');
+    state.runScore = 0; state.chain = 0;
+    hideChainSoon();
+    renderer.cam.follow = true;
+    Sound.slot();
+    rebuild({});
+    if (state.queued) { var n = state.queued; state.queued = 0; setTimeout(function () { placeQueued(n); }, 1000); }
+    updateHud();
   }
 
   // ---------------------------------------------------------------- questions
@@ -469,12 +654,13 @@
     state.answered = true;
     var res = ctrl.check(); ctrl.reveal(res);
     var rec = progress.record(q, res.correct);
+    afterRecord(rec);
 
     var fb = $('feedback'), card = $('card'); fb.hidden = false; fb.className = res.correct ? 'good' : 'badfb';
     card.classList.remove('enter'); card.classList.add(res.correct ? 'win' : 'lose');
     var verdict;
     if (res.correct) verdict = rec.closed ? 'Case closed! Solved twice, so it stays solved.' : rec.wasCold ? 'Cracked it! One more solve next session closes this case.' : 'Elementary! Correct.';
-    else verdict = 'Not quite. Study the clue below.';
+    else verdict = 'Not quite. Study the clue below.' + (rec.focusLost ? ' Focus −' + Progress.fmt(rec.focusLost) + '.' : '');
     $('verdict').textContent = verdict;
     $('coldNote').hidden = res.correct;
     if (!res.correct) $('coldNote').textContent = rec.repeatMiss ? '🗂 Back in the cold case file. It will return until you have it.' : '🗂 Filed as a cold case. It comes back soon, and again next session.';
@@ -517,6 +703,10 @@
       cv.setPointerCapture(e.pointerId);
       pts[e.pointerId] = p; lastDist = 0;
       var wp = renderer.screenToWorld(p.x, p.y), fm = flickable();
+      if (state.brk) {
+        if (Object.keys(pts).length === 1) state.brk.pg.pointer(wp.x, wp.y, true);
+        return;
+      }
       var reach = Math.max(2.4, 40 * renderer.fx.dpr / renderer.scale());
 
       if (Object.keys(pts).length === 1 && fm && Math.hypot(wp.x - fm.x, wp.y - fm.y) < reach) {
@@ -541,6 +731,12 @@
     cv.addEventListener('pointermove', function (e) {
       if (!pts[e.pointerId]) return;
       var p = rel(e), old = pts[e.pointerId], ids = Object.keys(pts);
+      if (state.brk && ids.length === 1) {
+        var bw = renderer.screenToWorld(p.x, p.y);
+        state.brk.pg.pointer(bw.x, bw.y, true);
+        pts[e.pointerId] = p;
+        return;
+      }
 
       if (state.aim && state.aim.id === e.pointerId) {
         var wp = renderer.screenToWorld(p.x, p.y), dx = wp.x - state.aim.sx, dy = wp.y - state.aim.sy, L = Math.hypot(dx, dy);
@@ -565,6 +761,12 @@
     function up(e) {
       var aim = state.aim;
       delete pts[e.pointerId]; lastDist = 0;
+      if (state.brk) {
+        var r0 = rel(e), w0 = renderer.screenToWorld(r0.x, r0.y);
+        state.brk.pg.pointer(w0.x, w0.y, false);
+        if (!Object.keys(pts).length) cv.classList.remove('drag');
+        return;
+      }
       if (aim && aim.id === e.pointerId) {
         state.aim = null;
         cv.classList.remove('aiming');
@@ -621,6 +823,7 @@
   function leadMarble() { return track._liveMarble(); }
 
   function focusPoint(now) {
+    if (state.brk) return state.brk.pg.focus();
     if (state.phase === 'finale') return null;
     if (state.focus && now < state.focusUntil) return state.focus;
     var lead = state.running ? leadMarble() : null;
@@ -645,12 +848,17 @@
       frames = 0; frameSum = 0;
     }
 
-    var speed = (state.fast ? 2.6 : BASE_SPEED);
+    var speed = state.brk ? 1 : (state.fast ? 2.6 : BASE_SPEED);
     if (state.slowUntil && now < state.slowUntil) speed *= reduced ? 1 : 0.32;
     if (state.hitStop > 0) { state.hitStop -= dt; speed = 0; }
     acc += dt * speed;
     var steps = 0, maxSteps = state.fast ? 6 : 4;
-    while (acc >= 1 / 60 && steps < maxSteps) { world.step(1 / 60); track.tick(1 / 60, now); acc -= 1 / 60; steps++; }
+    while (acc >= 1 / 60 && steps < maxSteps) {
+      var held = false;
+      if (state.brk) { state.brk.pg.step(1 / 60); held = state.brk.pg.holdWorld; }
+      if (!held) { world.step(1 / 60); track.tick(1 / 60, now); }
+      acc -= 1 / 60; steps++;
+    }
     if (steps === maxSteps) acc = 0;
     if (state.running) {
       track.collectStars();
@@ -662,12 +870,21 @@
       if (renderer.fx.sat > 0.99) { renderer.fx.sat = 1; state.satBack = false; }
     }
     if (state.phase === 'finale' && now > state.finaleUntil) endFinale();
+    if (state.brk) {
+      state.brk.left -= dt;
+      var bl = Math.max(0, state.brk.left);
+      $('breakFill').style.width = (bl / state.brk.secs * 100) + '%';
+      $('breakTime').textContent = Math.ceil(bl) + 's';
+      var st = state.brk.pg.status();
+      if (st !== state.brk.lastStatus) { $('breakStatus').textContent = st; state.brk.lastStatus = st; }
+      if (state.brk.left <= 0) endBreak();
+    }
 
     renderer.update(dt);
     renderer.updateCamera(dt, focusPoint(now));
     var fm = flickable();
     renderer.draw({
-      track: track, flick: fm || restingMarble(), locked: !fm || now < state.readyAt,
+      track: track, pg: state.brk && state.brk.pg, flick: state.brk ? null : (fm || restingMarble()), locked: !fm || now < state.readyAt,
       aim: state.aim, preview: aimPreview(), lead: state.running ? leadMarble() : null,
       grand: machine().complete && machine().playFrom === 0
     }, now);
@@ -694,9 +911,18 @@
     $('mute').addEventListener('click', function () { Sound.init(); Sound.muted = !Sound.muted; this.textContent = Sound.muted ? '🔇' : '🔊'; });
     $('fast').addEventListener('click', function () { state.fast = !state.fast; this.classList.toggle('on', state.fast); this.setAttribute('aria-pressed', state.fast); });
     $('finaleNext').addEventListener('click', endFinale);
+    $('ciGo').addEventListener('click', function () { if (state.picked) deploy(state.picked); });
+    $('chestToggle').addEventListener('click', function () {
+      var body = $('chestBody'), open = body.hidden;
+      body.hidden = !open;
+      this.setAttribute('aria-expanded', open);
+      if (!open) { state.picked = null; renderChest(); }
+    });
+    $('breakEnd').addEventListener('click', endBreak);
     $('reset').addEventListener('click', function () {
       if (confirm('Erase all saved progress on this device, including the cold case file?')) {
-        progress.reset(); progress.newMachine(); state.gold = false; state.queued = 0; state.phase = 'play';
+        if (state.brk) endBreak();
+        progress.reset(); progress.newMachine(); state.gold = false; state.queued = 0; state.phase = 'play'; state.picked = null; state.unrevealed = {}; rollQueue.length = 0;
         $('finale').classList.remove('show');
         renderer.heatTarget = 0; rebuild({ fresh: true }); showQuestion();
       }
@@ -713,6 +939,7 @@
     updateHud();
     showQuestion(params.get('q'));
 
+    if (progress.restoredChest) setTimeout(function () { toast('🧰 Your chest of items was recovered.', 4000); }, 500);
     var cc = progress.coldCount(bank);
     if (cc && progress.store.total > 0) {
       setTimeout(function () { toast('🗂 Welcome back. ' + cc + ' cold case' + (cc > 1 ? 's' : '') + ' on file: each one solved earns a gold marble and a bonus toy.', 6000); }, 900);
@@ -725,9 +952,10 @@
     // test + debugging hook
     window.__sat = {
       get renderer() { return renderer; }, get track() { return track; }, get world() { return world; },
-      state: state, progress: progress, onCorrectForTest: function () { var r = progress.record(state.current, true); award(state.current, r); updateHud(); },
+      state: state, progress: progress, onCorrectForTest: function () { var r = progress.record(state.current, true); afterRecord(r); award(state.current, r); updateHud(); },
+      deploy: deploy, endBreak: endBreak, refresh: updateHud,
       advance: function (secs) {
-        for (var i = 0; i < secs * 60; i++) { world.step(1 / 60); track.tick(1 / 60, nowS()); if (state.running) track.collectStars(); renderer.update(1 / 60); renderer.updateCamera(1 / 60, focusPoint(nowS())); if (state.phase === 'finale' && nowS() > state.finaleUntil) endFinale(); }
+        for (var i = 0; i < secs * 60; i++) { var hold = false; if (state.brk) { state.brk.pg.step(1 / 60); hold = state.brk.pg.holdWorld; } if (!hold) { world.step(1 / 60); track.tick(1 / 60, nowS()); } if (state.running) track.collectStars(); renderer.update(1 / 60); renderer.updateCamera(1 / 60, focusPoint(nowS())); if (state.phase === 'finale' && nowS() > state.finaleUntil) endFinale(); }
       },
       focusPoint: function () { return focusPoint(nowS()); },
       flick: beginRun, canFlick: canFlick, flickable: flickable, machine: machine, endFinale: endFinale, showQuestion: showQuestion

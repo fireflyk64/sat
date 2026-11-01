@@ -24,6 +24,30 @@ Plain HTML/CSS/JS. No build step, no npm packages, no CDN. Works from `file://` 
 Catapult (4), Trampoline (6), Wrecking Ball (8), Cannon (10), Nitro Crate (13), Marble Cascade (16), Portal (20),
 Newton's Cradle (25).
 
+## Focus: rewards for studying rather than playing
+**Focus** builds up since he last played: a right answer adds 1 and a miss takes off ⅓, never going below 0. With four
+choices a blind guess is right 1 time in 4, so guessing nets exactly zero (the old SAT used ¼ because it had five choices).
+Focus carries across sessions, and only playing resets it: a flick, or using an item from the chest. Clear progress bars show
+all three rewards:
+
+| at | chance | wins |
+|---|---|---|
+| every 10 | 33% | a big bonus: Marble Flood, TNT Crate, Wrecking Fist |
+| every 20 | 25% | a rare: Neon Sand, Moon Gravity, Super Magnet, Black Hole, Meteor Storm, The Colossus |
+| every 100 | 10% | an ultra rare: Upside Down (tap to flip gravity), Rewind (hold to run time backward) |
+
+Each bar has its own counter. A win pays out and resets that bar only, and a losing roll lets it try again at the next
+multiple. Each goal rolls once, so dropping below it and climbing back up does not roll again.
+
+**🧊 Freezes** let him take a short break without losing Focus. Every 5 correct **in a row** (a miss breaks this count, though
+not Focus) earns one. The next time he plays, a freeze is spent instead of Focus resetting. A freeze melts after 5 questions,
+right or wrong, and he can hold up to 3. Retrying a flick that missed the machine is free.
+
+**The chest** stays collapsed to one quiet line until it is clicked. Won items save up until he chooses to use them, each one a timed break of 45, 75 or 90 seconds. Anything goes,
+including tearing the machine apart, because it is rebuilt from its recipe afterwards and the pieces fly home. Items not found
+yet show as `?`. The chest and the list of everything ever found are saved in `localStorage` and in a cookie of their own
+(`lgc_chest`), so they survive a wiped `localStorage`.
+
 **Controls:** drag on empty space or scroll the wheel to pan, Ctrl/Cmd+wheel or pinch to zoom. The HUD buttons toggle sound,
 fast-forward, zoom, see the whole machine, and follow the action.
 
@@ -159,7 +183,10 @@ listed above.
 |---|---|
 | `js/physics.js` | a small Box2D-Lite-style engine written for this project: oriented boxes and circles, sequential impulses, friction, sleeping, hinges, sensors, explosions |
 | `js/track.js` | the machine: builds every toy from a recipe, runs the chain, and helps a stalled chain along. A recipe always builds the same machine, which is what lets a new piece slot into any gap |
-| `js/progress.js` | everything saved between sessions: cold cases, question scheduling, the machine's recipe |
+| `js/progress.js` | everything saved between sessions: cold cases, question scheduling, the machine's recipe, Focus, freezes, the chest |
+| `js/rewards.js` | the items that can be won |
+| `js/playground.js` | what each item does during a break |
+| `js/sand.js` | falling sand: a cellular automaton that heaps on ramps and pushes on dominoes |
 | `js/fx.js` | a WebGL2 engine: instanced shader-drawn shapes, HDR bloom, shockwave distortion, chromatic aberration, tone mapping, plus the 2D fallback |
 | `js/render.js` | draws the machine, particles, camera, and the tween that rearranges it |
 | `js/sound.js` | all audio synthesised live with WebAudio: no sound files |
@@ -171,6 +198,7 @@ No install needed for any of these:
 
     node tests/physics-test.mjs     # engine: toppling, hinges, sensors, explosions
     node tests/machine-test.mjs     # every toy and 30 random machines must run from flick to bell on real physics
+    node tests/playground-test.mjs  # every chest item on a real machine, and sand: no errors, no slowdowns, clean rebuild
     node tests/progress-test.mjs    # simulated sessions: do misses come back, survive a wiped localStorage, close correctly?
     node tests/browser-test.mjs     # real Chrome, real clicks and reloads, start to finale (needs Chrome and python3; set CHROME=/path if needed)
     node tests/verify-quotes.mjs    # every question re-checked against the Project Gutenberg text, and conjunction answers balanced

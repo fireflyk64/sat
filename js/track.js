@@ -189,7 +189,7 @@
   };
 
   Track.prototype._spend = function (m) {
-    if (m.userData.spent) return;
+    if (m.userData.spent || this.noSpend) return;
     m.userData.spent = this.time;
     m.userData.live = false;
     m.ghost = true;                 // a retired marble fades out; it must not plough the dominoes it leaves behind
@@ -258,20 +258,22 @@
       this._static(sec, { x: cx, y: cy + 0.75, hw: 0.28, hh: 0.62, isStatic: true }, 'pivot');
       var pass = this._marble(sec, cx + F * (hl - 0.55) * ch + sh * (BALL_R + 0.13) * F, cy + (hl - 0.55) * sh - ch * (BALL_R + 0.13), { role: 'passenger', hue: sec.hue, key: 'pass', manualWake: true });
       var gap = 4.2, t = this._turn(sec, cx + F * hl, cy, F, { gap: gap, clear: 2.5, deg: 8, L: 15 + r() * 2, over: 2.5 });
-      var lp = t.at(gap - 1.2 + 1.2, BALL_R);
+      var lp = t.at(2, BALL_R);               // land clear of the plank, between its end and the backstop
       var self = this, input = null;
       sec.toy = {
         type: 'seesaw', triggered: false, plank: plank,
         update: function () {
-          if (this.triggered) return;
-          if (Math.abs(plank.w) > 0.5) this.fire();
+          if (this.flying && self.time > this.flying) { pass.ghost = false; this.flying = 0; }
+          if (!this.triggered && Math.abs(plank.w) > 0.5) this.fire();
         },
         fire: function () {
           if (this.triggered) return;
           this.triggered = true;
           if (plank.asleep) plank.wake();
           plank.w = -F * 3.2;
-          self.lob(pass, lp.x, lp.y, 1.15);
+          self.lob(pass, lp.x, lp.y, 1.4);
+          // clear of the plank while it swings: a second kick from it would send the marble into the ramp above
+          pass.ghost = true; this.flying = self.time + 0.3;
           self.emit('toy', { what: 'launch', kind: 'seesaw', x: pass.x, y: pass.y, sec: sec });
         },
         force: function () { this.fire(); }
@@ -651,7 +653,7 @@
         var d = s.dominoes[k];
         if (d.asleep) continue;
         // a domino pushed off the end of its ramp fades away rather than blocking whatever is below
-        if (!d.userData.dissolve && (d.x - s.exit.x) * s.exit.dir > -0.1) {
+        if (!this.playMode && !d.userData.dissolve && (d.x - s.exit.x) * s.exit.dir > -0.1) {
           d.ghost = true; d.userData.dissolve = t + 0.7; this.debris.push(d);
         }
         if (d.userData.fell) continue;
@@ -662,7 +664,7 @@
           this.emit('domino', { d: d, sec: s, run: this.run });
         }
       }
-      if (s.started) this._sweep(s, t);
+      if (s.started || (this.run && i >= this.run.from && (this.frontier || 0) > i)) this._sweep(s, t);
     }
 
     for (i = this.marbles.length - 1; i >= 0; i--) {
@@ -690,7 +692,7 @@
         var ss = this.sections[u.section], ee = ss.exit;
         if (!ss.done && (m.x - ee.x) * ee.dir > 0.1) { ss.done = true; this.emit('sectionDone', { sec: ss }); }
       }
-      if (this.bottomY() - m.y < 0.8 && u.live && !u.spent && !u.small) {
+      if (this.bottomY() - m.y < 0.8 && u.live && !u.spent && !u.small && (!this.playMode || this.run)) {
         // reached the floor: the end of the line if the bell is here, otherwise the marble is out of play
         if (this.run && this.run.engaged && this.frontier >= this.sections.length - 1) this._ring(m);
         else this._spend(m);
@@ -710,8 +712,9 @@
     if (s.swept && t - s.swept < 0.07) return;
     var front = -1, k, doms = s.dominoes, frontT = 0;
     for (k = 0; k < doms.length; k++) if (doms[k].userData.fell) { front = k; frontT = doms[k].userData.fell; }
-    var limit = front;
-    if (front < 0) { if (!s.done) return; limit = 1; frontT = t - 1; }    // the marble cleared the whole row: start it off
+    var limit = front, passed = s.done || (this.run && (this.frontier || 0) > s.i);
+    if (front < 0) { if (!passed) return; limit = 1; frontT = t - 1; }    // the chain went past the whole row: start it off
+    else if (passed && t - frontT > 0.9) limit = doms.length;             // or the wave died out behind the action: restart it
     if (t - frontT < 0.35) return;
     for (k = 0; k < limit; k++) {
       var d = doms[k];

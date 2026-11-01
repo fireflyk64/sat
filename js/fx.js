@@ -12,7 +12,7 @@
 
   var T = {
     GLOW: 0, BOX: 1, BALL: 2, RING: 3, SHARD: 4, FLARE: 5, GLYPH: 6, GEM: 7, CRATE: 8, PORTAL: 9,
-    PEG: 10, DOMINO: 11, BELL: 12, SMOKE: 13, CHEVRON: 14, DISC: 15
+    PEG: 10, DOMINO: 11, BELL: 12, SMOKE: 13, CHEVRON: 14, DISC: 15, GRID: 16
   };
   var STRIDE = 16, MAX_SPRITES = 24000;
 
@@ -43,7 +43,7 @@
     '#version 300 es',
     'precision highp float;',
     'in vec2 vL; in vec2 vS; in vec4 vA; in vec4 vB; flat in vec3 vT;',
-    'uniform float uPx; uniform float uTime; uniform sampler2D uAtlas;',
+    'uniform float uPx; uniform float uTime; uniform sampler2D uAtlas; uniform sampler2D uGrid;',
     'out vec4 o;',
     'float box(vec2 p, vec2 b, float r){vec2 q=abs(p)-b+r;return length(max(q,0.))+min(max(q.x,q.y),0.)-r;}',
     'float aa(float d){return clamp(.5-d/uPx,0.,1.);}',
@@ -154,6 +154,10 @@
     '  if(t==15){', // DISC: flat blended circle
     '    float d=length(p)-vS.x; float a=aa(d); if(a<=0.) discard; o=vec4(vA.rgb*a*vA.a,a*vA.a); return;',
     '  }',
+    '  if(t==16){', // GRID: the falling-sand image. p1=brightness
+    '    vec2 q=p/vS; if(abs(q.x)>=1.||abs(q.y)>=1.) discard; vec4 c=texture(uGrid,q*.5+.5); if(c.a<.5) discard;',
+    '    o=vec4(c.rgb*p1,1.); return;',
+    '  }',
     '  discard;',
     '}'
   ].join('\n');
@@ -237,13 +241,18 @@
     '#version 300 es', 'precision highp float;', 'in vec2 vUv; out vec4 o;',
     'uniform sampler2D uS; uniform sampler2D uB; uniform vec2 uRes; uniform float uTime;',
     'uniform float uCA; uniform float uBloom; uniform float uSat; uniform float uFlash; uniform float uExposure;',
-    'uniform vec4 uW[6]; uniform int uNW;',
+    'uniform vec4 uW[6]; uniform int uNW; uniform vec4 uHole; uniform float uVHS;',
     'float h(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}',
     'void main(){',
     '  vec2 uv=vUv; float asp=uRes.x/uRes.y; vec2 off=vec2(0.);',
     '  for(int i=0;i<uNW;i++){',       // shockwaves: x y radius strength (uv space)
     '    vec2 d=(uv-uW[i].xy)*vec2(asp,1.); float r=length(d); float w=uW[i].z; float e=r-w;',
     '    float band=exp(-e*e*320.)*uW[i].w; if(r>1e-4) off+=d/r*band*.055/vec2(asp,1.);',
+    '  }',
+    '  if(uVHS>0.){ off.x+=(sin(uv.y*240.+uTime*55.)*.0011+step(.984,sin(uv.y*6.-uTime*3.2))*.012)*uVHS; }',
+    '  if(uHole.w>0.){',                // a black hole bends and swirls the light around it
+    '    vec2 d=(uv-uHole.xy)*vec2(asp,1.); float r=max(length(d),1e-4); float k=uHole.z*uHole.z/(r*r+uHole.z*uHole.z*.25)*uHole.w;',
+    '    float a=k*1.1, cs=cos(a), sn=sin(a); vec2 t=vec2(cs*d.x-sn*d.y,sn*d.x+cs*d.y)*(1.-k*.35); off+=(t-d)/vec2(asp,1.);',
     '  }',
     '  vec2 q=uv+off; vec2 cd=(uv-.5); float ca=uCA*(.0015+dot(cd,cd)*.012)+length(off)*.5;',
     '  vec3 c=vec3(texture(uS,q+cd*ca).r,texture(uS,q).g,texture(uS,q-cd*ca).b);',
@@ -254,6 +263,7 @@
     '  c=(c*(2.51*c+.03))/(c*(2.43*c+.59)+.14);',      // ACES-ish filmic curve
     '  c=pow(clamp(c,0.,1.),vec3(.88));',
     '  float v=1.-dot(cd,cd)*.55; c*=v;',
+    '  if(uVHS>0.) c*=1.-uVHS*.13*step(.5,fract(uv.y*uRes.y*.22));',
     '  c+=(h(uv*uRes+fract(uTime)*91.)-.5)*.018;',
     '  o=vec4(c,1.);',
     '}'
@@ -432,6 +442,28 @@
 
   FX.prototype.begin = function () { this.n = 0; };
 
+  /** The falling-sand layer: an RGBA image replaced every frame while a sand break is running. */
+  FX.prototype.setGrid = function (px, w, h) { this.grid = { px: px, w: w, h: h }; };
+  FX.prototype.clearGrid = function () { this.grid = null; };
+  FX.prototype._uploadGrid = function (gl, unit, loc) {
+    var g = this.grid;
+    gl.activeTexture(gl.TEXTURE0 + unit);
+    if (!this.gridTex || this.gridW !== g.w || this.gridH !== g.h) {
+      if (this.gridTex) gl.deleteTexture(this.gridTex);
+      this.gridTex = gl.createTexture(); this.gridW = g.w; this.gridH = g.h;
+      gl.bindTexture(gl.TEXTURE_2D, this.gridTex);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, g.w, g.h, 0, gl.RGBA, gl.UNSIGNED_BYTE, g.px);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    } else {
+      gl.bindTexture(gl.TEXTURE_2D, this.gridTex);
+      gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 0, g.w, g.h, gl.RGBA, gl.UNSIGNED_BYTE, g.px);
+    }
+    gl.uniform1i(loc, unit);
+  };
+
   FX.prototype.sprite = function (type, x, y, hw, hh, rot, ar, ag, ab, aa, br, bg, bb, ba, p1, p2) {
     if (this.n >= MAX_SPRITES) return;
     var d = this.data, i = this.n * STRIDE;
@@ -510,6 +542,7 @@
       P = this.progSprite; gl.useProgram(P.p);
       gl.uniform4fv(P.u.uView, this.view); gl.uniform1f(P.u.uPx, this.px); gl.uniform1f(P.u.uTime, this.time);
       if (this.atlasTex) bindTex(gl, 0, this.atlasTex, P.u.uAtlas);
+      if (this.grid) this._uploadGrid(gl, 1, P.u.uGrid);
       gl.bindVertexArray(this.vao);
       gl.bindBuffer(gl.ARRAY_BUFFER, this.inst);
       gl.bufferSubData(gl.ARRAY_BUFFER, 0, this.data, 0, this.n * STRIDE);
@@ -555,6 +588,9 @@
     }
     gl.uniform1i(P.u.uNW, nw);
     if (P.u.uW) gl.uniform4fv(P.u.uW, wd);
+    gl.uniform1f(P.u.uVHS, this.vhs || 0);
+    if (this.hole) { var hu = this.worldToUv(this.hole.x, this.hole.y); gl.uniform4f(P.u.uHole, hu.x, hu.y, this.hole.r * this.ppu / this.h, this.hole.s); }
+    else gl.uniform4f(P.u.uHole, 0, 0, 0, 0);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   };
 
@@ -584,6 +620,13 @@
         c.globalCompositeOperation = 'lighter'; c.strokeStyle = A; c.lineWidth = Math.max(1, hw * d[o + 6]); c.beginPath(); c.arc(0, 0, hw, 0, 6.283); c.stroke();
       } else if (type === T.BALL || type === T.PEG || type === T.DISC || type === T.GEM || type === T.PORTAL) {
         c.fillStyle = A; c.beginPath(); c.arc(0, 0, hw, 0, 6.283); c.fill();
+      } else if (type === T.GRID) {
+        if (this.grid) {
+          var g2 = this.grid, off = this._gridCv || (this._gridCv = root.document.createElement('canvas'));
+          if (off.width !== g2.w || off.height !== g2.h) { off.width = g2.w; off.height = g2.h; }
+          off.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(g2.px.buffer), g2.w, g2.h), 0, 0);
+          c.imageSmoothingEnabled = false; c.drawImage(off, -hw, -hh, hw * 2, hh * 2);
+        }
       } else if (type === T.GLYPH || type === T.CHEVRON) { /* drawn as text below / skipped */
       } else if (type === T.CRATE) {
         c.fillStyle = '#d33'; c.fillRect(-hw, -hh, hw * 2, hh * 2);

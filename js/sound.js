@@ -131,6 +131,23 @@
       this.tone(98, 4.2, 'sine', 0.13, 0.2);
       for (i = 0; i < 26; i++) s.tone(1046.5 * Math.pow(2, SCALE[i % 5] / 12 + Math.floor(i / 5)), 0.32, 'sine', 0.035, 1.4 + i * 0.07);
     },
+    /* A rising drum-roll for a Focus roll, then a result to match the tier. */
+    roll: function () { for (var i = 0; i < 12; i++) this.tone(300 + i * 42, 0.05, 'triangle', 0.035 + i * 0.004, i * 0.078, null, 0); },
+    win: function (tier) {
+      var s = this, notes = tier === 'ultra' ? [523, 659, 784, 1046, 1318, 1568, 2093] : tier === 'rare' ? [523, 659, 784, 1046, 1318] : [659, 784, 1046];
+      notes.forEach(function (f, i) { s.tone(f, 0.55, 'triangle', 0.1, i * 0.08); s.tone(f * 2, 0.4, 'sine', 0.04, i * 0.08); });
+      if (tier === 'ultra') { this.tone(65, 2.4, 'sine', 0.24); this.bell(true); }
+    },
+    /* A tape spinning backward, and each domino's note played on the way back down the scale. */
+    tape: function () { this.tone(1100, 0.32, 'sawtooth', 0.025, 0, 150); this.noise(0.3, 0.05, 2600, 0, 500, 5); },
+    rewindNote: function (i) {
+      var now = root.performance.now(); if (now - this.last < 26) return; this.last = now;
+      this.tone(this._scale(i % 15, 330), 0.14, 'sine', 0.075);
+    },
+    noLuck: function () { this.tone(330, 0.16, 'sine', 0.06); this.tone(262, 0.24, 'sine', 0.06, 0.11); },
+    freeze: function () { var s = this; [1568, 2093, 2637].forEach(function (f, i) { s.tone(f, 0.3, 'sine', 0.05, i * 0.05); }); },
+    melt: function () { this.tone(900, 0.5, 'sine', 0.035, 0, 240); },
+    focusLost: function () { this.tone(392, 0.5, 'triangle', 0.08, 0, 98); },
     pop: function () { this.noise(0.18, 0.14, 2200, 0, 600); this.tone(180 + Math.random() * 100, 0.14, 'sine', 0.08, 0, 60); },
     unlock: function () { var s = this; [523, 659, 784, 1046, 1318].forEach(function (f, i) { s.tone(f, 0.42, 'triangle', 0.09, i * 0.085); }); },
     tierUp: function () { var s = this; [392, 523, 659, 784].forEach(function (f, i) { s.tone(f, 0.34, 'sawtooth', 0.035, i * 0.06); s.tone(f, 0.34, 'sine', 0.07, i * 0.06); }); },
