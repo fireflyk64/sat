@@ -176,12 +176,22 @@
   function buildChoice(item, host, onChange) {
     var stem = el('p', 'stem');
     // Vocab items can be asked two ways (same data, same 4 words): fill the blank, or match a meaning to its word
+    var fillClue = false;
     var meaning = item.type === 'vocab' && item.definitions && item.definitions[item.answer] && Math.random() < 0.5;
     if (meaning) {
       var d = item.definitions[item.answer].replace(/\.$/, '');
       stem.className = 'stem meaning';
       stem.appendChild(document.createTextNode('\u201C' + d.charAt(0).toUpperCase() + d.slice(1) + '.\u201D'));
     } else {
+      if (item.type === 'vocab' && item.definitions && item.definitions[item.answer]) {
+        // pin the target: the missing word must fit the sentence AND have this meaning, so only one option can qualify
+        var dd = item.definitions[item.answer].replace(/\.$/, '');
+        var clue = el('p', 'clue');
+        clue.appendChild(el('b', null, 'The missing word means: '));
+        clue.appendChild(document.createTextNode('\u201C' + dd + '\u201D'));
+        host.appendChild(clue);
+        fillClue = true;
+      }
       var parts = item.stem.split('___');
       stem.appendChild(document.createTextNode(parts[0]));
       stem.appendChild(el('span', 'blankline', '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0'));
@@ -203,7 +213,7 @@
     });
     host.appendChild(opts);
     return {
-      prompt: meaning ? 'Which SAT word matches this meaning?' : null,
+      prompt: meaning ? 'Which SAT word matches this meaning?' : (fillClue ? 'Choose the word that has this meaning and fits the blank.' : null),
       ready: function () { return chosen != null; },
       check: function () { return { correct: chosen === item.answer }; },
       reveal: function () {

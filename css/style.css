@@ -56,6 +56,8 @@ button.icon { background: rgba(10,5,35,.72); border: 1px solid var(--line); colo
 .prompt { color: var(--mute); margin: 8px 0 12px; }
 .step { margin: 10px 0 6px; font-weight: 600; color: #d9d0ff; }
 .stem { font-size: 1.15rem; line-height: 1.7; }
+.clue { margin: 4px 0 8px; padding: 8px 12px; border-left: 3px solid var(--gold); background: rgba(255,215,64,.08); border-radius: 6px; color: var(--ink); }
+.clue b { color: var(--gold); }
 .stem.meaning { font-family: Georgia, serif; font-style: italic; font-size: 1.25rem; color: var(--gold); }
 .blankline { display: inline-block; border-bottom: 2px solid var(--accent); min-width: 5em; margin: 0 2px; }
 

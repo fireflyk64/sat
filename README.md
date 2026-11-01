@@ -47,7 +47,7 @@ public-domain Poirot books (about 160-220 per book).
 | `mark` | tap commas + capitals | 255 |
 | `mc` | SAT-style conventions choice | 301 |
 | `forge` | find 3 planted errors | 203 |
-| `vocab` | SAT words (183 distinct). Asked two ways from the same data: fill the blank with the right word, or pick the word that matches a given meaning | 197 |
+| `vocab` | SAT words (about 180 distinct). Two styles from the same data: the missing word's *meaning is shown above the sentence* (so only one option fits both the definition and the blank), or pick the word that matches a meaning | 196 |
 | `tapfix` agreement | find the real subject, pick the verb | 120 |
 | `tapfix` tense | spot the odd verb, pick the fix | 123 |
 
@@ -60,7 +60,10 @@ How quality was controlled:
 2. **Independent audit**: every item was then reviewed by a separate adversarial reviewer under modern SAT rules, and
    224 items (optional/arguable commas, a second defensible option, context that is not in the sentence) were dropped
    (`data/audit-dropped.json`).
-3. **Gameplay check**: all 1200 items were solved through the real UI with the right answer (all graded correct), and
+3. **Vocab uniqueness review**: two further reviewers checked every vocab item so that only one option can have the shown
+   meaning (no synonym distractors, accurate definitions, same part of speech). 23 items had distractors swapped, 1 was
+   removed. `tests/verify-quotes.mjs` also fails any item where an "a"/"an" before the blank would give the answer away.
+4. **Gameplay check**: all 1200 items were solved through the real UI with the right answer (all graded correct), and
    option order is shuffled every time an item is shown so the key is never in a predictable slot.
 
 This is a review by AI, not by a teacher: grammar keys are judgement calls, so spot-check the "Correct version" line and
