@@ -1,21 +1,39 @@
 /*
- * Free-form marble/domino run. The track is a chain of "sections". Each correct answer lets the player
- * add one more, choosing:
- *   dir  : -1 (left) or +1 (right). Same as the previous piece = carry straight on; opposite = U-turn
- *          (the ball bounces off a backstop and comes back underneath).
- *   kind : 'dominoes' | 'pegs' | 'steep'  (or 'surprise' for a random one)
- * Pieces always step downward, so the contraption can grow arbitrarily large without overlapping itself.
+ * The machine: a chain reaction built from a "recipe" (an ordered list of pieces).
+ *
+ *   marble -> toy -> dominoes -> last domino kicks the next resting marble -> next piece -> ... -> bell
+ *
+ * Every piece ends the same way: a row of dominoes whose last domino starts a resting "relay" marble rolling
+ * off the end of the ramp into whatever comes next. Because the whole machine is rebuilt from its recipe, a new
+ * piece can slot into ANY gap in the chain: everything below it simply moves down to make room.
+ *
+ * Pieces always step downward, so the contraption never overlaps itself however large it grows.
+ * Works in the browser and headlessly in Node (see tests/machine-test.mjs).
  */
 (function (root) {
   'use strict';
   var Phys = root.Phys;
 
-  var TOP = 7;            // y of the first platform's high end
-  var CLEAR = 2.9;        // gap between a platform's low end and the next platform's high end
-  var THICK = 0.3;
-  var DOM_HW = 0.09, DOM_HH = 0.46;
-  var BALL_R = 0.36;
-  var KINDS = ['dominoes', 'pegs', 'steep'];
+  var GRAVITY = 14;
+  var THICK = 0.3, CLEAR = 2.9, RAD = Math.PI / 180;
+  var DOM_HW = 0.13, DOM_HH = 0.62, BALL_R = 0.34, SMALL_R = 0.24;
+  var START_X = 0, START_Y = 4;
+
+  /* label + the number of correct answers (ever) that unlocks it. Order is the unlock ladder. */
+  var KINDS = {
+    dominoes:   { label: 'Domino Row',     unlock: 0,  blurb: 'Dominoes knock dominoes, then kick a marble.' },
+    steep:      { label: 'Speed Ramp',     unlock: 0,  blurb: 'A steep drop and a flying leap.' },
+    pegs:       { label: 'Peg Field',      unlock: 0,  blurb: 'The marble rattles down through chiming pegs.' },
+    zigzag:     { label: 'Switchback',     unlock: 2,  blurb: 'Back and forth, back and forth.' },
+    seesaw:     { label: 'Catapult',       unlock: 4,  blurb: 'One marble lands, the other one flies.' },
+    trampoline: { label: 'Trampoline',     unlock: 6,  blurb: 'Bounces the marble UP to a higher ledge.' },
+    wrecking:   { label: 'Wrecking Ball',  unlock: 8,  blurb: 'Pull the latch and it swings.' },
+    cannon:     { label: 'Cannon',         unlock: 10, blurb: 'Swallows the marble and fires it across the gap.' },
+    nitro:      { label: 'Nitro Crate',    unlock: 13, blurb: 'Blows the marble across the gap.' },
+    cascade:    { label: 'Marble Cascade', unlock: 16, blurb: 'A gate opens and a flood of marbles pours out.' },
+    portal:     { label: 'Portal',         unlock: 20, blurb: 'In one side, out the other.' },
+    cradle:     { label: "Newton's Cradle", unlock: 25, blurb: 'Click. Clack. Click. Clack.' }
+  };
 
   function rng(seed) { // mulberry32
     var s = seed >>> 0;
@@ -27,150 +45,815 @@
     };
   }
 
-  function Track(world, seed) {
+  /**
+   * recipe: { seed, pieces: [{ id, kind, seed }] }
+   * opts.emit(type, data) reports everything the renderer and scoring care about.
+   */
+  function Track(world, recipe, opts) {
+    opts = opts || {};
     this.world = world;
-    this.seed = seed || (Math.random() * 1e9) | 0;
-    this.rand = rng(this.seed);
+    world.gy = GRAVITY;
+    this.recipe = recipe;
+    this.emit = opts.emit || function () {};
+    this.now = opts.now || 0;
     this.sections = [];
-    this.floor = null;
-    this.balls = [];
-    this.baseHue = Math.floor(this.rand() * 360);
-    this._rebuildFloor();
+    this.marbles = [];
+    this.statics = [];
+    this.debris = [];
+    this.stars = [];
+    this.run = null;
+    this.toppled = 0;
+    this.time = 0;
+    this.baseHue = rng(recipe.seed)() * 360 | 0;
+    var self = this;
+    world.onSensor = function (s, o) { if (s.userData && s.userData.onHit) s.userData.onHit(o); };
+    world.onImpact = function (a, b, x, y, imp) { self._impact(a, b, x, y, imp); };
+
+    this._starter();
+    for (var i = 0; i < recipe.pieces.length; i++) this._addSection(recipe.pieces[i], i === recipe.pieces.length - 1);
+    this._floor();
   }
-  Track.TOP = TOP; Track.BALL_R = BALL_R; Track.KINDS = KINDS;
+  Track.GRAVITY = GRAVITY; Track.BALL_R = BALL_R; Track.SMALL_R = SMALL_R; Track.KINDS = KINDS;
   Track.DOM = { hw: DOM_HW, hh: DOM_HH };
+  Track.FLICK_MAX = 9.5;
 
-  Track.prototype.last = function () { return this.sections[this.sections.length - 1]; };
+  // ---------------------------------------------------------------- geometry helpers
+  Track.prototype._static = function (sec, o, kind) {
+    var b = this.world.add(new Phys.Body(o));
+    b.userData = { kind: kind, section: sec ? sec.i : -1, pieceId: sec ? sec.id : 'start', key: kind + (sec ? sec.bodies.length : this.statics.length) };
+    this.statics.push(b);
+    if (sec) sec.bodies.push(b);
+    return b;
+  };
 
-  /** Where the next piece's high end would start if built in direction `dir` (used for the preview marker). */
-  Track.prototype.preview = function (dir, gap) {
-    var prev = this.last();
-    if (!prev) return { x: 0, y: TOP, turn: true, dir: dir };
-    var turn = dir !== prev.dir;
-    var x = turn ? prev.lowX - dir * (gap == null ? 4.4 : gap) : prev.lowX - dir * 0.6;
-    return { x: x, y: prev.lowY + CLEAR, turn: turn, dir: dir };
+  Track.prototype._ramp = function (sec, x, y, dir, deg, L, kind) {
+    var th = deg * RAD, a = dir * th, c = Math.cos(a), s = Math.sin(a);
+    var lowX = x + dir * L * Math.cos(th), lowY = y + L * Math.sin(th);
+    var body = this._static(sec, {
+      x: (x + lowX) / 2 - s * (THICK / 2), y: (y + lowY) / 2 + c * (THICK / 2),
+      a: a, hw: L / 2, hh: THICK / 2, isStatic: true, friction: 0.6, restitution: 0.1
+    }, kind || 'platform');
+    var ramp = {
+      x: x, y: y, dir: dir, th: th, a: a, c: c, s: s, L: L, lowX: lowX, lowY: lowY, body: body,
+      at: function (d, h) { h = h || 0; return { x: x + dir * d * Math.cos(th) + s * h, y: y + d * Math.sin(th) - c * h }; }
+    };
+    if (sec) sec.ramps.push(ramp);
+    return ramp;
+  };
+
+  Track.prototype._wall = function (sec, x, yTop, yBottom, o) {
+    return this._static(sec, {
+      x: x, y: (yTop + yBottom) / 2, hw: (o && o.hw) || 0.2, hh: (yBottom - yTop) / 2,
+      isStatic: true, friction: 0.2, restitution: (o && o.rest) == null ? 0.3 : o.rest
+    }, (o && o.kind) || 'wall');
+  };
+
+  /** A ramp running back the other way beneath the marble's exit, with a backstop on the outside. */
+  Track.prototype._turn = function (sec, px, py, pdir, o) {
+    var x = px + pdir * o.gap, y = py + o.clear;
+    var ramp = this._ramp(sec, x, y, -pdir, o.deg, o.L);
+    this._wall(sec, x + pdir * 0.2, y - o.clear - (o.over == null ? 1.8 : o.over), y + 0.2);
+    ramp.gap = o.gap;
+    return ramp;
+  };
+
+  Track.prototype._entry = function (sec, r, p, L, deg) {
+    return this._turn(sec, p.x, p.y, p.dir, { gap: 3.8 + r() * 1.2, clear: CLEAR, deg: deg, L: L, over: 2.8 });
+  };
+
+  /** A ramp carrying on in the same direction, starting below and ahead of a point. */
+  Track.prototype._forward = function (sec, x, y, dir, deg, L) { return this._ramp(sec, x, y, dir, deg, L); };
+
+  Track.prototype._domino = function (sec, ramp, d, hue) {
+    var p = ramp.at(d, DOM_HH + 0.002);
+    var b = this.world.add(new Phys.Body({
+      x: p.x, y: p.y, a: ramp.a, hw: DOM_HW, hh: DOM_HH, density: 0.55, friction: 0.7, restitution: 0.02, asleep: true
+    }));
+    b.userData = { kind: 'domino', section: sec.i, pieceId: sec.id, key: 'dom' + sec.dominoes.length, a0: ramp.a, hue: hue, order: sec.dominoes.length, dir: ramp.dir };
+    sec.dominoes.push(b);
+    return b;
+  };
+
+  Track.prototype._marble = function (sec, x, y, o) {
+    o = o || {};
+    var b = this.world.add(new Phys.Body({
+      x: x, y: y, circle: o.r || BALL_R, density: o.density || (o.small ? 11 : 4), friction: 0.45, restitution: 0.35, asleep: o.asleep !== false, manualWake: !!o.manualWake
+    }));
+    b.userData = {
+      kind: 'marble', section: sec ? sec.i : -1, pieceId: sec ? sec.id : 'start', key: o.key || ('m' + this.marbles.length),
+      hue: (o.hue == null ? this.baseHue : o.hue), role: o.role || 'relay', small: !!o.small, live: false
+    };
+    this.marbles.push(b);
+    return b;
+  };
+
+  /** The end of every piece: rows of dominoes, each row kicking a resting marble. Sets sec.exit. */
+  Track.prototype._run = function (sec, r, ramp, from, allowDouble) {
+    var relayD = ramp.L - 1.05, lastD = relayD - 0.95, spacing = 0.66 + r() * 0.08, span = lastD - from;
+    var wantDouble = r() < 0.75;
+    var hue = sec.hue;
+    var self = this;
+    function row(a, b) {
+      var n = Math.max(1, Math.floor((b - a) / spacing) + 1);
+      for (var k = 0; k < n; k++) self._domino(sec, ramp, a + k * spacing, (hue + sec.dominoes.length * 7) % 360);
+      return a + (n - 1) * spacing;
+    }
+    if (allowDouble && wantDouble && span > 9.5) {
+      // domino -> domino -> marble -> domino -> domino -> marble
+      var mid = from + span * (0.42 + r() * 0.14);
+      var aEnd = row(from, mid);
+      var mp = ramp.at(aEnd + 0.95, BALL_R + 0.001);
+      var m = this._marble(sec, mp.x, mp.y, { role: 'kicker', hue: (hue + 180) % 360, key: 'kick' });
+      sec.kickers.push(m);
+      row(aEnd + 0.95 + 1.7, lastD);
+    } else row(from, lastD);
+    var rp = ramp.at(relayD, BALL_R + 0.001);
+    var relay = this._marble(sec, rp.x, rp.y, { role: 'relay', hue: (hue + 180) % 360, key: 'relay' });
+    sec.exit = { x: ramp.lowX, y: ramp.lowY, dir: ramp.dir, marble: relay, ramp: ramp };
+    sec.relay = relay;
+  };
+
+  /** A sensor that catches the arriving marble and hands it to fn. Fires once. */
+  Track.prototype._catch = function (sec, x, y, r, fn) {
+    var self = this;
+    var b = this._static(sec, { x: x, y: y, circle: r, isStatic: true, sensor: true }, 'sensor');
+    b.userData.onHit = function (o) {
+      if (!o.userData || o.userData.kind !== 'marble' || o.userData.small) return;
+      if (o.userData.section === sec.i) return;      // only a marble arriving from upstream can trip it
+      if (b.userData.used === o) return;                 // the marble it caught (a cannon fires that very marble back out)
+      if (b.userData.used) { self._spend(o); return; }   // the toy already fired: any later marble is absorbed
+      b.userData.used = o;
+      fn.call(self, o);
+    };
+    return b;
+  };
+
+  Track.prototype._spend = function (m) {
+    if (m.userData.spent) return;
+    m.userData.spent = this.time;
+    m.userData.live = false;
+    m.ghost = true;                 // a retired marble fades out; it must not plough the dominoes it leaves behind
+  };
+
+  /** Launch a marble on a parabola that lands exactly on (tx, ty) T seconds from now. */
+  Track.prototype.lob = function (m, tx, ty, T) {
+    if (m.asleep) { m.manualWake = false; m.wake(); this.world._dropArbiters(m); }
+    m.vx = (tx - m.x) / T;
+    m.vy = (ty - m.y) / T - 0.5 * GRAVITY * T;
+    m.w = (m.vx > 0 ? 1 : -1) * 6;
+    m.userData.live = true;
+  };
+
+  // ---------------------------------------------------------------- the pieces
+  var BUILD = {
+    dominoes: function (sec, r, p) {
+      var e = this._entry(sec, r, p, 15 + r() * 5, 7.5 + r() * 1.5);
+      this._run(sec, r, e, e.gap + 1.9, true);
+    },
+
+    steep: function (sec, r, p) {
+      var e = this._entry(sec, r, p, 9 + r() * 2.5, 15 + r() * 4);
+      var gap = 6.2 + r() * 1.2;
+      var t = this._turn(sec, e.lowX, e.lowY, e.dir, { gap: gap, clear: 3.4, deg: 8, L: 13 + r() * 3, over: 3 });
+      sec.boost = e;
+      this._run(sec, r, t, gap + 1.7, false);
+    },
+
+    pegs: function (sec, r, p) {
+      var e = this._entry(sec, r, p, 8 + r() * 2, 10);
+      var gap = 6.4, clear = 6.8;
+      var t = this._turn(sec, e.lowX, e.lowY, e.dir, { gap: gap, clear: clear, deg: 8, L: 13 + r() * 3 });
+      var rows = 3;
+      for (var k = 0; k < rows; k++) {
+        var y = e.lowY + 1.7 + k * 1.55, n = k % 2 ? 3 : 2;
+        for (var q = 0; q < n; q++) {
+          var off = (k % 2 ? 0.75 : 1.6) + q * 1.7 + (r() - 0.5) * 0.25;
+          this._peg(sec, e.lowX + e.dir * off, y + (r() - 0.5) * 0.2);
+        }
+      }
+      this._run(sec, r, t, gap + 1.9, false);
+    },
+
+    zigzag: function (sec, r, p) {
+      var e = this._entry(sec, r, p, 7, 12);
+      var turns = 2 + (r() < 0.5 ? 1 : 0), cur = e;
+      for (var i = 0; i < turns; i++) cur = this._turn(sec, cur.lowX, cur.lowY, cur.dir, { gap: 1.5, clear: 1.9, deg: 12, L: 6 + r(), over: 0.9 });
+      var t = this._turn(sec, cur.lowX, cur.lowY, cur.dir, { gap: 1.8, clear: 2.1, deg: 8, L: 12 + r() * 3, over: 1 });
+      this._run(sec, r, t, 3.2, false);
+    },
+
+    /* Catapult: an arriving marble lands on the high end of a plank, and the far end flips a waiting marble into the air */
+    seesaw: function (sec, r, p) {
+      var e = this._entry(sec, r, p, 7 + r(), 10), F = e.dir;
+      var hl = 2.5, tilt = 0.3 * F;
+      var cx = e.lowX + F * (hl + 1.25), cy = e.lowY + 3.1;
+      var plank = this.world.add(new Phys.Body({ x: cx, y: cy, a: tilt, hw: hl, hh: 0.13, density: 1.2, friction: 0.7, restitution: 0.05, asleep: true }));
+      plank.userData = { kind: 'plank', section: sec.i, pieceId: sec.id, key: 'plank', a0: tilt };
+      this.world.hinge(plank, cx, cy);
+      sec.moving.push(plank);
+      var ch = Math.cos(0.3), sh = Math.sin(0.3);
+      // stops: the plank can rock between +/- 0.3 rad
+      this._static(sec, { x: cx + F * hl * ch, y: cy + hl * sh + 0.4, hw: 0.3, hh: 0.24, isStatic: true }, 'stop');
+      this._static(sec, { x: cx - F * hl * ch, y: cy + hl * sh + 0.4, hw: 0.3, hh: 0.24, isStatic: true }, 'stop');
+      this._static(sec, { x: cx, y: cy + 0.75, hw: 0.28, hh: 0.62, isStatic: true }, 'pivot');
+      var pass = this._marble(sec, cx + F * (hl - 0.55) * ch + sh * (BALL_R + 0.13) * F, cy + (hl - 0.55) * sh - ch * (BALL_R + 0.13), { role: 'passenger', hue: sec.hue, key: 'pass', manualWake: true });
+      var gap = 4.2, t = this._turn(sec, cx + F * hl, cy, F, { gap: gap, clear: 2.5, deg: 8, L: 15 + r() * 2, over: 2.5 });
+      var lp = t.at(gap - 1.2 + 1.2, BALL_R);
+      var self = this, input = null;
+      sec.toy = {
+        type: 'seesaw', triggered: false, plank: plank,
+        update: function () {
+          if (this.triggered) return;
+          if (Math.abs(plank.w) > 0.5) this.fire();
+        },
+        fire: function () {
+          if (this.triggered) return;
+          this.triggered = true;
+          if (plank.asleep) plank.wake();
+          plank.w = -F * 3.2;
+          self.lob(pass, lp.x, lp.y, 1.15);
+          self.emit('toy', { what: 'launch', kind: 'seesaw', x: pass.x, y: pass.y, sec: sec });
+        },
+        force: function () { this.fire(); }
+      };
+      sec.passenger = pass;
+      this._run(sec, r, t, gap + 2.6, false);
+    },
+
+    trampoline: function (sec, r, p) {
+      var e = this._entry(sec, r, p, 7 + r(), 10), F = e.dir;
+      var padX = e.lowX + F * 3.4, padY = e.lowY + 5.4;
+      var pad = this._static(sec, { x: padX, y: padY + 0.1, hw: 2.1, hh: 0.14, isStatic: true }, 'pad');
+      this._static(sec, { x: padX, y: padY + 0.55, hw: 2.3, hh: 0.2, isStatic: true }, 'padbase');
+      this._wall(sec, padX - F * 2.3, padY - 3.8, padY + 0.5, { hw: 0.14 });
+      this._wall(sec, padX + F * 2.3, padY - 2.2, padY + 0.5, { hw: 0.14 });
+      var t = this._forward(sec, padX + F * 3.6, padY - 2.4, F, 8, 13 + r() * 3);
+      var lp = t.at(2.6, BALL_R), self = this;
+      var toy = sec.toy = {
+        type: 'trampoline', triggered: false, x: padX, y: padY, hit: -9,
+        update: function () {},
+        bounce: function (m) {
+          this.triggered = true; this.hit = self.time;
+          self.lob(m, lp.x, lp.y, 1.15);
+          self.emit('toy', { what: 'bounce', kind: 'trampoline', x: m.x, y: padY, sec: sec });
+        },
+        force: function () { var m = self._liveMarble(); if (m) { m.x = padX; m.y = padY - 0.6; this.bounce(m); } else this.triggered = true; }
+      };
+      pad.userData.toy = toy;
+      this._run(sec, r, t, 5.6, false);
+    },
+
+    wrecking: function (sec, r, p) {
+      var e = this._entry(sec, r, p, 7 + r(), 10), F = e.dir, X = e.lowX, Y = e.lowY;
+      var len = 3.3, ax = X + F * 3.5, ay = Y + 1.0, raise = 78 * RAD;
+      var bx = ax - F * Math.sin(raise) * len, by = ay + Math.cos(raise) * len;
+      var ball = this.world.add(new Phys.Body({ x: bx, y: by, circle: 0.66, density: 3.2, friction: 0.4, restitution: 0.3, asleep: true, manualWake: true }));
+      ball.userData = { kind: 'wrecker', section: sec.i, pieceId: sec.id, key: 'wreck', ax: ax, ay: ay };
+      this.world.hinge(ball, ax, ay);
+      sec.moving.push(ball);
+      var ledgeY = ay + len + BALL_R + 0.02;
+      var ledge = this._ramp(sec, ax + F * 0.72, ledgeY, F, 0, 4.2);
+      var mp = ledge.at(0.33, BALL_R + 0.001);
+      var pass = this._marble(sec, mp.x, mp.y, { role: 'passenger', hue: sec.hue, key: 'pass' });
+      var gap = 5.6, t = this._turn(sec, ledge.lowX, ledge.lowY, F, { gap: gap, clear: 3, deg: 8, L: 13 + r() * 3, over: 3 });
+      var self = this;
+      sec.toy = {
+        type: 'wrecking', triggered: false, ball: ball,
+        update: function () { if (this.triggered && !ball.asleep) { ball.vx *= 0.996; ball.vy *= 0.996; ball.w *= 0.996; } },
+        fire: function (m) {
+          if (this.triggered) return;
+          this.triggered = true;
+          if (m) self._spend(m);
+          ball.manualWake = false; ball.wake(); ball.w = 0;
+          self.emit('toy', { what: 'swing', kind: 'wrecking', x: X, y: Y, sec: sec });
+        },
+        force: function () {
+          if (!this.triggered) this.fire();
+          else { pass.wake(); pass.vx = F * 7; pass.userData.live = true; }
+        }
+      };
+      var toy = sec.toy;
+      this._catch(sec, X + F * 0.1, Y - 0.25, 0.6, function (m) { toy.fire(m); });
+      sec.passenger = pass;
+      this._run(sec, r, t, gap + 1.9, false);
+    },
+
+    cannon: function (sec, r, p) {
+      var e = this._entry(sec, r, p, 7 + r(), 10), F = e.dir, X = e.lowX, Y = e.lowY;
+      var mx = X + F * 0.9, my = Y - 0.2;
+      this._static(sec, { x: X + F * 0.9, y: Y + 0.75, hw: 0.75, hh: 0.45, isStatic: true }, 'cannonbase');
+      var t = this._forward(sec, X + F * (9.5 + r() * 1.5), Y + 2.4, F, 8, 13 + r() * 3);
+      var lp = t.at(2.4, BALL_R), self = this;
+      var toy = sec.toy = {
+        type: 'cannon', triggered: false, x: mx, y: my, dir: F, angle: -F * 0.95, charge: 0, fired: -9, m: null,
+        update: function (dt) {
+          if (!this.m || this.fired > 0) return;
+          this.charge += dt;
+          if (this.charge > 0.6) this.fire();
+        },
+        take: function (m) {
+          if (this.triggered) return;
+          this.triggered = true; this.m = m;
+          m.sleep(); m.manualWake = true; m.x = mx; m.y = my; m.userData.held = true;
+          self.emit('toy', { what: 'charge', kind: 'cannon', x: mx, y: my, sec: sec });
+        },
+        fire: function () {
+          var m = this.m; this.fired = self.time; m.userData.held = false;
+          self.lob(m, lp.x, lp.y, 1.25);
+          self.emit('toy', { what: 'boom', kind: 'cannon', x: mx, y: my, sec: sec, dir: F, power: 1 });
+        },
+        force: function () { if (!this.triggered) { var m = self._liveMarble(); if (m) this.take(m); else this.triggered = true; } }
+      };
+      this._catch(sec, X + F * 0.2, Y - 0.3, 0.6, function (m) { toy.take(m); });
+      this._run(sec, r, t, 5.2, false);
+    },
+
+    nitro: function (sec, r, p) {
+      var e = this._entry(sec, r, p, 7 + r(), 10), F = e.dir, X = e.lowX, Y = e.lowY;
+      var cp = e.at(e.L - 0.65, 0.56);
+      var crate = this._static(sec, { x: cp.x, y: cp.y, a: e.a, hw: 0.55, hh: 0.55, isStatic: true, restitution: 0 }, 'nitro');
+      // a stack of blocks for the blast to throw around
+      var shelf = this._ramp(sec, X + F * 1.1, Y + 1.1, F, 0, 3.2);
+      var blocks = [];
+      for (var cx = 0; cx < 2; cx++) for (var cy = 0; cy < 3; cy++) {
+        var bp = shelf.at(0.75 + cx * 1.05, 0.27 + cy * 0.54);
+        var b = this.world.add(new Phys.Body({ x: bp.x, y: bp.y, hw: 0.48, hh: 0.26, density: 0.5, friction: 0.5, restitution: 0.1, asleep: true, manualWake: true }));
+        b.userData = { kind: 'block', section: sec.i, pieceId: sec.id, key: 'block' + blocks.length, hue: (sec.hue + cx * 25 + cy * 15) % 360 };
+        blocks.push(b); this.debris.push(b);
+      }
+      var gap = 8.2, t = this._turn(sec, shelf.lowX, shelf.lowY, F, { gap: gap - 3.2, clear: 3.2, deg: 8, L: 14 + r() * 3, over: 4 });
+      var lp = t.at(1.8, BALL_R), self = this;
+      var toy = sec.toy = {
+        type: 'nitro', triggered: false, crate: crate, fuse: -1, m: null,
+        update: function (dt) {
+          if (this.fuse < 0) return;
+          this.fuse -= dt;
+          if (this.fuse <= 0) { this.fuse = -1; this.boom(); }
+        },
+        light: function (m) {
+          if (this.triggered) return;
+          this.triggered = true; this.m = m; this.fuse = 0.09;
+        },
+        boom: function () {
+          self.world.remove(crate); crate.userData.gone = true;
+          blocks.forEach(function (b) { b.manualWake = false; b.ghost = true; b.userData.dissolve = self.time + 1.5; });
+          self.world.explode(cp.x, cp.y, 7, 11);
+          if (this.m) self.lob(this.m, lp.x, lp.y, 1.05);
+          self.emit('toy', { what: 'boom', kind: 'nitro', x: cp.x, y: cp.y, sec: sec, dir: F, power: 2 });
+        },
+        force: function () { if (!this.triggered) this.light(self._liveMarble()); }
+      };
+      crate.userData.toy = toy;
+      this._run(sec, r, t, gap - 3.2 + 2.2, false);
+    },
+
+    cascade: function (sec, r, p) {
+      var e = this._entry(sec, r, p, 7 + r(), 10), F = e.dir, X = e.lowX, Y = e.lowY;
+      var t = this._forward(sec, X + F * 1.0, Y + 3.4, F, 8, 18 + r() * 3);
+      this._wall(sec, t.x - F * 0.15, t.y - 3.1, t.y + 0.2, { hw: 0.14, kind: 'hopper' });
+      var gp = t.at(3.45, 1.3);
+      var gate = this._static(sec, { x: gp.x, y: gp.y, a: t.a, hw: 0.12, hh: 1.3, isStatic: true, friction: 0.1 }, 'gate');
+      var small = [], nx = 5, ny = 3;
+      for (var iy = 0; iy < ny; iy++) for (var ix = 0; ix < nx; ix++) {
+        var mp = t.at(0.5 + ix * 0.54 + (iy % 2 ? 0.24 : 0), SMALL_R + 0.01 + iy * 0.5);
+        var m = this._marble(sec, mp.x, mp.y, { r: SMALL_R, small: true, role: 'small', hue: (sec.hue + ix * 30 + iy * 40) % 360, key: 'small' + small.length, manualWake: true });
+        small.push(m);
+      }
+      var self = this;
+      var toy = sec.toy = {
+        type: 'cascade', triggered: false, gate: gate, small: small, opened: -9,
+        update: function () {},
+        open: function (m) {
+          if (this.triggered) return;
+          this.triggered = true; this.opened = self.time;
+          if (m) self._spend(m);
+          self.world.remove(gate); gate.userData.gone = true;
+          small.forEach(function (s) { s.manualWake = false; s.wake(); s.userData.live = true; s.userData.expire = self.time + 7; s.vx += F * 0.6; });
+          self.emit('toy', { what: 'gate', kind: 'cascade', x: gp.x, y: gp.y, sec: sec });
+        },
+        force: function () { this.open(); }
+      };
+      this._catch(sec, X + F * 0.1, Y - 0.25, 0.6, function (m) { toy.open(m); });
+      this._run(sec, r, t, 7.6, false);
+    },
+
+    portal: function (sec, r, p) {
+      var e = this._entry(sec, r, p, 7 + r(), 10), F = e.dir, X = e.lowX, Y = e.lowY;
+      var ix = X + F * 1.4, iy = Y + 0.3;
+      var ox = X + F * (11 + r() * 2), oy = Y + 0.8;
+      var t = this._forward(sec, ox - F * 1.4, oy + 2.6, F, 8, 13 + r() * 3);
+      var self = this;
+      var toy = sec.toy = {
+        type: 'portal', triggered: false, ax: ix, ay: iy, bx: ox, by: oy, flash: -9,
+        update: function () {},
+        warp: function (m) {
+          if (this.triggered) return;
+          this.triggered = true; this.flash = self.time;
+          var fx = m.x, fy = m.y;
+          m.x = ox; m.y = oy; m.vx = F * 2.2; m.vy = 3; self.world._dropArbiters(m);
+          self.emit('toy', { what: 'portal', kind: 'portal', x: fx, y: fy, x2: ox, y2: oy, sec: sec });
+        },
+        force: function () { if (!this.triggered) { var m = self._liveMarble(); if (m) this.warp(m); else this.triggered = true; } }
+      };
+      this._catch(sec, ix, iy, 0.85, function (m) { toy.warp(m); });
+      this._run(sec, r, t, 4.4, false);
+    },
+
+    /* Newton's cradle: scripted swing (it is the one toy where exact rhythm matters more than free physics) */
+    cradle: function (sec, r, p) {
+      var e = this._entry(sec, r, p, 7 + r(), 10), F = e.dir, X = e.lowX, Y = e.lowY;
+      var ledge = this._ramp(sec, X, Y + 0.02, F, 0, 8.6);
+      var br = 0.34, n = 5, x0 = X + F * 1.75, by = Y - br, len = 2.6;
+      var mp = { x: x0 + F * (n - 1) * 2 * br + F * (br + BALL_R + 0.03), y: Y - BALL_R };
+      var pass = this._marble(sec, mp.x, mp.y, { role: 'passenger', hue: sec.hue, key: 'pass', manualWake: true });
+      var gap = 5.2, t = this._turn(sec, ledge.lowX, ledge.lowY, F, { gap: gap, clear: 3, deg: 8, L: 13 + r() * 3, over: 3 });
+      var self = this;
+      var toy = sec.toy = {
+        type: 'cradle', triggered: false, x0: x0, y: by - len, len: len, br: br, n: n, dir: F,
+        t: -1, last: 0, kicked: false, a: 0,
+        update: function (dt) {
+          if (this.t < 0) return;
+          this.t += dt;
+          var w = 7.2, A = 0.72 * Math.exp(-this.t * 0.42);
+          this.a = A * Math.sin(this.t * w);
+          var beat = Math.floor(this.t * w / Math.PI);
+          if (beat !== this.last) {
+            this.last = beat;
+            if (A > 0.12) self.emit('toy', { what: 'click', kind: 'cradle', x: x0 + F * 3 * br, y: by, sec: sec, amp: A });
+          }
+          if (!this.kicked && this.a > 0.2) {
+            this.kicked = true; pass.manualWake = false; pass.wake(); pass.vx = F * 7.5; pass.userData.live = true;
+          }
+          if (A < 0.03) { this.t = -1; this.a = 0; }
+        },
+        strike: function (m) {
+          if (this.triggered) return;
+          this.triggered = true; this.t = 0; this.last = 0;
+          if (m) self._spend(m);
+          self.emit('toy', { what: 'click', kind: 'cradle', x: x0, y: by, sec: sec, amp: 0.8 });
+        },
+        force: function () {
+          if (!this.triggered) this.strike();
+          else if (!this.kicked) { this.kicked = true; pass.manualWake = false; pass.wake(); pass.vx = F * 7.5; pass.userData.live = true; }
+        }
+      };
+      this._catch(sec, x0 - F * (br + 0.1), by, 0.5, function (m) { toy.strike(m); });
+      sec.passenger = pass;
+      this._run(sec, r, t, gap + 1.9, false);
+    }
+  };
+
+  Track.prototype._peg = function (sec, x, y) {
+    var g = this._static(sec, { x: x, y: y, circle: 0.24, isStatic: true, restitution: 0.6, friction: 0.1 }, 'peg');
+    g.userData.lit = -9;
+    return g;
+  };
+
+  // ---------------------------------------------------------------- assembling the chain
+  Track.prototype._starter = function () {
+    var ledge = this._ramp(null, START_X - 4.4, START_Y, 1, 7, 4.4, 'platform');
+    this._wall(null, ledge.x - 0.2, START_Y - 1.6, START_Y + 0.2);
+    var mp = ledge.at(ledge.L - 1.05, BALL_R + 0.001);
+    var m = this._marble(null, mp.x, mp.y, { role: 'starter', key: 'starter' });
+    this.head = { x: ledge.lowX, y: ledge.lowY, dir: 1, marble: m, ramp: ledge };
+  };
+
+  Track.prototype._addSection = function (piece, isLast) {
+    var i = this.sections.length, r = rng(piece.seed);
+    var sec = {
+      i: i, id: piece.id, kind: piece.kind, hue: (this.baseHue + i * 41) % 360,
+      ramps: [], bodies: [], dominoes: [], kickers: [], moving: [], toy: null, exit: null, relay: null, passenger: null,
+      started: false, done: false, nextDomino: 0
+    };
+    var prev = i ? this.sections[i - 1].exit : this.head;
+    (BUILD[piece.kind] || BUILD.dominoes).call(this, sec, r, prev);
+    this.sections.push(sec);
+    if (isLast) this._bell(sec);
+  };
+
+  Track.prototype._bell = function (sec) {
+    var e = sec.exit, F = e.dir, self = this;
+    var bx = e.x + F * 2.4, by = e.y + 2.9;
+    var cup = this._static(sec, { x: bx, y: by, circle: 1.15, isStatic: true, sensor: true }, 'bell');
+    cup.userData.onHit = function (o) { if (o.userData && o.userData.kind === 'marble') self._ring(o); };
+    this._wall(sec, bx + F * 1.7, by - 3.5, by + 1.4, { hw: 0.14 });
+    this.bell = { x: bx, y: by, rung: -9, dir: F };
+  };
+
+  Track.prototype._ring = function (m) {
+    if (!this.bell || this.bell.rung > 0) return;
+    this.bell.rung = this.time;
+    if (m) this._spend(m);
+    var run = this.run;
+    if (run) { run.over = true; run.finished = true; }
+    this.emit('bell', { x: this.bell.x, y: this.bell.y, run: run });
+  };
+
+  Track.prototype._floor = function () {
+    var b = this.bounds(), bottom = this.bottomY();
+    var cx = (b.minX + b.maxX) / 2, hw = (b.maxX - b.minX) / 2 + 40;
+    this.floor = this.world.add(new Phys.Body({ x: cx, y: bottom + 0.5, hw: hw, hh: 0.5, isStatic: true, friction: 0.7 }));
+    this.floor.userData = { kind: 'floor', section: -2 };
   };
 
   Track.prototype.bounds = function () {
-    var b = { minX: 0, maxX: 0, minY: TOP - 8, maxY: this.bottomY() };
+    var b = { minX: START_X - 6, maxX: START_X + 6, minY: START_Y - 6, maxY: this.bottomY() };
     this.sections.forEach(function (s) {
-      b.minX = Math.min(b.minX, s.H.x, s.lowX); b.maxX = Math.max(b.maxX, s.H.x, s.lowX);
+      s.ramps.forEach(function (r) {
+        b.minX = Math.min(b.minX, r.x, r.lowX); b.maxX = Math.max(b.maxX, r.x, r.lowX);
+      });
     });
     return b;
   };
 
   Track.prototype.bottomY = function () {
-    var l = this.last();
-    return (l ? l.lowY : TOP) + 5.5;
+    var y = START_Y;
+    this.sections.forEach(function (s) { s.ramps.forEach(function (r) { y = Math.max(y, r.y, r.lowY); }); });
+    return y + 7;
   };
 
-  Track.prototype._rebuildFloor = function () {
-    var w = this.world;
-    if (this.floor) w.remove(this.floor);
-    var b = this.bounds(), bottom = this.bottomY();
-    var cx = (b.minX + b.maxX) / 2, hw = (b.maxX - b.minX) / 2 + 40;
-    this.floor = w.add(new Phys.Body({ x: cx, y: bottom + 0.5, hw: hw, hh: 0.5, isStatic: true, friction: 0.7 }));
-    this.floor.userData = { kind: 'floor' };
-    this.floorWalls = (this.floorWalls || []);
-    this.floorWalls.forEach(function (b) { w.remove(b); });
-    this.floorWalls = [-1, 1].map(function (sd) {
-      return w.add(new Phys.Body({ x: cx + sd * hw, y: bottom - 3, hw: 0.5, hh: 3.5, isStatic: true, friction: 0.2 }));
-    });
-  };
+  /** The marble that plays piece i: the one resting at the end of whatever comes before it. */
+  Track.prototype.marbleFor = function (i) { return i <= 0 ? this.head.marble : this.sections[i - 1].exit.marble; };
+  Track.prototype.exitFor = function (i) { return i <= 0 ? this.head : this.sections[i - 1].exit; };
 
-  Track.prototype.addSection = function (now, opts) {
-    opts = opts || {};
-    var r = this.rand, w = this.world;
-    var i = this.sections.length, prev = this.last();
-    var dir = opts.dir || (prev ? -prev.dir : 1);
-    var kind = opts.kind;
-    if (!kind || kind === 'surprise') kind = KINDS[Math.floor(r() * KINDS.length)];
-
-    var turn = !prev || dir !== prev.dir;
-    var gap = 3.8 + r() * 1.4;                         // overshoot distance for a U-turn
-    var start = this.preview(dir, gap);
-    var highX = start.x, y0 = start.y;
-
-    var theta, Ls;
-    if (kind === 'steep') { theta = (15 + r() * 4) * Math.PI / 180; Ls = 8 + r() * 3; }
-    else if (kind === 'pegs') { theta = (8 + r() * 3) * Math.PI / 180; Ls = 9 + r() * 4; }
-    else { theta = (8 + r() * 3.5) * Math.PI / 180; Ls = 13 + r() * 4; }
-    var a = dir * theta, c = Math.cos(a), s = Math.sin(a);
-    var dx = Ls * Math.cos(theta), lowX = highX + dir * dx, lowY = y0 + Ls * Math.sin(theta);
-    var mx = (highX + lowX) / 2, my = (y0 + lowY) / 2;
-
-    // centre = surface midpoint pushed down by half the thickness along the platform normal (-sin a, cos a)
-    var body = w.add(new Phys.Body({
-      x: mx - s * (THICK / 2), y: my + c * (THICK / 2),
-      a: a, hw: Ls / 2, hh: THICK / 2, isStatic: true, friction: 0.6, restitution: 0.1
-    }));
-    body.userData = { kind: 'platform' };
-
-    var sec = {
-      i: i, dir: dir, kind: kind, turn: turn, a: a, L: Ls, body: body, born: now || 0,
-      H: { x: highX, y: y0 }, lowX: lowX, lowY: lowY,
-      hue: (this.baseHue + i * 37) % 360, dominoes: [], pegs: [], wall: null, gap: gap
+  // ---------------------------------------------------------------- running the chain
+  /** Flick the marble above piece `from`. The chain then runs on its own down to the bell. */
+  Track.prototype.startRun = function (from, vx, vy) {
+    var m = this.marbleFor(from);
+    if (!m) return null;
+    if (m.asleep) { m.manualWake = false; m.wake(); this.world._dropArbiters(m); }
+    m.vx = vx; m.vy = vy; m.w = (vx >= 0 ? 1 : -1) * 4;
+    m.userData.live = true;
+    m.userData.flicked = this.time;
+    m.userData.home = m.userData.home || { x: m.x, y: m.y };
+    this.run = {
+      from: from, marble: m, t0: this.time, idle: 0, nudges: 0, over: false, finished: false, engaged: false,
+      dominoes: 0, sections: {}, stuck: 0, multiplier: 1
     };
+    this.frontier = from;
+    if (this.sections[from]) this._startSection(this.sections[from]);
+    return this.run;
+  };
 
-    // backstop at the outer end of the first piece and of every U-turn, so the ball bounces back
-    if (turn) {
-      sec.wall = w.add(new Phys.Body({ x: highX - dir * 0.2, y: y0 - 1.3, hw: 0.2, hh: 1.5, isStatic: true, friction: 0.2, restitution: 0.4 }));
-      sec.wall.userData = { kind: 'wall' };
+  Track.prototype._startSection = function (sec) {
+    if (sec.started) return;
+    sec.started = true;
+    this.frontier = Math.max(this.frontier || 0, sec.i);
+    this.emit('section', { sec: sec });
+  };
+
+  Track.prototype._liveMarble = function () {
+    var best = null;
+    for (var i = 0; i < this.marbles.length; i++) {
+      var m = this.marbles[i];
+      if (m.userData.live && !m.userData.spent && !m.userData.small && !m.userData.held) {
+        if (!best || m.y > best.y) best = m;
+      }
+    }
+    return best;
+  };
+
+  Track.prototype._impact = function (a, b, x, y, imp) {
+    var ma = a.userData && a.userData.kind === 'marble' ? a : null, mb = b.userData && b.userData.kind === 'marble' ? b : null;
+    var m = ma || mb, o = ma ? b : a;
+    if (m && o.userData) {
+      if (o.userData.kind === 'peg') o.userData.lit = this.time;
+      if (o.userData.kind === 'domino') {
+        // A marble strikes a domino below its balance point, which on its own would just shove it along upright.
+        // Convert the hit into a forward tip so the row topples as a wave rather than bunching up like a train.
+        var dd = o.userData.dir;
+        if (!o.userData.fell && Math.abs(o.a - o.userData.a0) < 0.3) { o.vx *= 0.25; o.vy *= 0.25; o.w = dd * Math.max(2.8, Math.abs(o.w)); }
+      }
+      if (o.userData.kind === 'domino' && !m.userData.small && m.userData.section !== o.userData.section) m.userData.brake = true;
+      if (o.userData.kind === 'domino' && !m.userData.small && m.userData.role === 'kicker') m.userData.brake = true;
+      if (o.userData.kind === 'pad' && o.userData.toy && !m.userData.small) o.userData.toy.bounce(m);
+      if (o.userData.kind === 'nitro' && o.userData.toy && !m.userData.small) o.userData.toy.light(m);
+      var si = o.userData.section;
+      if (this.run && !this.run.engaged && si != null && si >= this.run.from && si >= 0) {
+        this.run.engaged = true;
+        this.emit('engaged', { x: x, y: y, run: this.run });
+      }
+      if (si != null && si >= 0 && this.sections[si] && this.run && m.userData.section !== si) this._startSection(this.sections[si]);
+    }
+    this.emit('impact', { a: a, b: b, x: x, y: y, imp: imp, marble: m });
+  };
+
+  Track.prototype.tick = function (dt, now) {
+    this.time += dt;
+    this.now = now == null ? this.now : now;
+    var t = this.time, i, s, m;
+
+    for (i = 0; i < this.sections.length; i++) {
+      s = this.sections[i];
+      if (s.toy && s.toy.update) s.toy.update(dt);
+      // dominoes: count a fall the moment it has really tipped
+      for (var k = 0; k < s.dominoes.length; k++) {
+        var d = s.dominoes[k];
+        if (d.asleep) continue;
+        // a domino pushed off the end of its ramp fades away rather than blocking whatever is below
+        if (!d.userData.dissolve && (d.x - s.exit.x) * s.exit.dir > -0.1) {
+          d.ghost = true; d.userData.dissolve = t + 0.7; this.debris.push(d);
+        }
+        if (d.userData.fell) continue;
+        if (Math.abs(d.a - d.userData.a0) > 0.28) {
+          d.userData.fell = t; this.toppled++;
+          if (this.run) this.run.dominoes++;
+          this._startSection(s);
+          this.emit('domino', { d: d, sec: s, run: this.run });
+        }
+      }
+      if (s.started) this._sweep(s, t);
     }
 
-    // dominoes (keep the ball's landing zone clear)
-    if (kind === 'dominoes') {
-      var clear = !prev ? 3.5 : (turn ? gap + 1.2 : 4.5);
-      var clusters = 1 + (r() < 0.45 ? 1 : 0);
-      var cursor = clear + r() * 1.3;
-      for (var k = 0; k < clusters; k++) {
-        var spacing = 0.68 + r() * 0.14;
-        var maxN = Math.floor((Ls - 1.6 - cursor) / spacing);
-        var n = Math.min(maxN, 3 + Math.floor(r() * 4));
-        if (clusters === 2) n = Math.min(n, Math.floor(maxN / 2));
-        for (var d = 0; d < n; d++) {
-          var sd = cursor + d * spacing;
-          var px = highX + Math.cos(theta) * dir * sd, py = y0 + Math.sin(theta) * sd;
-          var dom = w.add(new Phys.Body({
-            x: px + s * (DOM_HH + 0.002), y: py - c * (DOM_HH + 0.002), a: a,
-            hw: DOM_HW, hh: DOM_HH, density: 0.4, friction: 0.12, restitution: 0.05, asleep: true
-          }));
-          dom.userData = { kind: 'domino', section: i, idx: d, hue: (sec.hue + d * 9) % 360, order: sec.dominoes.length };
-          sec.dominoes.push(dom);
+    for (i = this.marbles.length - 1; i >= 0; i--) {
+      m = this.marbles[i];
+      var u = m.userData;
+      if (!u.live && !m.asleep && !u.spent && !u.held) {            // something just kicked this marble awake
+        u.live = true;
+        if (u.role === 'relay' || u.role === 'kicker' || u.role === 'passenger') {
+          this.emit('kick', { m: m, role: u.role });
+          if (u.role === 'relay' && this.sections[u.section]) this._retire(m);
         }
-        cursor += (n + 1) * spacing + 1.5;
-        if (cursor > Ls - 2) break;
+      }
+      if (u.brake && !u.spent && !m.asleep) {                        // energy handed to the dominoes
+        var damp = Math.pow(0.012, dt);
+        m.vx *= damp; m.vy = m.vy > 0 ? m.vy : m.vy * damp; m.w *= damp;
+      }
+      if (u.spent && t - u.spent > 0.7) { this.world.remove(m); this.marbles.splice(i, 1); this.world.wakeNear(m.x, m.y, 1); continue; }
+      if (u.expire && t > u.expire) { this._spend(m); }
+      if (u.small && u.live && !u.spent) {
+        var sc = this.sections[u.section], ex = sc && sc.exit;
+        if (ex && (m.x - ex.x) * ex.dir > -1.6 && m.y > ex.y - 2) this._spend(m);     // the flood drains away just before the exit
+      }
+      // a relay that has rolled off its ramp is done with its own section
+      if (u.role === 'relay' && u.live && this.sections[u.section]) {
+        var ss = this.sections[u.section], ee = ss.exit;
+        if (!ss.done && (m.x - ee.x) * ee.dir > 0.1) { ss.done = true; this.emit('sectionDone', { sec: ss }); }
+      }
+      if (this.bottomY() - m.y < 0.8 && u.live && !u.spent && !u.small) {
+        // reached the floor: the end of the line if the bell is here, otherwise the marble is out of play
+        if (this.run && this.run.engaged && this.frontier >= this.sections.length - 1) this._ring(m);
+        else this._spend(m);
       }
     }
 
-    // pegs hang beneath the low end (staggered so the ball can't sit in a cradle between two of them)
-    var np = kind === 'pegs' ? 3 + Math.floor(r() * 3) : (kind === 'dominoes' && r() < 0.4 ? 1 : 0);
-    for (var p = 0; p < np; p++) {
-      var gx = lowX + dir * (1.4 + p * (1.6 + r() * 0.5));      // never right at the lip: the ball could cradle there
-      var gy = lowY + (p % 2 ? 1.1 : 0.6) + r() * 0.15;
-      var peg = w.add(new Phys.Body({ x: gx, y: gy, circle: 0.22, isStatic: true, restitution: 0.55, friction: 0.1 }));
-      peg.userData = { kind: 'peg' };
-      sec.pegs.push(peg);
+    for (i = this.debris.length - 1; i >= 0; i--) {
+      var b = this.debris[i];
+      if (b.userData.dissolve && t > b.userData.dissolve) { this.world.remove(b); this.debris.splice(i, 1); b.userData.gone = true; }
     }
 
-    this.sections.push(sec);
-    this._rebuildFloor();
-    return sec;
+    if (this.run && !this.run.over) this._watchRun(dt);
   };
 
-  Track.prototype.spawnBall = function (now) {
-    var sec = this.sections[0];
-    if (!sec) return null;
-    var ball = this.world.add(new Phys.Body({
-      x: sec.H.x + sec.dir * 1.3, y: sec.H.y - 3.2, vx: sec.dir * 0.4, circle: BALL_R, density: 4,
-      friction: 0.45, restitution: 0.35, neverSleep: true
-    }));
-    ball.userData = { kind: 'ball', born: now || 0, hue: (this.baseHue + this.balls.length * 70) % 360 };
-    this.balls.push(ball);
-    return ball;
+  /** Dominoes the wave has left behind (a marble landed just past them) topple too: no stragglers in a finished row. */
+  Track.prototype._sweep = function (s, t) {
+    if (s.swept && t - s.swept < 0.07) return;
+    var front = -1, k, doms = s.dominoes, frontT = 0;
+    for (k = 0; k < doms.length; k++) if (doms[k].userData.fell) { front = k; frontT = doms[k].userData.fell; }
+    var limit = front;
+    if (front < 0) { if (!s.done) return; limit = 1; frontT = t - 1; }    // the marble cleared the whole row: start it off
+    if (t - frontT < 0.35) return;
+    for (k = 0; k < limit; k++) {
+      var d = doms[k];
+      if (d.userData.fell || d.userData.pushed || d.userData.dissolve) continue;
+      d.userData.pushed = true; s.swept = t;
+      if (d.asleep) { d.wake(); this.world._dropArbiters(d); }
+      d.w += d.userData.dir * 2.4; d.vx += d.userData.dir * 0.5;
+      return;
+    }
   };
 
-  Track.prototype.dispose = function () { this.world.clear(); };
+  /** Retire the marbles that came before this one: they fade out once the next marble takes over. */
+  Track.prototype._retire = function (keep) {
+    for (var i = 0; i < this.marbles.length; i++) {
+      var m = this.marbles[i], u = m.userData;
+      if (m === keep || !u.live || u.spent || u.small || u.held) continue;
+      if (u.section <= keep.userData.section || u.role === 'starter') this._spend(m);
+    }
+  };
 
+  /** Keeps a run alive: a flick that missed gets another try, and a stalled chain gets a helping nudge. */
+  Track.prototype._watchRun = function (dt) {
+    var run = this.run, moving = false, i, b;
+    for (i = 0; i < this.world.bodies.length; i++) {
+      b = this.world.bodies[i];
+      if (b.invMass === 0 || (b.userData && (b.userData.dissolve || b.userData.kind === 'wrecker' || b.userData.kind === 'plank'))) continue;
+      if (b.vx * b.vx + b.vy * b.vy > 0.2 || b.w * b.w > 1.0) { moving = true; break; }
+    }
+    if (!moving) {
+      for (i = 0; i < this.sections.length; i++) {
+        var toy = this.sections[i].toy;
+        if (toy && ((toy.m && toy.fired < 0) || toy.fuse > 0 || (toy.t >= 0 && !toy.kicked && toy.triggered))) { moving = true; break; }
+      }
+    }
+    run.idle = moving ? 0 : run.idle + dt;
+
+    if (!run.engaged) {
+      var m = run.marble, lost = !this.world.bodies.includes(m) || m.userData.spent;
+      var target = this.sections[run.from];
+      if (!lost && target) {
+        var low = target.ramps[target.ramps.length - 1].lowY + 3;
+        if (m.y > low) lost = true;
+      }
+      if (lost || run.idle > 1.2 || this.time - run.t0 > 12) { this._respawn(run); return; }
+      return;
+    }
+    if (run.idle > 1.1) { run.idle = 0; this._nudge(run); }
+  };
+
+  /** A flick that missed the machine: put the marble back. Nothing is lost, flick again. */
+  Track.prototype._respawn = function (run) {
+    var m = run.marble, h = m.userData.home;
+    if (!this.world.bodies.includes(m)) { this.world.add(m); if (!this.marbles.includes(m)) this.marbles.push(m); }
+    m.userData.spent = 0; m.userData.live = false; m.userData.flicked = 0; m.userData.brake = false; m.ghost = false;
+    m.x = h.x; m.y = h.y; m.vx = m.vy = m.w = 0; m.a = 0; m.sleep(); this.world._dropArbiters(m);
+    this.run = null;
+    this.emit('lost', { x: m.x, y: m.y, marble: m });
+  };
+
+  /** Find the next thing that should have moved and give it a push, so a chain always reaches the bell. */
+  Track.prototype._nudge = function (run) {
+    run.nudges++;
+    var self = this;
+    function push(b, vx, vy, w) {
+      b.manualWake = false;
+      if (b.asleep) { b.wake(); self.world._dropArbiters(b); }
+      b.vx += vx; b.vy += vy; b.w += w || 0;
+      self.emit('nudge', { x: b.x, y: b.y });
+    }
+    for (var i = run.from; i < this.sections.length; i++) {
+      var s = this.sections[i];
+      if (s.done) continue;
+      var e = s.exit, F = e.dir;
+      if (s.toy && !s.toy.triggered) { s.toy.force(); this.emit('nudge', { x: e.ramp.x, y: e.ramp.y }); return; }
+      if (s.toy && s.passenger && !s.passenger.userData.live) { s.toy.force && s.toy.force(); this.emit('nudge', { x: s.passenger.x, y: s.passenger.y }); return; }
+      var front = -1, k;
+      for (k = 0; k < s.dominoes.length; k++) if (s.dominoes[k].userData.fell) front = k;
+      for (k = front + 1; k < s.dominoes.length; k++) {
+        var d = s.dominoes[k];
+        if (!d.userData.fell && !d.userData.pushed) {
+          d.userData.pushed = true;
+          push(d, F * 0.7, 0, F * 2.6);
+          return;
+        }
+      }
+      for (k = 0; k < s.kickers.length; k++) {
+        var kk = s.kickers[k];
+        if (kk.asleep) { push(kk, F * 2.5, 0); return; }
+      }
+      var relay = s.relay;
+      if (relay.userData.spent) continue;
+      push(relay, F * 3.5, -1, F * 2);
+      return;
+    }
+    // nothing left to push: the last marble is stuck short of the bell, or it was lost altogether
+    if (this.bell && this.bell.rung < 0) {
+      var lm = this._liveMarble();
+      if (lm && run.nudges < 12) { push(lm, (this.bell.x - lm.x) > 0 ? 3 : -3, -3); return; }
+      this._ring(lm);
+    }
+  };
+
+  /** Tap near a rolling marble to give it a shove. */
+  Track.prototype.poke = function (x, y) {
+    var best = null, bd = 9;
+    for (var i = 0; i < this.marbles.length; i++) {
+      var m = this.marbles[i];
+      if (!m.userData.live || m.userData.spent || m.userData.held || m.userData.small) continue;
+      var d = (m.x - x) * (m.x - x) + (m.y - y) * (m.y - y);
+      if (d < bd) { bd = d; best = m; }
+    }
+    if (!best) return null;
+    var dx = best.x - x, dy = best.y - y, L = Math.sqrt(dx * dx + dy * dy);
+    if (L < 0.5) { dx = best.vx >= 0 ? 1 : -1; dy = -0.4; L = Math.sqrt(dx * dx + dy * dy); }
+    best.vx += dx / L * 5; best.vy += dy / L * 5 - 1;
+    return best;
+  };
+
+  /** Stars hung along a good flick's arc: collect them for a bigger score multiplier. */
+  Track.prototype.placeStars = function (from) {
+    this.stars = [];
+    var e = this.exitFor(from), target = this.sections[from];
+    if (!target) return;
+    var ramp = target.ramps[0], m = e.marble, lp = ramp.at(Math.min(ramp.L - 1, (ramp.gap || 2) * 0.6 + 1), BALL_R);
+    var T = 1.05, vx = (lp.x - m.x) / T, vy = (lp.y - m.y) / T - 0.5 * GRAVITY * T;
+    [0.28, 0.5, 0.74].forEach(function (f, i) {
+      var tt = T * f;
+      this.stars.push({ x: m.x + vx * tt, y: m.y + vy * tt + 0.5 * GRAVITY * tt * tt, got: 0, i: i });
+    }, this);
+  };
+  Track.prototype.collectStars = function () {
+    if (!this.stars.length || !this.run) return;
+    var m = this.run.marble, t = this.time;
+    if (!m || m.userData.spent) return;
+    for (var i = 0; i < this.stars.length; i++) {
+      var s = this.stars[i];
+      if (s.got) continue;
+      var dx = m.x - s.x, dy = m.y - s.y;
+      if (dx * dx + dy * dy < 1.25) { s.got = t; this.run.multiplier++; this.emit('star', { x: s.x, y: s.y, run: this.run, n: this.run.multiplier - 1 }); }
+    }
+  };
+
+  Track.rng = rng;
   root.Track = Track;
 })(typeof window !== 'undefined' ? window : globalThis);

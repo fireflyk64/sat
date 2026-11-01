@@ -1,26 +1,64 @@
-# Little Grey Cells: a grammar + SAT-vocab game with a domino run
+# Little Grey Cells: a grammar + SAT-vocab game powered by a chain-reaction machine
 
-A zero-dependency, browser-only game. Answer Agatha Christie–based grammar and vocabulary
-questions; every correct answer adds a randomized platform and row of dominoes to a marble run,
-every 5th correct answer earns a marble, and releasing it topples the dominoes. After a run
-finishes, the next correct answer wipes the board and starts a fresh random run.
+A zero-dependency, browser-only game. Answer Agatha Christie–based grammar and vocabulary questions, and every right
+answer adds a physics toy to a Rube Goldberg machine that you set off yourself.
 
 Plain HTML/CSS/JS. No build step, no npm packages, no CDN. Works from `file://` too.
 
-## How the run grows
-After each correct answer you choose where the next piece goes with the toolbar under the run: **Left / Right** (the same
-direction as the last piece carries straight on; the opposite direction makes a U-turn with a backstop) and the piece type
-(**Dominoes**, **Pegs**, **Steep** drop, or a 🎲 surprise). A pulsing yellow arrow previews where it will attach.
-There is no size limit. Drag to pan, scroll the wheel to pan (Ctrl/Cmd+wheel or pinch to zoom), `+`/`−` to zoom,
-`⤢` to see the whole contraption, `◎` to follow the action again.
+## How it plays
+**Dominoes knock dominoes, the last domino kicks a resting marble, and that marble rolls down to knock the next row.**
+
+* **Right answer:** a random toy slots into a random gap in the chain. Everything below it slides down to make room and
+  the dominoes stand back up.
+* **Flick:** pull back on the glowing marble just above the new toy and let go (or press `F` for a plain push). The chain
+  runs from there down to the bell. Hit the stars on the way for a score multiplier. While it runs, tap a marble to shove it.
+  A flick that misses the machine costs nothing: the marble comes back.
+* **No right answer, no flick.** The machine sits locked until the next question is solved. Once a run has played, the next
+  one has to be earned.
+* **Finish the machine** (6 toys, then 8, 10, up to 12): it resets itself and you run the whole thing in one take. It ends
+  with a bell, a resolved chord, a wave of light down the machine, and fireworks. Then a new machine in a new colour scheme.
+* **Streaks** change the marble (Fire at 3 in a row, Plasma at 5, Prism at 8, Nova at 12), multiply the score, warm up the
+  whole scene, and every 5th in a row adds a bonus toy. A miss resets the streak but never takes anything away.
+
+**Toys** unlock as correct answers add up: Domino Row, Speed Ramp and Peg Field from the start, then Switchback (2),
+Catapult (4), Trampoline (6), Wrecking Ball (8), Cannon (10), Nitro Crate (13), Marble Cascade (16), Portal (20),
+Newton's Cradle (25).
+
+**Controls:** drag on empty space or scroll the wheel to pan, Ctrl/Cmd+wheel or pinch to zoom. The HUD buttons toggle sound,
+fast-forward, zoom, see the whole machine, and follow the action.
+
+## Misses come back: the cold case file
+A missed question becomes a **cold case** and stays open until it has been answered correctly in **two different sessions**:
+
+1. It comes back 4 to 6 questions later in the same session, so there is a gap and it is real recall.
+2. It comes back early in every later session, alternating with other questions (the very first question of a session is
+   the oldest open miss).
+3. Solved in one session: one down. Solved again in a later session: case closed. Missing it again starts the count over.
+
+Solving a cold case earns a **gold marble** (score ×3) and a **bonus toy**, so old misses are worth seeking out.
+A "session" is a page load, or coming back after 30 minutes away.
+
+Everything is saved **in the browser only**. Progress goes in `localStorage`, and the list of misses is also mirrored into a
+cookie, so clearing or evicting `localStorage` does not lose them. The game also asks the browser to keep its data
+(`navigator.storage.persist()`). Saves from the earlier version of the game carry over, with past misses filed as cold cases.
+Saves are per browser and per device, and clearing all site data removes them. Other questions follow Leitner spacing
+(1, 3, 7, 14, 30 days).
 
 ## Run it
     python3 -m http.server 8000     # then open http://localhost:8000
-(or just open `index.html`). Append `?q=forge-1` to jump straight to one question id.
+(or just open `index.html`). Append `?q=forge-1` to jump straight to one question id, or `?lofi=1` to force the plain
+2D renderer. The game uses WebGL2 and turns its own quality down if frames run long; without WebGL2 it falls back to the 2D renderer.
 
 ## Publish (GitHub Pages)
-Push to the `sat` repo of `fireflyk64`, then Settings → Pages → "Deploy from a branch" → `main` / `(root)`.
-It will be served at https://fireflyk64.github.io/sat/.
+Served at https://fireflyk64.github.io/sat/ as the `sat/` folder of the shared `fireflyk64.github.io` repo, which has one
+folder per project. Publish from a commit, copy only what the page needs, and stage only that folder:
+
+    H=$(git rev-parse --short HEAD); PAGES=../fireflyk64.github.io
+    (cd $PAGES && git pull -q --ff-only && rm -rf sat && mkdir sat)
+    git archive HEAD index.html css js data/questions.js data/questions-set2.js | tar -x -C $PAGES/sat
+    (cd $PAGES && git add -A sat && git commit -m "sat: what changed (from sat $H)" && git push origin main)
+
+Leave Pages off on the `sat` repo itself: a project site at the same path could compete with this folder.
 
 ## Question types (all auto-graded exactly)
 | type | skill | what the student does |
@@ -30,8 +68,6 @@ It will be served at https://fireflyk64.github.io/sat/.
 | `mc` | commas / conventions | SAT-style "conforms to Standard English" multiple choice |
 | `forge` | proofreading | finds N planted errors (words or missing/extra commas) |
 | `vocab` | vocabulary | SAT "words in context" with Christie sentences; definitions shown after answering |
-
-Progress is stored in `localStorage` (Leitner boxes: a missed item returns right away, then after 1, 3, 7, 14, 30 days).
 
 ## Grammar standard
 Answer keys follow **modern SAT Standard English Conventions**, not Christie's 1920s punctuation.
@@ -97,7 +133,23 @@ Only texts that are public domain in the US are used (published before 1931). Se
 listed above.
 *Murder on the Orient Express* (1934) is still under copyright in the US, so it is not included.
 
-## Physics
-`js/physics.js` is a small Box2D-Lite-style engine written for this project (oriented boxes + circles, sequential
-impulses, friction, restitution, sleeping), because the game must have no dependencies. `tests/physics-test.mjs`
-runs it headlessly.
+## How it is built
+| file | what it does |
+|---|---|
+| `js/physics.js` | a small Box2D-Lite-style engine written for this project: oriented boxes and circles, sequential impulses, friction, sleeping, hinges, sensors, explosions |
+| `js/track.js` | the machine: builds every toy from a recipe, runs the chain, and helps a stalled chain along. A recipe always builds the same machine, which is what lets a new piece slot into any gap |
+| `js/progress.js` | everything saved between sessions: cold cases, question scheduling, the machine's recipe |
+| `js/fx.js` | a WebGL2 engine: instanced shader-drawn shapes, HDR bloom, shockwave distortion, chromatic aberration, tone mapping, plus the 2D fallback |
+| `js/render.js` | draws the machine, particles, camera, and the tween that rearranges it |
+| `js/sound.js` | all audio synthesised live with WebAudio: no sound files |
+| `js/game.js` | glue: the flick, scoring, streaks, the HUD, the finale |
+| `js/quiz.js` | question widgets and exact grading |
+
+## Tests
+No install needed for any of these:
+
+    node tests/physics-test.mjs     # engine: toppling, hinges, sensors, explosions
+    node tests/machine-test.mjs     # every toy and 30 random machines must run from flick to bell on real physics
+    node tests/progress-test.mjs    # simulated sessions: do misses come back, survive a wiped localStorage, close correctly?
+    node tests/browser-test.mjs     # real Chrome, real clicks and reloads, start to finale (needs Chrome and python3; set CHROME=/path if needed)
+    node tests/verify-quotes.mjs    # every question re-checked against the Project Gutenberg text

@@ -32,6 +32,9 @@
     this.sleepT = 0;
     this.userData = o.userData || null;
     this.neverSleep = !!o.neverSleep;
+    this.sensor = !!o.sensor;           // reports overlaps through world.onSensor, never pushes anything
+    this.manualWake = !!o.manualWake;   // only wakes when the game says so (a raised wrecking ball, a latched toy)
+    this.ghost = !!o.ghost;             // debris: collides with static geometry only
   }
   Body.prototype.sleep = function () {
     if (this.isStatic || this.asleep) return;
@@ -194,7 +197,7 @@
   }
 
   // ---- arbiter -------------------------------------------------------------
-  var BIAS = 0.2, SLOP = 0.01;
+  var BIAS = 0.2, SLOP = 0.01, MAX_BIAS = 12, MAX_SPEED = 42;
 
   function Arbiter(A, B) {
     this.A = A; this.B = B; this.contacts = [];
@@ -227,7 +230,7 @@
       var kT = A.invMass + B.invMass + A.invI * (c.r1x * c.r1x + c.r1y * c.r1y - rt1 * rt1)
              + B.invI * (c.r2x * c.r2x + c.r2y * c.r2y - rt2 * rt2);
       c.massT = kT > 0 ? 1 / kT : 0;
-      c.bias = -BIAS * invDt * Math.min(0, c.sep + SLOP);
+      c.bias = Math.min(MAX_BIAS, -BIAS * invDt * Math.min(0, c.sep + SLOP));
       // restitution from approach speed
       var dvx = B.vx - B.w * c.r2y - A.vx + A.w * c.r1y, dvy = B.vy + B.w * c.r2x - A.vy - A.w * c.r1x;
       var vn = dvx * c.nx + dvy * c.ny;
@@ -263,21 +266,76 @@
     }
   };
 
+  // ---- hinge: pins a point on one body to a fixed point in the world ---------
+  function Hinge(body, ax, ay) {
+    this.b = body; this.ax = ax; this.ay = ay; this.Px = 0; this.Py = 0;
+    var c = Math.cos(body.a), s = Math.sin(body.a), dx = ax - body.x, dy = ay - body.y;
+    this.lx = c * dx + s * dy; this.ly = -s * dx + c * dy;
+  }
+  Hinge.prototype.preStep = function (invDt) {
+    var b = this.b;
+    if (b.invMass === 0) { this.Px = this.Py = 0; this.off = true; return; }
+    this.off = false;
+    var c = Math.cos(b.a), s = Math.sin(b.a), rx = c * this.lx - s * this.ly, ry = s * this.lx + c * this.ly;
+    var im = b.invMass, ii = b.invI;
+    var k11 = im + ii * ry * ry, k12 = -ii * rx * ry, k22 = im + ii * rx * rx, det = k11 * k22 - k12 * k12;
+    this.m11 = k22 / det; this.m12 = -k12 / det; this.m22 = k11 / det;
+    this.rx = rx; this.ry = ry;
+    this.bx = BIAS * invDt * (this.ax - (b.x + rx)); this.by = BIAS * invDt * (this.ay - (b.y + ry));
+    b.vx += im * this.Px; b.vy += im * this.Py; b.w += ii * (rx * this.Py - ry * this.Px);
+  };
+  Hinge.prototype.apply = function () {
+    if (this.off) return;
+    var b = this.b, rx = this.rx, ry = this.ry;
+    var dvx = this.bx - (b.vx - b.w * ry), dvy = this.by - (b.vy + b.w * rx);
+    var ix = this.m11 * dvx + this.m12 * dvy, iy = this.m12 * dvx + this.m22 * dvy;
+    this.Px += ix; this.Py += iy;
+    b.vx += b.invMass * ix; b.vy += b.invMass * iy; b.w += b.invI * (rx * iy - ry * ix);
+  };
+
   // ---- world ---------------------------------------------------------------
   function World(o) {
     o = o || {};
     this.gx = 0; this.gy = o.gravity == null ? 9.8 : o.gravity;
-    this.bodies = []; this.arbiters = {};
+    this.bodies = []; this.arbiters = {}; this.hinges = []; this._ev = [];
     this.iterations = o.iterations || 12;
     this.substeps = o.substeps || 2;
     this.onImpact = null; // (bodyA, bodyB, x, y, impulse)
+    this.onSensor = null; // (sensorBody, otherBody)
   }
   World.prototype.add = function (b) { this.bodies.push(b); return b; };
   World.prototype.remove = function (b) {
     var i = this.bodies.indexOf(b); if (i >= 0) this.bodies.splice(i, 1);
     for (var k in this.arbiters) if (this.arbiters[k].A === b || this.arbiters[k].B === b) delete this.arbiters[k];
+    this.hinges = this.hinges.filter(function (h) { return h.b !== b; });
   };
-  World.prototype.clear = function () { this.bodies.length = 0; this.arbiters = {}; };
+  World.prototype.clear = function () { this.bodies.length = 0; this.arbiters = {}; this.hinges = []; this._ev = []; };
+  World.prototype.hinge = function (b, ax, ay) { var h = new Hinge(b, ax, ay); this.hinges.push(h); return h; };
+  World.prototype._dropArbiters = function (b) {
+    for (var k in this.arbiters) if (this.arbiters[k].A === b || this.arbiters[k].B === b) delete this.arbiters[k];
+  };
+  /** Wake everything near a point, e.g. after removing something that other bodies may have been resting on. */
+  World.prototype.wakeNear = function (x, y, r) {
+    for (var i = 0; i < this.bodies.length; i++) {
+      var b = this.bodies[i];
+      if (!b.asleep || b.manualWake) continue;
+      var dx = b.x - x, dy = b.y - y, rr = r + b.radius;
+      if (dx * dx + dy * dy < rr * rr) { b.wake(); this._dropArbiters(b); }
+    }
+  };
+  /** Radial blast: a velocity change that falls off with distance, so light dominoes and heavy marbles both react. */
+  World.prototype.explode = function (x, y, r, power) {
+    for (var i = 0; i < this.bodies.length; i++) {
+      var b = this.bodies[i];
+      if (b.isStatic || b.sensor) continue;
+      var dx = b.x - x, dy = b.y - y, d = Math.sqrt(dx * dx + dy * dy);
+      if (d > r) continue;
+      if (b.asleep) { if (b.manualWake) b.manualWake = false; b.wake(); this._dropArbiters(b); }
+      var f = power * (1 - d / r), nx = d > 1e-4 ? dx / d : 0, ny = d > 1e-4 ? dy / d : -1;
+      b.vx += nx * f; b.vy += ny * f - f * 0.25;
+      b.w += (dx >= 0 ? 1 : -1) * f * 0.8;
+    }
+  };
 
   World.prototype.step = function (dt) {
     var h = dt / this.substeps;
@@ -298,7 +356,7 @@
       if (!M.neverSleep && M.vx * M.vx + M.vy * M.vy < 0.0036 && Math.abs(M.w) < 0.15) continue;
       for (j = 0; j < n; j++) {
         var S = bodies[j];
-        if (!S.asleep) continue;
+        if (!S.asleep || S.manualWake) continue;
         var wx = S.x - M.x, wy = S.y - M.y, wr = S.radius + M.radius + 0.05;
         if (wx * wx + wy * wy > wr * wr) continue;
         S.wake();
@@ -316,6 +374,13 @@
         if (B === A || (B.invMass !== 0 && B.id < A.id)) continue; // awake-awake pairs are visited once
         var dx = B.x - A.x, dy = B.y - A.y, rr = A.radius + B.radius + 0.02;
         if (dx * dx + dy * dy > rr * rr) continue;
+        if (A.ghost && !B.isStatic) continue;
+        if (B.ghost && !A.isStatic) continue;
+        if (A.sensor || B.sensor) {
+          if ((A.sensor && B.sensor) || !collide(A, B).length) continue;
+          this._ev.push(A.sensor ? [0, A, B] : [0, B, A]);
+          continue;
+        }
         var P = A.id < B.id ? A : B, Q = A.id < B.id ? B : A;
         var contacts = collide(P, Q);
         var key = P.id * 100003 + Q.id;
@@ -338,9 +403,13 @@
     }
     var invDt = 1 / dt, arbs = [];
     for (k in this.arbiters) arbs.push(this.arbiters[k]);
+    var hs = this.hinges;
     for (i = 0; i < arbs.length; i++) arbs[i].preStep(invDt);
-    for (var it = 0; it < this.iterations; it++)
+    for (i = 0; i < hs.length; i++) hs[i].preStep(invDt);
+    for (var it = 0; it < this.iterations; it++) {
       for (i = 0; i < arbs.length; i++) arbs[i].applyImpulse();
+      for (i = 0; i < hs.length; i++) hs[i].apply();
+    }
 
     // impact reporting
     if (this.onImpact) {
@@ -348,7 +417,7 @@
         var ar = arbs[i], tot = 0, cx = 0, cy = 0;
         for (j = 0; j < ar.contacts.length; j++) { tot += ar.contacts[j].Pn; cx += ar.contacts[j].px; cy += ar.contacts[j].py; }
         var prev = ar.impulse; ar.impulse = tot;
-        if (tot > 0.05 && prev < 0.02 && ar.contacts.length) this.onImpact(ar.A, ar.B, cx / ar.contacts.length, cy / ar.contacts.length, tot);
+        if (tot > 0.05 && prev < 0.02 && ar.contacts.length) this._ev.push([1, ar.A, ar.B, cx / ar.contacts.length, cy / ar.contacts.length, tot]);
       }
     }
 
@@ -356,10 +425,21 @@
     for (i = 0; i < n; i++) {
       var d = bodies[i];
       if (d.invMass === 0) continue;
-      d.x += d.vx * dt; d.y += d.vy * dt; d.a += d.w * dt;
       var sp = d.vx * d.vx + d.vy * d.vy;
+      if (sp > MAX_SPEED * MAX_SPEED) { var cap = MAX_SPEED / Math.sqrt(sp); d.vx *= cap; d.vy *= cap; sp = MAX_SPEED * MAX_SPEED; }
+      d.x += d.vx * dt; d.y += d.vy * dt; d.a += d.w * dt;
       if (!d.neverSleep && sp < 0.003 && d.w * d.w < 0.01) { d.sleepT += dt; if (d.sleepT > 0.6) d.sleep(); }
       else d.sleepT = 0;
+    }
+
+    // events fire last: handlers are free to add and remove bodies
+    if (this._ev.length) {
+      var ev = this._ev; this._ev = [];
+      for (i = 0; i < ev.length; i++) {
+        var e = ev[i];
+        if (e[0] === 0) { if (this.onSensor) this.onSensor(e[1], e[2]); }
+        else if (this.onImpact) this.onImpact(e[1], e[2], e[3], e[4], e[5]);
+      }
     }
   };
 

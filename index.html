@@ -3,56 +3,75 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Little Grey Cells: Domino Run</title>
-<meta name="description" content="Grammar, SAT vocabulary and sharp reading, powered by Agatha Christie and a domino run.">
+<title>Little Grey Cells: The Machine</title>
+<meta name="description" content="Grammar, SAT vocabulary and sharp reading, powered by Agatha Christie and a chain-reaction machine you build with right answers.">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div class="app">
-  <section class="stage">
-    <canvas id="world" aria-label="Domino and marble run that grows as you answer correctly"></canvas>
+  <section class="stage" id="stage">
+    <canvas id="world" aria-label="A chain-reaction machine of dominoes, marbles and toys that grows as you answer correctly. Pull back on the glowing marble and let go to set it off."></canvas>
+
     <div class="hud">
       <div class="hud-left">
-        <div class="chip"><span class="lbl">Marbles</span> <b id="ballcount">0</b></div>
-        <div class="chip"><span class="lbl">Toppled</span> <b id="toppled">0</b></div>
+        <div class="chip"><span class="lbl">Machine</span> <b id="caseNo">1</b></div>
+        <div class="chip"><span class="lbl">Score</span> <b id="score">0</b></div>
       </div>
       <div class="hud-mid">
-        <div id="pips" class="pips" aria-hidden="true"></div>
-        <div id="hint" class="hint"></div>
+        <div id="pieces" class="pieces" role="img"></div>
+        <div id="chain" class="chain" aria-hidden="true"><b id="chainN">0</b><span>dominoes</span></div>
       </div>
       <div class="hud-right">
         <button id="mute" class="icon" title="Sound on/off" aria-label="Toggle sound">🔊</button>
+        <button id="fast" class="icon" title="Fast forward" aria-label="Fast forward" aria-pressed="false">⏩</button>
         <button id="zin" class="icon" title="Zoom in" aria-label="Zoom in">+</button>
         <button id="zout" class="icon" title="Zoom out" aria-label="Zoom out">−</button>
-        <button id="fit" class="icon" title="See the whole contraption" aria-label="Overview">⤢</button>
-        <button id="follow" class="icon" title="Follow the action" aria-label="Follow">◎</button>
+        <button id="fit" class="icon" title="See the whole machine" aria-label="See the whole machine"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8V3h5M17 8V3h-5M3 12v5h5M17 12v5h-5"/></svg></button>
+        <button id="follow" class="icon" title="Follow the action" aria-label="Follow the action"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="10" r="6"/><circle cx="10" cy="10" r="1.6" fill="currentColor"/></svg></button>
       </div>
     </div>
-    <div id="builder" class="builder" role="group" aria-label="Choose the next piece">
-      <span class="blabel">Next piece</span>
-      <span class="bgroup">
-        <button data-dir="-1" title="Build leftwards">◀ Left</button>
-        <button data-dir="1" title="Build rightwards">Right ▶</button>
-      </span>
-      <span class="bgroup">
-        <button data-kind="dominoes" title="Ramp with a row of dominoes">▮▮▮ Dominoes</button>
-        <button data-kind="pegs" title="Short ramp with bouncy pegs">● Pegs</button>
-        <button data-kind="steep" title="Steep, fast drop">⤵ Steep</button>
-        <button data-kind="surprise" title="Random piece">🎲</button>
-      </span>
-    </div>
-    <button id="release" class="release" disabled>🔵 Release marble!</button>
+
+    <div id="banner" class="banner" role="status" aria-live="polite"><div id="bannerBig" class="big"></div><div id="bannerSmall" class="small"></div></div>
+    <div id="announce" class="announce" role="status" aria-live="polite"><b id="announceTitle"></b><span id="announceBlurb"></span></div>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <div class="dock">
+      <div id="hint" class="hint"></div>
+      <div id="streak" class="streak" aria-label="Streak of correct answers">
+        <span class="sn"><b id="streakN">0</b><i>in a row</i></span>
+        <span class="sbar"><span id="streakFill" class="fill"></span></span>
+        <span class="stext"><b id="streakName">Marble</b><i id="streakNext"></i></span>
+      </div>
+    </div>
+
+    <div id="finale" class="finale" role="dialog" aria-label="Machine complete">
+      <div class="fincard">
+        <div id="finTitle" class="fintitle">CASE CLOSED</div>
+        <div id="finScore" class="finscore"></div>
+        <div id="finStats" class="finstats"></div>
+        <button id="finaleNext" class="primary">Build the next machine →</button>
+      </div>
+    </div>
   </section>
 
   <section class="panel">
     <header>
-      <h1>Little Grey Cells</h1>
-      <p class="sub">Solve the case. Every correct answer builds the run.</p>
+      <div class="titlerow">
+        <h1>Little Grey Cells</h1>
+        <span id="rank" class="rank">Constable</span>
+      </div>
+      <p class="sub">Every right answer adds a toy to the machine. Every flick sets it off.</p>
     </header>
+
+    <div id="coldbar" class="coldbar">
+      <span class="folder" aria-hidden="true">🗂</span>
+      <div class="coldtext"><b><span id="coldN">0</span> <span id="coldWord">cold cases</span> open</b> · <span id="closedN">0</span> closed<small id="coldMsg"></small></div>
+    </div>
+
     <div id="meters" class="meters" aria-label="Skill progress"></div>
 
-    <article class="card">
+    <article id="card" class="card">
+      <div id="coldStamp" class="coldstamp" hidden></div>
       <div class="cardhead"><span id="qtag" class="tag"></span><h2 id="qtitle"></h2></div>
       <p id="qprompt" class="prompt"></p>
       <div id="qbody" class="qbody"></div>
@@ -62,18 +81,22 @@
       </div>
       <div id="feedback" hidden>
         <p id="verdict" class="verdict"></p>
+        <p id="coldNote" class="coldnote" hidden></p>
         <p id="rule" class="rulebox"></p>
         <p id="fixedline" class="fixed"></p>
         <p id="src" class="src"></p>
       </div>
     </article>
-    <footer>Quotations from public-domain Agatha Christie texts via Project Gutenberg.
+    <footer>Quotations from public-domain Agatha Christie texts via Project Gutenberg. Your progress and misses are saved only in this browser.
       <button id="reset" class="linkish">Reset progress</button></footer>
   </section>
 </div>
 <script src="js/physics.js"></script>
 <script src="js/track.js"></script>
+<script src="js/progress.js"></script>
+<script src="js/fx.js"></script>
 <script src="js/render.js"></script>
+<script src="js/sound.js"></script>
 <script src="js/quiz.js"></script>
 <script src="data/questions.js"></script>
 <script src="data/questions-set2.js"></script>
