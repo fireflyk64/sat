@@ -105,7 +105,29 @@ Leave Pages off on the `sat` repo itself: a project site at the same path could 
 | `tapfix` | agreement, tense | taps the real subject (or the wrong-tense verb), then picks the fix |
 | `mc` | commas / conventions | SAT-style "conforms to Standard English" multiple choice |
 | `forge` | proofreading | finds the 1 or 2 planted errors (words or missing/extra commas); commas that are fine either way are never marked wrong |
+| `strip` | phrases | taps the words of one kind of phrase to cross them out or highlight them: prepositional phrases, the complete subject, the verb phrase, the extra phrase set off by commas, the direct object |
 | `vocab` | vocabulary | SAT "words in context" with Christie sentences; definitions shown after answering |
+
+## The fire storyline (opens at 100 right answers)
+A serialized inquiry, *The Fire at Hallam Wharf*: 120 numbered statements in 10 chapters (`data/fire-story.json`), from the
+alarm to a confession. Each statement is a correct, grammar-rich sentence, and 171 questions are built from them
+(`data/questions-set6.js`): 87 strip questions (cross out every prepositional phrase to find the real subject, highlight
+the complete subject, the verb phrase, the direct object, or cut the extra phrase between commas), 10 subject-verb
+agreement, 41 common faults (apostrophes, pronouns, confused words, comma splices, parallelism, tense) and 33 forgeries to
+find. They are original sentences, so each is credited to the story and not to a book. They stay out of the pool until the
+total reaches 100, then take about 40% of the new questions. Solving a question adds its statement to a collapsed
+case file in the panel, so the story builds as he studies, and finding all 120 reveals what really happened. The Fire Fuse
+toy opens at the same point.
+
+How it was made, so it can be extended: a writer drafted the story; four writers each built the questions from 30 statements;
+independent solvers then answered every question blind, and a question stays only if the solver's answer matches the key
+exactly and the solver did not call it arguable (173 drafted, 8 dropped, 6 more written for the statements left without a
+question). `node scripts/apply-fire.mjs` checks each item against its statement (positions in range, "what is left" really is
+what is left, the correct version is the statement) and writes `data/fire-story.js` and `data/questions-set6.js` from
+`data/fire-story.json` and `data/fire-items.json`.
+
+Planned next, by total right answers: **water at 400** (a traditional SAT test section) and **breakable at 800** (a grab bag
+of hard grammar and vocabulary). Their unlock numbers are already in `Progress.STORY_UNLOCK`.
 
 ## Grammar standard
 Answer keys follow **modern SAT Standard English Conventions**, not Christie's 1920s punctuation.

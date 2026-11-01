@@ -109,6 +109,15 @@
       </div>
     </section>
 
+    <section id="dossier" class="chest mystery dossier" aria-label="The fire inquiry" hidden>
+      <button id="dossierToggle" class="chead" type="button" aria-expanded="false" aria-controls="dossierBody"><b>🔥 <span id="dossierTitle"></span></b> <span id="dossierCount"></span><i class="chevron" aria-hidden="true"></i></button>
+      <div id="dossierBody" hidden>
+        <p id="dossierIntro" class="mbrief"></p>
+        <div id="dossierChapters"></div>
+        <p id="dossierSolution" class="mbrief msolved" hidden></p>
+      </div>
+    </section>
+
     <section class="chest" aria-label="Chest of saved items">
       <button id="chestToggle" class="chead" type="button" aria-expanded="false" aria-controls="chestBody"><b>Chest</b> <span id="chestCount"></span><i class="chevron" aria-hidden="true"></i></button>
       <div id="chestBody" hidden>
@@ -164,7 +173,9 @@
 <script src="data/questions-set3.js"></script>
 <script src="data/questions-set4.js"></script>
 <script src="data/questions-set5.js"></script>
+<script src="data/questions-set6.js"></script>
 <script src="data/mysteries.js"></script>
+<script src="data/fire-story.js"></script>
 <script src="js/game.js"></script>
 </body>
 </html>

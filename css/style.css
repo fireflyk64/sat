@@ -161,6 +161,16 @@ button.icon.on { background: var(--gold); color: #271a00; box-shadow: 0 0 16px r
 .msolved { color: var(--gold); }
 .msolved[hidden] { display: none; }
 .storynext { color: var(--mute); font-size: .82rem; }
+/* the fire case file: the inquiry, one found statement at a time */
+.dossier[hidden] { display: none; }
+#dossierBody { display: flex; flex-direction: column; gap: 8px; padding-top: 4px; font-size: .86rem; }
+#dossierBody[hidden] { display: none; }
+.dchap h4 { margin: 0 0 3px; font-size: .82rem; font-weight: 700; color: var(--ink); }
+.dchap.locked h4 { color: var(--mute); font-weight: 600; }
+.dchap p { margin: 0 0 4px; padding-left: 8px; border-left: 2px solid rgba(255,140,60,.45); color: var(--ink); }
+.dchap p.fresh { border-left-color: var(--gold); color: #fff; }
+.dchap p.voice-inspector { font-style: italic; }
+.dchap .more { color: var(--mute); border-left-color: var(--line); font-size: .78rem; }
 .storynext:empty { display: none; }
 .mclues { margin: 0; padding-left: 1.5em; display: flex; flex-direction: column; gap: 3px; }
 .mclues li { color: var(--ink); }

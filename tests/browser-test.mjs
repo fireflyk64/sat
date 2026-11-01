@@ -609,6 +609,33 @@ check('the trapdoor opens and the sand runs right out of the funnel', sand1.open
 check('...and the sand knocks the row of dominoes down', sand1.fallen >= sand1.total * 0.8, `${sand1.fallen} of ${sand1.total}`);
 check('the grains are drawn as sand, not as marbles', await js(`__sat.track.sections[1].toy.grains.every(g => g.userData.sand && g.userData.small)`));
 
+// ---------------------------------------------------------------------------------------------------------- 12: the fire case file
+// Statements are found one at a time as the questions built on them are solved. A tiny synthetic story, so this tests the case file, not the content.
+await open('?noscale=1');
+await js(`window.SAT_STORIES = { fire: { title: 'The Fire at Hallam Wharf', cast: [], solution: 'It was the clerk with the candle.', chapters: [{ n: 1, title: 'The Glow', summary: '', statements: [
+  { seq: 1, text: 'The watchman raised the alarm.', voice: 'witness' }, { seq: 2, text: 'The crew reached the quay.', voice: 'report' }] }] } };
+  SAT_QUESTIONS.push(
+  { id: 't-fire-1', type: 'strip', skill: 'phrases', story: 'fire', seq: 1, title: 'Find the verb phrase', prompt: 'Highlight the whole verb phrase.', mode: 'highlight', text: 'The watchman raised the alarm.', answer: [2], fixedLabel: 'The verb phrase', fixed: 'raised', rule: 'The verb is raised.', source: { original: true, book: 'The Fire at Hallam Wharf', note: 'statement 1 of 120' } },
+  { id: 't-fire-2', type: 'strip', skill: 'phrases', story: 'fire', seq: 2, title: 'Find the verb phrase', prompt: 'Highlight the whole verb phrase.', mode: 'highlight', text: 'The crew reached the quay.', answer: [2], fixedLabel: 'The verb phrase', fixed: 'reached', rule: 'The verb is reached.', source: { original: true, book: 'The Fire at Hallam Wharf', note: 'statement 2 of 120' } }); 0`);
+await js(`__sat.progress.store.total = 40; __sat.progress.store.items = {}; __sat.progress.save(); __sat.refresh(); 0`);
+check('the fire case file is out of sight before 100 right answers', await js(`document.getElementById('dossier').hidden`));
+await js(`__sat.progress.store.total = 100; __sat.progress.save(); __sat.refresh(); 0`);
+check('...and appears when the storyline opens, empty', !(await js(`document.getElementById('dossier').hidden`)) && (await js(`document.getElementById('dossierCount').textContent`)) === '0 of 2 statements', await js(`document.getElementById('dossierCount').textContent`));
+await js(`__sat.showQuestion('t-fire-1'); 0`); await sleep(150);
+await clickEl(`document.querySelectorAll('.sentence .w')[2]`); await sleep(40);
+await clickEl(`document.getElementById('check')`); await sleep(300);
+check('solving a question built on a statement adds it to the case file, marked new', (await js(`document.getElementById('dossierCount').textContent`)) === '1 of 2 statements · 1 new', await js(`document.getElementById('dossierCount').textContent`));
+await sleep(2200);
+check('...and says so on the machine\u2019s screen, with the statement itself', (await js(`document.getElementById('toast').textContent`)).includes('Statement 1 added to the case file') && (await js(`document.getElementById('toast').textContent`)).includes('The watchman raised the alarm.'), await js(`document.getElementById('toast').textContent`));
+await clickEl(`document.getElementById('dossierToggle')`); await sleep(80);
+check('opening it shows the statement under its chapter, and clears the "new" mark', (await js(`document.getElementById('dossierChapters').textContent`)).includes('The watchman raised the alarm.') && (await js(`document.getElementById('dossierChapters').textContent`)).includes('Chapter 1: The Glow') && (await js(`document.getElementById('dossierCount').textContent`)) === '1 of 2 statements', await js(`document.getElementById('dossierCount').textContent`));
+check('...and the truth stays hidden until every statement is found', await js(`document.getElementById('dossierSolution').hidden`) && !(await js(`document.getElementById('dossierChapters').textContent`)).includes('The crew reached the quay.'));
+await js(`__sat.showQuestion('t-fire-2'); 0`); await sleep(150);
+await clickEl(`document.querySelectorAll('.sentence .w')[2]`); await sleep(40);
+await clickEl(`document.getElementById('check')`); await sleep(300);
+check('finding the last statement reveals the truth', !(await js(`document.getElementById('dossierSolution').hidden`)) && (await js(`document.getElementById('dossierSolution').textContent`)).includes('the clerk with the candle'));
+await clickEl(`document.getElementById('dossierToggle')`); await sleep(60);
+
 // ---------------------------------------------------------------------------------------------------------- 11: the Fire Fuse
 // A marble lights a rope, a flame crawls along it, and when it has burned through the ball it held drops and rolls into the row.
 // Run the way the game runs it: a real flick from the top, all the way to the bell.
@@ -630,6 +657,33 @@ const fuse1 = await fuseInfo();
 check('a marble lights it, and for a while it burns with the ball still hanging', sawBurning);
 check('when the rope has burned through the ball drops and knocks the row down', fuse1.dropped && fuse1.fallen >= fuse1.total * 0.8, JSON.stringify(fuse1));
 check('...and the whole machine runs on to the bell', !(await js('__sat.state.running')));
+
+// ---------------------------------------------------------------------------------------------------------- 13: the real fire storyline
+// Every fire question, answered correctly through the real widgets (taps, choices, comma gaps); then the case file should be complete.
+await open('?noscale=1');
+const fireSweep = await js(`(()=>{
+  const core = w => w.replace(/^[^A-Za-z0-9’']+|[^A-Za-z0-9’']+$/g, '').toLowerCase();
+  const fire = SAT_QUESTIONS.filter(q => q.story === 'fire'), out = { total: fire.length, won: 0, lost: [], seqs: new Set(fire.map(q => q.seq)).size };
+  for (const q of fire) {
+    __sat.showQuestion(q.id);
+    const words = [...document.querySelectorAll('.sentence .w')], gaps = [...document.querySelectorAll('.sentence .g')];
+    try {
+      if (q.type === 'strip') q.answer.forEach(i => words[i].click());
+      else if (q.type === 'tapfix') { words[words.findIndex(b => q.targetWords.includes(core(b.textContent)))].click(); [...document.querySelectorAll('.opt')].find(b => b.textContent === q.answer).click(); }
+      else if (q.type === 'mc') [...document.querySelectorAll('.opt')].find(b => (b.dataset.word ?? b.textContent) === q.answer).click();
+      else if (q.type === 'forge') for (const e of q.errors) { if (e.word) words[words.findIndex(b => core(b.textContent) === e.word)].click(); else gaps[words.findIndex(b => core(b.textContent) === e.gapAfter)].click(); }
+      if (document.getElementById('check').disabled) throw new Error('Check is disabled after answering');
+      document.getElementById('check').click();
+      if (document.getElementById('card').classList.contains('win')) out.won++; else out.lost.push(q.id);
+    } catch (e) { out.lost.push(q.id + ': ' + e.message); }
+  }
+  return out;
+})()`);
+check('every fire question can be answered correctly through the real widgets', fireSweep.total >= 150 && fireSweep.won === fireSweep.total, `${fireSweep.won} of ${fireSweep.total}; ${fireSweep.lost.slice(0, 3).join(', ')}`);
+check('...and together they cover all 120 statements of the inquiry', fireSweep.seqs === 120, `${fireSweep.seqs}`);
+await sleep(200);
+check('the storyline opened on the way, and the case file now holds every statement', !(await js(`document.getElementById('dossier').hidden`)) && (await js(`document.getElementById('dossierCount').textContent`)).startsWith('120 of 120 statements'), await js(`document.getElementById('dossierCount').textContent`));
+check('...with the truth revealed at the end', !(await js(`document.getElementById('dossierSolution').hidden`)) && (await js(`document.getElementById('dossierSolution').textContent`)).includes('Nora Tallis'));
 
 const realErrors = pageErrors.filter(e => !/favicon/.test(e));
 check('no JavaScript errors in the whole session', realErrors.length === 0, realErrors.slice(0, 3).join(' | '));

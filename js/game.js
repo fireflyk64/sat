@@ -42,7 +42,7 @@
     phase: 'play', finaleUntil: 0,
     view: 'study',     // on a phone the questions and the machine take turns on screen
     brk: null, freeRetry: false, unrevealed: {}, picked: null, hover: false,
-    grand: false, cleared: [], newClues: 0, solved: null, clueDue: null,     // the story: the machine's last run is under way / who it has cleared / clues not yet read
+    grand: false, cleared: [], newClues: 0, newStatements: 0, lastStatement: 0, solved: null, clueDue: null,     // the story: the machine's last run is under way / who it has cleared / clues not yet read
   };
 
   function tierFor(streak) { var t = TIERS[0]; TIERS.forEach(function (x) { if (streak >= x.at) t = x; }); return t; }
@@ -89,6 +89,16 @@
   }
 
   function award(q, res) {
+    if (q.story === 'fire' && fireStory()) {
+      var nowFound = fireFoundSet(), had = fireFound || {};
+      if (!had[q.seq] && nowFound[q.seq]) {
+        var line = null; fireStory().chapters.forEach(function (c) { c.statements.forEach(function (s) { if (s.seq === q.seq) line = s.text; }); });
+        if ($('dossierBody').hidden) state.newStatements++;
+        state.lastStatement = q.seq; dossierKey = '';
+        if (line) setTimeout(function () { toast('\ud83d\udd25 Statement ' + q.seq + ' added to the case file: \u201c' + line + '\u201d', 7000); }, 1800);     // (a toast, so it does not fight the clue's announcement over the machine)
+      }
+      fireFound = nowFound;
+    }
     var opened = progress.storyJustOpened(bank);
     if (opened.length) {
       var st = STORIES[opened[0]];
@@ -452,6 +462,53 @@
     clearTimeout(noteTimer); noteTimer = setTimeout(function () { n.classList.remove('show'); }, ms || 3600);
   }
 
+  // ---------------------------------------------------------------- the fire inquiry: statements found as questions are solved
+  var dossierKey = '', fireFound = null;
+  function fireStory() { return window.SAT_STORIES && window.SAT_STORIES.fire; }
+  /** The numbers of the statements he has found: one is found by solving any question built on it. */
+  function fireFoundSet() {
+    var set = {};
+    bank.forEach(function (q) {
+      if (q.story !== 'fire') return;
+      var rec = progress.store.items[q.id];
+      if (rec && rec.right > 0) set[q.seq] = true;
+    });
+    return set;
+  }
+  function renderDossier() {
+    var box = $('dossier'), story = fireStory();
+    if (!story || !progress.storyOpen('fire')) { box.hidden = true; return; }
+    var found = fireFoundSet(), n = Object.keys(found).length, total = 0;
+    story.chapters.forEach(function (c) { total += c.statements.length; });
+    var key = n + '|' + Object.keys(found).join(',') + '|' + state.newStatements;
+    if (key === dossierKey && !box.hidden) return;
+    dossierKey = key; box.hidden = false;
+    $('dossierTitle').textContent = story.title;
+    $('dossierCount').textContent = n + ' of ' + total + ' statements' + (state.newStatements ? ' \u00b7 ' + state.newStatements + ' new' : '');
+    $('dossierCount').classList.toggle('fresh', state.newStatements > 0);
+    $('dossierIntro').textContent = n ? 'Inspector Mercer\u2019s case file. Each question you solve adds the statement it was built from.' : 'Inspector Mercer\u2019s case file is empty. Solve a fire question to add the first statement.';
+    var host = $('dossierChapters'); host.innerHTML = '';
+    var all = true;
+    story.chapters.forEach(function (c) {
+      var got = c.statements.filter(function (s) { return found[s.seq]; });
+      if (got.length < c.statements.length) all = false;
+      var div = document.createElement('div'); div.className = 'dchap' + (got.length ? '' : ' locked');
+      var h4 = document.createElement('h4');
+      h4.textContent = got.length ? 'Chapter ' + c.n + ': ' + c.title : 'Chapter ' + c.n + ': not opened yet';
+      div.appendChild(h4);
+      got.forEach(function (s) {
+        var p = document.createElement('p'); p.className = 'voice-' + s.voice + (state.lastStatement === s.seq ? ' fresh' : '');
+        p.textContent = s.text; div.appendChild(p);
+      });
+      if (got.length && got.length < c.statements.length) {
+        var m = document.createElement('p'); m.className = 'more'; m.textContent = (c.statements.length - got.length) + ' more in this chapter'; div.appendChild(m);
+      }
+      host.appendChild(div);
+    });
+    $('dossierSolution').hidden = !all;
+    $('dossierSolution').textContent = all ? 'The truth: ' + story.solution : '';
+  }
+
   // ---------------------------------------------------------------- the mystery
   // Each machine is a mystery. Right answers find clues; the last run clears the innocent suspects one by one.
   // (during the case-closed card the finished machine is already counted, so keep showing the one just solved)
@@ -602,6 +659,7 @@
     }
     pips.setAttribute('aria-label', m.pieces.length + ' of ' + m.target + ' pieces in this machine');
     renderMystery();
+    renderDossier();
     // a one-line summary, and a way across to the machine, for the phone's questions tab
     var stat = $('statusText');
     if (stat) {
@@ -1130,6 +1188,12 @@
       this.setAttribute('aria-expanded', open);
       if (!open) { state.picked = null; renderChest(); }
     });
+    $('dossierToggle').addEventListener('click', function () {
+      var body = $('dossierBody'), open = body.hidden;
+      body.hidden = !open;
+      this.setAttribute('aria-expanded', open);
+      if (open) { state.newStatements = 0; dossierKey = ''; renderDossier(); }
+    });
     $('tabStudy').addEventListener('click', function () { setView('study'); });
     $('tabMachine').addEventListener('click', function () { setView('machine'); });
     $('playNow').addEventListener('click', function () { setView('machine'); });
@@ -1158,6 +1222,7 @@
     // ask the browser to keep this site's data rather than clearing it under storage pressure
     try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch (e) { /* optional */ }
 
+    if (fireStory()) fireFound = fireFoundSet();
     updateHud();
     showQuestion(params.get('q'));
     introMystery();
