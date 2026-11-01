@@ -118,6 +118,16 @@
       </div>
     </section>
 
+    <section id="sectionStrip" class="chest mystery sectionstrip" aria-label="The Water Section, a test section" hidden>
+      <button id="sectionToggle" class="chead" type="button" aria-expanded="false" aria-controls="sectionBody"><b>🌊 Water Section</b> <span id="sectionCount"></span><i class="chevron" aria-hidden="true"></i></button>
+      <div id="sectionBody" hidden>
+        <p class="mbrief">A test section like the real one: 27 questions, ten on words in context and seventeen on grammar and punctuation. No feedback until the end, then your score, what you missed and why.</p>
+        <p class="mbrief">There is a clock, but it only counts up, and the suggested finish is just a guide. Nothing happens if you go over: the score, your Focus and your rewards do not depend on time at all.</p>
+        <p id="sectionLast" class="mbrief storynext"></p>
+        <button id="sectionGo" class="primary" type="button">Start a section</button>
+      </div>
+    </section>
+
     <section class="chest" aria-label="Chest of saved items">
       <button id="chestToggle" class="chead" type="button" aria-expanded="false" aria-controls="chestBody"><b>Chest</b> <span id="chestCount"></span><i class="chevron" aria-hidden="true"></i></button>
       <div id="chestBody" hidden>
@@ -147,6 +157,24 @@
         <p id="src" class="src"></p>
       </div>
     </article>
+    <article id="sect" class="card sect" aria-label="Test section" hidden>
+      <div class="sbar"><b>🌊 Water<span class="wl"> Section</span></b> <span id="sPos" class="spos"></span><button id="sLeave" class="linkish" type="button">Save<span class="wl"> and leave</span></button></div>
+      <div id="sClockBox" class="sclockbox">
+        <span class="sclock">⏱ <b id="sClock">0:00</b> <i id="sSuggest"></i></span>
+        <span class="sbarline" aria-hidden="true"><span id="sFill"></span></span>
+        <button id="sHide" class="linkish" type="button">Hide clock</button>
+      </div>
+      <p id="sPace" class="space" role="status"></p>
+      <div id="sDots" class="sdots" aria-label="Questions in this section"></div>
+      <p id="sPrompt" class="prompt"></p>
+      <div id="sBody" class="qbody"></div>
+      <div id="sReview" class="sreview" hidden></div>
+      <div id="sResults" class="sresults" hidden></div>
+      <div id="sActions" class="actions">
+        <button id="sBack" class="secondary" type="button">← Back</button>
+        <button id="sNext" class="primary" type="button">Next →</button>
+      </div>
+    </article>
     <div id="meters" class="meters" aria-label="Skill progress"></div>
     <footer>Quotations from public-domain Agatha Christie and Arthur Conan Doyle texts via Project Gutenberg. Your progress and misses are saved only in this browser.
       <button id="reset" class="linkish">Reset progress</button></footer>
@@ -168,6 +196,7 @@
 <script src="js/render.js"></script>
 <script src="js/sound.js"></script>
 <script src="js/quiz.js"></script>
+<script src="js/section.js"></script>
 <script src="data/questions.js"></script>
 <script src="data/questions-set2.js"></script>
 <script src="data/questions-set3.js"></script>

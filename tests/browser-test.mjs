@@ -685,6 +685,86 @@ await sleep(200);
 check('the storyline opened on the way, and the case file now holds every statement', !(await js(`document.getElementById('dossier').hidden`)) && (await js(`document.getElementById('dossierCount').textContent`)).startsWith('120 of 120 statements'), await js(`document.getElementById('dossierCount').textContent`));
 check('...with the truth revealed at the end', !(await js(`document.getElementById('dossierSolution').hidden`)) && (await js(`document.getElementById('dossierSolution').textContent`)).includes('Nora Tallis'));
 
+// ---------------------------------------------------------------------------------------------------------- 14: the Water Section
+// A traditional test section: no feedback until the end, a clock that only counts up, and no penalty for going over.
+await send('Emulation.setDeviceMetricsOverride', { width: 1100, height: 720, deviceScaleFactor: 1, mobile: false });
+await open('?noscale=1');
+await js(`localStorage.removeItem('sat-section-clock-hidden'); (()=>{ const s = __sat.progress.store; s.total = 399; s.section = null; s.sections = []; __sat.progress.save(); __sat.refresh(); })()`);
+check('the Water Section is out of sight until 400 right answers', await js(`document.getElementById('sectionStrip').hidden`));
+await js(`__sat.progress.store.total = 400; __sat.progress.save(); __sat.refresh(); 0`);
+check('...and appears at 400, with a 27-question section to start', !(await js(`document.getElementById('sectionStrip').hidden`)) && (await js(`document.getElementById('sectionCount').textContent`)) === '27 questions' && (await js(`document.getElementById('sectionGo').textContent`)) === 'Start a section');
+await clickEl(`document.getElementById('sectionToggle')`); await sleep(60);
+check('it says up front that the clock only counts up and going over costs nothing', /only counts up/.test(await js(`document.getElementById('sectionBody').textContent`)) && /Nothing happens if you go over/.test(await js(`document.getElementById('sectionBody').textContent`)));
+await clickEl(`document.getElementById('sectionGo')`); await sleep(250);
+check('starting swaps the question card for the section: question 1 of 27, 27 numbered boxes, the clock at zero', await js(`document.getElementById('card').hidden && !document.getElementById('sect').hidden`) && (await js(`document.getElementById('sPos').textContent`)) === 'Question 1 of 27' && (await js(`document.querySelectorAll('#sDots .sd').length`)) === 27 && (await js(`document.getElementById('sClock').textContent`)) === '0:00', await js(`document.getElementById('sPos').textContent`));
+check('...the suggested finish is shown, as a guide', (await js(`document.getElementById('sSuggest').textContent`)) === 'suggested finish 32:00');
+const sq = await js(`JSON.stringify(__sat.section.state.qs.map(q => ({ id: q.id, type: q.type, level: q.level || '', answer: q.answer })))`).then(JSON.parse);
+check('the first ten are passage-only words in context, then seventeen conventions questions', sq.slice(0, 10).every(q => q.type === 'vocab' && q.level === 'sat') && sq.slice(10).every(q => q.type === 'mc') && sq.length === 27);
+// answer the first question with a real click, and see no feedback
+await clickEl(`document.querySelectorAll('#sBody .opt')[1]`); await sleep(60);
+check('picking a choice only marks it: no right or wrong, no explanation', (await js(`document.querySelectorAll('#sBody .opt.sel').length`)) === 1 && (await js(`document.querySelectorAll('#sBody .opt.ok, #sBody .opt.bad, #sBody .def').length`)) === 0 && await js(`document.querySelector('#sDots .sd').classList.contains('done')`));
+const picked = await js(`document.querySelector('#sBody .opt.sel').dataset.word`);
+await clickEl(`document.getElementById('sNext')`); await sleep(100);
+check('Next moves on', (await js(`document.getElementById('sPos').textContent`)) === 'Question 2 of 27' && (await js(`document.querySelectorAll('#sBody .opt.sel').length`)) === 0);
+await clickEl(`document.getElementById('sBack')`); await sleep(100);
+check('Back returns with the earlier choice still picked', (await js(`document.querySelector('#sBody .opt.sel') && document.querySelector('#sBody .opt.sel').dataset.word`)) === picked);
+// the clock counts up; the pace line is kind
+await js(`__sat.section.tick(600)`);
+const clockSecs = async () => (await js(`document.getElementById('sClock').textContent`)).split(':').reduce((t, x) => t * 60 + +x, 0);     // (the clock really ticks while the test runs)
+{ const t = await clockSecs(); check('the clock counts up, and early on there is no pace line at all', t >= 600 && t < 640 && (await js(`document.getElementById('sPace').textContent`)) === '', `${t}s`); }
+await js(`__sat.section.tick(1000)`);
+check('near the suggested finish it says it is only a guide', /only a guide/.test(await js(`document.getElementById('sPace').textContent`)), await js(`document.getElementById('sPace').textContent`));
+await js(`__sat.section.tick(600)`);
+{ const t = await clockSecs(); check('past it, the clock just keeps counting and says there is no penalty', t >= 2200 && t < 2260 && /No penalty/.test(await js(`document.getElementById('sPace').textContent`)), `${t}s`); }
+check('...and nothing about it turns red or warns', await js(`(()=>{ const c = getComputedStyle(document.getElementById('sPace')).color, m = c.match(/\\d+/g).map(Number); return !(m[0] > 200 && m[1] < 110 && m[2] < 130) && !document.getElementById('sClockBox').className.match(/warn|over|late|red/); })()`));
+// hide the clock
+await clickEl(`document.getElementById('sHide')`); await sleep(60);
+check('the clock can be hidden, and that is remembered', await js(`document.getElementById('sClock').parentNode.hidden && document.getElementById('sPace').textContent === '' && localStorage.getItem('sat-section-clock-hidden') === '1' && document.getElementById('sHide').textContent === 'Show clock'`));
+await clickEl(`document.getElementById('sHide')`); await sleep(60);
+check('...and shown again', await js(`!document.getElementById('sClock').parentNode.hidden && localStorage.getItem('sat-section-clock-hidden') === '0'`));
+// answer everything: 20 right, 5 wrong, 2 left blank
+const plan = sq.map((q, i) => i === 7 || i === 19 ? 'blank' : i % 5 === 3 ? 'wrong' : 'right');
+const expectRight = plan.filter(x => x === 'right').length, expectWrong = plan.filter(x => x === 'wrong').length;
+await js(`(()=>{ const plan = ${JSON.stringify(plan)}, ans = ${JSON.stringify(sq.map(q => q.answer))};
+  plan.forEach((p, i) => { document.querySelectorAll('#sDots .sd')[i].click(); if (p === 'blank') return;
+    const opts = [...document.querySelectorAll('#sBody .opt')]; (p === 'right' ? opts.find(o => o.dataset.word === ans[i]) : opts.find(o => o.dataset.word !== ans[i])).click(); }); })()`);
+await js(`document.querySelectorAll('#sDots .sd')[26].click()`); await sleep(100);
+check('the numbered boxes show what is answered and what is not', (await js(`document.querySelectorAll('#sDots .sd.done').length`)) === 25);
+const before = await js(`JSON.stringify({ total: __sat.progress.store.total, cold: Object.keys(__sat.progress.store.cold).length, focus: __sat.progress.store.focus.count })`).then(JSON.parse);
+await clickEl(`document.getElementById('sNext')`); await sleep(100);
+check('after the last question comes a review that names the blanks', /answered 25 of 27/.test(await js(`document.getElementById('sReview').textContent`)) && (await js(`document.querySelectorAll('#sReview .sjump').length`)) === 2 && (await js(`document.getElementById('sReview').textContent`)).includes('costs you nothing'));
+check('...and nothing has been recorded yet', (await js('__sat.progress.store.total')) === before.total);
+await js(`__sat.section.tick(3000)`);       // well over the suggested time, on purpose
+await clickEl(`[...document.querySelectorAll('#sReview button')].find(b => /Finish/.test(b.textContent))`); await sleep(300);
+check('finishing shows the score', (await js(`document.querySelector('#sResults .sbig').textContent.replace(/\\s+/g, '')`)) === `${expectRight}/27`, await js(`document.querySelector('#sResults .sbig').textContent`));
+check('...with how each part went, and the blanks mentioned', /Words in context: \d+ of 10\. Grammar and punctuation: \d+ of 17/.test(await js(`document.getElementById('sResults').textContent`)) && /2 left blank/.test(await js(`document.getElementById('sResults').textContent`)));
+check('...and going well over the suggested time costs nothing, and says so', /costs nothing/.test(await js(`document.getElementById('sResults').textContent`)));
+check('the right answers count as right answers, the misses become cold cases, and blanks are not recorded at all', (await js('__sat.progress.store.total')) === before.total + expectRight && (await js(`Object.keys(__sat.progress.store.cold).length`)) === before.cold + expectWrong);
+check('Focus follows the answers and nothing else: more right answers than misses leaves it up', (await js('__sat.progress.store.focus.count')) > before.focus);
+check('what was missed is listed with the explanation', (await js(`document.querySelectorAll('#sResults details.sres-miss').length`)) === expectWrong && (await js(`document.querySelector('#sResults details.sres-miss').textContent`)).length > 40);
+check('the finished section is logged for next time, with the time kept out of the score', await js(`(()=>{ const l = __sat.progress.store.sections[0]; return l.right === ${expectRight} && l.total === 27 && l.secs > 32 * 60 && !__sat.progress.store.section; })()`));
+await clickEl(`[...document.querySelectorAll('#sResults button')].find(b => /Back to the machine/.test(b.textContent))`); await sleep(300);
+check('Back to the machine returns the ordinary question, and the strip remembers the last result', !(await js(`document.getElementById('card').hidden`)) && (await js(`document.getElementById('sect').hidden`)) && (await js(`document.getElementById('sectionCount').textContent`)) === `last: ${expectRight} / 27`, await js(`document.getElementById('sectionCount').textContent`));
+// leave part-way, close the tab, come back
+await js(`__sat.progress.store.total = 500; __sat.progress.save(); 0`);
+await clickEl(`document.getElementById('sectionGo')`); await sleep(250);
+for (const k of [0, 1, 2]) await js(`document.querySelectorAll('#sDots .sd')[${k}].click(); document.querySelectorAll('#sBody .opt')[0].click(); 0`);
+await js(`__sat.section.tick(95)`); await js(`document.getElementById('sLeave').click(); 0`); await sleep(150);
+check('Save and leave puts the ordinary card back, and the strip says the section is waiting', !(await js(`document.getElementById('card').hidden`)) && (await js(`document.getElementById('sectionCount').textContent`)) === 'in progress: 3 of 27 answered', await js(`document.getElementById('sectionCount').textContent`));
+await open('?noscale=1'); await sleep(300);
+check('a closed tab does not lose it', (await js(`document.getElementById('sectionCount').textContent`)) === 'in progress: 3 of 27 answered' && (await js(`document.getElementById('sectionGo').textContent`)) === 'Resume your section');
+await js(`document.getElementById('sectionGo').click(); 0`); await sleep(250);
+check('resuming brings back the answers, the place and the time so far', (await js(`document.querySelectorAll('#sDots .sd.done').length`)) === 3 && (await js(`document.getElementById('sClock').textContent`)).startsWith('1:3') && (await js(`document.getElementById('sPos').textContent`)) === 'Question 3 of 27', await js(`document.getElementById('sClock').textContent + ' ' + document.getElementById('sPos').textContent`));
+// on a phone: the question and the buttons fit with nothing to scroll to
+await send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: false });
+await open('?noscale=1'); await sleep(300);
+await js(`document.getElementById('sectionGo').click(); 0`); await sleep(250);
+const phoneSeen = [await onScreen(`document.querySelector('#sBody .opt')`), await onScreen(`[...document.querySelectorAll('#sBody .opt')].pop()`), await onScreen(`document.getElementById('sNext')`), await onScreen(`document.getElementById('sBack')`)];
+check('on a phone the section’s question, choices and Back / Next are all on screen with no scrolling', phoneSeen.every(x => x === 'ok'), phoneSeen.join(' / '));
+await js(`__sat.section.leave()`);
+await send('Emulation.setDeviceMetricsOverride', { width: 1100, height: 720, deviceScaleFactor: 1, mobile: false });
+await js(`__sat.progress.store.total = 0; __sat.progress.store.section = null; __sat.progress.save(); 0`);
+
 const realErrors = pageErrors.filter(e => !/favicon/.test(e));
 check('no JavaScript errors in the whole session', realErrors.length === 0, realErrors.slice(0, 3).join(' | '));
 

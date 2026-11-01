@@ -71,7 +71,8 @@
       v: 2, items: {}, skills: {}, total: 0, qn: 0, cold: {}, closed: 0,
       streak: 0, bestStreak: 0, score: 0, bestRun: 0, cases: 0, sessions: 0, sinceCold: 99,
       machine: null,
-      focus: { count: 0, bonus: 0, rare: 0, ultra: 0, next: {} }, freezes: 0, lastActive: 0, chest: {}, found: {}
+      focus: { count: 0, bonus: 0, rare: 0, ultra: 0, next: {} }, freezes: 0, lastActive: 0, chest: {}, found: {},
+      section: null, sections: []      // a test section in progress (so a closed tab does not lose it), and the last few finished
     };
   }
 
@@ -214,7 +215,11 @@
   /** Has this storyline opened yet? */
   Progress.prototype.storyOpen = function (id) { return this.store.total >= (STORY_UNLOCK[id] == null ? 0 : STORY_UNLOCK[id]); };
   // (with a bank given, only storylines that have questions in it count: nothing is announced before its content exists)
-  function hasStory(bank, k) { return !bank || bank.some(function (q) { return q.story === k; }); }
+  function hasStory(bank, k) {
+    if (!bank) return true;
+    if (k === 'water') return !!root.Section;          // the water storyline is a test section made from the rest of the bank
+    return bank.some(function (q) { return q.story === k; });
+  }
   /** Storylines that opened with the answer just recorded. */
   Progress.prototype.storyJustOpened = function (bank) {
     var total = this.store.total;
@@ -226,6 +231,20 @@
     ids.sort(function (a, b) { return STORY_UNLOCK[a] - STORY_UNLOCK[b]; });
     return ids.length ? { id: ids[0], left: STORY_UNLOCK[ids[0]] - total } : null;
   };
+
+  /** Storylines that opened somewhere between two totals (a whole test section can cross a threshold). */
+  Progress.prototype.storiesBetween = function (a, b, bank) {
+    return Object.keys(STORY_UNLOCK).filter(function (k) { return STORY_UNLOCK[k] > a && STORY_UNLOCK[k] <= b && hasStory(bank, k); });
+  };
+  /** Toys that unlocked somewhere between two totals. */
+  Progress.prototype.kindsBetween = function (KINDS, a, b) {
+    return Object.keys(KINDS).filter(function (k) { return KINDS[k].unlock > a && KINDS[k].unlock <= b; });
+  };
+
+  // ---------------------------------------------------------------- a test section in progress, and how the last ones went
+  Progress.prototype.sectionSave = function (st) { this.store.section = st; this.save(); };
+  Progress.prototype.sectionClear = function () { this.store.section = null; this.save(); };
+  Progress.prototype.sectionLog = function (entry) { this.store.sections = [entry].concat(this.store.sections || []).slice(0, 12); this.save(); };
 
   Progress.prototype.next = function (bank, last) {
     var s = this.store, now = this.now(), rand = this.rand, cold = s.cold, self = this;

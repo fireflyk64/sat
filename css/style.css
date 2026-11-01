@@ -161,6 +161,40 @@ button.icon.on { background: var(--gold); color: #271a00; box-shadow: 0 0 16px r
 .msolved { color: var(--gold); }
 .msolved[hidden] { display: none; }
 .storynext { color: var(--mute); font-size: .82rem; }
+
+/* the Water Section: a calm, exam-like card. The clock is quiet, counts up, and never turns red */
+.sectionstrip[hidden], .card[hidden], .actions[hidden] { display: none; }
+#sectionBody { display: flex; flex-direction: column; gap: 8px; padding-top: 4px; font-size: .86rem; align-items: flex-start; }
+#sectionBody[hidden] { display: none; }
+.sbar { display: flex; align-items: center; gap: 10px; }
+.sbar b { font-size: 1.02rem; }
+.spos { color: var(--mute); font-size: .86rem; }
+.sbar .linkish { margin-left: auto; }
+.sclockbox { display: flex; align-items: center; gap: 10px; margin: 8px 0 2px; color: var(--mute); font-size: .84rem; }
+.sclockbox[hidden] { display: none; }
+.sclock b { color: var(--ink); font-variant-numeric: tabular-nums; font-size: .98rem; }
+.sclock i { font-style: normal; }
+.sbarline { flex: 1; height: 4px; border-radius: 3px; background: rgba(255,255,255,.08); overflow: hidden; }
+.sbarline span { display: block; height: 100%; width: 0; background: rgba(0,229,255,.55); transition: width 1s linear; }
+.space { margin: 2px 0 0; min-height: 1.3em; color: var(--mute); font-size: .82rem; }
+.sdots { position: relative; display: flex; gap: 4px; margin: 8px 0 4px; overflow-x: auto; padding-bottom: 3px; scrollbar-width: thin; }
+.sd { flex: none; width: 26px; height: 26px; padding: 0; font: inherit; font-size: .72rem; font-weight: 700; color: var(--mute); background: rgba(255,255,255,.04); border: 1px solid var(--line); border-radius: 6px; cursor: pointer; }
+.sd.done { color: var(--ink); background: rgba(0,229,255,.14); border-color: rgba(0,229,255,.4); }
+.sd.cur { outline: 2px solid var(--accent); outline-offset: 1px; color: #fff; }
+button.secondary { font: inherit; font-weight: 700; padding: 10px 18px; border: 1px solid var(--line); border-radius: 12px; cursor: pointer; color: var(--ink); background: rgba(255,255,255,.05); }
+button.secondary:disabled { opacity: .4; cursor: default; }
+.sreview, .sresults { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.sreview[hidden], .sresults[hidden] { display: none; }
+.sreview p, .sresults p { margin: 0; }
+.sjump { display: inline-block; margin: 0 4px 4px 0; padding: 2px 9px; font: inherit; font-size: .82rem; color: var(--ink); background: rgba(255,215,64,.14); border: 1px solid rgba(255,215,64,.5); border-radius: 999px; cursor: pointer; }
+.sbig { font-size: 2.2rem; font-weight: 900; line-height: 1; color: #fff; text-shadow: 0 0 18px var(--accent); }
+.sbig small { font-size: 1rem; color: var(--mute); font-weight: 600; }
+.sres-line { color: var(--ink); font-size: .9rem; }
+.sres-line.mute { color: var(--mute); font-size: .84rem; }
+.sres-miss { border: 1px solid var(--line); border-radius: 10px; padding: 6px 10px; background: rgba(255,255,255,.03); }
+.sres-miss summary { cursor: pointer; font-size: .88rem; }
+.sres-miss p { margin: 6px 0 0; font-size: .86rem; color: var(--ink); }
+.sres-miss .fixed { font-family: Georgia, serif; }
 /* the fire case file: the inquiry, one found statement at a time */
 .dossier[hidden] { display: none; }
 #dossierBody { display: flex; flex-direction: column; gap: 8px; padding-top: 4px; font-size: .86rem; }
@@ -338,6 +372,18 @@ footer { margin-top: auto; color: var(--mute); font-size: .75rem; }
   .opt { padding: 9px 11px; }
   .opt .def { font-size: .8rem; }
   .prompt { margin: 6px 0 8px; font-size: .92rem; }
+  /* the section card keeps its header to a couple of short lines, so a question and its choices still fit without scrolling */
+  .sect .wl { display: none; }
+  .sect .sbar { gap: 8px; }
+  .sbar b { white-space: nowrap; }
+  .sclockbox { margin: 4px 0 0; }
+  .space { min-height: 0; margin: 0; }
+  .space:empty { display: none; }
+  .sect .stem { font-size: 1rem; line-height: 1.5; }
+  .sect .options { gap: 6px; margin-top: 6px; }
+  .sect .opt { padding: 8px 11px; }
+  /* Back, Next and the review's list of blanks do the navigating; the instruction line is the same every time */
+  .sdots, .sect .prompt { display: none; }
   .cardhead h2 { font-size: 1.05rem; }
   /* word-tapping questions are the tall ones: tighter lines keep a long sentence on one screen, with room to tap */
   .sentence { font-size: 1.02rem; line-height: 2.05; }

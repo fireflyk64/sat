@@ -126,8 +126,24 @@ question). `node scripts/apply-fire.mjs` checks each item against its statement 
 what is left, the correct version is the statement) and writes `data/fire-story.js` and `data/questions-set6.js` from
 `data/fire-story.json` and `data/fire-items.json`.
 
-Planned next, by total right answers: **water at 400** (a traditional SAT test section) and **breakable at 800** (a grab bag
-of hard grammar and vocabulary). Their unlock numbers are already in `Progress.STORY_UNLOCK`.
+## The Water Section (opens at 400 right answers)
+A traditional test section, like the real SAT's Reading and Writing module: **27 multiple-choice questions, ten on words in
+context (the passage-only questions, with no meaning shown) and seventeen on grammar and punctuation** (6 commas, 4 agreement,
+3 tense, 4 proofreading, drawn from the multiple-choice questions, including the fire storyline's). A section is mostly new:
+the questions he has seen least come first. There is **no feedback until the end**; he can move back and forth and change
+answers, then a review lists any blanks before he finishes. The results show the score, how words and grammar each went, and
+every miss with the correct version and the reason. Right answers count as right answers (Focus, rolls, toys for the machine,
+cold cases closed), each miss becomes a cold case, and a question left blank is not recorded at all, so it costs no Focus.
+A section in progress is saved, so a closed tab does not lose it, and the last few results are kept.
+
+**The clock only counts up, and going over costs nothing.** It shows the time so far with a quiet bar toward a suggested
+finish of 32 minutes (the real module's length). Near the suggestion it says it is only a guide, and past it, "No penalty: take
+the time you need." It never turns red, there is no cutoff, and it can be hidden (and stays hidden). Time is not an input to the
+score or to any reward: `Section.score` has no time argument, and `tests/section-test.mjs` checks that. On a small phone
+(360 px wide) a few of the longest passages need a little scrolling; at 390 px all of them fit.
+
+Planned next: **breakable at 800**, a grab bag of hard grammar and vocabulary with breakable walls as its machine material.
+Its unlock number is already in `Progress.STORY_UNLOCK`.
 
 ## Grammar standard
 Answer keys follow **modern SAT Standard English Conventions**, not Christie's 1920s punctuation.

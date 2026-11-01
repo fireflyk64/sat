@@ -29,7 +29,7 @@
   // storylines that open with total right answers (the numbers live in Progress.STORY_UNLOCK)
   var STORIES = {
     fire:      { icon: '\ud83d\udd25', title: 'The Fire at Hallam Wharf', blurb: 'New grammar cases: strip a sentence to its core, agreement, and the faults that trip up young writers' },
-    water:     { icon: '\ud83c\udf0a', title: 'The Water Section', blurb: 'A traditional SAT test section' },
+    water:     { icon: '\ud83c\udf0a', title: 'The Water Section', blurb: 'A real test section: 27 questions, no feedback until the end, and a clock that only counts up' },
     breakable: { icon: '\ud83e\uddf1', title: 'The Grab Bag', blurb: 'Hard grammar and vocabulary in one bag' }
   };
   var RANKS = [[0, 'Constable'], [10, 'Sergeant'], [30, 'Inspector'], [70, 'Chief Inspector'], [150, 'Superintendent'], [300, 'Little Grey Cells']];
@@ -42,7 +42,7 @@
     phase: 'play', finaleUntil: 0,
     view: 'study',     // on a phone the questions and the machine take turns on screen
     brk: null, freeRetry: false, unrevealed: {}, picked: null, hover: false,
-    grand: false, cleared: [], newClues: 0, newStatements: 0, lastStatement: 0, solved: null, clueDue: null,     // the story: the machine's last run is under way / who it has cleared / clues not yet read
+    grand: false, cleared: [], newClues: 0, newStatements: 0, lastStatement: 0, sect: null, solved: null, clueDue: null,     // the story: the machine's last run is under way / who it has cleared / clues not yet read
   };
 
   function tierFor(streak) { var t = TIERS[0]; TIERS.forEach(function (x) { if (streak >= x.at) t = x; }); return t; }
@@ -462,6 +462,199 @@
     clearTimeout(noteTimer); noteTimer = setTimeout(function () { n.classList.remove('show'); }, ms || 3600);
   }
 
+  // ---------------------------------------------------------------- the Water Section: a traditional test section
+  // 27 multiple-choice questions with no feedback until the end. The clock only counts up and the suggested finish is a guide: time
+  // is never passed to the scoring or the recording below, so it cannot cost him anything, and the clock can be hidden.
+  var bankIndex = null, sectTimer = 0, CLOCK_KEY = 'sat-section-clock-hidden';
+  function qById(id) { if (!bankIndex) { bankIndex = {}; bank.forEach(function (q) { bankIndex[q.id] = q; }); } return bankIndex[id]; }
+  function sectionOpen() { return function (q) { return !q.story || progress.storyOpen(q.story); }; }
+  function clockHidden() { try { return localStorage.getItem(CLOCK_KEY) === '1'; } catch (e) { return false; } }
+  function setClockHidden(v) { try { localStorage.setItem(CLOCK_KEY, v ? '1' : '0'); } catch (e) { /* optional */ } }
+
+  function renderSectionStrip() {
+    var box = $('sectionStrip');
+    if (!window.Section || !progress.storyOpen('water')) { box.hidden = true; return; }
+    box.hidden = false;
+    var saved = progress.store.section, log = progress.store.sections || [];
+    var answered = saved ? saved.answers.filter(function (a) { return a != null; }).length : 0;
+    $('sectionCount').textContent = state.sect ? 'in progress' : saved ? 'in progress: ' + answered + ' of ' + saved.ids.length + ' answered' : log.length ? 'last: ' + log[0].right + ' / ' + log[0].total : '27 questions';
+    $('sectionCount').classList.toggle('fresh', !!saved);
+    $('sectionGo').textContent = saved ? 'Resume your section' : 'Start a section';
+    $('sectionGo').disabled = !!state.sect || state.running || !!state.brk || state.phase === 'finale';
+    $('sectionLast').textContent = log.length ? 'Last time: ' + log[0].right + ' of ' + log[0].total + (log[0].secs && !clockHidden() ? ' in ' + Section.clock(log[0].secs) : '') + '.' + (log.length > 1 ? ' Before that: ' + log.slice(1, 4).map(function (e) { return e.right + '/' + e.total; }).join(', ') + '.' : '') : '';
+  }
+
+  function saveSection() {
+    var S = state.sect;
+    if (S && S.view !== 'results') progress.sectionSave({ ids: S.qs.map(function (q) { return q.id; }), answers: S.answers, elapsed: S.elapsed, i: S.i });
+  }
+  function updateSectionClock() {
+    var S = state.sect; if (!S) return;
+    var hid = clockHidden();
+    $('sClock').parentNode.hidden = hid; $('sFill').parentNode.hidden = hid;
+    $('sHide').textContent = hid ? 'Show clock' : 'Hide clock';
+    $('sClock').textContent = Section.clock(S.elapsed);
+    $('sSuggest').textContent = 'suggested finish ' + Section.clock(Section.SUGGESTED);
+    $('sFill').style.width = Math.min(100, S.elapsed / Section.SUGGESTED * 100) + '%';
+    $('sPace').textContent = hid ? '' : Section.pace(S.elapsed);
+  }
+  function sectionTick() {
+    var S = state.sect;
+    if (!S || S.view === 'results') { clearInterval(sectTimer); return; }
+    if (!document.hidden) S.elapsed += 1;
+    updateSectionClock();
+    if (S.elapsed % 10 === 0) saveSection();
+  }
+
+  function startSection() {
+    if (state.sect || state.running || state.brk || state.phase === 'finale') return;
+    var saved = progress.store.section, qs = null;
+    if (saved) {
+      qs = saved.ids.map(qById);
+      if (qs.some(function (q) { return !q; })) { saved = null; progress.sectionClear(); }
+    }
+    if (!saved) {
+      qs = Section.build(bank, progress.store, null, sectionOpen());
+      if (!qs) { toast('There are not enough questions for a section yet.'); return; }
+      saved = { ids: qs.map(function (q) { return q.id; }), answers: qs.map(function () { return null; }), elapsed: 0, i: 0 };
+      progress.sectionSave(saved);
+    }
+    state.sect = { qs: qs, answers: saved.answers.slice(), i: Math.min(saved.i || 0, qs.length - 1), elapsed: saved.elapsed || 0, view: 'q', ctrl: null };
+    $('card').hidden = true; $('sect').hidden = false; $('sLeave').hidden = false; $('sResults').innerHTML = '';
+    clearInterval(sectTimer); sectTimer = setInterval(sectionTick, 1000);
+    showSectionQuestion();
+    renderSectionStrip();
+  }
+
+  function renderSectionDots() {
+    var S = state.sect, d = $('sDots'); d.innerHTML = '';
+    S.qs.forEach(function (q, i) {
+      var b = document.createElement('button'); b.type = 'button';
+      b.className = 'sd' + (S.answers[i] != null ? ' done' : '') + (i === S.i && S.view === 'q' ? ' cur' : '');
+      b.textContent = i + 1;
+      b.setAttribute('aria-label', 'Question ' + (i + 1) + (S.answers[i] != null ? ', answered' : ', not answered yet'));
+      b.addEventListener('click', function () { if (S.view === 'results') return; S.i = i; showSectionQuestion(); });
+      d.appendChild(b);
+    });
+    var cur = d.querySelector('.cur'); if (cur) d.scrollLeft = Math.max(0, cur.offsetLeft - d.clientWidth / 2 + 13);
+  }
+
+  function showSectionQuestion() {
+    var S = state.sect, q = S.qs[S.i], host = $('sBody');
+    S.view = 'q';
+    $('sBody').hidden = false; $('sPrompt').hidden = false; $('sReview').hidden = true; $('sResults').hidden = true; $('sActions').hidden = false;
+    $('sPos').innerHTML = '<span class="wl">Question </span>' + (S.i + 1) + ' of ' + S.qs.length;      // ("1 of 27" on a phone, where the room is short)
+    $('sPrompt').textContent = q.prompt || '';
+    S.ctrl = Quiz.build(q, host, function () {
+      var sel = host.querySelector('.opt.sel');
+      S.answers[S.i] = sel ? sel.dataset.word : null;      // (no feedback: the choice is only remembered)
+      saveSection(); renderSectionDots();
+    });
+    var want = S.answers[S.i];
+    if (want != null) { var hit = [].slice.call(host.querySelectorAll('.opt')).filter(function (x) { return x.dataset.word === want; })[0]; if (hit) hit.click(); }
+    $('sBack').disabled = S.i === 0;
+    $('sNext').textContent = S.i === S.qs.length - 1 ? 'Review →' : 'Next →';
+    renderSectionDots(); updateSectionClock();
+    if (narrowNow()) document.querySelector('.panel').scrollTop = 0;
+  }
+
+  function sectionButton(text, cls, fn) { var b = document.createElement('button'); b.type = 'button'; b.className = cls; b.textContent = text; b.addEventListener('click', fn); return b; }
+  function sectionLine(text, cls) { var p = document.createElement('p'); p.className = cls || 'sres-line'; p.textContent = text; return p; }
+
+  function showSectionReview() {
+    var S = state.sect, box = $('sReview'); S.view = 'review';
+    $('sBody').hidden = true; $('sPrompt').hidden = true; $('sActions').hidden = true; $('sResults').hidden = true; box.hidden = false; box.innerHTML = '';
+    var blanks = []; S.answers.forEach(function (a, i) { if (a == null) blanks.push(i); });
+    box.appendChild(sectionLine(blanks.length ? 'You have answered ' + (S.qs.length - blanks.length) + ' of ' + S.qs.length + '. These are still blank:' : 'You have answered all ' + S.qs.length + '. Check anything you are unsure of, or finish when you are ready.'));
+    if (blanks.length) {
+      var row = document.createElement('div');
+      blanks.forEach(function (i) { row.appendChild(sectionButton('Q' + (i + 1), 'sjump', function () { S.i = i; showSectionQuestion(); })); });
+      box.appendChild(row);
+      box.appendChild(sectionLine('On the real test a blank scores the same as a miss, so it is worth answering every question. Here, a blank costs you nothing.', 'sres-line mute'));
+    }
+    var row2 = document.createElement('div'); row2.className = 'actions';
+    row2.appendChild(sectionButton('Keep checking', 'secondary', function () { S.i = S.qs.length - 1; showSectionQuestion(); }));
+    row2.appendChild(sectionButton('Finish and see my results', 'primary', finishSection));
+    box.appendChild(row2);
+    renderSectionDots();
+  }
+
+  function finishSection() {
+    var S = state.sect; if (!S || S.view === 'results') return;
+    var sc = Section.score(S.qs, S.answers);                 // no time in the score
+    var before = progress.store.total, toys = 0, closed = 0, gold = false;
+    S.qs.forEach(function (q, i) {
+      var a = S.answers[i]; if (a == null) return;           // a blank is not recorded at all: it costs no Focus
+      var rec = progress.record(q, a === q.answer);          // and no time in the recording either
+      afterRecord(rec);
+      if (rec.correct) {
+        toys += 1 + (rec.wasCold ? 1 : 0) + (rec.streak && rec.streak % 5 === 0 ? 1 : 0);
+        if (rec.wasCold) gold = true;
+        if (rec.closed) closed++;
+      }
+    });
+    var after = progress.store.total;
+    if (gold) state.gold = true;
+    state.queued += toys;
+    progress.sectionLog({ at: Date.now(), right: sc.right, total: sc.total, secs: S.elapsed });
+    progress.sectionClear();
+    clearInterval(sectTimer);
+    S.view = 'results';
+    Sound.unlock();
+    showSectionResults(S, sc, { toys: toys, closed: closed, kinds: progress.kindsBetween(Track.KINDS, before, after), stories: progress.storiesBetween(before, after, bank) });
+    updateHud();
+  }
+
+  function showSectionResults(S, sc, fx) {
+    var box = $('sResults'); box.innerHTML = ''; box.hidden = false;
+    $('sBody').hidden = true; $('sPrompt').hidden = true; $('sReview').hidden = true; $('sActions').hidden = true; $('sLeave').hidden = true;
+    $('sPos').textContent = 'Results';
+    var big = document.createElement('div'); big.className = 'sbig'; big.textContent = sc.right + ' '; var sm = document.createElement('small'); sm.textContent = '/ ' + sc.total; big.appendChild(sm); box.appendChild(big);
+    box.appendChild(sectionLine(Section.verdict(sc)));
+    if (!clockHidden()) {
+      var over = S.elapsed > Section.SUGGESTED;
+      box.appendChild(sectionLine('Time: ' + Section.clock(S.elapsed) + (over ? '. A little past the suggested ' + Section.clock(Section.SUGGESTED) + ', and that costs nothing: your score, Focus and rewards are the same.' : ' (suggested finish ' + Section.clock(Section.SUGGESTED) + ').'), 'sres-line mute'));
+    }
+    box.appendChild(sectionLine('Words in context: ' + sc.groups.words.r + ' of ' + sc.groups.words.t + '. Grammar and punctuation: ' + sc.groups.conventions.r + ' of ' + sc.groups.conventions.t + '.'));
+    if (sc.blank.length) box.appendChild(sectionLine(sc.blank.length + ' left blank. On the real test a blank scores the same as a miss, so it is worth answering every question.', 'sres-line mute'));
+    var lines = [];
+    lines.push('🎯 Focus is now ' + Progress.fmt(progress.store.focus.count) + '.');
+    if (fx.toys) lines.push('🧩 ' + fx.toys + ' toy' + (fx.toys > 1 ? 's' : '') + ' on the way to your machine.');
+    if (fx.closed) lines.push('🗂 ' + fx.closed + ' cold case' + (fx.closed > 1 ? 's' : '') + ' closed.');
+    fx.kinds.forEach(function (k) { lines.push('🔓 New toy unlocked: ' + Track.KINDS[k].label + '.'); });
+    fx.stories.forEach(function (k) { lines.push(STORIES[k].icon + ' New storyline: ' + STORIES[k].title + '.'); });
+    if (sc.wrong.length) lines.push('🗂 The ' + sc.wrong.length + ' you missed are in your cold case file, and will come back.');
+    box.appendChild(sectionLine(lines.join(' '), 'sres-line mute'));
+    if (sc.wrong.length) {
+      box.appendChild(sectionLine('What you missed', 'sres-line'));
+      sc.wrong.forEach(function (i) {
+        var q = S.qs[i], mine = S.answers[i], d = document.createElement('details'); d.className = 'sres-miss';
+        var sum = document.createElement('summary'); sum.textContent = 'Q' + (i + 1) + '. You chose “' + (mine === '' ? 'no punctuation' : mine) + '”. The answer is “' + (q.answer === '' ? 'no punctuation' : q.answer) + '”.'; d.appendChild(sum);
+        var fixed = document.createElement('p'); fixed.className = 'fixed'; fixed.textContent = q.fixed || q.text || ''; d.appendChild(fixed);
+        if (q.definitions && q.definitions[q.answer]) d.appendChild(sectionLine(q.answer + ': ' + q.definitions[q.answer] + (q.definitions[mine] ? '. ' + mine + ': ' + q.definitions[mine] + '.' : '.'), 'sres-line mute'));
+        d.appendChild(sectionLine(q.rule, 'sres-line'));
+        box.appendChild(d);
+      });
+    }
+    var row = document.createElement('div'); row.className = 'actions';
+    row.appendChild(sectionButton('Back to the machine', 'primary', function () { hideSection(true); }));
+    box.appendChild(row);
+    renderSectionDots(); updateSectionClock();
+    if (narrowNow()) document.querySelector('.panel').scrollTop = 0;
+  }
+
+  /** Put the ordinary question card back. `fresh`: the section is over, so give him a new question. */
+  function hideSection(fresh) {
+    clearInterval(sectTimer);
+    state.sect = null;
+    $('sect').hidden = true; $('card').hidden = false; $('sLeave').hidden = false; $('sActions').hidden = false; $('sResults').innerHTML = '';
+    if (fresh) showQuestion();
+    var n = state.queued;
+    if (fresh && n && !state.running && !state.brk && state.phase !== 'finale') { state.queued = 0; setTimeout(function () { placeQueued(n); }, 500); }
+    renderSectionStrip(); updateHud();
+  }
+  function leaveSection() { if (state.sect && state.sect.view !== 'results') { saveSection(); hideSection(false); } }
+
   // ---------------------------------------------------------------- the fire inquiry: statements found as questions are solved
   var dossierKey = '', fireFound = null;
   function fireStory() { return window.SAT_STORIES && window.SAT_STORIES.fire; }
@@ -660,6 +853,7 @@
     pips.setAttribute('aria-label', m.pieces.length + ' of ' + m.target + ' pieces in this machine');
     renderMystery();
     renderDossier();
+    renderSectionStrip();
     // a one-line summary, and a way across to the machine, for the phone's questions tab
     var stat = $('statusText');
     if (stat) {
@@ -1188,6 +1382,16 @@
       this.setAttribute('aria-expanded', open);
       if (!open) { state.picked = null; renderChest(); }
     });
+    $('sectionToggle').addEventListener('click', function () {
+      var body = $('sectionBody'), open = body.hidden;
+      body.hidden = !open;
+      this.setAttribute('aria-expanded', open);
+    });
+    $('sectionGo').addEventListener('click', startSection);
+    $('sBack').addEventListener('click', function () { var S = state.sect; if (S && S.i > 0) { S.i--; showSectionQuestion(); } });
+    $('sNext').addEventListener('click', function () { var S = state.sect; if (!S) return; if (S.i < S.qs.length - 1) { S.i++; showSectionQuestion(); } else showSectionReview(); });
+    $('sLeave').addEventListener('click', leaveSection);
+    $('sHide').addEventListener('click', function () { setClockHidden(!clockHidden()); updateSectionClock(); });
     $('dossierToggle').addEventListener('click', function () {
       var body = $('dossierBody'), open = body.hidden;
       body.hidden = !open;
@@ -1207,6 +1411,7 @@
     $('reset').addEventListener('click', function () {
       if (confirm('Erase all saved progress on this device, including the cold case file?')) {
         if (state.brk) endBreak();
+        if (state.sect) hideSection(false);
         progress.reset(); progress.newMachine(); state.gold = false; state.queued = 0; state.phase = 'play'; state.picked = null; state.unrevealed = {}; rollQueue.length = 0;
         $('finale').classList.remove('show');
         state.newClues = 0; hideSuspects();
@@ -1215,7 +1420,7 @@
     });
     document.addEventListener('keydown', function (e) {
       if ((e.key === 'f' || e.key === 'F') && canFlick()) { var ex = track.exitFor(machine().playFrom); beginRun(ex.dir * 4.5, -2.5); return; }
-      if (e.key !== 'Enter' || e.target.tagName === 'BUTTON') return;
+      if (e.key !== 'Enter' || e.target.tagName === 'BUTTON' || state.sect) return;
       if (!$('check').hidden && !$('check').disabled) checkAnswer(); else if (!$('next').hidden) showQuestion();
     });
 
@@ -1241,7 +1446,8 @@
     window.__sat = {
       get renderer() { return renderer; }, get view() { return state.view; }, get track() { return track; }, get world() { return world; },
       state: state, progress: progress, onCorrectForTest: function () { var r = progress.record(state.current, true); afterRecord(r); award(state.current, r); updateHud(); },
-      deploy: deploy, endBreak: endBreak, refresh: updateHud, promptPulses: promptPulses, rebuild: rebuild, mystery: mystery, cluesFound: cluesFound, setView: setView, stageHidden: stageHidden, showDueClue: showDueClue,
+      deploy: deploy, endBreak: endBreak, refresh: updateHud, promptPulses: promptPulses, section: { start: startSection, finish: finishSection, leave: leaveSection, review: function () { if (state.sect) showSectionReview(); }, tick: function (secs) { if (state.sect) { state.sect.elapsed += secs; updateSectionClock(); } }, get state() { return state.sect; } },
+      rebuild: rebuild, mystery: mystery, cluesFound: cluesFound, setView: setView, stageHidden: stageHidden, showDueClue: showDueClue,
       advance: function (secs) {
         for (var i = 0; i < secs * 60; i++) { var hold = false; if (state.brk) { state.brk.pg.step(1 / 60); hold = state.brk.pg.holdWorld; } if (!hold) { world.step(1 / 60); track.tick(1 / 60, nowS()); } if (state.running) track.collectStars(); renderer.update(1 / 60); renderer.updateCamera(1 / 60, focusPoint(nowS())); if (state.phase === 'finale' && nowS() > state.finaleUntil) endFinale(); }
       },
