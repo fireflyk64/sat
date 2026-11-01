@@ -698,6 +698,7 @@
     m.userData.live = true;
     m.userData.flicked = this.time;
     m.userData.home = m.userData.home || { x: m.x, y: m.y };
+    m.userData.home0 = m.userData.home0 || { x: m.userData.home.x, y: m.userData.home.y };
     this.run = {
       from: from, marble: m, t0: this.time, idle: 0, nudges: 0, over: false, finished: false, engaged: false,
       dominoes: 0, sections: {}, stuck: 0, multiplier: 1
@@ -743,10 +744,12 @@
       var si = o.userData.section;
       if (this.run && !this.run.engaged && si != null && si >= this.run.from && si >= 0) {
         this.run.engaged = true;
+        var mu = this.run.marble.userData; if (mu.home0) mu.home = mu.home0;       // (a marble that rested on the ledge is back to its usual home)
         this.emit('engaged', { x: x, y: y, run: this.run });
       }
       if (si != null && si >= 0 && this.sections[si] && this.run && m.userData.section !== si) this._startSection(this.sections[si]);
     }
+    if (m && this.run && m === this.run.marble && o.userData && o.userData.kind !== 'marble' && imp > 0.3) this.run.touched = true;      // (no longer a clean shot)
     this.emit('impact', { a: a, b: b, x: x, y: y, imp: imp, marble: m });
   };
 
@@ -874,10 +877,26 @@
         var low = target.ramps[target.ramps.length - 1].lowY + 3;
         if (m.y > low) lost = true;
       }
+      var L = this.ledge;
+      if (L && !lost) {      // resting on the high ledge: it stays there, and he may fling it again
+        var on = Math.abs(m.x - L.x) < L.shape.hw && Math.abs(m.y - (L.y - L.shape.hh - BALL_R)) < 0.2 && m.vx * m.vx + m.vy * m.vy < 0.5;
+        run.onLedge = on ? (run.onLedge || 0) + dt : 0;
+        if (run.onLedge > 0.35) { this._rested(run); return; }
+      }
       if (lost || run.idle > 1.2 || this.time - run.t0 > 12) { this._respawn(run); return; }
       return;
     }
     if (run.idle > 1.1) { run.idle = 0; this._nudge(run); }
+  };
+
+  /** The marble came to rest on the high ledge: it stays, asleep, and his next fling from there is free. */
+  Track.prototype._rested = function (run) {
+    var m = run.marble, L = this.ledge;
+    m.userData.home = { x: L.x, y: L.y - L.shape.hh - BALL_R - 0.01 };
+    m.userData.live = false; m.userData.flicked = 0; m.userData.brake = false;
+    m.x = m.userData.home.x; m.y = m.userData.home.y; m.vx = m.vy = m.w = 0; m.sleep(); this.world._dropArbiters(m);
+    this.run = null;
+    this.emit('rested', { x: m.x, y: m.y, marble: m });
   };
 
   /** A flick that missed the machine: put the marble back. Nothing is lost, flick again. */
@@ -952,14 +971,52 @@
   /** Stars hung along a good flick's arc: collect them for a bigger score multiplier. */
   Track.prototype.placeStars = function (from) {
     this.stars = [];
+    if (this.ledge) {
+      var gone = [this.ledge].concat(this.ledgeParts || []);
+      gone.forEach(function (g) { this.world.remove(g); }, this);
+      this.statics = this.statics.filter(function (s) { return gone.indexOf(s) < 0; });
+      this.ledge = null; this.ledgeParts = [];
+    }
+    this.cup = null;
     var e = this.exitFor(from), target = this.sections[from];
     if (!target) return;
+    var m0 = e.marble, hm = m0.userData;
+    if (hm.home0 && hm.home && (hm.home.x !== hm.home0.x || hm.home.y !== hm.home0.y)) {      // it was resting on the old ledge: bring it home
+      hm.home = hm.home0; m0.x = hm.home0.x; m0.y = hm.home0.y; m0.vx = m0.vy = m0.w = 0; m0.sleep(); this.world._dropArbiters(m0);
+    }
     var ramp = target.ramps[0], m = e.marble, lp = ramp.at(Math.min(ramp.L - 1, (ramp.gap || 2) * 0.6 + 1), BALL_R);
     var T = 1.05, vx = (lp.x - m.x) / T, vy = (lp.y - m.y) / T - 0.5 * GRAVITY * T;
     [0.28, 0.5, 0.74].forEach(function (f, i) {
       var tt = T * f;
       this.stars.push({ x: m.x + vx * tt, y: m.y + vy * tt + 0.5 * GRAVITY * tt * tt, got: 0, i: i });
     }, this);
+    // a small cup at the end of the good arc: land in the middle of it and the marble bursts into three
+    var tc = T * 0.55;
+    this.cup = { x: m.x + vx * tc, y: m.y + vy * tc + 0.5 * GRAVITY * tc * tc, r: 0.7, got: 0 };
+    // a small ledge up high, clear of the usual arc: a lob that lands on it comes to rest there
+    var F = e.dir || 1, apex = vy < 0 ? vy * vy / (2 * GRAVITY) : 0;
+    if (apex > LEDGE_UP - 1.0) F = -F;       // the usual arc climbs high here: hang the ledge behind the marble instead
+    this.ledge = this._static(null, { x: m.x + F * LEDGE_DX, y: m.y - LEDGE_UP, hw: 0.75, hh: 0.12, isStatic: true, friction: 1.2, restitution: 0.0 }, 'ledge');
+    this.ledgeParts = [-1, 1].map(function (k) {      // low lips at both ends, so a marble that lands settles instead of rolling off
+      return this._static(null, { x: this.ledge.x + k * 0.72, y: this.ledge.y - 0.22, hw: 0.07, hh: 0.1, isStatic: true, friction: 0.8, restitution: 0.0 }, 'ledge');
+    }, this);
+  };
+  var LEDGE_DX = 2.3, LEDGE_UP = 1.7;
+  Track.prototype.collectCup = function () {
+    var c = this.cup, run = this.run;
+    if (!c || c.got || !run) return;
+    var m = run.marble;
+    if (!m || m.userData.spent || this.time - run.t0 > 1.4 || run.touched) return;       // (only the first part of the flight counts: it is a shot, not a wander)
+    var dx = m.x - c.x, dy = m.y - c.y;
+    if (dx * dx + dy * dy > c.r * c.r || m.vx * m.vx + m.vy * m.vy < 9) return;       // (it has to be flying, not rolling along)
+    c.got = this.time;
+    var sec = this.sections[run.from] || null;
+    [-1, 1].forEach(function (k) {
+      var nb = this._marble(sec, c.x, c.y, { small: true, role: 'burst', hue: (this.baseHue + 120 * k + 360) % 360, asleep: false });
+      nb.userData.live = true; nb.userData.expire = this.time + 9; nb.manualWake = false;
+      nb.vx = m.vx + k * 2.4; nb.vy = m.vy * 0.8 - 1.2; nb.w = k * 5;
+    }, this);
+    this.emit('burst', { x: c.x, y: c.y, run: run });
   };
   Track.prototype.collectStars = function () {
     if (!this.stars.length || !this.run) return;

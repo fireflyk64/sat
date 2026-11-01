@@ -269,6 +269,23 @@
       Sound.pop();
       track.placeStars(machine().playFrom);
       updateHud();
+    } else if (type === 'burst') {
+      score(100, d.x, d.y - 1, { prefix: '🎯 ', size: 0.85, color: [2.6, 2, 0.6] });
+      Sound.kick(); Sound.pop();
+      renderer.sparks(d.x, d.y, 70, 45, 9); renderer.sparks(d.x, d.y, 40, 200, 7);
+      renderer.ring(d.x, d.y, 3.4, 0.9, 2.6, 2, 0.4, 0.1);
+      if (!reduced) renderer.confetti(d.x, d.y - 2, 90, 14);
+      toast('Bullseye! Three marbles.');
+    } else if (type === 'rested') {
+      state.running = false;
+      if (state.brk) return;
+      machine().retry = true; machine().spent = false; progress.save();
+      renderer.trails = {};
+      renderer.sparks(d.x, d.y, 24, 150, 4);
+      renderer.ring(d.x, d.y, 2, 0.8, 1.6, 2.2, 0.3, 0.1);
+      Sound.pop();
+      toast('A resting point! Fling it again, free.');
+      updateHud();
     } else if (type === 'bell') {
       onBell(d);
     }
@@ -1381,7 +1398,7 @@
     }
     if (steps === maxSteps) acc = 0;
     if (state.running) {
-      track.collectStars();
+      track.collectStars(); track.collectCup();
       // a last line of defence: no run can hang forever
       if (track.run && !track.run.over && track.time - track.run.t0 > 420) track._ring(null);
     }
