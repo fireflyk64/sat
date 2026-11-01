@@ -555,6 +555,21 @@ await js('__sat.endBreak()'); await tapHere(`document.getElementById('tabStudy')
 check('...and the Questions tab is one tap away', (await js('__sat.view')) === 'study' && (await js(seenStage)) === 'hidden');
 await send('Emulation.setDeviceMetricsOverride', { width: 1100, height: 720, deviceScaleFactor: 1, mobile: false });
 
+// ---------------------------------------------------------------------------------------------------------- 9: the Sand Timer
+// A funnel of sand over a trapdoor: a marble arrives, the trapdoor opens, the sand runs down and knocks the row over.
+await open('?noscale=1');
+await js(`(()=>{ const m = __sat.machine(); m.pieces = [{ id: 'p1', kind: 'dominoes', seed: 11 }, { id: 'p2', kind: 'hourglass', seed: 23 }, { id: 'p3', kind: 'dominoes', seed: 35 }]; m.target = 3; m.playFrom = 0; __sat.progress.save(); __sat.rebuild({}); })()`);
+await sleep(600);
+const sandInfo = () => js(`(()=>{ const t = __sat.track.sections[1], toy = t.toy; const inFunnel = toy.grains.filter(g => !g.userData.spent && g.y < toy.y + 0.2).length; return { grains: toy.grains.length, inFunnel, open: toy.triggered, fallen: t.dominoes.filter(d => d.userData.fell).length, total: t.dominoes.length }; })()`);
+const sand0 = await sandInfo();
+check('the Sand Timer is a toy on the unlock ladder, and its funnel starts full of sand', (await js(`Track.KINDS.hourglass.unlock`)) === 30 && sand0.grains >= 40 && sand0.inFunnel === sand0.grains && !sand0.open, JSON.stringify(sand0));
+await js(`__sat.track.sections[1].toy.force()`);
+await js('__sat.advance(8)');
+const sand1 = await sandInfo();
+check('the trapdoor opens and the sand runs right out of the funnel', sand1.open && sand1.inFunnel <= 2, JSON.stringify(sand1));
+check('...and the sand knocks the row of dominoes down', sand1.fallen >= sand1.total * 0.8, `${sand1.fallen} of ${sand1.total}`);
+check('the grains are drawn as sand, not as marbles', await js(`__sat.track.sections[1].toy.grains.every(g => g.userData.sand && g.userData.small)`));
+
 const realErrors = pageErrors.filter(e => !/favicon/.test(e));
 check('no JavaScript errors in the whole session', realErrors.length === 0, realErrors.slice(0, 3).join(' | '));
 

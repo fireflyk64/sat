@@ -28,11 +28,12 @@ and the dominoes clear them one at a time, each with the reason, until only the 
 CASE CLOSED card and says how it was done. Nothing extra is saved: the mystery follows the number of machines finished, and
 the clues follow the machine's piece count. Every mystery can be solved from its own clues, and
 `node tests/mystery-test.mjs` checks that each innocent has a clue of their own and the culprit's comes last.
+There are twelve, in a fixed order, and they come round again after that; the culprit is listed in a different place from one mystery to the next, so "always the last suspect" never works. Several are built around a language clue (a spelling, a tense, a stray apostrophe, a dialect word).
 To add one, copy an entry in `data/mysteries.js` (four suspects, five clues, one reason per innocent suspect, one solution).
 
 **Toys** unlock as correct answers add up: Domino Row, Speed Ramp and Peg Field from the start, then Switchback (2),
 Catapult (4), Trampoline (6), Wrecking Ball (8), Cannon (10), Nitro Crate (13), Marble Cascade (16), Portal (20),
-Newton's Cradle (25).
+Newton's Cradle (25), Sand Timer (30: a trapdoor opens under a funnel of sand, which runs down and knocks the row over).
 
 ## Focus: rewards for studying rather than playing
 **Focus** is what he builds by answering: a right answer adds 1 and a miss takes off ⅓, never going below 0. With four choices

@@ -32,7 +32,8 @@
     nitro:      { label: 'Nitro Crate',    unlock: 13, blurb: 'Blows the marble across the gap.' },
     cascade:    { label: 'Marble Cascade', unlock: 16, blurb: 'A gate opens and a flood of marbles pours out.' },
     portal:     { label: 'Portal',         unlock: 20, blurb: 'In one side, out the other.' },
-    cradle:     { label: "Newton's Cradle", unlock: 25, blurb: 'Click. Clack. Click. Clack.' }
+    cradle:     { label: "Newton's Cradle", unlock: 25, blurb: 'Click. Clack. Click. Clack.' },
+    hourglass:  { label: 'Sand Timer',     unlock: 30, blurb: 'A trapdoor opens and sand runs down onto the dominoes.' }
   };
 
   function rng(seed) { // mulberry32
@@ -439,6 +440,75 @@
       this._run(sec, r, t, 7.6, false);
     },
 
+    /* Sand Timer: an arriving marble springs a trapdoor under a funnel of sand, which runs down onto the ramp and knocks the row
+       over. The grains are tiny heavy marbles, so it costs no more to run than a Marble Cascade. */
+    hourglass: function (sec, r, p) {
+      var e = this._entry(sec, r, p, 7 + r(), 10), F = e.dir, X = e.lowX, Y = e.lowY;
+      var t = this._forward(sec, X + F * 1.0, Y + 3.4, F, 8, 18 + r() * 3);
+      var ground = t.at(1.75, 0), N = { x: ground.x, y: ground.y - 2.4 };         // the middle of the funnel's neck
+      var nh = 0.26, wide = 1.6, H = 3.2, slope = (wide - nh) / H, GRAIN = 0.12, COUNT = 44;
+      var self = this;
+      // the funnel: two slanted planks, set so that their inner faces run through the lines given
+      function plank(x0, y0, x1, y1, out) {
+        var dx = x1 - x0, dy = y1 - y0, L = Math.sqrt(dx * dx + dy * dy), nx = -dy / L, ny = dx / L;
+        if (nx * out < 0) { nx = -nx; ny = -ny; }
+        self._static(sec, { x: (x0 + x1) / 2 + nx * 0.12, y: (y0 + y1) / 2 + ny * 0.12, a: Math.atan2(dy, dx), hw: L / 2, hh: 0.12, isStatic: true, friction: 0.25, restitution: 0.05 }, 'funnel');
+      }
+      plank(N.x - nh, N.y, N.x - wide, N.y - H, -1);
+      plank(N.x + nh, N.y, N.x + wide, N.y - H, 1);
+      var trap = this._static(sec, { x: N.x, y: N.y + 0.08, hw: nh + 0.3, hh: 0.07, isStatic: true, friction: 0.3 }, 'gate');
+      var grains = [], y = N.y - 0.2, row = 0;
+      while (grains.length < COUNT && row < 40) {
+        var half = nh + (N.y - y) * slope - 0.3, n = half <= 0 ? 1 : Math.floor(2 * half / 0.27 + 1e-6) + 1;
+        for (var i = 0; i < n && grains.length < COUNT; i++) {
+          var g = this._marble(sec, N.x + (i - (n - 1) / 2) * 0.27 + (r() - 0.5) * 0.03, y, { r: GRAIN, small: true, role: 'small', hue: 38 + (r() * 14 | 0), key: 'grain' + grains.length, manualWake: true });
+          g.userData.sand = true; g.restitution = 0.08; g.friction = 0.6;
+          grains.push(g);
+        }
+        y -= 0.25; row++;
+      }
+      var toy = sec.toy = {
+        type: 'hourglass', triggered: false, trap: trap, grains: grains, opened: -9, x: N.x, y: N.y, shaken: 0,
+        update: function () {
+          if (!this.triggered) return;
+          // sand that reaches the first domino and only piles against its foot: once it has lingered, the heap tips it over
+          var d0 = sec.dominoes[0], u0 = d0 && d0.userData;
+          if (d0 && !u0.fell && !u0.dissolve) {
+            var near = false;
+            for (var q = 0; q < grains.length; q++) { var gq = grains[q]; if (!gq.userData.spent && Math.abs(gq.x - d0.x) < 0.9 && Math.abs(gq.y - d0.y) < 0.9) { near = true; break; } }
+            if (!near) this.heap = 0;
+            else {
+              if (!this.heap) this.heap = self.time;
+              if (self.time - this.heap > 0.7 && self.time - (this.tipped || -9) > 0.8 && (this.tips || 0) < 3) {
+                this.tips = (this.tips || 0) + 1; this.tipped = self.time;
+                if (d0.asleep) { d0.wake(); self.world._dropArbiters(d0); }
+                d0.w += u0.dir * (3.6 + this.tips); d0.vx += u0.dir * 0.8;
+              }
+            }
+          }
+          // a funnel can arch and jam: every so often, shake whatever is still stuck above the neck
+          if (self.time - this.opened < 1.2 || self.time - this.shaken < 0.45) return;
+          this.shaken = self.time;
+          for (var k = 0; k < grains.length; k++) {
+            var gk = grains[k];
+            if (gk.userData.spent || gk.y > N.y + 0.2 || gk.y < N.y - H || Math.abs(gk.x - N.x) > wide) continue;
+            if (gk.vx * gk.vx + gk.vy * gk.vy < 0.2) { gk.wake(); gk.vx += (r() - 0.5) * 2.2; gk.vy += 0.6; }
+          }
+        },
+        open: function (m) {
+          if (this.triggered) return;
+          this.triggered = true; this.opened = self.time;
+          if (m) self._spend(m);
+          self.world.remove(trap); trap.userData.gone = true;
+          grains.forEach(function (gk) { gk.manualWake = false; gk.wake(); gk.userData.live = true; gk.userData.expire = self.time + 9; gk.vy += 0.3; });
+          self.emit('toy', { what: 'pour', kind: 'hourglass', x: N.x, y: N.y, sec: sec });
+        },
+        force: function () { this.open(); }
+      };
+      this._catch(sec, X + F * 0.1, Y - 0.25, 0.6, function (m) { toy.open(m); });
+      this._run(sec, r, t, 7.6, false);
+    },
+
     portal: function (sec, r, p) {
       var e = this._entry(sec, r, p, 7 + r(), 10), F = e.dir, X = e.lowX, Y = e.lowY;
       var ix = X + F * 1.4, iy = Y + 0.3;
@@ -717,11 +787,17 @@
     else if (passed && t - frontT > 0.9) limit = doms.length;             // or the wave died out behind the action: restart it
     if (t - frontT < 0.35) return;
     for (k = 0; k < limit; k++) {
-      var d = doms[k];
-      if (d.userData.fell || d.userData.pushed || d.userData.dissolve) continue;
-      d.userData.pushed = true; s.swept = t;
+      var d = doms[k], u = d.userData;
+      if (u.fell || u.dissolve) continue;
+      // a domino that took a push and is still standing gets another, a little harder, a second later; after three, it fades out
+      if (u.pushed && u.tries >= 3) {
+        if (t - u.pushedAt >= 1.0) { d.ghost = true; u.dissolve = t + 0.7; this.debris.push(d); s.swept = t; return; }
+        continue;
+      }
+      if (u.pushed && t - u.pushedAt < 1.0) continue;
+      u.tries = (u.tries || 0) + 1; u.pushed = true; u.pushedAt = t; s.swept = t;
       if (d.asleep) { d.wake(); this.world._dropArbiters(d); }
-      d.w += d.userData.dir * 2.4; d.vx += d.userData.dir * 0.5;
+      d.w += u.dir * (2.4 + 1.6 * (u.tries - 1)); d.vx += u.dir * (0.5 + 0.4 * (u.tries - 1));
       return;
     }
   };

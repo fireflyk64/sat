@@ -4,7 +4,7 @@
 // Every one of these questions shows the meaning of the missing word (as a clue above the sentence, or as the question
 // itself), so a wrong choice that plainly does not fit gives the answer away. These wrong choices are meant to be words that
 // also read plausibly in the sentence and share its tone, but whose meaning is not the one shown. Drafted by reviewers
-// into data/vocab-distractors.json as { id: { wrong: [{ word, def, fit }, x3], rule?: "a new explanation", rootOk?: true } }, or { drop: true } for a
+// into data/vocab-distractors.json as { id: { wrong: [{ word, def, fit }, x3], rule?: "a new explanation", rootOk?: true, audited?: true } }, or { drop: true } for a
 // question whose meaning is too generic for rivals that are really different; this checks every draft and applies them.
 // (Whether a rival has the right form for the blank is not checked here: the blind audit rates how each one reads in the sentence.)
 //   node scripts/apply-distractors.mjs data/vocab-distractors.json            apply, and list anything that failed a check
@@ -19,7 +19,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const drafts = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
 const checkOnly = process.argv.includes('--check');
-const FILES = ['questions.js', 'questions-set2.js', 'questions-set4.js'];
+const FILES = ['questions.js', 'questions-set2.js', 'questions-set4.js', 'questions-set5.js'];
 
 const stats = { applied: 0, dropped: 0, rejected: 0, trimmed: 0, stale: 0, kept: 0, missing: 0 };
 const problems = [], stale = [], useCount = {}, fits = { two: 0, one: 0, none: 0 };
@@ -54,11 +54,13 @@ for (const file of FILES) {
       if (w.fit !== 1 && w.fit !== 2) bad.push(`"${word}" has no fit rating`);
     });
     const twos = (d.wrong || []).filter(w => w.fit === 2).length;
-    if (twos < 2) bad.push(`only ${twos} wrong choice(s) rated as tempting`);
+    if (twos < 2 && !d.audited) bad.push(`only ${twos} wrong choice(s) rated as tempting`);     // (an entry a blind review has passed is judged by that review instead)
     if (bad.length) { stats.rejected++; problems.push(`${q.id} (${q.answer}): ${bad.join('; ')}`); out.push(q); continue; }
 
+    // a sentence that opens with the blank has a capitalised answer, and the rivals must match or the answer stands out
+    const fmt = w => (/^[A-Z]/.test(q.answer) ? w[0].toUpperCase() + w.slice(1) : w), shown = words.map(fmt);
     const old = q.options.filter(o => o !== q.answer);
-    const sameSet = old.length === 3 && words.every(w => old.includes(w));
+    const sameSet = old.length === 3 && shown.every(w => old.includes(w));
     if (sameSet) { stats.kept++; out.push(q); continue; }
     // an explanation that talks about a wrong choice that has gone ("Taciturn means the opposite.") loses that sentence;
     // if nothing would be left, it is listed to be rewritten by hand
@@ -73,8 +75,8 @@ for (const file of FILES) {
     d.wrong.forEach(w => { if (w.fit === 2) fits.two++; else fits.one++; });
     if (!checkOnly) {
       const defs = { [q.answer]: q.definitions[q.answer] };
-      d.wrong.forEach(w => { defs[w.word.trim().toLowerCase()] = w.def.trim(); });
-      q.options = [q.answer, ...words];
+      d.wrong.forEach(w => { defs[fmt(w.word.trim().toLowerCase())] = w.def.trim(); });
+      q.options = [q.answer, ...shown];
       q.definitions = defs;
       q.rule = rule;
     }

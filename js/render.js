@@ -326,6 +326,8 @@
       this._slab(fx, P, sw, sh, hue, 16 + lit * 14, (sec && sec.started ? 3.2 : 2.3) + lit * 3.2, alpha);
     } else if (kind === 'wall' || kind === 'hopper' || kind === 'stop' || kind === 'pivot' || kind === 'padbase' || kind === 'cannonbase') {
       this._slab(fx, P, sw, sh, hue + 25, 16, 2 + lit, alpha);
+    } else if (kind === 'funnel') {
+      this._slab(fx, P, sw, sh, 40, 24, 2.6 + lit, alpha);
     } else if (kind === 'peg') {
       var fl = Math.exp(-(st - (u.lit == null ? -9 : u.lit)) * 6), c = hsl(hue + 40, 100, 70), d = hsl(hue, 100, 55);
       fx.sprite(T.PEG, P.x, P.y, b.shape.r, b.shape.r, 0, c[0], c[1], c[2], alpha, d[0], d[1], d[2], 1, fl, 0);
@@ -454,7 +456,8 @@
     if (isFlick && game.aim) { x += game.aim.dx; y += game.aim.dy; }
     var lead = u.live && !u.spent;
     var S;
-    if (u.small) { var hc = hsl(u.hue + st * 30, 100, 62), hd = hsl(u.hue + 80, 100, 70); S = { a: hc, b: hd, trail: [hc[0] * 2, hc[1] * 2, hc[2] * 2], mat: 0 }; }
+    if (u.sand) { var sc = hsl(u.hue, 92, 58), sd = hsl(u.hue + 12, 96, 76); S = { a: sc, b: sd, trail: null, mat: 0 }; }     // sand: warm gold, not the colour-cycling of other small marbles
+    else if (u.small) { var hc = hsl(u.hue + st * 30, 100, 62), hd = hsl(u.hue + 80, 100, 70); S = { a: hc, b: hd, trail: [hc[0] * 2, hc[1] * 2, hc[2] * 2], mat: 0 }; }
     else if (lead || isFlick) S = this._skinColors(this.skin, this.time, u.hue);
     else { var c0 = hsl(u.hue, 88, 58), c1 = hsl(u.hue + 50, 90, 68); S = { a: c0, b: c1, trail: null, mat: 0 }; }
 

@@ -240,6 +240,10 @@
       Sound.launch(); renderer.kick(0.8); renderer.sparks(d.x, d.y, 26, s.hue, 8);
       renderer.ring(d.x, d.y, 3, 2.6, 2, 1, 0.35, 0.1);
       score(50, d.x, d.y - 1.1, { color: [2.5, 2.3, 1] });
+    } else if (d.what === 'pour') {
+      Sound.pour(); renderer.kick(0.5); renderer.sparks(d.x, d.y + 0.4, 26, 42, 4);
+      renderer.ring(d.x, d.y + 0.2, 2.6, 2.2, 1.8, 0.9, 0.35, 0.1);
+      score(50, d.x, d.y - 1.1, { color: [2.5, 2.1, 0.9] });
     } else if (d.what === 'bounce') {
       Sound.bounce(); renderer.kick(0.5);
       renderer.ring(d.x, d.y, 3.6, 0.5, 3, 1.5, 0.4, 0.1);

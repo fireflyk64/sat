@@ -12153,16 +12153,16 @@ window.SAT_QUESTIONS = [
   "stem": "___ and good breeding naturally enjoined that our demeanour should be much as usual, yet I could not help wondering if this self-control were really a matter of great difficulty.",
   "options": [
    "Decorum",
-   "prudence",
-   "reticence",
-   "fortitude"
+   "Prudence",
+   "Reticence",
+   "Fortitude"
   ],
   "answer": "Decorum",
   "definitions": {
    "Decorum": "polite, proper behavior",
-   "prudence": "careful good judgment",
-   "reticence": "reluctance to speak openly",
-   "fortitude": "courage in the face of hardship"
+   "Prudence": "careful good judgment",
+   "Reticence": "reluctance to speak openly",
+   "Fortitude": "courage in the face of hardship"
   },
   "fixed": "Decorum and good breeding naturally enjoined that our demeanour should be much as usual, yet I could not help wondering if this self-control were really a matter of great difficulty.",
   "rule": "Paired with 'good breeding' and tied to 'self-control', it means proper behavior.",

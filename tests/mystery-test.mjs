@@ -11,7 +11,7 @@ function check(name, ok, extra = '') {
 }
 
 const all = Mystery.all();
-check('there are mysteries to play', all.length >= 3, `${all.length}`);
+check('there are mysteries to play', all.length >= 12, `${all.length}`);
 check('ids are unique', new Set(all.map(m => m.id)).size === all.length);
 check('titles are unique', new Set(all.map(m => m.title)).size === all.length);
 
@@ -42,8 +42,10 @@ check('every mystery is well formed', bad.length === 0, bad.slice(0, 4).join('; 
 // the culprit must not sit in the same place every time, or "always the last one" would solve every mystery
 {
   const at = all.map(m => m.culprit);
-  check('the culprit is listed in a different place in each mystery', new Set(at).size === all.length, at.join());
-  check('...and is not always the first or the last', at.some(i => i > 0 && i < 3));
+  const share = Math.max(...[0, 1, 2, 3].map(i => at.filter(x => x === i).length)) / at.length;
+  check('every position is used by some culprit', [0, 1, 2, 3].every(i => at.includes(i)), at.join());
+  check('...none of them for more than 40% of the mysteries', share <= 0.4, `${Math.round(share * 100)}%`);
+  check('...and never the same place in two mysteries in a row', at.every((x, i) => i === 0 || x !== at[i - 1]), at.join());
 }
 
 // elimination: each innocent has a clue of their own, and they come out in the order the clues turn up
@@ -108,6 +110,7 @@ for (const m of all) {
 // the mystery follows the machine count, and wraps round
 {
   const n = all.length;
+  check('twelve different mysteries before any repeats', new Set(Array.from({ length: 12 }, (_, i) => Mystery.forMachine(i).id)).size === 12);
   check('the first machine gets the first mystery', Mystery.forMachine(0) === all[0]);
   check('the mysteries come round again when they run out', Mystery.forMachine(n) === all[0] && Mystery.forMachine(n + 1) === all[1]);
   check('a nonsense count still gives a mystery', !!Mystery.forMachine(-1) && !!Mystery.forMachine(1e9));

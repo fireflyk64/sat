@@ -44,6 +44,10 @@ for (const q of items) {
     // (an "a"/"an" before the blank is folded into each choice at runtime, so it cannot hint at the answer)
     if (!q.definitions || q.options.some(o => !q.definitions[o])) problems.push('missing definition');
     if (q.options.length !== 4 || new Set(q.options).size !== 4) problems.push('needs four different choices');
+    // surface tells: a test taker scans for the odd one out, so the choices must look alike
+    if (new Set(q.options.map(o => /^[A-Z]/.test(o))).size > 1) problems.push('the choices are not all capitalised the same way');
+    if (new Set(q.options.map(o => o.trim().split(/[\s-]+/).length)).size > 1) problems.push('the choices are not all the same number of words');
+    if (new Set(q.options.map(o => /-/.test(o))).size > 1) problems.push('only some of the choices are hyphenated');
     if (!q.options.includes(q.answer)) problems.push('the answer is not one of the choices');
     if (q.definitions && Object.keys(q.definitions).some(k => !q.options.includes(k))) problems.push('a definition belongs to a word that is no longer a choice');
     if (q.definitions && q.options.some(o => o !== q.answer && q.definitions[o] && q.definitions[o] === q.definitions[q.answer])) problems.push('a wrong choice has the answer\u2019s meaning');
