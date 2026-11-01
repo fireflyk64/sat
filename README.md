@@ -20,6 +20,16 @@ Plain HTML/CSS/JS. No build step, no npm packages, no CDN. Works from `file://` 
 * **Streaks** change the marble (Fire at 3 in a row, Plasma at 5, Prism at 8, Nova at 12), multiply the score, warm up the
   whole scene, and every 5th in a row adds a bonus toy. A miss resets the streak but never takes anything away.
 
+**Every machine is a mystery** (`data/mysteries.js`). It has four suspects and five clues, and each domino row is a line of
+reasoning. Right answers find the clues, spread evenly over the pieces the machine needs: one per piece on a small machine,
+one every couple of pieces on a big one. A new clue is announced over the machine and added to the case file in the side
+panel, which stays collapsed and quiet like the chest. When he runs the whole machine in one take, the suspects appear over it
+and the dominoes clear them one at a time, each with the reason, until only the culprit is left. The bell names them on the
+CASE CLOSED card and says how it was done. Nothing extra is saved: the mystery follows the number of machines finished, and
+the clues follow the machine's piece count. Every mystery can be solved from its own clues, and
+`node tests/mystery-test.mjs` checks that each innocent has a clue of their own and the culprit's comes last.
+To add one, copy an entry in `data/mysteries.js` (four suspects, five clues, one reason per innocent suspect, one solution).
+
 **Toys** unlock as correct answers add up: Domino Row, Speed Ramp and Peg Field from the start, then Switchback (2),
 Catapult (4), Trampoline (6), Wrecking Ball (8), Cannon (10), Nitro Crate (13), Marble Cascade (16), Portal (20),
 Newton's Cradle (25).
@@ -82,7 +92,7 @@ folder per project. Publish from a commit, copy only what the page needs, and st
 
     H=$(git rev-parse --short HEAD); PAGES=../fireflyk64.github.io
     (cd $PAGES && git pull -q --ff-only && rm -rf sat && mkdir sat)
-    git archive HEAD index.html css js $(git ls-files 'data/questions*.js') | tar -x -C $PAGES/sat
+    git archive HEAD index.html css js $(git ls-files 'data/*.js') | tar -x -C $PAGES/sat
     (cd $PAGES && git add -A sat && git commit -m "sat: what changed (from sat $H)" && git push origin main)
 
 Leave Pages off on the `sat` repo itself: a project site at the same path could compete with this folder.
@@ -196,6 +206,8 @@ listed above.
 | `js/fx.js` | a WebGL2 engine: instanced shader-drawn shapes, HDR bloom, shockwave distortion, chromatic aberration, tone mapping, plus the 2D fallback |
 | `js/render.js` | draws the machine, particles, camera, and the tween that rearranges it |
 | `js/sound.js` | all audio synthesised live with WebAudio: no sound files |
+| `js/mystery.js` | the story under each machine: which mystery, how many clues are found, when each suspect is cleared. Pure functions, no saved state |
+| `data/mysteries.js` | the mysteries themselves |
 | `js/game.js` | glue: the flick, scoring, streaks, the HUD, the finale |
 | `js/quiz.js` | question widgets and exact grading |
 
@@ -205,6 +217,7 @@ No install needed for any of these:
     node tests/physics-test.mjs     # engine: toppling, hinges, sensors, explosions
     node tests/machine-test.mjs     # every toy and 30 random machines must run from flick to bell on real physics
     node tests/playground-test.mjs  # every chest item on a real machine, and sand: no errors, no slowdowns, clean rebuild
+    node tests/mystery-test.mjs     # every mystery is well formed and solvable from its clues; clue and suspect pacing for any machine size
     node tests/progress-test.mjs    # simulated sessions: do misses come back, survive a wiped localStorage, close correctly?
     node tests/browser-test.mjs     # real Chrome, real clicks and reloads, start to finale (needs Chrome and python3; set CHROME=/path if needed)
     node tests/verify-quotes.mjs    # every question re-checked against the Project Gutenberg text, and conjunction answers balanced

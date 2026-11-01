@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="app">
+<div class="app view-study" id="app">
   <section class="stage" id="stage">
     <canvas id="world" aria-label="A chain-reaction machine of dominoes, marbles and toys that grows as you answer correctly. Pull back on the glowing marble and let go to set it off."></canvas>
 
@@ -34,6 +34,7 @@
     <div id="banner" class="banner" role="status" aria-live="polite"><div id="bannerBig" class="big"></div><div id="bannerSmall" class="small"></div></div>
     <div id="announce" class="announce" role="status" aria-live="polite"><b id="announceTitle"></b><span id="announceBlurb"></span></div>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <div id="suspects" class="suspects" aria-label="The suspects"></div>
 
     <div id="breakBar" class="breakbar" role="status">
       <div class="brow"><span id="breakIcon" aria-hidden="true"></span> <b id="breakName"></b> <span id="breakHow" class="bhow"></span> <span id="breakStatus" class="bstat"></span>
@@ -61,6 +62,8 @@
         <div id="finTitle" class="fintitle">CASE CLOSED</div>
         <div id="finScore" class="finscore"></div>
         <div id="finStats" class="finstats"></div>
+        <div id="finCulprit" class="finculprit" hidden></div>
+        <p id="finSolution" class="finsolution" hidden></p>
         <button id="finaleNext" class="primary">Build the next machine →</button>
       </div>
     </div>
@@ -76,6 +79,12 @@
       <p class="sub">Every right answer adds a toy to the machine. Every flick sets it off.</p>
     </header>
 
+    <!-- phone only: the machine is on its own tab, so this keeps score on the questions tab -->
+    <div id="studybar" class="studybar">
+      <div class="statusline"><div id="statusText" role="status"></div><button id="playNow" class="playnow" type="button" hidden>Play ▶</button></div>
+    </div>
+    <div id="studynote" class="studynote" role="status" aria-live="polite"></div>
+
     <div id="coldbar" class="coldbar">
       <span class="folder" aria-hidden="true">🗂</span>
       <div class="coldtext"><b><span id="coldN">0</span> <span id="coldWord">cold cases</span> open</b> · <span id="closedN">0</span> closed<small id="coldMsg"></small></div>
@@ -87,6 +96,16 @@
       <div id="fb-rare" class="frow t-rare"><span class="fname">Rare</span><span class="fbar"><span class="ffill"></span></span><span class="fcount"></span><span class="fodds">25%</span></div>
       <div id="fb-ultra" class="frow t-ultra"><span class="fname">Ultra rare</span><span class="fbar"><span class="ffill"></span></span><span class="fcount"></span><span class="fodds">10%</span></div>
       <div id="freezes" class="freezes"></div>
+    </section>
+
+    <section class="chest mystery" aria-label="The mystery behind this machine">
+      <button id="mysteryToggle" class="chead" type="button" aria-expanded="false" aria-controls="mysteryBody"><b>🔎 <span id="mysteryTitle"></span></b> <span id="mysteryCount"></span><i class="chevron" aria-hidden="true"></i></button>
+      <div id="mysteryBody" hidden>
+        <p id="mysteryBrief" class="mbrief"></p>
+        <div id="mysterySuspects" class="msuspects"></div>
+        <ol id="mysteryClues" class="mclues"></ol>
+        <p id="mysterySolved" class="mbrief msolved" hidden></p>
+      </div>
     </section>
 
     <section class="chest" aria-label="Chest of saved items">
@@ -122,11 +141,17 @@
     <footer>Quotations from public-domain Agatha Christie and Arthur Conan Doyle texts via Project Gutenberg. Your progress and misses are saved only in this browser.
       <button id="reset" class="linkish">Reset progress</button></footer>
   </section>
+
+  <nav id="tabs" class="tabs" aria-label="Questions or machine">
+    <button id="tabStudy" class="tab" type="button" aria-pressed="true"><span aria-hidden="true">📚</span> Questions</button>
+    <button id="tabMachine" class="tab" type="button" aria-pressed="false"><span aria-hidden="true">🎲</span> Machine <i id="tabBadge" class="badge" title="You have earned a flick" hidden></i></button>
+  </nav>
 </div>
 <script src="js/physics.js"></script>
 <script src="js/track.js"></script>
 <script src="js/rewards.js"></script>
 <script src="js/progress.js"></script>
+<script src="js/mystery.js"></script>
 <script src="js/sand.js"></script>
 <script src="js/playground.js"></script>
 <script src="js/fx.js"></script>
@@ -138,6 +163,7 @@
 <script src="data/questions-set3.js"></script>
 <script src="data/questions-set4.js"></script>
 <script src="data/questions-set5.js"></script>
+<script src="data/mysteries.js"></script>
 <script src="js/game.js"></script>
 </body>
 </html>

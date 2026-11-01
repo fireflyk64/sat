@@ -34,7 +34,9 @@
     queued: 0, focus: null, focusUntil: 0, readyAt: 0,
     aim: null, pointer: null, gold: false, fast: false,
     phase: 'play', finaleUntil: 0,
-    brk: null, freeRetry: false, unrevealed: {}, picked: null, hover: false
+    view: 'study',     // on a phone the questions and the machine take turns on screen
+    brk: null, freeRetry: false, unrevealed: {}, picked: null, hover: false,
+    grand: false, cleared: [], newClues: 0, solved: null, clueDue: null,     // the story: the machine's last run is under way / who it has cleared / clues not yet read
   };
 
   function tierFor(streak) { var t = TIERS[0]; TIERS.forEach(function (x) { if (streak >= x.at) t = x; }); return t; }
@@ -98,7 +100,7 @@
   }
 
   function placeQueued(n, forceFirst) {
-    var last = null;
+    var last = null, had = cluesFound();
     for (var i = 0; i < n; i++) {
       var r = slotOne(i === 0 ? forceFirst : null);
       if (r) last = r;
@@ -114,12 +116,13 @@
       renderer.cam.follow = true;
     }
     if (last.complete) toast('🏁 Last piece in! Run it to the bell to finish the machine.');
+    foundClues(had, cluesFound());
     orbToMachine();
   }
 
   /** A glowing orb flies from the answer panel into the machine: the right answer visibly powers the game. */
   function orbToMachine() {
-    if (reduced) return;
+    if (reduced || stageHidden()) return;
     try {
       var from = $('verdict').getBoundingClientRect(), cv = renderer.canvas.getBoundingClientRect();
       var orb = document.createElement('div'); orb.className = 'orb'; document.body.appendChild(orb);
@@ -148,6 +151,7 @@
     var run = track.startRun(from, vx, vy);
     if (!run) return;
     state.running = true; state.runScore = 0; state.chain = 0; state.pegs = 0;
+    if (m.complete && from === 0) startSuspects();
     Sound.resetNotes();
     Sound.flick(Math.min(1, Math.hypot(vx, vy) / Track.FLICK_MAX));
     renderer.cam.follow = true; renderer.cam.zoomGoal = null;
@@ -204,6 +208,7 @@
       }
     } else if (type === 'section') {
       d.sec.litT = track.time;
+      if (state.grand) checkClears();
     } else if (type === 'toy') {
       onToy(d);
     } else if (type === 'star') {
@@ -216,6 +221,7 @@
     } else if (type === 'lost') {
       state.running = false;
       if (state.brk) return;
+      if (state.grand) hideSuspects();
       state.freeRetry = true;
       renderer.trails = {};
       renderer.sparks(d.x, d.y, 30, 190, 5);
@@ -310,6 +316,7 @@
         setTimeout(function () { placeQueued(n); }, 1200);
       }
     }
+    if (state.clueDue) setTimeout(showDueClue, 1500);
     updateHud();
   }
 
@@ -319,6 +326,8 @@
     state.finaleUntil = nowS() + 9;
     state.slowUntil = nowS() + 1.6;
     renderer.heatTarget = 1;
+    var my = state.solved = mystery();
+    checkClears();                                   // the front has reached the bell, so every innocent suspect is cleared
     var cases = ++progress.store.cases;
     var doms = 0; track.sections.forEach(function (s) { doms += s.dominoes.length; });
     var secs = Math.round(track.time - run.t0);
@@ -339,21 +348,28 @@
     setTimeout(function () { renderer.confetti(cx, b.minY + 2, reduced ? 0 : 260, spanX); }, 1300);
     if (!reduced) { renderer.fx.flash = 0.06; renderer.fx.ca = 2; }
 
-    showFinale({ score: earned, doms: doms, toys: track.sections.length, secs: secs, cases: cases });
+    showFinale({ score: earned, doms: doms, toys: track.sections.length, secs: secs, cases: cases, mystery: my });
+    if (my) {
+      setTimeout(function () { if (state.phase !== 'finale') return; Sound.guilty(); paintSuspects(true); mysteryKey = ''; renderMystery(); }, 1500);
+    }
     updateHud();
   }
 
   function endFinale() {
     if (state.phase !== 'finale') return;
     state.phase = 'play';
+    if (narrowNow()) setView('study');
     renderer.wash = null;
     $('finale').classList.remove('show');
+    state.solved = null; state.newClues = 0; state.clueDue = null;
+    hideSuspects();
     var carry = machine().pending;
     renderer.heatTarget = Math.min(1, progress.store.streak / 12);
     progress.newMachine(0);
     renderer.cam.zoomGoal = null; renderer.cam.follow = true;
     renderer.floats = []; renderer.rings = []; renderer.rockets = [];
     rebuild({ fresh: true });
+    introMystery();
     var n = carry + state.queued; state.queued = 0;
     if (n > 0) setTimeout(function () { placeQueued(n); }, 900);
     updateHud();
@@ -364,6 +380,7 @@
   function toast(msg, ms) {
     var t = $('toast'); t.textContent = msg; t.classList.add('show');
     clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.classList.remove('show'); }, ms || 3200);
+    studyNote(msg, '', ms || 3200);
   }
   function banner(big, small, style) {
     var b = $('banner');
@@ -372,12 +389,159 @@
     $('bannerBig').textContent = big; $('bannerSmall').textContent = small || '';
     b.classList.add('show', style || 'cool');
     clearTimeout(bannerTimer); bannerTimer = setTimeout(function () { b.classList.remove('show'); }, 2200);
+    studyNote(big, small, 2800);
   }
-  function announce(title, blurb) {
+  function announce(title, blurb, ms) {
     var a = $('announce');
     $('announceTitle').textContent = title; $('announceBlurb').textContent = blurb || '';
     a.classList.add('show');
-    clearTimeout(announceTimer); announceTimer = setTimeout(function () { a.classList.remove('show'); }, 3400);
+    clearTimeout(announceTimer); announceTimer = setTimeout(function () { a.classList.remove('show'); }, ms || 3400);
+    studyNote(title, blurb, Math.min(ms || 3400, 6500));
+  }
+
+  // ---------------------------------------------------------------- phone: the questions and the machine take turns
+  var narrowQuery = window.matchMedia ? window.matchMedia('(max-width: 860px)') : null;
+  function narrowNow() { return !!(narrowQuery && narrowQuery.matches); }
+  /** True when the machine's screen is not the one on show: a phone, on the questions tab. */
+  function stageHidden() { return narrowNow() && state.view === 'study'; }
+  function setView(v) {
+    if (v === state.view) return;
+    state.view = v;
+    $('app').classList.toggle('view-study', v === 'study');
+    $('app').classList.toggle('view-machine', v === 'machine');
+    $('tabStudy').setAttribute('aria-pressed', v === 'study');
+    $('tabMachine').setAttribute('aria-pressed', v === 'machine');
+    if (v === 'machine') {
+      // arrive looking at the marble that is ready to flick, or at the whole machine if there is none
+      if (!state.running && !state.brk && state.phase !== 'finale') { try { (flickable() ? $('follow') : $('fit')).click(); } catch (e) { /* cosmetic */ } }
+    } else {
+      document.querySelector('.panel').scrollTop = 0;
+    }
+    updateHud();
+  }
+  var noteTimer = 0;
+  /** With the machine out of sight, what it would have announced is said over the questions instead. */
+  function studyNote(title, text, ms) {
+    var n = $('studynote');
+    if (!n || !stageHidden() || !title) return;
+    n.textContent = '';
+    var b = document.createElement('b'); b.textContent = title; n.appendChild(b);
+    if (text) n.appendChild(document.createTextNode(text));
+    n.classList.add('show');
+    clearTimeout(noteTimer); noteTimer = setTimeout(function () { n.classList.remove('show'); }, ms || 3600);
+  }
+
+  // ---------------------------------------------------------------- the mystery
+  // Each machine is a mystery. Right answers find clues; the last run clears the innocent suspects one by one.
+  // (during the case-closed card the finished machine is already counted, so keep showing the one just solved)
+  function mystery() { return state.phase === 'finale' && state.solved ? state.solved : Mystery.forMachine(progress.store.cases); }
+  function cluesFound() {
+    var my = mystery(), m = machine();
+    return my ? Mystery.cluesFound(my, m.pieces.length, m.target) : 0;
+  }
+  var mysteryKey = '';
+  function renderMystery() {
+    var my = mystery();
+    if (!my) { $('mysteryToggle').parentNode.hidden = true; return; }
+    var found = cluesFound(), key = [my.id, found, state.cleared.join(), state.newClues, state.phase === 'finale'].join('|');
+    if (key === mysteryKey) return;
+    mysteryKey = key;
+    $('mysteryTitle').textContent = my.title;
+    var left = my.clues.length - found;
+    var count = $('mysteryCount');
+    count.textContent = state.phase === 'finale' ? 'solved' : found + ' of ' + my.clues.length + ' clues' + (state.newClues ? ' · ' + (state.newClues > 1 ? state.newClues + ' new' : 'new') : left === 0 ? ' · run the machine to name the culprit' : '');
+    count.classList.toggle('fresh', state.newClues > 0);
+    $('mysteryBrief').textContent = my.brief;
+    $('mysterySolved').hidden = state.phase !== 'finale';
+    $('mysterySolved').textContent = 'How it was done: ' + my.solution;
+    var sus = $('mysterySuspects'); sus.innerHTML = '';
+    my.suspects.forEach(function (x, i) {
+      var d = document.createElement('div');
+      d.className = 'msus' + (state.cleared.indexOf(i) >= 0 ? ' out' : '') + (state.phase === 'finale' && i === my.culprit ? ' guilty' : '');
+      var ic = document.createElement('span'); ic.className = 'mi'; ic.textContent = x.icon;
+      var tx = document.createElement('span'), nm = document.createElement('b'), rl = document.createElement('i');
+      nm.textContent = x.name; rl.textContent = x.role; tx.appendChild(nm); tx.appendChild(rl);
+      d.appendChild(ic); d.appendChild(tx); sus.appendChild(d);
+    });
+    var ol = $('mysteryClues'); ol.innerHTML = '';
+    my.clues.forEach(function (c, i) {
+      var li = document.createElement('li');
+      if (i < found) { li.textContent = c; if (i >= found - state.newClues) li.className = 'fresh'; }
+      else { li.textContent = 'Not found yet. Keep answering.'; li.className = 'locked'; }
+      ol.appendChild(li);
+    });
+  }
+
+  /** The suspects over the machine, shown for its last run. `cleared` and `guilty` are drawn on them as it goes. */
+  function paintSuspects(guiltyOut) {
+    var my = mystery(), box = $('suspects');
+    if (!my) return;
+    box.innerHTML = '';
+    my.suspects.forEach(function (x, i) {
+      var out = state.cleared.indexOf(i) >= 0, guilty = guiltyOut && i === my.culprit, d = document.createElement('div');
+      d.className = 'sus' + (out ? ' out' : '') + (guilty ? ' guilty' : '');
+      d.dataset.i = i;
+      var ic = document.createElement('span'); ic.className = 'si'; ic.textContent = x.icon;
+      var nm = document.createElement('b'); nm.textContent = x.name;
+      d.appendChild(ic); d.appendChild(nm);
+      if (out || guilty) { var t = document.createElement('span'); t.className = 'stag'; t.textContent = guilty ? 'guilty' : 'cleared'; d.appendChild(t); }
+      box.appendChild(d);
+    });
+  }
+  function startSuspects() {
+    state.grand = true; state.cleared = [];
+    paintSuspects(false);
+    $('suspects').classList.add('show');
+    mysteryKey = ''; renderMystery();
+  }
+  function hideSuspects() {
+    state.grand = false; state.cleared = [];
+    $('suspects').classList.remove('show');
+    mysteryKey = ''; renderMystery();
+  }
+  /** Clear every innocent suspect the running front has reached, in order. */
+  function checkClears() {
+    var my = mystery();
+    if (!my || !state.grand || !track) return;
+    var now = Mystery.cleared(my, track.sections.length, track.frontier || 0);
+    for (var i = state.cleared.length; i < now.length; i++) {
+      var s = my.suspects[now[i]];
+      state.cleared.push(now[i]);
+      Sound.stamp();
+      banner('CLEARED', s.name + ' \u00b7 ' + s.cleared, 'cool');
+      paintSuspects(false);
+      var chip = $('suspects').children[now[i]]; if (chip) chip.classList.add('stamp');
+      mysteryKey = ''; renderMystery();
+    }
+  }
+  /** A new clue has turned up: say so once the toy that found it has been announced. */
+  function foundClues(had, now) {
+    var my = mystery();
+    if (!my || now <= had) return;
+    if ($('mysteryBody').hidden) state.newClues += now - had;     // with the case file open he is watching them arrive
+    mysteryKey = '';
+    renderMystery();
+    setTimeout(function () { state.clueDue = { my: my, n: now }; showDueClue(); }, 2000);
+  }
+  /** Say the clue that is due, unless a run is under way (it would sit on the chain counter): the bell tries again. */
+  function showDueClue() {
+    var c = state.clueDue;
+    if (!c) return;
+    if (state.phase === 'finale' || mystery() !== c.my) { state.clueDue = null; return; }
+    if (state.running || state.brk) return;
+    state.clueDue = null;
+    Sound.clue();
+    announce('\ud83d\udd0e Clue ' + c.n + ' of ' + c.my.clues.length, c.my.clues[c.n - 1], 6500);
+  }
+  /** The first time a machine is built, say what the mystery is. */
+  function introMystery() {
+    var my = mystery(), m = machine();
+    if (!my || m.briefed) return;
+    m.briefed = true; progress.save();
+    setTimeout(function () {
+      if (state.brk || state.phase === 'finale') return;
+      announce('\ud83d\udd0e New mystery: ' + my.title, my.brief, 8000);
+    }, 900);
   }
   function showChain() {
     var c = $('chain');
@@ -393,6 +557,12 @@
     $('finTitle').textContent = 'CASE CLOSED';
     $('finScore').textContent = '+' + x.score.toLocaleString();
     $('finStats').textContent = x.doms + ' dominoes · ' + x.toys + ' toys · ' + x.secs + ' seconds · machine #' + x.cases;
+    var my = x.mystery, who = my && my.suspects[my.culprit];
+    $('finCulprit').hidden = $('finSolution').hidden = !my;
+    if (my) {
+      $('finCulprit').textContent = '\ud83d\udd0e ' + my.title + ': it was ' + who.name + ', ' + who.role + '.';
+      $('finSolution').textContent = my.solution;
+    }
     $('finale').classList.add('show');
   }
 
@@ -408,6 +578,19 @@
       pips.appendChild(dot);
     }
     pips.setAttribute('aria-label', m.pieces.length + ' of ' + m.target + ' pieces in this machine');
+    renderMystery();
+    // a one-line summary, and a way across to the machine, for the phone's questions tab
+    var stat = $('statusText');
+    if (stat) {
+      var bits = ['\ud83c\udfaf <b>' + Progress.fmt(s.focus.count) + '</b>', '\ud83d\udd25 <b>' + s.streak + '</b>', '\ud83e\udde9 <b>' + m.pieces.length + '/' + m.target + '</b>'];
+      var my2 = mystery(); if (my2) bits.push('\ud83d\udd0e <b>' + cluesFound() + '/' + my2.clues.length + '</b>');
+      if (s.freezes > 0) bits.push('\ud83e\uddca <b>' + s.freezes + '</b>');
+      stat.innerHTML = bits.map(function (b) { return '<span>' + b + '</span>'; }).join('');
+      stat.setAttribute('aria-label', 'Focus ' + Progress.fmt(s.focus.count) + ', ' + s.streak + ' in a row, ' + m.pieces.length + ' of ' + m.target + ' pieces');
+    }
+    var canPlay = !!flickable() && !state.running && state.phase !== 'finale';
+    $('playNow').hidden = !canPlay;
+    $('tabBadge').hidden = !canPlay || state.view === 'machine';
 
     // streak meter
     var cur = tierFor(s.streak), nx = nextTier(s.streak);
@@ -583,6 +766,7 @@
     if (!item || state.running || state.brk || state.phase === 'finale') return;
     if (!progress.useItem(id)) return;
     Sound.init();
+    if (narrowNow()) setView('machine');
     showPlayResult(progress.notePlay());
     state.picked = null; state.chain = 0; state.runScore = 0; state.aim = null;
     var c = renderer.cam;
@@ -632,6 +816,7 @@
   function showQuestion(forceId) {
     var q = (forceId && bank.filter(function (x) { return x.id === forceId; })[0]) || progress.next(bank, state.last);
     state.current = q; state.last = q; state.answered = false;
+    if (narrowNow()) document.querySelector('.panel').scrollTop = 0;     // the next question is always in view, whatever the last one scrolled to
     var card = $('card');
     card.classList.remove('win', 'lose', 'enter'); void card.offsetWidth; card.classList.add('enter');
     $('feedback').hidden = true; $('feedback').className = '';
@@ -883,7 +1068,7 @@
     renderer.update(dt);
     renderer.updateCamera(dt, focusPoint(now));
     var fm = flickable();
-    renderer.draw({
+    if (!stageHidden()) renderer.draw({
       track: track, pg: state.brk && state.brk.pg, flick: state.brk ? null : (fm || restingMarble()), locked: !fm || now < state.readyAt,
       aim: state.aim, preview: aimPreview(), lead: state.running ? leadMarble() : null, pulse: promptPulses(),
       grand: machine().complete && machine().playFrom === 0
@@ -920,13 +1105,23 @@
       this.setAttribute('aria-expanded', open);
       if (!open) { state.picked = null; renderChest(); }
     });
+    $('tabStudy').addEventListener('click', function () { setView('study'); });
+    $('tabMachine').addEventListener('click', function () { setView('machine'); });
+    $('playNow').addEventListener('click', function () { setView('machine'); });
+    $('mysteryToggle').addEventListener('click', function () {
+      var body = $('mysteryBody'), open = body.hidden;
+      body.hidden = !open;
+      this.setAttribute('aria-expanded', open);
+      if (open) { state.newClues = 0; mysteryKey = ''; renderMystery(); }
+    });
     $('breakEnd').addEventListener('click', endBreak);
     $('reset').addEventListener('click', function () {
       if (confirm('Erase all saved progress on this device, including the cold case file?')) {
         if (state.brk) endBreak();
         progress.reset(); progress.newMachine(); state.gold = false; state.queued = 0; state.phase = 'play'; state.picked = null; state.unrevealed = {}; rollQueue.length = 0;
         $('finale').classList.remove('show');
-        renderer.heatTarget = 0; rebuild({ fresh: true }); showQuestion();
+        state.newClues = 0; hideSuspects();
+        renderer.heatTarget = 0; rebuild({ fresh: true }); showQuestion(); introMystery();
       }
     });
     document.addEventListener('keydown', function (e) {
@@ -940,6 +1135,7 @@
 
     updateHud();
     showQuestion(params.get('q'));
+    introMystery();
 
     if (progress.restoredChest) setTimeout(function () { toast('🧰 Your chest of items was recovered.', 4000); }, 500);
     var cc = progress.coldCount(bank);
@@ -953,9 +1149,9 @@
 
     // test + debugging hook
     window.__sat = {
-      get renderer() { return renderer; }, get track() { return track; }, get world() { return world; },
+      get renderer() { return renderer; }, get view() { return state.view; }, get track() { return track; }, get world() { return world; },
       state: state, progress: progress, onCorrectForTest: function () { var r = progress.record(state.current, true); afterRecord(r); award(state.current, r); updateHud(); },
-      deploy: deploy, endBreak: endBreak, refresh: updateHud, promptPulses: promptPulses, rebuild: rebuild,
+      deploy: deploy, endBreak: endBreak, refresh: updateHud, promptPulses: promptPulses, rebuild: rebuild, mystery: mystery, cluesFound: cluesFound, setView: setView, stageHidden: stageHidden, showDueClue: showDueClue,
       advance: function (secs) {
         for (var i = 0; i < secs * 60; i++) { var hold = false; if (state.brk) { state.brk.pg.step(1 / 60); hold = state.brk.pg.holdWorld; } if (!hold) { world.step(1 / 60); track.tick(1 / 60, nowS()); } if (state.running) track.collectStars(); renderer.update(1 / 60); renderer.updateCamera(1 / 60, focusPoint(nowS())); if (state.phase === 'finale' && nowS() > state.finaleUntil) endFinale(); }
       },

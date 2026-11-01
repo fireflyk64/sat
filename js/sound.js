@@ -150,6 +150,12 @@
     pop: function () { this.noise(0.18, 0.14, 2200, 0, 600); this.tone(180 + Math.random() * 100, 0.14, 'sine', 0.08, 0, 60); },
     unlock: function () { var s = this; [523, 659, 784, 1046, 1318].forEach(function (f, i) { s.tone(f, 0.42, 'triangle', 0.09, i * 0.085); }); },
     tierUp: function () { var s = this; [392, 523, 659, 784].forEach(function (f, i) { s.tone(f, 0.34, 'sawtooth', 0.035, i * 0.06); s.tone(f, 0.34, 'sine', 0.07, i * 0.06); }); },
+    /* A found clue: a soft two-note chime, quieter than a toy locking in. */
+    clue: function () { this.tone(988, 0.34, 'sine', 0.06); this.tone(1480, 0.5, 'sine', 0.05, 0.1); this.tone(2960, 0.2, 'triangle', 0.012, 0.1); },
+    /* A suspect cleared: a rubber stamp coming down. */
+    stamp: function () { this.tone(110, 0.16, 'sine', 0.22, 0, 52); this.noise(0.07, 0.12, 1400, 0, 500); this.tone(660, 0.18, 'triangle', 0.05, 0.05, 520); },
+    /* The culprit named: three falling notes, then the case-closed chord. */
+    guilty: function () { var s = this; [784, 659, 523].forEach(function (f, i) { s.tone(f, 0.4, 'triangle', 0.08, i * 0.14); }); this.tone(98, 0.8, 'sine', 0.18, 0.42, 55); },
     caseClosed: function () { var s = this; [659, 880, 1109, 1319].forEach(function (f, i) { s.tone(f, 0.6, 'sine', 0.09, i * 0.09); }); }
   };
 

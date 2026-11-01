@@ -108,6 +108,20 @@ async function mouseFlick(pullX, pullY, usePositionOf = null) {
   await sleep(80);
 }
 const ready = () => js(`(()=>{ const r=__sat; r.state.readyAt=0; r.state.focusUntil=0; })()`);
+const Mystery0Order = (m) => m.suspects.map((x, i) => i).filter(i => i !== m.culprit).sort((a, b) => m.suspects[a].clue - m.suspects[b].clue);
+// the machine's last run, watched a second at a time: who has been cleared, and when
+async function runToBellWatching(maxSecs = 400) {
+  const shown = await js(`__sat.state.grand && document.getElementById('suspects').classList.contains('show') && document.querySelectorAll('#suspects .sus').length === 4 && __sat.state.cleared.length === 0`);
+  const seen = [''];
+  for (let t = 0; t < maxSecs; t++) {
+    await js('__sat.advance(1)');
+    const c = await js('__sat.state.cleared.join()');
+    if (c !== seen[seen.length - 1]) seen.push(c);
+    if (!(await js('__sat.state.running'))) break;
+    await sleep(10);
+  }
+  return { shown, seen };
+}
 async function runToBell(maxSecs = 200) {
   for (let t = 0; t < maxSecs; t += 4) {
     await js('__sat.advance(4)');
@@ -122,6 +136,12 @@ await open('?q=vocab-78342-1164-0&noscale=1');
 const fresh = await js(`JSON.stringify({ pieces: __sat.machine().pieces.length, flick: !!__sat.flickable(), total: __sat.progress.store.total })`);
 check('new game: one row of dominoes and nothing to flick yet', fresh === JSON.stringify({ pieces: 1, flick: false, total: 0 }), fresh);
 await shot('1-fresh');
+const my0 = await js(`JSON.stringify(Mystery.forMachine(0))`).then(JSON.parse);
+check('the case file starts collapsed, on the first mystery, with no clues yet', await js(`document.getElementById('mysteryBody').hidden`) && (await js(`document.getElementById('mysteryTitle').textContent`)) === my0.title
+  && (await js(`document.getElementById('mysteryCount').textContent`)) === '0 of 5 clues', await js(`document.getElementById('mysteryCount').textContent`));
+await sleep(1100);
+check('a new game says what the mystery is', (await js(`document.getElementById('announce').classList.contains('show')`)) && (await js(`document.getElementById('announceTitle').textContent`)).includes(my0.title)
+  && (await js(`document.getElementById('announceBlurb').textContent`)) === my0.brief, await js(`document.getElementById('announceTitle').textContent`));
 
 await mouseFlick(-140, 90);
 check('flicking before answering does nothing: no right answer, no play', !(await js('__sat.state.running')) && (await js(`__sat.track.marbles.every(m=>m.asleep)`)));
@@ -132,6 +152,16 @@ await answer(true);
 const afterRight = await js(`JSON.stringify({ pieces: __sat.machine().pieces.length, streak: __sat.progress.store.streak, win: document.getElementById('card').classList.contains('win') })`);
 check('right answer: a new toy slots in, streak goes up, card celebrates', afterRight === JSON.stringify({ pieces: 2, streak: 1, win: true }), afterRight);
 check('...the flick is now earned', await js('!!__sat.flickable()'));
+check('a right answer finds the first clue, and the closed case file says so', (await js(`document.getElementById('mysteryCount').textContent`)) === '1 of 5 clues \u00b7 new', await js(`document.getElementById('mysteryCount').textContent`));
+await sleep(2300);
+check('...and the clue itself appears over the machine', (await js(`document.getElementById('announceTitle').textContent`)).includes('Clue 1 of 5') && (await js(`document.getElementById('announceBlurb').textContent`)) === my0.clues[0], await js(`document.getElementById('announceBlurb').textContent`));
+await clickEl(`document.getElementById('mysteryToggle')`);
+await sleep(80);
+check('opening the case file shows the brief, four suspects and the one clue found', await js(`(()=>{ const b=document.getElementById('mysteryBody'); return !b.hidden && document.getElementById('mysteryBrief').textContent.length > 40
+  && document.querySelectorAll('#mysterySuspects .msus').length === 4 && document.querySelectorAll('#mysteryClues li').length === 5 && document.querySelectorAll('#mysteryClues li.locked').length === 4
+  && document.querySelector('#mysteryClues li').textContent === ${JSON.stringify(my0.clues[0])}; })()`));
+check('...and reading them clears the "new" mark', (await js(`document.getElementById('mysteryCount').textContent`)) === '1 of 5 clues', await js(`document.getElementById('mysteryCount').textContent`));
+await clickEl(`document.getElementById('mysteryToggle')`);
 await ready();
 await shot('2-earned');
 
@@ -196,19 +226,43 @@ await ready();
 await shot('6-complete');
 
 const from = await js('__sat.machine().playFrom');
+const mystery1 = await js(`JSON.stringify(__sat.mystery())`).then(JSON.parse);
+const lastClue = await js(`__sat.cluesFound()`);
+check('before the last run the suspects are not on show', !(await js(`document.getElementById('suspects').classList.contains('show')`)));
 await js(`__sat.flick(__sat.track.exitFor(__sat.machine().playFrom).dir*4,-1)`);
-await runToBell(400);
 if (from !== 0) {
+  // the last piece found the last clue 2s ago: with a run under way it must wait, not sit on the chain counter
+  await sleep(2300);
+  check('a clue found just before a run waits for the run to end', (await js('__sat.state.running')) && !(await js(`document.getElementById('announceTitle').textContent`)).includes('Clue ' + lastClue), await js(`document.getElementById('announceTitle').textContent`));
+}
+let story = null;
+if (from === 0) story = await runToBellWatching(400); else await runToBell(400);
+if (from !== 0) {
+  await sleep(1700);
+  check('...and is shown once the run is over', (await js(`document.getElementById('announceTitle').textContent`)).includes('Clue ' + lastClue), await js(`document.getElementById('announceTitle').textContent`));
   await sleep(2300);       // "MACHINE COMPLETE": it resets itself for the grand run
   check('the last piece done: the whole machine resets for the grand run from the top', (await js('__sat.machine().playFrom')) === 0 && (await js(`__sat.track.marbleFor(0).asleep`)));
   await js('__sat.state.readyAt=0');
   await js(`__sat.flick(__sat.track.exitFor(0).dir*4,-1)`);
-  await runToBell(500);
+  story = await runToBellWatching(500);
 }
 check('running the whole machine in one go triggers the finale', (await js(`__sat.state.phase`)) === 'finale');
 await js('__sat.advance(4)');                // the last few dominoes finish falling as the finale begins
 check('every domino in the machine went down', await js(`(()=>{let f=0,t=0;__sat.track.sections.forEach(s=>s.dominoes.forEach(d=>{t++;if(d.userData.fell||d.userData.dissolve)f++}));return f/t})()`) >= 0.93, await js(`(()=>{let f=0,t=0;__sat.track.sections.forEach(s=>s.dominoes.forEach(d=>{t++;if(d.userData.fell||d.userData.dissolve)f++}));return f+'/'+t})()`));
 check('the case-closed card appears', await js(`document.getElementById('finale').classList.contains('show')`));
+const order = Mystery0Order(mystery1);
+check('the last run brings out all four suspects, with nobody cleared yet', story.shown);
+check('they are cleared one at a time while it runs, never taken back', story.seen.length >= 3 && story.seen.every((c, i) => i === 0 || c.startsWith(story.seen[i - 1])), JSON.stringify(story.seen));
+check('...in the order their clues turn up, and the culprit is not among them', story.seen[story.seen.length - 1] === order.join(), story.seen[story.seen.length - 1] + ' vs ' + order.join());
+check('the card names the culprit and says how it was done', (await js(`document.getElementById('finCulprit').textContent`)).includes(mystery1.title) && (await js(`document.getElementById('finCulprit').textContent`)).includes(mystery1.suspects[mystery1.culprit].name)
+  && (await js(`document.getElementById('finSolution').textContent`)) === mystery1.solution, await js(`document.getElementById('finCulprit').textContent`));
+await sleep(1800);
+check('the suspects shown are the ones in the mystery just solved, not the next one', (await js(`[...document.querySelectorAll('#suspects .sus b')].map(e=>e.textContent).join()`)) === mystery1.suspects.map(x => x.name).join(), await js(`[...document.querySelectorAll('#suspects .sus b')].map(e=>e.textContent).join()`));
+check('...and so is the case file, which now says it is solved', (await js(`document.getElementById('mysteryTitle').textContent`)) === mystery1.title && (await js(`document.getElementById('mysteryCount').textContent`)) === 'solved', await js(`document.getElementById('mysteryTitle').textContent + ' / ' + document.getElementById('mysteryCount').textContent`));
+check('...with the whole solution, in the case file as well as on the card', (await js(`document.getElementById('mysterySolved').hidden`)) === false && (await js(`document.getElementById('mysterySolved').textContent`)).includes(mystery1.solution));
+check('...and the tags are the small stamps, not the pink skill tag', await js(`!document.querySelector('#suspects .tag') && !!document.querySelector('#suspects .stag')`));
+check('the culprit is the one left standing, marked guilty', await js(`(()=>{ const c=[...document.querySelectorAll('#suspects .sus')]; return c.length===4 && c.filter(x=>x.classList.contains('out')).length===3 && c.filter(x=>x.classList.contains('guilty')).length===1 && c[${mystery1.culprit}].classList.contains('guilty'); })()`));
+await shot('7a-suspects');
 await sleep(1200);
 await shot('7-finale');
 await sleep(1800);
@@ -219,6 +273,12 @@ await clickEl(`document.getElementById('finaleNext')`);
 await sleep(200);
 const nextUp = await js(`JSON.stringify({ phase: __sat.state.phase, pieces: __sat.machine().pieces.length, flick: !!__sat.flickable(), cases: __sat.progress.store.cases })`);
 check('next machine starts small and locked again', nextUp === JSON.stringify({ phase: 'play', pieces: 1, flick: false, cases: casesBefore }), nextUp);
+const my1 = await js(`JSON.stringify(Mystery.forMachine(${casesBefore}))`).then(JSON.parse);
+check('...which goes away with the next machine', await js(`document.getElementById('mysterySolved').hidden`));
+check('the suspects go away, and the next machine has the next mystery', !(await js(`document.getElementById('suspects').classList.contains('show')`)) && my1.id !== my0.id
+  && (await js(`document.getElementById('mysteryTitle').textContent`)) === my1.title && (await js(`document.getElementById('mysteryCount').textContent`)) === '0 of 5 clues', await js(`document.getElementById('mysteryTitle').textContent`));
+await sleep(1000);
+check('...which is introduced', (await js(`document.getElementById('announceTitle').textContent`)).includes(my1.title), await js(`document.getElementById('announceTitle').textContent`));
 check('the next machine is bigger than the last', (await js('__sat.machine().target')) > target0, `${target0} -> ${await js('__sat.machine().target')}`);
 
 // ------------------------------------------------------------------------------------- 5: Focus, freezes and the chest
@@ -431,6 +491,69 @@ await js(`window.confirm=()=>true`);
 await clickEl(`document.getElementById('reset')`);
 await sleep(150);
 check('reset wipes progress and both cookies', (await js('__sat.progress.store.total')) === 0 && !(await js('document.cookie')).includes('lgc_cold') && !(await js('document.cookie')).includes('lgc_chest'));
+
+// ---------------------------------------------------------------------------------------------------------- 8: a phone
+// On a phone the questions fill the screen and the machine has its own tab, so he can answer question after question
+// without scrolling, and only goes to the machine when he wants to play. Every tap here lands where the button already is.
+await send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: false });
+await open('?q=vocab-78342-1164-0&noscale=1');
+const onScreen = (expr) => js(`(()=>{ const e=(${expr}); if (!e) return 'missing'; const r=e.getBoundingClientRect(), t=document.getElementById('tabs').getBoundingClientRect();
+  if (!(r.height > 0)) return 'no size'; if (r.top < 0) return 'above the screen'; if (r.bottom > t.top + 1) return 'below the screen (' + Math.round(r.bottom) + ' vs ' + Math.round(t.top) + ')';
+  const hit = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return hit && (hit === e || e.contains(hit)) ? 'ok' : 'covered by ' + (hit && (hit.id || hit.className || hit.tagName)); })()`);
+const tapHere = async (expr) => { const r = await js(`(()=>{ const r = (${expr}).getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; })()`); await clickAt(r.x, r.y); };
+const seenStage = `getComputedStyle(document.getElementById('stage')).visibility`, seenPanel = `getComputedStyle(document.querySelector('.panel')).visibility`;
+const rightChoice = `[...document.querySelectorAll('.opt')].find(b => (b.dataset.word ?? b.textContent) === __sat.state.current.answer)`;
+
+check('on a phone the questions come first, with the machine put away', (await js(seenStage)) === 'hidden' && (await js(seenPanel)) === 'visible' && (await js(`document.getElementById('tabStudy').getAttribute('aria-pressed')`)) === 'true');
+const seen0 = [await onScreen(`document.querySelector('.opt')`), await onScreen(`[...document.querySelectorAll('.opt')].pop()`), await onScreen(`document.getElementById('check')`)];
+check('the question, every choice and the Check button are on screen with no scrolling', seen0.every(s => s === 'ok'), seen0.join(' / '));
+check('...and nothing sticks out sideways', await js(`document.documentElement.scrollWidth <= innerWidth && document.querySelector('.panel').scrollWidth <= document.querySelector('.panel').clientWidth`));
+check('a status line keeps score, with the machine out of sight', (await js(`document.getElementById('statusText').textContent`)).includes('1/6'), await js(`document.getElementById('statusText').textContent`));
+await js(`(()=>{ __sat.machine().target = 12; __sat.progress.save(); __sat.refresh(); })()`);   // room for a long run of answers before the machine fills up
+await shot('11-phone-question');
+
+const trouble = []; let toyNote = null;
+for (let i = 0; i < 8; i++) {
+  while (!(await js(`['vocab', 'mc'].includes(__sat.state.current.type)`))) await js('__sat.showQuestion(); 0');
+  await sleep(150);
+  for (const [what, expr] of [['the right choice', rightChoice], ['Check', `document.getElementById('check')`]]) { const s = await onScreen(expr); if (s !== 'ok') trouble.push(`#${i} ${what}: ${s}`); }
+  await tapHere(rightChoice); await sleep(100);
+  await tapHere(`document.getElementById('check')`); await sleep(250);
+  { const s = await onScreen(`document.getElementById('next')`); if (s !== 'ok') trouble.push(`#${i} Next: ${s}`); }
+  if (i === 0) { await sleep(300); toyNote = await js(`({ shown: document.getElementById('studynote').classList.contains('show'), text: document.getElementById('studynote').textContent })`); await shot('11b-phone-answered'); }
+  await tapHere(`document.getElementById('next')`); await sleep(200);
+  const down = await js(`document.querySelector('.panel').scrollTop`);
+  if (down !== 0) trouble.push(`#${i}: the next question opened ${down}px down`);
+}
+check('eight questions in a row are answered with nothing to scroll to', trouble.length === 0, trouble.slice(0, 4).join('; '));
+check('a new toy is announced over the questions, because the machine is out of sight', !!toyNote && toyNote.shown && toyNote.text.includes('slots in'), toyNote && toyNote.text);
+check('...and the machine kept growing while it was out of sight, a toy per answer plus the streak bonus', (await js('__sat.machine().pieces.length')) >= 9, await js('__sat.machine().pieces.length'));
+
+// the machine, on its own tab
+check('with a flick earned, a Play button and a badge on the Machine tab say so', (await onScreen(`document.getElementById('playNow')`)) === 'ok' && (await js(`!document.getElementById('tabBadge').hidden`)));
+await tapHere(`document.getElementById('playNow')`); await sleep(500);
+check('Play brings the machine up full screen and puts the questions away', (await js(seenStage)) === 'visible' && (await js(seenPanel)) === 'hidden' && (await js('__sat.stageHidden()')) === false);
+await shot('12-phone-machine');
+await ready();
+await mouseFlick(-(await js('__sat.track.exitFor(__sat.machine().playFrom).dir')) * 110, 70);
+check('a real pull-and-release on the phone-sized machine starts the run', await js('__sat.state.running'));
+// a clue that turns up during a run must wait for the bell, not sit on the chain counter (this is what the clue timer does)
+await js(`(()=>{ __sat.state.clueDue = { my: __sat.mystery(), n: 2 }; __sat.showDueClue(); })()`);
+check('a clue due mid-run is held back', (await js('__sat.state.clueDue !== null')) && !(await js(`document.getElementById('announceTitle').textContent`)).includes('Clue 2 of 5'), await js(`document.getElementById('announceTitle').textContent`));
+check('...and it rings the bell', await runToBell());
+await sleep(1900);
+check('...and the held clue is said once the run is over', (await js(`document.getElementById('announceTitle').textContent`)).includes('Clue 2 of 5') && (await js('__sat.state.clueDue === null')), await js(`document.getElementById('announceTitle').textContent`));
+await tapHere(`document.getElementById('tabStudy')`); await sleep(400);
+check('the Questions tab brings the question back, still with nothing to scroll to', (await js(seenStage)) === 'hidden' && (await onScreen(`document.getElementById('check')`)) === 'ok' && (await js(`document.querySelector('.panel').scrollTop`)) === 0);
+check('...and the badge is gone, since that flick has been played', await js(`document.getElementById('tabBadge').hidden`));
+
+// a chest item plays on the machine's screen, so using one takes him there
+await js(`(()=>{ __sat.progress.store.chest.flood = 1; __sat.progress.store.found.flood = true; __sat.progress.save(); __sat.refresh(); })()`);
+await js(`__sat.deploy('flood')`); await sleep(300);
+check('using a chest item switches to the machine, where it plays', (await js('__sat.view')) === 'machine' && (await js(seenStage)) === 'visible');
+await js('__sat.endBreak()'); await tapHere(`document.getElementById('tabStudy')`); await sleep(300);
+check('...and the Questions tab is one tap away', (await js('__sat.view')) === 'study' && (await js(seenStage)) === 'hidden');
+await send('Emulation.setDeviceMetricsOverride', { width: 1100, height: 720, deviceScaleFactor: 1, mobile: false });
 
 const realErrors = pageErrors.filter(e => !/favicon/.test(e));
 check('no JavaScript errors in the whole session', realErrors.length === 0, realErrors.slice(0, 3).join(' | '));

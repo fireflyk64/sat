@@ -56,13 +56,28 @@ button.icon.on { background: var(--gold); color: #271a00; box-shadow: 0 0 16px r
 .banner.gold .big { color: #fff5cc; text-shadow: 0 0 16px var(--gold), 0 0 44px #ff9e40; }
 .banner.hot .big { color: #fff; text-shadow: 0 0 14px #ff7a2b, 0 0 42px #ff2d55; }
 
-.announce { position: absolute; left: 50%; top: 66px; transform: translate(-50%, -14px); background: rgba(10,5,35,.82); border: 1px solid var(--accent); box-shadow: 0 0 22px rgba(0,229,255,.35); border-radius: 12px; padding: 6px 16px; text-align: center; pointer-events: none; opacity: 0; transition: .3s; max-width: 86%; backdrop-filter: blur(6px); }
+.announce { position: absolute; left: 50%; top: 66px; max-width: min(560px, 88%); transform: translate(-50%, -14px); background: rgba(10,5,35,.82); border: 1px solid var(--accent); box-shadow: 0 0 22px rgba(0,229,255,.35); border-radius: 12px; padding: 6px 16px; text-align: center; pointer-events: none; opacity: 0; transition: .3s; max-width: 86%; backdrop-filter: blur(6px); }
 .announce.show { opacity: 1; transform: translate(-50%, 0); }
 .announce b { display: block; color: #fff; }
 .announce span { font-size: .84rem; color: #bfe9ff; }
 
 .toast { z-index: 3; position: absolute; left: 50%; bottom: 132px; transform: translate(-50%, 10px); background: rgba(255,215,64,.96); color: #271a00; font-weight: 700; padding: 8px 16px; border-radius: 12px; opacity: 0; transition: .3s; pointer-events: none; text-align: center; max-width: 82%; box-shadow: 0 6px 26px rgba(0,0,0,.5); }
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* the suspects, over the machine's last run: each is cleared as the dominoes reach their clue, and one is left standing */
+.suspects { z-index: 2; position: absolute; left: 12px; right: 12px; bottom: 88px; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; pointer-events: none; opacity: 0; transition: opacity .5s; }
+.suspects.show { opacity: 1; }
+.sus { display: flex; align-items: center; gap: 6px; padding: 3px 12px 3px 8px; border-radius: 999px; background: rgba(10,5,35,.72); border: 1px solid rgba(160,130,255,.4); backdrop-filter: blur(6px); font-size: .82rem; transition: opacity .4s, border-color .4s, box-shadow .4s; }
+.sus .si { font-size: 1.05rem; }
+.sus b { font-weight: 700; }
+.sus .stag { font-size: .64rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.sus.out { opacity: .55; border-color: rgba(53,224,138,.6); }
+.sus.out b { text-decoration: line-through; }
+.sus.out .stag { color: var(--ok); }
+.sus.guilty { border-color: var(--gold); box-shadow: 0 0 24px rgba(255,215,64,.65); color: #fff7d6; }
+.sus.guilty .stag { color: var(--gold); }
+.sus.stamp { animation: sustamp .5s cubic-bezier(.2,1.6,.4,1); }
+@keyframes sustamp { 0% { transform: scale(1.35); } 100% { transform: scale(1); } }
 
 .dock { position: absolute; left: 12px; right: 12px; bottom: 10px; display: flex; flex-direction: column; align-items: center; gap: 6px; pointer-events: none; }
 .hint { font-size: .86rem; color: #eef; background: rgba(10,5,35,.66); border-radius: 999px; padding: 3px 14px; text-align: center; backdrop-filter: blur(6px); min-height: 1.5em; }
@@ -90,6 +105,9 @@ button.icon.on { background: var(--gold); color: #271a00; box-shadow: 0 0 16px r
 .fintitle { font-size: clamp(1.5rem, 3.4vw, 2.6rem); font-weight: 900; letter-spacing: .05em; color: #fff7d6; text-shadow: 0 0 14px var(--gold), 0 0 44px #ff9e40; line-height: 1.1; }
 .finscore { display: inline; font-size: clamp(1rem, 2vw, 1.4rem); font-weight: 800; color: var(--gold); text-shadow: 0 0 10px rgba(255,215,64,.8); }
 .finstats { color: #fff; font-size: .82rem; margin: 2px 0 8px; text-shadow: 0 1px 4px #000; }
+.finculprit { color: #fff7d6; font-weight: 800; font-size: clamp(1rem, 1.9vw, 1.3rem); text-shadow: 0 0 12px rgba(255,215,64,.7); margin: 0 0 2px; }
+.finsolution { margin: 0 auto 8px; max-width: 34em; color: #fff; font-size: .84rem; text-shadow: 0 1px 4px #000; }
+.finculprit[hidden], .finsolution[hidden] { display: none; }
 .fincard button.primary { padding: 6px 16px; font-size: .92rem; }
 
 .focus { --t: var(--accent); background: rgba(255,255,255,.04); border: 1px solid var(--line); border-radius: 14px; padding: 9px 12px 10px; display: flex; flex-direction: column; gap: 5px; }
@@ -120,6 +138,7 @@ button.icon.on { background: var(--gold); color: #271a00; box-shadow: 0 0 16px r
 
 .chest { display: flex; flex-direction: column; gap: 6px; }
 .chest [hidden] { display: none; }
+.mystery [hidden], .mystery[hidden] { display: none; }
 .chead { display: flex; align-items: baseline; gap: 8px; width: 100%; padding: 2px 2px; font: inherit; font-size: .84rem; color: var(--mute); background: none; border: 0; border-bottom: 1px solid var(--line); cursor: pointer; text-align: left; }
 .chead b { font-weight: 600; color: var(--mute); }
 .chead span { font-size: .78rem; }
@@ -128,6 +147,26 @@ button.icon.on { background: var(--gold); color: #271a00; box-shadow: 0 0 16px r
 .chead[aria-expanded="true"] .chevron { transform: translateY(1px) rotate(-135deg); }
 #chestBody { display: flex; flex-direction: column; gap: 6px; padding-top: 4px; }
 #chestBody[hidden] { display: none; }
+/* the mystery: a case file as quiet as the chest. The suspects over the machine are the only loud part, and only while it runs */
+#mysteryBody { display: flex; flex-direction: column; gap: 8px; padding-top: 4px; font-size: .86rem; }
+#mysteryBody[hidden] { display: none; }
+.mbrief { margin: 0; color: var(--ink); }
+.msuspects { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+.msus { display: flex; align-items: center; gap: 7px; padding: 4px 8px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.03); color: var(--mute); min-width: 0; }
+.msus .mi { font-size: 1.05rem; filter: saturate(.4); }
+.msus b { display: block; font-weight: 600; font-size: .82rem; line-height: 1.2; color: var(--ink); }
+.msus i { display: block; font-style: normal; font-size: .74rem; }
+.msus.out b { text-decoration: line-through; color: var(--mute); }
+.msus.guilty { border-color: rgba(255,215,64,.6); } .msus.guilty b { color: var(--gold); }
+.msolved { color: var(--gold); }
+.msolved[hidden] { display: none; }
+.mclues { margin: 0; padding-left: 1.5em; display: flex; flex-direction: column; gap: 3px; }
+.mclues li { color: var(--ink); }
+.mclues li.locked { color: var(--mute); opacity: .55; }
+.mclues li.fresh { color: #fff; }
+.mclues li.fresh::marker { color: var(--gold); }
+#mysteryCount.fresh { color: var(--gold); }
+
 .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(36px, 1fr)); gap: 5px; }
 /* deliberately quiet: the machine is the colourful part of the screen */
 .tile { position: relative; aspect-ratio: 1; min-height: 30px; padding: 0; font: inherit; color: var(--mute); background: rgba(255,255,255,.03); border: 1px solid var(--line); border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color .12s; }
@@ -242,10 +281,58 @@ button.primary[hidden], #feedback[hidden] { display: none; }
 footer { margin-top: auto; color: var(--mute); font-size: .75rem; }
 .linkish { background: none; border: 0; color: var(--mute); text-decoration: underline; cursor: pointer; font: inherit; }
 
+/* On a desktop the machine and the questions sit side by side. On a phone each would be too small, so they take turns:
+   the questions fill the screen, with nothing to scroll past between one question and the next, and a tab at the bottom
+   swaps in the machine for when he wants to play. */
+.tabs, .studybar, .studynote { display: none; }
 @media (max-width: 860px) {
-  .app { grid-template-columns: 1fr; grid-template-rows: 46vh 1fr; height: auto; min-height: 100dvh; }
-  .stage { height: 46vh; position: sticky; top: 0; z-index: 2; }
-  .panel { border-left: 0; border-top: 2px solid var(--line); overflow: visible; }
+  :root { --tabs-all: calc(56px + env(safe-area-inset-bottom, 0px)); --topbars: 98px; }
+  .app { display: block; position: relative; height: 100vh; height: 100dvh; }
+  .stage, .panel { position: absolute; left: 0; right: 0; top: 0; bottom: var(--tabs-all); height: auto; }
+  .panel { border: 0; padding: 8px 12px 12px; gap: 10px; overflow-y: auto; overscroll-behavior: contain; }
+  .panel > * { flex: none; order: 5; }
+  .panel > .rollbox { order: 0; }
+  .panel > header { order: 1; }
+  .panel > .studybar { order: 2; }
+  .panel > .card { order: 3; }
+  .app.view-study .stage, .app.view-machine .panel { visibility: hidden; pointer-events: none; }
+
+  header .sub { display: none; }
+  h1 { font-size: 1.2rem; }
+  .studybar { display: block; }
+  .statusline { display: flex; align-items: center; gap: 8px; min-height: 38px; padding: 3px 6px 3px 12px; border: 1px solid var(--line); border-radius: 10px; background: rgba(255,255,255,.04); font-size: .88rem; color: var(--mute); }
+  #statusText { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; gap: 0 14px; }
+  #statusText span { white-space: nowrap; }
+  #statusText b { color: var(--ink); font-variant-numeric: tabular-nums; }
+  .playnow { flex: none; font: inherit; font-weight: 800; font-size: .86rem; color: #271a00; background: linear-gradient(90deg, var(--gold), #ff9e40); border: 0; border-radius: 999px; padding: 6px 14px; cursor: pointer; box-shadow: 0 0 14px rgba(255,180,60,.45); }
+  .playnow[hidden] { display: none; }
+  /* what the machine would have announced, said over the questions instead (it floats, so nothing jumps while he taps) */
+  .studynote { display: block; position: fixed; z-index: 7; left: 12px; right: 12px; top: 8px; padding: 7px 12px; border-radius: 12px; background: rgba(10,5,35,.96); border: 1px solid var(--accent); box-shadow: 0 8px 26px rgba(0,0,0,.55); font-size: .86rem; color: #cfeaff; pointer-events: none; opacity: 0; transform: translateY(-8px); transition: opacity .25s, transform .25s; }
+  .studynote.show { opacity: 1; transform: none; }
+  .studynote b { display: block; color: #fff; }
+
+  /* the question card fills the screen, and Check / Next stay in the same place at the bottom, so answering is tap, tap, tap */
+  .card { display: flex; flex-direction: column; min-height: calc(100dvh - var(--tabs-all) - var(--topbars)); padding: 12px 12px 6px; }
+  .card #feedback { order: 10; scroll-margin-bottom: 96px; margin-top: 10px; }
+  .card .actions { order: 20; margin-top: auto; position: sticky; bottom: 0; z-index: 3; padding: 10px 0 6px; background: linear-gradient(to top, var(--card) 80%, rgba(28,17,69,0)); }
+  .card .actions button.primary { flex: 1; padding: 13px 16px; font-size: 1.04rem; }
+  .stem { font-size: 1.05rem; line-height: 1.6; }
+  .options { gap: 7px; margin-top: 8px; }
+  .opt { padding: 9px 11px; }
+  .opt .def { font-size: .8rem; }
+  .prompt { margin: 6px 0 8px; font-size: .92rem; }
+  .cardhead h2 { font-size: 1.05rem; }
+  /* word-tapping questions are the tall ones: tighter lines keep a long sentence on one screen, with room to tap */
+  .sentence { font-size: 1.02rem; line-height: 2.05; }
+  .sentence .w { padding: 2px 3px; }
+
+  .tabs { display: flex; position: absolute; left: 0; right: 0; bottom: 0; height: var(--tabs-all); padding-bottom: env(safe-area-inset-bottom, 0px); background: #0d0726; border-top: 2px solid var(--line); z-index: 9; }
+  .tab { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; gap: 7px; font: inherit; font-weight: 700; font-size: 1rem; color: var(--mute); background: none; border: 0; cursor: pointer; }
+  .tab[aria-pressed="true"] { color: #fff; box-shadow: inset 0 3px 0 var(--accent); }
+  .badge { width: 10px; height: 10px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 10px var(--gold); animation: badgepulse 1.4s ease-in-out infinite; }
+  .badge[hidden] { display: none; }
+  @keyframes badgepulse { 50% { transform: scale(1.35); opacity: .7; } }
+
   button.icon { width: 30px; height: 30px; font-size: .85rem; }
   .hud-right { gap: 3px; }
   .chip { padding: 1px 9px; margin-bottom: 3px; }
@@ -258,13 +345,15 @@ footer { margin-top: auto; color: var(--mute); font-size: .75rem; }
   .announce { top: 44px; padding: 3px 12px; }
   .announce span { display: none; }
   .fincard { padding: 8px 14px 12px; }
+  /* on a phone the card keeps to the culprit, and the whole story is in the case file */
+  .finsolution { display: none; }
+  .finculprit { font-size: .98rem; }
   .minifocus .mt { display: none; }
   .minifocus { padding: 2px 10px; }
   .breakbar { left: 8px; right: 42px; top: 4px; padding: 3px 8px 5px; }
   .bhow { font-size: .76rem; }
   .bstat { display: none; }
   .toast { bottom: 110px; }
-  .rollbox { top: calc(46vh + 4px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .banner.show { animation-duration: 2.2s; animation-timing-function: linear; }
