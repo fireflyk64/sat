@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Little Grey Cells: Domino Run</title>
+<meta name="description" content="Grammar, SAT vocabulary and sharp reading, powered by Agatha Christie and a domino run.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app">
+  <section class="stage">
+    <canvas id="world" aria-label="Domino and marble run that grows as you answer correctly"></canvas>
+    <div class="hud">
+      <div class="hud-left">
+        <div class="chip"><span class="lbl">Marbles</span> <b id="ballcount">0</b></div>
+        <div class="chip"><span class="lbl">Toppled</span> <b id="toppled">0</b></div>
+      </div>
+      <div class="hud-mid">
+        <div id="pips" class="pips" aria-hidden="true"></div>
+        <div id="hint" class="hint"></div>
+      </div>
+      <div class="hud-right">
+        <button id="mute" class="icon" title="Sound on/off" aria-label="Toggle sound">🔊</button>
+        <button id="zin" class="icon" title="Zoom in" aria-label="Zoom in">+</button>
+        <button id="zout" class="icon" title="Zoom out" aria-label="Zoom out">−</button>
+        <button id="fit" class="icon" title="See the whole contraption" aria-label="Overview">⤢</button>
+        <button id="follow" class="icon" title="Follow the action" aria-label="Follow">◎</button>
+      </div>
+    </div>
+    <div id="builder" class="builder" role="group" aria-label="Choose the next piece">
+      <span class="blabel">Next piece</span>
+      <span class="bgroup">
+        <button data-dir="-1" title="Build leftwards">◀ Left</button>
+        <button data-dir="1" title="Build rightwards">Right ▶</button>
+      </span>
+      <span class="bgroup">
+        <button data-kind="dominoes" title="Ramp with a row of dominoes">▮▮▮ Dominoes</button>
+        <button data-kind="pegs" title="Short ramp with bouncy pegs">● Pegs</button>
+        <button data-kind="steep" title="Steep, fast drop">⤵ Steep</button>
+        <button data-kind="surprise" title="Random piece">🎲</button>
+      </span>
+    </div>
+    <button id="release" class="release" disabled>🔵 Release marble!</button>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </section>
+
+  <section class="panel">
+    <header>
+      <h1>Little Grey Cells</h1>
+      <p class="sub">Solve the case. Every correct answer builds the run.</p>
+    </header>
+    <div id="meters" class="meters" aria-label="Skill progress"></div>
+
+    <article class="card">
+      <div class="cardhead"><span id="qtag" class="tag"></span><h2 id="qtitle"></h2></div>
+      <p id="qprompt" class="prompt"></p>
+      <div id="qbody" class="qbody"></div>
+      <div class="actions">
+        <button id="check" class="primary" disabled>Check answer</button>
+        <button id="next" class="primary" hidden>Next case →</button>
+      </div>
+      <div id="feedback" hidden>
+        <p id="verdict" class="verdict"></p>
+        <p id="rule" class="rulebox"></p>
+        <p id="fixedline" class="fixed"></p>
+        <p id="src" class="src"></p>
+      </div>
+    </article>
+    <footer>Quotations from public-domain Agatha Christie texts via Project Gutenberg.
+      <button id="reset" class="linkish">Reset progress</button></footer>
+  </section>
+</div>
+<script src="js/physics.js"></script>
+<script src="js/track.js"></script>
+<script src="js/render.js"></script>
+<script src="js/quiz.js"></script>
+<script src="data/questions.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>

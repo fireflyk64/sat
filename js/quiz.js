@@ -1,0 +1,271 @@
+/*
+ * Question renderers + exact auto-grading. Each builder returns a controller:
+ *   { ready(): bool, check(): {correct, ...}, reveal(result) }
+ * and calls onChange() whenever the user's answer changes.
+ */
+(function (root) {
+  'use strict';
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function core(w) { return w.replace(/^[^A-Za-z0-9’']+|[^A-Za-z0-9’']+$/g, '').toLowerCase(); }
+  function lowerFirst(w) { return w.replace(/[A-Za-z]/, function (c) { return c.toLowerCase(); }); }
+  function upperFirst(w) { return w.replace(/[A-Za-z]/, function (c) { return c.toUpperCase(); }); }
+  function isCap(w) { var m = w.match(/[A-Za-z]/); return !!m && m[0] === m[0].toUpperCase(); }
+  function setEq(a, b) {
+    if (a.length !== b.length) return false;
+    var s = {}; a.forEach(function (x) { s[x] = 1; });
+    return b.every(function (x) { return s[x]; });
+  }
+
+  // Fisher-Yates copy: option order is randomised every time an item is shown, so the key is never predictable
+  function shuffled(a) {
+    a = a.slice();
+    for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; }
+    return a;
+  }
+
+  // "Hello, world." -> [{text:'Hello', comma:true}, {text:'world.', comma:false}]
+  function tokenize(text) {
+    return text.split(/\s+/).filter(Boolean).map(function (raw) {
+      var comma = /,$/.test(raw);
+      return { text: comma ? raw.slice(0, -1) : raw, comma: comma };
+    });
+  }
+
+  /* Shared sentence widget. mode: mark | forge | pick | static */
+  function Sentence(host, text, mode, onChange) {
+    var self = this;
+    this.tokens = tokenize(text);
+    this.mode = mode;
+    this.words = []; this.gaps = [];
+    this.capState = []; this.commaState = []; this.selWords = {}; this.selGaps = {};
+    this.picked = -1;
+    var wrap = el('div', 'sentence mode-' + mode);
+    this.tokens.forEach(function (t, i) {
+      var wb = el('button', 'w');
+      wb.type = 'button';
+      var shown = t.text;
+      if (mode === 'mark') { shown = lowerFirst(shown); self.capState[i] = false; }
+      wb.textContent = shown;
+      if (shown === '___') wb.classList.add('blank');
+      self.words.push(wb);
+      wrap.appendChild(wb);
+      wb.addEventListener('click', function () {
+        if (wrap.classList.contains('locked') || shown === '___') return;
+        if (mode === 'mark') {
+          self.capState[i] = !self.capState[i];
+          wb.textContent = self.capState[i] ? upperFirst(shown) : lowerFirst(shown);
+          wb.classList.toggle('on', self.capState[i]);
+        } else if (mode === 'forge') {
+          self.selWords[i] = !self.selWords[i]; wb.classList.toggle('sel', !!self.selWords[i]);
+        } else if (mode === 'pick') {
+          self.words.forEach(function (b) { b.classList.remove('sel'); });
+          self.picked = i; wb.classList.add('sel');
+        }
+        onChange();
+      });
+      if (i < self.tokens.length - 1) {
+        var gb = el('button', 'g');
+        gb.type = 'button';
+        gb.setAttribute('aria-label', 'space after ' + t.text);
+        self.commaState[i] = false;
+        if (mode !== 'mark' && t.comma) { gb.textContent = ','; gb.classList.add('fixed'); }
+        else gb.textContent = '';
+        self.gaps.push(gb); wrap.appendChild(gb);
+        gb.addEventListener('click', function () {
+          if (wrap.classList.contains('locked')) return;
+          if (mode === 'mark') {
+            self.commaState[i] = !self.commaState[i];
+            gb.textContent = self.commaState[i] ? ',' : '';
+            gb.classList.toggle('on', self.commaState[i]);
+          } else if (mode === 'forge') {
+            self.selGaps[i] = !self.selGaps[i]; gb.classList.toggle('sel', !!self.selGaps[i]);
+          } else return;
+          onChange();
+        });
+      }
+    });
+    this.wrap = wrap;
+    host.appendChild(wrap);
+  }
+  Sentence.prototype.lock = function () { this.wrap.classList.add('locked'); };
+
+  /* ---------------- mark: commas + capitals ---------------- */
+  function buildMark(item, host, onChange) {
+    var sent = new Sentence(host, item.text, 'mark', onChange);
+    var optional = {}; (item.optionalCommas || []).forEach(function (i) { optional[i] = 1; });
+    var n = sent.tokens.length;
+    return {
+      ready: function () { return true; },
+      check: function () {
+        var wantC = [], gotC = [], wantK = [], gotK = [];
+        sent.tokens.forEach(function (t, i) {
+          if (t.comma && i < n - 1) wantC.push(i);
+          if (isCap(t.text)) wantK.push(i);
+          if (sent.capState[i]) gotK.push(i);
+          if (i < n - 1 && sent.commaState[i]) gotC.push(i);
+        });
+        var gotCReq = gotC.filter(function (i) { return !optional[i] || wantC.indexOf(i) >= 0; });
+        var wantCReq = wantC;
+        return {
+          correct: setEq(gotCReq, wantCReq) && setEq(gotK, wantK),
+          wantC: wantC, gotC: gotC, wantK: wantK, gotK: gotK, optional: optional
+        };
+      },
+      reveal: function (r) {
+        sent.lock();
+        sent.tokens.forEach(function (t, i) {
+          if (i < n - 1) {
+            var g = sent.gaps[i], want = r.wantC.indexOf(i) >= 0, got = r.gotC.indexOf(i) >= 0;
+            if (want && got) g.classList.add('ok');
+            else if (want && !got) { g.textContent = ','; g.classList.add('miss'); }
+            else if (!want && got && !r.optional[i]) g.classList.add('bad');
+          }
+          var wk = r.wantK.indexOf(i) >= 0, gk = r.gotK.indexOf(i) >= 0;
+          if (wk && gk) sent.words[i].classList.add('ok');
+          else if (wk && !gk) { sent.words[i].classList.add('miss'); sent.words[i].textContent = upperFirst(sent.words[i].textContent); }
+          else if (!wk && gk) sent.words[i].classList.add('bad');
+        });
+      }
+    };
+  }
+
+  /* ---------------- tapfix: tap the word, then pick the fix ---------------- */
+  function buildTapFix(item, host, onChange) {
+    var hint = el('p', 'step', item.prompt1); host.appendChild(hint);
+    var sent = new Sentence(host, item.text, 'pick', onChange);
+    var targets = [];
+    sent.tokens.forEach(function (t, i) { if (item.targetWords.indexOf(core(t.text)) >= 0) targets.push(i); });
+    host.appendChild(el('p', 'step', item.prompt2));
+    var chosen = null;
+    var opts = el('div', 'options inline');
+    var btns = shuffled(item.options).map(function (o) {
+      var b = el('button', 'opt', o); b.type = 'button';
+      b.addEventListener('click', function () {
+        if (opts.classList.contains('locked')) return;
+        chosen = o; btns.forEach(function (x) { x.classList.toggle('sel', x === b); }); onChange();
+      });
+      opts.appendChild(b); return b;
+    });
+    host.appendChild(opts);
+    return {
+      ready: function () { return sent.picked >= 0 && chosen != null; },
+      check: function () {
+        var wordOk = targets.indexOf(sent.picked) >= 0, fixOk = chosen === item.answer;
+        return { correct: wordOk && fixOk, wordOk: wordOk, fixOk: fixOk };
+      },
+      reveal: function (r) {
+        sent.lock(); opts.classList.add('locked');
+        targets.forEach(function (i) { sent.words[i].classList.add(r.wordOk ? 'ok' : 'miss'); });
+        if (!r.wordOk && sent.picked >= 0) sent.words[sent.picked].classList.add('bad');
+        btns.forEach(function (b) {
+          if (b.textContent === item.answer) b.classList.add('ok');
+          else if (b.classList.contains('sel')) b.classList.add('bad');
+        });
+        if (!r.wordOk && item.hint1) host.appendChild(el('p', 'hintline', item.hint1));
+      }
+    };
+  }
+
+  /* ---------------- mc + vocab: multiple choice ---------------- */
+  function buildChoice(item, host, onChange) {
+    var stem = el('p', 'stem');
+    // Vocab items can be asked two ways (same data, same 4 words): fill the blank, or match a meaning to its word
+    var meaning = item.type === 'vocab' && item.definitions && item.definitions[item.answer] && Math.random() < 0.5;
+    if (meaning) {
+      var d = item.definitions[item.answer].replace(/\.$/, '');
+      stem.className = 'stem meaning';
+      stem.appendChild(document.createTextNode('\u201C' + d.charAt(0).toUpperCase() + d.slice(1) + '.\u201D'));
+    } else {
+      var parts = item.stem.split('___');
+      stem.appendChild(document.createTextNode(parts[0]));
+      stem.appendChild(el('span', 'blankline', '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0'));
+      stem.appendChild(document.createTextNode(parts[1] || ''));
+    }
+    host.appendChild(stem);
+    var chosen = null;
+    var opts = el('div', 'options');
+    var letters = 'ABCD';
+    var btns = shuffled(item.options).map(function (o, i) {
+      var b = el('button', 'opt'); b.type = 'button';
+      b.appendChild(el('span', 'letter', letters[i]));
+      b.appendChild(el('span', 'otext', o));
+      b.addEventListener('click', function () {
+        if (opts.classList.contains('locked')) return;
+        chosen = o; btns.forEach(function (x) { x.classList.toggle('sel', x === b); }); onChange();
+      });
+      opts.appendChild(b); return b;
+    });
+    host.appendChild(opts);
+    return {
+      prompt: meaning ? 'Which SAT word matches this meaning?' : null,
+      ready: function () { return chosen != null; },
+      check: function () { return { correct: chosen === item.answer }; },
+      reveal: function () {
+        opts.classList.add('locked');
+        btns.forEach(function (b) {
+          var text = b.querySelector('.otext').textContent;
+          if (text === item.answer) b.classList.add('ok');
+          else if (b.classList.contains('sel')) b.classList.add('bad');
+          if (item.definitions && item.definitions[text]) {
+            b.appendChild(el('span', 'def', item.definitions[text]));
+          }
+        });
+      }
+    };
+  }
+
+  /* ---------------- forge: find the planted errors ---------------- */
+  function buildForge(item, host, onChange) {
+    var count = el('p', 'step', 'Errors found: 0 of ' + item.errors.length);
+    var sent = new Sentence(host, item.text, 'forge', function () {
+      var n = Object.keys(sent.selWords).filter(function (k) { return sent.selWords[k]; }).length +
+              Object.keys(sent.selGaps).filter(function (k) { return sent.selGaps[k]; }).length;
+      count.textContent = 'Marked: ' + n + ' (the statement has ' + item.errors.length + ' errors)';
+      onChange();
+    });
+    host.insertBefore(count, sent.wrap);
+    var wantW = [], wantG = [];
+    item.errors.forEach(function (e) {
+      for (var i = 0; i < sent.tokens.length; i++) {
+        var c = core(sent.tokens[i].text);
+        if (e.word && c === e.word) { wantW.push(i); break; }
+        if (e.gapAfter && c === e.gapAfter) { wantG.push(i); break; }
+      }
+    });
+    function sel(map) { return Object.keys(map).filter(function (k) { return map[k]; }).map(Number); }
+    return {
+      ready: function () { return sel(sent.selWords).length + sel(sent.selGaps).length > 0; },
+      check: function () {
+        var gw = sel(sent.selWords), gg = sel(sent.selGaps);
+        return { correct: setEq(gw, wantW) && setEq(gg, wantG), gw: gw, gg: gg };
+      },
+      reveal: function (r) {
+        sent.lock();
+        wantW.forEach(function (i) { sent.words[i].classList.add(r.gw.indexOf(i) >= 0 ? 'ok' : 'miss'); });
+        wantG.forEach(function (i) { sent.gaps[i].classList.add(r.gg.indexOf(i) >= 0 ? 'ok' : 'miss'); });
+        r.gw.forEach(function (i) { if (wantW.indexOf(i) < 0) sent.words[i].classList.add('bad'); });
+        r.gg.forEach(function (i) { if (wantG.indexOf(i) < 0) sent.gaps[i].classList.add('bad'); });
+      }
+    };
+  }
+
+  var BUILDERS = { mark: buildMark, tapfix: buildTapFix, mc: buildChoice, vocab: buildChoice, forge: buildForge };
+
+  root.Quiz = {
+    SKILLS: {
+      commas: 'Commas', agreement: 'Agreement', tense: 'Tense',
+      proofreading: 'Proofreading', vocab: 'Vocabulary'
+    },
+    build: function (item, host, onChange) {
+      host.innerHTML = '';
+      return BUILDERS[item.type](item, host, onChange);
+    },
+    el: el
+  };
+})(window);
