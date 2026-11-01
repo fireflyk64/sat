@@ -25,10 +25,10 @@ Catapult (4), Trampoline (6), Wrecking Ball (8), Cannon (10), Nitro Crate (13), 
 Newton's Cradle (25).
 
 ## Focus: rewards for studying rather than playing
-**Focus** builds up since he last played: a right answer adds 1 and a miss takes off ⅓, never going below 0. With four
-choices a blind guess is right 1 time in 4, so guessing nets exactly zero (the old SAT used ¼ because it had five choices).
-Focus carries across sessions, and only playing resets it: a flick, or using an item from the chest. Clear progress bars show
-all three rewards:
+**Focus** is what he builds by answering: a right answer adds 1 and a miss takes off ⅓, never going below 0. With four choices
+a blind guess is right 1 time in 4, so guessing nets exactly zero (the old SAT used ¼ because it had five choices). Playing,
+which means a flick or using an item from the chest, costs 1½ unless a freeze covers it: a fair price, not a disaster, so he
+never has to be afraid of running the machine. Focus carries across sessions. Clear progress bars show all three rewards:
 
 | at | chance | wins |
 |---|---|---|
@@ -42,9 +42,9 @@ multiple. Each goal rolls once, so dropping below it and climbing back up does n
 The flick prompt stays out of the way during a study run: the marble's rings, its "pull back" text and the stars beside it only
 animate when Focus is under 5 or the mouse is over the play window. Otherwise there is just a still ring around the marble.
 
-**🧊 Freezes** let him take a short break without losing Focus. Every 5 correct **in a row** (a miss breaks this count, though
-not Focus) earns one. The next time he plays, a freeze is spent instead of Focus resetting. A freeze melts after 5 questions,
-right or wrong, and he can hold up to 3. Retrying a flick that missed the machine is free.
+**🧊 Freezes** let him take a break for free. Every 5 correct **in a row** (a miss breaks this count) earns one, and they stack.
+The next time he plays, a freeze is spent instead of the 1½ Focus. They last until the session ends, meaning 30 minutes away
+from the game, so reloading the page does not lose them. Retrying a flick that missed the machine is free.
 
 **The chest** stays collapsed to one quiet line until it is clicked. Won items save up until he chooses to use them, each one a timed break of 45, 75 or 90 seconds. Anything goes,
 including tearing the machine apart, because it is rebuilt from its recipe afterwards and the pieces fly home. Items not found
@@ -82,7 +82,7 @@ folder per project. Publish from a commit, copy only what the page needs, and st
 
     H=$(git rev-parse --short HEAD); PAGES=../fireflyk64.github.io
     (cd $PAGES && git pull -q --ff-only && rm -rf sat && mkdir sat)
-    git archive HEAD index.html css js data/questions.js data/questions-set2.js data/questions-set3.js | tar -x -C $PAGES/sat
+    git archive HEAD index.html css js $(git ls-files 'data/questions*.js') | tar -x -C $PAGES/sat
     (cd $PAGES && git add -A sat && git commit -m "sat: what changed (from sat $H)" && git push origin main)
 
 Leave Pages off on the `sat` repo itself: a project site at the same path could compete with this folder.
@@ -93,7 +93,7 @@ Leave Pages off on the `sat` repo itself: a project site at the same path could 
 | `mark` | commas, capitals | taps the gaps where commas go and the words that need capitals |
 | `tapfix` | agreement, tense | taps the real subject (or the wrong-tense verb), then picks the fix |
 | `mc` | commas / conventions | SAT-style "conforms to Standard English" multiple choice |
-| `forge` | proofreading | finds N planted errors (words or missing/extra commas) |
+| `forge` | proofreading | finds the 1 or 2 planted errors (words or missing/extra commas); commas that are fine either way are never marked wrong |
 | `vocab` | vocabulary | SAT "words in context" with Christie sentences; definitions shown after answering |
 
 ## Grammar standard
@@ -101,12 +101,15 @@ Answer keys follow **modern SAT Standard English Conventions**, not Christie's 1
 `scripts/generate.mjs` tells the model to skip any sentence whose punctuation is dated or arguable, and a second
 model call audits each key before it is written.
 
-## The question bank (2526 items in three sets)
+## The question bank
 * **Set 1** (`data/questions.js`): 6 seed items + 1194 drafted items from six Poirot books.
 * **Set 2** (`data/questions-set2.js`): 1200 more, built from *different sentences* (none are reused) in seven more Christie
   novels that are public domain in the US (*The Secret Adversary*, *The Man in the Brown Suit*, *The Secret of Chimneys*,
   *The Seven Dials Mystery*, *The Murder at the Vicarage*, *Partners in Crime*, *The Mysterious Mr. Quin*) plus unused
-  sentences from the Poirot books. The page loads every set; more sets can be added the same way (`--set 4`).
+  sentences from the Poirot books. The page loads every set; more sets can be added the same way.
+* **Vocabulary gets extra turns:** about a third of the new questions he is given. Of those, most are the SAT-style set below.
+* **Set 4** (`data/questions-set4.js`): a 314-question hard-word drill. Real SAT-level words in Christie sentences, with wrong choices as hard as the answer so it cannot stick out. Rebuild it with `node scripts/apply-hard-vocab.mjs data/vocab-hard-drafts.json data/vocab-hard-fixes.json`, which also applies an independent review's corrections.
+* **Set 5** (`data/questions-set5.js`): vocabulary in the format of the digital SAT's Words in Context questions: a short passage, one blank, four choices, and **no meaning shown**, so the passage alone decides. Half are from Sherlock Holmes (all public domain in the US since 2023, used for vocabulary only because the punctuation is too dated to test grammar on) and half from Christie. Before release a reviewer solved every question blind, with no answer key. Target words were chosen with help from a college-level word list; the definitions are written for this game, not copied from it.
 * **Set 3** (`data/questions-set3.js`): 133 conjunction questions, hand-picked from all 13 books (see below).
 
 Sets 1 and 2 by kind (set 3 is all `mc`):
@@ -115,7 +118,7 @@ Sets 1 and 2 by kind (set 3 is all `mc`):
 |---|---|---|---|
 | `mark` | tap commas + capitals | 255 | 194 |
 | `mc` | SAT-style conventions choice | 301 | 173 |
-| `forge` | find 3 planted errors | 203 | 338 |
+| `forge` | find 1 or 2 planted errors | 203 | 338 |
 | `vocab` | SAT words: the missing word's meaning is shown above the sentence (so only one option fits both the definition and the blank), or pick the word that matches a meaning | 196 | 175 |
 | `tapfix` agreement | find the real subject, pick the verb | 120 | 244 |
 | `tapfix` tense | spot the odd verb, pick the fix | 123 | 76 |

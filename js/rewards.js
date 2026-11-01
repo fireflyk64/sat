@@ -1,6 +1,6 @@
 /*
  * The items a long Focus streak can win. Each is a timed physics break (see js/playground.js).
- * Deploying one counts as playing: it spends a freeze if there is one, otherwise it resets Focus.
+ * Deploying one counts as playing: it spends a freeze if there is one, otherwise it costs a little Focus.
  */
 (function (root) {
   'use strict';

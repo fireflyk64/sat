@@ -1,0 +1,3344 @@
+[
+{
+"word": "abate",
+"g": 69700,
+"book": "The Case-Book of Sherlock Holmes",
+"form": "abated",
+"passage": "On the morning of which I speak the wind had abated, and all Nature was newly washed and fresh. It was impossible to work upon so delightful a day, and I strolled out before breakfast to enjoy the exquisite air.",
+"options": [
+"abated",
+"intensified",
+"persevered",
+"escalated"
+],
+"definitions": {
+"abated": "died down, grew weaker",
+"intensified": "became stronger and more intense",
+"persevered": "kept going despite difficulty",
+"escalated": "rose to a higher level"
+},
+"rule": "'Abated' means died down. The day is 'delightful' and the air is 'newly washed and fresh', so the wind had eased."
+},
+{
+"word": "acumen",
+"drop": true,
+"why": "Passage gives no real clue to which strength is meant; only polarity from 'respect'."
+},
+{
+"word": "adroit",
+"drop": true,
+"why": "'More adroit' could equally be meticulous or diligent; the passage does not separate skill from care."
+},
+{
+"word": "allay",
+"g": 244,
+"book": "A Study in Scarlet",
+"form": "allay",
+"passage": "After leaving the house he discovered his loss and hurried back, but found the police already in possession, owing to his own folly in leaving the candle burning. He had to pretend to be drunk in order to allay the suspicions which might have been aroused by his appearance at the gate. Now put yourself in that man’s place.",
+"options": [
+"allay",
+"exacerbate",
+"corroborate",
+"elicit"
+],
+"definitions": {
+"allay": "calm or ease a fear",
+"exacerbate": "make a problem worse",
+"corroborate": "confirm with supporting evidence",
+"elicit": "draw out or bring forth"
+},
+"rule": "'Allay' means to calm or put to rest. He pretended to be drunk so that the suspicions 'which might have been aroused' would fade instead of grow."
+},
+{
+"word": "appease",
+"g": 2097,
+"book": "The Sign of the Four",
+"form": "appeased",
+"passage": "I confess that I had my doubts myself when I reflected upon the great traffic which had passed along the London road in the interval. My fears were soon appeased, however. Toby never hesitated or swerved, but waddled on in his peculiar rolling fashion.",
+"options": [
+"appeased",
+"aggravated",
+"vindicated",
+"substantiated"
+],
+"definitions": {
+"appeased": "calmed or soothed",
+"aggravated": "made worse or more irritating",
+"vindicated": "proved right after doubt",
+"substantiated": "backed up with evidence"
+},
+"rule": "'Appeased' means calmed. The word 'however' flips the mood, and 'Toby never hesitated or swerved' shows there was nothing left to fear."
+},
+{
+"word": "articulate",
+"g": 2852,
+"book": "The Hound of the Baskervilles",
+"form": "articulate",
+"passage": "So furious was he that he was hardly articulate, and when he did speak it was in a much broader and more Western dialect than any which we had heard from him in the morning.",
+"options": [
+"articulate",
+"irate",
+"belligerent",
+"vehement"
+],
+"definitions": {
+"articulate": "able to speak clearly and fluently",
+"irate": "very angry, close to furious",
+"belligerent": "eager to start a fight",
+"vehement": "forceful and intense in feeling"
+},
+"rule": "'Articulate' means able to speak clearly. He was 'so furious' that he could barely form words, and the next clause says 'when he did speak' he sounded different."
+},
+{
+"word": "aspersion",
+"g": 69700,
+"book": "The Case-Book of Sherlock Holmes",
+"form": "aspersions",
+"passage": "I am aware that Adelbert, that my fiancé, has had a stormy life in which he has incurred bitter hatreds and most unjust aspersions. You are only the last of a series who have brought their slanders before me.",
+"options": [
+"aspersions",
+"adulations",
+"subterfuges",
+"calamities"
+],
+"definitions": {
+"aspersions": "damaging, often false remarks about someone",
+"adulations": "excessive praise and flattery",
+"subterfuges": "sneaky tricks to hide the truth",
+"calamities": "sudden and serious disasters"
+},
+"rule": "'Aspersions' are false, damaging remarks. The next sentence calls them 'slanders' and the first sentence calls them 'most unjust'.",
+"drop": true,
+"why": "cut after the blind test"
+},
+{
+"word": "astute",
+"g": 69700,
+"book": "The Case-Book of Sherlock Holmes",
+"form": "astute",
+"passage": "The prize-fighter, a heavily built young man with a stupid, obstinate, slab-sided face, stood awkwardly at the door, looking about him with a puzzled expression. Holmes's debonair manner was a new experience, and though he vaguely felt that it was hostile, he did not know how to counter it. He turned to his more astute comrade for help.",
+"options": [
+"astute",
+"diffident",
+"docile",
+"stolid"
+],
+"definitions": {
+"astute": "sharp and quick to understand",
+"diffident": "shy and lacking confidence",
+"docile": "obedient and easy to control",
+"stolid": "calm and showing little emotion"
+},
+"rule": "'Astute' means sharp and clever. The fighter has a 'stupid' face and a 'puzzled expression', so he turns to the 'more' clever partner 'for help'."
+},
+{
+"word": "austere",
+"g": 108,
+"book": "The Return of Sherlock Holmes",
+"form": "austere",
+"passage": "Mr. Sherlock Holmes listened with attention to the long report which I was able to present to him that evening, but it did not elicit that word of curt praise which I had hoped for and should have valued. On the contrary, his austere face was even more severe than usual as he commented upon the things that I had done and the things that I had not.",
+"options": [
+"austere",
+"affable",
+"jovial",
+"placid"
+],
+"definitions": {
+"austere": "stern and strict",
+"affable": "friendly and easy to talk to",
+"jovial": "cheerful and good humored",
+"placid": "calm and not easily upset"
+},
+"rule": "'Austere' means stern. The face is 'even more severe than usual', and Holmes does not give even 'curt praise'."
+},
+{
+"word": "callous",
+"g": 3289,
+"book": "The Valley of Fear",
+"form": "callous",
+"passage": "It would be an overstatement to say that he was shocked or even excited by the amazing announcement. Without having a tinge of cruelty in his singular composition, he was undoubtedly callous from long overstimulation. Yet, if his emotions were dulled, his intellectual perceptions were exceedingly active.",
+"options": [
+"callous",
+"maudlin",
+"apprehensive",
+"irascible"
+],
+"definitions": {
+"callous": "unfeeling toward other people",
+"maudlin": "weepy and overly sentimental",
+"apprehensive": "anxious about what may happen",
+"irascible": "easily made angry"
+},
+"rule": "'Callous' means unfeeling. He is not 'shocked or even excited' by the news, and the passage says 'his emotions were dulled'."
+},
+{
+"word": "censure",
+"drop": true,
+"why": "Only polarity ('lenient', 'mild') points to it; plausible punishments like retribution also fit."
+},
+{
+"word": "cogent",
+"drop": true,
+"why": "Too little context for what kind of reasons they are."
+},
+{
+"word": "condone",
+"g": 69700,
+"book": "The Case-Book of Sherlock Holmes",
+"form": "condoning",
+"passage": "\"I don't know that anything she is accused of is really worse than what you have yourself admitted, that you have tried to ruin a defenceless girl who was under your roof. Some of you rich men have to be taught that all the world cannot be bribed into condoning your offences.\"",
+"options": [
+"condoning",
+"denouncing",
+"deploring",
+"disparaging"
+],
+"definitions": {
+"condoning": "excusing or overlooking wrongdoing",
+"denouncing": "publicly condemning as wrong",
+"deploring": "expressing strong disapproval of",
+"disparaging": "speaking of as having little worth"
+},
+"rule": "'Condoning' means excusing or overlooking. A bribe could buy someone's tolerance of 'your offences', but it could not buy their criticism of them.",
+"drop": true,
+"why": "cut after the blind test"
+},
+{
+"word": "conjecture",
+"drop": true,
+"why": "Other verbs like ascertained or deduced also fit what the passage describes."
+},
+{
+"word": "copious",
+"drop": true,
+"why": "Clue is weak ('traces') and the passage mentions blood on a knife."
+},
+{
+"word": "culpable",
+"g": 2097,
+"book": "The Sign of the Four",
+"form": "culpable",
+"passage": "This, however, is the readiest and, since fortune has put it into our hands, I should be culpable if I neglected it. It has, however, prevented the case from becoming the pretty little intellectual problem which it at one time promised to be.",
+"options": [
+"culpable",
+"exemplary",
+"prudent",
+"astute"
+],
+"definitions": {
+"culpable": "deserving blame for a fault",
+"exemplary": "serving as a model of good conduct",
+"prudent": "wise and careful",
+"astute": "sharp and clever"
+},
+"rule": "'Culpable' means deserving blame. 'Fortune has put it into our hands', so he would be at fault 'if I neglected it'.",
+"drop": true,
+"why": "cut after the blind test"
+},
+{
+"word": "demure",
+"g": 108,
+"book": "The Return of Sherlock Holmes",
+"form": "demure",
+"passage": "We were ushered through the magnificent Elizabethan doorway and into his Grace’s study. There we found Mr. James Wilder, demure and courtly, but with some trace of that wild terror of the night before still lurking in his furtive eyes and in his twitching features.",
+"options": [
+"demure",
+"boisterous",
+"insolent",
+"brazen"
+],
+"definitions": {
+"demure": "modest and quiet in manner",
+"boisterous": "noisy and rowdy",
+"insolent": "rude and disrespectful",
+"brazen": "bold and shameless"
+},
+"rule": "'Demure' means quiet and modest. It goes with 'courtly', and the word 'but' leads to a hint of 'wild terror' underneath."
+},
+{
+"word": "despondent",
+"g": 108,
+"book": "The Return of Sherlock Holmes",
+"form": "despondent",
+"passage": "Seldom have I seen him so utterly despondent. He had been uneasy during all our journey from town, and I had observed that he had turned over the morning papers with anxious attention, but now this sudden realization of his worst fears left him in a blank melancholy.",
+"options": [
+"despondent",
+"elated",
+"nonchalant",
+"indignant"
+],
+"definitions": {
+"despondent": "deeply discouraged and without hope",
+"elated": "extremely happy and excited",
+"nonchalant": "calm and unconcerned",
+"indignant": "angry about unfair treatment"
+},
+"rule": "'Despondent' means deeply discouraged. His worst fears came true and left him in 'a blank melancholy'."
+},
+{
+"word": "dilapidated",
+"drop": true,
+"why": "No clue in the passage about the condition of the opening."
+},
+{
+"word": "disheveled",
+"drop": true,
+"why": "Frantic arrival does not rule out neat dress, so wrong choices could fit."
+},
+{
+"word": "dissuade",
+"drop": true,
+"why": "Wrong choices would be rejected only by grammar, not by meaning."
+},
+{
+"word": "eccentric",
+"drop": true,
+"why": "Passage does not separate eccentric from erratic or odd."
+},
+{
+"word": "elated",
+"g": 3289,
+"book": "The Valley of Fear",
+"form": "elated",
+"passage": "That very night he started off all alone to prepare for the attempt. It was daylight before he returned from his reconnaissance. Next day he interviewed his two subordinates, Manders and Reilly, reckless youngsters who were as elated as if it were a deer-hunt.",
+"options": [
+"elated",
+"apprehensive",
+"morose",
+"lethargic"
+],
+"definitions": {
+"elated": "extremely happy and excited",
+"apprehensive": "anxious about what may happen",
+"morose": "gloomy and sullen",
+"lethargic": "sluggish and lacking energy"
+},
+"rule": "'Elated' means thrilled. The youngsters are 'reckless' and treat the job 'as if' it were a fun hunt, so they are excited, not afraid."
+},
+{
+"word": "equivocal",
+"drop": true,
+"why": "Little context for what makes the reputation questionable."
+},
+{
+"word": "exemplary",
+"g": 3289,
+"book": "The Valley of Fear",
+"form": "exemplary",
+"passage": "Both men were total abstainers, and behaved in all ways as exemplary members of the society, with the one simple exception that they were assassins who had often proved themselves to be most capable instruments for this association of murder.",
+"options": [
+"exemplary",
+"negligent",
+"insolent",
+"reprehensible"
+],
+"definitions": {
+"exemplary": "serving as a model of good conduct",
+"negligent": "careless about duties",
+"insolent": "rude and disrespectful",
+"reprehensible": "deserving strong criticism"
+},
+"rule": "'Exemplary' means a model of good behavior. They were 'total abstainers' who behaved well 'in all ways', and only 'the one simple exception' spoils it."
+},
+{
+"word": "fastidious",
+"drop": true,
+"why": "Other fussy or complaining words like querulous also fit the blank."
+},
+{
+"word": "feign",
+"g": 1661,
+"book": "The Adventures of Sherlock Holmes",
+"form": "feigned",
+"passage": "Had he appeared surprised at his own arrest, or feigned indignation at it, I should have looked upon it as highly suspicious, because such surprise or anger would not be natural under the circumstances, and yet might appear to be the best policy to a scheming man.",
+"options": [
+"feigned",
+"suppressed",
+"provoked",
+"relinquished"
+],
+"definitions": {
+"feigned": "pretended to feel something",
+"suppressed": "held back or hidden",
+"provoked": "stirred up or caused",
+"relinquished": "gave up or let go of"
+},
+"rule": "'Feigned' means pretended. The clause 'such surprise or anger would not be natural' shows that showing it would be an act."
+},
+{
+"word": "florid",
+"g": 108,
+"book": "The Return of Sherlock Holmes",
+"form": "florid",
+"passage": "A heavy step was heard upon the stairs, and an instant later there entered a tall, ruddy, clean-shaven gentleman, whose clear eyes and florid cheeks told of a life led far from the fogs of Baker Street.",
+"options": [
+"florid",
+"sallow",
+"haggard",
+"wizened"
+],
+"definitions": {
+"florid": "reddish and healthy looking",
+"sallow": "sickly yellowish in color",
+"haggard": "worn and exhausted looking",
+"wizened": "shriveled with age"
+},
+"rule": "'Florid' means reddish and healthy looking. The man is 'ruddy' with 'clear eyes', which fits a life led 'far from the fogs of Baker Street'."
+},
+{
+"word": "fortitude",
+"g": 69700,
+"book": "The Case-Book of Sherlock Holmes",
+"form": "fortitude",
+"passage": "In broken words he explained that he had no notion what had occurred to him, save that terrific pangs had suddenly shot through him, and that it had taken all his fortitude to reach the bank.",
+"options": [
+"fortitude",
+"temerity",
+"ingenuity",
+"alacrity"
+],
+"definitions": {
+"fortitude": "courage and strength in hardship",
+"temerity": "reckless boldness and nerve",
+"ingenuity": "cleverness at solving problems",
+"alacrity": "cheerful eagerness and speed"
+},
+"rule": "'Fortitude' means strength in the face of suffering. 'Terrific pangs' of pain made reaching the bank a test of endurance."
+},
+{
+"word": "garrulous",
+"g": 2350,
+"book": "His Last Bow",
+"form": "garrulous",
+"passage": "The vicar, being a bachelor, was glad to come to such an arrangement, though he had little in common with his lodger, who was a thin, dark, spectacled man, with a stoop which gave the impression of actual, physical deformity. I remember that during our short visit we found the vicar garrulous, but his lodger strangely reticent, a sad-faced, introspective man, sitting with averted eyes, brooding apparently upon his own affairs.",
+"options": [
+"garrulous",
+"taciturn",
+"diffident",
+"laconic"
+],
+"definitions": {
+"garrulous": "very talkative, fond of chatting",
+"taciturn": "usually silent and reserved",
+"diffident": "shy and lacking confidence",
+"laconic": "using very few words"
+},
+"rule": "'Garrulous' means talkative. The word 'but' sets up a contrast with the lodger, who was 'strangely reticent'."
+},
+{
+"word": "hindrance",
+"drop": true,
+"why": "Reproach or reprisal fit the blank about as well as hindrance."
+},
+{
+"word": "immutable",
+"g": 2852,
+"book": "The Hound of the Baskervilles",
+"form": "immutable",
+"passage": "When I thought of the heavy rains and looked at the gaping roof I understood how strong and immutable must be the purpose which had kept him in that inhospitable abode. Was he our malignant enemy, or was he by chance our guardian angel?",
+"options": [
+"immutable",
+"capricious",
+"tenuous",
+"ephemeral"
+],
+"definitions": {
+"immutable": "unchanging and unalterable",
+"capricious": "given to sudden changes of mind",
+"tenuous": "weak and thin",
+"ephemeral": "lasting a very short time"
+},
+"rule": "'Immutable' means unchanging. The purpose was 'strong' enough to keep him in a miserable hut through bad weather, so it never wavered."
+},
+{
+"word": "imperious",
+"g": 244,
+"book": "A Study in Scarlet",
+"form": "imperious",
+"passage": "The love which had sprung up in his heart was not the sudden, changeable fancy of a boy, but rather the wild, fierce passion of a man of strong will and imperious temper. He had been accustomed to succeed in all that he undertook.",
+"options": [
+"imperious",
+"fickle",
+"docile",
+"placid"
+],
+"definitions": {
+"imperious": "bossy and domineering",
+"fickle": "changing often without reason",
+"docile": "obedient and easy to control",
+"placid": "calm and not easily upset"
+},
+"rule": "'Imperious' means bossy and commanding. It matches 'strong will', and it is the opposite of the 'changeable' fancy of a boy."
+},
+{
+"word": "impetuous",
+"g": 2350,
+"book": "His Last Bow",
+"form": "impetuous",
+"passage": "We will now suppose that as he went to the theatre with the young lady he suddenly, in the fog, caught a glimpse of this same agent going in the direction of the office. He was an impetuous man, quick in his decisions. Everything gave way to his duty.",
+"options": [
+"impetuous",
+"circumspect",
+"diffident",
+"irresolute"
+],
+"definitions": {
+"impetuous": "acting quickly without thinking",
+"circumspect": "careful and cautious",
+"diffident": "shy and lacking confidence",
+"irresolute": "unable to make up one's mind"
+},
+"rule": "'Impetuous' means acting fast on impulse. The next phrases say he was 'quick in his decisions' and that everything 'gave way to his duty'."
+},
+{
+"word": "implicit",
+"drop": true,
+"why": "Archaic sense and no real clue in the passage."
+},
+{
+"word": "insinuate",
+"drop": true,
+"why": "Manner is described, not explained; clue is too vague."
+},
+{
+"word": "intricate",
+"g": 108,
+"book": "The Return of Sherlock Holmes",
+"form": "intricate",
+"passage": "The moment that Hilton Cubitt’s broad back had disappeared through the door my comrade rushed to the table, laid out all the slips of paper containing dancing men in front of him, and threw himself into an intricate and elaborate calculation.",
+"options": [
+"intricate",
+"cursory",
+"rudimentary",
+"perfunctory"
+],
+"definitions": {
+"intricate": "complicated, with many small parts",
+"cursory": "quick and not thorough",
+"rudimentary": "basic and undeveloped",
+"perfunctory": "done with little care or effort"
+},
+"rule": "'Intricate' means complicated. It is paired with 'elaborate', and he 'threw himself into' it, so it was no quick or simple job."
+},
+{
+"word": "irrevocable",
+"drop": true,
+"why": "Graphic scene (a mangled body) and weak clue for the word."
+},
+{
+"word": "languid",
+"g": 1661,
+"book": "The Adventures of Sherlock Holmes",
+"form": "languid",
+"passage": "Our visitor glanced with some apparent surprise at the languid, lounging figure of the man who had been no doubt depicted to him as the most incisive reasoner and most energetic agent in Europe. Holmes slowly reopened his eyes and looked impatiently at his gigantic client.",
+"options": [
+"languid",
+"vivacious",
+"vigilant",
+"restive"
+],
+"definitions": {
+"languid": "slow and lacking energy",
+"vivacious": "lively and full of spirit",
+"vigilant": "watchful and alert",
+"restive": "restless and unable to stay still"
+},
+"rule": "'Languid' means slow and relaxed. The man is 'lounging' and only 'slowly' reopens his eyes, which surprises a visitor who expected an 'energetic' agent."
+},
+{
+"word": "malevolent",
+"g": 2852,
+"book": "The Hound of the Baskervilles",
+"form": "malevolent",
+"passage": "This matter cuts very deep, and though I have not finally made up my mind whether it is a benevolent or a malevolent agency which is in touch with us, I am conscious always of power and design.",
+"options": [
+"malevolent",
+"benign",
+"congenial",
+"ingenious"
+],
+"definitions": {
+"malevolent": "wishing harm on others",
+"benign": "kind and gentle",
+"congenial": "pleasant and agreeable",
+"ingenious": "clever and inventive"
+},
+"rule": "'Malevolent' means wishing harm. The phrase 'benevolent or a' sets up the opposite of 'benevolent', which means kind."
+},
+{
+"word": "morose",
+"drop": true,
+"why": "Passage does not separate morose from silent or disappointed; one candidate is violent."
+},
+{
+"word": "palpable",
+"g": 2097,
+"book": "The Sign of the Four",
+"form": "palpable",
+"passage": "It has, however, prevented the case from becoming the pretty little intellectual problem which it at one time promised to be. There might have been some credit to be gained out of it, but for this too palpable clue.”",
+"options": [
+"palpable",
+"elusive",
+"cryptic",
+"subtle"
+],
+"definitions": {
+"palpable": "so obvious it is easy to notice",
+"elusive": "hard to find or grasp",
+"cryptic": "mysterious and hard to decode",
+"subtle": "delicate and hard to notice"
+},
+"rule": "'Palpable' means obvious. The clue stopped the case from being an 'intellectual problem', so it must have given the answer away.",
+"drop": true,
+"why": "cut after the blind test"
+},
+{
+"word": "perilous",
+"drop": true,
+"why": "Other hard or risky words like arduous fit the blank equally well."
+},
+{
+"word": "querulous",
+"g": 2350,
+"book": "His Last Bow",
+"form": "querulous",
+"passage": "“The London criminal is certainly a dull fellow,” said he in the querulous voice of the sportsman whose game has failed him. “Look out this window, Watson. See how the figures loom up, are dimly seen, and then blend once more into the cloud-bank.",
+"options": [
+"querulous",
+"ebullient",
+"serene",
+"jovial"
+],
+"definitions": {
+"querulous": "complaining in a whiny way",
+"ebullient": "bubbling with cheerful excitement",
+"serene": "calm and untroubled",
+"jovial": "cheerful and good humored"
+},
+"rule": "'Querulous' means complaining. He calls the criminal 'a dull fellow' and sounds like a sportsman whose 'game has failed him'."
+},
+{
+"word": "serene",
+"drop": true,
+"why": "Metaphor depends on the story and wrong choices like ominous could fit."
+},
+{
+"word": "superficial",
+"g": 244,
+"book": "A Study in Scarlet",
+"form": "superficial",
+"passage": "That trick of his of breaking in on his friends’ thoughts with an apropos remark after a quarter of an hour’s silence is really very showy and superficial. He had some analytical genius, no doubt; but he was by no means such a phenomenon as Poe appeared to imagine.”",
+"options": [
+"superficial",
+"profound",
+"scrupulous",
+"ponderous"
+],
+"definitions": {
+"superficial": "shallow and lacking depth",
+"profound": "deep and thoughtful",
+"scrupulous": "extremely careful and honest",
+"ponderous": "heavy, slow, and dull"
+},
+"rule": "'Superficial' means shallow. It matches 'showy', and the speaker adds that the man was 'by no means' a phenomenon."
+},
+{
+"word": "tranquil",
+"g": 2097,
+"book": "The Sign of the Four",
+"form": "tranquil",
+"passage": "As we drove away I stole a glance back, and I still seem to see that little group on the step, the two graceful, clinging figures, the half-opened door, the hall-light shining through stained glass, the barometer, and the bright stair-rods. It was soothing to catch even that passing glimpse of a tranquil English home in the midst of the wild, dark business which had absorbed us.",
+"options": [
+"tranquil",
+"turbulent",
+"raucous",
+"precarious"
+],
+"definitions": {
+"tranquil": "calm and peaceful",
+"turbulent": "wild and disorderly",
+"raucous": "loud and rough",
+"precarious": "unsafe and unstable"
+},
+"rule": "'Tranquil' means peaceful. The glimpse was 'soothing' and is set against the 'wild, dark business' of the case."
+},
+{
+"word": "ubiquitous",
+"drop": true,
+"why": "No clue about what the reporter does that makes him ubiquitous."
+},
+{
+"word": "venerable",
+"drop": true,
+"why": "Old age clue also fits words like decrepit; weak distinction."
+},
+{
+"word": "ardent",
+"g": 108,
+"book": "The Return of Sherlock Holmes",
+"form": "ardent",
+"passage": "His handsome face was distorted with a spasm of despair, and his hands tore at his hair. For a moment we caught a glimpse of the natural man, impulsive, ardent, keenly sensitive. The next the aristocratic mask was replaced, and the gentle voice had returned.",
+"options": [
+"ardent",
+"dispassionate",
+"impassive",
+"aloof"
+],
+"definitions": {
+"ardent": "passionate and eager",
+"dispassionate": "calm and free of emotion",
+"impassive": "showing no feeling",
+"aloof": "distant and reserved"
+},
+"rule": "'Ardent' means passionate. It sits in a list with 'impulsive' and 'keenly sensitive', which describe the 'natural man' under the cool mask."
+},
+{
+"word": "boisterous",
+"g": 3289,
+"book": "The Valley of Fear",
+"form": "boisterous",
+"passage": "The swarthy giant glared at him, and his hairy paw closed for an instant round the glass as though he would hurl it at the head of his companion. Then he laughed in his loud, boisterous, insincere fashion.",
+"options": [
+"boisterous",
+"demure",
+"reticent",
+"furtive"
+],
+"definitions": {
+"boisterous": "loud and rowdy",
+"demure": "modest and quiet in manner",
+"reticent": "reserved and slow to speak",
+"furtive": "sneaky and secretive"
+},
+"rule": "'Boisterous' means loud and rowdy. It comes right after 'loud' in the list describing his laugh."
+},
+{
+"word": "congenial",
+"g": 108,
+"book": "The Return of Sherlock Holmes",
+"form": "congenial",
+"passage": "My friend’s temper had not improved since he had been deprived of the congenial surroundings of Baker Street. Without his scrapbooks, his chemicals, and his homely untidiness, he was an uncomfortable man. He shrugged his shoulders in ungracious acquiescence, while our visitor in hurried words and with much excitable gesticulation poured forth his story.",
+"options": [
+"congenial",
+"opulent",
+"austere",
+"hostile"
+],
+"definitions": {
+"congenial": "pleasant and well suited to him",
+"opulent": "luxurious and rich",
+"austere": "plain and strict",
+"hostile": "unfriendly and unwelcoming in manner"
+},
+"rule": "'Congenial' means pleasant and comfortable for him. Without his 'scrapbooks' and 'homely untidiness' he became 'uncomfortable'."
+},
+{
+"word": "covert",
+"drop": true,
+"why": "Unusual sense (a thicket) and the word is not used as a modern student expects."
+},
+{
+"word": "debonair",
+"drop": true,
+"why": "Passage gives no real clue to the manner's quality beyond 'hostile'."
+},
+{
+"word": "defiant",
+"drop": true,
+"why": "Clues are vague and sullen or hostile would fit as well."
+},
+{
+"word": "erroneous",
+"g": 834,
+"book": "The Memoirs of Sherlock Holmes",
+"form": "erroneous",
+"passage": "“I confess,” said he, “that any theories which I had formed from the newspaper reports were entirely erroneous. And yet there were indications there, had they not been overlaid by other details which concealed their true import.",
+"options": [
+"erroneous",
+"impeccable",
+"sagacious",
+"infallible"
+],
+"definitions": {
+"erroneous": "mistaken or wrong",
+"impeccable": "perfect, without any flaw",
+"sagacious": "wise and sharp in judgment",
+"infallible": "incapable of ever being wrong"
+},
+"rule": "'Erroneous' means mistaken. He says 'I confess' and then explains that real clues had been 'overlaid', so his theories were wrong."
+},
+{
+"word": "flamboyant",
+"g": 69700,
+"book": "The Case-Book of Sherlock Holmes",
+"form": "flamboyant",
+"passage": "He was well dressed, but his brilliant necktie, shining pin, and glittering rings were flamboyant in their effect. As the door closed behind him he looked round him with fierce, startled eyes, like one who suspects a trap at every turn.",
+"options": [
+"flamboyant",
+"unobtrusive",
+"subtle",
+"nondescript"
+],
+"definitions": {
+"flamboyant": "showy and attention seeking",
+"unobtrusive": "not likely to be noticed",
+"subtle": "delicate and hard to notice",
+"nondescript": "plain and without special features"
+},
+"rule": "'Flamboyant' means showy. The 'brilliant necktie', 'shining pin', and 'glittering rings' all draw the eye."
+},
+{
+"word": "gaunt",
+"g": 108,
+"book": "The Return of Sherlock Holmes",
+"form": "gaunt",
+"passage": "Stanley Hopkins led us first to the house, where he introduced us to a haggard, grey-haired woman, the widow of the murdered man, whose gaunt and deep-lined face, with the furtive look of terror in the depths of her red-rimmed eyes, told of the years of hardship and ill-usage which she had endured.",
+"options": [
+"gaunt",
+"florid",
+"placid",
+"jovial"
+],
+"definitions": {
+"gaunt": "thin and bony",
+"florid": "reddish and healthy looking",
+"placid": "calm and not easily upset",
+"jovial": "cheerful and good humored"
+},
+"rule": "'Gaunt' means thin and worn looking. She is 'haggard' and her face tells of 'years of hardship and ill-usage'."
+},
+{
+"word": "haphazard",
+"drop": true,
+"why": "Passage gives no explanation of why the burglary was not haphazard."
+},
+{
+"word": "innate",
+"drop": true,
+"why": "Intrinsic or natural would fit equally and distractors are not clearly contradicted."
+},
+{
+"word": "intrinsic",
+"g": 244,
+"book": "A Study in Scarlet",
+"form": "intrinsic",
+"passage": "“Well, really, it can hardly be described as otherwise,” said Sherlock Holmes, smiling at my surprise. “The proof of its intrinsic simplicity is, that without any help save a few very ordinary deductions I was able to lay my hand upon the criminal within three days.”",
+"options": [
+"intrinsic",
+"ostensible",
+"illusory",
+"spurious"
+],
+"definitions": {
+"intrinsic": "belonging naturally to the thing itself",
+"ostensible": "apparent but not necessarily real",
+"illusory": "based on a false impression",
+"spurious": "fake or not genuine"
+},
+"rule": "'Intrinsic' means built in. He proves the case was truly simple because 'very ordinary deductions' solved it in three days.",
+"drop": true,
+"why": "cut after the blind test"
+},
+{
+"word": "momentous",
+"g": 244,
+"book": "A Study in Scarlet",
+"form": "momentous",
+"passage": "The intelligence with which Lestrade greeted us was so momentous and so unexpected, that we were all three fairly dumfoundered. Gregson sprang out of his chair and upset the remainder of his whiskey and water.",
+"options": [
+"momentous",
+"mundane",
+"innocuous",
+"banal"
+],
+"definitions": {
+"momentous": "of great importance",
+"mundane": "ordinary and dull",
+"innocuous": "harmless and not likely to offend",
+"banal": "dull from being overused"
+},
+"rule": "'Momentous' means very important. It is paired with 'unexpected', and the news left the men 'dumfoundered'."
+},
+{
+"word": "pungent",
+"g": 108,
+"book": "The Return of Sherlock Holmes",
+"form": "pungent",
+"passage": "There was a sharp snick as the electric light was turned on. The door closed once more, and the pungent reek of a strong cigar was borne to our nostrils. Then the footsteps continued backward and forward, backward and forward, within a few yards of us.",
+"options": [
+"pungent",
+"insipid",
+"subtle",
+"unobtrusive"
+],
+"definitions": {
+"pungent": "sharp and strong smelling",
+"insipid": "bland and lacking flavor or smell",
+"subtle": "delicate and hard to notice",
+"unobtrusive": "not likely to be noticed"
+},
+"rule": "'Pungent' means sharp and strong smelling. The words 'reek' and 'strong cigar' show the smell was powerful."
+},
+{
+"word": "sallow",
+"drop": true,
+"why": "No clue in any passage to suggest the color of the face."
+},
+{
+"word": "slovenly",
+"g": 1661,
+"book": "The Adventures of Sherlock Holmes",
+"form": "slovenly",
+"passage": "You shave every morning, and in this season you shave by the sunlight; but since your shaving is less and less complete as we get farther back on the left side, until it becomes positively slovenly as we get round the angle of the jaw, it is surely very clear that that side is less illuminated than the other.",
+"options": [
+"slovenly",
+"meticulous",
+"impeccable",
+"fastidious"
+],
+"definitions": {
+"slovenly": "sloppy and careless",
+"meticulous": "extremely careful about details",
+"impeccable": "perfect, without any flaw",
+"fastidious": "very particular about neatness"
+},
+"rule": "'Slovenly' means sloppy. His shaving is 'less and less complete' on the dark side, so it ends up careless."
+},
+{
+"word": "abstruse",
+"g": 108,
+"book": "The Return of Sherlock Holmes",
+"form": "abstruse",
+"passage": "Her visit was, I remember, extremely unwelcome to Holmes, for he was immersed at the moment in a very abstruse and complicated problem concerning the peculiar persecution to which John Vincent Harden, the well-known tobacco millionaire, had been subjected.",
+"options": [
+"abstruse",
+"mundane",
+"frivolous",
+"superficial"
+],
+"definitions": {
+"abstruse": "hard to understand because deep or obscure",
+"mundane": "ordinary and everyday, not interesting",
+"frivolous": "silly and not serious",
+"superficial": "shallow, concerned only with the surface"
+},
+"rule": "\"Abstruse\" means hard to understand. The problem is \"complicated,\" Holmes is \"immersed\" in it, and it involves a \"peculiar persecution,\" so it is not ordinary, silly, or shallow."
+},
+{
+"word": "admonish",
+"drop": true,
+"why": "unclear which sense; berate or warn would both fit"
+},
+{
+"word": "affable",
+"g": 244,
+"book": "A Study in Scarlet",
+"form": "affable",
+"passage": "Our prisoner’s furious resistance did not apparently indicate any ferocity in his disposition towards ourselves, for on finding himself powerless, he smiled in an affable manner, and expressed his hopes that he had not hurt any of us in the scuffle.",
+"options": [
+"affable",
+"sullen",
+"belligerent",
+"brusque"
+],
+"definitions": {
+"affable": "friendly and easy to talk to",
+"sullen": "gloomy and silently resentful",
+"belligerent": "eager to fight or quarrel",
+"brusque": "abrupt and rude in manner"
+},
+"rule": "\"Affable\" means friendly. The prisoner \"smiled\" and \"expressed his hopes that he had not hurt any of us,\" which is the opposite of gloomy, quarrelsome, or curt."
+},
+{
+"word": "aloof",
+"g": 69700,
+"book": "The Case-Book of Sherlock Holmes",
+"form": "aloof",
+"passage": "Murdoch was the mathematical coach at the establishment, a tall, dark, thin man, so taciturn and aloof that none can be said to have been his friend. He seemed to live in some high, abstract region of surds and conic sections with little to connect him with ordinary life.",
+"options": [
+"aloof",
+"gregarious",
+"convivial",
+"exuberant"
+],
+"definitions": {
+"aloof": "distant and unwilling to join others",
+"gregarious": "fond of company, sociable",
+"convivial": "cheerful and fond of lively company",
+"exuberant": "full of high, bubbling spirits"
+},
+"rule": "\"Aloof\" means distant and cold toward others. He was \"taciturn and aloof\" so that \"none can be said to have been his friend,\" and a sociable or cheerful man would have had friends."
+},
+{
+"word": "arbitrary",
+"drop": true,
+"why": "passage clue too weak to rule out judicious type choices"
+},
+{
+"word": "ascertain",
+"g": 244,
+"book": "A Study in Scarlet",
+"form": "ascertained",
+"passage": "I naturally began by examining the roadway, and there, as I have already explained to you, I saw clearly the marks of a cab, which, I ascertained by inquiry, must have been there during the night.",
+"options": [
+"ascertained",
+"conjectured",
+"stipulated",
+"reiterated"
+],
+"definitions": {
+"ascertained": "found out for certain",
+"conjectured": "guessed without firm evidence",
+"stipulated": "demanded as a condition",
+"reiterated": "said again, repeated"
+},
+"rule": "\"Ascertained\" means found out for sure. The cab marks were learned \"by inquiry,\" which means asking people, not guessing, demanding, or repeating.",
+"drop": true,
+"why": "cut after the blind test"
+},
+{
+"word": "assuage",
+"g": 244,
+"book": "A Study in Scarlet",
+"form": "assuage",
+"passage": "As he stood by the desolate fire, he felt that the only one thing which could assuage his grief would be thorough and complete retribution, brought by his own hand upon his enemies. His strong will and untiring energy should, he determined, be devoted to that one end.",
+"options": [
+"assuage",
+"exacerbate",
+"vindicate",
+"elicit"
+],
+"definitions": {
+"assuage": "to ease or relieve",
+"exacerbate": "to make worse",
+"vindicate": "to prove right or justified",
+"elicit": "to draw out a response"
+},
+"rule": "\"Assuage\" means to ease or soothe. He is in \"grief\" and sees \"thorough and complete retribution\" as the only cure, so the word must mean relieve, not make worse."
+},
+{
+"word": "audacious",
+"g": 69700,
+"book": "The Case-Book of Sherlock Holmes",
+"form": "audacious",
+"passage": "I might spoil my own game, and even be ordered off the premises, if I were too audacious, for I was still conscious that I was being watched. Therefore, I strolled back to the house and waited for night before I went on with my inquiry.",
+"options": [
+"audacious",
+"circumspect",
+"diffident",
+"reticent"
+],
+"definitions": {
+"audacious": "bold and willing to take risks",
+"circumspect": "careful and watchful about consequences",
+"diffident": "shy and lacking self confidence",
+"reticent": "reserved and not speaking freely"
+},
+"rule": "\"Audacious\" means bold. Being \"too audacious\" could \"spoil my own game\" and get him \"ordered off the premises,\" while being too careful or shy would not."
+},
+{
+"word": "benevolent",
+"g": 1661,
+"book": "The Adventures of Sherlock Holmes",
+"form": "benevolent",
+"passage": "His broad black hat, his baggy trousers, his white tie, his sympathetic smile, and general look of peering and benevolent curiosity were such as Mr. John Hare alone could have equalled. It was not merely that Holmes changed his costume.",
+"options": [
+"benevolent",
+"sardonic",
+"malicious",
+"supercilious"
+],
+"definitions": {
+"benevolent": "kind and well meaning",
+"sardonic": "mocking in a bitter way",
+"malicious": "wanting to harm others",
+"supercilious": "acting superior and looking down on others"
+},
+"rule": "\"Benevolent\" means kindly. It goes with his \"sympathetic smile,\" so a mocking, spiteful, or snobbish look would not fit."
+},
+{
+"word": "candid",
+"g": 1661,
+"book": "The Adventures of Sherlock Holmes",
+"form": "candid",
+"passage": "“I begin to think, Watson,” said Holmes, “that I make a mistake in explaining. ‘Omne ignotum pro magnifico,’ you know, and my poor little reputation, such as it is, will suffer shipwreck if I am so candid.",
+"options": [
+"candid",
+"reticent",
+"evasive",
+"laconic"
+],
+"definitions": {
+"candid": "open and honest in what one says",
+"reticent": "unwilling to speak openly or share",
+"evasive": "avoiding a direct answer on purpose",
+"laconic": "using very few words"
+},
+"rule": "\"Candid\" means frank and open. Holmes says he \"makes a mistake in explaining,\" so being \"so candid\" means telling everything openly, not holding back.",
+"drop": true,
+"why": "cut after the blind test"
+},
+{
+"word": "circumspect",
+"g": 2852,
+"book": "The Hound of the Baskervilles",
+"form": "circumspect",
+"passage": "Learn then from this story not to fear the fruits of the past, but rather to be circumspect in the future, that those foul passions whereby our family has suffered so grievously may not again be loosed to our undoing.",
+"options": [
+"circumspect",
+"impetuous",
+"complacent",
+"intrepid"
+],
+"definitions": {
+"circumspect": "careful and cautious about consequences",
+"impetuous": "acting suddenly without thinking",
+"complacent": "smugly satisfied and unaware of danger",
+"intrepid": "fearless and brave"
+},
+"rule": "\"Circumspect\" means careful and cautious. The writer wants this \"that those foul passions\" may \"not again be loosed,\" which calls for caution, not rashness, smugness, or fearlessness."
+},
+{
+"word": "conciliatory",
+"drop": true,
+"why": "depends on unstated earlier hostility"
+},
+{
+"word": "confound",
+"drop": true,
+"why": "old fashioned sense of confuse X with Y"
+},
+{
+"word": "conundrum",
+"drop": true,
+"why": "other nouns like calamities fit equally"
+},
+{
+"word": "corroborate",
+"drop": true,
+"why": "refute reading also fits without plot knowledge"
+},
+{
+"word": "cynical",
+"g": 1661,
+"book": "The Adventures of Sherlock Holmes",
+"form": "cynical",
+"passage": "Yet when I think of him in cold blood, far away from the glamour of his presence, I am convinced from his cynical speech and the look which I have caught in his eyes that he is one who should be deeply distrusted.",
+"options": [
+"cynical",
+"genial",
+"ingenuous",
+"earnest"
+],
+"definitions": {
+"cynical": "distrustful and sneering about people's motives",
+"genial": "warm and friendly",
+"ingenuous": "innocent and trusting",
+"earnest": "sincere and serious"
+},
+"rule": "\"Cynical\" means scornfully distrustful. His \"cynical speech\" and the look in his eyes show \"he is one who should be deeply distrusted,\" so a warm, innocent, or sincere way of speaking would not fit."
+},
+{
+"word": "derision",
+"drop": true,
+"why": "other reactions equally plausible in the passage"
+},
+{
+"word": "devious",
+"drop": true,
+"why": "circuitous would be a synonym and others not contradicted"
+},
+{
+"word": "disdain",
+"g": 108,
+"book": "The Return of Sherlock Holmes",
+"form": "disdain",
+"passage": "It was at such moments that for an instant he ceased to be a reasoning machine, and betrayed his human love for admiration and applause. The same singularly proud and reserved nature which turned away with disdain from popular notoriety was capable of being moved to its depths by spontaneous wonder and praise from a friend.",
+"options": [
+"disdain",
+"trepidation",
+"deference",
+"chagrin"
+],
+"definitions": {
+"disdain": "scornful dislike for something seen as unworthy",
+"trepidation": "nervous fear about what may happen",
+"deference": "respectful submission to another",
+"chagrin": "annoyed disappointment after a failure"
+},
+"rule": "\"Disdain\" means scorn. His nature was \"singularly proud and reserved,\" and the sentence contrasts this with his love of \"admiration and applause,\" so he turned away from notoriety scornfully."
+},
+{
+"word": "dismal",
+"g": 2097,
+"book": "The Sign of the Four",
+"form": "dismal",
+"passage": "Stand at the window here. Was ever such a dreary, dismal, unprofitable world? See how the yellow fog swirls down the street and drifts across the dun-coloured houses. What could be more hopelessly prosaic and material?",
+"options": [
+"dismal",
+"serene",
+"opulent",
+"jovial"
+],
+"definitions": {
+"dismal": "gloomy and depressing",
+"serene": "calm and peaceful",
+"opulent": "richly luxurious and splendid",
+"jovial": "cheerful and full of good humor"
+},
+"rule": "\"Dismal\" means gloomy. It sits in the list \"dreary, dismal, unprofitable\" and is followed by \"yellow fog,\" so a peaceful, rich, or cheerful world would not fit."
+},
+{
+"word": "dubious",
+"drop": true,
+"why": "hesitant glance not clearly decided by passage"
+},
+{
+"word": "efface",
+"drop": true,
+"why": "wrong choices unnatural or synonyms"
+},
+{
+"word": "equanimity",
+"g": 834,
+"book": "The Memoirs of Sherlock Holmes",
+"form": "equanimity",
+"passage": "“I think that I may go so far as to say, Watson, that I have not lived wholly in vain,” he remarked. “If my record were closed to-night I could still survey it with equanimity. The air of London is the sweeter for my presence.",
+"options": [
+"equanimity",
+"remorse",
+"trepidation",
+"contempt"
+],
+"definitions": {
+"equanimity": "calm and steady temper, especially under pressure",
+"remorse": "deep regret and guilt over a wrong",
+"trepidation": "fearful anxiety about the future",
+"contempt": "scorn for something seen as worthless"
+},
+"rule": "\"Equanimity\" means calm. Holmes says he \"has not lived wholly in vain\" and that London is \"sweeter for my presence,\" so he could look back on his life calmly, not with regret, fear, or scorn."
+},
+{
+"word": "exasperate",
+"g": 244,
+"book": "A Study in Scarlet",
+"form": "exasperating",
+"passage": "I might have rebelled against these exasperating solos had it not been that he usually terminated them by playing in quick succession a whole series of my favourite airs as a slight compensation for the trial upon my patience.",
+"options": [
+"exasperating",
+"soporific",
+"exuberant",
+"eloquent"
+],
+"definitions": {
+"exasperating": "extremely annoying and irritating",
+"soporific": "tending to make people feel sleepy",
+"exuberant": "joyfully energetic and high spirited",
+"eloquent": "fluent and moving in expression"
+},
+"rule": "\"Exasperating\" means extremely irritating. He \"might have rebelled\" against the solos, and the later tunes were \"compensation for the trial upon my patience,\" so the solos annoyed him."
+},
+{
+"word": "exuberant",
+"g": 834,
+"book": "The Memoirs of Sherlock Holmes",
+"form": "exuberant",
+"passage": "On the contrary, I can never recollect having seen him in such exuberant spirits. Again and again he recurred to the fact that if he could be assured that society was freed from Professor Moriarty he would cheerfully bring his own career to a conclusion.",
+"options": [
+"exuberant",
+"despondent",
+"morose",
+"pensive"
+],
+"definitions": {
+"exuberant": "overflowing with joyful energy",
+"despondent": "deeply discouraged and hopeless",
+"morose": "gloomy and ill tempered",
+"pensive": "quietly and deeply thoughtful"
+},
+"rule": "\"Exuberant\" means joyfully high spirited. Holmes says he would \"cheerfully\" end his career if Moriarty were gone, so his \"spirits\" were happy, not gloomy or thoughtful.",
+"drop": true,
+"why": "cut after the blind test"
+},
+{
+"word": "feasible",
+"drop": true,
+"why": "weak clue"
+},
+{
+"word": "flippant",
+"g": 2097,
+"book": "The Sign of the Four",
+"form": "flippant",
+"passage": "For myself, I confess that I had now conceived the utmost horror of the man, not only for this cold-blooded business in which he had been concerned, but even more for the somewhat flippant and careless way in which he narrated it.",
+"options": [
+"flippant",
+"reverent",
+"meticulous",
+"somber"
+],
+"definitions": {
+"flippant": "treating serious matters without proper respect",
+"reverent": "showing deep respect and seriousness",
+"meticulous": "extremely careful about details",
+"somber": "serious and gloomy"
+},
+"rule": "\"Flippant\" means not serious enough about a serious matter. It is paired with \"careless\" and set against a \"cold-blooded business,\" so a respectful, careful, or solemn way of telling the story does not fit."
+},
+{
+"word": "forlorn",
+"g": 2097,
+"book": "The Sign of the Four",
+"form": "forlorn",
+"passage": "The square, massive house, with its black, empty windows and high, bare walls, towered up, sad and forlorn, behind us. Our course led right across the grounds, in and out among the trenches and pits with which they were scarred and intersected.",
+"options": [
+"forlorn",
+"jaunty",
+"opulent",
+"ebullient"
+],
+"definitions": {
+"forlorn": "sad, lonely, and abandoned looking",
+"jaunty": "cheerful and self confident in manner",
+"opulent": "showing great wealth and luxury",
+"ebullient": "bubbling over with enthusiasm"
+},
+"rule": "\"Forlorn\" means sad and abandoned. The house has \"black, empty windows and high, bare walls\" and is called \"sad,\" so cheerful or luxurious words do not fit."
+},
+{
+"word": "futile",
+"g": 69700,
+"book": "The Case-Book of Sherlock Holmes",
+"form": "futile",
+"passage": "I expect those cries about a monster, of which our visitor has spoken, were nocturnal reminiscences of the dear departed. However, our speculations are futile until we have all the facts. There is a cold partridge on the sideboard, Watson, and a bottle of Montrachet.",
+"options": [
+"futile",
+"cogent",
+"judicious",
+"incisive"
+],
+"definitions": {
+"futile": "useless and unable to produce results",
+"cogent": "convincing and clearly reasoned",
+"judicious": "showing good sense and sound judgment",
+"incisive": "sharp and clear in analysis"
+},
+"rule": "\"Futile\" means pointless. Holmes says the speculations are this \"until we have all the facts,\" so guessing without facts is useless rather than convincing, wise, or sharp."
+},
+{
+"word": "gregarious",
+"g": 3289,
+"book": "The Valley of Fear",
+"form": "gregarious",
+"passage": "Anyone could pick him at once as gregarious in his habits and communicative in his nature, with a quick wit and a ready smile. And yet the man who studied him more closely might discern a certain firmness of jaw and grim tightness about the lips which would warn him that there were depths beyond, and that this pleasant, brown-haired young Irishman might conceivably leave his mark for good or evil upon any society to which he was introduced.",
+"options": [
+"gregarious",
+"reclusive",
+"taciturn",
+"aloof"
+],
+"definitions": {
+"gregarious": "sociable and fond of company",
+"reclusive": "avoiding other people, living alone",
+"taciturn": "saying very little, uncommunicative",
+"aloof": "distant and unfriendly toward others"
+},
+"rule": "\"Gregarious\" means sociable. He is \"communicative\" with \"a quick wit and a ready smile,\" so a loner, a silent man, or a cold one would not fit."
+},
+{
+"word": "ignominious",
+"drop": true,
+"why": "passage does not signal humiliation"
+},
+{
+"word": "impede",
+"g": 108,
+"book": "The Return of Sherlock Holmes",
+"form": "impede",
+"passage": "The carriage stopped, the doctor alighted, walked swiftly back to where I had also halted, and told me in an excellent sardonic fashion that he feared the road was narrow, and that he hoped his carriage did not impede the passage of my bicycle.",
+"options": [
+"impede",
+"expedite",
+"facilitate",
+"accelerate"
+],
+"definitions": {
+"impede": "to slow down or block progress",
+"expedite": "to speed up a process",
+"facilitate": "to make a task easier",
+"accelerate": "to make happen faster"
+},
+"rule": "\"Impede\" means to block or hinder. The doctor says he \"feared the road was narrow,\" and his sardonic hope is that the carriage did not get in the bicycle's way."
+},
+{
+"word": "imperturbable",
+"drop": true,
+"why": "clue too weak"
+},
+{
+"word": "implacable",
+"g": 3289,
+"book": "The Valley of Fear",
+"form": "implacable",
+"passage": "He imagined that some secret society, some implacable organization, was on Douglas’s track, which would never rest until it killed him. Some remarks of his had given him this idea; though he had never told him what the society was, nor how he had come to offend it.",
+"options": [
+"implacable",
+"conciliatory",
+"magnanimous",
+"benign"
+],
+"definitions": {
+"implacable": "impossible to calm or satisfy",
+"conciliatory": "willing to make peace",
+"magnanimous": "generous and forgiving",
+"benign": "gentle and harmless"
+},
+"rule": "\"Implacable\" means relentless and impossible to appease. The organization \"would never rest until it killed him,\" so it is not peaceful, generous, or harmless."
+},
+{
+"word": "impunity",
+"g": 108,
+"book": "The Return of Sherlock Holmes",
+"form": "impunity",
+"passage": "No doubt the object of our journey was to catch him in the very act, and I could not but admire the cunning with which my friend had inserted a wrong clue in the evening paper, so as to give the fellow the idea that he could continue his scheme with impunity.",
+"options": [
+"impunity",
+"trepidation",
+"remorse",
+"diffidence"
+],
+"definitions": {
+"impunity": "freedom from punishment or harm",
+"trepidation": "fearful anxiety about what may come",
+"remorse": "deep regret and guilt over a wrong",
+"diffidence": "shy lack of confidence"
+},
+"rule": "\"Impunity\" means without fear of being punished. Holmes planted a \"wrong clue\" to make the criminal believe he could \"continue his scheme\" safely, not with fear, regret, or shyness."
+},
+{
+"word": "insolent",
+"g": 834,
+"book": "The Memoirs of Sherlock Holmes",
+"form": "insolent",
+"passage": "And all this with such a sneering, leering, insolent face that I would have knocked him down twenty times over if he had been a man of my own age. I tell you, Holmes, I have had to keep a tight hold upon myself all this time; and now I am asking myself whether, if I had let myself go a little more, I might not have been a wiser man.",
+"options": [
+"insolent",
+"demure",
+"benign",
+"diffident"
+],
+"definitions": {
+"insolent": "boldly rude and disrespectful",
+"demure": "modest and quietly reserved",
+"benign": "kind and gentle",
+"diffident": "shy and lacking confidence"
+},
+"rule": "\"Insolent\" means rude and disrespectful. It joins \"sneering, leering,\" and the speaker says he \"would have knocked him down twenty times over,\" so the face was not modest, kind, or shy."
+},
+{
+"word": "irreproachable",
+"g": 2350,
+"book": "His Last Bow",
+"form": "irreproachable",
+"passage": "If Garcia could do whatever he had to do and be back by the hour mentioned he had evidently a powerful reply to any accusation. Here was this irreproachable Englishman ready to swear in any court of law that the accused was in the house all the time. It was an insurance against the worst.”",
+"options": [
+"irreproachable",
+"notorious",
+"dubious",
+"nefarious"
+],
+"definitions": {
+"irreproachable": "blameless, with no fault to criticize",
+"notorious": "famous for something bad",
+"dubious": "doubtful and open to suspicion",
+"nefarious": "wicked and evil"
+},
+"rule": "\"Irreproachable\" means blameless. The man is a witness \"ready to swear in any court of law,\" an \"insurance against the worst,\" so he must be trusted, not notorious, doubtful, or wicked."
+},
+{
+"word": "jovial",
+"drop": true,
+"why": "depends on unstated look on his face"
+},
+{
+"word": "listless",
+"g": 108,
+"book": "The Return of Sherlock Holmes",
+"form": "listless",
+"passage": "A change had come over Holmes’s manner. He had lost his listless expression, and again I saw an alert light of interest in his keen, deep-set eyes. He raised the cork and examined it minutely.",
+"options": [
+"listless",
+"vigilant",
+"zealous",
+"ardent"
+],
+"definitions": {
+"listless": "lacking energy or interest",
+"vigilant": "watchful and alert for danger",
+"zealous": "filled with eager devotion",
+"ardent": "passionate and intensely eager"
+},
+"rule": "\"Listless\" means lacking energy. He \"lost\" that look and \"again\" showed \"an alert light of interest,\" so it must be the opposite of alert and eager."
+},
+{
+"word": "malign",
+"g": 69700,
+"book": "The Case-Book of Sherlock Holmes",
+"form": "malign",
+"passage": "You have called, as I understand, to malign my fiancé, Baron Gruner. It is only by my father's request that I see you at all, and I warn you in advance that anything you can say could not possibly have the slightest effect upon my mind.'",
+"options": [
+"malign",
+"laud",
+"exonerate",
+"commend"
+],
+"definitions": {
+"malign": "to speak harmful or evil words about",
+"laud": "to praise highly",
+"exonerate": "to clear of blame",
+"commend": "to praise as worthy"
+},
+"rule": "\"Malign\" means to speak ill of. She warns that anything the visitor says \"could not possibly have the slightest effect upon my mind,\" which only makes sense if he came to attack her fiance."
+},
+{
+"word": "obstinate",
+"g": 2350,
+"book": "His Last Bow",
+"form": "obstinate",
+"passage": "To tell the truth, my desire to fetch a doctor had somewhat weakened, for poor Holmes was so obviously delirious that it seemed dangerous to leave him. However, he was as eager now to consult the person named as he had been obstinate in refusing.",
+"options": [
+"obstinate",
+"docile",
+"compliant",
+"deferential"
+],
+"definitions": {
+"obstinate": "stubborn and unwilling to change",
+"docile": "easily taught or led",
+"compliant": "willing to go along with others",
+"deferential": "politely yielding to another's wishes"
+},
+"rule": "\"Obstinate\" means stubborn. The sentence compares how \"eager\" he is now with how strongly he had been \"refusing,\" so he must have been firmly stubborn, not yielding."
+},
+{
+"word": "perfunctory",
+"drop": true,
+"why": "careful first reading also plausible"
+},
+{
+"word": "preposterous",
+"g": 2350,
+"book": "His Last Bow",
+"form": "preposterous",
+"passage": "Arthur was the most single-minded, chivalrous, patriotic man upon earth. He would have cut his right hand off before he would sell a State secret confided to his keeping. It is absurd, impossible, preposterous to anyone who knew him.”",
+"options": [
+"preposterous",
+"plausible",
+"feasible",
+"judicious"
+],
+"definitions": {
+"preposterous": "completely absurd and unreasonable",
+"plausible": "seeming reasonable and likely",
+"feasible": "possible to do or achieve",
+"judicious": "showing good judgment"
+},
+"rule": "\"Preposterous\" means absurd. It follows \"absurd, impossible,\" so the idea of Arthur selling a secret cannot be called plausible, feasible, or wise."
+},
+{
+"word": "remorse",
+"g": 2350,
+"book": "His Last Bow",
+"form": "remorse",
+"passage": "The man who had the guilt upon his soul of having brought such a fate upon his own family might well be driven by remorse to inflict it upon himself. There are, however, some cogent reasons against it.",
+"options": [
+"remorse",
+"avarice",
+"malice",
+"apathy"
+],
+"definitions": {
+"remorse": "deep regret and guilt over a wrong",
+"avarice": "greedy desire for wealth",
+"malice": "desire to harm others",
+"apathy": "lack of interest or feeling"
+},
+"rule": "\"Remorse\" means deep guilt over a wrong. The man has \"guilt upon his soul,\" so he would be driven by remorse, not greed, spite, or indifference.",
+"drop": true,
+"why": "cut after the blind test"
+},
+{
+"word": "succinct",
+"drop": true,
+"why": "no clue to brevity in passage"
+},
+{
+"word": "torpor",
+"g": 244,
+"book": "A Study in Scarlet",
+"form": "torpor",
+"passage": "His eyes were sharp and piercing, save during those intervals of torpor to which I have alluded; and his thin, hawk-like nose gave his whole expression an air of alertness and decision. His chin, too, had the prominence and squareness which mark the man of determination.",
+"options": [
+"torpor",
+"fervor",
+"exuberance",
+"vigilance"
+],
+"definitions": {
+"torpor": "a sluggish, inactive state",
+"fervor": "intense passion or enthusiasm",
+"exuberance": "joyful, high spirited energy",
+"vigilance": "careful watchfulness for possible danger"
+},
+"rule": "\"Torpor\" means a sluggish, inactive state. His eyes were \"sharp and piercing\" except during these intervals, so they must be times of low energy, not passion, joy, or watchfulness."
+},
+{
+"word": "truculent",
+"drop": true,
+"why": "only clue is face coverings"
+},
+{
+"word": "unscrupulous",
+"g": 108,
+"book": "The Return of Sherlock Holmes",
+"form": "unscrupulous",
+"passage": "A large sum of money is at stake, for the scholarship is a very valuable one, and an unscrupulous man might very well run a risk in order to gain an advantage over his fellows.",
+"options": [
+"unscrupulous",
+"conscientious",
+"magnanimous",
+"irreproachable"
+],
+"definitions": {
+"unscrupulous": "without moral principles, willing to cheat",
+"conscientious": "careful to do what is right",
+"magnanimous": "generous and forgiving",
+"irreproachable": "blameless, with no fault"
+},
+"rule": "\"Unscrupulous\" means lacking moral principles. A man who would \"run a risk in order to gain an advantage over his fellows\" for a \"very valuable\" scholarship is one who cheats, not one who is principled or generous."
+},
+{
+"word": "whimsical",
+"drop": true,
+"why": "tone not pinned down by passage"
+},
+{
+"word": "baleful",
+"g": 3289,
+"book": "The Valley of Fear",
+"form": "baleful",
+"passage": "Baldwin had to take the proffered hand; for the baleful eye of the terrible Boss was upon him. But his sullen face showed how little the words of the other had moved him.",
+"options": [
+"baleful",
+"benign",
+"placid",
+"jovial"
+],
+"definitions": {
+"baleful": "threatening and filled with evil intent",
+"benign": "kind and gentle",
+"placid": "calm and undisturbed",
+"jovial": "cheerful and good humored"
+},
+"rule": "\"Baleful\" means menacing. The eye belongs to \"the terrible Boss,\" and Baldwin \"had to take the proffered hand,\" so the look was threatening, not kind or cheerful."
+},
+{
+"word": "circuitous",
+"drop": true,
+"why": "clandestine route also fits"
+},
+{
+"word": "contemptuous",
+"g": 69700,
+"book": "The Case-Book of Sherlock Holmes",
+"form": "contemptuous",
+"passage": "With an effort the Gold King mastered his fury. I could not but admire him, for by a supreme self-command he had turned in a minute from a hot flame of anger to a frigid and contemptuous indifference.",
+"options": [
+"contemptuous",
+"solicitous",
+"ardent",
+"genial"
+],
+"definitions": {
+"contemptuous": "showing scorn and a sense of superiority",
+"solicitous": "caring and anxious about another's needs",
+"ardent": "passionate and eager",
+"genial": "warm and friendly"
+},
+"rule": "\"Contemptuous\" means scornful. He has gone from \"anger\" to a \"frigid\" manner of \"indifference,\" so the word must be cold and dismissive, not caring, passionate, or warm."
+},
+{
+"word": "crestfallen",
+"drop": true,
+"why": "reaction not pinned down by passage"
+},
+{
+"word": "decrepit",
+"drop": true,
+"why": "wrong choices unrelated to handwriting about age"
+},
+{
+"word": "disconsolate",
+"drop": true,
+"why": "jaunty or resigned also plausible, plot dependent"
+},
+{
+"word": "estimable",
+"g": 108,
+"book": "The Return of Sherlock Holmes",
+"form": "estimable",
+"passage": "Who could have foreseen such a terrible catastrophe? So estimable a young man! I assure you that, after a few months’ training, he was an admirable assistant. What do you think of the matter, Mr. Holmes?”",
+"options": [
+"estimable",
+"reprehensible",
+"impudent",
+"pretentious"
+],
+"definitions": {
+"estimable": "deserving respect and admiration",
+"reprehensible": "deserving blame and criticism",
+"impudent": "rude and disrespectful",
+"pretentious": "trying to seem more important than one is"
+},
+"rule": "\"Estimable\" means worthy of respect. The next sentence calls him \"an admirable assistant,\" so the speaker is praising him."
+},
+{
+"word": "garish",
+"g": 3289,
+"book": "The Valley of Fear",
+"form": "garish",
+"passage": "The place was brilliantly lighted, and the huge, heavily gilt mirrors upon every wall reflected and multiplied the garish illumination. There were several bartenders in their shirt sleeves, hard at work mixing drinks for the loungers who fringed the broad, brass-trimmed counter.",
+"options": [
+"garish",
+"somber",
+"unobtrusive",
+"subdued"
+],
+"definitions": {
+"garish": "too bright, harsh, and showy",
+"somber": "dark and serious in tone",
+"unobtrusive": "not drawing attention",
+"subdued": "softened and low in intensity"
+},
+"rule": "\"Garish\" means glaringly bright and showy. The place was \"brilliantly lighted\" and the mirrors \"multiplied\" the light, so the lighting was not dim or understated."
+},
+{
+"word": "grievous",
+"drop": true,
+"why": "death scene, too grim"
+},
+{
+"word": "inert",
+"g": 244,
+"book": "A Study in Scarlet",
+"form": "inert",
+"passage": "The very pills which I suspected in the case of Drebber are actually found after the death of Stangerson. And yet they are inert. What can it mean? Surely my whole chain of reasoning cannot have been false.",
+"options": [
+"inert",
+"deleterious",
+"noxious",
+"virulent"
+],
+"definitions": {
+"inert": "chemically inactive, with no effect",
+"deleterious": "causing harm or damage",
+"noxious": "poisonous and unhealthy",
+"virulent": "extremely harmful and deadly"
+},
+"rule": "\"Inert\" means having no active effect. \"And yet\" signals a surprise: the pills seemed suspicious but turn out to be harmless, which is why Holmes asks \"What can it mean?\"",
+"drop": true,
+"why": "cut after the blind test"
+},
+{
+"word": "interminable",
+"g": 2097,
+"book": "The Sign of the Four",
+"form": "interminable",
+"passage": "He was clearly a confirmed hypochondriac, and I was dreamily conscious that he was pouring forth interminable trains of symptoms, and imploring information as to the composition and action of innumerable quack nostrums, some of which he bore about in a leather case in his pocket.",
+"options": [
+"interminable",
+"succinct",
+"terse",
+"cursory"
+],
+"definitions": {
+"interminable": "seeming to go on forever",
+"succinct": "brief and clearly expressed",
+"terse": "short and abrupt",
+"cursory": "quick and not thorough"
+},
+"rule": "\"Interminable\" means endless. He is \"pouring forth\" symptoms and asking about \"innumerable\" medicines, so the lists were long and endless, not brief or hasty."
+},
+{
+"word": "livid",
+"drop": true,
+"why": "ambiguous sense, pale versus furious"
+},
+{
+"word": "prosaic",
+"g": 2350,
+"book": "His Last Bow",
+"form": "prosaic",
+"passage": "It is the famous old Jacobean grange of High Gable, one mile on the farther side of Oxshott, and less than half a mile from the scene of the tragedy. The other mansions belonged to prosaic and respectable people who live far aloof from romance. But Mr. Henderson, of High Gable, was by all accounts a curious man to whom curious adventures might befall.",
+"options": [
+"prosaic",
+"eccentric",
+"flamboyant",
+"notorious"
+],
+"definitions": {
+"prosaic": "dull, ordinary, and lacking imagination",
+"eccentric": "odd and unconventional in behavior",
+"flamboyant": "showy and attention seeking",
+"notorious": "famous for something bad"
+},
+"rule": "\"Prosaic\" means dull and ordinary. These people are \"respectable\" and \"far aloof from romance,\" and \"But\" introduces Henderson as \"a curious man,\" so they must be the opposite."
+},
+{
+"word": "restive",
+"g": 1661,
+"book": "The Adventures of Sherlock Holmes",
+"form": "restive",
+"passage": "But soon he found that that would not answer forever. She became restive, insisted upon her rights, and finally announced her positive intention of going to a certain ball. What does her clever stepfather do then?",
+"options": [
+"restive",
+"docile",
+"compliant",
+"demure"
+],
+"definitions": {
+"restive": "restless and unwilling to accept control",
+"docile": "easy to manage and obedient",
+"compliant": "willing to follow rules or requests",
+"demure": "quiet, modest, and reserved"
+},
+"rule": "\"Restive\" means restless and resisting control. She \"insisted upon her rights\" and announced she would go to a ball, so she was no longer obedient, quiet, or compliant."
+},
+{
+"word": "saturnine",
+"drop": true,
+"why": "weak clue"
+},
+{
+"word": "specious",
+"drop": true,
+"why": "passage does not show the argument was misleading"
+},
+{
+"word": "ambiguous",
+"drop": true,
+"why": "ambiguous stranger is an unusual use and dubious or suspicious would also fit"
+},
+{
+"word": "bewilder",
+"g": 1155,
+"book": "The Secret Adversary",
+"form": "bewildered",
+"passage": "Then came the timid archdeacon, a little bewildered by the company in which he found himself, glad that his daughter was considered to have distinguished herself, but unable to help glancing at her from time to time with nervous apprehension.",
+"options": [
+"bewildered",
+"incensed",
+"emboldened",
+"exasperated"
+],
+"definitions": {
+"bewildered": "confused and unsure what to do",
+"incensed": "made extremely angry",
+"emboldened": "made more confident and daring",
+"exasperated": "greatly irritated and annoyed"
+},
+"rule": "\"Bewildered\" means confused. The archdeacon is \"timid\" and glances at his daughter \"with nervous apprehension,\" so he is uneasy among strangers, not angry or bold."
+},
+{
+"word": "deferential",
+"drop": true,
+"why": "smug and insolent would fit as well, the clue is too weak"
+},
+{
+"word": "duplicity",
+"drop": true,
+"why": "depends on plot not in the passage"
+},
+{
+"word": "haughty",
+"g": 78342,
+"book": "Partners in Crime",
+"form": "haughty",
+"passage": "The Duke of Blairgowrie was well known to be a most haughty and inaccessible nobleman who had married as a wife the daughter of a Chicago pork butcher, many years younger than himself, and of a lively temperament that augured ill for their future together.",
+"options": [
+"haughty",
+"affable",
+"obsequious",
+"boisterous"
+],
+"definitions": {
+"haughty": "arrogant and looking down on others",
+"affable": "friendly and easy to talk to",
+"obsequious": "too eager to please or flatter",
+"boisterous": "loud, rowdy, and full of energy"
+},
+"rule": "\"Haughty\" means proud and snobbish. The duke is \"inaccessible\" and has married far beneath his rank, so a friendly, fawning, or rowdy man does not fit."
+},
+{
+"word": "incongruous",
+"g": 78084,
+"book": "The Mysterious Mr. Quin",
+"form": "incongruous",
+"passage": "There were no photographs, no flowers, no knickknacks. It was not like a woman's room at all. Save for that one incongruous factor of the Chinese screen it might have been a sample room shown at some big furnishing-house.",
+"options": [
+"incongruous",
+"ubiquitous",
+"mundane",
+"nondescript"
+],
+"definitions": {
+"incongruous": "out of place, not fitting its surroundings",
+"ubiquitous": "seeming to be found everywhere",
+"mundane": "ordinary and dull",
+"nondescript": "ordinary, with no distinctive features"
+},
+"rule": "\"Incongruous\" means out of place. The room is bare and impersonal, \"Save for that one\" item, the Chinese screen, so the screen is the single thing that does not belong."
+},
+{
+"word": "inundate",
+"drop": true,
+"why": "wrong choices would be ruled out only by idiom, not by the passage"
+},
+{
+"word": "mollify",
+"g": 58866,
+"book": "The Murder on the Links",
+"form": "mollified",
+"passage": "“Oh, it’s all right,” I said, mollified by the apology. “I know it’s only that you have my interests at heart. But I can take care of myself all right.”",
+"options": [
+"mollified",
+"affronted",
+"exasperated",
+"bewildered"
+],
+"definitions": {
+"mollified": "calmed down and made less upset",
+"affronted": "insulted and offended",
+"exasperated": "greatly irritated and annoyed",
+"bewildered": "confused and puzzled"
+},
+"rule": "\"Mollified\" means calmed after being annoyed. The speaker says \"it's all right\" and \"I know it's only that you have my interests at heart,\" so the apology soothed him."
+},
+{
+"word": "paragon",
+"drop": true,
+"why": "depends on plot and a second hard word in the same sentence"
+},
+{
+"word": "poignant",
+"g": 70114,
+"book": "The Big Four",
+"form": "poignant",
+"passage": "On arrival in London, I deposited my luggage at an hotel and drove straight on to the old address. What poignant memories it brought back to me! I hardly waited to greet my old landlady, but hurried up the stairs two at a time and rapped on Poirot's door.",
+"options": [
+"poignant",
+"tedious",
+"dismal",
+"banal"
+],
+"definitions": {
+"poignant": "deeply touching and emotionally moving",
+"tedious": "boring and tiresome",
+"dismal": "gloomy and depressing",
+"banal": "dull, ordinary, and unoriginal"
+},
+"rule": "\"Poignant\" means deeply moving. He is so affected that he \"hardly waited to greet\" his landlady and hurried up the stairs \"two at a time,\" so the memories are dear to him, not dull or gloomy."
+},
+{
+"word": "prudent",
+"drop": true,
+"why": "wrong choices are ruled out only by idiom, not by the passage"
+},
+{
+"word": "relinquish",
+"g": 78342,
+"book": "Partners in Crime",
+"form": "relinquish",
+"passage": "At that moment a buzzer purred discreetly on his desk. That meant that Tuppence was requesting to take hold. Tommy, who wanted his lunch, and who felt profoundly unsympathetic towards Mr. St. Vincent, was only too pleased to relinquish the helm.",
+"options": [
+"relinquish",
+"usurp",
+"retain",
+"covet"
+],
+"definitions": {
+"relinquish": "give up or let go of",
+"usurp": "seize power or position wrongfully",
+"retain": "keep possession of",
+"covet": "strongly desire what someone else has"
+},
+"rule": "\"Relinquish\" means give up. Tuppence \"was requesting to take hold\" and Tommy \"wanted his lunch,\" so he was \"only too pleased\" to hand over the helm."
+},
+{
+"word": "trepidation",
+"g": 1155,
+"book": "The Secret Adversary",
+"form": "trepidation",
+"passage": "At a few minutes past eight the front door bell rang, and Tuppence went to answer it with some inward trepidation. She was relieved to see that the visitor was the second of the two men whom Tommy had taken upon himself to follow.",
+"options": [
+"trepidation",
+"equanimity",
+"exuberance",
+"apathy"
+],
+"definitions": {
+"trepidation": "nervous fear about what may happen",
+"equanimity": "calm and even temper",
+"exuberance": "overflowing excitement and high spirits",
+"apathy": "lack of interest or feeling"
+},
+"rule": "\"Trepidation\" means nervous fear. The next sentence says she \"was relieved\" to see the visitor, so she had been worried as she went to answer the door."
+},
+{
+"word": "vivacious",
+"g": 1155,
+"book": "The Secret Adversary",
+"form": "vivacious",
+"passage": "They had collected a Gladys Mary and a Marjorie, been baffled by one change of address, and had been forced to listen to a long lecture on universal suffrage from a vivacious American lady whose Christian name had proved to be Sadie.",
+"options": [
+"vivacious",
+"taciturn",
+"indolent",
+"demure"
+],
+"definitions": {
+"vivacious": "lively and full of energy",
+"taciturn": "saying very little",
+"indolent": "lazy and avoiding effort",
+"demure": "shy and modest in manner"
+},
+"rule": "\"Vivacious\" means lively and spirited. The lady gave a \"long lecture\" on a cause, so she was energetic and talkative, not quiet, lazy, or shy."
+},
+{
+"word": "conscientious",
+"g": 78084,
+"book": "The Mysterious Mr. Quin",
+"form": "conscientious",
+"passage": "There are some Americans who pass through Paris and emerge clothed as the Queen of Sheba, but Elizabeth Martin was not one of them. She was \"doing Europe\" in a stern, conscientious spirit. She had high ideas of culture and art and she was anxious to get as much as possible for her limited store of money.",
+"options": [
+"conscientious",
+"frivolous",
+"nonchalant",
+"whimsical"
+],
+"definitions": {
+"conscientious": "careful and serious about doing one's duty",
+"frivolous": "silly and not serious",
+"nonchalant": "calm and casually unconcerned",
+"whimsical": "playful and unpredictable"
+},
+"rule": "\"Conscientious\" means serious and careful about doing things properly. She tours Europe in a \"stern\" spirit with \"high ideas of culture\" and is \"anxious\" to get the most for her money."
+},
+{
+"word": "motley",
+"drop": true,
+"why": "motley is used as an old fashioned noun here"
+},
+{
+"word": "remiss",
+"g": 75288,
+"book": "The Seven Dials Mystery",
+"form": "remiss",
+"passage": "\"Your men, if I may say so, Battle, seem to have been singularly remiss. They didn't see Miss Wade come in. If they could miss her coming in, they could easily miss the thief going out.\"",
+"options": [
+"remiss",
+"vigilant",
+"meticulous",
+"astute"
+],
+"definitions": {
+"remiss": "careless in doing one's duty",
+"vigilant": "watchful and alert for danger",
+"meticulous": "extremely careful about details",
+"astute": "sharp and quick to notice things"
+},
+"rule": "\"Remiss\" means careless about a duty. The men \"didn't see Miss Wade come in,\" so they were not watching closely."
+},
+{
+"word": "brandish",
+"drop": true,
+"why": "clue is too weak and other verbs would fit"
+},
+{
+"word": "enjoin",
+"drop": true,
+"why": "entreated or urged would also fit the gesture"
+},
+{
+"word": "glean",
+"g": 72824,
+"book": "The Mystery of the Blue Train",
+"form": "glean",
+"passage": "He was well born, well connected, did honourable service in the War, and seemed altogether above suspicion; but when I came to glean information about the mysterious Marquis, I found many points of similarity. Knighton spoke French like a Frenchman, he had been in America, France, and England at much the same time as the Marquis was operating.",
+"options": [
+"glean",
+"divulge",
+"withhold",
+"falsify"
+],
+"definitions": {
+"glean": "gather information bit by bit",
+"divulge": "reveal something that was secret",
+"withhold": "hold back and refuse to give",
+"falsify": "change in order to deceive"
+},
+"rule": "\"Glean\" means gather bit by bit. He is investigating \"the mysterious Marquis\" and \"found many points of similarity,\" so he was collecting information, not giving it out or hiding it."
+},
+{
+"word": "interject",
+"g": 1155,
+"book": "The Secret Adversary",
+"form": "interjected",
+"passage": "Tuppence narrated her adventures with some complacence. Julius occasionally interjected an admiring “Bully.” Sir James said nothing until she had finished, when his quiet “well done, Miss Tuppence,” made her flush with pleasure.",
+"options": [
+"interjected",
+"retorted",
+"stipulated",
+"lamented"
+],
+"definitions": {
+"interjected": "put in a brief remark while others talked",
+"retorted": "answered back sharply",
+"stipulated": "demanded as a condition",
+"lamented": "expressed sadness or regret"
+},
+"rule": "\"Interjected\" means put in a short remark. Tuppence is telling her story and Julius \"occasionally\" adds an \"admiring\" word, which is not a sharp, sad, or demanding one.",
+"drop": true,
+"why": "cut after the blind test"
+},
+{
+"word": "wrest",
+"drop": true,
+"why": "depends on plot, same sentence as paragon"
+},
+{
+"word": "demeanor",
+"g": 69087,
+"book": "The Murder of Roger Ackroyd",
+"form": "demeanor",
+"passage": "She half stretched out her hand, and he took it in both of his, patting it as though she were a very small child, and she turned to him as though something in his stolid, rocklike demeanor promised comfort and safety.",
+"options": [
+"demeanor",
+"levity",
+"pallor",
+"temerity"
+],
+"definitions": {
+"demeanor": "the way a person looks and behaves",
+"levity": "lighthearted lack of seriousness",
+"pallor": "an unhealthy paleness",
+"temerity": "reckless boldness or nerve"
+},
+"rule": "\"Demeanor\" means a person's outward manner. \"Stolid, rocklike\" describes how he carries himself, and it \"promised comfort and safety,\" which a joking attitude or reckless boldness would not."
+},
+{
+"word": "respite",
+"drop": true,
+"why": "depends on the unseen action around it"
+},
+{
+"word": "bestow",
+"drop": true,
+"why": "clue is too weak and the choices would be ruled out only by idiom"
+},
+{
+"word": "taciturn",
+"g": 65238,
+"book": "The Secret of Chimneys",
+"form": "taciturn",
+"passage": "Superintendent Battle because he was a man of ripe experience who knew how infinitely better it was to let every one else speak if they could be persuaded upon to do so, Colonel Melrose because he was habitually taciturn, George because he was in the habit of having notice given him of the question, Lord Caterham because he had not the least idea of what to say.",
+"options": [
+"taciturn",
+"garrulous",
+"jovial",
+"bellicose"
+],
+"definitions": {
+"taciturn": "saying very little",
+"garrulous": "talking too much",
+"jovial": "cheerful and friendly",
+"bellicose": "eager to fight or argue"
+},
+"rule": "\"Taciturn\" means saying very little. The list gives reasons these men let others speak first, such as Battle who knew \"it was better to let every one else speak,\" so Melrose's reason is his quiet habit.",
+"drop": true,
+"why": "cut after the blind test"
+},
+{
+"word": "nonchalant",
+"drop": true,
+"why": "the feigned tone makes several choices plausible"
+},
+{
+"word": "fathom",
+"drop": true,
+"why": "wrong choices are not contradicted by the passage"
+},
+{
+"word": "reiterate",
+"g": 72824,
+"book": "The Mystery of the Blue Train",
+"form": "reiterated",
+"passage": "\"Give me,\" said Mr. Aarons, \"a good Porterhouse steak and a tankard of something worth drinking, and any one can have your French fallals and whatnots, your ordoovres and your omelettes and your little bits of quail. Give me,\" he reiterated, \"a Porterhouse steak.\"",
+"options": [
+"reiterated",
+"conceded",
+"demurred",
+"confessed"
+],
+"definitions": {
+"reiterated": "said again for emphasis",
+"conceded": "admitted a point grudgingly",
+"demurred": "raised a mild objection",
+"confessed": "admitted to having done wrong"
+},
+"rule": "\"Reiterated\" means said again. Mr. Aarons has already said \"Give me ... a good Porterhouse steak,\" and here he repeats \"Give me\" and the steak."
+},
+{
+"word": "desultory",
+"g": 72824,
+"book": "The Mystery of the Blue Train",
+"form": "desultory",
+"passage": "He had a fleeting impression of attractive grey eyes and a neat travelling costume. He indulged in a little more desultory conversation with Ruth, the kind of talk peculiar to those seeing other people off by train.",
+"options": [
+"desultory",
+"erudite",
+"vehement",
+"profound"
+],
+"definitions": {
+"desultory": "casual and aimless, without real purpose",
+"erudite": "showing deep scholarly knowledge",
+"vehement": "forceful and full of strong feeling",
+"profound": "deep and thoughtful"
+},
+"rule": "\"Desultory\" means casual and aimless. It is \"the kind of talk peculiar to those seeing other people off by train,\" which is idle small talk, not scholarly, forceful, or deep."
+},
+{
+"word": "perplex",
+"g": 58866,
+"book": "The Murder on the Links",
+"form": "perplexed",
+"passage": "Then he went back to the pots, methodically turning them over one by one. In the end, he rose to his feet, and shook his head thoughtfully. He seemed baffled and perplexed. I think he had forgotten my presence.",
+"options": [
+"perplexed",
+"complacent",
+"elated",
+"serene"
+],
+"definitions": {
+"perplexed": "confused and puzzled",
+"complacent": "smugly satisfied with oneself",
+"elated": "very happy and excited",
+"serene": "calm and untroubled"
+},
+"rule": "\"Perplexed\" means confused. He is \"baffled\" and \"shook his head thoughtfully\" after searching the pots, so he is not smug, joyful, or calm."
+},
+{
+"word": "impassive",
+"g": 863,
+"book": "The Mysterious Affair at Styles",
+"form": "impassive",
+"passage": "Every eye turned simultaneously to where Alfred Inglethorp was sitting, impassive and wooden. He started slightly, as the damning words fell from the young man’s lips. I half thought he was going to rise from his chair, but he remained seated, although a remarkably well acted expression of astonishment rose on his face.",
+"options": [
+"impassive",
+"distraught",
+"indignant",
+"ebullient"
+],
+"definitions": {
+"impassive": "showing no emotion",
+"distraught": "extremely upset and worried",
+"indignant": "angry at unfair treatment",
+"ebullient": "bubbling with enthusiasm"
+},
+"rule": "\"Impassive\" means showing no feeling. He sits \"wooden\" and \"remained seated\" while the \"damning words\" are spoken, and only later shows a \"well acted\" look of surprise."
+},
+{
+"word": "brazen",
+"drop": true,
+"why": "brazen it out is a fixed phrase"
+},
+{
+"word": "malicious",
+"g": 65238,
+"book": "The Secret of Chimneys",
+"form": "malicious",
+"passage": "People who have been closed as an oyster all their lives seem positively to relish causing trouble when they themselves shall be comfortably dead. It gives them a kind of malicious glee. Jimmy, what sort of a man was Count Stylptitch?",
+"options": [
+"malicious",
+"benevolent",
+"wistful",
+"reverent"
+],
+"definitions": {
+"malicious": "meant to cause harm or hurt",
+"benevolent": "kind and wishing to do good",
+"wistful": "sadly longing for something",
+"reverent": "showing deep respect"
+},
+"rule": "\"Malicious\" means spiteful. These people \"relish causing trouble\" after they are dead, so their \"glee\" is mean, not kind, sad, or respectful."
+},
+{
+"word": "enmity",
+"drop": true,
+"why": "debts or similar words would fit and the clue is weak"
+},
+{
+"word": "expound",
+"drop": true,
+"why": "several other verbs of speech fit"
+},
+{
+"word": "virulent",
+"drop": true,
+"why": "passage does not decide between severe and mild"
+},
+{
+"word": "obscure",
+"g": 1155,
+"book": "The Secret Adversary",
+"form": "obscure",
+"passage": "Not that we’ll get anything out of him he doesn’t want to tell. His legal instincts are too strong. But there’s no doubt he can throw light on one or two obscure points in young Beresford’s letter. Ah, here he is!”",
+"options": [
+"obscure",
+"lucid",
+"explicit",
+"redundant"
+],
+"definitions": {
+"obscure": "unclear and hard to understand",
+"lucid": "clear and easy to understand",
+"explicit": "stated plainly and in detail",
+"redundant": "unnecessary because already covered"
+},
+"rule": "\"Obscure\" means unclear. He \"can throw light on\" these points in a letter, so they must be confusing ones that need explaining, not already clear or unneeded."
+},
+{
+"word": "furtive",
+"drop": true,
+"why": "brazen would also make sense in the comparison"
+},
+{
+"word": "acquiesce",
+"g": 78084,
+"book": "The Mysterious Mr. Quin",
+"form": "acquiesced",
+"passage": "Mr. Satterthwaite was recalled from his thoughts by Major Porter's suggesting a stroll. Mr. Satterthwaite, who was not, as a general rule, much given to strolling, acquiesced. The two men sauntered off together across the lawn.",
+"options": [
+"acquiesced",
+"demurred",
+"remonstrated",
+"balked"
+],
+"definitions": {
+"acquiesced": "agreed or went along without protest",
+"demurred": "raised a mild objection",
+"remonstrated": "protested or argued against something",
+"balked": "refused to go on, hesitated"
+},
+"rule": "\"Acquiesced\" means went along with it. Although he rarely liked strolling, \"The two men sauntered off together,\" so he agreed instead of objecting."
+},
+{
+"word": "ingenious",
+"g": 61168,
+"book": "The Man in the Brown Suit",
+"form": "ingenious",
+"passage": "Either because they feared they were being watched or for some other reason, they chose the rather ingenious method of both getting an order to view the same house. Thus their meeting there might have the appearance of pure chance.",
+"options": [
+"ingenious",
+"ostentatious",
+"haphazard",
+"flagrant"
+],
+"definitions": {
+"ingenious": "clever and inventive",
+"ostentatious": "showy and meant to attract attention",
+"haphazard": "random and unplanned",
+"flagrant": "shockingly and openly obvious"
+},
+"rule": "\"Ingenious\" means clever. They feared being watched and wanted the meeting to look like \"pure chance,\" so a smart, planned trick fits, not a showy or random one."
+},
+{
+"word": "dogmatic",
+"drop": true,
+"why": "dull and dogmatic gives no firm clue and others would fit"
+},
+{
+"word": "allude",
+"drop": true,
+"why": "the choices depend on idiom with to and the clue is weak"
+},
+{
+"word": "superfluous",
+"g": 65238,
+"book": "The Secret of Chimneys",
+"form": "superfluous",
+"passage": "It is also No. 3 in Historic Homes of England, price 21s. On Thursdays, chars-à-bancs come over from Middlingham and view those portions of it which are open to the public. In view of all these facilities, to describe Chimneys would be superfluous.",
+"options": [
+"superfluous",
+"arduous",
+"audacious",
+"perilous"
+],
+"definitions": {
+"superfluous": "unnecessary, more than is needed",
+"arduous": "requiring great effort",
+"audacious": "boldly daring and willing to take risks",
+"perilous": "full of danger"
+},
+"rule": "\"Superfluous\" means unnecessary. The house is already listed in \"Historic Homes of England\" and open to visitors, so \"in view of all these facilities\" describing it would add nothing."
+},
+{
+"word": "meticulous",
+"g": 61262,
+"book": "Poirot Investigates",
+"form": "meticulous",
+"passage": "We shall have to go through the documents in the desk with meticulous care. Naturally, I do not expect to find the will amongst them; but it is likely that some apparently innocent paper may conceal the clue to its hiding-place.",
+"options": [
+"meticulous",
+"cursory",
+"haphazard",
+"perfunctory"
+],
+"definitions": {
+"meticulous": "extremely careful about details",
+"cursory": "quick and not thorough",
+"haphazard": "random and disorganized",
+"perfunctory": "done as routine without real interest"
+},
+"rule": "\"Meticulous\" means extremely careful. They are hunting for a hidden clue that may sit in \"some apparently innocent paper,\" so they must go through the documents very carefully, not quickly or carelessly."
+},
+{
+"word": "explicit",
+"g": 58866,
+"book": "The Murder on the Links",
+"form": "explicit",
+"passage": "He speaks of a secret. What a pity he was not more explicit. We are much indebted to you, M. Poirot. I hope you will do us the honour of assisting us in our investigations.",
+"options": [
+"explicit",
+"cryptic",
+"discreet",
+"reticent"
+],
+"definitions": {
+"explicit": "stated clearly and in detail",
+"cryptic": "mysterious and hard to understand",
+"discreet": "careful not to reveal too much",
+"reticent": "reluctant to say much"
+},
+"rule": "\"Explicit\" means clear and detailed. \"He speaks of a secret\" but gives no details, so it is \"a pity\" he was not clearer, and being more secretive would be the opposite of what is wanted."
+},
+{
+"word": "purport",
+"drop": true,
+"why": "synonyms fit and the clue needs the surrounding story"
+},
+{
+"word": "desolate",
+"g": 1155,
+"book": "The Secret Adversary",
+"form": "desolate",
+"passage": "The shutters were closed, the steps up to the door overgrown with moss. Was it indeed to this desolate spot that Tuppence had been decoyed? It seemed hard to believe that a human footstep had passed this way for months.",
+"options": [
+"desolate",
+"opulent",
+"convivial",
+"boisterous"
+],
+"definitions": {
+"desolate": "empty, bleak, and deserted",
+"opulent": "richly luxurious and lavish",
+"convivial": "friendly, lively, and sociable",
+"boisterous": "noisy and wild"
+},
+"rule": "\"Desolate\" means bleak and deserted. The shutters are closed, the steps are \"overgrown with moss,\" and no footstep seems to have passed \"for months.\""
+},
+{
+"word": "peremptory",
+"g": 78342,
+"book": "Partners in Crime",
+"form": "peremptory",
+"passage": "\"I must apologise for sending for you in such a peremptory fashion,\" she said. \"But my husband and I have discovered something that we think you ought to know at once. Do sit down.\"",
+"options": [
+"peremptory",
+"tentative",
+"deferential",
+"languid"
+],
+"definitions": {
+"peremptory": "abrupt and commanding, allowing no refusal",
+"tentative": "hesitant and uncertain",
+"deferential": "showing polite respect",
+"languid": "slow, relaxed, and lacking energy"
+},
+"rule": "\"Peremptory\" means abrupt and commanding. She apologises for \"sending for you\" and says they needed to know \"at once,\" so the summons was forceful, not hesitant or lazy."
+},
+{
+"word": "haggard",
+"g": 72824,
+"book": "The Mystery of the Blue Train",
+"form": "haggard",
+"passage": "He strolled across to where Lenox Tamplin was talking to Van Aldin and Knighton. The American looked old and haggard. He greeted Poirot with a curt nod but without any other sign of animation.",
+"options": [
+"haggard",
+"jovial",
+"debonair",
+"ebullient"
+],
+"definitions": {
+"haggard": "looking worn out and tired",
+"jovial": "cheerful and friendly",
+"debonair": "charming, stylish, and confident",
+"ebullient": "bubbling with enthusiasm"
+},
+"rule": "\"Haggard\" means worn out and tired looking. He looked \"old,\" gave only \"a curt nod,\" and showed no \"sign of animation,\" so he was not cheerful or lively."
+},
+{
+"word": "amiable",
+"g": 75288,
+"book": "The Seven Dials Mystery",
+"form": "amiable",
+"passage": "Lady Coote and Gerald Wade were amiable and discursive and the young man never failed to say at the conclusion of each hand, \"I say, partner, you played that simply splendidly,\" in tones of simple admiration which Lady Coote found both novel and extremely soothing.",
+"options": [
+"amiable",
+"aloof",
+"petulant",
+"caustic"
+],
+"definitions": {
+"amiable": "friendly and pleasant",
+"aloof": "distant and unfriendly",
+"petulant": "sulky and easily annoyed",
+"caustic": "bitingly sarcastic and harsh"
+},
+"rule": "\"Amiable\" means friendly. The young man keeps praising Lady Coote's play \"in tones of simple admiration\" that she finds \"soothing,\" so the pair are warm, not cold, sulky, or sarcastic."
+},
+{
+"word": "intrigue",
+"drop": true,
+"why": "the choices would be ruled out only by idiom"
+},
+{
+"word": "enigmatic",
+"drop": true,
+"why": "clue depends on genre jokes and does not rule out the wrong choices"
+},
+{
+"word": "broach",
+"drop": true,
+"why": "several verbs would fit the situation"
+},
+{
+"word": "vindictive",
+"drop": true,
+"why": "passage contains malicious, the answer to another question from the same paragraph"
+},
+{
+"word": "notorious",
+"g": 1155,
+"book": "The Secret Adversary",
+"form": "notorious",
+"passage": "“You will have the best legal talent to defend you,” replied the German quietly. “But in any case you will wear gloves fitted with the finger-prints of a notorious housebreaker. You have little to fear.”",
+"options": [
+"notorious",
+"obscure",
+"nondescript",
+"inconspicuous"
+],
+"definitions": {
+"notorious": "widely known for something bad",
+"obscure": "little known, not famous",
+"nondescript": "ordinary, with nothing to notice",
+"inconspicuous": "not easily noticed"
+},
+"rule": "\"Notorious\" means well known for crime. The gloves carry the fingerprints of a famous housebreaker, so police would blame him and the wearer would \"have little to fear.\"",
+"drop": true,
+"why": "cut after the blind test"
+},
+{
+"word": "formidable",
+"g": 1155,
+"book": "The Secret Adversary",
+"form": "formidable",
+"passage": "“You forget your own suggestion of a dictaphone,” said Sir James dryly. “We have a very formidable adversary. I believe, if we exercise all due care, that there is a very good chance of his being delivered into our hands.",
+"options": [
+"formidable",
+"inept",
+"hapless",
+"docile"
+],
+"definitions": {
+"formidable": "powerful and hard to defeat",
+"inept": "clumsy and lacking skill",
+"hapless": "unlucky and unfortunate",
+"docile": "gentle and easy to control"
+},
+"rule": "\"Formidable\" means hard to defeat. Sir James says they must \"exercise all due care\" to catch him, so the adversary is dangerous and skilled, not clumsy, unlucky, or tame."
+},
+{
+"word": "retort",
+"g": 61262,
+"book": "Poirot Investigates",
+"form": "retorted",
+"passage": "“You wasn’t gone a minute,” retorted the chambermaid angrily. “Just popped out and in again. I’d be glad if the police would search me. I’ve nothing to be afraid of.”",
+"options": [
+"retorted",
+"conceded",
+"lamented",
+"relented"
+],
+"definitions": {
+"retorted": "answered back sharply",
+"conceded": "admitted a point grudgingly",
+"lamented": "expressed sadness or regret",
+"relented": "gave in and became less severe"
+},
+"rule": "\"Retorted\" means answered back sharply. She speaks \"angrily\" and defends herself with \"I've nothing to be afraid of,\" so she is not giving in or agreeing."
+},
+{
+"word": "devoid",
+"drop": true,
+"why": "wrong choices fit the pattern of the sentence"
+},
+{
+"word": "placid",
+"g": 61262,
+"book": "Poirot Investigates",
+"form": "placid",
+"passage": "I recognized in our new visitor Dr. Hawker’s housekeeper, Miss Rider. The doctor was a bachelor, and lived in a gloomy old house a few streets away. The usually placid Miss Rider was now in a state bordering on incoherence.",
+"options": [
+"placid",
+"volatile",
+"irascible",
+"histrionic"
+],
+"definitions": {
+"placid": "calm and not easily upset",
+"volatile": "likely to change suddenly or explode",
+"irascible": "easily made angry",
+"histrionic": "overly dramatic and theatrical"
+},
+"rule": "\"Placid\" means calm. The phrase \"usually\" sets her normal self against \"now\" being in \"a state bordering on incoherence,\" so she is unusually upset."
+},
+{
+"word": "impudent",
+"drop": true,
+"why": "clue is too weak and other adjectives would fit"
+},
+{
+"word": "brusque",
+"g": 78342,
+"book": "Partners in Crime",
+"form": "brusque",
+"passage": "He and Miss March hurried out. Half way down the stairs they encountered Tuppence coming up. Tommy passed her with a brusque: \"Late again, Miss Robinson. I am called out on an important case.\"",
+"options": [
+"brusque",
+"affable",
+"solicitous",
+"deferential"
+],
+"definitions": {
+"brusque": "abrupt and curt in manner",
+"affable": "friendly and easy to talk to",
+"solicitous": "showing concern for someone",
+"deferential": "respectful and submissive"
+},
+"rule": "\"Brusque\" means short and abrupt. Tommy is hurrying down the stairs, scolds \"Late again,\" and says he is \"called out on an important case,\" so he is curt, not friendly or respectful.",
+"drop": true,
+"why": "cut after the blind test"
+},
+{
+"word": "melancholy",
+"g": 61168,
+"book": "The Man in the Brown Suit",
+"form": "melancholy",
+"passage": "“And I don’t know that I’m so comfortably married either,” continued Suzanne in a melancholy voice. “I’ve been having the most dreadful cables from Clarence ordering me to come home at once. At last I didn’t answer them, and now I haven’t heard for over a fortnight.”",
+"options": [
+"melancholy",
+"jaunty",
+"ebullient",
+"exuberant"
+],
+"definitions": {
+"melancholy": "sad and gloomy",
+"jaunty": "cheerful and self confident",
+"ebullient": "bubbling with enthusiasm",
+"exuberant": "full of joyful energy"
+},
+"rule": "\"Melancholy\" means sad. Suzanne says she is not \"so comfortably married either\" and complains of \"the most dreadful cables,\" so her voice is gloomy."
+},
+{
+"word": "expedient",
+"drop": true,
+"why": "part of the fixed phrase simple expedient of"
+},
+{
+"word": "muster",
+"drop": true,
+"why": "part of the fixed phrase pass muster"
+},
+{
+"word": "animosity",
+"drop": true,
+"why": "passage does not clearly show the kind of feeling; wrong choices could not be ruled out from the text"
+},
+{
+"word": "cryptic",
+"drop": true,
+"why": "no context around the words to show what makes them cryptic"
+},
+{
+"word": "deter",
+"g": 863,
+"book": "The Mysterious Affair at Styles",
+"form": "deter",
+"passage": "Now, at four o’clock, Dorcas overheard her mistress saying angrily: ‘You need not think that any fear of publicity, or scandal between husband and wife will deter me.” I conjectured, and conjectured rightly, that these words were addressed, not to her husband, but to Mr. John Cavendish.",
+"options": [
+"deter",
+"appease",
+"bolster",
+"bewilder"
+],
+"definitions": {
+"deter": "discourage someone from acting through fear or doubt",
+"appease": "calm someone by giving in to them",
+"bolster": "support or strengthen",
+"bewilder": "confuse someone completely"
+},
+"rule": "\"Deter\" means to discourage someone from doing something. She speaks \"angrily\" and says no \"fear of publicity\" or scandal will \"deter\" her, so she means it will not stop her.",
+"drop": true,
+"why": "cut after the blind test"
+},
+{
+"word": "elusive",
+"drop": true,
+"why": "passage gives no clue that the friend is hard to find; other adjectives would fit equally well"
+},
+{
+"word": "idiosyncrasy",
+"drop": true,
+"why": "depends on story context about the speaker's habits"
+},
+{
+"word": "infallible",
+"g": 78084,
+"book": "The Mysterious Mr. Quin",
+"form": "infallible",
+"passage": "The curtain went down on the first act, and applause burst out vociferously. Mr. Satterthwaite turned to Mr. Quin. He realized that the latter was waiting for him to pronounce judgment, and plumed himself a little. After all, he knew. As a critic he was well-nigh infallible.",
+"options": [
+"infallible",
+"inept",
+"irresolute",
+"indifferent"
+],
+"definitions": {
+"infallible": "never wrong; incapable of making a mistake",
+"inept": "clumsy; lacking skill",
+"irresolute": "unable to make up one's mind",
+"indifferent": "not caring or interested"
+},
+"rule": "\"Infallible\" means never wrong. Mr. Satterthwaite \"plumed himself\" because Mr. Quin waits for him \"to pronounce judgment,\" and \"he knew,\" so he thinks his judgment is almost perfect."
+},
+{
+"word": "judicious",
+"drop": true,
+"why": "passages suggest caution only by implication; wrong choices could not be firmly ruled out"
+},
+{
+"word": "nefarious",
+"drop": true,
+"why": "passage never shows the activities are wicked; depends on the plot"
+},
+{
+"word": "plausible",
+"g": 863,
+"book": "The Mysterious Affair at Styles",
+"form": "plausible",
+"passage": "“Why, in a thousand ingenious ways,” cried Poirot. “See; say that it is I who have committed this murder, I can think of seven most plausible stories! Far more convincing than Mr. Inglethorp’s stony denials!”",
+"options": [
+"plausible",
+"preposterous",
+"fallacious",
+"ambiguous"
+],
+"definitions": {
+"plausible": "believable; seeming likely to be true",
+"preposterous": "completely absurd and unreasonable",
+"fallacious": "based on false reasoning",
+"ambiguous": "unclear; open to more than one meaning"
+},
+"rule": "\"Plausible\" means believable. Poirot says the stories are \"far more convincing\" than the denials, so they must be believable, not absurd, false, or unclear."
+},
+{
+"word": "profuse",
+"drop": true,
+"why": "passage gives only a weak clue to the amount of compliments"
+},
+{
+"word": "rebuke",
+"g": 69087,
+"book": "The Murder of Roger Ackroyd",
+"form": "rebuke",
+"passage": "It pleases me very much to think of her stepping out of the housekeeper’s room to rebuke a delinquent housemaid, and then returning to a comfortable perusal of The Mystery of the Seventh Death, or something of the kind.",
+"options": [
+"rebuke",
+"commend",
+"deride",
+"implore"
+],
+"definitions": {
+"rebuke": "scold sharply for doing wrong",
+"commend": "praise someone warmly",
+"deride": "mock with scorn",
+"implore": "beg someone in an earnest way"
+},
+"rule": "\"Rebuke\" means to scold sharply. A \"delinquent\" housemaid is one who has done wrong, and the housekeeper is in charge, so she would scold the girl rather than praise or beg her."
+},
+{
+"word": "surreptitious",
+"drop": true,
+"why": "gossipy letter about an affair, and the clue to secrecy is only implied"
+},
+{
+"word": "unctuous",
+"drop": true,
+"why": "description only, nothing in the passage decides the meaning"
+},
+{
+"word": "cantankerous",
+"drop": true,
+"why": "a gentle-natured wrong choice could also fit the passage"
+},
+{
+"word": "conversant",
+"drop": true,
+"why": "takes the preposition with, so wrong choices would be given away by grammar"
+},
+{
+"word": "quizzical",
+"drop": true,
+"why": "a bare description of a face, with no clue to meaning"
+},
+{
+"word": "sumptuous",
+"g": 78342,
+"book": "Partners in Crime",
+"form": "sumptuous",
+"passage": "Tommy stepped across the threshold of the bathroom, and approved inwardly its sumptuous and up to date fittings. He set to work to dispel the wide stare of suspicion on the French girl's face.",
+"options": [
+"sumptuous",
+"dilapidated",
+"rudimentary",
+"squalid"
+],
+"definitions": {
+"sumptuous": "splendid and expensive looking",
+"dilapidated": "falling apart from age and neglect",
+"rudimentary": "very basic; barely developed",
+"squalid": "filthy and run down"
+},
+"rule": "\"Sumptuous\" means luxurious. Tommy \"approved\" of the fittings, and they are also \"up to date,\" so they cannot be falling apart, filthy, or merely basic."
+},
+{
+"word": "elucidate",
+"g": 863,
+"book": "The Mysterious Affair at Styles",
+"form": "elucidating",
+"passage": "“Suggestive, or not,” interrupted John, “we are most grateful to Monsieur Poirot for elucidating the matter. But for him, we should never have known of this will. I suppose, I may not ask you, monsieur, what first led you to suspect the fact?”",
+"options": [
+"elucidating",
+"obfuscating",
+"exacerbating",
+"repudiating"
+],
+"definitions": {
+"elucidating": "making something clear by explaining it",
+"obfuscating": "making something deliberately confusing",
+"exacerbating": "making a problem worse",
+"repudiating": "firmly rejecting as untrue"
+},
+"rule": "\"Elucidating\" means making something clear. John is \"most grateful\" and says \"we should never have known of this will\" without Poirot, so Poirot cleared up the matter rather than muddying or rejecting it."
+},
+{
+"word": "ensconce",
+"g": 78342,
+"book": "Partners in Crime",
+"form": "ensconced",
+"passage": "\"Look here,\" said Tuppence when they were comfortably ensconced at a little table in a neighboring restaurant, \"I want to know. Is there any special reason why you want to find out about all this?\"",
+"options": [
+"ensconced",
+"embroiled",
+"waylaid",
+"beset"
+],
+"definitions": {
+"ensconced": "settled snugly and securely in a place",
+"embroiled": "drawn into a conflict or difficulty",
+"waylaid": "stopped on the way by someone",
+"beset": "attacked or troubled from all sides"
+},
+"rule": "\"Ensconced\" means settled snugly in place. They are \"comfortably\" seated \"at a little table\" in a restaurant, so they are not caught in trouble or under attack."
+},
+{
+"word": "hamper",
+"g": 65238,
+"book": "The Secret of Chimneys",
+"form": "hamper",
+"passage": "She dared not try and join in the struggle. To do so might hamper and not aid Bill. Her one idea was to stay in the doorway, so that anyone trying to escape should not leave the room that way.",
+"options": [
+"hamper",
+"bolster",
+"augment",
+"assail"
+],
+"definitions": {
+"hamper": "get in the way of; hinder",
+"bolster": "support or strengthen",
+"augment": "make larger or greater",
+"assail": "attack someone with great force"
+},
+"rule": "\"Hamper\" means to get in the way of. She worries joining in \"might hamper and not aid Bill,\" so the word must be the opposite of \"aid\"; she is on Bill's side, so she would not attack him."
+},
+{
+"word": "rebuff",
+"g": 78342,
+"book": "Partners in Crime",
+"form": "rebuff",
+"passage": "\"I should like him to fall simply madly in love with me. I should, of course, rebuff him virtuously and be true to my marriage vows but my heart would secretly go out to him.\"",
+"options": [
+"rebuff",
+"beguile",
+"regale",
+"entreat"
+],
+"definitions": {
+"rebuff": "reject someone bluntly",
+"beguile": "charm or deceive someone",
+"regale": "entertain someone with stories or food",
+"entreat": "beg someone earnestly"
+},
+"rule": "\"Rebuff\" means to reject. She would act \"virtuously\" and \"be true to my marriage vows,\" while her heart would only \"secretly\" go out to him, so outwardly she would turn him away."
+},
+{
+"word": "complicity",
+"drop": true,
+"why": "passage never says what wrong Pagett is supposed to have done, and a similar wrong choice would also fit"
+},
+{
+"word": "juncture",
+"drop": true,
+"why": "fixed phrase, at this juncture"
+},
+{
+"word": "subterfuge",
+"drop": true,
+"why": "wrong choice such as compunction would fit just as well"
+},
+{
+"word": "incisive",
+"g": 70114,
+"book": "The Big Four",
+"form": "incisive",
+"passage": "I turned first to the signature, \"Abe Ryland,\" and recalled Poirot's words: \"the richest man in the world.\" Mr. Ryland's letter was curt and incisive. He expressed himself as profoundly dissatisfied with the reasons Poirot had given for withdrawing from the South American proposition at the last moment.",
+"options": [
+"incisive",
+"verbose",
+"genial",
+"florid"
+],
+"definitions": {
+"incisive": "sharp, clear, and straight to the point",
+"verbose": "using far more words than needed",
+"genial": "warm and friendly",
+"florid": "overly fancy and ornate"
+},
+"rule": "\"Incisive\" means sharp and to the point. The letter is \"curt\" and the writer is \"profoundly dissatisfied,\" so it cannot be wordy, flowery, or warm."
+},
+{
+"word": "contempt",
+"drop": true,
+"why": "a warmer wrong choice like affection could also fit good-humoured"
+},
+{
+"word": "lurid",
+"drop": true,
+"why": "passage gives no clue to the style of the fiction"
+},
+{
+"word": "reticent",
+"g": 863,
+"book": "The Mysterious Affair at Styles",
+"form": "reticent",
+"passage": "“I had forgotten that,” I said thoughtfully. “That is as enigmatical as ever. It seems incredible that a woman like Mrs. Cavendish, proud and reticent to the last degree, should interfere so violently in what was certainly not her affair.”",
+"options": [
+"reticent",
+"officious",
+"belligerent",
+"impetuous"
+],
+"definitions": {
+"reticent": "reserved; not eager to share thoughts or feelings",
+"officious": "too eager to interfere and give orders",
+"belligerent": "aggressive and eager to fight",
+"impetuous": "acting quickly without thinking"
+},
+"rule": "\"Reticent\" means reserved. It seems \"incredible\" that such a woman would \"interfere so violently,\" so she must be the opposite of pushy, which rules out meddling, fighting, or rash types."
+},
+{
+"word": "inexorable",
+"drop": true,
+"why": "describes a painting abstractly, with nothing to decide the meaning"
+},
+{
+"word": "discreet",
+"g": 61168,
+"book": "The Man in the Brown Suit",
+"form": "discreet",
+"passage": "He always says a letter would have done as well. I don’t suppose he’d tell us anything, though. He is so frightfully discreet. That’s what makes him so hard to live with for long on end. But let us go on with our matchmaking.",
+"options": [
+"discreet",
+"garrulous",
+"candid",
+"indiscreet"
+],
+"definitions": {
+"discreet": "careful not to reveal private matters",
+"garrulous": "talking too much, especially about trivial things",
+"candid": "openly honest and frank",
+"indiscreet": "careless about revealing secrets"
+},
+"rule": "\"Discreet\" means careful about what you say and reveal. She says \"I don't suppose he'd tell us anything,\" so he must be close-mouthed, not talkative, frank, or careless with secrets."
+},
+{
+"word": "vacuous",
+"g": 75288,
+"book": "The Seven Dials Mystery",
+"form": "vacuous",
+"passage": "Jimmy Thesiger was a fair, cherubic young man, and all that could be said of Gerald Wade was that he was fairer and more cherubic, and that his vacuous expression made Jimmy's face quite intelligent by contrast.",
+"options": [
+"vacuous",
+"astute",
+"pensive",
+"erudite"
+],
+"definitions": {
+"vacuous": "empty; showing no thought or intelligence",
+"astute": "clever and quick to judge situations",
+"pensive": "deep in serious thought",
+"erudite": "having great learning"
+},
+"rule": "\"Vacuous\" means empty of thought. His expression made Jimmy's face look \"quite intelligent by contrast,\" so Gerald's face must look blank, not clever, thoughtful, or learned."
+},
+{
+"word": "stolid",
+"g": 65238,
+"book": "The Secret of Chimneys",
+"form": "stolid",
+"passage": "Virginia said nothing. For the first time she felt afraid of this stolid man with the expressionless face. She understood what Anthony had meant when he said there were no flies on Superintendent Battle.",
+"options": [
+"stolid",
+"ebullient",
+"jovial",
+"irascible"
+],
+"definitions": {
+"stolid": "calm and showing little emotion",
+"ebullient": "bubbling over with cheerful energy",
+"jovial": "cheerful and friendly",
+"irascible": "easily made angry"
+},
+"rule": "\"Stolid\" means calm and showing little emotion. The man has an \"expressionless face,\" so he cannot be bubbly, jolly, or quick to anger."
+},
+{
+"word": "emissary",
+"drop": true,
+"why": "depends on political plot of the book"
+},
+{
+"word": "irresolute",
+"drop": true,
+"why": "passage gives only a thin clue to the feeling"
+},
+{
+"word": "reprehensible",
+"g": 65238,
+"book": "The Secret of Chimneys",
+"form": "reprehensible",
+"passage": "“I must say, Mr. Cade,” he said pompously, “that I consider your action in that matter highly reprehensible. If the slightest hitch had occurred in your plans, one of our national possessions might have disappeared beyond the hope of recovery.",
+"options": [
+"reprehensible",
+"exemplary",
+"prudent",
+"ingenious"
+],
+"definitions": {
+"reprehensible": "deserving blame or criticism",
+"exemplary": "serving as an excellent model",
+"prudent": "wise and careful about risks",
+"ingenious": "clever and inventive"
+},
+"rule": "\"Reprehensible\" means deserving blame. He starts \"I must say\" and then warns that \"the slightest hitch\" could have lost a national treasure, so he is criticizing Mr. Cade, not praising a careful or clever plan."
+},
+{
+"word": "indifferent",
+"drop": true,
+"why": "wrong choices that fit grammar could not be firmly ruled out, or the sense used is old-fashioned"
+},
+{
+"word": "denounce",
+"drop": true,
+"why": "depends on plot of the book"
+},
+{
+"word": "orthodox",
+"drop": true,
+"why": "passage does not firmly rule out unusual or radical views"
+},
+{
+"word": "scrutinize",
+"g": 58866,
+"book": "The Murder on the Links",
+"form": "scrutinized",
+"passage": "Remembering Poirot’s unaccountable insistence on the footprints in the flower beds, I scrutinized him narrowly as he gave his evidence. Either he had nothing to do with the crime or he was a consummate actor.",
+"options": [
+"scrutinized",
+"castigated",
+"placated",
+"beguiled"
+],
+"definitions": {
+"scrutinized": "examined very closely and carefully",
+"castigated": "criticized someone very severely",
+"placated": "calmed someone who was angry",
+"beguiled": "charmed or tricked"
+},
+"rule": "\"Scrutinized\" means examined very closely. The speaker watches him \"narrowly as he gave his evidence\" and then judges whether he is guilty or \"a consummate actor,\" so he is studying him, not scolding or soothing him."
+},
+{
+"word": "connoisseur",
+"drop": true,
+"why": "wrong choices are unrelated rather than tempting"
+},
+{
+"word": "earnest",
+"g": 75288,
+"book": "The Seven Dials Mystery",
+"form": "earnest",
+"passage": "\"Frightfully tiring, full of all the most depressing virtues like sobriety and punctuality. I don't know which are the worst, powerful personalities or earnest politicians. I do so prefer the cheerful inefficient.\"",
+"options": [
+"earnest",
+"frivolous",
+"indolent",
+"flippant"
+],
+"definitions": {
+"earnest": "serious and sincere",
+"frivolous": "not serious; silly",
+"indolent": "lazy; avoiding effort",
+"flippant": "not showing proper seriousness"
+},
+"rule": "\"Earnest\" means serious and sincere. She complains about \"depressing virtues like sobriety and punctuality\" and prefers \"the cheerful inefficient,\" so the politicians she dislikes must be solemn, not silly or lazy."
+},
+{
+"word": "profound",
+"drop": true,
+"why": "passage does not rule out a shallower or merely formal feeling"
+},
+{
+"word": "incessant",
+"drop": true,
+"why": "wrong choices could not be firmly ruled out"
+},
+{
+"word": "chagrin",
+"g": 75288,
+"book": "The Seven Dials Mystery",
+"form": "chagrined",
+"passage": "\"A white crystalline powder, that's what it is,\" said Jimmy. \"And to any reader of detective fiction those words are both familiar and suggestive. Of course, if it turns out to be a new kind of patent tooth-powder, I shall be chagrined and annoyed.\"",
+"options": [
+"chagrined",
+"elated",
+"vindicated",
+"mollified"
+],
+"definitions": {
+"chagrined": "feeling disappointed and a little embarrassed",
+"elated": "filled with joy and pride",
+"vindicated": "shown to have been right",
+"mollified": "calmed down and made less angry"
+},
+"rule": "\"Chagrined\" means disappointed and embarrassed. He hopes the powder is something exciting, and if it is only \"tooth-powder\" he will feel \"annoyed,\" so he would not be joyful, proved right, or soothed."
+},
+{
+"word": "loath",
+"drop": true,
+"why": "fixed phrase, or the form is a different word and wrong choices fit as well"
+},
+{
+"word": "resolute",
+"g": 78084,
+"book": "The Mysterious Mr. Quin",
+"form": "resolute",
+"passage": "Every now and then she dabbed her eyes with a handkerchief. Madge was resolute and alert, her feelings fully under control by now. Mrs. Graham was composed, as always, her face grave and impassive. The tragedy seemed to have affected her son more keenly than anyone.",
+"options": [
+"resolute",
+"distraught",
+"listless",
+"despondent"
+],
+"definitions": {
+"resolute": "firm and determined",
+"distraught": "deeply upset and unable to think clearly",
+"listless": "without energy or interest",
+"despondent": "deeply discouraged and hopeless"
+},
+"rule": "\"Resolute\" means firm and determined. Madge is also \"alert,\" with \"her feelings fully under control,\" so she is steady, not upset, drained of energy, or hopeless."
+},
+{
+"word": "induce",
+"drop": true,
+"why": "wrong choices would be given away by grammar rather than meaning"
+},
+{
+"word": "diffident",
+"g": 78084,
+"book": "The Mysterious Mr. Quin",
+"form": "diffident",
+"passage": "\"You're rather a big bug socially, aren't you?\" he asked, with a diffident candor that made it impossible to take offense. \"I mean you know all the duchesses and earls and countesses and things.\"",
+"options": [
+"diffident",
+"brazen",
+"impudent",
+"presumptuous"
+],
+"definitions": {
+"diffident": "shy and modest; lacking self-confidence",
+"brazen": "bold and shameless",
+"impudent": "rudely disrespectful and bold",
+"presumptuous": "overstepping what is proper or polite"
+},
+"rule": "\"Diffident\" means shy and modest. His candor \"made it impossible to take offense,\" so it was gentle and unsure, not bold, rude, or pushy.",
+"drop": true,
+"why": "cut after the blind test"
+},
+{
+"word": "raucous",
+"drop": true,
+"why": "too little context to decide the meaning"
+},
+{
+"word": "squalid",
+"drop": true,
+"why": "wrong choices like quaint or spacious could also fit with dirty"
+},
+{
+"word": "discrepancy",
+"drop": true,
+"why": "depends on the plot of the story"
+},
+{
+"word": "inexplicable",
+"drop": true,
+"why": "the word repeats the idea of strange, so wrong choices also fit"
+},
+{
+"word": "quaint",
+"drop": true,
+"why": "passage does not decide the meaning"
+},
+{
+"word": "incredulous",
+"drop": true,
+"why": "depends on the plot of the story"
+},
+{
+"word": "deference",
+"drop": true,
+"why": "wrong choices such as defiance or impatience could also fit"
+},
+{
+"word": "odious",
+"drop": true,
+"why": "passage shows only a negative tone, so the exact meaning is not decided"
+},
+{
+"word": "sardonic",
+"drop": true,
+"why": "passages do not decide the meaning"
+},
+{
+"word": "infamous",
+"drop": true,
+"why": "comic retelling, so the tone does not decide the meaning"
+},
+{
+"word": "discredit",
+"g": 78220,
+"book": "The Murder at the Vicarage",
+"form": "discrediting",
+"passage": "She had at last admitted taking the suitcase to the wood, but had done so in all good faith, Dr. Stone having told her that he feared the rivalry of other archæologists who would not stick at burglary to gain their object of discrediting his theories.",
+"options": [
+"discrediting",
+"corroborating",
+"espousing",
+"exalting"
+],
+"definitions": {
+"discrediting": "harming the reputation of; making people doubt",
+"corroborating": "confirming with supporting evidence",
+"espousing": "adopting and supporting an idea",
+"exalting": "praising or lifting up highly"
+},
+"rule": "\"Discrediting\" means making people doubt something. The people are \"rivals\" who would \"not stick at burglary\" to reach their goal, so their goal is to harm his theories, not to support or praise them."
+},
+{
+"word": "accost",
+"drop": true,
+"why": "wrong choices are weak and the clue is thin"
+},
+{
+"word": "subtle",
+"drop": true,
+"why": "passages do not rule out a more dramatic change"
+},
+{
+"word": "pallor",
+"drop": true,
+"why": "wrong choices are unrelated rather than tempting"
+},
+{
+"word": "lithe",
+"drop": true,
+"why": "description only, nothing decides the meaning"
+},
+{
+"word": "reproach",
+"drop": true,
+"why": "nearby text repeats the word, or the sense is a fixed phrase"
+},
+{
+"word": "indignant",
+"g": 69087,
+"book": "The Murder of Roger Ackroyd",
+"form": "indignant",
+"passage": "It is odd how, when you have a secret belief of your own which you do not wish to acknowledge, the voicing of it by some one else will rouse you to a fury of denial. I burst immediately into indignant speech.",
+"options": [
+"indignant",
+"jovial",
+"conciliatory",
+"placid"
+],
+"definitions": {
+"indignant": "angry because of something unfair",
+"jovial": "cheerful and good humored",
+"conciliatory": "trying to calm and win over",
+"placid": "calm and not easily upset"
+},
+"rule": "\"Indignant\" means angry at something unfair. The speaker is roused \"to a fury of denial\" and \"burst\" into speech, so the words were angry, not cheerful, soothing, or calm."
+}
+]

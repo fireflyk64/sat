@@ -1,0 +1,4668 @@
+[
+{
+"id": "forge-1",
+"keep": [
+0
+],
+"rule": "The subject \"blood\" is singular, so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-61262-323-1",
+"keep": [
+1
+],
+"rule": "The subject \"Marsdon Manor\" is one place, so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-69087-106-3",
+"keep": [
+1,
+2
+],
+"rule": "The subject \"Mrs. Ackroyd\" is one person, so the verb is \"was\", not \"were\". The story is in the past, so \"succeeds\" should be \"succeeded\".",
+"optional": []
+},
+{
+"id": "forge-70114-1920-1",
+"keep": [
+2
+],
+"rule": "In \"there was a gag\", the subject is \"gag\", which is singular, so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-58866-407-2",
+"keep": [
+1,
+2
+],
+"rule": "In \"between them was a round table\", the subject is \"table\", which is singular, so the verb is \"was\", not \"were\". The story is in the past, so \"line\" should be \"lined\".",
+"optional": [
+"window"
+]
+},
+{
+"id": "forge-72824-406-1",
+"keep": [
+1,
+2
+],
+"rule": "\"Kettering\" is a person's last name, so it needs a capital letter. The story is in the past, so \"stands\" should be \"stood\".",
+"optional": []
+},
+{
+"id": "forge-58866-1283-4",
+"keep": [
+2
+],
+"rule": "The subject \"silence\" is singular, so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-58866-1676-1",
+"keep": [
+2
+],
+"rule": "The subject \"they\" is plural and the story is in the past, so \"has\" should be \"had\".",
+"optional": []
+},
+{
+"id": "forge-863-271-0",
+"keep": [
+2
+],
+"rule": "The rest of the passage is in the past tense (\"was awakened\", \"had\"), so \"tells\" should be \"told\".",
+"optional": []
+},
+{
+"id": "forge-58866-440-3",
+"keep": [
+2
+],
+"rule": "The subject \"hair\" is singular, so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-863-2283-5",
+"keep": [
+0,
+2
+],
+"rule": "Remove the comma after \"drawer\" because a comma should not separate a subject from its verb. The subject \"It\" is singular, so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-72824-636-1",
+"keep": [
+2
+],
+"rule": "\"Harfield\" is a person's last name, so it needs a capital letter.",
+"optional": []
+},
+{
+"id": "forge-69087-1883-0",
+"keep": [
+2
+],
+"rule": "Remove the comma after \"thing\" because it separates the subject \"The whole thing\" from its verb \"can be divided\".",
+"optional": []
+},
+{
+"id": "forge-72824-2823-1",
+"keep": [
+1
+],
+"rule": "The story is in the past, so \"make\" should be \"made\".",
+"optional": []
+},
+{
+"id": "forge-70114-1717-1",
+"keep": [
+2
+],
+"rule": "Remove the comma after \"alike\" because \"came\" and \"bore\" are two verbs that share the subject \"They\", and no comma goes between them.",
+"optional": []
+},
+{
+"id": "forge-863-126-1",
+"keep": [
+1
+],
+"rule": "The subject \"wife\" is singular and the story is in the past, so \"follow\" should be \"followed\".",
+"optional": [
+"finally"
+]
+},
+{
+"id": "forge-61262-976-0",
+"keep": [
+1,
+2
+],
+"rule": "The subject \"Poirot\" is singular and the story is in the past, so \"have\" should be \"had\". \"Go\" should be \"went\" to match the past tense of \"tackled\".",
+"optional": []
+},
+{
+"id": "forge-69087-282-4",
+"keep": [
+1,
+2
+],
+"rule": "The subject \"he\" is singular, so the verb is \"was\", not \"were\". \"Paton\" is a person's last name, so it needs a capital letter.",
+"optional": []
+},
+{
+"id": "forge-70114-1888-1",
+"keep": [
+0
+],
+"rule": "Remove the comma after \"late\" because \"entered\" and \"were shown\" are two verbs that share the subject \"We\", and no comma goes between them.",
+"optional": []
+},
+{
+"id": "forge-69087-560-1",
+"keep": [
+1,
+2
+],
+"rule": "The story is in the past, so \"peals\" should be \"pealed\". In \"There was a confused murmur\", the subject is \"murmur\", which is singular, so the verb is \"was\", not \"were\".",
+"optional": [
+"moment"
+]
+},
+{
+"id": "forge-70114-856-1",
+"keep": [
+1
+],
+"rule": "The subject is \"One\", which is singular, so the verb is \"was\", not \"were\". The words \"of the housemaids\" do not change that.",
+"optional": []
+},
+{
+"id": "forge-69087-423-3",
+"keep": [
+2
+],
+"rule": "The story is in the past, so \"sees\" should be \"saw\".",
+"optional": []
+},
+{
+"id": "forge-69087-2645-0",
+"keep": [
+0,
+1
+],
+"rule": "The story is in the past, so \"takes\" should be \"took\". Remove the comma after \"hand\" because \"took\" and \"gave\" are two verbs that share the subject \"He\".",
+"optional": []
+},
+{
+"id": "forge-70114-1367-2",
+"keep": [
+0,
+1
+],
+"rule": "The subject \"He\" is singular, so the verb is \"was\", not \"were\". Remove the comma after \"cry\" because \"of joy\" finishes the phrase \"a cry of joy\".",
+"optional": []
+},
+{
+"id": "forge-69087-108-0",
+"keep": [
+1
+],
+"rule": "The subject \"we\" takes \"are\", not \"is\".",
+"optional": []
+},
+{
+"id": "forge-72824-167-3",
+"keep": [
+0,
+2
+],
+"rule": "Remove the comma after \"He\" because it separates the subject from its verb \"had\". The subject \"That\" is singular and the story is in the past, so \"have\" should be \"had\".",
+"optional": []
+},
+{
+"id": "forge-58866-2052-7",
+"keep": [
+1
+],
+"rule": "The verbs \"expects\" and \"sees\" are in the present tense, so \"went\" should be \"goes\".",
+"optional": []
+},
+{
+"id": "forge-863-965-0",
+"keep": [
+1
+],
+"rule": "The story is in the past, so \"glance\" should be \"glanced\".",
+"optional": []
+},
+{
+"id": "forge-69087-3058-6",
+"keep": [
+1
+],
+"rule": "Remove the comma after \"morning\" because \"had visited\" and \"had displayed\" are two verbs that share the subject \"Miss Russell\", and no comma goes between them.",
+"optional": []
+},
+{
+"id": "forge-70114-298-0",
+"keep": [
+0,
+2
+],
+"rule": "The story is in the past, so \"go\" should be \"went\". Remove the comma after \"corner\" because \"was attracted\" and \"went\" are two verbs that share the subject \"Ingles\".",
+"optional": []
+},
+{
+"id": "forge-863-727-0",
+"keep": [
+0
+],
+"rule": "The subject \"Mr. Wells\" is one person, so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-72824-1927-1",
+"keep": [
+1
+],
+"rule": "The subject \"You\" takes \"are\", not \"is\".",
+"optional": []
+},
+{
+"id": "forge-72824-1755-5",
+"keep": [
+2
+],
+"rule": "The subject \"He\" takes \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-61262-742-0",
+"keep": [
+0,
+2
+],
+"rule": "Remove the comma after \"I\" because it separates the subject from its verb \"was\". The subject \"anxiety\" is singular and the story is in the past, so \"make\" should be \"made\".",
+"optional": []
+},
+{
+"id": "forge-69087-3203-2",
+"keep": [
+1
+],
+"rule": "The word \"who\" refers to the single \"doctor\", so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-72824-988-1",
+"keep": [
+0
+],
+"rule": "The story is in the past (\"met\", \"returned\"), so \"goes\" should be \"went\".",
+"optional": []
+},
+{
+"id": "forge-61262-147-3",
+"keep": [
+0,
+1
+],
+"rule": "Add a comma after \"abilities\" because \"and\" joins two complete sentences. The subject \"he\" is singular, so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-58866-1385-4",
+"keep": [
+1,
+2
+],
+"rule": "The story is in the past, so \"come\" should be \"came\". Remove the comma after \"conclusion\" because \"that I disliked her intensely\" is needed to finish the thought \"the conclusion that I disliked her\".",
+"optional": []
+},
+{
+"id": "forge-72824-238-0",
+"keep": [
+0,
+2
+],
+"rule": "The story is in the past, so \"walks\" should be \"walked\". Remove the comma after \"Knighton\" because it separates the subject from its verb \"bent\".",
+"optional": []
+},
+{
+"id": "forge-863-1201-0",
+"keep": [
+1
+],
+"rule": "The subject \"Alfred Inglethorp\" is one person, so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-58866-2569-2",
+"keep": [
+0,
+1
+],
+"rule": "The story is in the past, so \"understand\" should be \"understood\". Remove the comma after \"night\" because it separates the subject \"The events of the night\" from its verb.",
+"optional": []
+},
+{
+"id": "forge-70114-395-0",
+"keep": [
+0,
+1
+],
+"rule": "Add a comma after \"discouraging\" because \"and\" joins two complete sentences. The story is in the past, so \"do\" should be \"did\".",
+"optional": []
+},
+{
+"id": "forge-70114-1198-1",
+"keep": [
+1
+],
+"rule": "\"Poirot and I\" is a compound subject (two people), so the verb is \"were\", not \"was\".",
+"optional": []
+},
+{
+"id": "forge-61262-101-0",
+"keep": [
+0
+],
+"rule": "The story is in the past, so \"rise\" should be \"rose\".",
+"optional": []
+},
+{
+"id": "forge-61262-452-2",
+"keep": [
+0
+],
+"rule": "The subject \"examination\" is singular and the story is in the past, so \"turn\" should be \"turned\".",
+"optional": []
+},
+{
+"id": "forge-61262-947-0",
+"keep": [
+0
+],
+"rule": "The subject \"Lady Willard\" is one person, so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-61262-1165-1",
+"keep": [
+0,
+2
+],
+"rule": "Remove the comma after \"page\" because \"spoke\" and \"were ushered\" are two verbs that share the subject \"They\". The story is in the past, so \"descends\" should be \"descended\".",
+"optional": []
+},
+{
+"id": "forge-70114-1752-0",
+"keep": [
+2
+],
+"rule": "The story is in the past, so \"rings\" should be \"rang\".",
+"optional": []
+},
+{
+"id": "forge-70114-944-0",
+"keep": [
+1
+],
+"rule": "The subject \"He\" is singular and the story is in the past, so \"have\" should be \"had\".",
+"optional": []
+},
+{
+"id": "forge-70114-1354-0",
+"keep": [
+2
+],
+"rule": "The story is in the past, so \"run\" should be \"ran\".",
+"optional": []
+},
+{
+"id": "forge-72824-710-0",
+"keep": [
+0,
+1
+],
+"rule": "Remove the comma after \"Katherine\" because it separates the subject from its verb. The story is in the past, so \"goes\" should be \"went\".",
+"optional": []
+},
+{
+"id": "forge-69087-224-1",
+"keep": [
+0
+],
+"rule": "The subject \"I\" takes \"have\", not \"has\".",
+"optional": []
+},
+{
+"id": "forge-58866-1426-2",
+"keep": [
+0
+],
+"rule": "The subject \"people\" is plural, so the verb is \"were\", not \"was\".",
+"optional": []
+},
+{
+"id": "forge-70114-864-3",
+"keep": [
+1,
+2
+],
+"rule": "The subject \"evidence\" is singular, so the verb is \"was\", not \"were\". Remove the comma after \"Paynter\" because it separates the subject from its verb \"had been\".",
+"optional": []
+},
+{
+"id": "forge-58866-2379-42",
+"keep": [
+1,
+2
+],
+"rule": "Remove the comma after \"do\" because it separates the subject \"the best thing to do\" from its verb. That subject is singular, so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-72824-983-7",
+"keep": [
+1,
+2
+],
+"rule": "The subject \"chair\" is singular, so the verb is \"was\", not \"were\". The story is in the past, so \"hesitates\" should be \"hesitated\".",
+"optional": []
+},
+{
+"id": "forge-70114-1399-3",
+"keep": [
+0
+],
+"rule": "\"The ground floors and the upper stories\" is a plural subject, so the verb is \"were\", not \"was\".",
+"optional": []
+},
+{
+"id": "forge-70114-1152-5",
+"keep": [
+2
+],
+"rule": "The subject \"mark\" is singular, so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-61262-678-0",
+"keep": [
+0
+],
+"rule": "The subject \"fingers\" is plural and the story is in the past, so \"has\" should be \"had\".",
+"optional": [
+"moment"
+]
+},
+{
+"id": "forge-72824-2955-0",
+"keep": [
+2
+],
+"rule": "The subject \"voice\" is singular and the story is in the past, so \"seem\" should be \"seemed\".",
+"optional": []
+},
+{
+"id": "forge-58866-2325-0",
+"keep": [
+1
+],
+"rule": "\"The prisoner and his counsel\" is a compound subject (two people), so the verb is \"were\", not \"was\".",
+"optional": []
+},
+{
+"id": "forge-58866-401-0",
+"keep": [
+0,
+2
+],
+"rule": "Remove the comma after \"door\" because \"opened\" and \"bowed\" are two verbs that share the subject \"He\". The story is in the past, so \"draws\" should be \"drew\".",
+"optional": []
+},
+{
+"id": "forge-863-244-0",
+"keep": [
+0
+],
+"rule": "The story is in the past, so \"am\" should be \"was\".",
+"optional": [
+"evidently"
+]
+},
+{
+"id": "forge-61262-1707-1",
+"keep": [
+0
+],
+"rule": "The story is in the past (\"felt\", \"was asserting\"), so \"seems\" should be \"seemed\".",
+"optional": []
+},
+{
+"id": "forge-70114-1887-1",
+"keep": [
+2
+],
+"rule": "The story is in the past (\"had been\"), so \"is\" should be \"was\".",
+"optional": []
+},
+{
+"id": "forge-72824-903-6",
+"keep": [
+0,
+2
+],
+"rule": "The story is in the past, so \"finds\" should be \"found\". Remove the comma after \"smile\" because it separates the subject from its verb \"came\".",
+"optional": []
+},
+{
+"id": "forge-61262-451-1",
+"keep": [
+1,
+2
+],
+"rule": "The story is in the past, so \"announces\" should be \"announced\". The subject \"sympathy\" is singular and the story is in the past, so \"have\" should be \"had\".",
+"optional": []
+},
+{
+"id": "forge-70114-935-1",
+"keep": [
+1
+],
+"rule": "The story is in the past, so \"describes\" should be \"described\".",
+"optional": []
+},
+{
+"id": "forge-70114-1793-0",
+"keep": [
+0
+],
+"rule": "The subject \"I\" takes \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-69087-213-0",
+"keep": [
+2
+],
+"rule": "The subject \"man\" is singular, so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-58866-2374-1",
+"keep": [
+0
+],
+"rule": "The subject \"girl\" is singular, so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-72824-3299-8",
+"keep": [
+1
+],
+"rule": "The event happened \"the day before yesterday\", so \"mention\" should be \"mentioned\".",
+"optional": []
+},
+{
+"id": "forge-61262-1753-1",
+"keep": [
+0,
+2
+],
+"rule": "In \"In every paper was a huge headline\", the subject is \"headline\", which is singular, so the verb is \"was\", not \"were\". Remove the comma after \"financier\" because it separates the subject \"The disappearance\" from its verb \"took\".",
+"optional": []
+},
+{
+"id": "forge-58866-198-2",
+"keep": [
+1
+],
+"rule": "The story is in the past, so \"wait\" should be \"waited\".",
+"optional": []
+},
+{
+"id": "forge-72824-1946-2",
+"keep": [
+2
+],
+"rule": "The story is in the past, so \"baffles\" should be \"baffled\".",
+"optional": []
+},
+{
+"id": "forge-61262-757-1",
+"keep": [
+0
+],
+"rule": "The subject \"It\" is singular, so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-58866-2186-3",
+"keep": [
+0,
+1
+],
+"rule": "The story is in the past, so \"looks\" should be \"looked\". \"Poirot\" is a person's name, so it needs a capital letter.",
+"optional": []
+},
+{
+"id": "forge-69087-108-3",
+"keep": [
+0
+],
+"rule": "The subject \"They\" is plural, so the verb is \"were\", not \"was\".",
+"optional": []
+},
+{
+"id": "forge-72824-1128-2",
+"keep": [
+1
+],
+"rule": "The subject \"it\" is singular, so the verb is \"seems\", not \"seem\".",
+"optional": []
+},
+{
+"id": "forge-72824-524-0",
+"keep": [
+1,
+2
+],
+"rule": "The subject \"interview\" is singular and the story is in the past, so \"have\" should be \"had\". \"Mirelle\" is a name, so it needs a capital letter.",
+"optional": []
+},
+{
+"id": "forge-69087-3175-2",
+"keep": [
+0,
+2
+],
+"rule": "The story is in the past, so \"learn\" should be \"learned\". The subject \"idea\" is singular and the story is in the past, so \"take\" should be \"took\".",
+"optional": []
+},
+{
+"id": "forge-58866-1198-4",
+"keep": [
+1
+],
+"rule": "The story is in the past, so \"realize\" should be \"realized\".",
+"optional": []
+},
+{
+"id": "forge-61262-1564-1",
+"keep": [
+1
+],
+"rule": "\"Turns\" should be \"turned\" to match the past tense of \"reiterated\".",
+"optional": []
+},
+{
+"id": "forge-70114-2024-3",
+"keep": [
+2
+],
+"rule": "The story is in the past, so \"obtain\" should be \"obtained\".",
+"optional": []
+},
+{
+"id": "forge-70114-1059-0",
+"keep": [
+1,
+2
+],
+"rule": "The subject \"we\" is plural, so the verb is \"were\", not \"was\". \"Persian\" refers to Persia, so it needs a capital letter.",
+"optional": []
+},
+{
+"id": "forge-69087-111-0",
+"keep": [
+2
+],
+"rule": "The subject \"It\" is singular, so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-863-296-1",
+"keep": [
+2
+],
+"rule": "The story is in the past, so \"yawns\" should be \"yawned\".",
+"optional": []
+},
+{
+"id": "forge-72824-117-2",
+"keep": [
+1
+],
+"rule": "The story is in the past, so \"marches\" should be \"marched\".",
+"optional": []
+},
+{
+"id": "forge-70114-1920-2",
+"keep": [
+1
+],
+"rule": "In \"there was a gag\", the subject is \"gag\", which is singular, so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-72824-983-1",
+"keep": [
+1
+],
+"rule": "The story is in the past, so \"finds\" should be \"found\".",
+"optional": []
+},
+{
+"id": "forge-61262-360-0",
+"keep": [
+1,
+2
+],
+"rule": "Remove the comma after \"door\" because it separates the subject from its verb \"was opened\". \"Poirot\" is a name, so it needs a capital letter.",
+"optional": []
+},
+{
+"id": "forge-69087-648-0",
+"keep": [
+0,
+2
+],
+"rule": "Remove the comma after \"inspector\" because it separates the subject from its verb \"took\". The story is in the past, so \"locks\" should be \"locked\".",
+"optional": []
+},
+{
+"id": "forge-69087-3173-4",
+"keep": [
+2
+],
+"rule": "The subject \"murderer\" is singular and the story is in the past, so \"have\" should be \"had\".",
+"optional": []
+},
+{
+"id": "forge-863-950-0",
+"keep": [
+2
+],
+"rule": "The story is in the past, so \"stands\" should be \"stood\".",
+"optional": []
+},
+{
+"id": "forge-72824-3000-0",
+"keep": [
+1,
+2
+],
+"rule": "Remove the comma after \"sunshine\" because it separates the subject from its verb \"shone\". The story is in the past, so \"burnishes\" should be \"burnished\".",
+"optional": []
+},
+{
+"id": "forge-72824-2854-0",
+"keep": [
+1
+],
+"rule": "\"Lenox\" is a person's name, so it needs a capital letter.",
+"optional": []
+},
+{
+"id": "forge-70114-1572-0",
+"keep": [
+0,
+2
+],
+"rule": "\"Desjardeaux\" is a person's name, so it needs a capital letter. The story is in the past, so \"glances\" should be \"glanced\".",
+"optional": []
+},
+{
+"id": "forge-61262-776-0",
+"keep": [
+1,
+2
+],
+"rule": "The subject \"style\" is singular, so the verb is \"was\", not \"were\". The story is in the past, so \"fancies\" should be \"fancied\".",
+"optional": []
+},
+{
+"id": "forge-58866-1939-1",
+"keep": [
+2
+],
+"rule": "The subject \"Georges Conneau\" is one man, so the verb is \"is\", not \"are\".",
+"optional": []
+},
+{
+"id": "forge-863-59-1",
+"keep": [
+2
+],
+"rule": "The subject \"Mrs. Inglethorp\" is singular and the story is in the past, so \"seem\" should be \"seemed\".",
+"optional": []
+},
+{
+"id": "forge-72824-3167-0",
+"keep": [
+1,
+2
+],
+"rule": "The story is in the past, so \"does\" should be \"did\". Remove the comma after \"manner\" because \"did not seem\" and \"chatted\" are two verbs that share the subject \"He\".",
+"optional": []
+},
+{
+"id": "forge-863-676-3",
+"keep": [
+0,
+2
+],
+"rule": "The subject \"shock\" is singular and the story is in the past, so \"have\" should be \"had\". Remove the comma after \"man\" because \"of very little imagination\" belongs with \"man\" and should not be set off.",
+"optional": []
+},
+{
+"id": "forge-69087-194-2",
+"keep": [
+2
+],
+"rule": "\"Such\" begins a sentence, so it needs a capital letter.",
+"optional": []
+},
+{
+"id": "forge-69087-444-0",
+"keep": [
+2
+],
+"rule": "The story is in the past, so \"is\" should be \"was\".",
+"optional": []
+},
+{
+"id": "forge-69087-2184-0",
+"keep": [
+2
+],
+"rule": "The event happened \"the day before yesterday\", so \"takes\" should be \"took\".",
+"optional": []
+},
+{
+"id": "forge-58866-1763-1",
+"keep": [
+1,
+2
+],
+"rule": "\"Daubreuil\" is a person's last name, so it needs a capital letter. The subject \"I\" takes \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-69087-156-0",
+"keep": [
+1
+],
+"rule": "The story is in the past, so \"seems\" should be \"seemed\".",
+"optional": []
+},
+{
+"id": "forge-69087-2902-2",
+"keep": [
+0
+],
+"rule": "\"As\" begins the sentence, so it needs a capital letter.",
+"optional": []
+},
+{
+"id": "forge-69087-1678-0",
+"keep": [
+1
+],
+"rule": "The subject \"description\" is singular and the story is in the past, so \"have\" should be \"had\".",
+"optional": []
+},
+{
+"id": "forge-61262-845-0",
+"keep": [
+0
+],
+"rule": "The subject 'Mr. Philip Ridgeway' is one person, so the verb is 'was', not 'were'.",
+"optional": []
+},
+{
+"id": "forge-61262-615-0",
+"keep": [
+0
+],
+"rule": "In 'there were a rending sound', the real subject is 'a rending sound', which is singular, so the verb is 'was'.",
+"optional": [
+"presently"
+]
+},
+{
+"id": "forge-70114-1931-5",
+"keep": [
+1
+],
+"rule": "The subject 'Madame Olivier' is one person, so the verb is 'was', not 'were', even though the verb comes first.",
+"optional": []
+},
+{
+"id": "forge-70114-574-1",
+"keep": [
+1
+],
+"rule": "The subject 'experience' is singular and the story is in the past, so the verb is 'had', not 'have'.",
+"optional": [
+"morning"
+]
+},
+{
+"id": "forge-72824-1237-0",
+"keep": [
+1
+],
+"rule": "'Knighton' is a person's name, so it needs a capital letter.",
+"optional": []
+},
+{
+"id": "forge-72824-727-0",
+"keep": [
+2
+],
+"rule": "Do not put a comma between two verbs that share one subject, so 'experience, and had had' should be 'experience and had had'.",
+"optional": []
+},
+{
+"id": "forge-70114-1398-2",
+"keep": [
+1,
+2
+],
+"rule": "A nationality is capitalized, so 'chinese' should be 'Chinese'. The story is in the past ('had hired'), so 'know' should be 'knew'.",
+"optional": []
+},
+{
+"id": "forge-72824-2865-0",
+"keep": [
+1
+],
+"rule": "The subject is 'Hippolyte', one person, so the verb is 'was', not 'were'. The words set off by commas in between do not change that.",
+"optional": []
+},
+{
+"id": "forge-863-1864-2",
+"keep": [
+2
+],
+"rule": "The story is in the past ('suggested'), so 'worries' should be 'worried'.",
+"optional": []
+},
+{
+"id": "forge-72824-2308-1",
+"keep": [
+0
+],
+"rule": "The subject is 'hint', which is singular, so the verb is 'was', not 'were'.",
+"optional": []
+},
+{
+"id": "forge-69087-1568-0",
+"keep": [
+1
+],
+"rule": "The rest of the sentence is in the past ('turned'), so 'comes' should be 'came'.",
+"optional": []
+},
+{
+"id": "forge-70114-737-2",
+"keep": [
+0,
+1
+],
+"rule": "A long opening clause ends with a comma, so 'When I looked at myself in the glass half an hour afterwards' needs one after 'afterwards'. The sentence is in the past, so 'causes' should be 'caused'.",
+"optional": []
+},
+{
+"id": "forge-863-317-2",
+"keep": [
+1
+],
+"rule": "The subject 'she' is singular, so the verb is 'was', not 'were'.",
+"optional": []
+},
+{
+"id": "forge-69087-1886-0",
+"keep": [
+0,
+1
+],
+"rule": "The first word of a sentence is capitalized, so 'some' should be 'Some'. The subject 'incidents' is plural and the story is in the past, so 'seems' should be 'seemed'.",
+"optional": []
+},
+{
+"id": "forge-58866-1715-7",
+"keep": [
+1
+],
+"rule": "The subject is 'American', which is singular, so the verb is 'was', not 'were'. The nearby word 'button' is not the subject.",
+"optional": []
+},
+{
+"id": "forge-69087-2902-10",
+"keep": [
+2
+],
+"rule": "The subject 'Flora and he' is plural and the story is in the past, so the verb is 'stipulated'.",
+"optional": []
+},
+{
+"id": "forge-61262-710-9",
+"keep": [
+1,
+2
+],
+"rule": "'Yesterday evening' is in the past, so 'I am forced' should be 'I was forced'. The subject 'my wife and my uncle' is plural and the story is in the past, so the verb is 'remained'.",
+"optional": [
+"evening"
+]
+},
+{
+"id": "forge-58866-2190-2",
+"keep": [
+1,
+2
+],
+"rule": "A sentence starts with a capital letter, so 'my' should be 'My'. The subject 'sense' is singular, so the verb is 'was', not 'were'.",
+"optional": []
+},
+{
+"id": "forge-863-229-0",
+"keep": [
+1
+],
+"rule": "The other verbs are in the past ('ran', 'had to pass'), so 'is unable' should be 'was unable'.",
+"optional": []
+},
+{
+"id": "forge-69087-282-2",
+"keep": [
+0
+],
+"rule": "Do not put a comma between a subject and its verb, so 'He, had' should be 'He had'.",
+"optional": []
+},
+{
+"id": "forge-72824-796-0",
+"keep": [
+2
+],
+"rule": "The subject is 'half of her mind', and 'mind' is singular, so the verb is 'was', not 'were'.",
+"optional": [
+"time"
+]
+},
+{
+"id": "forge-72824-1848-0",
+"keep": [
+1
+],
+"rule": "'Katherine and Lenox' is a compound subject, so it takes the plural verb 'were', not 'was'.",
+"optional": []
+},
+{
+"id": "forge-61262-1844-0",
+"keep": [
+1
+],
+"rule": "The sentence is in the past ('was inclined'), so 'calms' should be 'calmed'.",
+"optional": []
+},
+{
+"id": "forge-61262-1952-2",
+"keep": [
+1
+],
+"rule": "Do not put a comma between a subject and its verb, so 'settee, ran' should be 'settee ran'.",
+"optional": []
+},
+{
+"id": "forge-72824-1916-0",
+"keep": [
+1
+],
+"rule": "The sentence is in the past ('declined', 'saw'), so 'goes' should be 'went'.",
+"optional": []
+},
+{
+"id": "forge-58866-551-0",
+"keep": [
+2
+],
+"rule": "The passage is in the past ('went', 'had seen'), so 'returns' should be 'returned'.",
+"optional": []
+},
+{
+"id": "forge-70114-1750-0",
+"keep": [
+2
+],
+"rule": "The story is in the past ('whirled', 'would lead'), so 'notes' should be 'noted'.",
+"optional": []
+},
+{
+"id": "forge-72824-800-4",
+"keep": [
+1
+],
+"rule": "The words 'that he might take' are needed to say which roads, so there should be no comma after 'roads'.",
+"optional": []
+},
+{
+"id": "forge-72824-981-0",
+"keep": [
+0,
+2
+],
+"rule": "The story is in the past ('passed', 'saw'), so 'goes' should be 'went'. Do not put a comma between two verbs that share one subject, so 'compartment, and saw' should be 'compartment and saw'.",
+"optional": []
+},
+{
+"id": "forge-61262-501-7",
+"keep": [
+0,
+1
+],
+"rule": "A comma goes before 'and' when it joins two full sentences, so 'turn' needs a comma after it. The subject 'babel' is singular, so the verb is 'was', not 'were'.",
+"optional": [
+"then"
+]
+},
+{
+"id": "forge-863-1856-3",
+"keep": [
+0
+],
+"rule": "Do not put a comma between a subject and its verb, so 'Poirot, had' should be 'Poirot had'.",
+"optional": []
+},
+{
+"id": "forge-72824-236-2",
+"keep": [
+1
+],
+"rule": "The sentence begins in the past ('As he read it'), so 'darkens' should be 'darkened'.",
+"optional": []
+},
+{
+"id": "forge-70114-1543-5",
+"keep": [
+0,
+1
+],
+"rule": "The sentence is in the past ('seemed'), so 'avoids' should be 'avoided'. Do not put a comma between two verbs that share one subject, so 'possible, and seemed' should be 'possible and seemed'.",
+"optional": []
+},
+{
+"id": "forge-70114-857-1",
+"keep": [
+2
+],
+"rule": "The subject 'discovery' is singular, so the verb is 'was', not 'were'.",
+"optional": []
+},
+{
+"id": "forge-863-1535-0",
+"keep": [
+1
+],
+"rule": "The other verbs in the series are in the past ('heaped', 'made'), so 'replaces' should be 'replaced'.",
+"optional": []
+},
+{
+"id": "forge-61262-187-0",
+"keep": [
+1
+],
+"rule": "Do not put a comma between two verbs that share one subject, so 'Chase, and followed' should be 'Chase and followed'.",
+"optional": []
+},
+{
+"id": "forge-69087-1565-0",
+"keep": [
+1
+],
+"rule": "'Marby Grange' is the name of a place, so 'Marby' needs a capital letter.",
+"optional": []
+},
+{
+"id": "forge-72824-1086-0",
+"keep": [
+0
+],
+"rule": "The sentence is in the past ('stood', 'noted'), so 'goes' should be 'went'.",
+"optional": []
+},
+{
+"id": "forge-69087-1592-0",
+"keep": [
+0,
+1
+],
+"rule": "The subject 'it' is singular, so the verb is 'was', not 'were'. 'Ursula' is a name, so it needs a capital letter.",
+"optional": []
+},
+{
+"id": "forge-61262-127-0",
+"keep": [
+2
+],
+"rule": "The scene is in the past ('shot', 'was'), so 'stares' should be 'stared'.",
+"optional": []
+},
+{
+"id": "forge-69087-284-0",
+"keep": [
+1
+],
+"rule": "The subject 'Captain Paton' is one person and the story is in the past, so the verb is 'had', not 'have'.",
+"optional": [
+"boars"
+]
+},
+{
+"id": "forge-70114-127-0",
+"keep": [
+2
+],
+"rule": "The rest of the sentence is in the past ('were able'), so 'are' should be 'were'.",
+"optional": [
+"fortunately",
+"later"
+]
+},
+{
+"id": "forge-69087-1039-0",
+"keep": [
+2
+],
+"rule": "The story is in the past ('moved', 'had indicated'), so 'stands' should be 'stood'.",
+"optional": [
+"now"
+]
+},
+{
+"id": "forge-72824-1200-0",
+"keep": [
+1
+],
+"rule": "'Katherine' is a name, so it needs a capital letter.",
+"optional": [
+"present"
+]
+},
+{
+"id": "forge-72824-903-2",
+"keep": [
+0
+],
+"rule": "The verbs 'disliked' and 'had telegraphed' are in the past, so 'is glad' should be 'was glad'.",
+"optional": []
+},
+{
+"id": "forge-70114-298-2",
+"keep": [
+2
+],
+"rule": "The other verb, 'seemed', is in the past, so 'watch' should be 'watched'.",
+"optional": []
+},
+{
+"id": "forge-72824-654-0",
+"keep": [
+1
+],
+"rule": "Do not put a comma between a subject and its verb, so 'doctor, read' should be 'doctor read'.",
+"optional": []
+},
+{
+"id": "forge-72824-3004-0",
+"keep": [
+1
+],
+"rule": "The other verbs are in the past ('had finally driven', 'called'), so 'goes' should be 'went'.",
+"optional": []
+},
+{
+"id": "forge-863-431-0",
+"keep": [
+2
+],
+"rule": "The subject is the whole list of objects, which is plural, and the story is in the past, so 'lies' should be 'lay'.",
+"optional": []
+},
+{
+"id": "forge-72824-1272-1",
+"keep": [
+1,
+2
+],
+"rule": "Do not put a comma between a subject and its verb, so 'people, would' should be 'people would'. 'Goby' is a name, so it needs a capital letter.",
+"optional": [
+"already"
+]
+},
+{
+"id": "forge-69087-1507-0",
+"keep": [
+2
+],
+"rule": "The other verb, 'answered', is in the past, so 'shows' should be 'showed'.",
+"optional": []
+},
+{
+"id": "forge-70114-805-0",
+"keep": [
+1,
+2
+],
+"rule": "The sentence is in the past ('disarmed'), so 'seize' should be 'seized'. 'Ryland' is a name, so it needs a capital letter.",
+"optional": []
+},
+{
+"id": "forge-72824-1221-0",
+"keep": [
+2
+],
+"rule": "The subject 'Rufus Van Aldin' is one person, so the verb is 'was', not 'were'.",
+"optional": []
+},
+{
+"id": "forge-72824-2238-3",
+"keep": [
+1
+],
+"rule": "The subject 'Derek Kettering' is one person, so the verb is 'was', not 'were'.",
+"optional": []
+},
+{
+"id": "forge-863-387-0",
+"keep": [
+0,
+1
+],
+"rule": "The story is in the past ('turned in'), so 'hurry' should be 'hurried'. Do not put a comma between a subject and its verb, so 'Poirot, stopped' should be 'Poirot stopped'.",
+"optional": []
+},
+{
+"id": "forge-72824-333-0",
+"keep": [
+2
+],
+"rule": "The other verb, 'unwrapped', is in the past, so 'snap' should be 'snapped'.",
+"optional": []
+},
+{
+"id": "forge-70114-1879-0",
+"keep": [
+0,
+2
+],
+"rule": "The subject 'rooms' is plural and the story is in the past, so 'has been reserved' should be 'had been reserved'. The story stays in the past, so 'look' should be 'looked'.",
+"optional": [
+"guidance"
+]
+},
+{
+"id": "forge-58866-715-1",
+"keep": [
+2
+],
+"rule": "The subject 'She' is singular, so the verb is 'refers', not 'refer'.",
+"optional": []
+},
+{
+"id": "forge-69087-2185-0",
+"keep": [
+0
+],
+"rule": "The subject 'It' is singular, so the verb is 'was', not 'were'.",
+"optional": []
+},
+{
+"id": "forge-72824-727-6",
+"keep": [
+0
+],
+"rule": "The subject 'She' is singular and the story is in the past, so 'have retained' should be 'had retained'.",
+"optional": []
+},
+{
+"id": "forge-69087-533-0",
+"keep": [
+1
+],
+"rule": "The story is in the past ('advanced'), so 'stand' should be 'stood'.",
+"optional": []
+},
+{
+"id": "forge-70114-1033-0",
+"keep": [
+0,
+2
+],
+"rule": "Do not put a comma between a subject and its verb, so the comma after 'attention' should go. 'It was' shows the story is in the past, so 'has shown' should be 'had shown'.",
+"optional": []
+},
+{
+"id": "forge-69087-2289-0",
+"keep": [
+1
+],
+"rule": "The rest of the sentence is in the past ('was already there'), so 'are informed' should be 'were informed'.",
+"optional": []
+},
+{
+"id": "forge-69087-2906-1",
+"keep": [
+1,
+2
+],
+"rule": "'Roger' is a name, so it needs a capital letter. Do not put a comma between a subject and its verb, so 'Ursula, had' should be 'Ursula had'.",
+"optional": [
+"night"
+]
+},
+{
+"id": "forge-69087-45-0",
+"keep": [
+0
+],
+"rule": "The word 'which' points back to the singular 'trait', so the verb is 'was', not 'were'.",
+"optional": []
+},
+{
+"id": "forge-72824-156-0",
+"keep": [
+0
+],
+"rule": "The story is in the past ('had shielded', 'spoke'), so 'gives' should be 'gave'.",
+"optional": []
+},
+{
+"id": "forge-58866-598-0",
+"keep": [
+0
+],
+"rule": "The sentence is in the past ('went'), so 'studies' should be 'studied'.",
+"optional": []
+},
+{
+"id": "forge-70114-1716-0",
+"keep": [
+1,
+2
+],
+"rule": "The story is in the past ('was forced'), so 'ends' should be 'ended'. 'South America' is a place name, so 'south' needs a capital letter.",
+"optional": [
+"comfort"
+]
+},
+{
+"id": "forge-58866-2262-2",
+"keep": [
+0,
+2
+],
+"rule": "The subject 'Poirot' is singular and the story is in the past, so 'have displayed' should be 'had displayed'. 'Bella' is a name, so it needs a capital letter.",
+"optional": []
+},
+{
+"id": "forge-70114-328-0",
+"keep": [
+0,
+1
+],
+"rule": "The subject 'Inspector' is singular and the story is in the past, so 'come' should be 'came'. The word 'got' shows the story is in the past, so 'insists' should be 'insisted'.",
+"optional": []
+},
+{
+"id": "forge-863-912-2",
+"keep": [
+0,
+2
+],
+"rule": "The story is in the past, so 'takes' should be 'took'. The subject 'he' is one person, so 'were obliged' should be 'was obliged'.",
+"optional": []
+},
+{
+"id": "forge-58866-1284-3",
+"keep": [
+1
+],
+"rule": "The subject 'she' is singular and the story is in the past, so the verb is 'knew', not 'know'.",
+"optional": []
+},
+{
+"id": "forge-69087-1043-1",
+"keep": [
+0
+],
+"rule": "The subject 'it' is singular, so the verb is 'was', not 'were'.",
+"optional": []
+},
+{
+"id": "forge-70114-1947-0",
+"keep": [
+1
+],
+"rule": "The subject 'reflections' is plural, so the verb is 'were', not 'was'.",
+"optional": []
+},
+{
+"id": "forge-61262-1529-0",
+"keep": [
+2
+],
+"rule": "Do not put a comma between a subject and its verb, so 'train, drew' should be 'train drew'.",
+"optional": []
+},
+{
+"id": "forge-58866-2092-0",
+"keep": [
+1
+],
+"rule": "The sentence is in the past ('was after midnight'), so 'takes' should be 'took'.",
+"optional": []
+},
+{
+"id": "forge-69087-2463-0",
+"keep": [
+2
+],
+"rule": "Do not put a comma between a subject and its verb, so 'I, saw' should be 'I saw'.",
+"optional": []
+},
+{
+"id": "forge-70114-403-0",
+"keep": [
+1
+],
+"rule": "The sentence is in the past ('threw'), so 'brings' should be 'brought'.",
+"optional": []
+},
+{
+"id": "forge-70114-706-0",
+"keep": [
+2
+],
+"rule": "The subject 'gleam' is singular and the story is in the past, so 'frighten' should be 'frightened'.",
+"optional": []
+},
+{
+"id": "forge-863-2082-0",
+"keep": [
+1
+],
+"rule": "The subject 'wind' is singular, so the verb is 'was', not 'were'.",
+"optional": []
+},
+{
+"id": "forge-72824-2972-1",
+"keep": [
+1
+],
+"rule": "The subject 'face' is singular and the story is in the past, so 'have' should be 'had'.",
+"optional": [
+"then"
+]
+},
+{
+"id": "forge-69087-92-2",
+"keep": [
+0,
+2
+],
+"rule": "The subject 'it' is singular, so the verb is 'is', not 'are'. Do not put a comma between a subject and its verb, so 'I, wasn't' should be 'I wasn't'.",
+"optional": []
+},
+{
+"id": "forge-61262-840-1",
+"keep": [
+2
+],
+"rule": "The story is in the past ('placed'), so 'is stolen' should be 'was stolen'.",
+"optional": []
+},
+{
+"id": "forge-70114-1999-0",
+"keep": [
+1,
+2
+],
+"rule": "Do not put a comma between two verbs that share one subject, so 'room, and returned' should be 'room and returned'. The story is in the past ('went'), so 'retains' should be 'retained'.",
+"optional": []
+},
+{
+"id": "forge-58866-808-1",
+"keep": [
+0,
+1
+],
+"rule": "A title that is part of a name is capitalized, so 'madame' should be 'Madame'. Do not put a comma between a subject and its verb, so 'Daubreuil, is' should be 'Daubreuil is'.",
+"optional": [
+"same"
+]
+},
+{
+"id": "forge-72824-2423-0",
+"keep": [
+1
+],
+"rule": "The subject 'She' is singular and the story is in the past, so 'have' should be 'had'.",
+"optional": [
+"point"
+]
+},
+{
+"id": "forge-72824-2788-5",
+"keep": [
+2
+],
+"rule": "The subject 'They' is plural, so the verb is 'have', not 'has'.",
+"optional": []
+},
+{
+"id": "forge-58866-2427-2",
+"keep": [
+2
+],
+"rule": "The story is in the past and the subject is 'I', so the verb is 'was', not 'is'.",
+"optional": []
+},
+{
+"id": "forge-61262-763-0",
+"keep": [
+0
+],
+"rule": "The story is in the past, so 'accompanies' should be 'accompanied'.",
+"optional": [
+"moment",
+"apology"
+]
+},
+{
+"id": "forge-69087-127-0",
+"keep": [
+0,
+1
+],
+"rule": "The subject 'Ackroyd' is singular and the story is in the past, so 'stare' should be 'stared'. Do not put a comma between a subject and its verb, so the comma after 'I' should go.",
+"optional": []
+},
+{
+"id": "forge-58866-114-0",
+"keep": [
+0
+],
+"rule": "The subject 'This' is singular, so the verb is 'was', not 'were'.",
+"optional": []
+},
+{
+"id": "forge-72824-2003-1",
+"keep": [
+0,
+1
+],
+"rule": "The subject 'They' is plural, so the verb is 'were', not 'was'. Do not put a comma between a subject and its verb, so 'Poirot, nodded' should be 'Poirot nodded'.",
+"optional": []
+},
+{
+"id": "forge-61262-1230-0",
+"keep": [
+0,
+1
+],
+"rule": "Do not put a comma between a subject and its verb, so 'Célestine, uttered' should be 'Célestine uttered'. The sentence is in the past ('uttered'), so 'clings' should be 'clung'.",
+"optional": []
+},
+{
+"id": "forge-69087-2818-0",
+"keep": [
+0
+],
+"rule": "With the subject 'I' in the past, the verb is 'was', not 'were'.",
+"optional": []
+},
+{
+"id": "forge-69087-360-2",
+"keep": [
+2
+],
+"rule": "The word 'that' points back to the plural 'eyes', so the verb is 'give', not 'gives'.",
+"optional": []
+},
+{
+"id": "forge-78084-2072-2",
+"keep": [
+1,
+2
+],
+"rule": "The story is in the past, so 'reaches' should be 'reached'. Do not put a comma between a subject and its verb, so 'son, passed' should be 'son passed'.",
+"optional": []
+},
+{
+"id": "forge-78084-2658-3",
+"keep": [
+0,
+2
+],
+"rule": "Do not put a comma between a subject and its verb, so 'Russian, conversed' should be 'Russian conversed'. The story is in the past ('had many friends'), so 'find' should be 'found'.",
+"optional": []
+},
+{
+"id": "forge-78084-2565-0",
+"keep": [
+1
+],
+"rule": "The story is in the past ('came into sight'), so 'turns' should be 'turned'.",
+"optional": [
+"moment"
+]
+},
+{
+"id": "forge-78342-1867-2",
+"keep": [
+0,
+2
+],
+"rule": "'Thurnly Grange' is a place name, so 'thurnly' needs a capital letter. The story is in the past, so 'dies' should be 'died'.",
+"optional": []
+},
+{
+"id": "forge-61168-2637-9",
+"keep": [
+1
+],
+"rule": "The subject 'Men' is plural, so the verb is 'do', not 'does'.",
+"optional": []
+},
+{
+"id": "forge-78220-3121-0",
+"keep": [
+2
+],
+"rule": "Do not put a comma between a subject and its verb, so the comma after 'me' should go, because 'The arguments that appealed to me' is the subject of 'had'.",
+"optional": []
+},
+{
+"id": "forge-78220-1190-4",
+"keep": [
+1,
+2
+],
+"rule": "The sentence is in the past ('was going'), so 'mentions' should be 'mentioned'. A comma goes before 'and' when it joins two full sentences, so 'Lawrence' needs a comma after it.",
+"optional": []
+},
+{
+"id": "forge-61168-1604-1",
+"keep": [
+0,
+2
+],
+"rule": "'Rayburn' is a name, so it needs a capital letter. After 'might', the verb is 'have', not 'had'.",
+"optional": []
+},
+{
+"id": "forge-78342-983-9",
+"keep": [
+1
+],
+"rule": "'Hermy' is a name, so it needs a capital letter.",
+"optional": []
+},
+{
+"id": "forge-75288-138-0",
+"keep": [
+0,
+2
+],
+"rule": "'Coote' is a name, so it needs a capital letter. The subject 'Jimmy and Nancy and Helen' is plural and the story is in the past, so 'fulfills' should be 'fulfilled'.",
+"optional": []
+},
+{
+"id": "forge-61168-872-0",
+"keep": [
+0,
+1
+],
+"rule": "Do not put a comma between a subject and its verb, so 'She, said' should be 'She said'. The story is in the past ('was'), so 'turns' should be 'turned'.",
+"optional": []
+},
+{
+"id": "forge-78220-1260-0",
+"keep": [
+0
+],
+"rule": "The sentence is in the past ('had already taken'), so 'try' should be 'tried'.",
+"optional": []
+},
+{
+"id": "forge-61168-492-0",
+"keep": [
+0,
+1
+],
+"rule": "The first word of a sentence is capitalized, so 'my' should be 'My'. The subject 'onslaught' is singular and the story is in the past, so 'have' should be 'had'.",
+"optional": []
+},
+{
+"id": "forge-78342-977-5",
+"keep": [
+0,
+1
+],
+"rule": "The story is in the past ('had no idea'), so 'admits' should be 'admitted'. 'Hermy' is a name, so it needs a capital letter.",
+"optional": []
+},
+{
+"id": "forge-1155-794-5",
+"keep": [
+2
+],
+"rule": "The passage is in the past tense (“was far from abandoning”), so “intends” should be “intended”.",
+"optional": []
+},
+{
+"id": "forge-61168-2013-3",
+"keep": [
+0
+],
+"rule": "The rest of the sentence is in the past (“wasn’t dead”, “would do”), so “know” should be “knew”.",
+"optional": []
+},
+{
+"id": "forge-78342-497-1",
+"keep": [
+1,
+2
+],
+"rule": "“Tuppence” is a person’s name, so it needs a capital T. The verb “catches” should be “caught” to match the past tense of “came” and “had not heard”.",
+"optional": []
+},
+{
+"id": "forge-72824-568-0",
+"keep": [
+0,
+1
+],
+"rule": "The verb “stands” should be “stood” to match the past tense of “went”. Delete the comma after “window”, because “went” and “stood” are two verbs that share the subject “He”.",
+"optional": [
+"presently"
+]
+},
+{
+"id": "forge-75288-680-8",
+"keep": [
+2
+],
+"rule": "The subject “anxiety” is singular and the story is in the past, so the verb is “had”, not “have”.",
+"optional": [
+"evidently"
+]
+},
+{
+"id": "forge-65238-567-1",
+"keep": [
+1
+],
+"rule": "The passage is in the past (“did not anticipate”, “was up to him”), so “feels” should be “felt”.",
+"optional": []
+},
+{
+"id": "forge-1155-935-2",
+"keep": [
+0
+],
+"rule": "Delete the comma after “bell”, because “rang” and “ordered” are two verbs that share the subject “she”.",
+"optional": []
+},
+{
+"id": "forge-61168-1754-2",
+"keep": [
+2
+],
+"rule": "Delete the comma after “opposite”, because “got a glimpse” and “realized” are two verbs that share the subject “we”.",
+"optional": []
+},
+{
+"id": "forge-78084-1032-0",
+"keep": [
+0,
+1
+],
+"rule": "Delete the comma after “Quin” in the first sentence, because “thanked” and “went” are two verbs that share the subject “They”. The verb “smiles” should be “smiled” to match the past tense of “picked up”.",
+"optional": []
+},
+{
+"id": "forge-78220-1938-2",
+"keep": [
+0
+],
+"rule": "Delete the comma after “murder”, because “no murder in St. Mary Mead” is one phrase and a comma should not split it.",
+"optional": []
+},
+{
+"id": "forge-78084-1335-0",
+"keep": [
+0
+],
+"rule": "Delete the comma after “flannels”, because it splits the subject “A young man in white tennis flannels” from its verb “was approaching”.",
+"optional": []
+},
+{
+"id": "forge-78084-2094-0",
+"keep": [
+0
+],
+"rule": "The story is in the past (“entered”, “followed”), so “goes” should be “went”.",
+"optional": []
+},
+{
+"id": "forge-61168-761-0",
+"keep": [
+2
+],
+"rule": "The word “who” refers to the singular “person”, so the verb is “loves”, not “love”.",
+"optional": []
+},
+{
+"id": "forge-78084-2281-1",
+"keep": [
+1,
+2
+],
+"rule": "The subject “companion” is singular and the story is in the past, so “have” should be “had”. A comma belongs after “daylight”, before “and”, because “He had had little time to discover the beauties of the villa by daylight” and “he had so far spoken to nobody” are two complete thoughts.",
+"optional": []
+},
+{
+"id": "forge-78084-1613-0",
+"keep": [
+2
+],
+"rule": "The subject “She” is singular, so the verb is “was”, not “were”.",
+"optional": []
+},
+{
+"id": "forge-78220-1952-0",
+"keep": [
+1
+],
+"rule": "The subject “evidence” is singular, so the verb is “was”, not “were”.",
+"optional": []
+},
+{
+"id": "forge-61168-825-1",
+"keep": [
+0,
+2
+],
+"rule": "The story is in the past (“had ordered”, “fell in”), so “suggest” should be “suggested”. A comma belongs after “boat”, before “and”, because “the steward suggested Clicquot” and “I fell in with his suggestion” are two complete thoughts.",
+"optional": []
+},
+{
+"id": "forge-75288-3223-5",
+"keep": [
+2
+],
+"rule": "The passage is in the past (“did not accept”, “had been”), so “is” should be “was”.",
+"optional": []
+},
+{
+"id": "forge-1155-1100-4",
+"keep": [
+2
+],
+"rule": "The passage is in the past (“seemed”, “was shut”), so “listens” should be “listened”.",
+"optional": []
+},
+{
+"id": "forge-61168-681-1",
+"keep": [
+0,
+1
+],
+"rule": "The subject “events” is plural and the story is in the past, so “has” should be “had”. Add a comma after “night”, because “though exciting” is an extra phrase that needs a comma on both sides.",
+"optional": []
+},
+{
+"id": "forge-61168-1772-3",
+"keep": [
+2
+],
+"rule": "The subject “I” goes with “was”, not “were”.",
+"optional": []
+},
+{
+"id": "forge-78084-363-2",
+"keep": [
+0,
+2
+],
+"rule": "The verb “move” should be “moved” to match the past tense of “made”. A comma belongs after “direction”, before “but”, because “He made a step in that direction” and “John Porter also moved” are two complete thoughts.",
+"optional": [
+"moment"
+]
+},
+{
+"id": "forge-75288-559-1",
+"keep": [
+2
+],
+"rule": "The story is in the past (“was lying”), so “lies” should be “lay”.",
+"optional": []
+},
+{
+"id": "forge-78342-379-0",
+"keep": [
+2
+],
+"rule": "The story is in the past (“were being introduced”), so “acknowledge” should be “acknowledged”.",
+"optional": [
+"minute"
+]
+},
+{
+"id": "forge-61168-1277-0",
+"keep": [
+0
+],
+"rule": "The story is in the past (“saw”), so “laugh” should be “laughed”.",
+"optional": []
+},
+{
+"id": "forge-75288-55-0",
+"keep": [
+2
+],
+"rule": "The subject “MacDonald” is one person, so the verb is “was”, not “were”.",
+"optional": []
+},
+{
+"id": "forge-1155-1908-4",
+"keep": [
+0,
+1
+],
+"rule": "The verb “lights” should be “lit” to match the past tense of “went”. Delete the comma after “burner”, because “lit” and “went” are two verbs that share the subject “Conrad”.",
+"optional": []
+},
+{
+"id": "forge-78342-1469-0",
+"keep": [
+2
+],
+"rule": "The subject “solicitor” is singular and the story is in the past, so the verb is “had”, not “have”.",
+"optional": []
+},
+{
+"id": "forge-78084-1834-6",
+"keep": [
+0,
+2
+],
+"rule": "Delete the comma after “wistful”, because “wistful” and “suggestive” are two descriptions joined by “and” and need no comma between them. The verb “receives” should be “received” to match the past tense of “had been”.",
+"optional": []
+},
+{
+"id": "forge-78342-2692-5",
+"keep": [
+2
+],
+"rule": "The subject “water” is singular and the story is in the past, so “have” should be “had”.",
+"optional": []
+},
+{
+"id": "forge-78084-536-7",
+"keep": [
+0,
+1
+],
+"rule": "“Kirtlington Mallet” is the name of a place, so “Kirtlington” needs a capital K. The subject “Nobody” is singular and the story is in the past, so “have” should be “had”.",
+"optional": []
+},
+{
+"id": "forge-78084-2257-0",
+"keep": [
+0,
+1
+],
+"rule": "The verb “is” should be “was” to match the past tense of “had passed”. Delete the comma after “bougainvillea”, because “had passed” and “was walking” are two verbs that share the subject “he”.",
+"optional": []
+},
+{
+"id": "forge-61168-1529-1",
+"keep": [
+1
+],
+"rule": "The story is in the past (“finished”, “demanded”), so “see” should be “saw”.",
+"optional": []
+},
+{
+"id": "forge-1155-788-2",
+"keep": [
+0,
+1
+],
+"rule": "Delete the comma after “overheard”, because it splits the subject “conversation” from its verb. The subject “conversation” is singular and the story is in the past, so “have” should be “had”.",
+"optional": []
+},
+{
+"id": "forge-78342-2545-0",
+"keep": [
+1
+],
+"rule": "The subject is “Mr. Randolph Wilmott”, one person, so the verb is “was”, not “were”.",
+"optional": []
+},
+{
+"id": "forge-1155-210-2",
+"keep": [
+2
+],
+"rule": "The subject “combination” is singular, so the verb is “was”, not “were”.",
+"optional": []
+},
+{
+"id": "forge-78084-2431-3",
+"keep": [
+0,
+2
+],
+"rule": "A comma belongs after “will”, before “but”, because “She had got a dominant, ruthless will” and “he too had a will hidden beneath his meek manner” are two complete thoughts. The word “who” refers to the singular “man”, so the verb is “is”, not “are”.",
+"optional": []
+},
+{
+"id": "forge-61168-833-8",
+"keep": [
+2
+],
+"rule": "Delete the comma after “lion”, because it splits the subject “the lion” from its verb “had disappeared”.",
+"optional": []
+},
+{
+"id": "forge-65238-2900-0",
+"keep": [
+2
+],
+"rule": "The story is in the past (“walked”, “entered”), so “changes” should be “changed”.",
+"optional": []
+},
+{
+"id": "forge-75288-3039-0",
+"keep": [
+1
+],
+"rule": "The story is in the past (“rushed”, “put”), so “packs” should be “packed”.",
+"optional": []
+},
+{
+"id": "forge-78220-361-2",
+"keep": [
+0
+],
+"rule": "The word “each” is singular, so it takes “was”, not “were”.",
+"optional": []
+},
+{
+"id": "forge-78084-955-3",
+"keep": [
+2
+],
+"rule": "Delete the comma after “diamonds”, because it splits the subject “A heavy bracelet set with immense diamonds” from its verb “clasped”.",
+"optional": []
+},
+{
+"id": "forge-78342-1723-4",
+"keep": [
+1,
+2
+],
+"rule": "The verb “is” should be “was” to match the past tense of “answered”. Delete the comma after “something”, because it splits the subject “something” from its verb “had occurred”.",
+"optional": [
+"evidently"
+]
+},
+{
+"id": "forge-1155-865-0",
+"keep": [
+2
+],
+"rule": "The story is in the past (“set forth”, “had been justified”), so “contains” should be “contained”.",
+"optional": []
+},
+{
+"id": "forge-75288-703-2",
+"keep": [
+1,
+2
+],
+"rule": "Delete the comma after “papers”, because it splits the subject “the morning papers” from its verb “had contained”. The verb “will” should be “would” to match the past tense of “was”.",
+"optional": [
+"surely"
+]
+},
+{
+"id": "forge-61168-1914-1",
+"keep": [
+0
+],
+"rule": "The story is in the past (“took”, “knew”), so “comes” should be “came”.",
+"optional": []
+},
+{
+"id": "forge-65238-1918-3",
+"keep": [
+0,
+1
+],
+"rule": "A comma belongs after “not”, because “Whilst he was hesitating whether to go after him or not” is an opening clause that must be set off from the main clause. The verb “steps” should be “stepped” to match the past tense of “were parted”.",
+"optional": []
+},
+{
+"id": "forge-65238-765-0",
+"keep": [
+1
+],
+"rule": "The story is in the past (“slept”, “did not fancy”), so “returns” should be “returned”.",
+"optional": []
+},
+{
+"id": "forge-78220-2151-0",
+"keep": [
+0,
+1
+],
+"rule": "The subject “Griselda” is singular, so “come” should be “comes”. A comma belongs after “statements”, before “but”, because “Griselda often comes out with surprising statements” and “this seemed to me so surprising” are two complete thoughts.",
+"optional": []
+},
+{
+"id": "forge-61262-1118-8",
+"keep": [
+0,
+2
+],
+"rule": "The subject “he” is singular, so “were” should be “was”. The verb “does” should be “did” to match the past tense of “could see” and “played”.",
+"optional": []
+},
+{
+"id": "forge-1155-776-1",
+"keep": [
+0,
+1
+],
+"rule": "A comma belongs after “done”, before “but”, because “knocked on the door as all had done” and “his reception was very different” are two complete thoughts. The subject “reception” is singular, so “were” should be “was”.",
+"optional": []
+},
+{
+"id": "forge-69087-181-0",
+"keep": [
+0,
+2
+],
+"rule": "The verb “see” should be “saw” to match the past tense of “forbore”. The subject “remark” is singular and the story is in the past, so “create” should be “created”.",
+"optional": []
+},
+{
+"id": "forge-78220-3303-2",
+"keep": [
+0,
+2
+],
+"rule": "The subject “credit” is singular, so “were” should be “was”. The verb “is” should be “was” to match the past tense used in the rest of the passage.",
+"optional": []
+},
+{
+"id": "forge-61168-177-4",
+"keep": [
+0,
+2
+],
+"rule": "The subject “I” goes with “had”, not “has”. The subject “one” is singular, so “get” should be “gets”.",
+"optional": []
+},
+{
+"id": "forge-61168-892-1",
+"keep": [
+0,
+1
+],
+"rule": "The story is in the past, so “lie” should be “lay”. A comma belongs after “about”, before “and”, because “A good deal of scattered clothing lay about” and “Mrs. Blair herself was draped in one of the loveliest kimonos” are two complete thoughts.",
+"optional": []
+},
+{
+"id": "forge-75288-427-0",
+"keep": [
+2
+],
+"rule": "The subject “clocks” is plural and the story is in the past, so “has” should be “had”.",
+"optional": []
+},
+{
+"id": "forge-1155-1261-2",
+"keep": [
+0
+],
+"rule": "The story is in the past (“had had”, “felt”), so “remembers” should be “remembered”.",
+"optional": []
+},
+{
+"id": "forge-65238-286-0",
+"keep": [
+0
+],
+"rule": "The passage is in the past (“had used”, “belonged”), so “dislikes” should be “disliked”.",
+"optional": []
+},
+{
+"id": "forge-61168-949-9",
+"keep": [
+0
+],
+"rule": "The subject “She” is singular, so the verb is “was”, not “were”.",
+"optional": []
+},
+{
+"id": "forge-65238-2819-0",
+"keep": [
+1
+],
+"rule": "The subject is “Superintendent Battle”, one person, so the verb is “was”, not “were”.",
+"optional": []
+},
+{
+"id": "forge-58866-2502-3",
+"keep": [
+2
+],
+"rule": "The story is in the past (“entered”), so “puts” should be “put”.",
+"optional": []
+},
+{
+"id": "forge-61168-2627-1",
+"keep": [
+0
+],
+"rule": "The story is in the past (“was accompanied”, “appeared”), so “comes” should be “came”.",
+"optional": []
+},
+{
+"id": "forge-78342-978-3",
+"keep": [
+0
+],
+"rule": "The subject “telegram” is singular, so the verb is “was”, not “were”.",
+"optional": []
+},
+{
+"id": "forge-78342-128-0",
+"keep": [
+1
+],
+"rule": "The subject “They” is plural, so the verb is “were”, not “was”.",
+"optional": []
+},
+{
+"id": "forge-78084-1106-0",
+"keep": [
+1,
+2
+],
+"rule": "The subject is “Mr. Satterthwaite”, one person, so “were” should be “was”. A comma belongs after “realized”, because “as the Duchess could not” is an extra phrase that needs a comma on both sides.",
+"optional": []
+},
+{
+"id": "forge-78342-2728-0",
+"keep": [
+0
+],
+"rule": "The subject “things” is plural, so the verb is “were”, not “was”.",
+"optional": []
+},
+{
+"id": "forge-75288-3180-2",
+"keep": [
+1
+],
+"rule": "The subject is “she”, which is singular, so the verb is “was”, not “were”.",
+"optional": []
+},
+{
+"id": "forge-78084-2054-0",
+"keep": [
+1
+],
+"rule": "The subject “Mr. Satterthwaite” is singular and the story is in the past, so “have” should be “had”.",
+"optional": []
+},
+{
+"id": "forge-78084-1833-7",
+"keep": [
+1,
+2
+],
+"rule": "The story is in the past, so “has” should be “had”. Delete the comma after “hour”, because it splits the subject “A call upon him at this unusual hour” from its verb “intrigued”.",
+"optional": []
+},
+{
+"id": "forge-65238-1517-0",
+"keep": [
+1,
+2
+],
+"rule": "The subject “impassivity” is singular, so “were” should be “was”. “Anthony” is a person’s name, so it needs a capital A.",
+"optional": []
+},
+{
+"id": "forge-75288-650-0",
+"keep": [
+1,
+2
+],
+"rule": "The subject is “Lord Caterham”, one person, so “were” should be “was”. Delete the comma after “effort”, because “an effort to be intelligent” is one phrase and a comma should not split it.",
+"optional": []
+},
+{
+"id": "forge-78220-3070-1",
+"keep": [
+2
+],
+"rule": "The story is in the past (“saw”, “rang”), so “stop” should be “stopped”.",
+"optional": []
+},
+{
+"id": "forge-1155-1297-2",
+"keep": [
+1
+],
+"rule": "In “there was probably quite a good chance”, the subject “chance” is singular, so the verb is “was”, not “were”.",
+"optional": []
+},
+{
+"id": "forge-863-2315-0",
+"keep": [
+2
+],
+"rule": "The subject is “Poirot”, one person, so the verb is “was”, not “were”.",
+"optional": []
+},
+{
+"id": "forge-1155-2645-6",
+"keep": [
+2
+],
+"rule": "The story is in the past (“was altered”), so “sees” should be “saw”.",
+"optional": []
+},
+{
+"id": "forge-78084-1159-1",
+"keep": [
+0,
+1
+],
+"rule": "The subject “appearance” is singular and the story is in the past, so “have” should be “had”. A comma belongs after “moment”, before “and”, because “They had not seen him till this moment” and “his appearance had the suddenness of a conjuring trick” are two complete thoughts.",
+"optional": []
+},
+{
+"id": "forge-1155-1049-0",
+"keep": [
+0,
+1
+],
+"rule": "A comma belongs after “silver”, because “In the midst of a final desultory polishing of her silver” is a long opening phrase that must be set off from the main clause. The subject “Tuppence” is one person, so “were” should be “was”.",
+"optional": [
+"time"
+]
+},
+{
+"id": "forge-78342-2417-2",
+"keep": [
+1
+],
+"rule": "The story is in the past (“did not tell”, “had come”), so “asks” should be “asked”.",
+"optional": []
+},
+{
+"id": "forge-78220-252-0",
+"keep": [
+0
+],
+"rule": "The subject “topics” is plural, so the verb is “are”, not “is”.",
+"optional": []
+},
+{
+"id": "forge-65238-862-0",
+"keep": [
+1
+],
+"rule": "The story is in the past (“waited”, “carried”), so “comes” should be “came”.",
+"optional": []
+},
+{
+"id": "forge-65238-2528-0",
+"keep": [
+0
+],
+"rule": "The subject “manner” is singular, so the verb is “was”, not “were”.",
+"optional": []
+},
+{
+"id": "forge-78342-1938-0",
+"keep": [
+1
+],
+"rule": "The story is in the past (“spoke”, “appeared”), so “opens” should be “opened”.",
+"optional": []
+},
+{
+"id": "forge-75288-241-0",
+"keep": [
+2
+],
+"rule": "The story is in the past (“smiled”, “was very fond”), so “has” should be “had”.",
+"optional": []
+},
+{
+"id": "forge-65238-3141-0",
+"keep": [
+1
+],
+"rule": "The subject is “Anthony”, one person, so the verb is “was”, not “were”.",
+"optional": []
+},
+{
+"id": "forge-78084-1518-0",
+"keep": [
+2
+],
+"rule": "The subject “card” comes after the verb and is singular, so the verb is “was”, not “were”.",
+"optional": []
+},
+{
+"id": "forge-61168-708-0",
+"keep": [
+1
+],
+"rule": "The story is in the past (“noticed”, “went over”), so “welcomes” should be “welcomed”.",
+"optional": []
+},
+{
+"id": "forge-75288-2876-0",
+"keep": [
+2
+],
+"rule": "“Tredwell” is a person’s name, so it needs a capital T.",
+"optional": []
+},
+{
+"id": "forge-78220-3080-1",
+"keep": [
+0,
+2
+],
+"rule": "“Melchett” is a name, so it needs a capital M. A comma belongs after “me”, because “Asking them to call me” is an opening phrase that must be set off from the main clause.",
+"optional": []
+},
+{
+"id": "forge-78084-111-0",
+"keep": [
+0,
+2
+],
+"rule": "The subject “something” is singular and the story is in the past, so “seem” should be “seemed”. A comma belongs after “speak”, before “but”, because “It seemed to be Mr. Quin’s turn to speak” and “he did not do so” are two complete thoughts.",
+"optional": []
+},
+{
+"id": "forge-78084-1405-6",
+"keep": [
+0
+],
+"rule": "The subject “thing” is singular, so the verb is “was”, not “were”.",
+"optional": []
+},
+{
+"id": "forge-65238-1736-1",
+"keep": [
+0,
+1
+],
+"rule": "A comma belongs after “so”, because “As he did so” is an opening clause that must be set off from the main clause. The subject “ear” is singular, so “were” should be “was”.",
+"optional": []
+},
+{
+"id": "forge-78220-1106-3",
+"keep": [
+1
+],
+"rule": "The story is in the past (“saw”, “put”), so “comes” should be “came”.",
+"optional": []
+},
+{
+"id": "forge-65238-908-2",
+"keep": [
+2
+],
+"rule": "The story is in the past (“had done”, “seemed”), so “thinks” should be “thought”.",
+"optional": []
+},
+{
+"id": "forge-61168-954-0",
+"keep": [
+0
+],
+"rule": "The story is in the past (“swept”, “came”), so “goes” should be “went”.",
+"optional": []
+},
+{
+"id": "forge-1155-2696-0",
+"keep": [
+1,
+2
+],
+"rule": "The story is in the past (“seemed”), so “feels” should be “felt”. The subject “people” is plural, so “was” should be “were”.",
+"optional": [
+"again"
+]
+},
+{
+"id": "forge-1155-1532-2",
+"keep": [
+1
+],
+"rule": "The story is in the past (“turned”, “ran”), so “lies” should be “lay”.",
+"optional": []
+},
+{
+"id": "forge-61168-382-1",
+"keep": [
+2
+],
+"rule": "The story is in the past (“went”, “asked”), so “hand” should be “handed”.",
+"optional": []
+},
+{
+"id": "forge-78084-10-3",
+"keep": [
+2
+],
+"rule": "The subject “Something” is singular, so the verb is “was”, not “were”.",
+"optional": []
+},
+{
+"id": "forge-78220-1844-0",
+"keep": [
+0
+],
+"rule": "The story is in the past (“occurred”, “entered”), so “say” should be “said”.",
+"optional": []
+},
+{
+"id": "forge-78084-520-2",
+"keep": [
+0
+],
+"rule": "The subject “position” is singular, so the verb is “was”, not “were”.",
+"optional": [
+"there"
+]
+},
+{
+"id": "forge-1155-2596-1",
+"keep": [
+2
+],
+"rule": "The subject “photograph” is singular and the story is in the past, so “catch” should be “caught”.",
+"optional": []
+},
+{
+"id": "forge-1155-1918-10",
+"keep": [
+2
+],
+"rule": "Delete the comma after “Faust”, because “unhooked” and “settled” are two verbs that share the subject “Tommy”.",
+"optional": []
+},
+{
+"id": "forge-1155-2074-0",
+"keep": [
+0,
+2
+],
+"rule": "The subject “constables” is plural, so “was” should be “were”. Delete the comma after “inspector”, because it splits the subject “An inspector” from its verb “reported”.",
+"optional": []
+},
+{
+"id": "forge-61168-1518-3",
+"keep": [
+1
+],
+"rule": "The story is in the past (“struck”, “thought”), so “is” should be “was”.",
+"optional": []
+},
+{
+"id": "forge-65238-1692-4",
+"keep": [
+2
+],
+"rule": "The subject “It” is singular, so the verb is “was”, not “were”.",
+"optional": []
+},
+{
+"id": "forge-61168-1986-3",
+"keep": [
+1,
+2
+],
+"rule": "Delete the comma after “arm”, because “caught” and “kissed” are two verbs that share the subject “He”. The verb “turns” should be “turned” to match the past tense of the rest of the passage.",
+"optional": []
+},
+{
+"id": "forge-75288-1264-2",
+"keep": [
+1,
+2
+],
+"rule": "The subject is “Marcia”, one person, so “were” should be “was”. Delete the comma after “admitted”, because no comma goes between the verb and the “that” clause that tells what was admitted.",
+"optional": []
+},
+{
+"id": "forge-70114-1353-0",
+"keep": [
+2
+],
+"rule": "The story is in the past (“looked”, “recognised”), so “is” should be “was”.",
+"optional": []
+},
+{
+"id": "forge-65238-2063-0",
+"keep": [
+1
+],
+"rule": "The story is in the past (“spoke”, “was too late”), so “knows” should be “knew”.",
+"optional": []
+},
+{
+"id": "forge-1155-3044-1",
+"keep": [
+2
+],
+"rule": "The subject \"he and Mr. Brown\" should not be separated from its verb \"could\" by a comma, so it is \"Mr. Brown could\".",
+"optional": []
+},
+{
+"id": "forge-75288-1389-0",
+"keep": [
+0,
+2
+],
+"rule": "A sentence starts with a capital letter, so \"bundle\" should be \"Bundle\". The singular subject \"this lock\" takes \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-1155-3003-1",
+"keep": [
+2
+],
+"rule": "The story is in the past tense, so \"get\" should be \"got\" to match \"walked\".",
+"optional": []
+},
+{
+"id": "forge-1155-2972-2",
+"keep": [
+0
+],
+"rule": "The subject \"they\" is plural, so the verb should be \"were\", not \"was\".",
+"optional": []
+},
+{
+"id": "forge-78342-1972-1",
+"keep": [
+0
+],
+"rule": "The verbs \"thought\" and \"withdrew\" share the subject \"Tommy\", so no comma belongs before \"and withdrew\".",
+"optional": []
+},
+{
+"id": "forge-65238-2036-3",
+"keep": [
+1
+],
+"rule": "The story is in the past tense, so \"nods\" should be \"nodded\" to match \"pressed\".",
+"optional": [
+"suddenly"
+]
+},
+{
+"id": "forge-1155-1438-1",
+"keep": [
+1,
+2
+],
+"rule": "A comma goes before \"and\" when it joins two complete sentences, as in \"magic, and Mrs. Vandemeyer\". The story is in the past tense, so \"lies\" should be \"lay\".",
+"optional": [
+"moment"
+]
+},
+{
+"id": "forge-78084-1137-1",
+"keep": [
+1
+],
+"rule": "The subject \"Naomi\" is singular, so the verb should be \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-65238-1185-0",
+"keep": [
+0,
+1
+],
+"rule": "The subject \"George\" is singular and the story is in the past, so the verb is \"had\", not \"have\". The verbs \"disappeared\" and \"reappeared\" share the subject \"He\", so no comma belongs before \"and reappeared\".",
+"optional": []
+},
+{
+"id": "forge-1155-598-0",
+"keep": [
+2
+],
+"rule": "The subject \"He\" is singular, so the verb should be \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-78220-765-0",
+"keep": [
+0
+],
+"rule": "No comma belongs between a subject and its verb, so \"She, had asked\" should be \"She had asked\".",
+"optional": []
+},
+{
+"id": "forge-78084-2021-0",
+"keep": [
+1
+],
+"rule": "The subject \"the girl Doris\" should not be separated from its verb \"had not noticed\" by a comma.",
+"optional": []
+},
+{
+"id": "forge-1155-204-0",
+"keep": [
+1,
+2
+],
+"rule": "The subject \"offices\" is plural, so the verb should be \"were\", not \"was\". No comma belongs between the subject \"To arrive before the time\" and its verb \"would look\".",
+"optional": []
+},
+{
+"id": "forge-1155-1307-2",
+"keep": [
+0
+],
+"rule": "The subject \"It\" is singular and the story is in the past, so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-78084-1545-1",
+"keep": [
+2
+],
+"rule": "The story is in the past tense, so \"leans\" should be \"leaned\" to match \"went\" and \"began\".",
+"optional": []
+},
+{
+"id": "forge-78084-2270-0",
+"keep": [
+1
+],
+"rule": "The singular subject \"The thing\" takes the verb \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-78342-1728-2",
+"keep": [
+1,
+2
+],
+"rule": "The story is in the past tense, so \"seem\" should be \"seemed\" and \"inquires\" should be \"inquired\".",
+"optional": []
+},
+{
+"id": "forge-65238-2050-0",
+"keep": [
+1
+],
+"rule": "The subject \"torch\" is singular, so the verb should be \"was playing\", not \"were playing\".",
+"optional": []
+},
+{
+"id": "forge-78084-2188-0",
+"keep": [
+0
+],
+"rule": "The subject \"They\" is plural and the story is in the past, so the verb is \"had\", not \"has\".",
+"optional": []
+},
+{
+"id": "forge-78342-2072-1",
+"keep": [
+1,
+2
+],
+"rule": "The verbs \"tore\" and \"managed\" share the subject \"He\", so no comma belongs before \"and\". The story is in the past tense, so \"manages\" should be \"managed\".",
+"optional": []
+},
+{
+"id": "forge-1155-3131-0",
+"keep": [
+1
+],
+"rule": "In this flipped sentence the true subject is the singular \"scene\", so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-78084-2742-2",
+"keep": [
+0
+],
+"rule": "The story is in the past tense, so \"comes\" should be \"came\" to match \"saw\".",
+"optional": []
+},
+{
+"id": "forge-61168-1116-0",
+"keep": [
+0,
+2
+],
+"rule": "The story is in the past tense, so \"has\" should be \"had\" and \"swing\" should be \"swung\".",
+"optional": [
+"suddenly"
+]
+},
+{
+"id": "forge-78084-2719-4",
+"keep": [
+1,
+2
+],
+"rule": "The story is in the past tense, so \"understands\" should be \"understood\" and \"takes\" should be \"took\".",
+"optional": [
+"then"
+]
+},
+{
+"id": "forge-78220-1845-0",
+"keep": [
+0,
+1
+],
+"rule": "The story is in the past tense, so \"go\" should be \"went\". No comma belongs between the subject \"Lawrence\" and its verb \"explained\".",
+"optional": [
+"first"
+]
+},
+{
+"id": "forge-69087-2517-0",
+"keep": [
+0,
+2
+],
+"rule": "The singular subject \"puzzle\" takes \"was\", not \"were\". The verbs \"put\" and \"could get\" share the subject \"I\", so no comma belongs before \"and could get\".",
+"optional": []
+},
+{
+"id": "forge-75288-762-0",
+"keep": [
+1,
+2
+],
+"rule": "The story is in the past tense, so \"narrates\" should be \"narrated\" to match \"came\". No comma belongs between the subject \"A look of fear and horror\" and its verb \"came\".",
+"optional": []
+},
+{
+"id": "forge-61262-1474-1",
+"keep": [
+1,
+2
+],
+"rule": "The story is in the past tense, so \"continues\" should be \"continued\". The singular subject \"car\" takes \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-65238-989-0",
+"keep": [
+1
+],
+"rule": "The verbs \"picked\" and \"gave\" share the subject \"Virginia\", so no comma belongs before \"and gave\".",
+"optional": []
+},
+{
+"id": "forge-70114-1931-1",
+"keep": [
+1,
+2
+],
+"rule": "The verbs \"passed\" and \"found\" share the subject \"We\", so no comma belongs before \"and\". The story is in the past tense, so \"find\" should be \"found\".",
+"optional": []
+},
+{
+"id": "forge-78084-873-0",
+"keep": [
+2
+],
+"rule": "The verbs \"sat\" and \"was joined\" share the subject \"Mr. Satterthwaite\", so no comma belongs before \"and was\".",
+"optional": []
+},
+{
+"id": "forge-1155-2334-0",
+"keep": [
+1
+],
+"rule": "The subject \"lawyer\" is singular and the story is in the past, so the verb is \"looked\", not \"look\".",
+"optional": []
+},
+{
+"id": "forge-78342-2440-1",
+"keep": [
+0
+],
+"rule": "The subject \"another buyer\" is singular, so the verb is \"is\", not \"are\".",
+"optional": []
+},
+{
+"id": "forge-61168-1338-0",
+"keep": [
+2
+],
+"rule": "The story is in the past tense, so \"holds\" should be \"held\" to match \"strained\".",
+"optional": []
+},
+{
+"id": "forge-1155-733-2",
+"keep": [
+0
+],
+"rule": "The true subject is the singular \"opinion\", not the nouns closer to the verb, so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-58866-924-0",
+"keep": [
+0
+],
+"rule": "The story is in the past tense, so \"combats\" should be \"combated\".",
+"optional": []
+},
+{
+"id": "forge-78084-1639-2",
+"keep": [
+2
+],
+"rule": "The singular subject \"man\" takes \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-61168-861-1",
+"keep": [
+0
+],
+"rule": "The subject is the singular \"babel\", and the story is in the past, so the verb is \"broke\", not \"break\".",
+"optional": []
+},
+{
+"id": "forge-78220-2647-1",
+"keep": [
+0,
+2
+],
+"rule": "The singular subject \"Something\" takes \"has\", not \"have\". The subject \"I\" takes \"have\", not \"has\".",
+"optional": []
+},
+{
+"id": "forge-1155-2012-3",
+"keep": [
+1
+],
+"rule": "The story is in the past tense, so \"regrets\" should be \"regretted\" to match \"was\" and \"had entered\".",
+"optional": []
+},
+{
+"id": "forge-75288-1416-0",
+"keep": [
+1,
+2
+],
+"rule": "The plural subject \"shelves\" takes \"were\", not \"was\". The story is in the past tense, so \"takes\" should be \"took\".",
+"optional": []
+},
+{
+"id": "forge-58866-2151-0",
+"keep": [
+0,
+1
+],
+"rule": "The subject \"It\" is singular, so the verb is \"was\", not \"were\". The verbs \"raised\" and \"stared\" share the subject \"She\", so no comma belongs before \"and stared\".",
+"optional": []
+},
+{
+"id": "forge-61168-1903-1",
+"keep": [
+1,
+2
+],
+"rule": "The subject \"father\" is singular, so the verb is \"was\", not \"were\". The story is in the past tense, so \"drift\" should be \"drifted\".",
+"optional": []
+},
+{
+"id": "forge-1155-734-4",
+"keep": [
+0
+],
+"rule": "The true subject is the singular \"taking\", not \"Bournemouth\", so the verb is \"had\", not \"have\".",
+"optional": []
+},
+{
+"id": "forge-78342-1658-2",
+"keep": [
+1
+],
+"rule": "The verbs \"took\" and \"switched\" share the subject \"He\", so no comma belongs before \"and switched\".",
+"optional": []
+},
+{
+"id": "forge-75288-1442-0",
+"keep": [
+1
+],
+"rule": "The subject \"Russian\" is singular and the story is in the past, so the verb is \"remained\", not \"remain\".",
+"optional": []
+},
+{
+"id": "forge-1155-1099-3",
+"keep": [
+0,
+1
+],
+"rule": "The story is in the past tense, so \"notice\" should be \"noticed\". The singular subject \"a long branch\" takes \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-75288-1960-0",
+"keep": [
+0,
+2
+],
+"rule": "No comma belongs between the subject \"Bundle\" and its verb \"had doubted\". The singular subject \"moment\" takes \"had\", not \"have\".",
+"optional": []
+},
+{
+"id": "forge-78342-1008-1",
+"keep": [
+1,
+2
+],
+"rule": "The story is in the past tense, so \"draws\" should be \"drew\". No comma belongs before \"that\" in \"returning to London that a brilliant idea occurred\".",
+"optional": []
+},
+{
+"id": "forge-1155-1293-0",
+"keep": [
+0,
+1
+],
+"rule": "The true subject is the singular \"sort\", so the verb is \"was\", not \"were\". A sentence starts with a capital letter, so \"for\" should be \"For\".",
+"optional": [
+"moment"
+]
+},
+{
+"id": "forge-75288-1422-0",
+"keep": [
+0,
+2
+],
+"rule": "The verbs \"departed\" and \"returned\" share the subject \"Alfred\", so no comma belongs before \"and returned\". The story is in the past tense, so \"seizes\" should be \"seized\".",
+"optional": []
+},
+{
+"id": "forge-61262-743-1",
+"keep": [
+1
+],
+"rule": "The story is in the past tense, so \"wears\" should be \"wore\" to match \"heard\".",
+"optional": [
+"minutes"
+]
+},
+{
+"id": "forge-58866-610-5",
+"keep": [
+2
+],
+"rule": "The verbs \"looked\" and \"saw\" share the subject \"I\", so no comma belongs before \"and saw\".",
+"optional": []
+},
+{
+"id": "forge-78084-2248-0",
+"keep": [
+0
+],
+"rule": "The subject \"thought\" is singular and the story is in the past, so the verb is \"reminded\", not \"remind\".",
+"optional": []
+},
+{
+"id": "forge-75288-195-1",
+"keep": [
+1
+],
+"rule": "The story is in the past tense, so \"makes\" should be \"made\" to match \"paused\" and \"took\".",
+"optional": []
+},
+{
+"id": "forge-65238-2823-0",
+"keep": [
+0
+],
+"rule": "The verbs \"crowded\" and \"stared\" share the subject \"The others\", so no comma belongs before \"and stared\".",
+"optional": [
+"moment"
+]
+},
+{
+"id": "forge-78342-1217-2",
+"keep": [
+0
+],
+"rule": "The story is in the past tense, so \"goes\" should be \"went\" to match \"were\".",
+"optional": []
+},
+{
+"id": "forge-78342-2741-2",
+"keep": [
+0,
+2
+],
+"rule": "The verbs \"swung\" and \"gave\" share the subject \"Tommy\", so no comma belongs before \"and gave\". The singular subject \"recess\" takes \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-75288-1929-1",
+"keep": [
+1,
+2
+],
+"rule": "No comma belongs between the subject \"Bundle\" and its verb \"retraced\". The subject \"She\" is singular, so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-78342-1296-0",
+"keep": [
+1
+],
+"rule": "The subject \"Tommy\" is singular and the story is in the past, so the verb is \"looked\", not \"look\".",
+"optional": []
+},
+{
+"id": "forge-75288-849-1",
+"keep": [
+0,
+2
+],
+"rule": "The singular subject \"This\" takes \"was\", not \"were\". The verbs \"took\" and \"handed\" share the subject \"Loraine\", so no comma belongs before \"and handed\".",
+"optional": []
+},
+{
+"id": "forge-1155-2063-0",
+"keep": [
+0,
+1
+],
+"rule": "The verbs \"paid\" and \"betook\" share the subject \"He\", so no comma belongs before \"and betook\". The story is in the past tense, so \"sends\" should be \"sent\".",
+"optional": [
+"there"
+]
+},
+{
+"id": "forge-1155-2053-2",
+"keep": [
+0
+],
+"rule": "The verbs \"tripped\" and \"fell\" share the subject \"The second man\", so no comma belongs before \"and fell\".",
+"optional": [
+"staircase"
+]
+},
+{
+"id": "forge-78084-696-1",
+"keep": [
+2
+],
+"rule": "The story is in the past tense, so \"breaks\" should be \"broke\" to match \"brought\".",
+"optional": []
+},
+{
+"id": "forge-61168-1772-0",
+"keep": [
+0,
+2
+],
+"rule": "The subject \"I\" takes \"had\" here, not \"has\". The story is in the past tense, so \"am\" should be \"was\".",
+"optional": [
+"other"
+]
+},
+{
+"id": "forge-78084-757-0",
+"keep": [
+2
+],
+"rule": "No comma belongs between the subject \"Louisa Bullard\" and its verb \"was employed\".",
+"optional": [
+"banff"
+]
+},
+{
+"id": "forge-65238-225-1",
+"keep": [
+0,
+1
+],
+"rule": "No comma belongs between the subject \"King Victor\" and its verb \"never stole\". The singular subject \"thing\" takes \"seems\", not \"seem\".",
+"optional": []
+},
+{
+"id": "forge-75288-1273-0",
+"keep": [
+2
+],
+"rule": "The story is in the past tense, so \"tries\" should be \"tried\" to match \"had departed\".",
+"optional": []
+},
+{
+"id": "forge-61168-1340-0",
+"keep": [
+0
+],
+"rule": "The plural subject \"arms and legs\" takes \"were\", not \"was\".",
+"optional": []
+},
+{
+"id": "forge-78084-1050-0",
+"keep": [
+0,
+1
+],
+"rule": "A comma goes before \"and\" when it joins two complete sentences, as in \"boat, and Mr. Satterthwaite\". The story is in the past tense, so \"endures\" should be \"endured\".",
+"optional": []
+},
+{
+"id": "forge-72824-1872-0",
+"keep": [
+0
+],
+"rule": "The story is in the past tense, so \"reflects\" should be \"reflected\" to match \"decided\".",
+"optional": []
+},
+{
+"id": "forge-1155-1565-1",
+"keep": [
+0
+],
+"rule": "No comma belongs between the subject \"I\" and its verb \"think\".",
+"optional": []
+},
+{
+"id": "forge-75288-514-2",
+"keep": [
+1
+],
+"rule": "The subject \"Gerry Wade\" is singular, so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-78342-2945-2",
+"keep": [
+1
+],
+"rule": "The story is in the past tense, so \"walk\" should be \"walked\" to match \"was\".",
+"optional": []
+},
+{
+"id": "forge-72824-371-1",
+"keep": [
+1,
+2
+],
+"rule": "A long introductory clause like \"as he lay luxuriating in the hot water\" is followed by a comma before \"his mind\". The story is in the past tense, so \"goes\" should be \"went\".",
+"optional": []
+},
+{
+"id": "forge-65238-1061-1",
+"keep": [
+2
+],
+"rule": "The story is in the past tense, so \"breaks\" should be \"broke\" to match \"took\".",
+"optional": []
+},
+{
+"id": "forge-1155-1932-1",
+"keep": [
+2
+],
+"rule": "The subject \"It\" is singular and the story is in the past, so the verb is \"consisted\", not \"consist\".",
+"optional": []
+},
+{
+"id": "forge-78084-387-1",
+"keep": [
+2
+],
+"rule": "The story is in the past tense, so \"hears\" should be \"heard\" to match \"rounded\" and \"came\".",
+"optional": []
+},
+{
+"id": "forge-1155-1173-2",
+"keep": [
+0,
+2
+],
+"rule": "No comma belongs between the subject \"Tuppence\" and its verb \"gave\". A person's name is capitalized, so \"edgerton\" should be \"Edgerton\".",
+"optional": []
+},
+{
+"id": "forge-78084-1847-1",
+"keep": [
+1
+],
+"rule": "The story is in the past tense, so \"takes\" should be \"took\" to match \"spoke\".",
+"optional": []
+},
+{
+"id": "forge-78084-2096-0",
+"keep": [
+0,
+2
+],
+"rule": "No comma belongs between the subject \"Mr. Satterthwaite\" and its verb \"stood\". The story is in the past tense, so \"notices\" should be \"noticed\".",
+"optional": []
+},
+{
+"id": "forge-78084-2631-2",
+"keep": [
+0,
+1
+],
+"rule": "No comma belongs between the subject \"Anna Denman\" and its verb \"crossed\". The story is in the past tense, so \"asks\" should be \"asked\" to match \"crossed\".",
+"optional": []
+},
+{
+"id": "forge-1155-797-3",
+"keep": [
+0
+],
+"rule": "The two verbs \"was\" and \"had clearly not been used\" share the subject \"It\", so no comma belongs before \"and had\".",
+"optional": []
+},
+{
+"id": "forge-1155-2053-0",
+"keep": [
+1
+],
+"rule": "The story is in the past tense, so \"catches\" should be \"caught\" to match \"stopped\".",
+"optional": []
+},
+{
+"id": "forge-78084-2093-0",
+"keep": [
+0
+],
+"rule": "No comma belongs between the subject \"A momentary surprise\" and its verb \"invaded\".",
+"optional": []
+},
+{
+"id": "forge-1155-2969-0",
+"keep": [
+0,
+2
+],
+"rule": "A place name is capitalized, so \"carlton\" should be \"Carlton\". The story is in the past tense, so \"lightens\" should be \"lightened\" to match \"were\".",
+"optional": [
+"suddenly"
+]
+},
+{
+"id": "forge-1155-3058-5",
+"keep": [
+2
+],
+"rule": "The singular subject \"Julius Hersheimmer\" takes \"dashes\", not \"dash\".",
+"optional": []
+},
+{
+"id": "forge-61168-2093-0",
+"keep": [
+0,
+1
+],
+"rule": "The verbs \"refolded\" and \"got\" share the subject \"I\", so no comma belongs before \"and got\". The story is in the past tense, so \"gets\" should be \"got\".",
+"optional": []
+},
+{
+"id": "forge-78342-647-1",
+"keep": [
+0,
+1
+],
+"rule": "A name is capitalized, so \"dymchurch\" should be \"Dymchurch\". The story is in the past tense, so \"has lain\" should be \"had lain\".",
+"optional": []
+},
+{
+"id": "forge-61168-2442-0",
+"keep": [
+1
+],
+"rule": "The story is in the past tense, so \"draw\" should be \"drew\" to match \"started\".",
+"optional": []
+},
+{
+"id": "forge-1155-724-0",
+"keep": [
+0,
+2
+],
+"rule": "The verbs \"called\" and \"asked\" share the subject \"He\", so no comma belongs before \"and asked\". The story is in the past tense, so \"does\" should be \"did\".",
+"optional": []
+},
+{
+"id": "forge-61168-123-8",
+"keep": [
+2
+],
+"rule": "The singular subject \"delicacy\" in a past tense sentence takes \"prevented\", not \"prevent\".",
+"optional": []
+},
+{
+"id": "forge-65238-1538-0",
+"keep": [
+0
+],
+"rule": "The singular subject \"voice\" takes \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-65238-1121-0",
+"keep": [
+0
+],
+"rule": "No comma belongs between the subject \"This perfectly simple question\" and its verb \"seemed\".",
+"optional": []
+},
+{
+"id": "forge-78084-376-3",
+"keep": [
+0
+],
+"rule": "The subject \"He\" is singular, so the verb is \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-78220-3237-4",
+"keep": [
+1
+],
+"rule": "The plural subject \"they\" takes \"are\", not \"is\".",
+"optional": []
+},
+{
+"id": "forge-61168-1613-2",
+"keep": [
+0,
+1
+],
+"rule": "A sentence starts with a capital letter, so \"south\" should be \"South\". The plural subject \"They\" takes \"glide\", not \"glides\".",
+"optional": []
+},
+{
+"id": "forge-863-162-1",
+"keep": [
+0
+],
+"rule": "The subject \"I\" takes \"come\", not \"comes\".",
+"optional": []
+},
+{
+"id": "forge-78084-790-0",
+"keep": [
+0
+],
+"rule": "No comma belongs between the subject \"Mr. Satterthwaite\" and its verb \"did not reply\".",
+"optional": []
+},
+{
+"id": "forge-1155-1091-1",
+"keep": [
+1
+],
+"rule": "The story is in the past tense, so \"takes\" should be \"took\" to match \"gave\".",
+"optional": []
+},
+{
+"id": "forge-61168-379-2",
+"keep": [
+0
+],
+"rule": "The singular subject \"way\" takes \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-78084-1968-3",
+"keep": [
+1
+],
+"rule": "The story is in the past tense, so \"cheers\" should be \"cheered\" to match \"reflected\".",
+"optional": []
+},
+{
+"id": "forge-61168-1673-0",
+"keep": [
+0
+],
+"rule": "No comma belongs between the subject \"The car\" and its verb \"drew up\".",
+"optional": []
+},
+{
+"id": "forge-61168-1916-3",
+"keep": [
+1,
+2
+],
+"rule": "A sentence starts with a capital letter, so \"no\" should be \"No\". The story is in the past tense, so \"recognize\" should be \"recognized\" to match \"was afraid\".",
+"optional": []
+},
+{
+"id": "forge-61168-269-0",
+"keep": [
+0,
+2
+],
+"rule": "A title attached to a name is capitalized, so \"inspector Meadow\" should be \"Inspector Meadow\". The story is in the past tense, so \"does\" should be \"did\" to match \"was\".",
+"optional": []
+},
+{
+"id": "forge-61168-1920-1",
+"keep": [
+1
+],
+"rule": "The two verbs \"went\" and \"did not go\" share the subject \"He\", so no comma belongs before \"and did\".",
+"optional": []
+},
+{
+"id": "forge-75288-1843-0",
+"keep": [
+1
+],
+"rule": "The singular subject \"night\" takes \"was\", not \"were\".",
+"optional": []
+},
+{
+"id": "forge-78342-605-0",
+"keep": [
+1
+],
+"rule": "The story is in the past tense, so \"appears\" should be \"appeared\" to match \"opened\".",
+"optional": []
+},
+{
+"id": "forge-78084-2457-3",
+"keep": [
+1,
+2
+],
+"rule": "The singular subject \"heart\" takes \"was\", not \"were\". The story is in the past tense, so \"feels\" should be \"felt\" to match \"lay\".",
+"optional": []
+},
+{
+"id": "forge-65238-2048-2",
+"keep": [
+1,
+2
+],
+"rule": "Remove the comma after \"firmly\", because one subject does both actions in \"grasped the poker firmly and rose to his feet\". The story is in the past, so \"feels\" should be \"felt\".",
+"optional": [
+"then"
+]
+},
+{
+"id": "forge-61168-687-0",
+"keep": [
+0,
+2
+],
+"rule": "A name is capitalized, so \"chichester\" should be \"Chichester\". The story is in the past, so \"decide\" should be \"decided\".",
+"optional": []
+},
+{
+"id": "forge-65238-2570-0",
+"keep": [
+1
+],
+"rule": "The story is in the past, so \"stands\" should be \"stood\" to match \"watched\".",
+"optional": []
+},
+{
+"id": "forge-1155-266-2",
+"keep": [
+2
+],
+"rule": "The subject \"It\" is singular, so \"seem\" should be \"seems\".",
+"optional": []
+},
+{
+"id": "forge-863-2152-1",
+"keep": [
+2
+],
+"rule": "The subject \"witnesses\" is plural and the story is in the past, so \"testifies\" should be \"testified\".",
+"optional": []
+},
+{
+"id": "forge-78220-3252-2",
+"keep": [
+0
+],
+"rule": "The story is in the past (\"was\"), so \"makes\" should be \"made\".",
+"optional": []
+},
+{
+"id": "forge-75288-555-0",
+"keep": [
+1
+],
+"rule": "Remove the comma after \"air\", because a comma should not come between the subject \"tang\" and its verb \"brought\".",
+"optional": []
+},
+{
+"id": "forge-1155-2067-1",
+"keep": [
+0,
+1
+],
+"rule": "The story is in the past, so \"has\" should be \"had\". For the same reason, \"nods\" should be \"nodded\".",
+"optional": []
+},
+{
+"id": "forge-61168-833-6",
+"keep": [
+1
+],
+"rule": "The story is in the past and \"growls\" shares its subject with \"prepared\", so \"growls\" should be \"growled\".",
+"optional": []
+},
+{
+"id": "forge-58866-2620-3",
+"keep": [
+2
+],
+"rule": "The subject \"devotion\" is singular and the story is in the past, so \"help\" should be \"helped\".",
+"optional": []
+},
+{
+"id": "forge-78084-2259-0",
+"keep": [
+2
+],
+"rule": "The story is in the past, so \"careen\" should be \"careened\", matching \"caught\" and \"passed\".",
+"optional": []
+},
+{
+"id": "forge-78220-1997-0",
+"keep": [
+1,
+2
+],
+"rule": "The story is in the past, so \"turn\" should be \"turned\". The subject \"It\" is singular, so \"stand\" should be \"stands\".",
+"optional": []
+},
+{
+"id": "forge-61262-1322-0",
+"keep": [
+0
+],
+"rule": "The story is in the past, so \"answers\" should be \"answered\".",
+"optional": [
+"moments",
+"him"
+]
+},
+{
+"id": "forge-78342-521-0",
+"keep": [
+0,
+1
+],
+"rule": "The subject \"Business\" is singular, so \"were\" should be \"was\". The story is in the past, so \"have\" should be \"had\".",
+"optional": []
+},
+{
+"id": "forge-65238-585-0",
+"keep": [
+1,
+2
+],
+"rule": "The story is in the past, so \"jumps\" should be \"jumped\" and \"springs\" should be \"sprang\".",
+"optional": []
+},
+{
+"id": "forge-75288-1528-0",
+"keep": [
+0,
+1
+],
+"rule": "The subject \"It\" is singular, so \"were\" should be \"was\". The story is in the past, so \"falls\" should be \"fell\".",
+"optional": []
+},
+{
+"id": "forge-70114-1294-3",
+"keep": [
+1,
+2
+],
+"rule": "The story is in the past, so \"gives\" should be \"gave\". Also, the long opening phrase \"But for the restraining hand of the other man\" needs a comma after \"man\".",
+"optional": []
+},
+{
+"id": "forge-61168-510-4",
+"keep": [
+1
+],
+"rule": "The subject \"She\" is singular and the story is in the past, so \"appear\" should be \"appeared\".",
+"optional": []
+},
+{
+"id": "forge-72824-1903-0",
+"keep": [
+0
+],
+"rule": "The subject \"simplicity\" is singular and the story is in the past, so \"appeal\" should be \"appealed\".",
+"optional": []
+},
+{
+"id": "forge-78084-359-1",
+"keep": [
+0
+],
+"rule": "The subject \"nerve\" is singular and the story is in the past, so \"show\" should be \"showed\".",
+"optional": []
+},
+{
+"id": "forge-61168-881-0",
+"keep": [
+0,
+1
+],
+"rule": "A sentence starts with a capital letter, so \"then\" should be \"Then\". The story is in the past, so \"remember\" should be \"remembered\".",
+"optional": [
+"then"
+]
+},
+{
+"id": "forge-78220-3085-0",
+"keep": [
+0,
+1
+],
+"rule": "The story is in the past, so \"am beginning\" should be \"was beginning\", matching \"rang\". A sentence starts with a capital letter, so \"like\" should be \"Like\".",
+"optional": []
+},
+{
+"id": "forge-61262-223-1",
+"keep": [
+0
+],
+"rule": "Remove the comma after \"He\", because a comma should not come between a subject and its verb (\"tore\").",
+"optional": []
+},
+{
+"id": "forge-78220-2294-0",
+"keep": [
+1
+],
+"rule": "The subject \"Dennis\" is singular, so \"were\" should be \"was\".",
+"optional": []
+},
+{
+"id": "forge-78084-2715-0",
+"keep": [
+0,
+2
+],
+"rule": "A name is capitalized, so \"satterthwaite\" should be \"Satterthwaite\". The story is in the past, so \"stands\" should be \"stood\".",
+"optional": []
+},
+{
+"id": "forge-1155-1280-1",
+"keep": [
+1,
+2
+],
+"rule": "A name is capitalized, so \"vandemeyer\" should be \"Vandemeyer\". The story is in the past, so \"lifts\" should be \"lifted\".",
+"optional": [
+"last",
+"later"
+]
+},
+{
+"id": "forge-65238-3115-0",
+"keep": [
+1,
+2
+],
+"rule": "A name is capitalized, so \"anthony\" should be \"Anthony\". The story is in the past, so \"come\" should be \"came\".",
+"optional": []
+},
+{
+"id": "forge-1155-2594-2",
+"keep": [
+1
+],
+"rule": "The story is in the past, so \"has\" should be \"had\".",
+"optional": []
+},
+{
+"id": "forge-78342-2266-0",
+"keep": [
+0
+],
+"rule": "The subject \"port\" is singular, so \"were\" should be \"was\".",
+"optional": [
+"here"
+]
+},
+{
+"id": "forge-61168-1215-1",
+"keep": [
+0
+],
+"rule": "Remove the comma after \"I\", because a comma should not come between the subject and its verb \"went\".",
+"optional": []
+},
+{
+"id": "forge-65238-2696-0",
+"keep": [
+0,
+1
+],
+"rule": "Remove the comma after \"Boris\", because it separates the subject from its verb \"saluted\". The verbs in the list are in the past, so \"marches\" should be \"marched\".",
+"optional": []
+},
+{
+"id": "forge-61168-456-0",
+"keep": [
+0
+],
+"rule": "The sentence is in the past (\"parted\"), so \"accompany\" should be \"accompanied\".",
+"optional": []
+},
+{
+"id": "forge-65238-579-1",
+"keep": [
+1,
+2
+],
+"rule": "The subject \"business\" is singular, so \"were\" should be \"was\". The story is in the past, so \"succeeds\" should be \"succeeded\".",
+"optional": []
+},
+{
+"id": "forge-78084-2397-0",
+"keep": [
+1,
+2
+],
+"rule": "The story is in the past, so \"stretches\" should be \"stretched\", matching \"took\". Remove the comma after \"She\", because it separates the subject from its verb \"squeezed\".",
+"optional": []
+},
+{
+"id": "forge-65238-1060-2",
+"keep": [
+0,
+2
+],
+"rule": "Remove the comma after \"He\", because it separates the subject from its verb \"thought\". The story is in the past, so \"shakes\" should be \"shook\".",
+"optional": []
+},
+{
+"id": "forge-65238-1779-3",
+"keep": [
+0
+],
+"rule": "The subject \"question\" is singular, so \"are\" should be \"is\".",
+"optional": []
+},
+{
+"id": "forge-61168-537-0",
+"keep": [
+0
+],
+"rule": "The story is in the past, so \"produces\" should be \"produced\".",
+"optional": []
+},
+{
+"id": "forge-1155-1424-0",
+"keep": [
+0
+],
+"rule": "The story is in the past (\"lay\"), so \"looks\" should be \"looked\".",
+"optional": []
+},
+{
+"id": "forge-1155-1910-0",
+"keep": [
+1,
+2
+],
+"rule": "The story is in the past, so \"sinks\" should be \"sank\". Remove the comma after \"bed\", because one subject does both actions in \"sank on to the bed and gave himself up to reflection\".",
+"optional": [
+"effort"
+]
+},
+{
+"id": "forge-78220-3232-1",
+"keep": [
+0
+],
+"rule": "The subject \"crime\" is singular and the story is in the past, so \"have been\" should be \"had been\".",
+"optional": [
+"afternoon"
+]
+},
+{
+"id": "forge-75288-2726-0",
+"keep": [
+0
+],
+"rule": "Remove the comma after \"He\", because it separates the subject from its verb \"tested\".",
+"optional": []
+},
+{
+"id": "forge-1155-402-0",
+"keep": [
+0
+],
+"rule": "The subject \"day\" is singular and the story is in the past, so \"have\" should be \"had\".",
+"optional": [
+"thursday"
+]
+},
+{
+"id": "forge-65238-2006-4",
+"keep": [
+0,
+1
+],
+"rule": "The story is in the past, so \"creep\" should be \"crept\", matching \"peeped\". Remove the comma after \"passage\", because one subject does both actions in \"crept along the passage and peeped through the crack\".",
+"optional": []
+},
+{
+"id": "forge-61168-380-0",
+"keep": [
+1
+],
+"rule": "The story is in the past, so \"replies\" should be \"replied\".",
+"optional": []
+},
+{
+"id": "forge-78220-233-1",
+"keep": [
+0
+],
+"rule": "The story is in the past (\"made\"), so \"keeps\" should be \"kept\".",
+"optional": []
+},
+{
+"id": "forge-75288-2058-0",
+"keep": [
+0
+],
+"rule": "A name is capitalized, so \"digby\" should be \"Digby\".",
+"optional": []
+},
+{
+"id": "forge-65238-3415-1",
+"keep": [
+2
+],
+"rule": "The subject \"Mr. Fish\" is singular and the story is in the past, so \"have\" should be \"had\".",
+"optional": []
+},
+{
+"id": "forge-78342-1085-0",
+"keep": [
+0
+],
+"rule": "The subject \"It\" is singular, so \"were\" should be \"was\".",
+"optional": []
+},
+{
+"id": "forge-1155-2057-0",
+"keep": [
+0
+],
+"rule": "The story is in the past (\"redoubled\"), so \"hears\" should be \"heard\".",
+"optional": []
+},
+{
+"id": "forge-65238-571-0",
+"keep": [
+1
+],
+"rule": "Remove the comma after \"waiter\", because it separates the subject from its verb \"started\".",
+"optional": [
+"moment"
+]
+},
+{
+"id": "forge-61168-1604-3",
+"keep": [
+1
+],
+"rule": "The subject \"no one\" is singular, so \"were\" should be \"was\".",
+"optional": []
+},
+{
+"id": "forge-78220-3308-1",
+"keep": [
+0,
+2
+],
+"rule": "The plural subject \"things\" needs \"are\", so \"is\" should be \"are\". A name is capitalized, so \"lettice\" should be \"Lettice\".",
+"optional": [
+"respects"
+]
+},
+{
+"id": "forge-61168-1458-0",
+"keep": [
+0
+],
+"rule": "The subject \"sense\" is singular, so \"fail\" should be \"fails\".",
+"optional": []
+},
+{
+"id": "forge-65238-707-1",
+"keep": [
+0,
+2
+],
+"rule": "The plural subject \"women\" needs \"are\", so \"is\" should be \"are\". A name is capitalized, so \"virginia\" should be \"Virginia\".",
+"optional": [
+"rate"
+]
+},
+{
+"id": "forge-78342-548-0",
+"keep": [
+2
+],
+"rule": "The subject \"She\" is singular, so \"were\" should be \"was\".",
+"optional": []
+},
+{
+"id": "forge-61168-1785-0",
+"keep": [
+1
+],
+"rule": "The story is in the past (\"stood\", \"drew\"), so \"enters\" should be \"entered\".",
+"optional": [
+"suddenly"
+]
+},
+{
+"id": "forge-61168-1647-2",
+"keep": [
+0
+],
+"rule": "The story is in the past, so \"feel\" should be \"felt\".",
+"optional": [
+"moment"
+]
+},
+{
+"id": "forge-65238-2273-1",
+"keep": [
+0
+],
+"rule": "The compound subject \"Nicholas IV and Queen Varaga\" is plural, so \"was\" should be \"were\".",
+"optional": []
+},
+{
+"id": "forge-61168-1962-2",
+"keep": [
+0
+],
+"rule": "The subject \"Mill House\" is singular, so \"were\" should be \"was\".",
+"optional": []
+},
+{
+"id": "forge-78342-1797-9",
+"keep": [
+0
+],
+"rule": "Remove the comma after \"man\", because it separates the subject \"The other man\" from its verb \"drags\".",
+"optional": []
+},
+{
+"id": "forge-78342-1994-2",
+"keep": [
+0
+],
+"rule": "The subject \"She\" is singular, so \"have\" should be \"has\".",
+"optional": []
+},
+{
+"id": "forge-72824-3284-7",
+"keep": [
+1
+],
+"rule": "The compound subject \"Mason and Knighton\" is plural, so \"rolls\" should be \"roll\".",
+"optional": []
+},
+{
+"id": "forge-65238-3493-0",
+"keep": [
+1
+],
+"rule": "The story is in the past, so \"points\" should be \"pointed\", matching \"stopped\".",
+"optional": [
+"presently"
+]
+},
+{
+"id": "forge-1155-1762-1",
+"keep": [
+0
+],
+"rule": "Remove the comma after \"She\", because it separates the subject from its verb \"felt\".",
+"optional": []
+},
+{
+"id": "forge-78220-2918-1",
+"keep": [
+0,
+1
+],
+"rule": "Remove the comma after \"I\", because it separates the subject from its verb \"arranged\". The subject \"I\" takes \"am\", so \"is\" should be \"am\".",
+"optional": []
+},
+{
+"id": "forge-61168-2415-0",
+"keep": [
+2
+],
+"rule": "The story is in the past, so \"answer\" should be \"answered\".",
+"optional": []
+},
+{
+"id": "forge-78084-2105-1",
+"keep": [
+0
+],
+"rule": "The subject \"Mr. Satterthwaite\" is singular, so \"were\" should be \"was\".",
+"optional": []
+},
+{
+"id": "forge-72824-1078-1",
+"keep": [
+0,
+2
+],
+"rule": "The story is in the past, so \"steel\" should be \"steeled\" and \"takes\" should be \"took\".",
+"optional": [
+"then"
+]
+},
+{
+"id": "forge-1155-372-0",
+"keep": [
+2
+],
+"rule": "The story is in the past (\"came\"), so \"darts\" should be \"darted\".",
+"optional": []
+},
+{
+"id": "forge-70114-1842-0",
+"keep": [
+1
+],
+"rule": "The story is in the past (\"drove\", \"hurried\"), so \"find\" should be \"found\".",
+"optional": []
+},
+{
+"id": "forge-65238-1469-0",
+"keep": [
+1
+],
+"rule": "The subject \"eyes\" is plural and the story is in the past, so \"goes\" should be \"went\".",
+"optional": []
+},
+{
+"id": "forge-75288-1611-1",
+"keep": [
+0,
+2
+],
+"rule": "The subject \"discussion\" is singular and the story is in the past, so \"have\" should be \"had\". A place name is capitalized, so \"chimneys\" should be \"Chimneys\".",
+"optional": []
+},
+{
+"id": "forge-78084-756-0",
+"keep": [
+2
+],
+"rule": "The subject \"It\" is singular, so \"were\" should be \"was\".",
+"optional": []
+},
+{
+"id": "forge-58866-2548-1",
+"keep": [
+0
+],
+"rule": "The story is in the past, so \"picks\" should be \"picked\", matching \"handed\".",
+"optional": []
+},
+{
+"id": "forge-61262-300-1",
+"keep": [
+0
+],
+"rule": "Remove the comma after \"hand\", because it separates the subject \"Her hand\" from its verb \"concealed\".",
+"optional": []
+},
+{
+"id": "forge-69087-2773-2",
+"keep": [
+1,
+2
+],
+"rule": "A sentence starts with a capital letter, so \"then\" should be \"Then\". The story is in the past, so \"find\" should be \"found\".",
+"optional": [
+"then"
+]
+},
+{
+"id": "forge-61168-598-5",
+"keep": [
+0,
+2
+],
+"rule": "Remove the comma after \"I\", because it separates the subject from its verb \"thought\". In \"What was there about Cabin 17\", the subject \"What\" is singular, so \"were\" should be \"was\".",
+"optional": []
+},
+{
+"id": "forge-61168-1532-1",
+"keep": [
+0
+],
+"rule": "Remove the comma after \"me\", because it separates the subject \"The man who had followed me\" from its verb \"crossed\".",
+"optional": []
+},
+{
+"id": "forge-61262-854-0",
+"keep": [
+1
+],
+"rule": "The story is in the past (\"discussed\"), so \"narrates\" should be \"narrated\".",
+"optional": []
+},
+{
+"id": "forge-65238-2521-0",
+"keep": [
+1
+],
+"rule": "The story is in the past (\"picked up\"), so \"carries\" should be \"carried\".",
+"optional": []
+},
+{
+"id": "forge-70114-727-0",
+"keep": [
+0
+],
+"rule": "Remove the comma after \"Poirot\", because it separates the subject from its verb \"returned\".",
+"optional": [
+"later"
+]
+},
+{
+"id": "forge-75288-252-0",
+"keep": [
+0,
+1
+],
+"rule": "The story is in the past (\"disappeared\"), so \"performs\" should be \"performed\". A sentence starts with a capital letter, so \"cautiously\" should be \"Cautiously\".",
+"optional": []
+},
+{
+"id": "forge-75288-1387-0",
+"keep": [
+2
+],
+"rule": "The subject \"table\" is singular and the story is in the past, so \"occupy\" should be \"occupied\".",
+"optional": []
+},
+{
+"id": "forge-65238-155-7",
+"keep": [
+1
+],
+"rule": "The plural subject \"They\" needs \"like\", so \"likes\" should be \"like\".",
+"optional": []
+},
+{
+"id": "forge-72824-1739-0",
+"keep": [
+1
+],
+"rule": "The subject \"She\" is singular and the story is in the past, so \"look\" should be \"looked\".",
+"optional": []
+},
+{
+"id": "forge-1155-2227-2",
+"keep": [
+1,
+2
+],
+"rule": "The subject \"he\" is singular, so \"were\" should be \"was\". Remove the comma after \"certain\", because the \"that\" clause completes the thought and should not be split off.",
+"optional": []
+},
+{
+"id": "forge-61168-1911-2",
+"keep": [
+0,
+2
+],
+"rule": "The story is in the past (\"had\"), so \"heaps\" should be \"heaped\". The subject \"son\" is singular, so \"were\" should be \"was\".",
+"optional": []
+},
+{
+"id": "forge-1155-973-2",
+"keep": [
+0,
+2
+],
+"rule": "Remove the comma after \"porter\", because it separates the subject from its verb \"had relegated\". The story is in the past (\"passed\"), so \"does\" should be \"did\".",
+"optional": [
+"below"
+]
+},
+{
+"id": "forge-69087-1599-1",
+"keep": [
+0,
+2
+],
+"rule": "Remove the comma after \"sister\", because it separates the subject from its verb \"received\". The story is in the past, so \"volunteers\" should be \"volunteered\".",
+"optional": [
+"end"
+]
+},
+{
+"id": "forge-65238-2059-2",
+"keep": [
+0,
+2
+],
+"rule": "Remove the comma after \"intruder\", because it separates the subject from its verb \"had\". The story is in the past, so \"springs\" should be \"sprang\", matching \"raced\".",
+"optional": []
+},
+{
+"id": "forge-863-1259-1",
+"keep": [
+1
+],
+"rule": "The subject \"nothing\" is singular, so \"were\" should be \"was\".",
+"optional": []
+},
+{
+"id": "forge-61168-1284-5",
+"keep": [
+1,
+2
+],
+"rule": "The clause is about the singular \"type\", so \"get\" should be \"gets\". The story is in the past (\"let out\"), so \"snubs\" should be \"snubbed\".",
+"optional": []
+},
+{
+"id": "forge-863-1449-0",
+"keep": [
+2
+],
+"rule": "The subject \"we\" is plural, so \"was\" should be \"were\".",
+"optional": [
+"minutes"
+]
+},
+{
+"id": "forge-61168-2431-10",
+"keep": [
+0,
+1
+],
+"rule": "Remove the comma after \"I\", because it separates the subject from its verb \"kept\". The story is in the past, so \"find\" should be \"found\".",
+"optional": [
+"then"
+]
+},
+{
+"id": "forge-1155-2009-4",
+"keep": [
+2
+],
+"rule": "The story is in the past, so \"sees\" should be \"saw\".",
+"optional": []
+},
+{
+"id": "forge-1155-198-1",
+"keep": [
+1,
+2
+],
+"rule": "Remove the comma after \"route\", because one subject does both actions in \"turned aside from the direct route and entered a post office\". The story is in the past, so \"ponders\" should be \"pondered\".",
+"optional": [
+"there"
+]
+},
+{
+"id": "forge-1155-2722-0",
+"keep": [
+0
+],
+"rule": "Remove the comma after \"Tommy\", because it separates the subject from its verb \"retired\".",
+"optional": []
+},
+{
+"id": "forge-78084-545-3",
+"keep": [
+0,
+2
+],
+"rule": "The story is in the past (\"returned\"), so \"leaves\" should be \"left\" and \"hears\" should be \"heard\".",
+"optional": []
+},
+{
+"id": "forge-61168-1540-0",
+"keep": [
+0
+],
+"rule": "Remove the comma after \"I\", because it separates the subject from its verb \"had entered\".",
+"optional": []
+},
+{
+"id": "forge-69087-838-0",
+"keep": [
+0
+],
+"rule": "The subject \"She\" is singular, so \"know\" should be \"knows\".",
+"optional": []
+},
+{
+"id": "forge-61168-1918-3",
+"keep": [
+2
+],
+"rule": "The subject \"Mr. Carton\" is singular, so \"were\" should be \"was\".",
+"optional": [
+"evening"
+]
+},
+{
+"id": "forge-75288-2800-2",
+"keep": [
+1,
+2
+],
+"rule": "The story is in the past, so \"thinks\" should be \"thought\". The subject \"things\" is plural and the story is in the past, so \"has\" should be \"had\".",
+"optional": []
+},
+{
+"id": "forge-78342-1658-4",
+"keep": [
+0
+],
+"rule": "The story is in the past (\"tried\"), so \"pushes\" should be \"pushed\".",
+"optional": []
+},
+{
+"id": "forge-1155-434-1",
+"keep": [
+0,
+1
+],
+"rule": "The story is in the past (\"looked\"), so \"sinks\" should be \"sank\". A sentence starts with a capital letter, so \"upon\" should be \"Upon\".",
+"optional": []
+},
+{
+"id": "forge-58866-1250-3",
+"keep": [
+2
+],
+"rule": "The story is in the past (\"got\"), so \"forget\" should be \"forgot\".",
+"optional": [
+"excitement"
+]
+},
+{
+"id": "forge-78342-641-1",
+"keep": [
+0,
+1
+],
+"rule": "The story is in the past (\"looked\"), so \"nods\" should be \"nodded\" and \"opens\" should be \"opened\".",
+"optional": []
+}
+]

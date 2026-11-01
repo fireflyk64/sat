@@ -3533,13 +3533,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "It was by the latter that Mr. satterthwaite reaches his room. Mrs. Graham and her son, passed up the stairs near at hand, where the quiet Gerard Annesley had already preceded them.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It was by the latter that Mr. Satterthwaite reaches his room. Mrs. Graham and her son, passed up the stairs near at hand, where the quiet Gerard Annesley had already preceded them.",
   "fixed": "It was by the latter that Mr. Satterthwaite reached his room. Mrs. Graham and her son passed up the stairs near at hand, where the quiet Gerard Annesley had already preceded them.",
   "errors": [
-   {
-    "word": "satterthwaite"
-   },
    {
     "word": "reaches"
    },
@@ -3547,7 +3544,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "gapAfter": "son"
    }
   ],
-  "rule": "Proper nouns are capitalized, verbs stay in the same tense when the time does not change, and a comma must not separate a subject from its verb. Here Satterthwaite needs a capital, reached must stay past tense, and there is no comma after son.",
+  "rule": "The story is in the past, so 'reaches' should be 'reached'. Do not put a comma between a subject and its verb, so 'son, passed' should be 'son passed'.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -3558,21 +3555,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The Russian, conversed easily and naturally on those subjects which were nearest to Mr. Satterthwaite's heart. He was a man of very fine artistic taste and they soon find that they had many friends in common.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The Russian, conversed easily and naturally on those subjects which were nearest to Mr. Satterthwaite's heart. He was a man of very fine artistic taste, and they soon find that they had many friends in common.",
   "fixed": "The Russian conversed easily and naturally on those subjects which were nearest to Mr. Satterthwaite's heart. He was a man of very fine artistic taste, and they soon found that they had many friends in common.",
   "errors": [
    {
     "gapAfter": "russian"
    },
    {
-    "gapAfter": "taste"
-   },
-   {
     "word": "find"
    }
   ],
-  "rule": "Do not put a comma between a subject and its verb, use a comma before and when it joins two full sentences, and keep the tense consistent. So there is no comma after Russian, a comma belongs after taste, and find should be found.",
+  "rule": "Do not put a comma between a subject and its verb, so 'Russian, conversed' should be 'Russian conversed'. The story is in the past ('had many friends'), so 'find' should be 'found'.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -3583,46 +3577,40 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "At that moment a girl, turns the corner ahead of them and came into sight. She were a very pretty girl, fair-haired and blue-eyed, wearing a pink cotton frock.",
-  "fixed": "At that moment a girl turned the corner ahead of them and came into sight. She was a very pretty girl, fair-haired and blue-eyed, wearing a pink cotton frock.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "At that moment a girl turns the corner ahead of them and came into sight.",
+  "fixed": "At that moment a girl turned the corner ahead of them and came into sight.",
   "errors": [
    {
-    "gapAfter": "girl"
-   },
-   {
     "word": "turns"
-   },
-   {
-    "word": "were"
    }
   ],
-  "rule": "A comma should not split a subject from its verb, verbs in a sentence must share a tense, and a singular subject takes a singular verb. Here girl needs no comma after it, turns must be turned to match came, and She takes was.",
+  "rule": "The story is in the past ('came into sight'), so 'turns' should be 'turned'.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
-  }
+  },
+  "optionalGaps": [
+   "moment"
+  ]
  },
  {
   "id": "forge-78342-1867-2",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Her husband made a big fortune and was knighted. It was he who bought thurnly Grange but he dies two years after going there, and it was then that Lady Radclyffe sent for me to come and make my home with her.",
-  "fixed": "Her husband made a big fortune and was knighted. It was he who bought Thurnly Grange, but he died two years after going there, and it was then that Lady Radclyffe sent for me to come and make my home with her.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It was he who bought thurnly Grange, but he dies two years after going there, and it was then that Lady Radclyffe sent for me to come and make my home with her.",
+  "fixed": "It was he who bought Thurnly Grange, but he died two years after going there, and it was then that Lady Radclyffe sent for me to come and make my home with her.",
   "errors": [
    {
     "word": "thurnly"
    },
    {
-    "gapAfter": "grange"
-   },
-   {
     "word": "dies"
    }
   ],
-  "rule": "Place names are capitalized, a comma is needed before but when it joins two full sentences, and past events need past tense. Thurnly needs a capital, a comma belongs after Grange, and dies should be died.",
+  "rule": "'Thurnly Grange' is a place name, so 'thurnly' needs a capital letter. The story is in the past, so 'dies' should be 'died'.",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -3633,46 +3621,37 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "As for nadina, she was the kind of woman who deserved to die. Men does all sorts of questionable things in order to get rich but women shouldn’t pretend to be in love when they aren’t for ulterior motives.",
-  "fixed": "As for Nadina, she was the kind of woman who deserved to die. Men do all sorts of questionable things in order to get rich, but women shouldn’t pretend to be in love when they aren’t for ulterior motives.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Men does all sorts of questionable things in order to get rich, but women shouldn’t pretend to be in love when they aren’t for ulterior motives.",
+  "fixed": "Men do all sorts of questionable things in order to get rich, but women shouldn’t pretend to be in love when they aren’t for ulterior motives.",
   "errors": [
    {
-    "word": "nadina"
-   },
-   {
     "word": "does"
-   },
-   {
-    "gapAfter": "rich"
    }
   ],
-  "rule": "Names are capitalized, a plural subject takes a plural verb, and a comma comes before but when it joins two full sentences. Nadina needs a capital, Men takes do, and a comma belongs after rich.",
+  "rule": "The subject 'Men' is plural, so the verb is 'do', not 'does'.",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
-  }
+  },
+  "optionalGaps": [
+   "aren’t"
+  ]
  },
  {
   "id": "forge-78220-3121-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "But melchett were Chief Constable of the County before anything else. The arguments that appealed to me, had no weight with him.",
-  "fixed": "But Melchett was Chief Constable of the County before anything else. The arguments that appealed to me had no weight with him.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The arguments that appealed to me, had no weight with him.",
+  "fixed": "The arguments that appealed to me had no weight with him.",
   "errors": [
-   {
-    "word": "melchett"
-   },
-   {
-    "word": "were"
-   },
    {
     "gapAfter": "me"
    }
   ],
-  "rule": "Names are capitalized, a singular subject takes a singular verb, and no comma separates a subject from its verb. Melchett needs a capital, takes was, and the subject arguments should not be cut off from had by a comma after me.",
+  "rule": "Do not put a comma between a subject and its verb, so the comma after 'me' should go, because 'The arguments that appealed to me' is the subject of 'had'.",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
@@ -3683,13 +3662,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "As we parted he mentions casually that he was going to see the Vicar. I couldn't get word to Lawrence and I was rather uneasy.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "As we parted, he mentions casually that he was going to see the Vicar. I couldn't get word to Lawrence and I was rather uneasy.",
   "fixed": "As we parted, he mentioned casually that he was going to see the Vicar. I couldn't get word to Lawrence, and I was rather uneasy.",
   "errors": [
-   {
-    "gapAfter": "parted"
-   },
    {
     "word": "mentions"
    },
@@ -3697,7 +3673,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "gapAfter": "lawrence"
    }
   ],
-  "rule": "Put a comma after an introductory clause, put a comma before and when it joins two full sentences, and keep the tense consistent. A comma belongs after parted and after Lawrence, and mentions should be mentioned.",
+  "rule": "The sentence is in the past ('was going'), so 'mentions' should be 'mentioned'. A comma goes before 'and' when it joins two full sentences, so 'Lawrence' needs a comma after it.",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
@@ -3708,21 +3684,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Race said something about the police suspecting that rayburn would make for rhodesia. He might just had got off by Monday’s train.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Race said something about the police suspecting that rayburn would make for Rhodesia. He might just had got off by Monday’s train.",
   "fixed": "Race said something about the police suspecting that Rayburn would make for Rhodesia. He might just have got off by Monday’s train.",
   "errors": [
    {
     "word": "rayburn"
    },
    {
-    "word": "rhodesia"
-   },
-   {
     "word": "had"
    }
   ],
-  "rule": "Names of people and places are capitalized, and a modal verb like might must be followed by have. Rayburn and Rhodesia need capitals, and had should be have.",
+  "rule": "'Rayburn' is a name, so it needs a capital letter. After 'might', the verb is 'have', not 'had'.",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -3733,21 +3706,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I inquired everywhere I could think of but there wasn't a sign that hermy had ever been there. Coming back in the train I read your advertisement, and I thought I'd put it up to you.",
-  "fixed": "I inquired everywhere I could think of, but there wasn't a sign that Hermy had ever been there. Coming back in the train, I read your advertisement, and I thought I'd put it up to you.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I inquired everywhere I could think of, but there wasn't a sign that hermy had ever been there.",
+  "fixed": "I inquired everywhere I could think of, but there wasn't a sign that Hermy had ever been there.",
   "errors": [
    {
-    "gapAfter": "of"
-   },
-   {
     "word": "hermy"
-   },
-   {
-    "gapAfter": "train"
    }
   ],
-  "rule": "Use a comma before but when it joins two full sentences, a comma after an introductory phrase, and a capital for a name. A comma belongs after of and after train, and Hermy needs a capital.",
+  "rule": "'Hermy' is a name, so it needs a capital letter.",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -3758,21 +3725,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "It was decided that Lady coote must be approached and instructed to hold him in play. Jimmy and Nancy and Helen, fulfills this duty.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It was decided that Lady coote must be approached and instructed to hold him in play. Jimmy and Nancy and Helen fulfills this duty.",
   "fixed": "It was decided that Lady Coote must be approached and instructed to hold him in play. Jimmy and Nancy and Helen fulfilled this duty.",
   "errors": [
    {
     "word": "coote"
    },
    {
-    "gapAfter": "helen"
-   },
-   {
     "word": "fulfills"
    }
   ],
-  "rule": "Names are capitalized, a comma should not separate a subject from its verb, and the verb must agree with its subject and tense. Coote needs a capital, there is no comma after Helen, and fulfills should be fulfilled.",
+  "rule": "'Coote' is a name, so it needs a capital letter. The subject 'Jimmy and Nancy and Helen' is plural and the story is in the past, so 'fulfills' should be 'fulfilled'.",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -3783,8 +3747,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "She, said nothing more but relapsed into a thoughtful silence. I turns to race with the feeling that it was my turn to display an interest in his story.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "She, said nothing more but relapsed into a thoughtful silence. I turns to Race with the feeling that it was my turn to display an interest in his story.",
   "fixed": "She said nothing more but relapsed into a thoughtful silence. I turned to Race with the feeling that it was my turn to display an interest in his story.",
   "errors": [
    {
@@ -3792,12 +3756,9 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    },
    {
     "word": "turns"
-   },
-   {
-    "word": "race"
    }
   ],
-  "rule": "A comma should not separate a subject from its verb, a verb must agree with its subject, and names are capitalized. There is no comma after She, I takes turned, and Race needs a capital.",
+  "rule": "Do not put a comma between a subject and its verb, so 'She, said' should be 'She said'. The story is in the past ('was'), so 'turns' should be 'turned'.",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -3808,21 +3769,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I try to make my voice enthusiastic but I had already taken such a dislike to Inspector slack that the prospect of his success failed to appeal to me. A successful Slack would, I thought, be even more odious than a baffled one.",
-  "fixed": "I tried to make my voice enthusiastic, but I had already taken such a dislike to Inspector Slack that the prospect of his success failed to appeal to me. A successful Slack would, I thought, be even more odious than a baffled one.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I try to make my voice enthusiastic, but I had already taken such a dislike to Inspector Slack that the prospect of his success failed to appeal to me.",
+  "fixed": "I tried to make my voice enthusiastic, but I had already taken such a dislike to Inspector Slack that the prospect of his success failed to appeal to me.",
   "errors": [
    {
     "word": "try"
-   },
-   {
-    "gapAfter": "enthusiastic"
-   },
-   {
-    "word": "slack"
    }
   ],
-  "rule": "Keep verbs in the same tense when the time does not change, use a comma before but when it joins two full sentences, and capitalize names. Try should be tried, a comma belongs after enthusiastic, and Slack needs a capital.",
+  "rule": "The sentence is in the past ('had already taken'), so 'try' should be 'tried'.",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
@@ -3833,49 +3788,21 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "my abrupt onslaught have startled the good lady. She were not used to sudden demonstrations of affection.",
-  "fixed": "My abrupt onslaught had startled the good lady. She was not used to sudden demonstrations of affection.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "my abrupt onslaught have startled the good lady.",
+  "fixed": "My abrupt onslaught had startled the good lady.",
   "errors": [
    {
     "word": "my"
    },
    {
     "word": "have"
-   },
-   {
-    "word": "were"
    }
   ],
-  "rule": "Sentences begin with a capital letter, and a singular subject takes a singular verb. My needs a capital, onslaught takes had, and She takes was.",
+  "rule": "The first word of a sentence is capitalized, so 'my' should be 'My'. The subject 'onslaught' is singular and the story is in the past, so 'have' should be 'had'.",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
-  }
- },
- {
-  "id": "forge-78342-977-5",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "She admits that she had no idea where hermy could be. All the same she strongly negatived any idea of going to the police.",
-  "fixed": "She admitted that she had no idea where Hermy could be. All the same, she strongly negatived any idea of going to the police.",
-  "errors": [
-   {
-    "word": "admits"
-   },
-   {
-    "word": "hermy"
-   },
-   {
-    "gapAfter": "same"
-   }
-  ],
-  "rule": "Keep tense consistent, capitalize names, and put a comma after an introductory phrase. Admits should be admitted, Hermy needs a capital, and a comma belongs after same.",
-  "source": {
-   "book": "Partners in Crime",
-   "gutenberg": 78342
   }
  },
  {
@@ -3883,21 +3810,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "checkmated for the moment he was far from abandoning the conflict. He still intends to hear what was going on in the locked room.",
-  "fixed": "Checkmated for the moment, he was far from abandoning the conflict. He still intended to hear what was going on in the locked room.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He still intends to hear what was going on in the locked room.",
+  "fixed": "He still intended to hear what was going on in the locked room.",
   "errors": [
-   {
-    "word": "checkmated"
-   },
-   {
-    "gapAfter": "moment"
-   },
    {
     "word": "intends"
    }
   ],
-  "rule": "Sentences begin with a capital letter, an introductory phrase is followed by a comma, and tense stays consistent. Checkmated needs a capital, a comma belongs after moment, and intends should be intended.",
+  "rule": "The passage is in the past (\"was going on\"), so \"intends\" should be \"intended\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -3908,21 +3829,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Now that they know I wasn’t dead my going to beira would do no good whatever. They could easily follow me there and murder me quietly.",
-  "fixed": "Now that they knew I wasn’t dead, my going to Beira would do no good whatever. They could easily follow me there and murder me quietly.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Now that they know I wasn’t dead, my going to Beira would do no good whatever.",
+  "fixed": "Now that they knew I wasn’t dead, my going to Beira would do no good whatever.",
   "errors": [
    {
     "word": "know"
-   },
-   {
-    "gapAfter": "dead"
-   },
-   {
-    "word": "beira"
    }
   ],
-  "rule": "An introductory clause is followed by a comma, names of places are capitalized, and tense stays consistent. Know should be knew, a comma belongs after dead, and Beira needs a capital.",
+  "rule": "The rest of the sentence is in the past (“wasn’t dead”, “would do”), so “know” should be “knew”.",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -3933,13 +3848,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "In the stress of her encounter with the girl tuppence had not heard the front door bell. Now, to her astonishment, Tommy came bounding up the stairs, and in the hall below she catches sight of a big burly man in the act of removing a bowler hat.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "In the stress of her encounter with the girl, tuppence had not heard the front door bell. Now, to her astonishment, Tommy came bounding up the stairs, and in the hall below she catches sight of a big burly man in the act of removing a bowler hat.",
   "fixed": "In the stress of her encounter with the girl, Tuppence had not heard the front door bell. Now, to her astonishment, Tommy came bounding up the stairs, and in the hall below she caught sight of a big burly man in the act of removing a bowler hat.",
   "errors": [
-   {
-    "gapAfter": "girl"
-   },
    {
     "word": "tuppence"
    },
@@ -3947,57 +3859,55 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "catches"
    }
   ],
-  "rule": "Use a comma after an introductory phrase, capitalize names, and keep verbs in the same tense. A comma belongs after girl, Tuppence needs a capital, and catches should be caught to match came.",
+  "rule": "“Tuppence” is a person’s name, so it needs a capital T. The verb “catches” should be “caught” to match the past tense of “came” and “had not heard”.",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
-  }
+  },
+  "optionalGaps": [
+   "big",
+   "below"
+  ]
  },
  {
   "id": "forge-72824-568-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He went over to the window, and stands there some time looking out, with his back to her. presently the dancer raised herself on her elbow and stared at him curiously.",
-  "fixed": "He went over to the window and stood there some time looking out, with his back to her. Presently the dancer raised herself on her elbow and stared at him curiously.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He went over to the window, and stands there some time looking out, with his back to her.",
+  "fixed": "He went over to the window and stood there some time looking out, with his back to her.",
   "errors": [
    {
     "gapAfter": "window"
    },
    {
     "word": "stands"
-   },
-   {
-    "word": "presently"
    }
   ],
-  "rule": "A compound predicate (two verbs sharing one subject) takes no comma between them, verbs in a passage should keep the same tense, and a sentence begins with a capital letter. Here 'went' and 'stood' share the subject 'He', so there is no comma after 'window', the verb stays in the past tense, and 'Presently' is capitalized.",
+  "rule": "The verb “stands” should be “stood” to match the past tense of “went”. Delete the comma after “window”, because “went” and “stood” are two verbs that share the subject “He”.",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
-  }
+  },
+  "optionalGaps": [
+   "time"
+  ]
  },
  {
   "id": "forge-75288-680-8",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Evidently gerry Wade had said something to her about it. his anxiety that she should forget the fact have a sinister suggestion.",
-  "fixed": "Evidently Gerry Wade had said something to her about it. His anxiety that she should forget the fact had a sinister suggestion.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "His anxiety that she should forget the fact have a sinister suggestion.",
+  "fixed": "His anxiety that she should forget the fact had a sinister suggestion.",
   "errors": [
-   {
-    "word": "gerry"
-   },
-   {
-    "word": "his"
-   },
    {
     "word": "have"
    }
   ],
-  "rule": "Names and the first word of a sentence are capitalized, and a verb agrees with its true subject. The subject is the singular 'anxiety', so the verb is 'had', not 'have', even though 'fact' sits right before it.",
+  "rule": "The subject “anxiety” is singular and the story is in the past, so the verb is “had”, not “have”.",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -4008,21 +3918,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He did not anticipate any more surprise visits but he feels that it was up to him to be on his guard. He have no intention of allowing his suit-case to be rifled whilst he was downstairs in the Grill Room.",
-  "fixed": "He did not anticipate any more surprise visits, but he felt that it was up to him to be on his guard. He had no intention of allowing his suit-case to be rifled whilst he was downstairs in the Grill Room.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He did not anticipate any more surprise visits, but he feels that it was up to him to be on his guard.",
+  "fixed": "He did not anticipate any more surprise visits, but he felt that it was up to him to be on his guard.",
   "errors": [
    {
-    "gapAfter": "visits"
-   },
-   {
     "word": "feels"
-   },
-   {
-    "word": "have"
    }
   ],
-  "rule": "A comma goes before 'but' when it joins two complete sentences, a verb stays in the same tense unless the time changes, and the verb agrees with its subject. 'He did not anticipate ..., but he felt' needs the comma and the past tense, and the singular 'He' takes 'had'.",
+  "rule": "The passage is in the past (“did not anticipate”, “was up to him”), so “feels” should be “felt”.",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -4033,49 +3937,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "It was with a slight blush that she rang the bell, and ordered it to be placed in a taxi. She drives to paddington and left the box in the cloak room.",
-  "fixed": "It was with a slight blush that she rang the bell and ordered it to be placed in a taxi. She drove to Paddington and left the box in the cloak room.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It was with a slight blush that she rang the bell, and ordered it to be placed in a taxi.",
+  "fixed": "It was with a slight blush that she rang the bell and ordered it to be placed in a taxi.",
   "errors": [
    {
     "gapAfter": "bell"
-   },
-   {
-    "word": "drives"
-   },
-   {
-    "word": "paddington"
    }
   ],
-  "rule": "Do not put a comma before 'and' when it only joins two verbs for one subject. Keep verbs in the same tense and capitalize place names. 'rang the bell and ordered' needs no comma, 'drove' matches the past tense, and 'Paddington' is capitalized.",
+  "rule": "Delete the comma after “bell”, because “rang” and “ordered” are two verbs that share the subject “she”.",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
-  }
- },
- {
-  "id": "forge-61168-1754-2",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I was rather disappointed in the rainbow forest. There weren’t nearly enough rainbows and we got soaked to the skin, but every now and then we get a glimpse of the Falls opposite, and realized how enormously wide they are.",
-  "fixed": "I was rather disappointed in the rainbow forest. There weren’t nearly enough rainbows, and we got soaked to the skin, but every now and then we got a glimpse of the Falls opposite and realized how enormously wide they are.",
-  "errors": [
-   {
-    "gapAfter": "rainbows"
-   },
-   {
-    "word": "get"
-   },
-   {
-    "gapAfter": "opposite"
-   }
-  ],
-  "rule": "Use a comma before 'and' when it joins two complete sentences, but not when it joins two verbs sharing a subject, and keep tense consistent. 'rainbows, and we got soaked' needs the comma, 'we got a glimpse ... and realized' needs none, and 'get' must be past tense 'got'.",
-  "source": {
-   "book": "The Man in the Brown Suit",
-   "gutenberg": 61168
   }
  },
  {
@@ -4083,8 +3956,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "They thanked Mr. Quin, and went out into the night together. Mr. Quin picked up his change and smiles across at Mr. Satterthwaite, who were preening himself like a contented bird.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "They thanked Mr. Quin, and went out into the night together. Mr. Quin picked up his change and smiles across at Mr. Satterthwaite, who was preening himself like a contented bird.",
   "fixed": "They thanked Mr. Quin and went out into the night together. Mr. Quin picked up his change and smiled across at Mr. Satterthwaite, who was preening himself like a contented bird.",
   "errors": [
    {
@@ -4092,12 +3965,9 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    },
    {
     "word": "smiles"
-   },
-   {
-    "word": "were"
    }
   ],
-  "rule": "No comma separates two verbs that share one subject, tense stays consistent, and a verb agrees with its subject. 'thanked Mr. Quin and went' needs no comma, 'picked up ... and smiled' stays past tense, and 'who' refers to the single man, so it is 'was preening'.",
+  "rule": "Delete the comma after “Quin” in the first sentence, because “thanked” and “went” are two verbs that share the subject “They”. The verb “smiles” should be “smiled” to match the past tense of “picked up”.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -4108,21 +3978,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "There had been no murder, in St. Mary Mead for at least fifteen years. And to have someone like colonel Protheroe murdered actually in the Vicarage study are such a feast of sensation as rarely falls to the lot of a village population.",
-  "fixed": "There had been no murder in St. Mary Mead for at least fifteen years. And to have someone like Colonel Protheroe murdered actually in the Vicarage study is such a feast of sensation as rarely falls to the lot of a village population.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "There had been no murder, in St. Mary Mead for at least fifteen years.",
+  "fixed": "There had been no murder in St. Mary Mead for at least fifteen years.",
   "errors": [
    {
     "gapAfter": "murder"
-   },
-   {
-    "word": "colonel"
-   },
-   {
-    "word": "are"
    }
   ],
-  "rule": "Do not put a comma between a noun and the prepositional phrase that completes it, capitalize a title used with a name, and match the verb to its true subject. The subject is the singular idea 'to have someone ... murdered', so it takes 'is', not 'are'.",
+  "rule": "Delete the comma after “murder”, because “no murder in St. Mary Mead” is one phrase and a comma should not split it.",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
@@ -4133,21 +3997,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "A young man in white tennis flannels, was approaching them. He is about twenty-five years of age, and extremely good-looking.",
-  "fixed": "A young man in white tennis flannels was approaching them. He was about twenty-five years of age and extremely good-looking.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "A young man in white tennis flannels, was approaching them.",
+  "fixed": "A young man in white tennis flannels was approaching them.",
   "errors": [
    {
     "gapAfter": "flannels"
-   },
-   {
-    "word": "is"
-   },
-   {
-    "gapAfter": "age"
    }
   ],
-  "rule": "Never separate a subject from its verb with a comma, and do not put a comma between two items joined by 'and' that share a subject and verb. Also keep the tense consistent. So 'man ... was approaching' has no comma, 'was' stays past tense, and 'age and extremely good-looking' needs no comma.",
+  "rule": "Delete the comma after “flannels”, because it splits the subject “A young man in white tennis flannels” from its verb “was approaching”.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -4158,21 +4016,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "They goes along the passage to the end door but one. david Keeley entered the room and Mr. Satterthwaite followed him.",
-  "fixed": "They went along the passage to the end door but one. David Keeley entered the room, and Mr. Satterthwaite followed him.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "They goes along the passage to the end door but one.",
+  "fixed": "They went along the passage to the end door but one.",
   "errors": [
    {
     "word": "goes"
-   },
-   {
-    "word": "david"
-   },
-   {
-    "gapAfter": "room"
    }
   ],
-  "rule": "A comma goes before 'and' when it joins two complete sentences, names are capitalized, and a verb agrees with its subject. 'They' takes 'went', 'David' is capitalized, and 'entered the room' and 'Mr. Satterthwaite followed him' need a comma between them.",
+  "rule": "\"They\" is plural, so \"goes\" is wrong, and the story is in the past, so the verb is \"went\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -4183,21 +4035,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The thing seemed simple enough but pagett is a person who love to make mysteries. He came to me the next day with a face like a Renaissance conspirator.",
-  "fixed": "The thing seemed simple enough, but Pagett is a person who loves to make mysteries. He came to me the next day with a face like a Renaissance conspirator.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The thing seemed simple enough, but Pagett is a person who love to make mysteries.",
+  "fixed": "The thing seemed simple enough, but Pagett is a person who loves to make mysteries.",
   "errors": [
-   {
-    "gapAfter": "enough"
-   },
-   {
-    "word": "pagett"
-   },
    {
     "word": "love"
    }
   ],
-  "rule": "Put a comma before 'but' when it joins two complete sentences, capitalize names, and make the verb agree with its subject. 'who' stands for the singular 'person', so it takes 'loves'.",
+  "rule": "The word “who” refers to the singular “person”, so the verb is “loves”, not “love”.",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -4208,13 +4054,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He had a sleuthlike habit of mind and he was aware that his companion have only arrived on the preceding afternoon. He had had little time to discover the beauties of the villa by daylight and he had so far spoken to nobody.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He had a sleuthlike habit of mind, and he was aware that his companion have only arrived on the preceding afternoon. He had had little time to discover the beauties of the villa by daylight and he had so far spoken to nobody.",
   "fixed": "He had a sleuthlike habit of mind, and he was aware that his companion had only arrived on the preceding afternoon. He had had little time to discover the beauties of the villa by daylight, and he had so far spoken to nobody.",
   "errors": [
-   {
-    "gapAfter": "mind"
-   },
    {
     "word": "have"
    },
@@ -4222,7 +4065,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "gapAfter": "daylight"
    }
   ],
-  "rule": "Use a comma before 'and' when it joins two complete sentences, and make verbs agree with their subjects. Both 'He had ... mind, and he was' and 'daylight, and he had' need the comma, and the singular 'companion' takes 'had'.",
+  "rule": "The subject “companion” is singular and the story is in the past, so “have” should be “had”. A comma belongs after “daylight”, before “and”, because “He had had little time to discover the beauties of the villa by daylight” and “he had so far spoken to nobody” are two complete thoughts.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -4233,21 +4076,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "His laugh sounded a little fatuous to Mr. Satterthwaite and no responsive smile come to the girl's face. She were looking earnestly at Mr. Satterthwaite.",
-  "fixed": "His laugh sounded a little fatuous to Mr. Satterthwaite, and no responsive smile came to the girl's face. She was looking earnestly at Mr. Satterthwaite.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "She were looking earnestly at Mr. Satterthwaite.",
+  "fixed": "She was looking earnestly at Mr. Satterthwaite.",
   "errors": [
-   {
-    "gapAfter": "satterthwaite"
-   },
-   {
-    "word": "come"
-   },
    {
     "word": "were"
    }
   ],
-  "rule": "A comma goes before 'and' when it joins two complete sentences, and each verb must agree with its subject and keep the tense. The singular 'smile' takes 'came' and 'She' takes 'was'.",
+  "rule": "The subject “She” is singular, so the verb is “was”, not “were”.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -4258,21 +4095,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "inspector Slack's evidence were discreet and abridged. He described his summons, and the circumstances under which he had found the body.",
-  "fixed": "Inspector Slack's evidence was discreet and abridged. He described his summons and the circumstances under which he had found the body.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Inspector Slack's evidence were discreet and abridged.",
+  "fixed": "Inspector Slack's evidence was discreet and abridged.",
   "errors": [
    {
-    "word": "inspector"
-   },
-   {
     "word": "were"
-   },
-   {
-    "gapAfter": "summons"
    }
   ],
-  "rule": "A title used with a name is capitalized, the verb agrees with its subject, and a comma does not separate two objects joined by 'and'. 'evidence' is singular so it is 'was', and 'his summons and the circumstances' needs no comma.",
+  "rule": "The subject “evidence” is singular, so the verb is “was”, not “were”.",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
@@ -4283,21 +4114,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I had ordered champagne; the steward suggest clicquot 1911 as being the best they had on the boat and I fell in with his suggestion. I seemed to have hit on the one thing that would loosen Colonel Race’s tongue.",
-  "fixed": "I had ordered champagne; the steward suggested Clicquot 1911 as being the best they had on the boat, and I fell in with his suggestion. I seemed to have hit on the one thing that would loosen Colonel Race’s tongue.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I had ordered champagne; the steward suggest Clicquot 1911 as being the best they had on the boat and I fell in with his suggestion.",
+  "fixed": "I had ordered champagne; the steward suggested Clicquot 1911 as being the best they had on the boat, and I fell in with his suggestion.",
   "errors": [
    {
     "word": "suggest"
    },
    {
-    "word": "clicquot"
-   },
-   {
     "gapAfter": "boat"
    }
   ],
-  "rule": "Use a comma before 'and' when it joins two complete sentences, capitalize brand names, and keep the verb in the right form and tense. 'the steward suggested' is past tense, 'Clicquot' is capitalized, and 'boat, and I fell' needs the comma.",
+  "rule": "The story is in the past (“had ordered”, “fell in”), so “suggest” should be “suggested”. A comma belongs after “boat”, before “and”, because “the steward suggested Clicquot” and “I fell in with his suggestion” are two complete thoughts.",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -4308,21 +4136,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "It seemed straightforward enough but Mr. devereux did not accept that explanation for a minute. He is convinced that Mr. Wade had been very cleverly put out of the way and that someone in the house must actually be the criminal we were all after.",
-  "fixed": "It seemed straightforward enough, but Mr. Devereux did not accept that explanation for a minute. He was convinced that Mr. Wade had been very cleverly put out of the way and that someone in the house must actually be the criminal we were all after.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He is convinced that Mr. Wade had been very cleverly put out of the way and that someone in the house must actually be the criminal we were all after.",
+  "fixed": "He was convinced that Mr. Wade had been very cleverly put out of the way and that someone in the house must actually be the criminal we were all after.",
   "errors": [
-   {
-    "gapAfter": "enough"
-   },
-   {
-    "word": "devereux"
-   },
    {
     "word": "is"
    }
   ],
-  "rule": "Use a comma before 'but' when it joins two complete sentences, capitalize names, and keep the tense consistent. The passage is in the past, so 'He was convinced' fits and 'Devereux' is capitalized.",
+  "rule": "The passage is in the past (\"had been\", \"were\"), so \"is\" should be \"was\".",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -4333,21 +4155,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Although the blinds were up the window itself was shut, so I couldn’t catch a word of what they said. whittington seemed to be doing all the talking, and the nurse just listens.",
-  "fixed": "Although the blinds were up, the window itself was shut, so I couldn’t catch a word of what they said. Whittington seemed to be doing all the talking, and the nurse just listened.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Whittington seemed to be doing all the talking, and the nurse just listens.",
+  "fixed": "Whittington seemed to be doing all the talking, and the nurse just listened.",
   "errors": [
-   {
-    "gapAfter": "up"
-   },
-   {
-    "word": "whittington"
-   },
    {
     "word": "listens"
    }
   ],
-  "rule": "A comma follows an introductory clause such as 'Although the blinds were up', names are capitalized, and tense stays consistent. 'Whittington' is capitalized and 'listened' matches 'seemed'.",
+  "rule": "The passage is in the past (\"seemed\"), so \"listens\" should be \"listened\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -4358,21 +4174,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The events of last night though exciting, has not really done anything to elucidate matters. Who was the young man, who had burst into my cabin so abruptly?",
-  "fixed": "The events of last night, though exciting, had not really done anything to elucidate matters. Who was the young man who had burst into my cabin so abruptly?",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The events of last night though exciting, has not really done anything to elucidate matters.",
+  "fixed": "The events of last night, though exciting, had not really done anything to elucidate matters.",
   "errors": [
    {
     "gapAfter": "night"
    },
    {
     "word": "has"
-   },
-   {
-    "gapAfter": "man"
    }
   ],
-  "rule": "A removable interrupter like 'though exciting' needs commas on both sides, the verb agrees with its subject, and an essential phrase gets no comma. The plural 'events' takes 'had', and 'who had burst into my cabin' identifies which man, so no comma before 'who'.",
+  "rule": "The subject “events” is plural and the story is in the past, so “has” should be “had”. Add a comma after “night”, because “though exciting” is an extra phrase that needs a comma on both sides.",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -4383,21 +4196,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Moving my head with difficulty I looks round me. I were in a small room with rough wooden walls.",
-  "fixed": "Moving my head with difficulty, I looked round me. I was in a small room with rough wooden walls.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I were in a small room with rough wooden walls.",
+  "fixed": "I was in a small room with rough wooden walls.",
   "errors": [
-   {
-    "gapAfter": "difficulty"
-   },
-   {
-    "word": "looks"
-   },
    {
     "word": "were"
    }
   ],
-  "rule": "A comma follows an introductory phrase like 'Moving my head with difficulty', and verbs must agree with the subject and keep the past tense. So the comma goes after 'difficulty', 'I looked' is past tense, and 'I was' is the correct form.",
+  "rule": "The subject “I” goes with “was”, not “were”.",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -4408,46 +4215,40 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He made a step in that direction but at the same time john Porter also move so as to bar his way. For a moment it seemed as though there was a duel of eyes between the two friends.",
-  "fixed": "He made a step in that direction, but at the same time John Porter also moved so as to bar his way. For a moment it seemed as though there was a duel of eyes between the two friends.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He made a step in that direction but at the same time John Porter also move so as to bar his way.",
+  "fixed": "He made a step in that direction, but at the same time John Porter also moved so as to bar his way.",
   "errors": [
    {
     "gapAfter": "direction"
    },
    {
-    "word": "john"
-   },
-   {
     "word": "move"
    }
   ],
-  "rule": "Put a comma before 'but' when it joins two complete sentences, capitalize names, and make the verb match its subject and tense. 'John Porter also moved' is singular and past.",
+  "rule": "The verb “move” should be “moved” to match the past tense of “made”. A comma belongs after “direction”, before “but”, because “He made a step in that direction” and “John Porter also moved” are two complete thoughts.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
-  }
+  },
+  "optionalGaps": [
+   "time"
+  ]
  },
  {
   "id": "forge-75288-559-1",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The car had not passed over the man but nevertheless it must have struck him in passing. He were lying face downwards on the road, and he lies ominously still.",
-  "fixed": "The car had not passed over the man, but nevertheless it must have struck him in passing. He was lying face downwards on the road, and he lay ominously still.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He was lying face downwards on the road, and he lies ominously still.",
+  "fixed": "He was lying face downwards on the road, and he lay ominously still.",
   "errors": [
-   {
-    "gapAfter": "man"
-   },
-   {
-    "word": "were"
-   },
    {
     "word": "lies"
    }
   ],
-  "rule": "A comma goes before 'but' when it joins two complete sentences, verbs agree with their subjects, and tense stays consistent. 'He' takes 'was lying', and 'lay' keeps the past tense.",
+  "rule": "The story is in the past (“was lying”), so “lies” should be “lay”.",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -4458,21 +4259,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "In another minute they were being introduced to Mrs. kingston Bruce a plaintive lady with a languid manner. Miss Kingston Bruce acknowledge their presence with a short inclination of the head.",
-  "fixed": "In another minute they were being introduced to Mrs. Kingston Bruce, a plaintive lady with a languid manner. Miss Kingston Bruce acknowledged their presence with a short inclination of the head.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Miss Kingston Bruce acknowledge their presence with a short inclination of the head.",
+  "fixed": "Miss Kingston Bruce acknowledged their presence with a short inclination of the head.",
   "errors": [
-   {
-    "word": "kingston"
-   },
-   {
-    "gapAfter": "bruce"
-   },
    {
     "word": "acknowledge"
    }
   ],
-  "rule": "Names are capitalized, a nonessential appositive like 'a plaintive lady with a languid manner' is set off with a comma, and the verb agrees with its subject. 'Miss Kingston Bruce' is singular, so it is 'acknowledged'.",
+  "rule": "\"Miss Kingston Bruce\" is singular, so \"acknowledge\" is wrong, and the story is in the past, so the verb is \"acknowledged\".",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -4483,21 +4278,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He laugh rather mockingly but I saw his face harden. If he had gambled with Fate he was a good gambler.",
-  "fixed": "He laughed rather mockingly, but I saw his face harden. If he had gambled with Fate, he was a good gambler.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He laugh rather mockingly, but I saw his face harden.",
+  "fixed": "He laughed rather mockingly, but I saw his face harden.",
   "errors": [
    {
     "word": "laugh"
-   },
-   {
-    "gapAfter": "mockingly"
-   },
-   {
-    "gapAfter": "fate"
    }
   ],
-  "rule": "Put a comma before 'but' joining two complete sentences, put a comma after an introductory 'If' clause, and make the verb agree with its subject. 'He laughed' is correct, 'mockingly, but I saw' needs the comma, and 'If he had gambled with Fate,' needs one too.",
+  "rule": "The story is in the past (“saw”), so “laugh” should be “laughed”.",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -4508,21 +4297,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "lady Coote stood for a few moments tragically on the terrace and then nerved herself to speak to MacDonald the head gardener, who was surveying the domain over which he ruled with an autocratic eye. MacDonald were a very chief and prince among head gardeners.",
-  "fixed": "Lady Coote stood for a few moments tragically on the terrace and then nerved herself to speak to MacDonald, the head gardener, who was surveying the domain over which he ruled with an autocratic eye. MacDonald was a very chief and prince among head gardeners.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "MacDonald were a very chief and prince among head gardeners.",
+  "fixed": "MacDonald was a very chief and prince among head gardeners.",
   "errors": [
-   {
-    "word": "lady"
-   },
-   {
-    "gapAfter": "macdonald"
-   },
    {
     "word": "were"
    }
   ],
-  "rule": "A sentence starts with a capital letter, a nonessential phrase like \"the head gardener\" needs commas on both sides, and a singular subject takes a singular verb. Here \"lady\" needs a capital, \"MacDonald\" needs a comma after it, and \"MacDonald were\" should be \"MacDonald was\".",
+  "rule": "The subject “MacDonald” is one person, so the verb is “was”, not “were”.",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -4533,21 +4316,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Conrad lights a hissing gas burner, and went out. tommy heard the sound of the key being turned in the lock.",
-  "fixed": "Conrad lit a hissing gas burner and went out. Tommy heard the sound of the key being turned in the lock.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Conrad lights a hissing gas burner, and went out.",
+  "fixed": "Conrad lit a hissing gas burner and went out.",
   "errors": [
    {
     "word": "lights"
    },
    {
     "gapAfter": "burner"
-   },
-   {
-    "word": "tommy"
    }
   ],
-  "rule": "Keep verbs in the same tense, do not put a comma before \"and\" when it joins two verbs sharing one subject, and capitalize names and sentence starts. Here \"lights\" should be \"lit\", the comma after \"burner\" should go, and \"tommy\" needs a capital.",
+  "rule": "The verb “lights” should be “lit” to match the past tense of “went”. Delete the comma after “burner”, because “lit” and “went” are two verbs that share the subject “Conrad”.",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -4558,21 +4338,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "James Reilly had been apprehended, and was in custody. His solicitor Mr. Marvell, have just finished a lengthy conversation with Tommy on the subject of the crime.",
-  "fixed": "James Reilly had been apprehended and was in custody. His solicitor, Mr. Marvell, had just finished a lengthy conversation with Tommy on the subject of the crime.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "His solicitor, Mr. Marvell, have just finished a lengthy conversation with Tommy on the subject of the crime.",
+  "fixed": "His solicitor, Mr. Marvell, had just finished a lengthy conversation with Tommy on the subject of the crime.",
   "errors": [
-   {
-    "gapAfter": "apprehended"
-   },
-   {
-    "gapAfter": "solicitor"
-   },
    {
     "word": "have"
    }
   ],
-  "rule": "Do not put a comma before \"and\" when it joins two verbs sharing one subject, put commas on both sides of a nonessential name like \"Mr. Marvell\", and make the verb agree with its subject. Here the comma after \"apprehended\" should go, \"solicitor\" needs a comma after it, and \"have\" should be \"had\" to agree with \"solicitor\".",
+  "rule": "The subject “solicitor” is singular and the story is in the past, so the verb is “had”, not “have”.",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -4583,21 +4357,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Her effects there had been wistful, and suggestive rather than commanding. But now, face to face with the woman herself he receives a totally different impression.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Her effects there had been wistful, and suggestive rather than commanding. But now, face to face with the woman herself, he receives a totally different impression.",
   "fixed": "Her effects there had been wistful and suggestive rather than commanding. But now, face to face with the woman herself, he received a totally different impression.",
   "errors": [
    {
     "gapAfter": "wistful"
    },
    {
-    "gapAfter": "herself"
-   },
-   {
     "word": "receives"
    }
   ],
-  "rule": "Do not put a comma between two adjectives joined by \"and\", and set off an interrupting phrase with commas on both sides. Here \"wistful and suggestive\" needs no comma, \"face to face with the woman herself\" needs a closing comma, and \"receives\" should be \"received\".",
+  "rule": "Delete the comma after “wistful”, because “wistful” and “suggestive” are two descriptions joined by “and” and need no comma between them. The verb “receives” should be “received” to match the past tense of “had been”.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -4608,21 +4379,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I hastily took it out of the bath, and smooths it out flat. The water have brought out the hidden message.",
-  "fixed": "I hastily took it out of the bath and smoothed it out flat. The water had brought out the hidden message.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The water have brought out the hidden message.",
+  "fixed": "The water had brought out the hidden message.",
   "errors": [
-   {
-    "gapAfter": "bath"
-   },
-   {
-    "word": "smooths"
-   },
    {
     "word": "have"
    }
   ],
-  "rule": "Do not put a comma before \"and\" when it joins two verbs sharing one subject, keep tenses consistent, and make verbs agree with their subjects. Here the comma after \"bath\" should go, \"smooths\" should be \"smoothed\", and \"have\" should be \"had\".",
+  "rule": "The subject “water” is singular and the story is in the past, so “have” should be “had”.",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -4633,21 +4398,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Nobody in kirtlington Mallet have bothered to inquire further. Miss Le Couteau had had no parents or guardians, to make inquiries into the prospects and standing of her fiancé.",
-  "fixed": "Nobody in Kirtlington Mallet had bothered to inquire further. Miss Le Couteau had had no parents or guardians to make inquiries into the prospects and standing of her fiancé.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Nobody in kirtlington Mallet have bothered to inquire further.",
+  "fixed": "Nobody in Kirtlington Mallet had bothered to inquire further.",
   "errors": [
    {
     "word": "kirtlington"
    },
    {
     "word": "have"
-   },
-   {
-    "gapAfter": "guardians"
    }
   ],
-  "rule": "Place names are capitalized, the verb agrees with its subject (\"Nobody\" is singular), and no comma separates a noun from the phrase that completes it. Here \"kirtlington\" needs a capital, \"have\" should be \"had\", and the comma after \"guardians\" should go.",
+  "rule": "“Kirtlington Mallet” is the name of a place, so “Kirtlington” needs a capital K. The subject “Nobody” is singular and the story is in the past, so “have” should be “had”.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -4658,49 +4420,21 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He is glad when he had passed the bougainvillea, and was walking down the white street with the blue sea at the end of it. A disreputable dog were standing in the middle of the road, yawning and stretching himself in the sun.",
-  "fixed": "He was glad when he had passed the bougainvillea and was walking down the white street with the blue sea at the end of it. A disreputable dog was standing in the middle of the road, yawning and stretching himself in the sun.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He is glad when he had passed the bougainvillea, and was walking down the white street with the blue sea at the end of it.",
+  "fixed": "He was glad when he had passed the bougainvillea and was walking down the white street with the blue sea at the end of it.",
   "errors": [
    {
     "word": "is"
    },
    {
     "gapAfter": "bougainvillea"
-   },
-   {
-    "word": "were"
    }
   ],
-  "rule": "Keep verb tense consistent when the events happen at the same time, do not put a comma before \"and\" when it joins two verbs sharing one subject, and make the verb agree with its subject. Here \"is\" should be \"was\", the comma after \"bougainvillea\" should go, and \"dog were\" should be \"dog was\".",
+  "rule": "The verb “is” should be “was” to match the past tense of “had passed”. Delete the comma after “bougainvillea”, because “had passed” and “was walking” are two verbs that share the subject “he”.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
-  }
- },
- {
-  "id": "forge-61168-1529-1",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Out of the tail of my eye I see my tracker come in and sit down unostentatiously at a little table near the door. I finished the second coffee soda, and demanded a maple one.",
-  "fixed": "Out of the tail of my eye, I saw my tracker come in and sit down unostentatiously at a little table near the door. I finished the second coffee soda and demanded a maple one.",
-  "errors": [
-   {
-    "gapAfter": "eye"
-   },
-   {
-    "word": "see"
-   },
-   {
-    "gapAfter": "soda"
-   }
-  ],
-  "rule": "Put a comma after a long introductory phrase, keep tenses consistent, and do not put a comma before \"and\" when it joins two verbs sharing one subject. Here \"Out of the tail of my eye\" needs a comma, \"see\" should be \"saw\", and the comma after \"soda\" should go.",
-  "source": {
-   "book": "The Man in the Brown Suit",
-   "gutenberg": 61168
   }
  },
  {
@@ -4708,21 +4442,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The conversation he had overheard, have stimulated his curiosity. He felt that, by hook or by crook he must hear more.",
-  "fixed": "The conversation he had overheard had stimulated his curiosity. He felt that, by hook or by crook, he must hear more.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The conversation he had overheard, have stimulated his curiosity.",
+  "fixed": "The conversation he had overheard had stimulated his curiosity.",
   "errors": [
    {
     "gapAfter": "overheard"
    },
    {
     "word": "have"
-   },
-   {
-    "gapAfter": "crook"
    }
   ],
-  "rule": "Do not put a comma between a subject and its verb, make the verb agree with its subject, and put commas on both sides of an interrupting phrase. Here the comma after \"overheard\" should go, \"have\" should be \"had\", and \"by hook or by crook\" needs a closing comma.",
+  "rule": "Delete the comma after “overheard”, because it splits the subject “conversation” from its verb. The subject “conversation” is singular and the story is in the past, so “have” should be “had”.",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -4733,21 +4464,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Punctually to the time named, Mr. Randolph Wilmott United States Ambassador to the Court of St. James, were ushered into Mr. Blunt's office. He cleared his throat, and commenced speaking in a deliberate and characteristic manner.",
-  "fixed": "Punctually to the time named, Mr. Randolph Wilmott, United States Ambassador to the Court of St. James, was ushered into Mr. Blunt's office. He cleared his throat and commenced speaking in a deliberate and characteristic manner.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Punctually to the time named, Mr. Randolph Wilmott, United States Ambassador to the Court of St. James, were ushered into Mr. Blunt's office.",
+  "fixed": "Punctually to the time named, Mr. Randolph Wilmott, United States Ambassador to the Court of St. James, was ushered into Mr. Blunt's office.",
   "errors": [
    {
-    "gapAfter": "wilmott"
-   },
-   {
     "word": "were"
-   },
-   {
-    "gapAfter": "throat"
    }
   ],
-  "rule": "A nonessential title needs commas on both sides, the verb agrees with its true subject, and no comma goes before \"and\" when it joins two verbs sharing one subject. Here \"Wilmott\" needs a comma after it, \"were\" should be \"was\", and the comma after \"throat\" should go.",
+  "rule": "The subject is “Mr. Randolph Wilmott”, one person, so the verb is “was”, not “were”.",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -4758,21 +4483,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "There was something wrong about Mr. whittington. The combination of his sleek prosperity, and his shifty eye were not attractive.",
-  "fixed": "There was something wrong about Mr. Whittington. The combination of his sleek prosperity and his shifty eye was not attractive.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The combination of his sleek prosperity and his shifty eye were not attractive.",
+  "fixed": "The combination of his sleek prosperity and his shifty eye was not attractive.",
   "errors": [
-   {
-    "word": "whittington"
-   },
-   {
-    "gapAfter": "prosperity"
-   },
    {
     "word": "were"
    }
   ],
-  "rule": "Names are capitalized, a comma does not split two items joined by \"and\", and the verb agrees with its true subject (\"combination\"), not the nearest noun. Here \"whittington\" needs a capital, the comma after \"prosperity\" should go, and \"were\" should be \"was\".",
+  "rule": "The subject “combination” is singular, so the verb is “was”, not “were”.",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -4783,21 +4502,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "She had got a dominant, ruthless will but he too had a will hidden beneath his meek manner. And he had behind him the heaven-sent assurance of a man, who are doing his proper job.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "She had got a dominant, ruthless will but he too had a will hidden beneath his meek manner. And he had behind him the heaven-sent assurance of a man who are doing his proper job.",
   "fixed": "She had got a dominant, ruthless will, but he too had a will hidden beneath his meek manner. And he had behind him the heaven-sent assurance of a man who is doing his proper job.",
   "errors": [
    {
     "gapAfter": "will"
    },
    {
-    "gapAfter": "man"
-   },
-   {
     "word": "are"
    }
   ],
-  "rule": "Use a comma before \"but\" when it joins two full sentences, do not set off a phrase that is needed to identify the noun, and make the verb agree with its subject. Here \"will\" needs a comma before \"but\", the comma after \"man\" should go, and \"are\" should be \"is\" to agree with \"who\" (meaning \"a man\").",
+  "rule": "A comma belongs after “will”, before “but”, because “She had got a dominant, ruthless will” and “he too had a will hidden beneath his meek manner” are two complete thoughts. The word “who” refers to the singular “man”, so the verb is “is”, not “are”.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -4808,21 +4524,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "This happened a third time, but by now he was close to the entrance of the tent and he darted in and seizes his rifle. When he emerged, rifle in hand, the lion, had disappeared.",
-  "fixed": "This happened a third time, but by now he was close to the entrance of the tent, and he darted in and seized his rifle. When he emerged, rifle in hand, the lion had disappeared.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "When he emerged, rifle in hand, the lion, had disappeared.",
+  "fixed": "When he emerged, rifle in hand, the lion had disappeared.",
   "errors": [
-   {
-    "gapAfter": "tent"
-   },
-   {
-    "word": "seizes"
-   },
    {
     "gapAfter": "lion"
    }
   ],
-  "rule": "Use a comma before \"and\" when it joins two full sentences, keep tenses consistent, and do not put a comma between a subject and its verb. Here \"tent\" needs a comma after it, \"seizes\" should be \"seized\", and the comma after \"lion\" should go.",
+  "rule": "Delete the comma after “lion”, because it splits the subject “the lion” from its verb “had disappeared”.",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -4833,21 +4543,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He went into the house, whistling lightly as he walked along. But as he entered his bedroom, and shut the door behind him his face changes.",
-  "fixed": "He went into the house, whistling lightly as he walked along. But as he entered his bedroom and shut the door behind him, his face changed.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "But as he entered his bedroom and shut the door behind him, his face changes.",
+  "fixed": "But as he entered his bedroom and shut the door behind him, his face changed.",
   "errors": [
-   {
-    "gapAfter": "bedroom"
-   },
-   {
-    "gapAfter": "him"
-   },
    {
     "word": "changes"
    }
   ],
-  "rule": "Do not put a comma before \"and\" when it joins two verbs sharing one subject, put a comma after an introductory clause, and keep tenses consistent. Here the comma after \"bedroom\" should go, \"him\" needs a comma after it, and \"changes\" should be \"changed\".",
+  "rule": "The story is in the past (\"entered\", \"shut\"), so \"changes\" should be \"changed\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -4858,21 +4562,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "bundle hung up the receiver and turned to Loraine, giving her a rapid résumé of the conversation. Loraine rushed upstairs and hurriedly packs her suitcase and Bundle put her head round her father's door.",
-  "fixed": "Bundle hung up the receiver and turned to Loraine, giving her a rapid résumé of the conversation. Loraine rushed upstairs and hurriedly packed her suitcase, and Bundle put her head round her father's door.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Loraine rushed upstairs and hurriedly packs her suitcase, and Bundle put her head round her father's door.",
+  "fixed": "Loraine rushed upstairs and hurriedly packed her suitcase, and Bundle put her head round her father's door.",
   "errors": [
    {
-    "word": "bundle"
-   },
-   {
     "word": "packs"
-   },
-   {
-    "gapAfter": "suitcase"
    }
   ],
-  "rule": "Names are capitalized, a comma goes before 'and' when it joins two full clauses, and the verbs stay in the past tense. Here 'Bundle' needs a capital, 'packs' should be 'packed', and a comma belongs after 'suitcase'.",
+  "rule": "The story is in the past (“rushed”, “put”), so “packs” should be “packed”.",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -4883,21 +4581,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I was called in to adjudicate between two middle-aged ladies, each of whom were literally trembling with rage. If it had not been so painful it would have been quite an, interesting physical phenomenon.",
-  "fixed": "I was called in to adjudicate between two middle-aged ladies, each of whom was literally trembling with rage. If it had not been so painful, it would have been quite an interesting physical phenomenon.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I was called in to adjudicate between two middle-aged ladies, each of whom were literally trembling with rage.",
+  "fixed": "I was called in to adjudicate between two middle-aged ladies, each of whom was literally trembling with rage.",
   "errors": [
    {
     "word": "were"
-   },
-   {
-    "gapAfter": "painful"
-   },
-   {
-    "gapAfter": "an"
    }
   ],
-  "rule": "'Each' is singular, so it takes 'was'. An introductory 'if' clause is followed by a comma, and no comma splits 'an' from the word it introduces.",
+  "rule": "The word “each” is singular, so it takes “was”, not “were”.",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
@@ -4908,21 +4600,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "She was dressed in something that looked like a glorified bird of paradise and she wears chains of jewels hanging down her bare back. A heavy bracelet set with immense diamonds, clasped her left ankle.",
-  "fixed": "She was dressed in something that looked like a glorified bird of paradise, and she wore chains of jewels hanging down her bare back. A heavy bracelet set with immense diamonds clasped her left ankle.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "A heavy bracelet set with immense diamonds, clasped her left ankle.",
+  "fixed": "A heavy bracelet set with immense diamonds clasped her left ankle.",
   "errors": [
-   {
-    "gapAfter": "paradise"
-   },
-   {
-    "word": "wears"
-   },
    {
     "gapAfter": "diamonds"
    }
   ],
-  "rule": "Put a comma before 'and' joining two full clauses, keep the tense consistent, and never put a comma between a subject and its verb. 'She wore' stays in the past, and 'bracelet ... clasped' needs no comma.",
+  "rule": "Delete the comma after “diamonds”, because it splits the subject “A heavy bracelet set with immense diamonds” from its verb “clasped”.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -4933,13 +4619,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He hardly answered his companion's remarks and his golf is atrocious. Evidently something, had occurred to put him completely off his game.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He hardly answered his companion's remarks, and his golf is atrocious. Evidently something, had occurred to put him completely off his game.",
   "fixed": "He hardly answered his companion's remarks, and his golf was atrocious. Evidently something had occurred to put him completely off his game.",
   "errors": [
-   {
-    "gapAfter": "remarks"
-   },
    {
     "word": "is"
    },
@@ -4947,32 +4630,29 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "gapAfter": "something"
    }
   ],
-  "rule": "Put a comma before 'and' when it joins two full clauses, keep one tense, and do not separate a subject from its verb. Here 'was' replaces 'is' and 'something had' has no comma.",
+  "rule": "The verb “is” should be “was” to match the past tense of “answered”. Delete the comma after “something”, because it splits the subject “something” from its verb “had occurred”.",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
-  }
+  },
+  "optionalGaps": [
+   "evidently"
+  ]
  },
  {
   "id": "forge-1155-865-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "WHEN Tommy set forth on the trail of the two men it took all Tuppence’s self-command to refrain from accompanying him. However she contains herself as best she might, consoled by the reflection that her reasoning had been justified by events.",
-  "fixed": "WHEN Tommy set forth on the trail of the two men, it took all Tuppence’s self-command to refrain from accompanying him. However, she contained herself as best she might, consoled by the reflection that her reasoning had been justified by events.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "However, she contains herself as best she might, consoled by the reflection that her reasoning had been justified by events.",
+  "fixed": "However, she contained herself as best she might, consoled by the reflection that her reasoning had been justified by events.",
   "errors": [
-   {
-    "gapAfter": "men"
-   },
-   {
-    "gapAfter": "however"
-   },
    {
     "word": "contains"
    }
   ],
-  "rule": "An introductory clause or word such as 'However' is followed by a comma, and the past-tense narration should stay past. 'Contains' should be 'contained'.",
+  "rule": "The story is in the past (\"had been justified\"), so \"contains\" should be \"contained\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -4983,13 +4663,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "It occurred to bundle for the first time that it was odd the morning papers, had contained nothing of the tragedy. Surely it was the kind of spicy item of news that will never be passed over.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It occurred to Bundle for the first time that it was odd the morning papers, had contained nothing of the tragedy. Surely it was the kind of spicy item of news that will never be passed over.",
   "fixed": "It occurred to Bundle for the first time that it was odd the morning papers had contained nothing of the tragedy. Surely it was the kind of spicy item of news that would never be passed over.",
   "errors": [
-   {
-    "word": "bundle"
-   },
    {
     "gapAfter": "papers"
    },
@@ -4997,32 +4674,29 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "will"
    }
   ],
-  "rule": "Capitalize names, keep verb tense consistent, and do not put a comma between a subject and its verb. 'Papers' and 'had contained' stay together, and 'would' matches the past tense.",
+  "rule": "Delete the comma after “papers”, because it splits the subject “the morning papers” from its verb “had contained”. The verb “will” should be “would” to match the past tense of “was”.",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
-  }
+  },
+  "optionalGaps": [
+   "surely"
+  ]
  },
  {
   "id": "forge-61168-1914-1",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I took the name of Parker and comes to this island, which I knew of old. At the beginning of the war, I had had ambitious hopes of proving my innocence but now all that spirit seem dead.",
-  "fixed": "I took the name of Parker and came to this island, which I knew of old. At the beginning of the war, I had had ambitious hopes of proving my innocence, but now all that spirit seemed dead.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I took the name of Parker and comes to this island, which I knew of old.",
+  "fixed": "I took the name of Parker and came to this island, which I knew of old.",
   "errors": [
    {
     "word": "comes"
-   },
-   {
-    "gapAfter": "innocence"
-   },
-   {
-    "word": "seem"
    }
   ],
-  "rule": "Use a comma before 'but' joining two full clauses, keep the past tense, and make the verb agree with 'spirit'. 'Comes' should be 'came' and 'seem' should be 'seemed'.",
+  "rule": "The story is in the past (“took”, “knew”), so “comes” should be “came”.",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -5033,46 +4707,40 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He felt almost sure that it was the same black-bearded stranger he had encountered that morning. Whilst he was hesitating whether to go after him or not the trees just ahead of him were parted and Mr. hiram Fish steps out into the open.",
-  "fixed": "He felt almost sure that it was the same black-bearded stranger he had encountered that morning. Whilst he was hesitating whether to go after him or not, the trees just ahead of him were parted and Mr. Hiram Fish stepped out into the open.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Whilst he was hesitating whether to go after him or not the trees just ahead of him were parted and Mr. Hiram Fish steps out into the open.",
+  "fixed": "Whilst he was hesitating whether to go after him or not, the trees just ahead of him were parted and Mr. Hiram Fish stepped out into the open.",
   "errors": [
    {
     "gapAfter": "not"
    },
    {
     "word": "steps"
-   },
-   {
-    "word": "hiram"
    }
   ],
-  "rule": "A comma follows an introductory clause that begins with 'Whilst', names are capitalized, and the tense stays past. So 'steps' becomes 'stepped' and 'hiram' becomes 'Hiram'.",
+  "rule": "A comma belongs after “not”, because “Whilst he was hesitating whether to go after him or not” is an opening clause that must be set off from the main clause. The verb “steps” should be “stepped” to match the past tense of “were parted”.",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
-  }
+  },
+  "optionalGaps": [
+   "parted"
+  ]
  },
  {
   "id": "forge-65238-765-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Having thought out all this Anthony returns to bed and slept peacefully until morning. He did not fancy that giuseppe would be anxious for a second encounter that night.",
-  "fixed": "Having thought out all this, Anthony returned to bed and slept peacefully until morning. He did not fancy that Giuseppe would be anxious for a second encounter that night.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Having thought out all this, Anthony returns to bed and slept peacefully until morning.",
+  "fixed": "Having thought out all this, Anthony returned to bed and slept peacefully until morning.",
   "errors": [
    {
-    "gapAfter": "this"
-   },
-   {
     "word": "returns"
-   },
-   {
-    "word": "giuseppe"
    }
   ],
-  "rule": "An introductory phrase like 'Having thought out all this' is followed by a comma, verbs in a pair stay in the same tense, and names are capitalized.",
+  "rule": "The story is in the past (\"slept\"), so \"returns\" should be \"returned\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -5083,21 +4751,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Griselda often come out with surprising statements but this seemed to me so surprising that I questioned it. It seemed to me the most unlikely thing in the world that lettice Protheroe should go out of her way to interfere in our domestic affairs and reprove our maid for slovenly housework.",
-  "fixed": "Griselda often comes out with surprising statements, but this seemed to me so surprising that I questioned it. It seemed to me the most unlikely thing in the world that Lettice Protheroe should go out of her way to interfere in our domestic affairs and reprove our maid for slovenly housework.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Griselda often come out with surprising statements but this seemed to me so surprising that I questioned it.",
+  "fixed": "Griselda often comes out with surprising statements, but this seemed to me so surprising that I questioned it.",
   "errors": [
    {
     "word": "come"
    },
    {
     "gapAfter": "statements"
-   },
-   {
-    "word": "lettice"
    }
   ],
-  "rule": "A singular subject takes 'comes', a comma goes before 'but' joining two full clauses, and names are capitalized.",
+  "rule": "The subject “Griselda” is singular, so “come” should be “comes”. A comma belongs after “statements”, before “but”, because “Griselda often comes out with surprising statements” and “this seemed to me so surprising” are two complete thoughts.",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
@@ -5108,49 +4773,21 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I could see that he were not entirely taken in by my pretences of belief in the occult. The little comedy, I played for him does not deceive him.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I could see that he were not entirely taken in by my pretences of belief in the occult. The little comedy I played for him does not deceive him.",
   "fixed": "I could see that he was not entirely taken in by my pretences of belief in the occult. The little comedy I played for him did not deceive him.",
   "errors": [
    {
     "word": "were"
    },
    {
-    "gapAfter": "comedy"
-   },
-   {
     "word": "does"
    }
   ],
-  "rule": "Singular 'he' takes 'was', no comma separates 'comedy' from the words that describe it, and the past tense 'did' should not shift to 'does'.",
+  "rule": "The subject “he” is singular, so “were” should be “was”. The verb “does” should be “did” to match the past tense of “could see” and “played”.",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
-  }
- },
- {
-  "id": "forge-1155-776-1",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The new-comer knocked on the door as all had done but his reception were very different. The bearded man rises to his feet, and all the others followed suit.",
-  "fixed": "The new-comer knocked on the door as all had done, but his reception was very different. The bearded man rose to his feet, and all the others followed suit.",
-  "errors": [
-   {
-    "gapAfter": "done"
-   },
-   {
-    "word": "were"
-   },
-   {
-    "word": "rises"
-   }
-  ],
-  "rule": "A comma goes before 'but' joining two full clauses, 'reception' is singular so it takes 'was', and the past-tense story should not shift to 'rises'.",
-  "source": {
-   "book": "The Secret Adversary",
-   "gutenberg": 1155
   }
  },
  {
@@ -5158,49 +4795,21 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I see a good many flaws in Caroline’s theory but I forbore to point them out to her. An innocent remark about our new neighbor create a diversion.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I see a good many flaws in Caroline’s theory, but I forbore to point them out to her. An innocent remark about our new neighbor create a diversion.",
   "fixed": "I saw a good many flaws in Caroline’s theory, but I forbore to point them out to her. An innocent remark about our new neighbor created a diversion.",
   "errors": [
    {
     "word": "see"
    },
    {
-    "gapAfter": "theory"
-   },
-   {
     "word": "create"
    }
   ],
-  "rule": "A comma goes before 'but' joining two full clauses, the tense stays past ('saw'), and the singular subject 'remark' takes 'created'.",
+  "rule": "The verb “see” should be “saw” to match the past tense of “forbore”. The subject “remark” is singular and the story is in the past, so “create” should be “created”.",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
-  }
- },
- {
-  "id": "forge-78220-3303-2",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I will only mention that great credit were reflected upon Inspector Slack whose zeal and intelligence had resulted in the criminals being brought to justice. Naturally, nothing is said of Miss Marple's share in the business.",
-  "fixed": "I will only mention that great credit was reflected upon Inspector Slack, whose zeal and intelligence had resulted in the criminals being brought to justice. Naturally, nothing was said of Miss Marple's share in the business.",
-  "errors": [
-   {
-    "word": "were"
-   },
-   {
-    "gapAfter": "slack"
-   },
-   {
-    "word": "is"
-   }
-  ],
-  "rule": "Singular 'credit' takes 'was', a nonessential 'whose' clause is set off by a comma, and the past tense 'was said' should not shift to 'is said'.",
-  "source": {
-   "book": "The Murder at the Vicarage",
-   "gutenberg": 78220
   }
  },
  {
@@ -5208,21 +4817,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I has the firm conviction that if I went about looking for adventure adventure would meet me halfway. It is a theory of mine that one always get what one wants.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I has the firm conviction that if I went about looking for adventure, adventure would meet me halfway. It is a theory of mine that one always get what one wants.",
   "fixed": "I had the firm conviction that if I went about looking for adventure, adventure would meet me halfway. It is a theory of mine that one always gets what one wants.",
   "errors": [
    {
     "word": "has"
    },
    {
-    "gapAfter": "adventure"
-   },
-   {
     "word": "get"
    }
   ],
-  "rule": "'I' takes 'had', an introductory 'if' clause is followed by a comma, and singular 'one' takes 'gets'.",
+  "rule": "\"I\" does not take \"has\", and the story is in the past (\"went\", \"would meet\"), so the verb is \"had\". The subject \"one\" is singular, so \"get\" should be \"gets\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -5233,49 +4839,21 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "A good deal of scattered clothing lie about and Mrs. Blair herself was draped in one of the loveliest kimonos I had ever seen. It was all orange and gold and black and makes my mouth water to look at it.",
-  "fixed": "A good deal of scattered clothing lay about, and Mrs. Blair herself was draped in one of the loveliest kimonos I had ever seen. It was all orange and gold and black and made my mouth water to look at it.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "A good deal of scattered clothing lie about and Mrs. Blair herself was draped in one of the loveliest kimonos I had ever seen.",
+  "fixed": "A good deal of scattered clothing lay about, and Mrs. Blair herself was draped in one of the loveliest kimonos I had ever seen.",
   "errors": [
    {
     "word": "lie"
    },
    {
     "gapAfter": "about"
-   },
-   {
-    "word": "makes"
    }
   ],
-  "rule": "A comma goes before 'and' joining two full clauses, the past tense 'lay' is needed, and 'made' should not shift to 'makes'.",
+  "rule": "The story is in the past, so “lie” should be “lay”. A comma belongs after “about”, before “and”, because “A good deal of scattered clothing lay about” and “Mrs. Blair herself was draped in one of the loveliest kimonos” are two complete thoughts.",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
-  }
- },
- {
-  "id": "forge-75288-427-0",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "As he turned to leave the room his glance sweeps the mantelshelf, and he stopped in astonishment. The alarum clocks has been ranged along it neatly in a row.",
-  "fixed": "As he turned to leave the room, his glance swept the mantelshelf, and he stopped in astonishment. The alarum clocks had been ranged along it neatly in a row.",
-  "errors": [
-   {
-    "gapAfter": "room"
-   },
-   {
-    "word": "sweeps"
-   },
-   {
-    "word": "has"
-   }
-  ],
-  "rule": "A comma follows an introductory 'As' clause, the tense stays past ('swept'), and plural 'clocks' takes 'had'.",
-  "source": {
-   "book": "The Seven Dials Mystery",
-   "gutenberg": 75288
   }
  },
  {
@@ -5283,21 +4861,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "She remembers that she had had no tea, but felt too excited to be conscious of hunger. She walked as far as kensington Gardens and then slowly retraced her steps, feeling infinitely better for the fresh air and exercise.",
-  "fixed": "She remembered that she had had no tea but felt too excited to be conscious of hunger. She walked as far as Kensington Gardens and then slowly retraced her steps, feeling infinitely better for the fresh air and exercise.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "She remembers that she had had no tea but felt too excited to be conscious of hunger.",
+  "fixed": "She remembered that she had had no tea but felt too excited to be conscious of hunger.",
   "errors": [
    {
     "word": "remembers"
-   },
-   {
-    "gapAfter": "tea"
-   },
-   {
-    "word": "kensington"
    }
   ],
-  "rule": "One subject doing two things ('had had no tea' and 'felt too excited') needs no comma, place names are capitalized, and the tense stays past.",
+  "rule": "The story is in the past (“had had”, “felt”), so “remembers” should be “remembered”.",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -5308,21 +4880,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He had used the same words three times already, each time in the hope that they would end the interview and permit him to escape. He dislikes very much being forced to stand on the steps, of the exclusive london club to which he belonged and listen to the interminable eloquence of the Hon. George Lomax.",
-  "fixed": "He had used the same words three times already, each time in the hope that they would end the interview and permit him to escape. He disliked very much being forced to stand on the steps of the exclusive London club to which he belonged and listen to the interminable eloquence of the Hon. George Lomax.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He dislikes very much being forced to stand on the steps of the exclusive London club to which he belonged and listen to the interminable eloquence of the Hon. George Lomax.",
+  "fixed": "He disliked very much being forced to stand on the steps of the exclusive London club to which he belonged and listen to the interminable eloquence of the Hon. George Lomax.",
   "errors": [
    {
     "word": "dislikes"
-   },
-   {
-    "gapAfter": "steps"
-   },
-   {
-    "word": "london"
    }
   ],
-  "rule": "Keep the past tense ('disliked'), do not put a comma inside the phrase 'steps of the club', and capitalize place names like London.",
+  "rule": "The passage is in the past (\"belonged\"), so \"dislikes\" should be \"disliked\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -5333,21 +4899,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "She were suspected of espionage but they couldn’t prove anything. I rather fancy Colonel race was over there simply on that account.",
-  "fixed": "She was suspected of espionage, but they couldn’t prove anything. I rather fancy Colonel Race was over there simply on that account.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "She were suspected of espionage, but they couldn’t prove anything.",
+  "fixed": "She was suspected of espionage, but they couldn’t prove anything.",
   "errors": [
    {
     "word": "were"
-   },
-   {
-    "gapAfter": "espionage"
-   },
-   {
-    "word": "race"
    }
   ],
-  "rule": "Singular 'she' takes 'was', a comma goes before 'but' joining two full clauses, and a name is capitalized.",
+  "rule": "The subject “She” is singular, so the verb is “was”, not “were”.",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -5358,21 +4918,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Superintendent battle were working at the brick with the point of his knife. His practised eye have quickly seen that this particular brick was different from the rest.",
-  "fixed": "Superintendent Battle was working at the brick with the point of his knife. His practised eye had quickly seen that this particular brick was different from the rest.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Superintendent Battle were working at the brick with the point of his knife.",
+  "fixed": "Superintendent Battle was working at the brick with the point of his knife.",
   "errors": [
    {
-    "word": "battle"
-   },
-   {
     "word": "were"
-   },
-   {
-    "word": "have"
    }
   ],
-  "rule": "Names are capitalized and verbs agree with their singular subjects: 'Battle was' and 'eye had'.",
+  "rule": "The subject is “Superintendent Battle”, one person, so the verb is “was”, not “were”.",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -5383,21 +4937,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "marthe Daubreuil were embroidering by a table with a lamp on it. She puts her finger to her lips as we entered.",
-  "fixed": "Marthe Daubreuil was embroidering by a table with a lamp on it. She put her finger to her lips as we entered.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "She puts her finger to her lips as we entered.",
+  "fixed": "She put her finger to her lips as we entered.",
   "errors": [
-   {
-    "word": "marthe"
-   },
-   {
-    "word": "were"
-   },
    {
     "word": "puts"
    }
   ],
-  "rule": "Names are capitalized, singular 'Marthe' takes 'was', and 'put' stays in the past tense to match 'entered'.",
+  "rule": "The story is in the past (“entered”), so “puts” should be “put”.",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -5408,21 +4956,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "It comes a good while after the other, and was accompanied by a bulky packet. It appeared to be written from somewhere in bolivia.",
-  "fixed": "It came a good while after the other and was accompanied by a bulky packet. It appeared to be written from somewhere in Bolivia.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It comes a good while after the other and was accompanied by a bulky packet.",
+  "fixed": "It came a good while after the other and was accompanied by a bulky packet.",
   "errors": [
    {
     "word": "comes"
-   },
-   {
-    "gapAfter": "other"
-   },
-   {
-    "word": "bolivia"
    }
   ],
-  "rule": "One subject with two verbs ('came' and 'was accompanied') needs no comma, the tense stays past, and country names are capitalized.",
+  "rule": "The story is in the past (\"was accompanied\"), so \"comes\" should be \"came\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -5433,21 +4975,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I was just leaving when a telegram were brought to Lady Susan. She read it with an expression of relief, and hands it to me.",
-  "fixed": "I was just leaving when a telegram was brought to Lady Susan. She read it with an expression of relief and handed it to me.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I was just leaving when a telegram were brought to Lady Susan.",
+  "fixed": "I was just leaving when a telegram was brought to Lady Susan.",
   "errors": [
    {
     "word": "were"
-   },
-   {
-    "gapAfter": "relief"
-   },
-   {
-    "word": "hands"
    }
   ],
-  "rule": "The singular subject telegram needs was, not were. Do not put a comma before and when it only joins two verbs that share a subject (read ... and handed). Keep the past tense (handed) to match read.",
+  "rule": "The subject “telegram” is singular, so the verb is “was”, not “were”.",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -5458,21 +4994,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Mr. and Mrs. Beresford, took possession of the offices of the International Detective Agency a few days later. They was on the second floor of a somewhat dilapidated building in bloomsbury.",
-  "fixed": "Mr. and Mrs. Beresford took possession of the offices of the International Detective Agency a few days later. They were on the second floor of a somewhat dilapidated building in Bloomsbury.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "They was on the second floor of a somewhat dilapidated building in Bloomsbury.",
+  "fixed": "They were on the second floor of a somewhat dilapidated building in Bloomsbury.",
   "errors": [
    {
-    "gapAfter": "beresford"
-   },
-   {
     "word": "was"
-   },
-   {
-    "word": "bloomsbury"
    }
   ],
-  "rule": "Never separate a subject from its verb with a single comma (Beresford took). The plural subject They takes were, and the place name Bloomsbury must be capitalized.",
+  "rule": "The subject “They” is plural, so the verb is “were”, not “was”.",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -5483,13 +5013,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Mr. satterthwaite were still examining the sketches. He realized as the Duchess could not, the perfection of technique behind them.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Mr. Satterthwaite were still examining the sketches. He realized as the Duchess could not, the perfection of technique behind them.",
   "fixed": "Mr. Satterthwaite was still examining the sketches. He realized, as the Duchess could not, the perfection of technique behind them.",
   "errors": [
-   {
-    "word": "satterthwaite"
-   },
    {
     "word": "were"
    },
@@ -5497,7 +5024,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "gapAfter": "realized"
    }
   ],
-  "rule": "Names are capitalized (Satterthwaite) and the singular subject takes was. The interrupting phrase as the Duchess could not is removable, so it needs a comma on both sides.",
+  "rule": "The subject is “Mr. Satterthwaite”, one person, so “were” should be “was”. A comma belongs after “realized”, because “as the Duchess could not” is an extra phrase that needs a comma on both sides.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -5508,21 +5035,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "In the meantime, things was happening rather quickly beyond the swing door. As Tommy passed through a cloth was flung over his head and a sickly odor assailed his nostrils.",
-  "fixed": "In the meantime, things were happening rather quickly beyond the swing door. As Tommy passed through, a cloth was flung over his head, and a sickly odor assailed his nostrils.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "In the meantime, things was happening rather quickly beyond the swing door.",
+  "fixed": "In the meantime, things were happening rather quickly beyond the swing door.",
   "errors": [
    {
     "word": "was"
-   },
-   {
-    "gapAfter": "through"
-   },
-   {
-    "gapAfter": "head"
    }
   ],
-  "rule": "The plural subject things takes were. A comma follows an introductory clause (As Tommy passed through,), and a comma goes before and when it joins two complete clauses (a cloth was flung over his head, and a sickly odor assailed his nostrils).",
+  "rule": "The subject “things” is plural, so the verb is “were”, not “was”.",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -5533,21 +5054,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Was it possible that she, bundle Brent, were being asked to join a murderous secret society? Had the same proposition been made to Bill and had he refused indignantly?",
-  "fixed": "Was it possible that she, Bundle Brent, was being asked to join a murderous secret society? Had the same proposition been made to Bill, and had he refused indignantly?",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Was it possible that she, Bundle Brent, were being asked to join a murderous secret society?",
+  "fixed": "Was it possible that she, Bundle Brent, was being asked to join a murderous secret society?",
   "errors": [
    {
-    "word": "bundle"
-   },
-   {
     "word": "were"
-   },
-   {
-    "gapAfter": "bill"
    }
   ],
-  "rule": "A name is capitalized (Bundle), and the singular subject she takes was, not were. A comma is needed before and when it joins two complete clauses (Had the same proposition been made to Bill, and had he refused indignantly?).",
+  "rule": "The subject is “she”, which is singular, so the verb is “was”, not “were”.",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -5558,21 +5073,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "She spoke quite quietly but Mr. Satterthwaite have a sudden sense of shock. What this strange girl meant by being happy wasn't the same as Madge keeley would have meant by the same words.",
-  "fixed": "She spoke quite quietly, but Mr. Satterthwaite had a sudden sense of shock. What this strange girl meant by being happy wasn't the same as Madge Keeley would have meant by the same words.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "She spoke quite quietly, but Mr. Satterthwaite have a sudden sense of shock.",
+  "fixed": "She spoke quite quietly, but Mr. Satterthwaite had a sudden sense of shock.",
   "errors": [
    {
-    "gapAfter": "quietly"
-   },
-   {
     "word": "have"
-   },
-   {
-    "word": "keeley"
    }
   ],
-  "rule": "A comma goes before but when it joins two complete clauses (She spoke quite quietly, but ...). The singular subject Mr. Satterthwaite takes had, matching the past tense, and a full name such as Madge Keeley is capitalized.",
+  "rule": "The subject “Mr. Satterthwaite” is singular and the story is in the past, so “have” should be “had”.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -5583,13 +5092,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "As it happened he has never made her acquaintance. A call upon him at this unusual hour, intrigued him greatly.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "As it happened, he has never made her acquaintance. A call upon him at this unusual hour, intrigued him greatly.",
   "fixed": "As it happened, he had never made her acquaintance. A call upon him at this unusual hour intrigued him greatly.",
   "errors": [
-   {
-    "gapAfter": "happened"
-   },
    {
     "word": "has"
    },
@@ -5597,7 +5103,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "gapAfter": "hour"
    }
   ],
-  "rule": "A comma follows an introductory clause (As it happened,). Keep the past tense (had made) to match the rest of the passage. Do not put a comma between a subject (A call upon him at this unusual hour) and its verb (intrigued).",
+  "rule": "The story is in the past, so “has” should be “had”. Delete the comma after “hour”, because it splits the subject “A call upon him at this unusual hour” from its verb “intrigued”.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -5608,13 +5114,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Except for that involuntary twitch of the eyelids Superintendent Battle’s impassivity were unimpaired. If he had been surprised at Virginia’s recognition of anthony, he did not show it.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Except for that involuntary twitch of the eyelids, Superintendent Battle’s impassivity were unimpaired. If he had been surprised at Virginia’s recognition of anthony, he did not show it.",
   "fixed": "Except for that involuntary twitch of the eyelids, Superintendent Battle’s impassivity was unimpaired. If he had been surprised at Virginia’s recognition of Anthony, he did not show it.",
   "errors": [
-   {
-    "gapAfter": "eyelids"
-   },
    {
     "word": "were"
    },
@@ -5622,7 +5125,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "anthony"
    }
   ],
-  "rule": "A comma follows an introductory phrase (Except for that involuntary twitch of the eyelids,). The singular subject impassivity takes was, and the name Anthony is capitalized.",
+  "rule": "The subject “impassivity” is singular, so “were” should be “was”. “Anthony” is a person’s name, so it needs a capital A.",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -5633,13 +5136,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Lord caterham were now engrossed in his catalogue once more. He had made an effort, to be intelligent on the subject of Seven Dials.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Lord Caterham were now engrossed in his catalogue once more. He had made an effort, to be intelligent on the subject of Seven Dials.",
   "fixed": "Lord Caterham was now engrossed in his catalogue once more. He had made an effort to be intelligent on the subject of Seven Dials.",
   "errors": [
-   {
-    "word": "caterham"
-   },
    {
     "word": "were"
    },
@@ -5647,35 +5147,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "gapAfter": "effort"
    }
   ],
-  "rule": "Names are capitalized (Caterham), and the singular subject takes was. Do not put a comma between a noun and the infinitive phrase that completes it (an effort to be intelligent).",
+  "rule": "The subject is “Lord Caterham”, one person, so “were” should be “was”. Delete the comma after “effort”, because “an effort to be intelligent” is one phrase and a comma should not split it.",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
-  }
- },
- {
-  "id": "forge-78220-3070-1",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "It was eleven o'clock, and at eleven o'clock on a Sunday night the whole village of St. Mary Mead might be dead. I saw, however, a light in a first floor window as I passed and, realizing that hawes was still up, I stop and rang the door bell.",
-  "fixed": "It was eleven o'clock, and at eleven o'clock on a Sunday night the whole village of St. Mary Mead might be dead. I saw, however, a light in a first floor window as I passed, and, realizing that Hawes was still up, I stopped and rang the door bell.",
-  "errors": [
-   {
-    "gapAfter": "passed"
-   },
-   {
-    "word": "hawes"
-   },
-   {
-    "word": "stop"
-   }
-  ],
-  "rule": "A comma goes before and when it joins two complete clauses (I saw ... as I passed, and ...). A name such as Hawes is capitalized, and the verb stopped must stay in the past tense to match rang.",
-  "source": {
-   "book": "The Murder at the Vicarage",
-   "gutenberg": 78220
   }
  },
  {
@@ -5683,21 +5158,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "If she shrieked for help there was very little chance of anyone hearing her, whereas there were probably quite a good chance of mrs. Vandemeyer’s shooting her. In the meantime, every minute of delay gained was valuable.",
-  "fixed": "If she shrieked for help, there was very little chance of anyone hearing her, whereas there was probably quite a good chance of Mrs. Vandemeyer’s shooting her. In the meantime, every minute of delay gained was valuable.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "If she shrieked for help, there was very little chance of anyone hearing her, whereas there were probably quite a good chance of Mrs. Vandemeyer’s shooting her.",
+  "fixed": "If she shrieked for help, there was very little chance of anyone hearing her, whereas there was probably quite a good chance of Mrs. Vandemeyer’s shooting her.",
   "errors": [
    {
-    "gapAfter": "help"
-   },
-   {
     "word": "were"
-   },
-   {
-    "word": "mrs"
    }
   ],
-  "rule": "A comma follows an introductory clause (If she shrieked for help,). The singular subject chance takes was, not were, and a title before a name (Mrs.) is capitalized.",
+  "rule": "In “there was probably quite a good chance”, the subject “chance” is singular, so the verb is “was”, not “were”.",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -5708,49 +5177,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "poirot, I noticed were looking profoundly discouraged. He had that little frown between the eyes that I knew so well.",
-  "fixed": "Poirot, I noticed, was looking profoundly discouraged. He had that little frown between the eyes that I knew so well.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Poirot, I noticed, were looking profoundly discouraged.",
+  "fixed": "Poirot, I noticed, was looking profoundly discouraged.",
   "errors": [
-   {
-    "word": "poirot"
-   },
-   {
-    "gapAfter": "noticed"
-   },
    {
     "word": "were"
    }
   ],
-  "rule": "A name is capitalized (Poirot). The removable phrase I noticed needs commas on both sides, and the singular subject Poirot takes was, not were.",
+  "rule": "The subject is “Poirot”, one person, so the verb is “was”, not “were”.",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
-  }
- },
- {
-  "id": "forge-1155-2645-6",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Of course, from the moment that the girl in manchester was proved to be a plant everything was altered. Young Beresford sees that for himself without my having to tell it him.",
-  "fixed": "Of course, from the moment that the girl in Manchester was proved to be a plant, everything was altered. Young Beresford saw that for himself without my having to tell it him.",
-  "errors": [
-   {
-    "word": "manchester"
-   },
-   {
-    "gapAfter": "plant"
-   },
-   {
-    "word": "sees"
-   }
-  ],
-  "rule": "Place names such as Manchester are capitalized. A comma follows a long introductory clause (from the moment that ... a plant,), and the verb saw must stay in the past tense to match was altered.",
-  "source": {
-   "book": "The Secret Adversary",
-   "gutenberg": 1155
   }
  },
  {
@@ -5758,21 +5196,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "They had not seen him till this moment and his appearance have the suddenness of a conjuring trick. He might have sprung, from the surrounding landscape.",
-  "fixed": "They had not seen him till this moment, and his appearance had the suddenness of a conjuring trick. He might have sprung from the surrounding landscape.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "They had not seen him till this moment and his appearance have the suddenness of a conjuring trick.",
+  "fixed": "They had not seen him till this moment, and his appearance had the suddenness of a conjuring trick.",
   "errors": [
    {
     "gapAfter": "moment"
    },
    {
     "word": "have"
-   },
-   {
-    "gapAfter": "sprung"
    }
   ],
-  "rule": "A comma goes before and when it joins two complete clauses (They had not seen him till this moment, and ...). The singular subject appearance takes had, and no comma separates a verb from its prepositional phrase (sprung from the surrounding landscape).",
+  "rule": "The subject “appearance” is singular and the story is in the past, so “have” should be “had”. A comma belongs after “moment”, before “and”, because “They had not seen him till this moment” and “his appearance had the suddenness of a conjuring trick” are two complete thoughts.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -5783,21 +5218,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "In the midst of a final desultory polishing of her silver Tuppence were disturbed by the ringing of the front door bell and goes to answer it. This time the visitor was neither Whittington nor Boris but a man of striking appearance.",
-  "fixed": "In the midst of a final desultory polishing of her silver, Tuppence was disturbed by the ringing of the front door bell and went to answer it. This time the visitor was neither Whittington nor Boris but a man of striking appearance.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "In the midst of a final desultory polishing of her silver Tuppence were disturbed by the ringing of the front door bell and went to answer it.",
+  "fixed": "In the midst of a final desultory polishing of her silver, Tuppence was disturbed by the ringing of the front door bell and went to answer it.",
   "errors": [
    {
     "gapAfter": "silver"
    },
    {
     "word": "were"
-   },
-   {
-    "word": "goes"
    }
   ],
-  "rule": "A long introductory phrase is followed by a comma, a verb must agree with its subject (Tuppence was), and verb tense stays consistent. Here the comma after \"silver\" is missing, \"were\" should be \"was\", and \"goes\" should be \"went\".",
+  "rule": "A comma belongs after “silver”, because “In the midst of a final desultory polishing of her silver” is a long opening phrase that must be set off from the main clause. The subject “Tuppence” is one person, so “were” should be “was”.",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -5808,21 +5240,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Tommy did not tell Monica of the conclusions he had come to but he asks her various searching questions. Of the garments and personal belongings of the dead woman some had been given to Crockett and the others sent to various poor families.",
-  "fixed": "Tommy did not tell Monica of the conclusions he had come to, but he asked her various searching questions. Of the garments and personal belongings of the dead woman, some had been given to Crockett and the others sent to various poor families.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Tommy did not tell Monica of the conclusions he had come to, but he asks her various searching questions.",
+  "fixed": "Tommy did not tell Monica of the conclusions he had come to, but he asked her various searching questions.",
   "errors": [
    {
-    "gapAfter": "to"
-   },
-   {
     "word": "asks"
-   },
-   {
-    "gapAfter": "woman"
    }
   ],
-  "rule": "Use a comma before \"but\" when it joins two complete sentences, and a comma after a long introductory phrase. Keep tense consistent. Here the comma after \"to\" and the comma after \"woman\" are missing, and \"asks\" should be \"asked\".",
+  "rule": "The story is in the past (“did not tell”, “had come”), so “asks” should be “asked”.",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -5833,21 +5259,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Miss Hartnell, whose only topics of conversation is the purely personal looked suspicious and unbelieving. Taking advantage of a momentary hesitation on her part as to how to proceed next, I bade her good night and walks rapidly away.",
-  "fixed": "Miss Hartnell, whose only topics of conversation are the purely personal, looked suspicious and unbelieving. Taking advantage of a momentary hesitation on her part as to how to proceed next, I bade her good night and walked rapidly away.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Miss Hartnell, whose only topics of conversation is the purely personal, looked suspicious and unbelieving.",
+  "fixed": "Miss Hartnell, whose only topics of conversation are the purely personal, looked suspicious and unbelieving.",
   "errors": [
    {
     "word": "is"
-   },
-   {
-    "gapAfter": "personal"
-   },
-   {
-    "word": "walks"
    }
   ],
-  "rule": "A nonessential phrase needs commas on both sides, a verb agrees with its true subject (topics are), and tense stays consistent. Here \"is\" should be \"are\", the comma after \"personal\" is missing, and \"walks\" should be \"walked\".",
+  "rule": "The subject “topics” is plural, so the verb is “are”, not “is”.",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
@@ -5858,21 +5278,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "It was not answered at once, but as she waited there a young man comes up the steps. He were shabbily dressed and carried in his hand a sheaf of leaflets.",
-  "fixed": "It was not answered at once, but as she waited there, a young man came up the steps. He was shabbily dressed and carried in his hand a sheaf of leaflets.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It was not answered at once, but as she waited there, a young man comes up the steps.",
+  "fixed": "It was not answered at once, but as she waited there, a young man came up the steps.",
   "errors": [
    {
-    "gapAfter": "there"
-   },
-   {
     "word": "comes"
-   },
-   {
-    "word": "were"
    }
   ],
-  "rule": "An introductory clause (\"as she waited there\") is followed by a comma, tense stays consistent, and a verb agrees with its subject. Here the comma after \"there\" is missing, \"comes\" should be \"came\", and \"were\" should be \"was\".",
+  "rule": "The story is in the past (\"was not answered\", \"waited\"), so \"comes\" should be \"came\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -5883,21 +5297,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Battle’s manner were easy and pleasant enough. He even refrains from looking at her and the fact that he did so made her vaguely uneasy.",
-  "fixed": "Battle’s manner was easy and pleasant enough. He even refrained from looking at her, and the fact that he did so made her vaguely uneasy.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Battle’s manner were easy and pleasant enough.",
+  "fixed": "Battle’s manner was easy and pleasant enough.",
   "errors": [
    {
     "word": "were"
-   },
-   {
-    "word": "refrains"
-   },
-   {
-    "gapAfter": "her"
    }
   ],
-  "rule": "A verb agrees with its subject (manner was), tense stays consistent, and a comma goes before \"and\" when it joins two complete sentences. Here \"were\" should be \"was\", \"refrains\" should be \"refrained\", and the comma after \"her\" is missing.",
+  "rule": "The subject “manner” is singular, so the verb is “was”, not “were”.",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -5908,21 +5316,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "As he spoke the door opens, and a girl appeared. She were tall, with a tanned face and steady blue eyes.",
-  "fixed": "As he spoke, the door opened, and a girl appeared. She was tall, with a tanned face and steady blue eyes.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "As he spoke, the door opens, and a girl appeared.",
+  "fixed": "As he spoke, the door opened, and a girl appeared.",
   "errors": [
    {
-    "gapAfter": "spoke"
-   },
-   {
     "word": "opens"
-   },
-   {
-    "word": "were"
    }
   ],
-  "rule": "An introductory clause is followed by a comma, tense stays consistent, and a verb agrees with its subject. Here the comma after \"spoke\" is missing, \"opens\" should be \"opened\", and \"were\" should be \"was\".",
+  "rule": "The story is in the past (“spoke”, “appeared”), so “opens” should be “opened”.",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -5933,21 +5335,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Lady Coote smiled at him sadly, and took up the extra ten-shilling note. She was very fond of her husband but she has no intention of allowing him to cheat her out of ten shillings.",
-  "fixed": "Lady Coote smiled at him sadly and took up the extra ten-shilling note. She was very fond of her husband, but she had no intention of allowing him to cheat her out of ten shillings.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "She was very fond of her husband, but she has no intention of allowing him to cheat her out of ten shillings.",
+  "fixed": "She was very fond of her husband, but she had no intention of allowing him to cheat her out of ten shillings.",
   "errors": [
-   {
-    "gapAfter": "sadly"
-   },
-   {
-    "gapAfter": "husband"
-   },
    {
     "word": "has"
    }
   ],
-  "rule": "Do not put a comma before \"and\" when it only joins two verbs for the same subject, but do use one before \"but\" when it joins two complete sentences. Keep tense consistent. Here the comma after \"sadly\" should be removed, the comma after \"husband\" is missing, and \"has\" should be \"had\".",
+  "rule": "The story is in the past (\"was very fond\"), so \"has\" should be \"had\".",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -5958,21 +5354,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "After suitable and imposing delay Anthony were taken to the suite in question. The Baron is standing on the hearthrug in a correct and stiff fashion.",
-  "fixed": "After suitable and imposing delay, Anthony was taken to the suite in question. The Baron was standing on the hearthrug in a correct and stiff fashion.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "After suitable and imposing delay, Anthony were taken to the suite in question.",
+  "fixed": "After suitable and imposing delay, Anthony was taken to the suite in question.",
   "errors": [
    {
-    "gapAfter": "delay"
-   },
-   {
     "word": "were"
-   },
-   {
-    "word": "is"
    }
   ],
-  "rule": "An introductory phrase is followed by a comma, a verb agrees with its subject (Anthony was), and tense stays consistent. Here the comma after \"delay\" is missing, \"were\" should be \"was\", and \"is\" should be \"was\".",
+  "rule": "The subject is “Anthony”, one person, so the verb is “was”, not “were”.",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -5983,21 +5373,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Mr. satterthwaite was at the opera, and sat alone in his big box on the first tier. Outside the door were a printed card bearing his name.",
-  "fixed": "Mr. Satterthwaite was at the opera and sat alone in his big box on the first tier. Outside the door was a printed card bearing his name.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Outside the door were a printed card bearing his name.",
+  "fixed": "Outside the door was a printed card bearing his name.",
   "errors": [
-   {
-    "word": "satterthwaite"
-   },
-   {
-    "gapAfter": "opera"
-   },
    {
     "word": "were"
    }
   ],
-  "rule": "Names are capitalized, no comma separates two verbs that share one subject, and a verb agrees with its true subject even when it comes first (card was). Here \"satterthwaite\" should be capitalized, the comma after \"opera\" should be removed, and \"were\" should be \"was\".",
+  "rule": "The subject “card” comes after the verb and is singular, so the verb is “was”, not “were”.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -6008,21 +5392,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "After lunch, when I came up to the lounge for coffee I noticed Sir Eustace and Pagett sitting with Mrs. Blair and Colonel Race. Mrs. Blair welcomes me with a smile so I went over and joined them.",
-  "fixed": "After lunch, when I came up to the lounge for coffee, I noticed Sir Eustace and Pagett sitting with Mrs. Blair and Colonel Race. Mrs. Blair welcomed me with a smile, so I went over and joined them.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Mrs. Blair welcomes me with a smile, so I went over and joined them.",
+  "fixed": "Mrs. Blair welcomed me with a smile, so I went over and joined them.",
   "errors": [
    {
-    "gapAfter": "coffee"
-   },
-   {
     "word": "welcomes"
-   },
-   {
-    "gapAfter": "smile"
    }
   ],
-  "rule": "An introductory clause is followed by a comma, and a comma goes before \"so\" when it joins two independent clauses. The passage is in the past tense, so \"welcomed\" is needed.",
+  "rule": "The story is in the past (\"went over\", \"joined\"), so \"welcomes\" should be \"welcomed\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -6033,21 +5411,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Lord Caterham started violently for, absorbed in the intricacies of what not to do with the left wrist he had not heard the butler approach over the soft turf. He looked at tredwell more in sorrow than in anger.",
-  "fixed": "Lord Caterham started violently, for, absorbed in the intricacies of what not to do with the left wrist, he had not heard the butler approach over the soft turf. He looked at Tredwell more in sorrow than in anger.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He looked at tredwell more in sorrow than in anger.",
+  "fixed": "He looked at Tredwell more in sorrow than in anger.",
   "errors": [
-   {
-    "gapAfter": "violently"
-   },
-   {
-    "gapAfter": "wrist"
-   },
    {
     "word": "tredwell"
    }
   ],
-  "rule": "A comma goes before \"for\" when it joins two independent clauses, and an introductory phrase is followed by a comma. A person's name is a proper noun and must be capitalized.",
+  "rule": "“Tredwell” is a person’s name, so it needs a capital T.",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -6058,49 +5430,21 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "melchett must have been still trying to trace the call for I was told that the number was engaged. Asking them to call me I put the instrument down again.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "melchett must have been still trying to trace the call, for I was told that the number was engaged. Asking them to call me I put the instrument down again.",
   "fixed": "Melchett must have been still trying to trace the call, for I was told that the number was engaged. Asking them to call me, I put the instrument down again.",
   "errors": [
    {
     "word": "melchett"
    },
    {
-    "gapAfter": "call"
-   },
-   {
     "gapAfter": "me"
    }
   ],
-  "rule": "A comma goes before \"for\" when it joins two independent clauses, and an introductory phrase is followed by a comma. A name and the first word of a sentence are capitalized.",
+  "rule": "“Melchett” is a name, so it needs a capital M. A comma belongs after “me”, because “Asking them to call me” is an opening phrase that must be set off from the main clause.",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
-  }
- },
- {
-  "id": "forge-78084-111-0",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "It seemed to be Mr. Quin's turn to speak but he did not do so and something about his silence seem oddly provocative. It was as though he challenged the last statement.",
-  "fixed": "It seemed to be Mr. Quin's turn to speak, but he did not do so, and something about his silence seemed oddly provocative. It was as though he challenged the last statement.",
-  "errors": [
-   {
-    "gapAfter": "speak"
-   },
-   {
-    "gapAfter": "so"
-   },
-   {
-    "word": "seem"
-   }
-  ],
-  "rule": "A comma goes before \"but\" and \"and\" when each joins two independent clauses. The subject \"something\" is singular, so the verb must be \"seemed\", not \"seem\".",
-  "source": {
-   "book": "The Mysterious Mr. Quin",
-   "gutenberg": 78084
   }
  },
  {
@@ -6108,21 +5452,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "It was possible that the whole thing were a practical joke. But he shakes his head dissatisfied with that solution.",
-  "fixed": "It was possible that the whole thing was a practical joke. But he shook his head, dissatisfied with that solution.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It was possible that the whole thing were a practical joke.",
+  "fixed": "It was possible that the whole thing was a practical joke.",
   "errors": [
    {
     "word": "were"
-   },
-   {
-    "word": "shakes"
-   },
-   {
-    "gapAfter": "head"
    }
   ],
-  "rule": "The singular subject \"thing\" needs \"was\". The passage is in the past tense, so \"shook\" is needed, and a nonessential phrase such as \"dissatisfied with that solution\" is set off by a comma.",
+  "rule": "The subject “thing” is singular, so the verb is “was”, not “were”.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -6133,21 +5471,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "As he did so his ear were caught by a stealthy sound quite near him. He was standing by the boat-house, and the sound seems to come from just round the corner.",
-  "fixed": "As he did so, his ear was caught by a stealthy sound quite near him. He was standing by the boat-house, and the sound seemed to come from just round the corner.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "As he did so his ear were caught by a stealthy sound quite near him.",
+  "fixed": "As he did so, his ear was caught by a stealthy sound quite near him.",
   "errors": [
    {
     "gapAfter": "so"
    },
    {
     "word": "were"
-   },
-   {
-    "word": "seems"
    }
   ],
-  "rule": "An introductory clause is followed by a comma. The singular subject \"ear\" needs \"was\", and the past-tense passage needs \"seemed\".",
+  "rule": "A comma belongs after “so”, because “As he did so” is an opening clause that must be set off from the main clause. The subject “ear” is singular, so “were” should be “was”.",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -6158,46 +5493,37 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Then he saw the note and the clock and the idea comes to him. He put 6.20 at the top of the letter and he altered the clock to 6.22.",
-  "fixed": "Then he saw the note and the clock, and the idea came to him. He put 6.20 at the top of the letter, and he altered the clock to 6.22.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Then he saw the note and the clock, and the idea comes to him.",
+  "fixed": "Then he saw the note and the clock, and the idea came to him.",
   "errors": [
    {
-    "gapAfter": "clock"
-   },
-   {
     "word": "comes"
-   },
-   {
-    "gapAfter": "letter"
    }
   ],
-  "rule": "A comma goes before \"and\" when it joins two independent clauses. The passage is in the past tense, so \"came\" is needed.",
+  "rule": "The story is in the past (\"saw\"), so \"comes\" should be \"came\".",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
-  }
+  },
+  "optionalGaps": [
+   "then"
+  ]
  },
  {
   "id": "forge-65238-908-2",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "If she had done so she would have been sure to have mentioned the fact at once. The whole thing seem more and more mysterious as she thinks about it.",
-  "fixed": "If she had done so, she would have been sure to have mentioned the fact at once. The whole thing seemed more and more mysterious as she thought about it.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The whole thing seemed more and more mysterious as she thinks about it.",
+  "fixed": "The whole thing seemed more and more mysterious as she thought about it.",
   "errors": [
-   {
-    "gapAfter": "so"
-   },
-   {
-    "word": "seem"
-   },
    {
     "word": "thinks"
    }
   ],
-  "rule": "An introductory \"if\" clause is followed by a comma. The singular subject \"thing\" needs \"seemed\", and the past-tense passage needs \"thought\".",
+  "rule": "The story is in the past (\"seemed\"), so \"thinks\" should be \"thought\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -6208,21 +5534,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "My mind goes back to the bare room in the empty house and there swept over me again that indefinable sensation of menace and evil. With it come the memory of the falling pencil and the discovery of the roll of films.",
-  "fixed": "My mind went back to the bare room in the empty house, and there swept over me again that indefinable sensation of menace and evil. With it came the memory of the falling pencil and the discovery of the roll of films.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "My mind goes back to the bare room in the empty house, and there swept over me again that indefinable sensation of menace and evil.",
+  "fixed": "My mind went back to the bare room in the empty house, and there swept over me again that indefinable sensation of menace and evil.",
   "errors": [
    {
     "word": "goes"
-   },
-   {
-    "gapAfter": "house"
-   },
-   {
-    "word": "come"
    }
   ],
-  "rule": "A comma goes before \"and\" when it joins two independent clauses, and the passage stays in the past tense, so \"went\". The true subject \"memory\" is singular, so the verb is \"came\".",
+  "rule": "The story is in the past (\"swept\"), so \"goes\" should be \"went\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -6233,13 +5553,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Again tommy feels that cold chill of uncertainty. It seemed impossible to believe that these people was other than they seemed.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Again Tommy feels that cold chill of uncertainty. It seemed impossible to believe that these people was other than they seemed.",
   "fixed": "Again Tommy felt that cold chill of uncertainty. It seemed impossible to believe that these people were other than they seemed.",
   "errors": [
-   {
-    "word": "tommy"
-   },
    {
     "word": "feels"
    },
@@ -6247,32 +5564,29 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "was"
    }
   ],
-  "rule": "A person's name is capitalized. The passage is in the past tense, so \"felt\" is needed, and the plural subject \"people\" takes \"were\".",
+  "rule": "The story is in the past (“seemed”), so “feels” should be “felt”. The subject “people” is plural, so “was” should be “were”.",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
-  }
+  },
+  "optionalGaps": [
+   "again"
+  ]
  },
  {
   "id": "forge-1155-1532-2",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "When she turned Mrs. Vandemeyer still lies without a movement. With a sudden fear clutching at her heart Tuppence ran to the bed.",
-  "fixed": "When she turned, Mrs. Vandemeyer still lay without a movement. With a sudden fear clutching at her heart, Tuppence ran to the bed.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "When she turned, Mrs. Vandemeyer still lies without a movement.",
+  "fixed": "When she turned, Mrs. Vandemeyer still lay without a movement.",
   "errors": [
    {
-    "gapAfter": "turned"
-   },
-   {
     "word": "lies"
-   },
-   {
-    "gapAfter": "heart"
    }
   ],
-  "rule": "An introductory clause or phrase is followed by a comma. The passage is in the past tense, so \"lay\" is needed, not \"lies\".",
+  "rule": "The story is in the past (\"turned\"), so \"lies\" should be \"lay\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -6283,21 +5597,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I were so fussy that I went all the way to Regent Street to the big kodak place. I hand it in and asked for a print of each film.",
-  "fixed": "I was so fussy that I went all the way to Regent Street to the big Kodak place. I handed it in and asked for a print of each film.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I hand it in and asked for a print of each film.",
+  "fixed": "I handed it in and asked for a print of each film.",
   "errors": [
-   {
-    "word": "were"
-   },
-   {
-    "word": "kodak"
-   },
    {
     "word": "hand"
    }
   ],
-  "rule": "The subject \"I\" takes \"was\" in the past tense. A brand name is a proper noun and is capitalized, and the verbs \"hand\" and \"asked\" must both be in the past tense.",
+  "rule": "The story is in the past (\"asked\"), so \"hand\" should be \"handed\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -6308,21 +5616,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Since his arrival at royston this afternoon that strange inner sense of his had stirred and bid him be ready. Something interesting were happening or going to happen.",
-  "fixed": "Since his arrival at Royston this afternoon, that strange inner sense of his had stirred and bid him be ready. Something interesting was happening or going to happen.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Something interesting were happening or going to happen.",
+  "fixed": "Something interesting was happening or going to happen.",
   "errors": [
-   {
-    "word": "royston"
-   },
-   {
-    "gapAfter": "afternoon"
-   },
    {
     "word": "were"
    }
   ],
-  "rule": "A place name is capitalized, and an introductory phrase is followed by a comma. The singular subject \"something\" takes \"was\".",
+  "rule": "The subject “Something” is singular, so the verb is “was”, not “were”.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -6333,21 +5635,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "It occurred to me that we had better be getting on with it. I say good-bye to miss Marple and we entered the woods once more.",
-  "fixed": "It occurred to me that we had better be getting on with it. I said good-bye to Miss Marple, and we entered the woods once more.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I say good-bye to Miss Marple, and we entered the woods once more.",
+  "fixed": "I said good-bye to Miss Marple, and we entered the woods once more.",
   "errors": [
    {
     "word": "say"
-   },
-   {
-    "word": "miss"
-   },
-   {
-    "gapAfter": "marple"
    }
   ],
-  "rule": "A comma goes before \"and\" when it joins two independent clauses, a title before a name is capitalized, and the past-tense passage needs \"said\".",
+  "rule": "The story is in the past (\"entered\"), so \"say\" should be \"said\".",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
@@ -6358,21 +5654,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Only in the company of Mr. Quin were the position reversed. There Mr. Quin was the appreciative listener and Mr. satterthwaite took the center of the stage.",
-  "fixed": "Only in the company of Mr. Quin was the position reversed. There Mr. Quin was the appreciative listener, and Mr. Satterthwaite took the center of the stage.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Only in the company of Mr. Quin were the position reversed.",
+  "fixed": "Only in the company of Mr. Quin was the position reversed.",
   "errors": [
    {
     "word": "were"
-   },
-   {
-    "gapAfter": "listener"
-   },
-   {
-    "word": "satterthwaite"
    }
   ],
-  "rule": "The singular subject \"position\" takes \"was\", even though it comes after the verb. A comma goes before \"and\" joining two independent clauses, and a name is capitalized.",
+  "rule": "The subject “position” is singular, so the verb is “was”, not “were”.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -6383,21 +5673,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "tommy walked across to the writing-table and opened the middle drawer. A photograph, carelessly thrust in face upwards catch his eye.",
-  "fixed": "Tommy walked across to the writing-table and opened the middle drawer. A photograph, carelessly thrust in face upwards, caught his eye.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "A photograph, carelessly thrust in face upwards, catch his eye.",
+  "fixed": "A photograph, carelessly thrust in face upwards, caught his eye.",
   "errors": [
-   {
-    "word": "tommy"
-   },
-   {
-    "gapAfter": "upwards"
-   },
    {
     "word": "catch"
    }
   ],
-  "rule": "A name is capitalized, and a nonessential phrase needs commas on both sides. The singular subject \"photograph\" takes \"caught\" in this past-tense passage.",
+  "rule": "The subject “photograph” is singular and the story is in the past, so “catch” should be “caught”.",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -6408,21 +5692,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Such an affair were infinitely more in his line than the verbal encounter of this afternoon. Intoxicated by his plan Tommy gently unhooked the picture of the Devil and Faust, and settled himself in position.",
-  "fixed": "Such an affair was infinitely more in his line than the verbal encounter of this afternoon. Intoxicated by his plan, Tommy gently unhooked the picture of the Devil and Faust and settled himself in position.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Intoxicated by his plan, Tommy gently unhooked the picture of the Devil and Faust, and settled himself in position.",
+  "fixed": "Intoxicated by his plan, Tommy gently unhooked the picture of the Devil and Faust and settled himself in position.",
   "errors": [
-   {
-    "word": "were"
-   },
-   {
-    "gapAfter": "plan"
-   },
    {
     "gapAfter": "faust"
    }
   ],
-  "rule": "The singular subject \"affair\" takes \"was\". An introductory phrase is followed by a comma, but no comma separates the two verbs \"unhooked\" and \"settled\" that share one subject.",
+  "rule": "Delete the comma after “Faust”, because “unhooked” and “settled” are two verbs that share the subject “Tommy”.",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -6433,21 +5711,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Two constables was on duty in front of the house in soho. An inspector, reported to Mr. Carter in a low voice.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Two constables was on duty in front of the house in Soho. An inspector, reported to Mr. Carter in a low voice.",
   "fixed": "Two constables were on duty in front of the house in Soho. An inspector reported to Mr. Carter in a low voice.",
   "errors": [
    {
     "word": "was"
    },
    {
-    "word": "soho"
-   },
-   {
     "gapAfter": "inspector"
    }
   ],
-  "rule": "A verb agrees with its true subject (constables is plural, so it takes were), place names like Soho are capitalized, and no comma separates a subject from its verb (inspector reported).",
+  "rule": "The subject “constables” is plural, so “was” should be “were”. Delete the comma after “inspector”, because it splits the subject “An inspector” from its verb “reported”.",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -6458,74 +5733,40 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He lifted his hat, murmuring an apology, and went on. It struck me at the time, that his face is vaguely familiar but at the moment I thought no more of it.",
-  "fixed": "He lifted his hat, murmuring an apology, and went on. It struck me at the time that his face was vaguely familiar, but at the moment I thought no more of it.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It struck me at the time that his face is vaguely familiar, but at the moment I thought no more of it.",
+  "fixed": "It struck me at the time that his face was vaguely familiar, but at the moment I thought no more of it.",
   "errors": [
    {
-    "gapAfter": "time"
-   },
-   {
     "word": "is"
-   },
-   {
-    "gapAfter": "familiar"
    }
   ],
-  "rule": "Use a comma before but when it joins two complete sentences (familiar, but at the moment I thought...), do not put a comma before a that-clause, and keep verb tense consistent (his face was familiar, matching struck and thought).",
+  "rule": "The story is in the past (“struck”, “thought”), so “is” should be “was”.",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
-  }
+  },
+  "optionalGaps": [
+   "moment"
+  ]
  },
  {
   "id": "forge-65238-1692-4",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He talked a lot of nonsense about English gentlewomen and things like that but his real meaning, was never obscure for a moment. It were just the sort of rotten thing poor old George would think of.",
-  "fixed": "He talked a lot of nonsense about English gentlewomen and things like that, but his real meaning was never obscure for a moment. It was just the sort of rotten thing poor old George would think of.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It were just the sort of rotten thing poor old George would think of.",
+  "fixed": "It was just the sort of rotten thing poor old George would think of.",
   "errors": [
-   {
-    "gapAfter": "that"
-   },
-   {
-    "gapAfter": "meaning"
-   },
    {
     "word": "were"
    }
   ],
-  "rule": "Put a comma before but when it joins two complete sentences, never put a comma between a subject and its verb (meaning was), and a singular subject like It takes was.",
+  "rule": "The subject “It” is singular, so the verb is “was”, not “were”.",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
-  }
- },
- {
-  "id": "forge-61168-1986-3",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I had the rifle reloaded, when he turned for it. He caught me close with his left arm, and kissed me once savagely before he turns to the window again.",
-  "fixed": "I had the rifle reloaded when he turned for it. He caught me close with his left arm and kissed me once savagely before he turned to the window again.",
-  "errors": [
-   {
-    "gapAfter": "reloaded"
-   },
-   {
-    "gapAfter": "arm"
-   },
-   {
-    "word": "turns"
-   }
-  ],
-  "rule": "Do not add a comma before a clause that completes the sentence (reloaded when he turned), do not put a comma in a compound predicate (arm and kissed), and keep the past tense (before he turned).",
-  "source": {
-   "book": "The Man in the Brown Suit",
-   "gutenberg": 61168
   }
  },
  {
@@ -6533,13 +5774,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Marcia, Marchioness of Caterham the widow of his late brother Henry, were a very prominent personality. Lord Caterham admitted, that she had made Henry an admirable wife and that but for her in all probability he would never have held the office of Secretary of State for Foreign Affairs.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Marcia, Marchioness of Caterham, the widow of his late brother Henry, were a very prominent personality. Lord Caterham admitted, that she had made Henry an admirable wife and that but for her in all probability he would never have held the office of Secretary of State for Foreign Affairs.",
   "fixed": "Marcia, Marchioness of Caterham, the widow of his late brother Henry, was a very prominent personality. Lord Caterham admitted that she had made Henry an admirable wife and that but for her in all probability he would never have held the office of Secretary of State for Foreign Affairs.",
   "errors": [
-   {
-    "gapAfter": "caterham"
-   },
    {
     "word": "were"
    },
@@ -6547,57 +5785,53 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "gapAfter": "admitted"
    }
   ],
-  "rule": "Appositive phrases need commas on both sides (Caterham, the widow of his late brother Henry, was), the verb agrees with its true subject Marcia (was, not were), and no comma comes before a that-clause that completes the verb.",
+  "rule": "The subject is “Marcia”, one person, so “were” should be “was”. Delete the comma after “admitted”, because no comma goes between the verb and the “that” clause that tells what was admitted.",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
-  }
+  },
+  "optionalGaps": [
+   "brother",
+   "her",
+   "probability"
+  ]
  },
  {
   "id": "forge-70114-1353-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "With a beating heart and a feeling of deathly sickness I looked through the crack in the shutters. In the figure walking along the opposite side of the street I recognised my friend at once, though his coat collar is turned up and an immense yellow muffler hid the bottom part of his face.",
-  "fixed": "With a beating heart and a feeling of deathly sickness, I looked through the crack in the shutters. In the figure walking along the opposite side of the street, I recognised my friend at once, though his coat collar was turned up and an immense yellow muffler hid the bottom part of his face.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "In the figure walking along the opposite side of the street, I recognised my friend at once, though his coat collar is turned up and an immense yellow muffler hid the bottom part of his face.",
+  "fixed": "In the figure walking along the opposite side of the street, I recognised my friend at once, though his coat collar was turned up and an immense yellow muffler hid the bottom part of his face.",
   "errors": [
-   {
-    "gapAfter": "sickness"
-   },
-   {
-    "gapAfter": "street"
-   },
    {
     "word": "is"
    }
   ],
-  "rule": "Put a comma after a long introductory phrase (sickness, I looked; street, I recognised), and keep the tense consistent (his collar was turned up, matching recognised and hid).",
+  "rule": "The story is in the past (\"recognised\", \"hid\"), so \"is\" should be \"was\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
-  }
+  },
+  "optionalGaps": [
+   "up"
+  ]
  },
  {
   "id": "forge-65238-2063-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "But even as she spoke she knows it was too late. The man must have gained the park by now and it was a dark night with no moon.",
-  "fixed": "But even as she spoke, she knew it was too late. The man must have gained the park by now, and it was a dark night with no moon.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "But even as she spoke, she knows it was too late.",
+  "fixed": "But even as she spoke, she knew it was too late.",
   "errors": [
    {
-    "gapAfter": "spoke"
-   },
-   {
     "word": "knows"
-   },
-   {
-    "gapAfter": "now"
    }
   ],
-  "rule": "Put a comma after an introductory clause (as she spoke, she knew), keep the tense consistent (she knew, matching was), and use a comma before and when it joins two complete sentences (by now, and it was).",
+  "rule": "The story is in the past (“spoke”, “was too late”), so “knows” should be “knew”.",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -6608,21 +5842,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Mr. Hersheimmer as the son of a prominent millionaire, was a well-known figure in america. It seemed utterly impossible that he and Mr. Brown, could be one and the same.",
-  "fixed": "Mr. Hersheimmer, as the son of a prominent millionaire, was a well-known figure in America. It seemed utterly impossible that he and Mr. Brown could be one and the same.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It seemed utterly impossible that he and Mr. Brown, could be one and the same.",
+  "fixed": "It seemed utterly impossible that he and Mr. Brown could be one and the same.",
   "errors": [
-   {
-    "gapAfter": "hersheimmer"
-   },
-   {
-    "word": "america"
-   },
    {
     "gapAfter": "brown"
    }
   ],
-  "rule": "A nonessential phrase needs commas on both sides (Hersheimmer, as the son of a prominent millionaire, was), country names like America are capitalized, and no comma separates a subject from its verb (Brown could).",
+  "rule": "The subject \"he and Mr. Brown\" should not be separated from its verb \"could\" by a comma, so it is \"Mr. Brown could\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -6633,21 +5861,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "bundle tried the cupboard door but it was locked, and she saw at once that this lock were a very different affair. It was of the patent kind that would only yield to its own key.",
-  "fixed": "Bundle tried the cupboard door, but it was locked, and she saw at once that this lock was a very different affair. It was of the patent kind that would only yield to its own key.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "bundle tried the cupboard door, but it was locked, and she saw at once that this lock were a very different affair.",
+  "fixed": "Bundle tried the cupboard door, but it was locked, and she saw at once that this lock was a very different affair.",
   "errors": [
    {
     "word": "bundle"
    },
    {
-    "gapAfter": "door"
-   },
-   {
     "word": "were"
    }
   ],
-  "rule": "Capitalize the first word of a sentence, use a comma before but when it joins two complete sentences (door, but it was locked), and make the verb agree with a singular subject (this lock was).",
+  "rule": "A sentence starts with a capital letter, so \"bundle\" should be \"Bundle\". The singular subject \"this lock\" takes \"was\", not \"were\".",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -6658,21 +5883,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I was suspicious still, and lay quite quiet for some time. In the end however, I get up and walked round the room, examining it.",
-  "fixed": "I was suspicious still and lay quite quiet for some time. In the end, however, I got up and walked round the room, examining it.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "In the end, however, I get up and walked round the room, examining it.",
+  "fixed": "In the end, however, I got up and walked round the room, examining it.",
   "errors": [
-   {
-    "gapAfter": "still"
-   },
-   {
-    "gapAfter": "end"
-   },
    {
     "word": "get"
    }
   ],
-  "rule": "Do not put a comma inside a compound predicate (still and lay), set off however with commas on both sides (end, however, I), and keep the past tense (I got up and walked).",
+  "rule": "The story is in the past tense, so \"get\" should be \"got\" to match \"walked\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -6683,21 +5902,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "She did not pause to ascertain whether they was friends, or foes. Lowering her head she repeated a manœuvre of childish days and butted their aggressor full in the capacious middle.",
-  "fixed": "She did not pause to ascertain whether they were friends or foes. Lowering her head, she repeated a manœuvre of childish days and butted their aggressor full in the capacious middle.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "She did not pause to ascertain whether they was friends or foes.",
+  "fixed": "She did not pause to ascertain whether they were friends or foes.",
   "errors": [
    {
     "word": "was"
-   },
-   {
-    "gapAfter": "friends"
-   },
-   {
-    "gapAfter": "head"
    }
   ],
-  "rule": "A plural subject (they) takes were, a pair joined by or needs no comma (friends or foes), and an introductory phrase needs a comma after it (Lowering her head, she repeated).",
+  "rule": "The subject \"they\" is plural, so the verb should be \"were\", not \"was\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -6708,21 +5921,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Tommy thought it best to humor her, and withdrew. As he closed the door he saw her pick up the bible again.",
-  "fixed": "Tommy thought it best to humor her and withdrew. As he closed the door, he saw her pick up the Bible again.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Tommy thought it best to humor her, and withdrew.",
+  "fixed": "Tommy thought it best to humor her and withdrew.",
   "errors": [
    {
     "gapAfter": "her"
-   },
-   {
-    "gapAfter": "door"
-   },
-   {
-    "word": "bible"
    }
   ],
-  "rule": "Do not put a comma in a compound predicate (humor her and withdrew), put a comma after an introductory clause (As he closed the door, he saw), and capitalize the title Bible.",
+  "rule": "The verbs \"thought\" and \"withdrew\" share the subject \"Tommy\", so no comma belongs before \"and withdrew\".",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -6733,38 +5940,32 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "All was silent within but suddenly Virginia pressed his arm, and he nods. A bright light, had shown for a minute through the keyhole.",
-  "fixed": "All was silent within, but suddenly Virginia pressed his arm, and he nodded. A bright light had shown for a minute through the keyhole.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "All was silent within, but suddenly Virginia pressed his arm, and he nods.",
+  "fixed": "All was silent within, but suddenly Virginia pressed his arm, and he nodded.",
   "errors": [
    {
-    "gapAfter": "within"
-   },
-   {
     "word": "nods"
-   },
-   {
-    "gapAfter": "light"
    }
   ],
-  "rule": "Use a comma before but when it joins two complete sentences (within, but suddenly), keep the tense consistent (pressed and nodded), and do not put a comma between a subject and its verb (light had shown).",
+  "rule": "The story is in the past tense, so \"nods\" should be \"nodded\" to match \"pressed\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
-  }
+  },
+  "optionalGaps": [
+   "suddenly"
+  ]
  },
  {
   "id": "forge-1155-1438-1",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "As she looked the expression disappeared as by magic and Mrs. Vandemeyer lies inert and motionless as before. For a moment the girl fancied she must have dreamt it.",
-  "fixed": "As she looked, the expression disappeared as by magic, and Mrs. Vandemeyer lay inert and motionless as before. For a moment the girl fancied she must have dreamt it.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "As she looked, the expression disappeared as by magic and Mrs. Vandemeyer lies inert and motionless as before.",
+  "fixed": "As she looked, the expression disappeared as by magic, and Mrs. Vandemeyer lay inert and motionless as before.",
   "errors": [
-   {
-    "gapAfter": "looked"
-   },
    {
     "gapAfter": "magic"
    },
@@ -6772,35 +5973,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "lies"
    }
   ],
-  "rule": "Put a comma after an introductory clause (As she looked, the expression), use a comma before and when it joins two complete sentences (magic, and Mrs. Vandemeyer), and keep the past tense (lay, matching disappeared).",
+  "rule": "A comma goes before \"and\" when it joins two complete sentences, as in \"magic, and Mrs. Vandemeyer\". The story is in the past tense, so \"lies\" should be \"lay\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
-  }
- },
- {
-  "id": "forge-78084-1137-1",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Naomi who had been six months in the island, were to be the pioneer. Mr. satterthwaite went over to her as she sat waiting to start.",
-  "fixed": "Naomi, who had been six months in the island, was to be the pioneer. Mr. Satterthwaite went over to her as she sat waiting to start.",
-  "errors": [
-   {
-    "gapAfter": "naomi"
-   },
-   {
-    "word": "were"
-   },
-   {
-    "word": "satterthwaite"
-   }
-  ],
-  "rule": "A nonessential who-clause needs commas on both sides (Naomi, who had been six months in the island, was), the verb agrees with Naomi (was, not were), and names are capitalized.",
-  "source": {
-   "book": "The Mysterious Mr. Quin",
-   "gutenberg": 78084
   }
  },
  {
@@ -6808,8 +5984,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "George have no intention of climbing in through the window. He disappeared through the front door, and reappeared ushered in by Tredwell who withdrew at once.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "George have no intention of climbing in through the window. He disappeared through the front door, and reappeared ushered in by Tredwell, who withdrew at once.",
   "fixed": "George had no intention of climbing in through the window. He disappeared through the front door and reappeared ushered in by Tredwell, who withdrew at once.",
   "errors": [
    {
@@ -6817,37 +5993,31 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    },
    {
     "gapAfter": "door"
-   },
-   {
-    "gapAfter": "tredwell"
    }
   ],
-  "rule": "A singular subject (George) takes had, a compound predicate takes no comma (door and reappeared), and a nonessential who-clause is set off by a comma (Tredwell, who withdrew at once).",
+  "rule": "The subject \"George\" is singular and the story is in the past, so the verb is \"had\", not \"have\". The verbs \"disappeared\" and \"reappeared\" share the subject \"He\", so no comma belongs before \"and reappeared\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
-  }
+  },
+  "optionalGaps": [
+   "reappeared"
+  ]
  },
  {
   "id": "forge-1155-598-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Mr. beresford put down the Daily Mail which he was reading, and applauded with somewhat unnecessary vigour. He were politely requested by his colleague not to be an ass.",
-  "fixed": "Mr. Beresford put down the Daily Mail, which he was reading, and applauded with somewhat unnecessary vigour. He was politely requested by his colleague not to be an ass.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He were politely requested by his colleague not to be an ass.",
+  "fixed": "He was politely requested by his colleague not to be an ass.",
   "errors": [
-   {
-    "word": "beresford"
-   },
-   {
-    "gapAfter": "mail"
-   },
    {
     "word": "were"
    }
   ],
-  "rule": "Names are capitalized, a nonessential which-clause needs commas on both sides (Mail, which he was reading,), and a singular subject takes was (He was requested).",
+  "rule": "The subject \"He\" is singular, so the verb should be \"was\", not \"were\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -6858,21 +6028,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "She, had asked for Colonel Protheroe not Mrs. Protheroe. He had told the Colonel, and the Colonel has gone to the morning room directly dinner was over.",
-  "fixed": "She had asked for Colonel Protheroe, not Mrs. Protheroe. He had told the Colonel, and the Colonel had gone to the morning room directly dinner was over.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "She, had asked for Colonel Protheroe, not Mrs. Protheroe.",
+  "fixed": "She had asked for Colonel Protheroe, not Mrs. Protheroe.",
   "errors": [
    {
     "gapAfter": "she"
-   },
-   {
-    "gapAfter": "protheroe"
-   },
-   {
-    "word": "has"
    }
   ],
-  "rule": "Do not put a comma between a subject and its verb (She had asked), set off a contrasting not phrase with a comma (Protheroe, not Mrs. Protheroe), and keep the past perfect and past tense consistent (had gone).",
+  "rule": "No comma belongs between a subject and its verb, so \"She, had asked\" should be \"She had asked\".",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
@@ -6883,21 +6047,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Satisfied he turned his mind back to the subject of Girl Guides and hoped that the girl Doris, had not noticed his abstraction. When she turned to the man on the other side of her--a man Mr. Satterthwaite had hardly noticed--he himself turned to madge.",
-  "fixed": "Satisfied, he turned his mind back to the subject of Girl Guides and hoped that the girl Doris had not noticed his abstraction. When she turned to the man on the other side of her--a man Mr. Satterthwaite had hardly noticed--he himself turned to Madge.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Satisfied, he turned his mind back to the subject of Girl Guides and hoped that the girl Doris, had not noticed his abstraction.",
+  "fixed": "Satisfied, he turned his mind back to the subject of Girl Guides and hoped that the girl Doris had not noticed his abstraction.",
   "errors": [
    {
-    "gapAfter": "satisfied"
-   },
-   {
     "gapAfter": "doris"
-   },
-   {
-    "word": "madge"
    }
   ],
-  "rule": "An introductory word like \"Satisfied\" is followed by a comma, and no comma separates a subject from its verb. Names such as Madge are capitalized.",
+  "rule": "The subject \"the girl Doris\" should not be separated from its verb \"had not noticed\" by a comma.",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -6908,13 +6066,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "It wanted some five minutes to eleven when tuppence reached the block of buildings in which the offices of the Esthonia Glassware Co. was situated. To arrive before the time, would look over-eager.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It wanted some five minutes to eleven when Tuppence reached the block of buildings in which the offices of the Esthonia Glassware Co. was situated. To arrive before the time, would look over-eager.",
   "fixed": "It wanted some five minutes to eleven when Tuppence reached the block of buildings in which the offices of the Esthonia Glassware Co. were situated. To arrive before the time would look over-eager.",
   "errors": [
-   {
-    "word": "tuppence"
-   },
    {
     "word": "was"
    },
@@ -6922,7 +6077,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "gapAfter": "time"
    }
   ],
-  "rule": "Names are capitalized, a verb agrees with its true subject (\"offices\" is plural, so \"were\"), and no comma separates the subject \"To arrive before the time\" from its verb \"would look\".",
+  "rule": "The subject \"offices\" is plural, so the verb should be \"were\", not \"was\". No comma belongs between the subject \"To arrive before the time\" and its verb \"would look\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -6933,49 +6088,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "It were a simple and effective method of getting her out of the way for the time being. Nevertheless the girl does not take kindly to the idea of being tamely put to sleep without as much as one bid for freedom.",
-  "fixed": "It was a simple and effective method of getting her out of the way for the time being. Nevertheless, the girl did not take kindly to the idea of being tamely put to sleep without as much as one bid for freedom.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It were a simple and effective method of getting her out of the way for the time being.",
+  "fixed": "It was a simple and effective method of getting her out of the way for the time being.",
   "errors": [
    {
     "word": "were"
-   },
-   {
-    "gapAfter": "nevertheless"
-   },
-   {
-    "word": "does"
    }
   ],
-  "rule": "\"It\" takes \"was\", an introductory word like \"Nevertheless\" is followed by a comma, and the verb tense should stay in the past (\"did\") to match the rest of the passage.",
+  "rule": "The subject \"It\" is singular and the story is in the past, so the verb is \"was\", not \"were\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
-  }
- },
- {
-  "id": "forge-78084-1545-1",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The lights went up and the people began to file out. Mr. satterthwaite leans over to watch the girl with the golden head.",
-  "fixed": "The lights went up, and the people began to file out. Mr. Satterthwaite leaned over to watch the girl with the golden head.",
-  "errors": [
-   {
-    "gapAfter": "up"
-   },
-   {
-    "word": "satterthwaite"
-   },
-   {
-    "word": "leans"
-   }
-  ],
-  "rule": "Two independent clauses joined by \"and\" need a comma before the conjunction. A name is capitalized, and the narration stays in the past tense (\"leaned\").",
-  "source": {
-   "book": "The Mysterious Mr. Quin",
-   "gutenberg": 78084
   }
  },
  {
@@ -6983,21 +6107,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The thing that had puzzled mr. Satterthwaite were what had brought him to the island. He could imagine him shooting things hunting things, playing polo or golf or tennis, making love to pretty women.",
-  "fixed": "The thing that had puzzled Mr. Satterthwaite was what had brought him to the island. He could imagine him shooting things, hunting things, playing polo or golf or tennis, making love to pretty women.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The thing that had puzzled Mr. Satterthwaite were what had brought him to the island.",
+  "fixed": "The thing that had puzzled Mr. Satterthwaite was what had brought him to the island.",
   "errors": [
    {
-    "word": "mr"
-   },
-   {
     "word": "were"
-   },
-   {
-    "gapAfter": "things"
    }
   ],
-  "rule": "The singular subject \"The thing\" takes \"was\", titles like Mr. are capitalized, and items in a list need commas between them.",
+  "rule": "The singular subject \"The thing\" takes the verb \"was\", not \"were\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -7008,13 +6126,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Her hat was awry and her hair tousled and she seem in a state of great agitation. She inquires about the trains back to town and was continually looking over her shoulder as though afraid of something.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Her hat was awry and her hair tousled, and she seem in a state of great agitation. She inquires about the trains back to town and was continually looking over her shoulder as though afraid of something.",
   "fixed": "Her hat was awry and her hair tousled, and she seemed in a state of great agitation. She inquired about the trains back to town and was continually looking over her shoulder as though afraid of something.",
   "errors": [
-   {
-    "gapAfter": "tousled"
-   },
    {
     "word": "seem"
    },
@@ -7022,7 +6137,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "inquires"
    }
   ],
-  "rule": "A comma goes before \"and\" when it joins two independent clauses, \"she\" takes \"seemed\", and the verbs stay in the past tense (\"inquired\").",
+  "rule": "The story is in the past tense, so \"seem\" should be \"seemed\" and \"inquires\" should be \"inquired\".",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -7033,21 +6148,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "At the farther end of the room the torch were playing upon the holbein picture. Silhouetted against it was the figure of a man, standing on a chair and gently tapping on the panelling!",
-  "fixed": "At the farther end of the room, the torch was playing upon the Holbein picture. Silhouetted against it was the figure of a man, standing on a chair and gently tapping on the panelling!",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "At the farther end of the room, the torch were playing upon the Holbein picture.",
+  "fixed": "At the farther end of the room, the torch was playing upon the Holbein picture.",
   "errors": [
    {
-    "gapAfter": "room"
-   },
-   {
     "word": "were"
-   },
-   {
-    "word": "holbein"
    }
   ],
-  "rule": "A long introductory phrase is followed by a comma, the singular subject \"torch\" takes \"was\", and the painter's name Holbein is capitalized.",
+  "rule": "The subject \"torch\" is singular, so the verb should be \"was playing\", not \"were playing\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -7058,21 +6167,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "They has been so absorbed in their duel of words, that they had not heard approaching footsteps. roger Graham had come up behind them unperceived by either.",
-  "fixed": "They had been so absorbed in their duel of words that they had not heard approaching footsteps. Roger Graham had come up behind them unperceived by either.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "They has been so absorbed in their duel of words that they had not heard approaching footsteps.",
+  "fixed": "They had been so absorbed in their duel of words that they had not heard approaching footsteps.",
   "errors": [
    {
     "word": "has"
-   },
-   {
-    "gapAfter": "words"
-   },
-   {
-    "word": "roger"
    }
   ],
-  "rule": "\"They\" takes \"had\", no comma is needed before \"that\" here, and a person's name is capitalized.",
+  "rule": "The subject \"They\" is plural and the story is in the past, so the verb is \"had\", not \"has\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -7083,13 +6186,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Tommy however, had rushed in from the landing outside. He tore down the bed hangings, and manages to stifle the flames with a rug.",
-  "fixed": "Tommy, however, had rushed in from the landing outside. He tore down the bed hangings and managed to stifle the flames with a rug.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He tore down the bed hangings, and manages to stifle the flames with a rug.",
+  "fixed": "He tore down the bed hangings and managed to stifle the flames with a rug.",
   "errors": [
-   {
-    "gapAfter": "tommy"
-   },
    {
     "gapAfter": "hangings"
    },
@@ -7097,7 +6197,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "manages"
    }
   ],
-  "rule": "An interrupter like \"however\" needs commas on both sides, a compound predicate (\"tore ... and managed\") takes no comma, and the verbs stay in the past tense.",
+  "rule": "The verbs \"tore\" and \"managed\" share the subject \"He\", so no comma belongs before \"and\". The story is in the past tense, so \"manages\" should be \"managed\".",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -7108,49 +6208,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "But the Cabinet knows by how narrow a margin they had escaped utter disaster. And burnt in on Mr. Carter’s brain were the strange scene which had taken place in the house in soho the night before.",
-  "fixed": "But the Cabinet knew by how narrow a margin they had escaped utter disaster. And burnt in on Mr. Carter’s brain was the strange scene which had taken place in the house in Soho the night before.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "And burnt in on Mr. Carter’s brain were the strange scene which had taken place in the house in Soho the night before.",
+  "fixed": "And burnt in on Mr. Carter’s brain was the strange scene which had taken place in the house in Soho the night before.",
   "errors": [
    {
-    "word": "knows"
-   },
-   {
     "word": "were"
-   },
-   {
-    "word": "soho"
    }
   ],
-  "rule": "The passage is in the past tense, so \"knew\" is correct. In the inverted second sentence the true subject is the singular \"scene\", so the verb is \"was\", and place names like Soho are capitalized.",
+  "rule": "In this flipped sentence the true subject is the singular \"scene\", so the verb is \"was\", not \"were\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
-  }
- },
- {
-  "id": "forge-78084-2742-2",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He comes upon Molly Stanwell flushed and eager, receiving compliments. He saw john Denman, pushing and elbowing his way through the throng, his eyes alight with a new flame.",
-  "fixed": "He came upon Molly Stanwell, flushed and eager, receiving compliments. He saw John Denman, pushing and elbowing his way through the throng, his eyes alight with a new flame.",
-  "errors": [
-   {
-    "word": "comes"
-   },
-   {
-    "gapAfter": "stanwell"
-   },
-   {
-    "word": "john"
-   }
-  ],
-  "rule": "A nonessential phrase like \"flushed and eager\" needs commas on both sides, the verbs stay in the past tense, and names are capitalized.",
-  "source": {
-   "book": "The Mysterious Mr. Quin",
-   "gutenberg": 78084
   }
  },
  {
@@ -7158,38 +6227,36 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "And suddenly I has a curious intimate premonition of danger. I had heard nothing but I swing round instinctively.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "And suddenly I has a curious intimate premonition of danger. I had heard nothing, but I swing round instinctively.",
   "fixed": "And suddenly I had a curious intimate premonition of danger. I had heard nothing, but I swung round instinctively.",
   "errors": [
    {
     "word": "has"
    },
    {
-    "gapAfter": "nothing"
-   },
-   {
     "word": "swing"
    }
   ],
-  "rule": "\"I\" takes \"had\", a comma goes before \"but\" when it joins two independent clauses, and the tense stays in the past (\"swung\").",
+  "rule": "The story is in the past tense, so \"has\" should be \"had\" and \"swing\" should be \"swung\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
-  }
+  },
+  "optionalGaps": [
+   "suddenly",
+   "curious"
+  ]
  },
  {
   "id": "forge-78084-2719-4",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Now and then her hand tightened on his shoulder and he understands that she was glad of his company. She only takes it away when they finally came to their destination.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Now and then her hand tightened on his shoulder, and he understands that she was glad of his company. She only takes it away when they finally came to their destination.",
   "fixed": "Now and then her hand tightened on his shoulder, and he understood that she was glad of his company. She only took it away when they finally came to their destination.",
   "errors": [
-   {
-    "gapAfter": "shoulder"
-   },
    {
     "word": "understands"
    },
@@ -7197,11 +6264,14 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "takes"
    }
   ],
-  "rule": "A comma goes before \"and\" joining two independent clauses, and the verbs should stay in the past tense (\"understood\", \"took\").",
+  "rule": "The story is in the past tense, so \"understands\" should be \"understood\" and \"takes\" should be \"took\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
-  }
+  },
+  "optionalGaps": [
+   "then"
+  ]
  },
  {
   "id": "mark-1155-990-6",
@@ -18562,8 +17632,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "First we go up the path till we came to a new spot, where it certainly looked as though someone had left the path on the right-hand side. Lawrence, explained that he had already followed this particular trail and found it led nowhere but he added that we might as well try again.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "First we go up the path till we came to a new spot, where it certainly looked as though someone had left the path on the right-hand side. Lawrence, explained that he had already followed this particular trail and found it led nowhere, but he added that we might as well try again.",
   "fixed": "First we went up the path till we came to a new spot, where it certainly looked as though someone had left the path on the right-hand side. Lawrence explained that he had already followed this particular trail and found it led nowhere, but he added that we might as well try again.",
   "errors": [
    {
@@ -18571,54 +17641,26 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    },
    {
     "gapAfter": "lawrence"
-   },
-   {
-    "gapAfter": "nowhere"
    }
   ],
-  "rule": "Keep verb tense consistent: the narration is in the past, so \"go\" should be \"went\". Do not put a comma between a subject and its verb (Lawrence explained). Use a comma before \"but\" when it joins two full clauses, as in \"it led nowhere, but he added\".",
+  "rule": "The story is in the past tense, so \"go\" should be \"went\". No comma belongs between the subject \"Lawrence\" and its verb \"explained\".",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
-  }
- },
- {
-  "id": "forge-69087-2517-0",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "My chief puzzle were what the man charles Kent could have been doing at Fernly. Again and again I put the question to myself, and could get no satisfactory reply.",
-  "fixed": "My chief puzzle was what the man Charles Kent could have been doing at Fernly. Again and again I put the question to myself and could get no satisfactory reply.",
-  "errors": [
-   {
-    "word": "were"
-   },
-   {
-    "word": "charles"
-   },
-   {
-    "gapAfter": "myself"
-   }
-  ],
-  "rule": "The singular subject \"puzzle\" takes the singular verb \"was\". Names of people are capitalized (Charles). When one subject has two verbs (put ... and could get), no comma goes before \"and\".",
-  "source": {
-   "book": "The Murder of Roger Ackroyd",
-   "gutenberg": 69087
-  }
+  },
+  "optionalGaps": [
+   "first"
+  ]
  },
  {
   "id": "forge-75288-762-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "bundle narrates the events of the preceding day as briefly as possible. A look of fear and horror, came into Loraine's face.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Bundle narrates the events of the preceding day as briefly as possible. A look of fear and horror, came into Loraine's face.",
   "fixed": "Bundle narrated the events of the preceding day as briefly as possible. A look of fear and horror came into Loraine's face.",
   "errors": [
-   {
-    "word": "bundle"
-   },
    {
     "word": "narrates"
    },
@@ -18626,7 +17668,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "gapAfter": "horror"
    }
   ],
-  "rule": "Names and the first word of a sentence are capitalized (Bundle). The second sentence is in the past tense (came), so \"narrates\" should be \"narrated\". Do not separate the subject (A look of fear and horror) from its verb with a comma.",
+  "rule": "The story is in the past tense, so \"narrates\" should be \"narrated\" to match \"came\". No comma belongs between the subject \"A look of fear and horror\" and its verb \"came\".",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -18637,13 +17679,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The police car, unaware of the deviation continues to keep to the high road. At a short distance down the unfrequented lane, the Prime Minister’s car were suddenly held up by a band of masked men.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The police car, unaware of the deviation, continues to keep to the high road. At a short distance down the unfrequented lane, the Prime Minister’s car were suddenly held up by a band of masked men.",
   "fixed": "The police car, unaware of the deviation, continued to keep to the high road. At a short distance down the unfrequented lane, the Prime Minister’s car was suddenly held up by a band of masked men.",
   "errors": [
-   {
-    "gapAfter": "deviation"
-   },
    {
     "word": "continues"
    },
@@ -18651,7 +17690,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "were"
    }
   ],
-  "rule": "\"Unaware of the deviation\" is a removable interrupter, so it needs commas on both sides. The passage is in the past tense, so \"continues\" should be \"continued\". The singular subject \"car\" takes \"was\", not \"were\".",
+  "rule": "The story is in the past tense, so \"continues\" should be \"continued\". The singular subject \"car\" takes \"was\", not \"were\".",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
@@ -18662,21 +17701,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "virginia picked it up from the table, and gave it to him. She saw his face grow grave as he looks at it.",
-  "fixed": "Virginia picked it up from the table and gave it to him. She saw his face grow grave as he looked at it.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Virginia picked it up from the table, and gave it to him.",
+  "fixed": "Virginia picked it up from the table and gave it to him.",
   "errors": [
    {
-    "word": "virginia"
-   },
-   {
     "gapAfter": "table"
-   },
-   {
-    "word": "looks"
    }
   ],
-  "rule": "Names are capitalized (Virginia). \"Picked ... and gave\" is one subject with two verbs, so no comma goes before \"and\". Keep the tense consistent: \"saw\" is past, so \"looks\" should be \"looked\".",
+  "rule": "The verbs \"picked\" and \"gave\" share the subject \"Virginia\", so no comma belongs before \"and gave\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -18687,13 +17720,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "we passed through, and find ourselves in another chamber. At the very end of it was a table behind which four chairs were placed.",
-  "fixed": "We passed through and found ourselves in another chamber. At the very end of it was a table behind which four chairs were placed.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "We passed through, and find ourselves in another chamber.",
+  "fixed": "We passed through and found ourselves in another chamber.",
   "errors": [
-   {
-    "word": "we"
-   },
    {
     "gapAfter": "through"
    },
@@ -18701,35 +17731,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "find"
    }
   ],
-  "rule": "A sentence begins with a capital letter. \"Passed through and found\" is one subject with two verbs, so no comma separates them. Both verbs should be past tense, so \"find\" should be \"found\".",
+  "rule": "The verbs \"passed\" and \"found\" share the subject \"We\", so no comma belongs before \"and\". The story is in the past tense, so \"find\" should be \"found\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
-  }
- },
- {
-  "id": "forge-78084-873-0",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He made no answer and Elizabeth went on toward the Casino. Mr. satterthwaite sat on a seat in the sun, and was presently joined by Franklin Rudge.",
-  "fixed": "He made no answer, and Elizabeth went on toward the Casino. Mr. Satterthwaite sat on a seat in the sun and was presently joined by Franklin Rudge.",
-  "errors": [
-   {
-    "gapAfter": "answer"
-   },
-   {
-    "word": "satterthwaite"
-   },
-   {
-    "gapAfter": "sun"
-   }
-  ],
-  "rule": "Use a comma before \"and\" when it joins two full clauses (He made no answer, and Elizabeth went on). Names are capitalized. \"Sat ... and was joined\" shares one subject, so no comma goes before \"and\".",
-  "source": {
-   "book": "The Mysterious Mr. Quin",
-   "gutenberg": 78084
   }
  },
  {
@@ -18737,21 +17742,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Helped out by questions from Sir James he gave an abbreviated account of his adventures. The lawyer look at him with renewed interest as he brings the tale to a close.",
-  "fixed": "Helped out by questions from Sir James, he gave an abbreviated account of his adventures. The lawyer looked at him with renewed interest as he brought the tale to a close.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The lawyer look at him with renewed interest as he brought the tale to a close.",
+  "fixed": "The lawyer looked at him with renewed interest as he brought the tale to a close.",
   "errors": [
    {
-    "gapAfter": "james"
-   },
-   {
     "word": "look"
-   },
-   {
-    "word": "brings"
    }
   ],
-  "rule": "An introductory phrase (Helped out by questions from Sir James) is followed by a comma. The singular subject \"lawyer\" needs \"looked\". Keep the tense consistent: \"brings\" should be \"brought\".",
+  "rule": "The subject \"lawyer\" is singular and the story is in the past, so the verb is \"looked\", not \"look\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -18762,21 +17761,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I understand that there are another buyer in the market. I know what he have offered for the house and I will willingly give a hundred more.",
-  "fixed": "I understand that there is another buyer in the market. I know what he has offered for the house, and I will willingly give a hundred more.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I understand that there are another buyer in the market.",
+  "fixed": "I understand that there is another buyer in the market.",
   "errors": [
    {
     "word": "are"
-   },
-   {
-    "word": "have"
-   },
-   {
-    "gapAfter": "house"
    }
   ],
-  "rule": "\"Another buyer\" is singular, so the verb is \"is\". The subject \"he\" takes \"has\". Use a comma before \"and\" when it joins two full clauses (I know ... , and I will give ...).",
+  "rule": "The subject \"another buyer\" is singular, so the verb is \"is\", not \"are\".",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -18787,21 +17780,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "It were maddening not to be able to do anything. I strained again at my bonds but the knots holds.",
-  "fixed": "It was maddening not to be able to do anything. I strained again at my bonds, but the knots held.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I strained again at my bonds, but the knots holds.",
+  "fixed": "I strained again at my bonds, but the knots held.",
   "errors": [
-   {
-    "word": "were"
-   },
-   {
-    "gapAfter": "bonds"
-   },
    {
     "word": "holds"
    }
   ],
-  "rule": "The singular subject \"It\" takes \"was\". A comma goes before \"but\" when it joins two full clauses. The plural subject \"knots\" takes a plural verb in the past tense: \"held\".",
+  "rule": "The story is in the past tense, so \"holds\" should be \"held\" to match \"strained\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -18812,49 +17799,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "His opinion of Julius’s power of hustling were high. He feels instinctively, that the American would arrive in time.",
-  "fixed": "His opinion of Julius’s power of hustling was high. He felt instinctively that the American would arrive in time.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "His opinion of Julius’s power of hustling were high.",
+  "fixed": "His opinion of Julius’s power of hustling was high.",
   "errors": [
    {
     "word": "were"
-   },
-   {
-    "word": "feels"
-   },
-   {
-    "gapAfter": "instinctively"
    }
   ],
-  "rule": "The subject is the singular \"opinion\", not the nouns nearer the verb, so use \"was\". Keep the tense consistent: \"feels\" should be \"felt\". Do not put a comma between a verb and its that-clause.",
+  "rule": "The true subject is the singular \"opinion\", not the nouns closer to the verb, so the verb is \"was\", not \"were\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
-  }
- },
- {
-  "id": "forge-58866-924-0",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "But this she combats with a good deal of energy. In the end, however I prevails so far as to be allowed to accompany her to the outskirts of the town.",
-  "fixed": "But this she combated with a good deal of energy. In the end, however, I prevailed so far as to be allowed to accompany her to the outskirts of the town.",
-  "errors": [
-   {
-    "word": "combats"
-   },
-   {
-    "gapAfter": "however"
-   },
-   {
-    "word": "prevails"
-   }
-  ],
-  "rule": "Keep the tense consistent: \"combats\" should be \"combated\". \"However\" is a removable interrupter, so it needs commas on both sides. The subject \"I\" takes \"prevailed\", not \"prevails\".",
-  "source": {
-   "book": "The Murder on the Links",
-   "gutenberg": 58866
   }
  },
  {
@@ -18862,49 +17818,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He speaks with the passion and abandon of the real music lover. They discussed Yoaschbim and the young man were enthusiastic.",
-  "fixed": "He spoke with the passion and abandon of the real music lover. They discussed Yoaschbim, and the young man was enthusiastic.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "They discussed Yoaschbim, and the young man were enthusiastic.",
+  "fixed": "They discussed Yoaschbim, and the young man was enthusiastic.",
   "errors": [
-   {
-    "word": "speaks"
-   },
-   {
-    "gapAfter": "yoaschbim"
-   },
    {
     "word": "were"
    }
   ],
-  "rule": "The passage is in the past tense, so \"speaks\" should be \"spoke\". Use a comma before \"and\" when it joins two full clauses. The singular subject \"man\" takes \"was\".",
+  "rule": "The singular subject \"man\" takes \"was\", not \"were\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
-  }
- },
- {
-  "id": "forge-61168-861-1",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "A babel of ejaculations and questions break out. Something seems to attract Miss Beddingfeld’s attention and she turned in her chair.",
-  "fixed": "A babel of ejaculations and questions broke out. Something seemed to attract Miss Beddingfeld’s attention, and she turned in her chair.",
-  "errors": [
-   {
-    "word": "break"
-   },
-   {
-    "word": "seems"
-   },
-   {
-    "gapAfter": "attention"
-   }
-  ],
-  "rule": "The subject is the singular \"babel\", not \"questions\", so the verb is \"broke\". Keep the tense consistent: \"seems\" should be \"seemed\". Use a comma before \"and\" when it joins two full clauses.",
-  "source": {
-   "book": "The Man in the Brown Suit",
-   "gutenberg": 61168
   }
  },
  {
@@ -18912,49 +17837,21 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Something have come to my ears, that I feel may be important. I has such a horror of being mixed up with the police in any way.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Something have come to my ears that I feel may be important. I has such a horror of being mixed up with the police in any way.",
   "fixed": "Something has come to my ears that I feel may be important. I have such a horror of being mixed up with the police in any way.",
   "errors": [
    {
     "word": "have"
    },
    {
-    "gapAfter": "ears"
-   },
-   {
     "word": "has"
    }
   ],
-  "rule": "\"Something\" is singular and takes \"has\". The clause \"that I feel may be important\" is needed to identify what came to my ears, so no comma sets it off. The subject \"I\" takes \"have\".",
+  "rule": "The singular subject \"Something\" takes \"has\", not \"have\". The subject \"I\" takes \"have\", not \"has\".",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
-  }
- },
- {
-  "id": "forge-1155-2012-3",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "tommy deeply regrets that it was he who had entered first. It would have been pleasant, to get even with Conrad.",
-  "fixed": "Tommy deeply regretted that it was he who had entered first. It would have been pleasant to get even with Conrad.",
-  "errors": [
-   {
-    "word": "tommy"
-   },
-   {
-    "word": "regrets"
-   },
-   {
-    "gapAfter": "pleasant"
-   }
-  ],
-  "rule": "Names are capitalized (Tommy). Keep the tense consistent: \"regrets\" should be \"regretted\". Do not put a comma between \"pleasant\" and the infinitive phrase that completes it.",
-  "source": {
-   "book": "The Secret Adversary",
-   "gutenberg": 1155
   }
  },
  {
@@ -18962,13 +17859,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "As Bundle had seen the shelves was easily detachable. She takes them down, ranged them upright against the wall, and then stepped in.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "As Bundle had seen, the shelves was easily detachable. She takes them down, ranged them upright against the wall, and then stepped in.",
   "fixed": "As Bundle had seen, the shelves were easily detachable. She took them down, ranged them upright against the wall, and then stepped in.",
   "errors": [
-   {
-    "gapAfter": "seen"
-   },
    {
     "word": "was"
    },
@@ -18976,7 +17870,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "takes"
    }
   ],
-  "rule": "An introductory clause (As Bundle had seen) is followed by a comma. The plural subject \"shelves\" takes \"were\". Keep the tense consistent: \"takes\" should be \"took\".",
+  "rule": "The plural subject \"shelves\" takes \"were\", not \"was\". The story is in the past tense, so \"takes\" should be \"took\".",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -18987,8 +17881,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "It were as though she had been turned to stone by my words. She raised her head from her hands, and stares at me.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It were as though she had been turned to stone by my words. She raised her head from her hands, and stared at me.",
   "fixed": "It was as though she had been turned to stone by my words. She raised her head from her hands and stared at me.",
   "errors": [
    {
@@ -18996,12 +17890,9 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    },
    {
     "gapAfter": "hands"
-   },
-   {
-    "word": "stares"
    }
   ],
-  "rule": "The singular subject \"It\" takes \"was\". \"Raised ... and stared\" is one subject with two verbs, so no comma goes before \"and\". Both verbs should be past tense, so \"stares\" should be \"stared\".",
+  "rule": "The subject \"It\" is singular, so the verb is \"was\", not \"were\". The verbs \"raised\" and \"stared\" share the subject \"She\", so no comma belongs before \"and stared\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -19012,13 +17903,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "His father, as you know were one of South Africa’s most prominent men. We drift together at once, my friend and I.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "His father, as you know, were one of South Africa’s most prominent men. We drift together at once, my friend and I.",
   "fixed": "His father, as you know, was one of South Africa’s most prominent men. We drifted together at once, my friend and I.",
   "errors": [
-   {
-    "gapAfter": "know"
-   },
    {
     "word": "were"
    },
@@ -19026,7 +17914,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "drift"
    }
   ],
-  "rule": "\"As you know\" is a removable interrupter, so it needs commas on both sides. The singular subject \"father\" takes \"was\". Keep the tense consistent: \"drift\" should be \"drifted\".",
+  "rule": "The subject \"father\" is singular, so the verb is \"was\", not \"were\". The story is in the past tense, so \"drift\" should be \"drifted\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -19037,21 +17925,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The taking of the first-class ticket to Bournemouth have left him with only a few shillings in his pocket. It was to be hoped, that julius would arrive better provided.",
-  "fixed": "The taking of the first-class ticket to Bournemouth had left him with only a few shillings in his pocket. It was to be hoped that Julius would arrive better provided.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The taking of the first-class ticket to Bournemouth have left him with only a few shillings in his pocket.",
+  "fixed": "The taking of the first-class ticket to Bournemouth had left him with only a few shillings in his pocket.",
   "errors": [
    {
     "word": "have"
-   },
-   {
-    "gapAfter": "hoped"
-   },
-   {
-    "word": "julius"
    }
   ],
-  "rule": "The subject is the singular \"taking\", not \"Bournemouth\", so the verb is \"had\". Do not put a comma before the that-clause that completes \"hoped\". Names are capitalized (Julius).",
+  "rule": "The true subject is the singular \"taking\", not \"Bournemouth\", so the verb is \"had\", not \"have\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -19062,21 +17944,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He takes a torch from his pocket, and switched on the light for a brief second. That momentary flash enable him to see his way ahead.",
-  "fixed": "He took a torch from his pocket and switched on the light for a brief second. That momentary flash enabled him to see his way ahead.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He took a torch from his pocket, and switched on the light for a brief second.",
+  "fixed": "He took a torch from his pocket and switched on the light for a brief second.",
   "errors": [
    {
-    "word": "takes"
-   },
-   {
     "gapAfter": "pocket"
-   },
-   {
-    "word": "enable"
    }
   ],
-  "rule": "Keep the tense consistent: \"takes\" should be \"took\". \"Took ... and switched\" is one subject with two verbs, so no comma goes before \"and\". The singular subject \"flash\" needs \"enabled\".",
+  "rule": "The verbs \"took\" and \"switched\" share the subject \"He\", so no comma belongs before \"and switched\".",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -19087,88 +17963,32 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The russian remain for some minutes standing by the table, stroking his beard. Then he drew a watch from his pocket, and glanced at the time.",
-  "fixed": "The Russian remained for some minutes standing by the table, stroking his beard. Then he drew a watch from his pocket and glanced at the time.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The Russian remain for some minutes standing by the table, stroking his beard.",
+  "fixed": "The Russian remained for some minutes standing by the table, stroking his beard.",
   "errors": [
-   {
-    "word": "russian"
-   },
    {
     "word": "remain"
-   },
-   {
-    "gapAfter": "pocket"
    }
   ],
-  "rule": "Nationalities are capitalized (Russian). The singular subject needs \"remained\". \"Drew ... and glanced\" is one subject with two verbs, so no comma goes before \"and\".",
+  "rule": "The subject \"Russian\" is singular and the story is in the past, so the verb is \"remained\", not \"remain\".",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
-  }
- },
- {
-  "id": "forge-1155-1099-3",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I notice that there were a long branch running out from the tree in the right direction. If I could only swarm about half-way along it the proposition would be solved.",
-  "fixed": "I noticed that there was a long branch running out from the tree in the right direction. If I could only swarm about half-way along it, the proposition would be solved.",
-  "errors": [
-   {
-    "word": "notice"
-   },
-   {
-    "word": "were"
-   },
-   {
-    "gapAfter": "it"
-   }
-  ],
-  "rule": "Keep the tense consistent: \"notice\" should be \"noticed\". The singular \"a long branch\" takes \"was\". An introductory if-clause is followed by a comma.",
-  "source": {
-   "book": "The Secret Adversary",
-   "gutenberg": 1155
-  }
- },
- {
-  "id": "forge-75288-1960-0",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "It is true that Bundle, had once doubted the meekness of Loraine Wade but that brief moment of suspicion have passed. Loraine had seemed so entirely reasonable, so willing to be kept out of everything.",
-  "fixed": "It is true that Bundle had once doubted the meekness of Loraine Wade, but that brief moment of suspicion had passed. Loraine had seemed so entirely reasonable, so willing to be kept out of everything.",
-  "errors": [
-   {
-    "gapAfter": "bundle"
-   },
-   {
-    "gapAfter": "wade"
-   },
-   {
-    "word": "have"
-   }
-  ],
-  "rule": "Do not put a comma between a subject and its verb, and use a comma before \"but\" when it joins two complete clauses. The singular subject \"moment\" takes \"had\" (or \"has\"), not \"have\".",
-  "source": {
-   "book": "The Seven Dials Mystery",
-   "gutenberg": 75288
-  }
+  },
+  "optionalGaps": [
+   "minutes"
+  ]
  },
  {
   "id": "forge-78342-1008-1",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Tommy and Tuppence, making every possible inquiry that ingenuity could suggest nevertheless draws a complete blank. It was as they were returning to London, that a brilliant idea occurred to Tuppence.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Tommy and Tuppence, making every possible inquiry that ingenuity could suggest, nevertheless draws a complete blank. It was as they were returning to London, that a brilliant idea occurred to Tuppence.",
   "fixed": "Tommy and Tuppence, making every possible inquiry that ingenuity could suggest, nevertheless drew a complete blank. It was as they were returning to London that a brilliant idea occurred to Tuppence.",
   "errors": [
-   {
-    "gapAfter": "suggest"
-   },
    {
     "word": "draws"
    },
@@ -19176,7 +17996,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "gapAfter": "london"
    }
   ],
-  "rule": "A nonessential phrase needs commas on both sides, so \"making every possible inquiry that ingenuity could suggest\" must be closed off with a comma. Keep the past tense (\"drew\") to match \"occurred\" and \"were returning\", and do not put a comma before \"that\" in \"It was ... that\".",
+  "rule": "The story is in the past tense, so \"draws\" should be \"drew\". No comma belongs before \"that\" in \"returning to London that a brilliant idea occurred\".",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -19187,8 +18007,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "There were a sort of hideous geniality in the last words which Tuppence did not at all like. for the moment there was nothing to be done and she walked obediently into Mrs. Vandemeyer’s bedroom.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "There were a sort of hideous geniality in the last words which Tuppence did not at all like. for the moment there was nothing to be done, and she walked obediently into Mrs. Vandemeyer’s bedroom.",
   "fixed": "There was a sort of hideous geniality in the last words which Tuppence did not at all like. For the moment there was nothing to be done, and she walked obediently into Mrs. Vandemeyer’s bedroom.",
   "errors": [
    {
@@ -19196,37 +18016,34 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    },
    {
     "word": "for"
-   },
-   {
-    "gapAfter": "done"
    }
   ],
-  "rule": "The subject is the singular \"sort\", so the verb is \"was\". A sentence begins with a capital letter, and a comma goes before \"and\" when it joins two complete clauses (\"there was nothing to be done\" and \"she walked ...\").",
+  "rule": "The true subject is the singular \"sort\", so the verb is \"was\", not \"were\". A sentence starts with a capital letter, so \"for\" should be \"For\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
-  }
+  },
+  "optionalGaps": [
+   "moment"
+  ]
  },
  {
   "id": "forge-75288-1422-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Alfred departed, and returned presently with quite a creditable assortment of tools. bundle seizes what she wanted and proceeded swiftly and efficiently to bore a small hole at the level of her right eye.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Alfred departed, and returned presently with quite a creditable assortment of tools. Bundle seizes what she wanted and proceeded swiftly and efficiently to bore a small hole at the level of her right eye.",
   "fixed": "Alfred departed and returned presently with quite a creditable assortment of tools. Bundle seized what she wanted and proceeded swiftly and efficiently to bore a small hole at the level of her right eye.",
   "errors": [
    {
     "gapAfter": "departed"
    },
    {
-    "word": "bundle"
-   },
-   {
     "word": "seizes"
    }
   ],
-  "rule": "Do not put a comma between two verbs that share one subject (\"departed and returned\"). Names and sentence openers are capitalized, and the verbs should stay in the past tense (\"seized\", \"proceeded\").",
+  "rule": "The verbs \"departed\" and \"returned\" share the subject \"Alfred\", so no comma belongs before \"and returned\". The story is in the past tense, so \"seizes\" should be \"seized\".",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -19237,21 +18054,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "In a few minutes I heard a light step descending the stairs, and looked up to see a very handsome young woman coming towards me. She wears a flame-coloured jumper, that set off the slender boyishness of her figure.",
-  "fixed": "In a few minutes I heard a light step descending the stairs and looked up to see a very handsome young woman coming towards me. She wore a flame-coloured jumper that set off the slender boyishness of her figure.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "She wears a flame-coloured jumper that set off the slender boyishness of her figure.",
+  "fixed": "She wore a flame-coloured jumper that set off the slender boyishness of her figure.",
   "errors": [
    {
-    "gapAfter": "stairs"
-   },
-   {
     "word": "wears"
-   },
-   {
-    "gapAfter": "jumper"
    }
   ],
-  "rule": "Do not put a comma between two verbs that share one subject (\"heard ... and looked up\"). The clause \"that set off the slender boyishness of her figure\" is essential, so it takes no comma, and \"wears\" must be \"wore\" to match the past-tense narration.",
+  "rule": "The story is in the past (\"set off\"), so \"wears\" should be \"wore\".",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
@@ -19262,21 +18073,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "M. Bex pushed his way through these and we find ourselves on a wide stretch of open downs. I looked round, and saw something that filled me with astonishment.",
-  "fixed": "M. Bex pushed his way through these, and we found ourselves on a wide stretch of open downs. I looked round and saw something that filled me with astonishment.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I looked round, and saw something that filled me with astonishment.",
+  "fixed": "I looked round and saw something that filled me with astonishment.",
   "errors": [
-   {
-    "gapAfter": "these"
-   },
-   {
-    "word": "find"
-   },
    {
     "gapAfter": "round"
    }
   ],
-  "rule": "Use a comma before \"and\" when it joins two complete clauses (\"M. Bex pushed ...\" and \"we found ...\"), but not between two verbs with one subject (\"looked round and saw\"). The tense should stay past: \"found\", not \"find\".",
+  "rule": "The verbs \"looked\" and \"saw\" share the subject \"I\", so no comma belongs before \"and saw\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -19287,49 +18092,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The last thought remind him of a letter he had received that morning. He draws it from his pocket, and reread it, savoring its contents pleasurably.",
-  "fixed": "The last thought reminded him of a letter he had received that morning. He drew it from his pocket and reread it, savoring its contents pleasurably.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The last thought remind him of a letter he had received that morning.",
+  "fixed": "The last thought reminded him of a letter he had received that morning.",
   "errors": [
    {
     "word": "remind"
-   },
-   {
-    "word": "draws"
-   },
-   {
-    "gapAfter": "pocket"
    }
   ],
-  "rule": "The singular subject \"thought\" needs \"reminded\", not \"remind\". Keep the past tense (\"drew\" like \"reread\"), and do not put a comma between two verbs that share one subject (\"drew ... and reread\").",
+  "rule": "The subject \"thought\" is singular and the story is in the past, so the verb is \"reminded\", not \"remind\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
-  }
- },
- {
-  "id": "forge-75288-195-1",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He paused on his way, and took in the situation at a glance. He then makes a comment a simple and practical one.",
-  "fixed": "He paused on his way and took in the situation at a glance. He then made a comment, a simple and practical one.",
-  "errors": [
-   {
-    "gapAfter": "way"
-   },
-   {
-    "word": "makes"
-   },
-   {
-    "gapAfter": "comment"
-   }
-  ],
-  "rule": "Do not put a comma between two verbs that share one subject (\"paused ... and took\"). The phrase \"a simple and practical one\" renames \"a comment\" and needs a comma before it, and the tense stays past (\"made\").",
-  "source": {
-   "book": "The Seven Dials Mystery",
-   "gutenberg": 75288
   }
  },
  {
@@ -19337,21 +18111,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The others crowded round, and stared uncomprehendingly at the three articles he held. for a moment it seems as though their eyes must have deceived them.",
-  "fixed": "The others crowded round and stared uncomprehendingly at the three articles he held. For a moment it seemed as though their eyes must have deceived them.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The others crowded round, and stared uncomprehendingly at the three articles he held.",
+  "fixed": "The others crowded round and stared uncomprehendingly at the three articles he held.",
   "errors": [
    {
     "gapAfter": "round"
-   },
-   {
-    "word": "for"
-   },
-   {
-    "word": "seems"
    }
   ],
-  "rule": "Do not put a comma between two verbs that share one subject (\"crowded round and stared\"). Begin a sentence with a capital letter, and keep the verbs in the past tense (\"seemed\", to match \"held\").",
+  "rule": "The verbs \"crowded\" and \"stared\" share the subject \"The others\", so no comma belongs before \"and stared\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -19362,21 +18130,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "All goes well until they were just passing out through the doorway. A man entered rather hurriedly and before Tuppence could warn the blind Mr. Blunt he had barged right into the newcomer.",
-  "fixed": "All went well until they were just passing out through the doorway. A man entered rather hurriedly, and before Tuppence could warn the blind Mr. Blunt, he had barged right into the newcomer.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "All goes well until they were just passing out through the doorway.",
+  "fixed": "All went well until they were just passing out through the doorway.",
   "errors": [
    {
     "word": "goes"
-   },
-   {
-    "gapAfter": "hurriedly"
-   },
-   {
-    "gapAfter": "blunt"
    }
   ],
-  "rule": "Use a comma before \"and\" when it joins two complete clauses, and put a comma after an introductory clause like \"before Tuppence could warn the blind Mr. Blunt\". The tense stays past: \"went\", not \"goes\".",
+  "rule": "The story is in the past tense, so \"goes\" should be \"went\" to match \"were\".",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -19387,21 +18149,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Tommy swung it open, and gave a shout of satisfaction. The back of the safe opened out into a big recess in the wall and that recess were stacked with the same elegant tins of bath salts.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Tommy swung it open, and gave a shout of satisfaction. The back of the safe opened out into a big recess in the wall, and that recess were stacked with the same elegant tins of bath salts.",
   "fixed": "Tommy swung it open and gave a shout of satisfaction. The back of the safe opened out into a big recess in the wall, and that recess was stacked with the same elegant tins of bath salts.",
   "errors": [
    {
     "gapAfter": "open"
    },
    {
-    "gapAfter": "wall"
-   },
-   {
     "word": "were"
    }
   ],
-  "rule": "Do not put a comma between two verbs that share one subject (\"swung ... and gave\"), but do use one before \"and\" joining two complete clauses. The singular subject \"recess\" takes \"was\", not \"were\".",
+  "rule": "The verbs \"swung\" and \"gave\" share the subject \"Tommy\", so no comma belongs before \"and gave\". The singular subject \"recess\" takes \"was\", not \"were\".",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -19412,13 +18171,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Rather crestfallen Bundle, retraced her steps. She were half-way up the ivy when a sudden idea occurred to her, and she nearly relaxed her grip and fell.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Rather crestfallen, Bundle, retraced her steps. She were half-way up the ivy when a sudden idea occurred to her, and she nearly relaxed her grip and fell.",
   "fixed": "Rather crestfallen, Bundle retraced her steps. She was half-way up the ivy when a sudden idea occurred to her, and she nearly relaxed her grip and fell.",
   "errors": [
-   {
-    "gapAfter": "crestfallen"
-   },
    {
     "gapAfter": "bundle"
    },
@@ -19426,7 +18182,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "were"
    }
   ],
-  "rule": "An introductory phrase (\"Rather crestfallen\") is followed by a comma, and no comma separates a subject from its verb. The singular subject \"She\" takes \"was\", not \"were\".",
+  "rule": "No comma belongs between the subject \"Bundle\" and its verb \"retraced\". The subject \"She\" is singular, so the verb is \"was\", not \"were\".",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -19437,21 +18193,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Tuppence burst out laughing and Tommy look embarrassed. And then they suddenly becomes conscious of a fourth person.",
-  "fixed": "Tuppence burst out laughing, and Tommy looked embarrassed. And then they suddenly became conscious of a fourth person.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Tuppence burst out laughing, and Tommy look embarrassed.",
+  "fixed": "Tuppence burst out laughing, and Tommy looked embarrassed.",
   "errors": [
    {
-    "gapAfter": "laughing"
-   },
-   {
     "word": "look"
-   },
-   {
-    "word": "becomes"
    }
   ],
-  "rule": "Use a comma before \"and\" when it joins two complete clauses. The verbs must agree with their subjects and stay in the past tense: \"Tommy looked\" and \"they ... became\".",
+  "rule": "The subject \"Tommy\" is singular and the story is in the past, so the verb is \"looked\", not \"look\".",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -19462,21 +18212,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "This were the first he had heard of the letter. Loraine takes it from her bag, and handed it to him.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "This were the first he had heard of the letter. Loraine took it from her bag, and handed it to him.",
   "fixed": "This was the first he had heard of the letter. Loraine took it from her bag and handed it to him.",
   "errors": [
    {
     "word": "were"
    },
    {
-    "word": "takes"
-   },
-   {
     "gapAfter": "bag"
    }
   ],
-  "rule": "The singular subject \"This\" takes \"was\". Keep the past tense (\"took\" to match \"handed\"), and do not put a comma between two verbs that share one subject (\"took ... and handed\").",
+  "rule": "The singular subject \"This\" takes \"was\", not \"were\". The verbs \"took\" and \"handed\" share the subject \"Loraine\", so no comma belongs before \"and handed\".",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -19487,8 +18234,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He paid for his breakfast, and betook himself to Whitehall. There he sends up his name, and the message that it was urgent.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He paid for his breakfast, and betook himself to Whitehall. There he sends up his name and the message that it was urgent.",
   "fixed": "He paid for his breakfast and betook himself to Whitehall. There he sent up his name and the message that it was urgent.",
   "errors": [
    {
@@ -19496,37 +18243,31 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    },
    {
     "word": "sends"
-   },
-   {
-    "gapAfter": "name"
    }
   ],
-  "rule": "Do not put a comma before \"and\" when it joins only two verbs or two objects (\"paid ... and betook\", \"his name and the message\"). The tense stays past: \"sent\", to match \"paid\" and \"was\".",
+  "rule": "The verbs \"paid\" and \"betook\" share the subject \"He\", so no comma belongs before \"and betook\". The story is in the past tense, so \"sends\" should be \"sent\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
-  }
+  },
+  "optionalGaps": [
+   "there"
+  ]
  },
  {
   "id": "forge-1155-2053-2",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The second man tripped over his body, and fell. From higher up the staircase there were a flash and a bullet grazed Tommy’s ear.",
-  "fixed": "The second man tripped over his body and fell. From higher up the staircase there was a flash, and a bullet grazed Tommy’s ear.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The second man tripped over his body, and fell.",
+  "fixed": "The second man tripped over his body and fell.",
   "errors": [
    {
     "gapAfter": "body"
-   },
-   {
-    "word": "were"
-   },
-   {
-    "gapAfter": "flash"
    }
   ],
-  "rule": "Do not put a comma between two verbs that share one subject (\"tripped ... and fell\"). \"There was a flash\" needs the singular \"was\", and a comma goes before \"and\" when it joins two complete clauses.",
+  "rule": "The verbs \"tripped\" and \"fell\" share the subject \"The second man\", so no comma belongs before \"and fell\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -19537,21 +18278,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "His statement was that he had taken his gun, and gone out shooting in the woods. But when the police brought forward their evidence that statement breaks down.",
-  "fixed": "His statement was that he had taken his gun and gone out shooting in the woods. But when the police brought forward their evidence, that statement broke down.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "But when the police brought forward their evidence, that statement breaks down.",
+  "fixed": "But when the police brought forward their evidence, that statement broke down.",
   "errors": [
-   {
-    "gapAfter": "gun"
-   },
-   {
-    "gapAfter": "evidence"
-   },
    {
     "word": "breaks"
    }
   ],
-  "rule": "Do not put a comma between two verbs that share one subject (\"had taken ... and gone\"), and do put a comma after an introductory clause that begins with \"when\". The tense stays past: \"broke\".",
+  "rule": "The story is in the past tense, so \"breaks\" should be \"broke\" to match \"brought\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -19562,46 +18297,40 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "By some miracle or other I has not been killed. I was bruised and aching and very weak but I am alive.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "By some miracle or other I has not been killed. I was bruised and aching and very weak, but I am alive.",
   "fixed": "By some miracle or other I had not been killed. I was bruised and aching and very weak, but I was alive.",
   "errors": [
    {
     "word": "has"
    },
    {
-    "gapAfter": "weak"
-   },
-   {
     "word": "am"
    }
   ],
-  "rule": "The subject \"I\" takes \"had\" here, not \"has\". Use a comma before \"but\" when it joins two complete clauses, and keep the past tense (\"was alive\") to match the rest of the passage.",
+  "rule": "\"I\" does not take \"has\", and the next sentence is in the past (\"was bruised\"), so the verb is \"had\". The story is in the past tense, so \"am\" should be \"was\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
-  }
+  },
+  "optionalGaps": [
+   "other"
+  ]
  },
  {
   "id": "forge-78084-757-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "In Banff he finds his objective easily attained. louisa Bullard, was employed in the large hotel there.",
-  "fixed": "In Banff he found his objective easily attained. Louisa Bullard was employed in the large hotel there.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Louisa Bullard, was employed in the large hotel there.",
+  "fixed": "Louisa Bullard was employed in the large hotel there.",
   "errors": [
-   {
-    "word": "finds"
-   },
-   {
-    "word": "louisa"
-   },
    {
     "gapAfter": "bullard"
    }
   ],
-  "rule": "Keep the past tense (\"found\") to match \"was employed\". A person's name is capitalized, and no comma separates a subject (\"Louisa Bullard\") from its verb.",
+  "rule": "No comma belongs between the subject \"Louisa Bullard\" and its verb \"was employed\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -19612,8 +18341,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "King Victor, never stole the Crown jewels of Herzoslovakia as far as I’ve heard. But the whole thing seem rather suggestive doesn’t it?",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "King Victor, never stole the Crown jewels of Herzoslovakia as far as I’ve heard. But the whole thing seem rather suggestive, doesn’t it?",
   "fixed": "King Victor never stole the Crown jewels of Herzoslovakia as far as I’ve heard. But the whole thing seems rather suggestive, doesn’t it?",
   "errors": [
    {
@@ -19621,87 +18350,56 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    },
    {
     "word": "seem"
-   },
-   {
-    "gapAfter": "suggestive"
    }
   ],
-  "rule": "No comma separates a subject (\"King Victor\") from its verb. The singular subject \"thing\" takes \"seems\", and a tag question like \"doesn’t it\" is set off with a comma.",
+  "rule": "No comma belongs between the subject \"King Victor\" and its verb \"never stole\". The singular subject \"thing\" takes \"seems\", not \"seem\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
-  }
- },
- {
-  "id": "forge-75288-1273-0",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Uninterested in Lord Caterham's lunches Bundle had departed again before he had finished speaking. On the way back to London she tries to piece together things to her satisfaction.",
-  "fixed": "Uninterested in Lord Caterham's lunches, Bundle had departed again before he had finished speaking. On the way back to London, she tried to piece together things to her satisfaction.",
-  "errors": [
-   {
-    "gapAfter": "lunches"
-   },
-   {
-    "gapAfter": "london"
-   },
-   {
-    "word": "tries"
-   }
-  ],
-  "rule": "Put a comma after an introductory phrase (\"Uninterested in Lord Caterham's lunches\", \"On the way back to London\"). The tense stays past: \"tried\", to match \"had departed\".",
-  "source": {
-   "book": "The Seven Dials Mystery",
-   "gutenberg": 75288
-  }
+  },
+  "optionalGaps": [
+   "herzoslovakia"
+  ]
  },
  {
   "id": "forge-61168-1340-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "My arms and legs was helpless but surely I could still roll. Slowly and awkwardly, I sets myself in motion.",
-  "fixed": "My arms and legs were helpless, but surely I could still roll. Slowly and awkwardly, I set myself in motion.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "My arms and legs was helpless, but surely I could still roll.",
+  "fixed": "My arms and legs were helpless, but surely I could still roll.",
   "errors": [
    {
     "word": "was"
-   },
-   {
-    "gapAfter": "helpless"
-   },
-   {
-    "word": "sets"
    }
   ],
-  "rule": "The plural subject \"arms and legs\" takes \"were\". Use a comma before \"but\" when it joins two complete clauses, and keep the past tense (\"set\") in the second sentence.",
+  "rule": "The plural subject \"arms and legs\" takes \"were\", not \"was\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
-  }
+  },
+  "optionalGaps": [
+   "surely"
+  ]
  },
  {
   "id": "forge-78084-1050-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "So they went by boat and Mr. Satterthwaite endures ten hours of acute discomfort. To begin with, as the boat sailed at seven he took it for granted that there would be dinner on board.",
-  "fixed": "So they went by boat, and Mr. Satterthwaite endured ten hours of acute discomfort. To begin with, as the boat sailed at seven, he took it for granted that there would be dinner on board.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "So they went by boat and Mr. Satterthwaite endures ten hours of acute discomfort.",
+  "fixed": "So they went by boat, and Mr. Satterthwaite endured ten hours of acute discomfort.",
   "errors": [
    {
     "gapAfter": "boat"
    },
    {
     "word": "endures"
-   },
-   {
-    "gapAfter": "seven"
    }
   ],
-  "rule": "Use a comma before \"and\" when it joins two complete clauses, and put a comma after an introductory clause such as \"as the boat sailed at seven\". The tense stays past: \"endured\".",
+  "rule": "A comma goes before \"and\" when it joins two complete sentences, as in \"boat, and Mr. Satterthwaite\". The story is in the past tense, so \"endures\" should be \"endured\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -19712,21 +18410,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Katherine reflects for a moment but she decided that for Van Aldin to come to the Villa Marguerite would be both painful and unnecessary. lady Tamplin would have hailed his advent with far too much delight.",
-  "fixed": "Katherine reflected for a moment, but she decided that for Van Aldin to come to the Villa Marguerite would be both painful and unnecessary. Lady Tamplin would have hailed his advent with far too much delight.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Katherine reflects for a moment, but she decided that for Van Aldin to come to the Villa Marguerite would be both painful and unnecessary.",
+  "fixed": "Katherine reflected for a moment, but she decided that for Van Aldin to come to the Villa Marguerite would be both painful and unnecessary.",
   "errors": [
    {
     "word": "reflects"
-   },
-   {
-    "gapAfter": "moment"
-   },
-   {
-    "word": "lady"
    }
   ],
-  "rule": "Use a comma before \"but\" when it joins two complete clauses, and keep the tense consistent (\"reflected\" to match \"decided\"). A sentence begins with a capital letter, and so does a title attached to a name.",
+  "rule": "The story is in the past tense, so \"reflects\" should be \"reflected\" to match \"decided\".",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
@@ -19737,21 +18429,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I, think I told you that he are staying at the Métropole. I should suggest that we calls upon him there as soon as possible.",
-  "fixed": "I think I told you that he is staying at the Métropole. I should suggest that we call upon him there as soon as possible.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I, think I told you that he is staying at the Métropole.",
+  "fixed": "I think I told you that he is staying at the Métropole.",
   "errors": [
    {
     "gapAfter": "i"
-   },
-   {
-    "word": "are"
-   },
-   {
-    "word": "calls"
    }
   ],
-  "rule": "No comma separates a subject (\"I\") from its verb. The singular subject \"he\" takes \"is\", and the plural subject \"we\" takes \"call\".",
+  "rule": "No comma belongs between the subject \"I\" and its verb \"think\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -19762,49 +18448,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The 22nd was the day, Gerry Wade were found dead. This then, was a letter he must have been writing on the very evening of the tragedy.",
-  "fixed": "The 22nd was the day Gerry Wade was found dead. This, then, was a letter he must have been writing on the very evening of the tragedy.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The 22nd was the day Gerry Wade were found dead.",
+  "fixed": "The 22nd was the day Gerry Wade was found dead.",
   "errors": [
    {
-    "gapAfter": "day"
-   },
-   {
     "word": "were"
-   },
-   {
-    "gapAfter": "this"
    }
   ],
-  "rule": "Do not put a comma before the essential clause \"Gerry Wade was found dead\", and the singular subject \"Gerry Wade\" takes \"was\". The interrupter \"then\" is nonessential, so it needs commas on both sides.",
+  "rule": "The subject \"Gerry Wade\" is singular, so the verb is \"was\", not \"were\".",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
-  }
- },
- {
-  "id": "forge-78342-2945-2",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Without a word of warning they walk straight into Mrs. Van Snyder's bedroom. the lady was still lying on the bed but was now arrayed in a becoming negligee.",
-  "fixed": "Without a word of warning, they walked straight into Mrs. Van Snyder's bedroom. The lady was still lying on the bed but was now arrayed in a becoming negligee.",
-  "errors": [
-   {
-    "gapAfter": "warning"
-   },
-   {
-    "word": "walk"
-   },
-   {
-    "word": "the"
-   }
-  ],
-  "rule": "An introductory phrase needs a comma after it, a sentence must start with a capital letter, and verbs should stay in the same tense. Here the opening phrase needs a comma, the second sentence needs a capital, and the story is told in the past tense.",
-  "source": {
-   "book": "Partners in Crime",
-   "gutenberg": 78342
   }
  },
  {
@@ -19812,13 +18467,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Van Aldin gave himself into the hands of his valet. His bath was prepared and as he lay luxuriating in the hot water his mind goes back over the conversation with his daughter.",
-  "fixed": "Van Aldin gave himself into the hands of his valet. His bath was prepared, and as he lay luxuriating in the hot water, his mind went back over the conversation with his daughter.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "His bath was prepared, and as he lay luxuriating in the hot water his mind goes back over the conversation with his daughter.",
+  "fixed": "His bath was prepared, and as he lay luxuriating in the hot water, his mind went back over the conversation with his daughter.",
   "errors": [
-   {
-    "gapAfter": "prepared"
-   },
    {
     "gapAfter": "water"
    },
@@ -19826,7 +18478,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "goes"
    }
   ],
-  "rule": "Use a comma before 'and' when it joins two full clauses, and a comma after an introductory clause such as 'as he lay luxuriating in the hot water'. Keep the tense consistent: the rest of the passage is past tense, so 'goes' should be 'went'.",
+  "rule": "A long introductory clause like \"as he lay luxuriating in the hot water\" is followed by a comma before \"his mind\". The story is in the past tense, so \"goes\" should be \"went\".",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
@@ -19837,46 +18489,37 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Jumping out, he scaled the wall easily enough, and set out towards the house. It took him longer than he thought and presently he breaks into a run.",
-  "fixed": "Jumping out, he scaled the wall easily enough and set out towards the house. It took him longer than he thought, and presently he broke into a run.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It took him longer than he thought, and presently he breaks into a run.",
+  "fixed": "It took him longer than he thought, and presently he broke into a run.",
   "errors": [
-   {
-    "gapAfter": "enough"
-   },
-   {
-    "gapAfter": "thought"
-   },
    {
     "word": "breaks"
    }
   ],
-  "rule": "Do not put a comma before 'and' when it only joins two verbs sharing one subject ('scaled ... and set out'). Do put a comma before 'and' when it joins two full clauses ('It took him longer ..., and presently he ...'). Also keep the past tense: 'breaks' should be 'broke'.",
+  "rule": "The story is in the past tense, so \"breaks\" should be \"broke\" to match \"took\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
-  }
+  },
+  "optionalGaps": [
+   "presently"
+  ]
  },
  {
   "id": "forge-1155-1932-1",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Tommy, dropped off the bed and comes and inspected the contents of the tray. It consist of a loaf, some margarine, and a jug of coffee.",
-  "fixed": "Tommy dropped off the bed and came and inspected the contents of the tray. It consisted of a loaf, some margarine, and a jug of coffee.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It consist of a loaf, some margarine, and a jug of coffee.",
+  "fixed": "It consisted of a loaf, some margarine, and a jug of coffee.",
   "errors": [
-   {
-    "gapAfter": "tommy"
-   },
-   {
-    "word": "comes"
-   },
    {
     "word": "consist"
    }
   ],
-  "rule": "Never separate a subject from its verb with a comma, so 'Tommy, dropped' is wrong. The singular subject 'It' needs the singular verb 'consisted', and 'comes' must be past tense 'came' to match 'dropped' and 'inspected'.",
+  "rule": "The subject \"It\" is singular and the story is in the past, so the verb is \"consisted\", not \"consist\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -19887,21 +18530,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "just before she rounded the last hedge she hears the shots. She came round the corner, saw the pistol lying at her feet, and picked it up.",
-  "fixed": "Just before she rounded the last hedge, she heard the shots. She came round the corner, saw the pistol lying at her feet, and picked it up.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Just before she rounded the last hedge, she hears the shots.",
+  "fixed": "Just before she rounded the last hedge, she heard the shots.",
   "errors": [
-   {
-    "word": "just"
-   },
-   {
-    "gapAfter": "hedge"
-   },
    {
     "word": "hears"
    }
   ],
-  "rule": "A sentence begins with a capital letter, an introductory clause ('Just before she rounded the last hedge') is followed by a comma, and the tense must match the rest of the passage. 'hears' should be past tense 'heard'.",
+  "rule": "The story is in the past tense, so \"hears\" should be \"heard\" to match \"rounded\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -19912,49 +18549,21 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Tuppence, gave herself over to new meditations. Whilst admitting the truth of Julius’s objections she had nevertheless not entirely relinquished the idea of appealing to Sir James Peel edgerton.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Tuppence, gave herself over to new meditations. Whilst admitting the truth of Julius’s objections, she had nevertheless not entirely relinquished the idea of appealing to Sir James Peel edgerton.",
   "fixed": "Tuppence gave herself over to new meditations. Whilst admitting the truth of Julius’s objections, she had nevertheless not entirely relinquished the idea of appealing to Sir James Peel Edgerton.",
   "errors": [
    {
     "gapAfter": "tuppence"
    },
    {
-    "gapAfter": "objections"
-   },
-   {
     "word": "edgerton"
    }
   ],
-  "rule": "No comma belongs between a subject and its verb ('Tuppence, gave'). An introductory phrase ('Whilst admitting ... objections') needs a comma after it. A person's name, such as Edgerton, is capitalized.",
+  "rule": "No comma belongs between the subject \"Tuppence\" and its verb \"gave\". A person's name is capitalized, so \"edgerton\" should be \"Edgerton\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
-  }
- },
- {
-  "id": "forge-78084-1847-1",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "With a murmured word of excuse Mr. Satterthwaite takes up the receiver. A voice spoke to him, a small, cold voice that sound very far away.",
-  "fixed": "With a murmured word of excuse, Mr. Satterthwaite took up the receiver. A voice spoke to him, a small, cold voice that sounded very far away.",
-  "errors": [
-   {
-    "gapAfter": "excuse"
-   },
-   {
-    "word": "takes"
-   },
-   {
-    "word": "sound"
-   }
-  ],
-  "rule": "A long introductory phrase needs a comma after it. The verb in a clause must agree with its subject: 'voice that sound' should be 'voice that sounded'. The tense should also stay in the past, so 'takes' should be 'took'.",
-  "source": {
-   "book": "The Mysterious Mr. Quin",
-   "gutenberg": 78084
   }
  },
  {
@@ -19962,46 +18571,43 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Mr. Satterthwaite, stood for a minute looking down on the heap of huddled chiffon. he notices that it was ruched and pleated like the plumage of a bird.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Mr. Satterthwaite, stood for a minute looking down on the heap of huddled chiffon. He notices that it was ruched and pleated like the plumage of a bird.",
   "fixed": "Mr. Satterthwaite stood for a minute looking down on the heap of huddled chiffon. He noticed that it was ruched and pleated like the plumage of a bird.",
   "errors": [
    {
     "gapAfter": "satterthwaite"
    },
    {
-    "word": "he"
-   },
-   {
     "word": "notices"
    }
   ],
-  "rule": "Do not separate a subject from its verb with a comma. A new sentence begins with a capital letter. The passage is in the past tense, so 'notices' should be 'noticed'.",
+  "rule": "No comma belongs between the subject \"Mr. Satterthwaite\" and its verb \"stood\". The story is in the past tense, so \"notices\" should be \"noticed\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
-  }
+  },
+  "optionalGaps": [
+   "minute"
+  ]
  },
  {
   "id": "forge-78084-2631-2",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Anna Denman, crossed to the telephone and asks for a number. she arrested Mr. Satterthwaite with a gesture as he was about to follow the example of the other two men.",
-  "fixed": "Anna Denman crossed to the telephone and asked for a number. She arrested Mr. Satterthwaite with a gesture as he was about to follow the example of the other two men.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Anna Denman, crossed to the telephone and asks for a number.",
+  "fixed": "Anna Denman crossed to the telephone and asked for a number.",
   "errors": [
    {
     "gapAfter": "denman"
    },
    {
     "word": "asks"
-   },
-   {
-    "word": "she"
    }
   ],
-  "rule": "A comma should not come between a subject and its verb ('Denman, crossed'). The verb 'asks' should be past tense 'asked' to match 'crossed'. A sentence starts with a capital letter.",
+  "rule": "No comma belongs between the subject \"Anna Denman\" and its verb \"crossed\". The story is in the past tense, so \"asks\" should be \"asked\" to match \"crossed\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -20012,21 +18618,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "It was very rusty, and had clearly not been used for some time. By gently wriggling it to and fro tommy managed to draw it back without making too much noise.",
-  "fixed": "It was very rusty and had clearly not been used for some time. By gently wriggling it to and fro, Tommy managed to draw it back without making too much noise.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It was very rusty, and had clearly not been used for some time.",
+  "fixed": "It was very rusty and had clearly not been used for some time.",
   "errors": [
    {
     "gapAfter": "rusty"
-   },
-   {
-    "gapAfter": "fro"
-   },
-   {
-    "word": "tommy"
    }
   ],
-  "rule": "Do not use a comma before 'and' when it only joins two verbs sharing the same subject ('was ... and had'). An introductory phrase such as 'By gently wriggling it to and fro' needs a comma after it. A name like Tommy is capitalized.",
+  "rule": "The two verbs \"was\" and \"had clearly not been used\" share the subject \"It\", so no comma belongs before \"and had\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -20037,21 +18637,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "tommy stopped Conrad’s rush with a straight blow with his fist. It catches the other on the point of the jaw and he fell like a log.",
-  "fixed": "Tommy stopped Conrad’s rush with a straight blow with his fist. It caught the other on the point of the jaw, and he fell like a log.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It catches the other on the point of the jaw, and he fell like a log.",
+  "fixed": "It caught the other on the point of the jaw, and he fell like a log.",
   "errors": [
    {
-    "word": "tommy"
-   },
-   {
     "word": "catches"
-   },
-   {
-    "gapAfter": "jaw"
    }
   ],
-  "rule": "A name and the first word of a sentence are capitalized. A comma goes before 'and' when it joins two full clauses ('It caught ... , and he fell ...'). The tense should stay in the past, so 'catches' should be 'caught'.",
+  "rule": "The story is in the past tense, so \"catches\" should be \"caught\" to match \"fell\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -20062,21 +18656,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "A momentary surprise, invades Mr. Satterthwaite's mind. He had not judged Mrs. Graham to be a woman who smoke so early in the day.",
-  "fixed": "A momentary surprise invaded Mr. Satterthwaite's mind. He had not judged Mrs. Graham to be a woman who smoked so early in the day.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "A momentary surprise, invaded Mr. Satterthwaite's mind.",
+  "fixed": "A momentary surprise invaded Mr. Satterthwaite's mind.",
   "errors": [
    {
     "gapAfter": "surprise"
-   },
-   {
-    "word": "invades"
-   },
-   {
-    "word": "smoke"
    }
   ],
-  "rule": "No comma belongs between a subject and its verb. The verb must match its tense: 'invades' should be 'invaded'. A verb must also agree with its subject: 'a woman who smoke' should be 'a woman who smoked'.",
+  "rule": "No comma belongs between the subject \"A momentary surprise\" and its verb \"invaded\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -20087,21 +18675,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "They were now at the corner of carlton House Terrace and their spirits lightens. Suddenly a large and apparently intoxicated man barred their way.",
-  "fixed": "They were now at the corner of Carlton House Terrace, and their spirits lightened. Suddenly a large and apparently intoxicated man barred their way.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "They were now at the corner of carlton House Terrace, and their spirits lightens.",
+  "fixed": "They were now at the corner of Carlton House Terrace, and their spirits lightened.",
   "errors": [
    {
     "word": "carlton"
    },
    {
-    "gapAfter": "terrace"
-   },
-   {
     "word": "lightens"
    }
   ],
-  "rule": "Place names such as Carlton House Terrace are capitalized. A comma goes before 'and' when it joins two full clauses. The plural subject 'spirits' needs a past-tense verb that matches 'were', so 'lightens' should be 'lightened'.",
+  "rule": "A place name is capitalized, so \"carlton\" should be \"Carlton\". The story is in the past tense, so \"lightens\" should be \"lightened\" to match \"were\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -20112,58 +18697,30 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "They’ll take care to get him out of the way at the right minute. Then julius Hersheimmer, dash up and rescues you in true melodramatic style.",
-  "fixed": "They’ll take care to get him out of the way at the right minute. Then Julius Hersheimmer dashes up and rescues you in true melodramatic style.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Then Julius Hersheimmer dash up and rescues you in true melodramatic style.",
+  "fixed": "Then Julius Hersheimmer dashes up and rescues you in true melodramatic style.",
   "errors": [
-   {
-    "word": "julius"
-   },
-   {
-    "gapAfter": "hersheimmer"
-   },
    {
     "word": "dash"
    }
   ],
-  "rule": "A person's name is capitalized, no comma separates a subject from its verb, and the verb must agree with its singular subject. 'Julius Hersheimmer dashes' is correct, not 'dash'.",
+  "rule": "The singular subject \"Julius Hersheimmer\" takes \"dashes\", not \"dash\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
-  }
- },
- {
-  "id": "forge-61168-2093-0",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I refolded the telegram, and gets rid of my Governmental friend. I don’t like the prospect of being hungry but I’m not alarmed for my personal safety.",
-  "fixed": "I refolded the telegram and got rid of my Governmental friend. I don’t like the prospect of being hungry, but I’m not alarmed for my personal safety.",
-  "errors": [
-   {
-    "gapAfter": "telegram"
-   },
-   {
-    "word": "gets"
-   },
-   {
-    "gapAfter": "hungry"
-   }
-  ],
-  "rule": "Do not put a comma before 'and' when it joins two verbs with the same subject ('refolded ... and got'). Do use a comma before 'but' when it joins two full clauses. The verb 'gets' should be past tense 'got'.",
-  "source": {
-   "book": "The Man in the Brown Suit",
-   "gutenberg": 61168
-  }
+  },
+  "optionalGaps": [
+   "then"
+  ]
  },
  {
   "id": "forge-78342-647-1",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Tommy found Inspector dymchurch quite an entertaining companion. Most of his official work has lain amongst international spies and he had tales to tell which astonished his simple listener.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Tommy found Inspector dymchurch quite an entertaining companion. Most of his official work has lain amongst international spies, and he had tales to tell which astonished his simple listener.",
   "fixed": "Tommy found Inspector Dymchurch quite an entertaining companion. Most of his official work had lain amongst international spies, and he had tales to tell which astonished his simple listener.",
   "errors": [
    {
@@ -20171,40 +18728,12 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    },
    {
     "word": "has"
-   },
-   {
-    "gapAfter": "spies"
    }
   ],
-  "rule": "A surname is capitalized, a comma goes before 'and' when it joins two full clauses, and the verb tense must stay consistent. 'has lain' should be 'had lain' to match 'had tales'.",
+  "rule": "A name is capitalized, so \"dymchurch\" should be \"Dymchurch\". The story is in the past tense, so \"has lain\" should be \"had lain\".",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
-  }
- },
- {
-  "id": "forge-61168-2442-0",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "To my utter amazement I draw out a small pearl-handled revolver. It hadn’t been there when I started from kimberley.",
-  "fixed": "To my utter amazement, I drew out a small pearl-handled revolver. It hadn’t been there when I started from Kimberley.",
-  "errors": [
-   {
-    "gapAfter": "amazement"
-   },
-   {
-    "word": "draw"
-   },
-   {
-    "word": "kimberley"
-   }
-  ],
-  "rule": "An introductory phrase needs a comma after it, place names are capitalized, and the tense must stay in the past. 'draw' should be 'drew'.",
-  "source": {
-   "book": "The Man in the Brown Suit",
-   "gutenberg": 61168
   }
  },
  {
@@ -20212,21 +18741,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He called the waitress, and asked for his bill. tommy does likewise and a few moments later was following the two men down the stairs.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He called the waitress, and asked for his bill. Tommy does likewise and a few moments later was following the two men down the stairs.",
   "fixed": "He called the waitress and asked for his bill. Tommy did likewise and a few moments later was following the two men down the stairs.",
   "errors": [
    {
     "gapAfter": "waitress"
    },
    {
-    "word": "tommy"
-   },
-   {
     "word": "does"
    }
   ],
-  "rule": "Do not put a comma before 'and' when it only joins two verbs with the same subject ('called ... and asked'). A name is capitalized, and the tense must match the past-tense passage, so 'does' should be 'did'.",
+  "rule": "The verbs \"called\" and \"asked\" share the subject \"He\", so no comma belongs before \"and asked\". The story is in the past tense, so \"does\" should be \"did\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -20237,21 +18763,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Thinking it over now I believe I did the little man an injustice. He was honestly in love with me but a mistaken delicacy prevent him from pressing his suit on those lines.",
-  "fixed": "Thinking it over now, I believe I did the little man an injustice. He was honestly in love with me, but a mistaken delicacy prevented him from pressing his suit on those lines.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He was honestly in love with me, but a mistaken delicacy prevent him from pressing his suit on those lines.",
+  "fixed": "He was honestly in love with me, but a mistaken delicacy prevented him from pressing his suit on those lines.",
   "errors": [
-   {
-    "gapAfter": "now"
-   },
-   {
-    "gapAfter": "me"
-   },
    {
     "word": "prevent"
    }
   ],
-  "rule": "An introductory phrase needs a comma after it, and a comma goes before 'but' when it joins two full clauses. The singular subject 'delicacy' needs a matching verb in the past tense, 'prevented'.",
+  "rule": "The singular subject \"delicacy\" in a past tense sentence takes \"prevented\", not \"prevent\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -20262,21 +18782,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "His voice were deep and rich, and had a certain compelling quality about it. It has stood him in good stead at board meetings in his younger days.",
-  "fixed": "His voice was deep and rich and had a certain compelling quality about it. It had stood him in good stead at board meetings in his younger days.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "His voice were deep and rich and had a certain compelling quality about it.",
+  "fixed": "His voice was deep and rich and had a certain compelling quality about it.",
   "errors": [
    {
     "word": "were"
-   },
-   {
-    "gapAfter": "rich"
-   },
-   {
-    "word": "has"
    }
   ],
-  "rule": "The singular subject 'voice' needs 'was', not 'were'. Do not put a comma before 'and' when it joins two verbs with the same subject ('was ... and had'). 'has stood' should be 'had stood' to match the past-tense passage.",
+  "rule": "The singular subject \"voice\" takes \"was\", not \"were\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -20287,21 +18801,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "This perfectly simple question, seemed to upset Lord caterham. He opened his mouth once or twice, and then shut it again.",
-  "fixed": "This perfectly simple question seemed to upset Lord Caterham. He opened his mouth once or twice and then shut it again.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "This perfectly simple question, seemed to upset Lord Caterham.",
+  "fixed": "This perfectly simple question seemed to upset Lord Caterham.",
   "errors": [
    {
     "gapAfter": "question"
-   },
-   {
-    "word": "caterham"
-   },
-   {
-    "gapAfter": "twice"
    }
   ],
-  "rule": "No comma belongs between a subject and its verb. A name is capitalized. Do not put a comma before 'and' when it joins two verbs with the same subject ('opened ... and then shut').",
+  "rule": "No comma belongs between the subject \"This perfectly simple question\" and its verb \"seemed\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -20312,21 +18820,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He were listening to what Major porter and Mr. Satterthwaite had to say. Mr. Unkerton sits heavily in a chair, staring with protruding eyes at the opposite wall.",
-  "fixed": "He was listening to what Major Porter and Mr. Satterthwaite had to say. Mr. Unkerton sat heavily in a chair, staring with protruding eyes at the opposite wall.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He were listening to what Major Porter and Mr. Satterthwaite had to say.",
+  "fixed": "He was listening to what Major Porter and Mr. Satterthwaite had to say.",
   "errors": [
    {
     "word": "were"
-   },
-   {
-    "word": "porter"
-   },
-   {
-    "word": "sits"
    }
   ],
-  "rule": "The subject 'He' needs 'was', not 'were'. Names are capitalized, so Porter needs a capital letter. The tense must stay in the past, so 'sits' should be 'sat'.",
+  "rule": "The subject \"He\" is singular, so the verb is \"was\", not \"were\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -20337,21 +18839,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "They simply dare not appear upset in any way. For the next ten minutes they is careful to provide themselves with what is called an alibi I believe.",
-  "fixed": "They simply dare not appear upset in any way. For the next ten minutes, they are careful to provide themselves with what is called an alibi, I believe.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "For the next ten minutes, they is careful to provide themselves with what is called an alibi, I believe.",
+  "fixed": "For the next ten minutes, they are careful to provide themselves with what is called an alibi, I believe.",
   "errors": [
    {
-    "gapAfter": "minutes"
-   },
-   {
     "word": "is"
-   },
-   {
-    "gapAfter": "alibi"
    }
   ],
-  "rule": "An introductory phrase needs a comma after it, the plural subject 'they' needs 'are', and the interrupting phrase 'I believe' is set off with a comma.",
+  "rule": "The plural subject \"they\" takes \"are\", not \"is\".",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
@@ -20362,8 +18858,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "south African trains don’t hoot or get excited when they are going to start off again. They just glides quietly away and you look up from your bargaining and run for your life.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "south African trains don’t hoot or get excited when they are going to start off again. They just glides quietly away, and you look up from your bargaining and run for your life.",
   "fixed": "South African trains don’t hoot or get excited when they are going to start off again. They just glide quietly away, and you look up from your bargaining and run for your life.",
   "errors": [
    {
@@ -20371,12 +18867,9 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    },
    {
     "word": "glides"
-   },
-   {
-    "gapAfter": "away"
    }
   ],
-  "rule": "A sentence starts with a capital letter, the plural subject 'They' needs 'glide', and a comma goes before 'and' when it joins two full clauses ('They just glide quietly away, and you look up ...').",
+  "rule": "A sentence starts with a capital letter, so \"south\" should be \"South\". The plural subject \"They\" takes \"glide\", not \"glides\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -20387,21 +18880,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I comes now to the events of the 16th and 17th of that month. for the convenience of the reader I will recapitulate the incidents of those days in as exact a manner as possible.",
-  "fixed": "I come now to the events of the 16th and 17th of that month. For the convenience of the reader, I will recapitulate the incidents of those days in as exact a manner as possible.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I comes now to the events of the 16th and 17th of that month.",
+  "fixed": "I come now to the events of the 16th and 17th of that month.",
   "errors": [
    {
     "word": "comes"
-   },
-   {
-    "word": "for"
-   },
-   {
-    "gapAfter": "reader"
    }
   ],
-  "rule": "The subject 'I' takes 'come', not 'comes'. A new sentence starts with a capital letter, and a long introductory phrase ('For the convenience of the reader') needs a comma after it.",
+  "rule": "The subject \"I\" takes \"come\", not \"comes\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
@@ -20412,49 +18899,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Mr. Satterthwaite, did not reply for a minute or two. his mind has gone back with a rush to his unsolved problem.",
-  "fixed": "Mr. Satterthwaite did not reply for a minute or two. His mind had gone back with a rush to his unsolved problem.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Mr. Satterthwaite, did not reply for a minute or two.",
+  "fixed": "Mr. Satterthwaite did not reply for a minute or two.",
   "errors": [
    {
     "gapAfter": "satterthwaite"
-   },
-   {
-    "word": "his"
-   },
-   {
-    "word": "has"
    }
   ],
-  "rule": "No comma separates a subject from its verb, a sentence starts with a capital letter, and the tense must stay in the past. 'has gone' should be 'had gone'.",
+  "rule": "No comma belongs between the subject \"Mr. Satterthwaite\" and its verb \"did not reply\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
-  }
- },
- {
-  "id": "forge-1155-1091-1",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "whittington takes a cab and gave the name of an hotel. I did likewise and we drove up within three minutes of each other.",
-  "fixed": "Whittington took a cab and gave the name of an hotel. I did likewise, and we drove up within three minutes of each other.",
-  "errors": [
-   {
-    "word": "whittington"
-   },
-   {
-    "word": "takes"
-   },
-   {
-    "gapAfter": "likewise"
-   }
-  ],
-  "rule": "A name is capitalized, the tense must stay in the past ('takes' should be 'took'), and a comma goes before 'and' when it joins two full clauses ('I did likewise, and we drove up ...').",
-  "source": {
-   "book": "The Secret Adversary",
-   "gutenberg": 1155
   }
  },
  {
@@ -20462,21 +18918,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "It occurred to me that there were an easy way of verifying whether some of my conclusions were correct. I ask Mr. flemming whether there had been a camera amongst the dead man’s belongings.",
-  "fixed": "It occurred to me that there was an easy way of verifying whether some of my conclusions were correct. I asked Mr. Flemming whether there had been a camera amongst the dead man’s belongings.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It occurred to me that there were an easy way of verifying whether some of my conclusions were correct.",
+  "fixed": "It occurred to me that there was an easy way of verifying whether some of my conclusions were correct.",
   "errors": [
    {
     "word": "were"
-   },
-   {
-    "word": "ask"
-   },
-   {
-    "word": "flemming"
    }
   ],
-  "rule": "The singular subject 'way' needs 'was', not 'were'. The tense must stay in the past ('ask' should be 'asked'), and a name such as Flemming is capitalized.",
+  "rule": "The singular subject \"way\" takes \"was\", not \"were\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -20487,21 +18937,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Very few country houses, he reflected were really properly heated. It cheers him to think, that in a few hours' time he would be speeding toward London.",
-  "fixed": "Very few country houses, he reflected, were really properly heated. It cheered him to think that in a few hours' time he would be speeding toward London.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It cheers him to think that in a few hours' time he would be speeding toward London.",
+  "fixed": "It cheered him to think that in a few hours' time he would be speeding toward London.",
   "errors": [
    {
-    "gapAfter": "reflected"
-   },
-   {
     "word": "cheers"
-   },
-   {
-    "gapAfter": "think"
    }
   ],
-  "rule": "A nonessential interrupter like \"he reflected\" needs commas on both sides, and no comma belongs before a \"that\" clause that completes the verb. The verb tense should also stay in the past, so \"cheered\" is correct.",
+  "rule": "The story is in the past tense (\"would be speeding\"), so \"cheers\" should be \"cheered\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -20512,21 +18956,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The car, drew up at our destination and brings the conversation to a close. we got out and began the slow ascent to the World’s View.",
-  "fixed": "The car drew up at our destination and brought the conversation to a close. We got out and began the slow ascent to the World’s View.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The car, drew up at our destination and brought the conversation to a close.",
+  "fixed": "The car drew up at our destination and brought the conversation to a close.",
   "errors": [
    {
     "gapAfter": "car"
-   },
-   {
-    "word": "brings"
-   },
-   {
-    "word": "we"
    }
   ],
-  "rule": "Never put a comma between a subject and its verb, so \"The car drew\" has no comma. Keep the tense consistent (drew, brought) and capitalize the first word of a sentence.",
+  "rule": "No comma belongs between the subject \"The car\" and its verb \"drew up\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -20537,13 +18975,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "In the brief glimpse I had had of him I had realized that he was a physical coward. no sooner were we face to face than I recognize that he was afraid of me.",
-  "fixed": "In the brief glimpse I had had of him, I had realized that he was a physical coward. No sooner were we face to face than I recognized that he was afraid of me.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "no sooner were we face to face than I recognize that he was afraid of me.",
+  "fixed": "No sooner were we face to face than I recognized that he was afraid of me.",
   "errors": [
-   {
-    "gapAfter": "him"
-   },
    {
     "word": "no"
    },
@@ -20551,7 +18986,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "recognize"
    }
   ],
-  "rule": "A long introductory phrase is followed by a comma, so one belongs after \"of him\". Capitalize the start of a sentence, and keep the past tense (\"recognized\") to match \"was afraid\".",
+  "rule": "A sentence starts with a capital letter, so \"no\" should be \"No\". The story is in the past tense, so \"recognize\" should be \"recognized\" to match \"was afraid\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -20562,46 +18997,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I observed with pleasure that inspector Meadow’s pen wavered. It was clear, that he does not know how to spell brachycephalic.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I observed with pleasure that inspector Meadow’s pen wavered. It was clear that he does not know how to spell brachycephalic.",
   "fixed": "I observed with pleasure that Inspector Meadow’s pen wavered. It was clear that he did not know how to spell brachycephalic.",
   "errors": [
    {
     "word": "inspector"
    },
    {
-    "gapAfter": "clear"
-   },
-   {
     "word": "does"
    }
   ],
-  "rule": "A title attached to a name (Inspector Meadow) is capitalized. No comma separates \"It was clear\" from the \"that\" clause that completes it, and the tense stays past (\"did not know\").",
-  "source": {
-   "book": "The Man in the Brown Suit",
-   "gutenberg": 61168
-  }
- },
- {
-  "id": "forge-61168-1920-1",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He goes straight to an hotel, and did not go out until the following day. He leaves the hotel shortly before one o’clock.",
-  "fixed": "He went straight to an hotel and did not go out until the following day. He left the hotel shortly before one o’clock.",
-  "errors": [
-   {
-    "word": "goes"
-   },
-   {
-    "gapAfter": "hotel"
-   },
-   {
-    "word": "leaves"
-   }
-  ],
-  "rule": "Do not put a comma between the two parts of a compound predicate (\"went ... and did not go out\"). The events happened in the past, so \"went\" and \"left\" are right, not \"goes\" and \"leaves\".",
+  "rule": "A title attached to a name is capitalized, so \"inspector Meadow\" should be \"Inspector Meadow\". The story is in the past tense, so \"does\" should be \"did\" to match \"was\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -20612,21 +19019,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "our chronicle must here split into three separate and distinct portions. The night were to prove an eventful one and each of the three persons involved saw it from his or her own individual angle.",
-  "fixed": "Our chronicle must here split into three separate and distinct portions. The night was to prove an eventful one, and each of the three persons involved saw it from his or her own individual angle.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The night were to prove an eventful one, and each of the three persons involved saw it from his or her own individual angle.",
+  "fixed": "The night was to prove an eventful one, and each of the three persons involved saw it from his or her own individual angle.",
   "errors": [
    {
-    "word": "our"
-   },
-   {
     "word": "were"
-   },
-   {
-    "gapAfter": "one"
    }
   ],
-  "rule": "Capitalize the first word of a sentence. The singular subject \"night\" takes \"was\", and a comma is needed before \"and\" when it joins two full clauses (\"The night was...\" and \"each ... saw...\").",
+  "rule": "The singular subject \"night\" takes \"was\", not \"were\".",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -20637,21 +19038,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The door of the outer office opened and Albert appears. Closing the door behind him he approached them with an envelope in his hand.",
-  "fixed": "The door of the outer office opened, and Albert appeared. Closing the door behind him, he approached them with an envelope in his hand.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The door of the outer office opened, and Albert appears.",
+  "fixed": "The door of the outer office opened, and Albert appeared.",
   "errors": [
    {
-    "gapAfter": "opened"
-   },
-   {
     "word": "appears"
-   },
-   {
-    "gapAfter": "him"
    }
   ],
-  "rule": "Use a comma before \"and\" when it joins two full clauses, and after an introductory phrase like \"Closing the door behind him\". Keep the tense past: \"appeared\".",
+  "rule": "The story is in the past tense, so \"appears\" should be \"appeared\" to match \"opened\".",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -20662,13 +19057,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He was excited and his heart were beating quite fast. He feels that tremendous issues lay in his hands.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He was excited, and his heart were beating quite fast. He feels that tremendous issues lay in his hands.",
   "fixed": "He was excited, and his heart was beating quite fast. He felt that tremendous issues lay in his hands.",
   "errors": [
-   {
-    "gapAfter": "excited"
-   },
    {
     "word": "were"
    },
@@ -20676,7 +19068,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "feels"
    }
   ],
-  "rule": "A comma goes before \"and\" when it joins two independent clauses. The singular subject \"heart\" takes \"was\", and the tense stays past (\"felt\", \"lay\").",
+  "rule": "The singular subject \"heart\" takes \"was\", not \"were\". The story is in the past tense, so \"feels\" should be \"felt\" to match \"lay\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -20687,13 +19079,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "then he grasped the poker firmly, and rose to his feet. He feels that he was fully alive to the situation.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Then he grasped the poker firmly, and rose to his feet. He feels that he was fully alive to the situation.",
   "fixed": "Then he grasped the poker firmly and rose to his feet. He felt that he was fully alive to the situation.",
   "errors": [
-   {
-    "word": "then"
-   },
    {
     "gapAfter": "firmly"
    },
@@ -20701,32 +19090,32 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "feels"
    }
   ],
-  "rule": "Capitalize the first word of a sentence. Do not put a comma in a compound predicate (\"grasped ... and rose\"), and keep the tense past (\"felt\").",
+  "rule": "Remove the comma after \"firmly\", because one subject does both actions in \"grasped the poker firmly and rose to his feet\". The story is in the past, so \"feels\" should be \"felt\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
-  }
+  },
+  "optionalGaps": [
+   "then"
+  ]
  },
  {
   "id": "forge-61168-687-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "But a little conversation with Mr. chichester would not come amiss, I decide. Hastily tying a handkerchief round my rebellious locks I went up on deck again, full of purpose.",
-  "fixed": "But a little conversation with Mr. Chichester would not come amiss, I decided. Hastily tying a handkerchief round my rebellious locks, I went up on deck again, full of purpose.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "But a little conversation with Mr. chichester would not come amiss, I decide.",
+  "fixed": "But a little conversation with Mr. Chichester would not come amiss, I decided.",
   "errors": [
    {
     "word": "chichester"
    },
    {
-    "gapAfter": "locks"
-   },
-   {
     "word": "decide"
    }
   ],
-  "rule": "Names are capitalized (Mr. Chichester). An introductory phrase such as \"Hastily tying ... locks\" is followed by a comma, and the narration stays in the past tense (\"decided\").",
+  "rule": "A name is capitalized, so \"chichester\" should be \"Chichester\". The story is in the past, so \"decide\" should be \"decided\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -20737,21 +19126,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "the other two stands and watched the cart disappearing with puzzled expressions. Just as the cart swung round the bend a suit-case fell off into the drive.",
-  "fixed": "The other two stood and watched the cart disappearing with puzzled expressions. Just as the cart swung round the bend, a suit-case fell off into the drive.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The other two stands and watched the cart disappearing with puzzled expressions.",
+  "fixed": "The other two stood and watched the cart disappearing with puzzled expressions.",
   "errors": [
    {
-    "word": "the"
-   },
-   {
     "word": "stands"
-   },
-   {
-    "gapAfter": "bend"
    }
   ],
-  "rule": "Capitalize the first word of a sentence. The plural subject \"two\" takes \"stood\", matching \"watched\", and an introductory clause (\"Just as the cart swung round the bend\") is followed by a comma.",
+  "rule": "The story is in the past, so \"stands\" should be \"stood\" to match \"watched\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -20762,21 +19145,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "You hear me say yesterday, that I proposed to live by my wits. It seem to me that I have now proved I have some wits to live by!",
-  "fixed": "You heard me say yesterday that I proposed to live by my wits. It seems to me that I have now proved I have some wits to live by!",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It seem to me that I have now proved I have some wits to live by!",
+  "fixed": "It seems to me that I have now proved I have some wits to live by!",
   "errors": [
-   {
-    "word": "hear"
-   },
-   {
-    "gapAfter": "yesterday"
-   },
    {
     "word": "seem"
    }
   ],
-  "rule": "\"Yesterday\" signals past tense, so \"heard\" is correct, and no comma separates \"say yesterday\" from the \"that\" clause. The singular subject \"It\" takes \"seems\".",
+  "rule": "The subject \"It\" is singular, so \"seem\" should be \"seems\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -20787,49 +19164,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He also denies having quarrelled with his wife. various witnesses testifies to the accuracy of these statements.",
-  "fixed": "He also denied having quarrelled with his wife. Various witnesses testified to the accuracy of these statements.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Various witnesses testifies to the accuracy of these statements.",
+  "fixed": "Various witnesses testified to the accuracy of these statements.",
   "errors": [
-   {
-    "word": "denies"
-   },
-   {
-    "word": "various"
-   },
    {
     "word": "testifies"
    }
   ],
-  "rule": "Capitalize the first word of a sentence. The plural subject \"witnesses\" takes the plural verb \"testified\", and the tense stays past (\"denied\", \"testified\").",
+  "rule": "The subject \"witnesses\" is plural and the story is in the past, so \"testifies\" should be \"testified\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
-  }
- },
- {
-  "id": "forge-78220-3252-2",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He soon makes quite sure that it was Mr. hawes. I understand he came back here with Mr. Hawes last night, and spent a long time with him.",
-  "fixed": "He soon made quite sure that it was Mr. Hawes. I understand he came back here with Mr. Hawes last night and spent a long time with him.",
-  "errors": [
-   {
-    "word": "makes"
-   },
-   {
-    "word": "hawes"
-   },
-   {
-    "gapAfter": "night"
-   }
-  ],
-  "rule": "Names are capitalized (Mr. Hawes). Do not put a comma in a compound predicate (\"came back ... and spent\"), and keep the tense past (\"made\") to match \"was\".",
-  "source": {
-   "book": "The Murder at the Vicarage",
-   "gutenberg": 78220
   }
  },
  {
@@ -20837,21 +19183,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "It were a crisp October day, with a blue sky and a dazzling sun. The sharp tang of the air, brought the blood to Bundle's cheeks and fills her with the zest of living.",
-  "fixed": "It was a crisp October day, with a blue sky and a dazzling sun. The sharp tang of the air brought the blood to Bundle's cheeks and filled her with the zest of living.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The sharp tang of the air, brought the blood to Bundle's cheeks and filled her with the zest of living.",
+  "fixed": "The sharp tang of the air brought the blood to Bundle's cheeks and filled her with the zest of living.",
   "errors": [
    {
-    "word": "were"
-   },
-   {
     "gapAfter": "air"
-   },
-   {
-    "word": "fills"
    }
   ],
-  "rule": "The singular subject \"It\" takes \"was\". Never put a comma between a subject (\"tang\") and its verb (\"brought\"), and keep the tense past (\"filled\").",
+  "rule": "Remove the comma after \"air\", because a comma should not come between the subject \"tang\" and its verb \"brought\".",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -20862,8 +19202,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "All traces of displeasure has now left his face. He nods energetically when tommy had finished.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "All traces of displeasure has now left his face. He nods energetically when Tommy had finished.",
   "fixed": "All traces of displeasure had now left his face. He nodded energetically when Tommy had finished.",
   "errors": [
    {
@@ -20871,12 +19211,9 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    },
    {
     "word": "nods"
-   },
-   {
-    "word": "tommy"
    }
   ],
-  "rule": "The plural subject \"traces\" takes \"had\" (not \"has\"). Names such as Tommy are capitalized, and the tense stays past (\"nodded\").",
+  "rule": "The story is in the past, so \"has\" should be \"had\". For the same reason, \"nods\" should be \"nodded\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -20887,21 +19224,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Annoyed at having missed him the animal growls and prepared to spring again. Again he ducked, and again the lion springs right over him.",
-  "fixed": "Annoyed at having missed him, the animal growled and prepared to spring again. Again he ducked, and again the lion sprang right over him.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Annoyed at having missed him, the animal growls and prepared to spring again.",
+  "fixed": "Annoyed at having missed him, the animal growled and prepared to spring again.",
   "errors": [
    {
-    "gapAfter": "him"
-   },
-   {
     "word": "growls"
-   },
-   {
-    "word": "springs"
    }
   ],
-  "rule": "An introductory phrase (\"Annoyed at having missed him\") is followed by a comma. The action is in the past, so \"growled\" and \"sprang\" are correct.",
+  "rule": "The story is in the past and \"growls\" shares its subject with \"prepared\", so \"growls\" should be \"growled\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -20912,21 +19243,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Yet jack rallies better than I could have supposed possible. His mother’s devotion help him to live through those difficult days.",
-  "fixed": "Yet Jack rallied better than I could have supposed possible. His mother’s devotion helped him to live through those difficult days.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "His mother’s devotion help him to live through those difficult days.",
+  "fixed": "His mother’s devotion helped him to live through those difficult days.",
   "errors": [
-   {
-    "word": "jack"
-   },
-   {
-    "word": "rallies"
-   },
    {
     "word": "help"
    }
   ],
-  "rule": "Names are capitalized (Jack). The singular subject \"devotion\" takes a singular verb, and the passage stays in the past tense (\"rallied\", \"helped\").",
+  "rule": "The subject \"devotion\" is singular and the story is in the past, so \"help\" should be \"helped\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -20937,21 +19262,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Tiring at last he regains his feet and strolled out once more into the middle of the road. And then, without the least warning, a ramshackle car careen wildly round the corner, caught him full and square, and passed on unheeding.",
-  "fixed": "Tiring at last, he regained his feet and strolled out once more into the middle of the road. And then, without the least warning, a ramshackle car careened wildly round the corner, caught him full and square, and passed on unheeding.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "And then, without the least warning, a ramshackle car careen wildly round the corner, caught him full and square, and passed on unheeding.",
+  "fixed": "And then, without the least warning, a ramshackle car careened wildly round the corner, caught him full and square, and passed on unheeding.",
   "errors": [
-   {
-    "gapAfter": "last"
-   },
-   {
-    "word": "regains"
-   },
    {
     "word": "careen"
    }
   ],
-  "rule": "An introductory phrase (\"Tiring at last\") is followed by a comma. The singular subject \"car\" needs the past-tense verb \"careened\", and \"regained\" matches \"strolled\".",
+  "rule": "The story is in the past, so \"careen\" should be \"careened\", matching \"caught\" and \"passed\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -20962,13 +19281,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "We saw lawrence Redding's cottage just as we turn off to the station. It stand in an isolated position with no other house near it.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "We saw Lawrence Redding's cottage just as we turn off to the station. It stand in an isolated position with no other house near it.",
   "fixed": "We saw Lawrence Redding's cottage just as we turned off to the station. It stands in an isolated position with no other house near it.",
   "errors": [
-   {
-    "word": "lawrence"
-   },
    {
     "word": "turn"
    },
@@ -20976,35 +19292,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "stand"
    }
   ],
-  "rule": "Names are capitalized (Lawrence). The action \"saw ... turned\" happened in the past, and the singular subject \"It\" takes \"stands\".",
+  "rule": "The story is in the past, so \"turn\" should be \"turned\". The subject \"It\" is singular, so \"stand\" should be \"stands\".",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
-  }
- },
- {
-  "id": "forge-61262-1322-0",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "In a few moments the valet answers the bell. To him poirot put the same question, and handed him the card to examine.",
-  "fixed": "In a few moments the valet answered the bell. To him Poirot put the same question and handed him the card to examine.",
-  "errors": [
-   {
-    "word": "answers"
-   },
-   {
-    "word": "poirot"
-   },
-   {
-    "gapAfter": "question"
-   }
-  ],
-  "rule": "Names are capitalized (Poirot). Do not put a comma in a compound predicate (\"put ... and handed\"), and keep the tense past (\"answered\").",
-  "source": {
-   "book": "Poirot Investigates",
-   "gutenberg": 61262
   }
  },
  {
@@ -21012,8 +19303,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Business were not brisk in the International Detective Agency. The eagerly expected letter from the ham merchant have not arrived and bona fide cases were not forthcoming.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Business were not brisk in the International Detective Agency. The eagerly expected letter from the ham merchant have not arrived, and bona fide cases were not forthcoming.",
   "fixed": "Business was not brisk in the International Detective Agency. The eagerly expected letter from the ham merchant had not arrived, and bona fide cases were not forthcoming.",
   "errors": [
    {
@@ -21021,12 +19312,9 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    },
    {
     "word": "have"
-   },
-   {
-    "gapAfter": "arrived"
    }
   ],
-  "rule": "The singular subjects \"Business\" and \"letter\" take \"was\" and \"had\". A comma goes before \"and\" when it joins two full clauses.",
+  "rule": "The subject \"Business\" is singular, so \"were\" should be \"was\". The story is in the past, so \"have\" should be \"had\".",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -21037,13 +19325,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "With a sudden spring Anthony jumps out of bed, switching the light on as he did so. A figure springs up from where it had been kneeling by the suit-case.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "With a sudden spring, Anthony jumps out of bed, switching the light on as he did so. A figure springs up from where it had been kneeling by the suit-case.",
   "fixed": "With a sudden spring, Anthony jumped out of bed, switching the light on as he did so. A figure sprang up from where it had been kneeling by the suit-case.",
   "errors": [
-   {
-    "gapAfter": "spring"
-   },
    {
     "word": "jumps"
    },
@@ -21051,7 +19336,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "springs"
    }
   ],
-  "rule": "An introductory phrase (\"With a sudden spring\") is followed by a comma. The passage is in the past tense, so \"jumped\" and \"sprang\" are correct.",
+  "rule": "The story is in the past, so \"jumps\" should be \"jumped\" and \"springs\" should be \"sprang\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -21062,8 +19347,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "It were not until two hours later that a white and anxious Alfred came to release Bundle. She almost falls into his arms and he had to hold her up.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It were not until two hours later that a white and anxious Alfred came to release Bundle. She almost falls into his arms, and he had to hold her up.",
   "fixed": "It was not until two hours later that a white and anxious Alfred came to release Bundle. She almost fell into his arms, and he had to hold her up.",
   "errors": [
    {
@@ -21071,12 +19356,9 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    },
    {
     "word": "falls"
-   },
-   {
-    "gapAfter": "arms"
    }
   ],
-  "rule": "The singular subject \"It\" takes \"was\". A comma goes before \"and\" when it joins two full clauses, and the tense stays past (\"fell\").",
+  "rule": "The subject \"It\" is singular, so \"were\" should be \"was\". The story is in the past, so \"falls\" should be \"fell\".",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -21087,13 +19369,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "One of them stooped and suddenly, without the least warning, the flooring gives beneath my feet. But for the restraining hand of the other man I should have gone down the yawning gap beneath me.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "One of them stooped, and suddenly, without the least warning, the flooring gives beneath my feet. But for the restraining hand of the other man I should have gone down the yawning gap beneath me.",
   "fixed": "One of them stooped, and suddenly, without the least warning, the flooring gave beneath my feet. But for the restraining hand of the other man, I should have gone down the yawning gap beneath me.",
   "errors": [
-   {
-    "gapAfter": "stooped"
-   },
    {
     "word": "gives"
    },
@@ -21101,7 +19380,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "gapAfter": "man"
    }
   ],
-  "rule": "A comma goes before \"and\" when it joins two full clauses, and after a long introductory phrase like \"But for the restraining hand of the other man\". Keep the tense past (\"gave\").",
+  "rule": "The story is in the past, so \"gives\" should be \"gave\". Also, the long opening phrase \"But for the restraining hand of the other man\" needs a comma after \"man\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
@@ -21112,21 +19391,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I admired the polite way that Mrs. Blair snubs them. She appear to have adopted the strong, silent man as her special cavalier and he seemed duly sensible of the privilege accorded him.",
-  "fixed": "I admired the polite way that Mrs. Blair snubbed them. She appeared to have adopted the strong, silent man as her special cavalier, and he seemed duly sensible of the privilege accorded him.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "She appear to have adopted the strong, silent man as her special cavalier, and he seemed duly sensible of the privilege accorded him.",
+  "fixed": "She appeared to have adopted the strong, silent man as her special cavalier, and he seemed duly sensible of the privilege accorded him.",
   "errors": [
    {
-    "word": "snubs"
-   },
-   {
     "word": "appear"
-   },
-   {
-    "gapAfter": "cavalier"
    }
   ],
-  "rule": "The passage is in the past tense, so \"snubbed\" is correct. The singular subject \"She\" takes \"appeared\", and a comma goes before \"and\" when it joins two full clauses.",
+  "rule": "The subject \"She\" is singular and the story is in the past, so \"appear\" should be \"appeared\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -21137,21 +19410,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The quiet simplicity of the millionaire's manner appeal to katherine strongly. She feels herself in the presence of a very genuine grief, the more real for its absence of outward sign.",
-  "fixed": "The quiet simplicity of the millionaire's manner appealed to Katherine strongly. She felt herself in the presence of a very genuine grief, the more real for its absence of outward sign.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The quiet simplicity of the millionaire's manner appeal to Katherine strongly.",
+  "fixed": "The quiet simplicity of the millionaire's manner appealed to Katherine strongly.",
   "errors": [
    {
     "word": "appeal"
-   },
-   {
-    "word": "katherine"
-   },
-   {
-    "word": "feels"
    }
   ],
-  "rule": "The singular subject \"simplicity\" takes \"appealed\", not \"appeal\". Names are capitalized (Katherine), and the tense stays past (\"felt\").",
+  "rule": "The subject \"simplicity\" is singular and the story is in the past, so \"appeal\" should be \"appealed\".",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
@@ -21162,21 +19429,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The iron nerve of the man show in this crisis. After the first cry of agony he were himself again.",
-  "fixed": "The iron nerve of the man showed in this crisis. After the first cry of agony, he was himself again.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The iron nerve of the man show in this crisis.",
+  "fixed": "The iron nerve of the man showed in this crisis.",
   "errors": [
    {
     "word": "show"
-   },
-   {
-    "gapAfter": "agony"
-   },
-   {
-    "word": "were"
    }
   ],
-  "rule": "The singular subject \"nerve\" takes \"showed\", and \"he\" takes \"was\". An introductory phrase (\"After the first cry of agony\") is followed by a comma.",
+  "rule": "The subject \"nerve\" is singular and the story is in the past, so \"show\" should be \"showed\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -21187,33 +19448,33 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "then I remember that I did not know the number of her cabin. My friend the night stewardess, would probably know.",
-  "fixed": "Then I remembered that I did not know the number of her cabin. My friend, the night stewardess, would probably know.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "then I remember that I did not know the number of her cabin.",
+  "fixed": "Then I remembered that I did not know the number of her cabin.",
   "errors": [
    {
     "word": "then"
    },
    {
     "word": "remember"
-   },
-   {
-    "gapAfter": "friend"
    }
   ],
-  "rule": "Capitalize the first word of a sentence. \"The night stewardess\" is a nonessential description, so it needs commas on both sides, and the tense stays past (\"remembered\").",
+  "rule": "A sentence starts with a capital letter, so \"then\" should be \"Then\". The story is in the past, so \"remember\" should be \"remembered\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
-  }
+  },
+  "optionalGaps": [
+   "then"
+  ]
  },
  {
   "id": "forge-78220-3085-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I am beginning to read it a third time when the telephone rang. like a man in a dream I picked up the receiver and spoke.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I am beginning to read it a third time when the telephone rang. like a man in a dream, I picked up the receiver and spoke.",
   "fixed": "I was beginning to read it a third time when the telephone rang. Like a man in a dream, I picked up the receiver and spoke.",
   "errors": [
    {
@@ -21221,12 +19482,9 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    },
    {
     "word": "like"
-   },
-   {
-    "gapAfter": "dream"
    }
   ],
-  "rule": "The action happened in the past, so \"was beginning\" matches \"rang\". A sentence starts with a capital letter. An introductory phrase like \"Like a man in a dream\" is followed by a comma.",
+  "rule": "The story is in the past, so \"am beginning\" should be \"was beginning\", matching \"rang\". A sentence starts with a capital letter, so \"like\" should be \"Like\".",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
@@ -21237,21 +19495,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He, tore my necklace from my neck with such force that I fell headlong to the floor. as I fell, I see him disappearing through the side door.",
-  "fixed": "He tore my necklace from my neck with such force that I fell headlong to the floor. As I fell, I saw him disappearing through the side door.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He, tore my necklace from my neck with such force that I fell headlong to the floor.",
+  "fixed": "He tore my necklace from my neck with such force that I fell headlong to the floor.",
   "errors": [
    {
     "gapAfter": "he"
-   },
-   {
-    "word": "as"
-   },
-   {
-    "word": "see"
    }
   ],
-  "rule": "No comma separates a subject (\"He\") from its verb. A sentence starts with a capital letter. The events are in the past, so \"saw\" is needed, not \"see\".",
+  "rule": "Remove the comma after \"He\", because a comma should not come between a subject and its verb (\"tore\").",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
@@ -21262,21 +19514,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "In any case Dennis were full of his own troubles. He comes into my study and began fingering things and shuffling his feet and looking thoroughly embarrassed.",
-  "fixed": "In any case, Dennis was full of his own troubles. He came into my study and began fingering things and shuffling his feet and looking thoroughly embarrassed.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "In any case, Dennis were full of his own troubles.",
+  "fixed": "In any case, Dennis was full of his own troubles.",
   "errors": [
    {
-    "gapAfter": "case"
-   },
-   {
     "word": "were"
-   },
-   {
-    "word": "comes"
    }
   ],
-  "rule": "An introductory phrase such as \"In any case\" is followed by a comma. The singular subject \"Dennis\" takes \"was\". The verbs stay in the past tense, so \"came\" is needed.",
+  "rule": "The subject \"Dennis\" is singular, so \"were\" should be \"was\".",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
@@ -21287,21 +19533,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Mr. satterthwaite turned to go back the way he had come but a hand stayed him. Someone else stands in the doorway beside him, someone else whose eyes had also seen.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Mr. satterthwaite turned to go back the way he had come, but a hand stayed him. Someone else stands in the doorway beside him, someone else whose eyes had also seen.",
   "fixed": "Mr. Satterthwaite turned to go back the way he had come, but a hand stayed him. Someone else stood in the doorway beside him, someone else whose eyes had also seen.",
   "errors": [
    {
     "word": "satterthwaite"
    },
    {
-    "gapAfter": "come"
-   },
-   {
     "word": "stands"
    }
   ],
-  "rule": "A person's name is capitalized. A comma goes before \"but\" when it joins two full clauses. The story is in past time, so \"stood\" is needed, not \"stands\".",
+  "rule": "A name is capitalized, so \"satterthwaite\" should be \"Satterthwaite\". The story is in the past, so \"stands\" should be \"stood\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -21312,13 +19555,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "At last she heard footsteps inside and a moment later Mrs. vandemeyer herself opened the door. She lifts her eyebrows at the sight of the girl.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "At last she heard footsteps inside, and a moment later Mrs. vandemeyer herself opened the door. She lifts her eyebrows at the sight of the girl.",
   "fixed": "At last she heard footsteps inside, and a moment later Mrs. Vandemeyer herself opened the door. She lifted her eyebrows at the sight of the girl.",
   "errors": [
-   {
-    "gapAfter": "inside"
-   },
    {
     "word": "vandemeyer"
    },
@@ -21326,24 +19566,25 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "lifts"
    }
   ],
-  "rule": "A comma goes before \"and\" when it joins two full clauses (\"she heard...\" and \"Mrs. Vandemeyer herself opened...\"). A person's name is capitalized. The verbs stay in the past tense, so \"lifted\" is needed.",
+  "rule": "A name is capitalized, so \"vandemeyer\" should be \"Vandemeyer\". The story is in the past, so \"lifts\" should be \"lifted\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
-  }
+  },
+  "optionalGaps": [
+   "last",
+   "later"
+  ]
  },
  {
   "id": "forge-65238-3115-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Sitting down before her dressing-table in her own room she faced the question squarely. Every word that anthony had said come back to her fraught with a new significance.",
-  "fixed": "Sitting down before her dressing-table in her own room, she faced the question squarely. Every word that Anthony had said came back to her fraught with a new significance.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Every word that anthony had said come back to her fraught with a new significance.",
+  "fixed": "Every word that Anthony had said came back to her fraught with a new significance.",
   "errors": [
-   {
-    "gapAfter": "room"
-   },
    {
     "word": "anthony"
    },
@@ -21351,57 +19592,29 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "come"
    }
   ],
-  "rule": "A long introductory phrase is followed by a comma. A person's name is capitalized. The subject is \"word\" (singular), so the verb is \"came\", not \"come\".",
+  "rule": "A name is capitalized, so \"anthony\" should be \"Anthony\". The story is in the past, so \"come\" should be \"came\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
-  }
- },
- {
-  "id": "forge-1155-2594-2",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Beyond a fixed determination to get even with Mr. Brown he has no plans. He re-read Sir James’s letter, and shook his head.",
-  "fixed": "Beyond a fixed determination to get even with Mr. Brown, he had no plans. He re-read Sir James’s letter and shook his head.",
-  "errors": [
-   {
-    "gapAfter": "brown"
-   },
-   {
-    "word": "has"
-   },
-   {
-    "gapAfter": "letter"
-   }
-  ],
-  "rule": "A long introductory phrase is followed by a comma. The sentence is in past time, so \"had\" is needed. \"Re-read ... and shook\" is one subject with two verbs, so no comma goes before \"and\".",
-  "source": {
-   "book": "The Secret Adversary",
-   "gutenberg": 1155
-  }
+  },
+  "optionalGaps": [
+   "her"
+  ]
  },
  {
   "id": "forge-78342-2266-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Tuppence's next port of call were the flat in Clarges Street. Here she was greeted by Miss Marjory Leicester the friend with whom Miss Drake shares a flat.",
-  "fixed": "Tuppence's next port of call was the flat in Clarges Street. Here she was greeted by Miss Marjory Leicester, the friend with whom Miss Drake shared a flat.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Tuppence's next port of call were the flat in Clarges Street.",
+  "fixed": "Tuppence's next port of call was the flat in Clarges Street.",
   "errors": [
    {
     "word": "were"
-   },
-   {
-    "gapAfter": "leicester"
-   },
-   {
-    "word": "shares"
    }
   ],
-  "rule": "The subject is \"port\" (singular), so the verb is \"was\". \"The friend with whom Miss Drake shared a flat\" renames Miss Marjory Leicester and is set off by a comma. The sentence is in past time, so \"shared\" is needed.",
+  "rule": "The subject \"port\" is singular, so \"were\" should be \"was\".",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -21412,21 +19625,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I, went to my appointment with the Prime Minister, taking Milray’s sealed letter. It doesn’t look as though it had been tampered with, but inside were a blank sheet of paper!",
-  "fixed": "I went to my appointment with the Prime Minister, taking Milray’s sealed letter. It didn’t look as though it had been tampered with, but inside was a blank sheet of paper!",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I, went to my appointment with the Prime Minister, taking Milray’s sealed letter.",
+  "fixed": "I went to my appointment with the Prime Minister, taking Milray’s sealed letter.",
   "errors": [
    {
     "gapAfter": "i"
-   },
-   {
-    "word": "doesn’t"
-   },
-   {
-    "word": "were"
    }
   ],
-  "rule": "No comma separates a subject (\"I\") from its verb. The events are in the past, so \"didn’t\" is needed. In \"inside was a blank sheet\", the subject is \"sheet\" (singular), so the verb is \"was\".",
+  "rule": "Remove the comma after \"I\", because a comma should not come between the subject and its verb \"went\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -21437,21 +19644,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Boris, saluted, turned sharply on his heel, and marches away. anthony rejoined Virginia, thrusting the piece of paper into his pocket.",
-  "fixed": "Boris saluted, turned sharply on his heel, and marched away. Anthony rejoined Virginia, thrusting the piece of paper into his pocket.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Boris, saluted, turned sharply on his heel, and marches away.",
+  "fixed": "Boris saluted, turned sharply on his heel, and marched away.",
   "errors": [
    {
     "gapAfter": "boris"
    },
    {
     "word": "marches"
-   },
-   {
-    "word": "anthony"
    }
   ],
-  "rule": "No comma separates a subject (\"Boris\") from its verb. The verbs in the list stay in the past tense, so \"marched\" is needed. A sentence starts with a capital letter.",
+  "rule": "Remove the comma after \"Boris\", because it separates the subject from its verb \"saluted\". The verbs in the list are in the past, so \"marches\" should be \"marched\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -21462,21 +19666,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I accompany him a short way along pall Mall before we parted. He shook me warmly by the hand, and thanked me again effusively.",
-  "fixed": "I accompanied him a short way along Pall Mall before we parted. He shook me warmly by the hand and thanked me again effusively.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I accompany him a short way along Pall Mall before we parted.",
+  "fixed": "I accompanied him a short way along Pall Mall before we parted.",
   "errors": [
    {
     "word": "accompany"
-   },
-   {
-    "word": "pall"
-   },
-   {
-    "gapAfter": "hand"
    }
   ],
-  "rule": "The sentence is in past time, so \"accompanied\" matches \"parted\". A street name is capitalized. \"Shook ... and thanked\" is one subject with two verbs, so no comma goes before \"and\".",
+  "rule": "The sentence is in the past (\"parted\"), so \"accompany\" should be \"accompanied\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -21487,13 +19685,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Owing to the illegibility of the late Count’s handwriting the business were a slow one. Anthony’s yawns succeeds one another with suspicious rapidity.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Owing to the illegibility of the late Count’s handwriting, the business were a slow one. Anthony’s yawns succeeds one another with suspicious rapidity.",
   "fixed": "Owing to the illegibility of the late Count’s handwriting, the business was a slow one. Anthony’s yawns succeeded one another with suspicious rapidity.",
   "errors": [
-   {
-    "gapAfter": "handwriting"
-   },
    {
     "word": "were"
    },
@@ -21501,7 +19696,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "succeeds"
    }
   ],
-  "rule": "A long introductory phrase is followed by a comma. The singular subject \"business\" takes \"was\". The plural subject \"yawns\" takes \"succeeded\", not \"succeeds\".",
+  "rule": "The subject \"business\" is singular, so \"were\" should be \"was\". The story is in the past, so \"succeeds\" should be \"succeeded\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -21512,13 +19707,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Mr. satterthwaite stretches out his little dry hand and took hers. She, squeezed it hard as a child might have done.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Mr. Satterthwaite stretches out his little dry hand and took hers. She, squeezed it hard as a child might have done.",
   "fixed": "Mr. Satterthwaite stretched out his little dry hand and took hers. She squeezed it hard as a child might have done.",
   "errors": [
-   {
-    "word": "satterthwaite"
-   },
    {
     "word": "stretches"
    },
@@ -21526,32 +19718,32 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "gapAfter": "she"
    }
   ],
-  "rule": "A person's name is capitalized. The verbs stay in the past tense, so \"stretched\" matches \"took\". No comma separates a subject (\"She\") from its verb.",
+  "rule": "The story is in the past, so \"stretches\" should be \"stretched\", matching \"took\". Remove the comma after \"She\", because it separates the subject from its verb \"squeezed\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
-  }
+  },
+  "optionalGaps": [
+   "hard"
+  ]
  },
  {
   "id": "forge-65238-1060-2",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He, thought longingly of such things as good rumpsteaks juicy chops, and large masses of fried potatoes. But he shakes his head ruefully, glancing at his wrist watch.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He, thought longingly of such things as good rumpsteaks, juicy chops, and large masses of fried potatoes. But he shakes his head ruefully, glancing at his wrist watch.",
   "fixed": "He thought longingly of such things as good rumpsteaks, juicy chops, and large masses of fried potatoes. But he shook his head ruefully, glancing at his wrist watch.",
   "errors": [
    {
     "gapAfter": "he"
    },
    {
-    "gapAfter": "rumpsteaks"
-   },
-   {
     "word": "shakes"
    }
   ],
-  "rule": "No comma separates a subject (\"He\") from its verb. Items in a list of three are separated by commas. The story is in past time, so \"shook\" is needed.",
+  "rule": "Remove the comma after \"He\", because it separates the subject from its verb \"thought\". The story is in the past, so \"shakes\" should be \"shook\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -21562,74 +19754,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "This question of the Memoirs are very important. It seem to me possible that to gain possession, of them might be the motive of the crime.",
-  "fixed": "This question of the Memoirs is very important. It seems to me possible that to gain possession of them might be the motive of the crime.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "This question of the Memoirs are very important.",
+  "fixed": "This question of the Memoirs is very important.",
   "errors": [
    {
     "word": "are"
-   },
-   {
-    "word": "seem"
-   },
-   {
-    "gapAfter": "possession"
    }
   ],
-  "rule": "The subject is \"question\" (singular), not \"Memoirs\", so the verb is \"is\". \"It\" takes \"seems\". No comma belongs between \"possession\" and \"of them\".",
+  "rule": "The subject \"question\" is singular, so \"are\" should be \"is\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
-  }
- },
- {
-  "id": "forge-61168-537-0",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "She produces it in triumph from the pocket of her sweater. A sudden roll of the boat upset her balance and as she caught at the rail to steady herself the roll of films flashed over the side.",
-  "fixed": "She produced it in triumph from the pocket of her sweater. A sudden roll of the boat upset her balance, and as she caught at the rail to steady herself, the roll of films flashed over the side.",
-  "errors": [
-   {
-    "word": "produces"
-   },
-   {
-    "gapAfter": "balance"
-   },
-   {
-    "gapAfter": "herself"
-   }
-  ],
-  "rule": "The story is in past time, so \"produced\" is needed. A comma goes before \"and\" when it joins two full clauses. An introductory clause (\"as she caught at the rail to steady herself\") is followed by a comma.",
-  "source": {
-   "book": "The Man in the Brown Suit",
-   "gutenberg": 61168
-  }
- },
- {
-  "id": "forge-1155-1424-0",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He looks across at the inert figure, on the bed. Mrs. vandemeyer lay perfectly passive with closed eyes.",
-  "fixed": "He looked across at the inert figure on the bed. Mrs. Vandemeyer lay perfectly passive with closed eyes.",
-  "errors": [
-   {
-    "word": "looks"
-   },
-   {
-    "gapAfter": "figure"
-   },
-   {
-    "word": "vandemeyer"
-   }
-  ],
-  "rule": "The verbs stay in the past tense, so \"looked\" matches \"lay\". \"On the bed\" is needed information, so no comma comes before it. A person's name is capitalized.",
-  "source": {
-   "book": "The Secret Adversary",
-   "gutenberg": 1155
   }
  },
  {
@@ -21637,13 +19773,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "With an effort tommy pulled himself together. He sinks on to the bed, and gave himself up to reflection.",
-  "fixed": "With an effort Tommy pulled himself together. He sank on to the bed and gave himself up to reflection.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He sinks on to the bed, and gave himself up to reflection.",
+  "fixed": "He sank on to the bed and gave himself up to reflection.",
   "errors": [
-   {
-    "word": "tommy"
-   },
    {
     "word": "sinks"
    },
@@ -21651,7 +19784,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "gapAfter": "bed"
    }
   ],
-  "rule": "A person's name is capitalized. The verbs stay in the past tense, so \"sank\" matches \"gave\". \"Sank ... and gave\" is one subject with two verbs, so no comma goes before \"and\".",
+  "rule": "The story is in the past, so \"sinks\" should be \"sank\". Remove the comma after \"bed\", because one subject does both actions in \"sank on to the bed and gave himself up to reflection\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -21662,46 +19795,37 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "By Thursday afternoon the crime have been fully planned down to the smallest detail. lawrence Redding first calls on the Vicar, knowing him to be out.",
-  "fixed": "By Thursday afternoon the crime had been fully planned down to the smallest detail. Lawrence Redding first called on the Vicar, knowing him to be out.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "By Thursday afternoon the crime have been fully planned down to the smallest detail.",
+  "fixed": "By Thursday afternoon the crime had been fully planned down to the smallest detail.",
   "errors": [
    {
     "word": "have"
-   },
-   {
-    "word": "lawrence"
-   },
-   {
-    "word": "calls"
    }
   ],
-  "rule": "The singular subject \"crime\" takes \"had\". A sentence starts with a capital letter. The story is in past time, so \"called\" is needed.",
+  "rule": "The subject \"crime\" is singular and the story is in the past, so \"have been\" should be \"had been\".",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
-  }
+  },
+  "optionalGaps": [
+   "afternoon"
+  ]
  },
  {
   "id": "forge-75288-2726-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He, tested the drawers to make sure that he had relocked them securely. He knows rupert Bateman's powers of minute observation and glanced round the room to make sure that he had left no incriminating trace of his presence.",
-  "fixed": "He tested the drawers to make sure that he had relocked them securely. He knew Rupert Bateman's powers of minute observation and glanced round the room to make sure that he had left no incriminating trace of his presence.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He, tested the drawers to make sure that he had relocked them securely.",
+  "fixed": "He tested the drawers to make sure that he had relocked them securely.",
   "errors": [
    {
     "gapAfter": "he"
-   },
-   {
-    "word": "knows"
-   },
-   {
-    "word": "rupert"
    }
   ],
-  "rule": "No comma separates a subject (\"He\") from its verb. The verbs stay in the past tense, so \"knew\" matches \"glanced\". A person's name is capitalized.",
+  "rule": "Remove the comma after \"He\", because it separates the subject from its verb \"tested\".",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -21712,21 +19836,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The day of disillusionment have been a Wednesday. On thursday the advertisement, had duly appeared.",
-  "fixed": "The day of disillusionment had been a Wednesday. On Thursday the advertisement had duly appeared.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The day of disillusionment have been a Wednesday.",
+  "fixed": "The day of disillusionment had been a Wednesday.",
   "errors": [
    {
     "word": "have"
-   },
-   {
-    "word": "thursday"
-   },
-   {
-    "gapAfter": "advertisement"
    }
   ],
-  "rule": "The subject is \"day\" (singular), not \"disillusionment\", so the verb is \"had\". Days of the week are capitalized. No comma separates a subject from its verb.",
+  "rule": "The subject \"day\" is singular and the story is in the past, so \"have\" should be \"had\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -21737,21 +19855,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I creep along the passage, and peeped through the crack of the door. I couldn’t see much but what I could see was so extraordinary that I felt I must see more.",
-  "fixed": "I crept along the passage and peeped through the crack of the door. I couldn’t see much, but what I could see was so extraordinary that I felt I must see more.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I creep along the passage, and peeped through the crack of the door.",
+  "fixed": "I crept along the passage and peeped through the crack of the door.",
   "errors": [
    {
     "word": "creep"
    },
    {
     "gapAfter": "passage"
-   },
-   {
-    "gapAfter": "much"
    }
   ],
-  "rule": "The verbs stay in the past tense, so \"crept\" is needed. \"Crept ... and peeped\" is one subject with two verbs, so no comma goes before \"and\". A comma goes before \"but\" when it joins two full clauses.",
+  "rule": "The story is in the past, so \"creep\" should be \"crept\", matching \"peeped\". Remove the comma after \"passage\", because one subject does both actions in \"crept along the passage and peeped through the crack\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -21762,21 +19877,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "To my surprise and annoyance he replies that there had been no camera. All Carton’s effects has been gone over very carefully in the hopes of finding something that might throw light upon his state of mind.",
-  "fixed": "To my surprise and annoyance, he replied that there had been no camera. All Carton’s effects had been gone over very carefully in the hopes of finding something that might throw light upon his state of mind.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "To my surprise and annoyance, he replies that there had been no camera.",
+  "fixed": "To my surprise and annoyance, he replied that there had been no camera.",
   "errors": [
    {
-    "gapAfter": "annoyance"
-   },
-   {
     "word": "replies"
-   },
-   {
-    "word": "has"
    }
   ],
-  "rule": "An introductory phrase is followed by a comma. The story is in past time, so \"replied\" is needed. The plural subject \"effects\" takes \"had\", not \"has\".",
+  "rule": "The story is in the past, so \"replies\" should be \"replied\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -21787,21 +19896,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "She keeps the talk I noticed, strictly to impersonal subjects. She made no mention of a husband, or of friends or relations.",
-  "fixed": "She kept the talk, I noticed, strictly to impersonal subjects. She made no mention of a husband or of friends or relations.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "She keeps the talk, I noticed, strictly to impersonal subjects.",
+  "fixed": "She kept the talk, I noticed, strictly to impersonal subjects.",
   "errors": [
    {
     "word": "keeps"
-   },
-   {
-    "gapAfter": "talk"
-   },
-   {
-    "gapAfter": "husband"
    }
   ],
-  "rule": "The story is in past time, so \"kept\" is needed. The removable phrase \"I noticed\" needs commas on both sides. No comma is needed before \"or\" here, because it joins two phrases, not two full clauses.",
+  "rule": "The story is in the past (\"noticed\"), so \"keeps\" should be \"kept\".",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
@@ -21812,21 +19915,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Sir Stanley digby, quicker in action than George snatched at the package and tore it open, investigating its contents eagerly. A sigh of relief escaped him and he mopped his brow.",
-  "fixed": "Sir Stanley Digby, quicker in action than George, snatched at the package and tore it open, investigating its contents eagerly. A sigh of relief escaped him, and he mopped his brow.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Sir Stanley digby, quicker in action than George, snatched at the package and tore it open, investigating its contents eagerly.",
+  "fixed": "Sir Stanley Digby, quicker in action than George, snatched at the package and tore it open, investigating its contents eagerly.",
   "errors": [
    {
     "word": "digby"
-   },
-   {
-    "gapAfter": "george"
-   },
-   {
-    "gapAfter": "him"
    }
   ],
-  "rule": "A person's name is capitalized. The removable phrase \"quicker in action than George\" needs commas on both sides. A comma goes before \"and\" when it joins two full clauses.",
+  "rule": "A name is capitalized, so \"digby\" should be \"Digby\".",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -21837,21 +19934,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "When that dawned upon me on monday afternoon I went straight to the Rose Garden. Mr. Fish have already tumbled to the same idea.",
-  "fixed": "When that dawned upon me on Monday afternoon, I went straight to the Rose Garden. Mr. Fish had already tumbled to the same idea.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Mr. Fish have already tumbled to the same idea.",
+  "fixed": "Mr. Fish had already tumbled to the same idea.",
   "errors": [
-   {
-    "word": "monday"
-   },
-   {
-    "gapAfter": "afternoon"
-   },
    {
     "word": "have"
    }
   ],
-  "rule": "Days of the week are capitalized. An introductory clause (\"When that dawned upon me on Monday afternoon\") is followed by a comma. The singular subject \"Mr. Fish\" takes \"had\".",
+  "rule": "The subject \"Mr. Fish\" is singular and the story is in the past, so \"have\" should be \"had\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -21862,21 +19953,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "It were some two hours later that Tommy, returned. He found tuppence awaiting him near the gate.",
-  "fixed": "It was some two hours later that Tommy returned. He found Tuppence awaiting him near the gate.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It were some two hours later that Tommy returned.",
+  "fixed": "It was some two hours later that Tommy returned.",
   "errors": [
    {
     "word": "were"
-   },
-   {
-    "gapAfter": "tommy"
-   },
-   {
-    "word": "tuppence"
    }
   ],
-  "rule": "\"It\" is singular, so it takes \"was\". No comma separates a subject (\"Tommy\") from its verb. A person's name is capitalized.",
+  "rule": "The subject \"It\" is singular, so \"were\" should be \"was\".",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -21887,21 +19972,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He hears the footsteps of his pursuers behind him, and redoubled his own pace. once he got out of these by-ways, he would be safe.",
-  "fixed": "He heard the footsteps of his pursuers behind him and redoubled his own pace. Once he got out of these by-ways, he would be safe.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He hears the footsteps of his pursuers behind him and redoubled his own pace.",
+  "fixed": "He heard the footsteps of his pursuers behind him and redoubled his own pace.",
   "errors": [
    {
     "word": "hears"
-   },
-   {
-    "gapAfter": "him"
-   },
-   {
-    "word": "once"
    }
   ],
-  "rule": "The verbs stay in the past tense, so \"heard\" is needed. \"Heard ... and redoubled\" is one subject with two verbs, so no comma goes before \"and\". A sentence starts with a capital letter.",
+  "rule": "The story is in the past (\"redoubled\"), so \"hears\" should be \"heard\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -21912,21 +19991,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "At the critical moment Anthony wheels round abruptly. The waiter, started slightly but pretends to be doing something with the salt cellar.",
-  "fixed": "At the critical moment Anthony wheeled round abruptly. The waiter started slightly but pretended to be doing something with the salt cellar.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The waiter, started slightly but pretended to be doing something with the salt cellar.",
+  "fixed": "The waiter started slightly but pretended to be doing something with the salt cellar.",
   "errors": [
    {
-    "word": "wheels"
-   },
-   {
     "gapAfter": "waiter"
-   },
-   {
-    "word": "pretends"
    }
   ],
-  "rule": "Do not put a comma between a subject and its verb, and keep verbs in the same tense when the events happen at the same time. Here 'The waiter started' needs no comma, and 'wheeled' and 'pretended' should match 'started' in the past tense.",
+  "rule": "Remove the comma after \"waiter\", because it separates the subject from its verb \"started\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -21937,21 +20010,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "They telegraphed all along the line, I presume and no one of his description were found, but that says little. He’s an astute young man and he knows Africa.",
-  "fixed": "They telegraphed all along the line, I presume, and no one of his description was found, but that says little. He’s an astute young man, and he knows Africa.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "They telegraphed all along the line, I presume, and no one of his description were found, but that says little.",
+  "fixed": "They telegraphed all along the line, I presume, and no one of his description was found, but that says little.",
   "errors": [
    {
-    "gapAfter": "presume"
-   },
-   {
     "word": "were"
-   },
-   {
-    "gapAfter": "man"
    }
   ],
-  "rule": "A removable interrupter like 'I presume' needs commas on both sides, and a comma goes before 'and' when it joins two full clauses. Also, 'no one' is singular, so it takes 'was found', not 'were found'.",
+  "rule": "The subject \"no one\" is singular, so \"were\" should be \"was\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -21962,21 +20029,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "There is always some things, that lettice will never see. In some respects she is morally colour blind.",
-  "fixed": "There are always some things that Lettice will never see. In some respects she is morally colour blind.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "There is always some things that lettice will never see.",
+  "fixed": "There are always some things that Lettice will never see.",
   "errors": [
    {
     "word": "is"
    },
    {
-    "gapAfter": "things"
-   },
-   {
     "word": "lettice"
    }
   ],
-  "rule": "In 'There are always some things', the true subject is the plural 'things', so the verb must be 'are'. The clause 'that Lettice will never see' is essential, so no comma comes before it, and the name Lettice must be capitalized.",
+  "rule": "The plural subject \"things\" needs \"are\", so \"is\" should be \"are\". A name is capitalized, so \"lettice\" should be \"Lettice\".",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
@@ -21987,21 +20051,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Suzanne’s sense of humour always fail her when it came to sending cables. She, considered my suggestion in perfectly good faith.",
-  "fixed": "Suzanne’s sense of humour always fails her when it comes to sending cables. She considered my suggestion in perfectly good faith.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Suzanne’s sense of humour always fail her when it comes to sending cables.",
+  "fixed": "Suzanne’s sense of humour always fails her when it comes to sending cables.",
   "errors": [
    {
     "word": "fail"
-   },
-   {
-    "word": "came"
-   },
-   {
-    "gapAfter": "she"
    }
   ],
-  "rule": "The singular subject 'sense' takes 'fails', not 'fail'. The sentence describes a general habit, so 'comes' should stay in the present tense, and no comma belongs between the subject 'She' and its verb.",
+  "rule": "The subject \"sense\" is singular, so \"fail\" should be \"fails\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -22012,46 +20070,40 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "We women is usually supposed to be cats but at any rate I’d done another woman a good turn this afternoon. This man isn’t likely to go off looking for another virginia Revel.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "We women is usually supposed to be cats, but at any rate I’d done another woman a good turn this afternoon. This man isn’t likely to go off looking for another virginia Revel.",
   "fixed": "We women are usually supposed to be cats, but at any rate I’d done another woman a good turn this afternoon. This man isn’t likely to go off looking for another Virginia Revel.",
   "errors": [
    {
     "word": "is"
    },
    {
-    "gapAfter": "cats"
-   },
-   {
     "word": "virginia"
    }
   ],
-  "rule": "The plural subject 'women' takes 'are'. A comma is needed before 'but' because it joins two full clauses, and the first name 'Virginia' must be capitalized.",
+  "rule": "The plural subject \"women\" needs \"are\", so \"is\" should be \"are\". A name is capitalized, so \"virginia\" should be \"Virginia\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
-  }
+  },
+  "optionalGaps": [
+   "rate"
+  ]
  },
  {
   "id": "forge-78342-548-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "tuppence inclined her head gracefully but continues to scrutinise the stranger narrowly through her downcast eyelashes. She were wondering how long he had been standing in the doorway and how much he had seen and heard.",
-  "fixed": "Tuppence inclined her head gracefully but continued to scrutinise the stranger narrowly through her downcast eyelashes. She was wondering how long he had been standing in the doorway and how much he had seen and heard.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "She were wondering how long he had been standing in the doorway and how much he had seen and heard.",
+  "fixed": "She was wondering how long he had been standing in the doorway and how much he had seen and heard.",
   "errors": [
-   {
-    "word": "tuppence"
-   },
-   {
-    "word": "continues"
-   },
    {
     "word": "were"
    }
   ],
-  "rule": "A sentence must start with a capital letter, and the name Tuppence is always capitalized. 'Inclined' and 'continued' are both past tense, so 'continues' is a tense shift, and the singular 'She' takes 'was', not 'were'.",
+  "rule": "The subject \"She\" is singular, so \"were\" should be \"was\".",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -22062,46 +20114,37 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Suddenly she stood up and drew back respectfully as harry Rayburn enters. He gave her a nod of dismissal and she went out leaving us alone.",
-  "fixed": "Suddenly she stood up and drew back respectfully as Harry Rayburn entered. He gave her a nod of dismissal, and she went out leaving us alone.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Suddenly she stood up and drew back respectfully as Harry Rayburn enters.",
+  "fixed": "Suddenly she stood up and drew back respectfully as Harry Rayburn entered.",
   "errors": [
    {
-    "word": "harry"
-   },
-   {
     "word": "enters"
-   },
-   {
-    "gapAfter": "dismissal"
    }
   ],
-  "rule": "A person's first name must be capitalized, and the past tense 'stood' and 'drew' should not shift to the present 'enters'. A comma is needed before 'and' because it joins two full clauses: 'He gave her a nod' and 'she went out'.",
+  "rule": "The story is in the past (\"stood\", \"drew\"), so \"enters\" should be \"entered\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
-  }
+  },
+  "optionalGaps": [
+   "suddenly"
+  ]
  },
  {
   "id": "forge-61168-1647-2",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I feel suddenly that I had got into a primitive era. Just for a moment neanderthal men seems quite as real to me as they had to Papa.",
-  "fixed": "I felt suddenly that I had got into a primitive era. Just for a moment Neanderthal men seemed quite as real to me as they had to Papa.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I feel suddenly that I had got into a primitive era.",
+  "fixed": "I felt suddenly that I had got into a primitive era.",
   "errors": [
    {
     "word": "feel"
-   },
-   {
-    "word": "neanderthal"
-   },
-   {
-    "word": "seems"
    }
   ],
-  "rule": "The sentence is told in the past tense, so 'feel' is a tense shift. The plural subject 'men' takes 'seemed', not 'seems', and 'Neanderthal' is capitalized because it comes from a proper name.",
+  "rule": "The story is in the past, so \"feel\" should be \"felt\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -22112,21 +20155,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Nicholas IV and Queen Varaga came to England and was the guests of the late marquis of Caterham, then Secretary of State for Foreign Affairs. Herzoslovakia is a small country but it could not be left out.",
-  "fixed": "Nicholas IV and Queen Varaga came to England and were the guests of the late Marquis of Caterham, then Secretary of State for Foreign Affairs. Herzoslovakia is a small country, but it could not be left out.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Nicholas IV and Queen Varaga came to England and was the guests of the late Marquis of Caterham, then Secretary of State for Foreign Affairs.",
+  "fixed": "Nicholas IV and Queen Varaga came to England and were the guests of the late Marquis of Caterham, then Secretary of State for Foreign Affairs.",
   "errors": [
    {
     "word": "was"
-   },
-   {
-    "word": "marquis"
-   },
-   {
-    "gapAfter": "country"
    }
   ],
-  "rule": "The compound subject 'Nicholas IV and Queen Varaga' is plural, so the verb is 'were', not 'was'. The title 'Marquis' before a name is capitalized, and a comma goes before 'but' because it joins two full clauses.",
+  "rule": "The compound subject \"Nicholas IV and Queen Varaga\" is plural, so \"was\" should be \"were\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -22137,21 +20174,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Why were the Mill House chosen for the murder? Was it because pagett has been in Kimberley when the diamonds were stolen?",
-  "fixed": "Why was the Mill House chosen for the murder? Was it because Pagett had been in Kimberley when the diamonds were stolen?",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Why were the Mill House chosen for the murder?",
+  "fixed": "Why was the Mill House chosen for the murder?",
   "errors": [
    {
     "word": "were"
-   },
-   {
-    "word": "pagett"
-   },
-   {
-    "word": "has"
    }
   ],
-  "rule": "The subject 'the Mill House' is singular, so the verb is 'was'. The name Pagett must be capitalized, and 'has been' shifts the tense, since the rest of the sentence ('were stolen') is in the past.",
+  "rule": "The subject \"Mill House\" is singular, so \"were\" should be \"was\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -22162,21 +20193,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The other man, drags his body into the furze bushes, strips off the blue coat, then sheds his own skirt and the hat and curls. He put on Sessle's well known blue coat and cap and strode back to the tee.",
-  "fixed": "The other man drags his body into the furze bushes, strips off the blue coat, then sheds his own skirt and the hat and curls. He puts on Sessle's well known blue coat and cap and strides back to the tee.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The other man, drags his body into the furze bushes, strips off the blue coat, then sheds his own skirt and the hat and curls.",
+  "fixed": "The other man drags his body into the furze bushes, strips off the blue coat, then sheds his own skirt and the hat and curls.",
   "errors": [
    {
     "gapAfter": "man"
-   },
-   {
-    "word": "put"
-   },
-   {
-    "word": "strode"
    }
   ],
-  "rule": "Do not put a comma between a subject and its verb, so 'The other man drags' needs no comma. The passage is in the present tense, so the past forms 'put' and 'strode' shift the tense.",
+  "rule": "Remove the comma after \"man\", because it separates the subject \"The other man\" from its verb \"drags\".",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -22187,21 +20212,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "She have made one or two experiments in my little kitchen. I have a little place of my own, you know where I brews liqueurs and make preserves in the old fashioned way.",
-  "fixed": "She has made one or two experiments in my little kitchen. I have a little place of my own, you know, where I brew liqueurs and make preserves in the old fashioned way.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "She have made one or two experiments in my little kitchen.",
+  "fixed": "She has made one or two experiments in my little kitchen.",
   "errors": [
    {
     "word": "have"
-   },
-   {
-    "gapAfter": "know"
-   },
-   {
-    "word": "brews"
    }
   ],
-  "rule": "The singular subject 'She' takes 'has', and the subject 'I' takes 'brew', not 'brews'. The interrupter 'you know' is removable, so it needs a comma on both sides.",
+  "rule": "The subject \"She\" is singular, so \"have\" should be \"has\".",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -22212,21 +20231,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "mason and Knighton rolls the body up in a rug and put it on the seat in the adjoining compartment amongst the bags and suit-cases. Knighton dropped off the train, taking the jewel-case containing the rubies with him.",
-  "fixed": "Mason and Knighton roll the body up in a rug and put it on the seat in the adjoining compartment amongst the bags and suit-cases. Knighton drops off the train, taking the jewel-case containing the rubies with him.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Mason and Knighton rolls the body up in a rug and put it on the seat in the adjoining compartment amongst the bags and suit-cases.",
+  "fixed": "Mason and Knighton roll the body up in a rug and put it on the seat in the adjoining compartment amongst the bags and suit-cases.",
   "errors": [
    {
-    "word": "mason"
-   },
-   {
     "word": "rolls"
-   },
-   {
-    "word": "dropped"
    }
   ],
-  "rule": "A sentence must start with a capital letter, and Mason is a name. The compound subject 'Mason and Knighton' is plural, so it takes 'roll', and 'dropped' shifts to the past in a passage told in the present tense.",
+  "rule": "The compound subject \"Mason and Knighton\" is plural, so \"rolls\" should be \"roll\".",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
@@ -22237,46 +20250,37 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Presently boris stopped and points with his forefinger. It was moonlight and in front of them was a stone seat on which sat two figures.",
-  "fixed": "Presently Boris stopped and pointed with his forefinger. It was moonlight, and in front of them was a stone seat on which sat two figures.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Presently Boris stopped and points with his forefinger.",
+  "fixed": "Presently Boris stopped and pointed with his forefinger.",
   "errors": [
    {
-    "word": "boris"
-   },
-   {
     "word": "points"
-   },
-   {
-    "gapAfter": "moonlight"
    }
   ],
-  "rule": "The name Boris must be capitalized, and 'stopped' and 'pointed' should both be past tense, so 'points' is a shift. A comma is needed before 'and' because it joins two full clauses: 'It was moonlight' and 'in front of them was a stone seat'.",
+  "rule": "The story is in the past, so \"points\" should be \"pointed\", matching \"stopped\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
-  }
+  },
+  "optionalGaps": [
+   "presently"
+  ]
  },
  {
   "id": "forge-1155-1762-1",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "She, felt morally battered to the ground after her conflict with Julius’s vigorous personality. Sitting down in front of the glass she stares at her own reflection for some minutes.",
-  "fixed": "She felt morally battered to the ground after her conflict with Julius’s vigorous personality. Sitting down in front of the glass, she stared at her own reflection for some minutes.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "She, felt morally battered to the ground after her conflict with Julius’s vigorous personality.",
+  "fixed": "She felt morally battered to the ground after her conflict with Julius’s vigorous personality.",
   "errors": [
    {
     "gapAfter": "she"
-   },
-   {
-    "gapAfter": "glass"
-   },
-   {
-    "word": "stares"
    }
   ],
-  "rule": "Do not put a comma between a subject and its verb, so 'She felt' needs no comma. A comma is needed after the introductory phrase 'Sitting down in front of the glass', and 'stares' shifts the tense, since the rest is past tense.",
+  "rule": "Remove the comma after \"She\", because it separates the subject from its verb \"felt\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -22287,8 +20291,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I, arranged them so far as possible in chronological order. I is not a punctual person but I am a neat one, and I like things jotted down in a methodical fashion.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I, arranged them so far as possible in chronological order. I is not a punctual person, but I am a neat one, and I like things jotted down in a methodical fashion.",
   "fixed": "I arranged them so far as possible in chronological order. I am not a punctual person, but I am a neat one, and I like things jotted down in a methodical fashion.",
   "errors": [
    {
@@ -22296,12 +20300,9 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    },
    {
     "word": "is"
-   },
-   {
-    "gapAfter": "person"
    }
   ],
-  "rule": "Do not put a comma between a subject and its verb, so 'I arranged' needs no comma. The subject 'I' takes 'am', not 'is', and a comma is needed before 'but' because it joins two full clauses.",
+  "rule": "Remove the comma after \"I\", because it separates the subject from its verb \"arranged\". The subject \"I\" takes \"am\", so \"is\" should be \"am\".",
   "source": {
    "book": "The Murder at the Vicarage",
    "gutenberg": 78220
@@ -22312,21 +20313,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He, struck the bell upon the table with his hand. Chichester-Pettigrew, alias minks, answer the summons.",
-  "fixed": "He struck the bell upon the table with his hand. Chichester-Pettigrew, alias Minks, answered the summons.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Chichester-Pettigrew, alias Minks, answer the summons.",
+  "fixed": "Chichester-Pettigrew, alias Minks, answered the summons.",
   "errors": [
-   {
-    "gapAfter": "he"
-   },
-   {
-    "word": "minks"
-   },
    {
     "word": "answer"
    }
   ],
-  "rule": "Do not put a comma between a subject and its verb, so 'He struck' needs no comma. The alias Minks is a name and must be capitalized, and the singular subject 'Chichester-Pettigrew' takes the past tense 'answered'.",
+  "rule": "The story is in the past, so \"answer\" should be \"answered\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -22337,21 +20332,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Mr. Satterthwaite were agreeably surprised to recognize in him an old acquaintance, Inspector winkfield. The Inspector went upstairs with the doctor and a few minutes later a request came that all members of the house party should assemble in the drawing room.",
-  "fixed": "Mr. Satterthwaite was agreeably surprised to recognize in him an old acquaintance, Inspector Winkfield. The Inspector went upstairs with the doctor, and a few minutes later a request came that all members of the house party should assemble in the drawing room.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Mr. Satterthwaite were agreeably surprised to recognize in him an old acquaintance, Inspector Winkfield.",
+  "fixed": "Mr. Satterthwaite was agreeably surprised to recognize in him an old acquaintance, Inspector Winkfield.",
   "errors": [
    {
     "word": "were"
-   },
-   {
-    "word": "winkfield"
-   },
-   {
-    "gapAfter": "doctor"
    }
   ],
-  "rule": "The singular subject 'Mr. Satterthwaite' takes 'was', not 'were', and the name Winkfield must be capitalized. A comma is needed before 'and' because it joins two full clauses: 'The Inspector went upstairs' and 'a request came'.",
+  "rule": "The subject \"Mr. Satterthwaite\" is singular, so \"were\" should be \"was\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -22362,74 +20351,43 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "She steel herself to look long and earnestly at the recumbent figure. then she leaned forward and takes up the dead woman's hand.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "She steel herself to look long and earnestly at the recumbent figure. Then she leaned forward and takes up the dead woman's hand.",
   "fixed": "She steeled herself to look long and earnestly at the recumbent figure. Then she leaned forward and took up the dead woman's hand.",
   "errors": [
    {
     "word": "steel"
    },
    {
-    "word": "then"
-   },
-   {
     "word": "takes"
    }
   ],
-  "rule": "The singular subject 'She' needs the verb 'steeled', and a new sentence begins with a capital letter. 'Leaned' and 'took' are both past tense, so 'takes' is a tense shift.",
+  "rule": "The story is in the past, so \"steel\" should be \"steeled\" and \"takes\" should be \"took\".",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
-  }
+  },
+  "optionalGaps": [
+   "then"
+  ]
  },
  {
   "id": "forge-1155-372-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "tommy strolled slowly down to the end of the street, then back again. Just as he came abreast of the building Tuppence darts across the road.",
-  "fixed": "Tommy strolled slowly down to the end of the street, then back again. Just as he came abreast of the building, Tuppence darted across the road.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Just as he came abreast of the building, Tuppence darts across the road.",
+  "fixed": "Just as he came abreast of the building, Tuppence darted across the road.",
   "errors": [
-   {
-    "word": "tommy"
-   },
-   {
-    "gapAfter": "building"
-   },
    {
     "word": "darts"
    }
   ],
-  "rule": "The name Tommy must be capitalized. A comma is needed after the introductory clause 'Just as he came abreast of the building', and 'darts' shifts the tense, since 'came' and 'strolled' are past tense.",
+  "rule": "The story is in the past (\"came\"), so \"darts\" should be \"darted\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
-  }
- },
- {
-  "id": "forge-70114-1842-0",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "A car drove up to the villa early one morning such an unusual event in our peaceful life that I hurried down to satisfy my curiosity. I find poirot talking to a pleasant-faced young fellow of about my own age.",
-  "fixed": "A car drove up to the villa early one morning, such an unusual event in our peaceful life that I hurried down to satisfy my curiosity. I found Poirot talking to a pleasant-faced young fellow of about my own age.",
-  "errors": [
-   {
-    "gapAfter": "morning"
-   },
-   {
-    "word": "find"
-   },
-   {
-    "word": "poirot"
-   }
-  ],
-  "rule": "The phrase 'such an unusual event in our peaceful life' renames the car's arrival and is extra information, so a comma is needed before it. The name Poirot must be capitalized, and 'find' shifts the tense, since 'drove' and 'hurried' are past tense.",
-  "source": {
-   "book": "The Big Four",
-   "gutenberg": 70114
   }
  },
  {
@@ -22437,21 +20395,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "As he spoke his eyes goes gently round the room, seeming to note everything in it. They rests just a shade longer on the window.",
-  "fixed": "As he spoke, his eyes went gently round the room, seeming to note everything in it. They rested just a shade longer on the window.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "As he spoke, his eyes goes gently round the room, seeming to note everything in it.",
+  "fixed": "As he spoke, his eyes went gently round the room, seeming to note everything in it.",
   "errors": [
    {
-    "gapAfter": "spoke"
-   },
-   {
     "word": "goes"
-   },
-   {
-    "word": "rests"
    }
   ],
-  "rule": "A comma is needed after the introductory clause 'As he spoke'. The plural subjects 'eyes' and 'They' take 'went' and 'rested', not the singular forms 'goes' and 'rests'.",
+  "rule": "The subject \"eyes\" is plural and the story is in the past, so \"goes\" should be \"went\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -22462,46 +20414,40 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Their discussion have taken some time and his driving had slowed down involuntarily once or twice. They arrived at chimneys to find Colonel Melrose already there waiting.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Their discussion have taken some time, and his driving had slowed down involuntarily once or twice. They arrived at chimneys to find Colonel Melrose already there waiting.",
   "fixed": "Their discussion had taken some time, and his driving had slowed down involuntarily once or twice. They arrived at Chimneys to find Colonel Melrose already there waiting.",
   "errors": [
    {
     "word": "have"
    },
    {
-    "gapAfter": "time"
-   },
-   {
     "word": "chimneys"
    }
   ],
-  "rule": "The singular subject 'discussion' takes 'had', not 'have'. A comma is needed before 'and' because it joins two full clauses, and the place name Chimneys must be capitalized.",
+  "rule": "The subject \"discussion\" is singular and the story is in the past, so \"have\" should be \"had\". A place name is capitalized, so \"chimneys\" should be \"Chimneys\".",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
-  }
+  },
+  "optionalGaps": [
+   "there"
+  ]
  },
  {
   "id": "forge-78084-756-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "To his own surprise he enjoys the trip greatly. It were many years since he had taken a long sea voyage.",
-  "fixed": "To his own surprise, he enjoyed the trip greatly. It was many years since he had taken a long sea voyage.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "It were many years since he had taken a long sea voyage.",
+  "fixed": "It was many years since he had taken a long sea voyage.",
   "errors": [
-   {
-    "gapAfter": "surprise"
-   },
-   {
-    "word": "enjoys"
-   },
    {
     "word": "were"
    }
   ],
-  "rule": "A comma is needed after the introductory phrase 'To his own surprise'. The passage is in the past tense, so 'enjoys' is a shift, and the singular subject 'It' takes 'was', not 'were'.",
+  "rule": "The subject \"It\" is singular, so \"were\" should be \"was\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -22512,21 +20458,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The girl picks up something from the floor and handed it to poirot. It were a rolled up ladder of silk rope, very fine but quite strong.",
-  "fixed": "The girl picked up something from the floor and handed it to Poirot. It was a rolled up ladder of silk rope, very fine but quite strong.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The girl picks up something from the floor and handed it to Poirot.",
+  "fixed": "The girl picked up something from the floor and handed it to Poirot.",
   "errors": [
    {
     "word": "picks"
-   },
-   {
-    "word": "poirot"
-   },
-   {
-    "word": "were"
    }
   ],
-  "rule": "'Picks' shifts to the present, while 'handed' is past tense. The name Poirot must be capitalized, and the singular subject 'It' takes 'was', not 'were'.",
+  "rule": "The story is in the past, so \"picks\" should be \"picked\", matching \"handed\".",
   "source": {
    "book": "The Murder on the Links",
    "gutenberg": 58866
@@ -22537,49 +20477,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Her hand, concealed the part of it where the gap would have shown. to place a piece of silk in the door beforehand are child’s play!",
-  "fixed": "Her hand concealed the part of it where the gap would have shown. To place a piece of silk in the door beforehand is child’s play!",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Her hand, concealed the part of it where the gap would have shown.",
+  "fixed": "Her hand concealed the part of it where the gap would have shown.",
   "errors": [
    {
     "gapAfter": "hand"
-   },
-   {
-    "word": "to"
-   },
-   {
-    "word": "are"
    }
   ],
-  "rule": "Do not put a comma between a subject and its verb (\"Her hand concealed\"). A sentence begins with a capital letter. The subject \"To place a piece of silk\" is singular, so the verb must be \"is\".",
+  "rule": "Remove the comma after \"hand\", because it separates the subject \"Her hand\" from its verb \"concealed\".",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
-  }
- },
- {
-  "id": "forge-69087-2773-2",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The quill suggested dope and I remembered your account of Miss Russell’s visit to you. then I find the article on cocaine in that morning’s paper.",
-  "fixed": "The quill suggested dope, and I remembered your account of Miss Russell’s visit to you. Then I found the article on cocaine in that morning’s paper.",
-  "errors": [
-   {
-    "gapAfter": "dope"
-   },
-   {
-    "word": "then"
-   },
-   {
-    "word": "find"
-   }
-  ],
-  "rule": "Use a comma before \"and\" when it joins two complete sentences (\"The quill suggested dope\" and \"I remembered...\"). Start a sentence with a capital letter. Keep the tense consistent: \"found\" matches the past-tense story.",
-  "source": {
-   "book": "The Murder of Roger Ackroyd",
-   "gutenberg": 69087
   }
  },
  {
@@ -22587,21 +20496,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I, thought of the scene this afternoon from a rather different point of view. what were there about Cabin 17 that made so many people anxious to get hold of it?",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I, thought of the scene this afternoon from a rather different point of view. What were there about Cabin 17 that made so many people anxious to get hold of it?",
   "fixed": "I thought of the scene this afternoon from a rather different point of view. What was there about Cabin 17 that made so many people anxious to get hold of it?",
   "errors": [
    {
     "gapAfter": "i"
    },
    {
-    "word": "what"
-   },
-   {
     "word": "were"
    }
   ],
-  "rule": "Do not separate a subject from its verb with a comma (\"I thought\"). A sentence starts with a capital letter. In \"What was there about Cabin 17,\" the thing being asked about is singular, so the verb is \"was.\"",
+  "rule": "Remove the comma after \"I\", because it separates the subject from its verb \"thought\". In \"What was there about Cabin 17\", the subject \"What\" is singular, so \"were\" should be \"was\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -22612,21 +20518,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The man who had followed me, crossed to the middle of the road and speaks to a policeman. he spoke at some length, gesticulating towards Cartwright’s and evidently explaining something.",
-  "fixed": "The man who had followed me crossed to the middle of the road and spoke to a policeman. He spoke at some length, gesticulating towards Cartwright’s and evidently explaining something.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The man who had followed me, crossed to the middle of the road and spoke to a policeman.",
+  "fixed": "The man who had followed me crossed to the middle of the road and spoke to a policeman.",
   "errors": [
    {
     "gapAfter": "me"
-   },
-   {
-    "word": "speaks"
-   },
-   {
-    "word": "he"
    }
   ],
-  "rule": "The subject \"The man who had followed me\" must not be separated from its verb \"crossed\" by a comma. Keep verbs in the same past tense (\"crossed... and spoke\"). Begin each sentence with a capital letter.",
+  "rule": "Remove the comma after \"me\", because it separates the subject \"The man who had followed me\" from its verb \"crossed\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -22637,21 +20537,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Whilst we discussed the excellent steak and kidney pudding of the establishment Philip Ridgeway narrates the circumstances leading to the disappearance of the bonds. His story agree with that of Miss Farquhar in every particular.",
-  "fixed": "Whilst we discussed the excellent steak and kidney pudding of the establishment, Philip Ridgeway narrated the circumstances leading to the disappearance of the bonds. His story agreed with that of Miss Farquhar in every particular.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Whilst we discussed the excellent steak and kidney pudding of the establishment, Philip Ridgeway narrates the circumstances leading to the disappearance of the bonds.",
+  "fixed": "Whilst we discussed the excellent steak and kidney pudding of the establishment, Philip Ridgeway narrated the circumstances leading to the disappearance of the bonds.",
   "errors": [
    {
-    "gapAfter": "establishment"
-   },
-   {
     "word": "narrates"
-   },
-   {
-    "word": "agree"
    }
   ],
-  "rule": "Put a comma after an introductory clause that begins with \"Whilst\" and comes before the main clause. Keep the past tense (\"discussed... narrated\"). The singular subject \"story\" needs \"agreed,\" not \"agree.\"",
+  "rule": "The story is in the past (\"discussed\"), so \"narrates\" should be \"narrated\".",
   "source": {
    "book": "Poirot Investigates",
    "gutenberg": 61262
@@ -22662,21 +20556,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He picked up a long wicker chair, and carries it down the lawn. virginia followed him with a cushion under her arm.",
-  "fixed": "He picked up a long wicker chair and carried it down the lawn. Virginia followed him with a cushion under her arm.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He picked up a long wicker chair and carries it down the lawn.",
+  "fixed": "He picked up a long wicker chair and carried it down the lawn.",
   "errors": [
    {
-    "gapAfter": "chair"
-   },
-   {
     "word": "carries"
-   },
-   {
-    "word": "virginia"
    }
   ],
-  "rule": "Do not put a comma before \"and\" when it only joins two verbs with the same subject (\"picked up... and carried\"). Keep the past tense. Names start with a capital letter.",
+  "rule": "The story is in the past (\"picked up\"), so \"carries\" should be \"carried\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -22687,33 +20575,30 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Two days later Poirot, returned to our rooms in a state of boundless excitement. he grasps me by both hands in his most impulsive manner.",
-  "fixed": "Two days later Poirot returned to our rooms in a state of boundless excitement. He grasped me by both hands in his most impulsive manner.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Two days later Poirot, returned to our rooms in a state of boundless excitement.",
+  "fixed": "Two days later Poirot returned to our rooms in a state of boundless excitement.",
   "errors": [
    {
     "gapAfter": "poirot"
-   },
-   {
-    "word": "grasps"
-   },
-   {
-    "word": "he"
    }
   ],
-  "rule": "Do not put a comma between a subject and its verb (\"Poirot returned\"). Keep the past tense (\"returned... grasped\").",
+  "rule": "Remove the comma after \"Poirot\", because it separates the subject from its verb \"returned\".",
   "source": {
    "book": "The Big Four",
    "gutenberg": 70114
-  }
+  },
+  "optionalGaps": [
+   "later"
+  ]
  },
  {
   "id": "forge-75288-252-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Pongo performs his job neatly and efficiently. cautiously opening the bedroom door he disappeared into the darkness inside bearing the two largest clocks.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Pongo performs his job neatly and efficiently. cautiously opening the bedroom door, he disappeared into the darkness inside bearing the two largest clocks.",
   "fixed": "Pongo performed his job neatly and efficiently. Cautiously opening the bedroom door, he disappeared into the darkness inside bearing the two largest clocks.",
   "errors": [
    {
@@ -22721,87 +20606,53 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    },
    {
     "word": "cautiously"
-   },
-   {
-    "gapAfter": "door"
    }
   ],
-  "rule": "Put a comma after an introductory phrase such as \"Cautiously opening the bedroom door.\" Capitalize the first word of a sentence. Keep the past tense (\"performed... disappeared\").",
+  "rule": "The story is in the past (\"disappeared\"), so \"performs\" should be \"performed\". A sentence starts with a capital letter, so \"cautiously\" should be \"Cautiously\".",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
-  }
+  },
+  "optionalGaps": [
+   "inside"
+  ]
  },
  {
   "id": "forge-75288-1387-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "She finds herself in a small dingy apartment. A long table occupy the centre of the room with chairs ranged round it.",
-  "fixed": "She found herself in a small, dingy apartment. A long table occupied the centre of the room with chairs ranged round it.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "A long table occupy the centre of the room with chairs ranged round it.",
+  "fixed": "A long table occupied the centre of the room with chairs ranged round it.",
   "errors": [
-   {
-    "word": "finds"
-   },
-   {
-    "gapAfter": "small"
-   },
    {
     "word": "occupy"
    }
   ],
-  "rule": "Use a comma between two adjectives that each describe the noun on their own (\"small, dingy apartment\"). Keep the past tense (\"found... occupied\"). The singular subject \"table\" needs a singular verb.",
+  "rule": "The subject \"table\" is singular and the story is in the past, so \"occupy\" should be \"occupied\".",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
-  }
- },
- {
-  "id": "forge-65238-155-7",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "They’re very aristocratic and reactionary in herzoslovakia. They likes their Kings and Queens, to be the genuine article.",
-  "fixed": "They’re very aristocratic and reactionary in Herzoslovakia. They like their Kings and Queens to be the genuine article.",
-  "errors": [
-   {
-    "word": "herzoslovakia"
-   },
-   {
-    "word": "likes"
-   },
-   {
-    "gapAfter": "queens"
-   }
-  ],
-  "rule": "The name of a place is capitalized. The plural subject \"They\" takes \"like,\" not \"likes.\" Do not put a comma between \"Kings and Queens\" and the infinitive \"to be\" that completes the thought.",
-  "source": {
-   "book": "The Secret of Chimneys",
-   "gutenberg": 65238
-  }
+  },
+  "optionalGaps": [
+   "room"
+  ]
  },
  {
   "id": "forge-72824-1739-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Mirelle does not take it as he expected her to do. She look at him for a minute or two and then she smiled softly.",
-  "fixed": "Mirelle did not take it as he expected her to do. She looked at him for a minute or two, and then she smiled softly.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "She look at him for a minute or two, and then she smiled softly.",
+  "fixed": "She looked at him for a minute or two, and then she smiled softly.",
   "errors": [
    {
-    "word": "does"
-   },
-   {
     "word": "look"
-   },
-   {
-    "gapAfter": "two"
    }
   ],
-  "rule": "Keep the past tense (\"did not take... expected\"). The subject \"She\" needs \"looked.\" Use a comma before \"and\" when it joins two complete sentences (\"She looked...\" and \"she smiled...\").",
+  "rule": "The subject \"She\" is singular and the story is in the past, so \"look\" should be \"looked\".",
   "source": {
    "book": "The Mystery of the Blue Train",
    "gutenberg": 72824
@@ -22812,13 +20663,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He could not call to mind one young lady in particular. but he were quite certain, that no one had asked him the way to the Moat House.",
-  "fixed": "He could not call to mind one young lady in particular. But he was quite certain that no one had asked him the way to the Moat House.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "But he were quite certain, that no one had asked him the way to the Moat House.",
+  "fixed": "But he was quite certain that no one had asked him the way to the Moat House.",
   "errors": [
-   {
-    "word": "but"
-   },
    {
     "word": "were"
    },
@@ -22826,7 +20674,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "gapAfter": "certain"
    }
   ],
-  "rule": "Start a sentence with a capital letter. The singular subject \"he\" takes \"was.\" Do not put a comma between \"certain\" and the \"that\" clause that completes it.",
+  "rule": "The subject \"he\" is singular, so \"were\" should be \"was\". Remove the comma after \"certain\", because the \"that\" clause completes the thought and should not be split off.",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -22837,96 +20685,93 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He had one bitter interview with his son in which he heaps upon him every reproach imaginable. He had done what he could to save the family name but from that day on his son were his son no longer.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He had one bitter interview with his son in which he heaps upon him every reproach imaginable. He had done what he could to save the family name, but from that day on his son were his son no longer.",
   "fixed": "He had one bitter interview with his son in which he heaped upon him every reproach imaginable. He had done what he could to save the family name, but from that day on his son was his son no longer.",
   "errors": [
    {
     "word": "heaps"
    },
    {
-    "gapAfter": "name"
-   },
-   {
     "word": "were"
    }
   ],
-  "rule": "Keep the past tense (\"had... heaped\"). Use a comma before \"but\" when it joins two complete sentences. The singular subject \"son\" takes \"was.\"",
+  "rule": "The story is in the past (\"had\"), so \"heaps\" should be \"heaped\". The subject \"son\" is singular, so \"were\" should be \"was\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
-  }
+  },
+  "optionalGaps": [
+   "on"
+  ]
  },
  {
   "id": "forge-1155-973-2",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "In the hall below a magnificent hall porter, had relegated Albert to the background. tuppence does not even glance at him as she passed meekly out.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "In the hall below a magnificent hall porter, had relegated Albert to the background. Tuppence does not even glance at him as she passed meekly out.",
   "fixed": "In the hall below a magnificent hall porter had relegated Albert to the background. Tuppence did not even glance at him as she passed meekly out.",
   "errors": [
    {
     "gapAfter": "porter"
    },
    {
-    "word": "tuppence"
-   },
-   {
     "word": "does"
    }
   ],
-  "rule": "Do not separate the subject \"porter\" from its verb \"had relegated\" with a comma. Names and sentence starts are capitalized. Keep the past tense (\"did... passed\").",
+  "rule": "Remove the comma after \"porter\", because it separates the subject from its verb \"had relegated\". The story is in the past (\"passed\"), so \"does\" should be \"did\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
-  }
+  },
+  "optionalGaps": [
+   "below"
+  ]
  },
  {
   "id": "forge-69087-1599-1",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "My sister, received each guess with a triumphant shake of the head. in the end she volunteers the information herself.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "My sister, received each guess with a triumphant shake of the head. In the end she volunteers the information herself.",
   "fixed": "My sister received each guess with a triumphant shake of the head. In the end she volunteered the information herself.",
   "errors": [
    {
     "gapAfter": "sister"
    },
    {
-    "word": "in"
-   },
-   {
     "word": "volunteers"
    }
   ],
-  "rule": "Do not put a comma between a subject and its verb (\"My sister received\"). Capitalize the first word of a sentence. Keep the past tense (\"received... volunteered\").",
+  "rule": "Remove the comma after \"sister\", because it separates the subject from its verb \"received\". The story is in the past, so \"volunteers\" should be \"volunteered\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
-  }
+  },
+  "optionalGaps": [
+   "end"
+  ]
  },
  {
   "id": "forge-65238-2059-2",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "The intruder, had no need to stop and fumble for it. he springs out and raced away down the terrace and round the corner of the house.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "The intruder, had no need to stop and fumble for it. He springs out and raced away down the terrace and round the corner of the house.",
   "fixed": "The intruder had no need to stop and fumble for it. He sprang out and raced away down the terrace and round the corner of the house.",
   "errors": [
    {
     "gapAfter": "intruder"
    },
    {
-    "word": "he"
-   },
-   {
     "word": "springs"
    }
   ],
-  "rule": "No comma belongs between the subject \"intruder\" and its verb. Begin a sentence with a capital letter. Keep the past tense (\"sprang... raced\").",
+  "rule": "Remove the comma after \"intruder\", because it separates the subject from its verb \"had\". The story is in the past, so \"springs\" should be \"sprang\", matching \"raced\".",
   "source": {
    "book": "The Secret of Chimneys",
    "gutenberg": 65238
@@ -22937,49 +20782,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "there were certainly nothing of the policeman about them. I, should never have suspected them of being official personages.",
-  "fixed": "There was certainly nothing of the policeman about them. I should never have suspected them of being official personages.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "There were certainly nothing of the policeman about them.",
+  "fixed": "There was certainly nothing of the policeman about them.",
   "errors": [
    {
-    "word": "there"
-   },
-   {
     "word": "were"
-   },
-   {
-    "gapAfter": "i"
    }
   ],
-  "rule": "Capitalize the first word of a sentence. The singular subject \"nothing\" takes \"was.\" Do not put a comma between the subject \"I\" and its verb phrase.",
+  "rule": "The subject \"nothing\" is singular, so \"were\" should be \"was\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
-  }
- },
- {
-  "id": "forge-61168-1284-5",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Besides she is not the type that get excited before breakfast. She snubs me severely when I let out an enthusiastic yelp at the sight of a giant blue convolvulus.",
-  "fixed": "Besides, she is not the type that gets excited before breakfast. She snubbed me severely when I let out an enthusiastic yelp at the sight of a giant blue convolvulus.",
-  "errors": [
-   {
-    "gapAfter": "besides"
-   },
-   {
-    "word": "get"
-   },
-   {
-    "word": "snubs"
-   }
-  ],
-  "rule": "Put a comma after a transition word at the start of a sentence (\"Besides,\"). The singular \"type\" takes \"gets.\" In the second sentence the past-tense \"snubbed\" matches \"let out.\"",
-  "source": {
-   "book": "The Man in the Brown Suit",
-   "gutenberg": 61168
   }
  },
  {
@@ -22987,33 +20801,30 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "john rang the bell, and ordered round the car. In another ten minutes we was racing down the park and along the high road to Tadminster.",
-  "fixed": "John rang the bell and ordered round the car. In another ten minutes we were racing down the park and along the high road to Tadminster.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "In another ten minutes we was racing down the park and along the high road to Tadminster.",
+  "fixed": "In another ten minutes we were racing down the park and along the high road to Tadminster.",
   "errors": [
-   {
-    "word": "john"
-   },
-   {
-    "gapAfter": "bell"
-   },
    {
     "word": "was"
    }
   ],
-  "rule": "Names are capitalized. Do not put a comma before \"and\" when it only joins two verbs with the same subject (\"rang... and ordered\"). The plural \"we\" takes \"were.\"",
+  "rule": "The subject \"we\" is plural, so \"was\" should be \"were\".",
   "source": {
    "book": "The Mysterious Affair at Styles",
    "gutenberg": 863
-  }
+  },
+  "optionalGaps": [
+   "minutes"
+  ]
  },
  {
   "id": "forge-61168-2431-10",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I, kept a pretty sharp watch upon him and hoped that I should learn more. Then I find minks trying to play a lone hand and interfering with me.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I, kept a pretty sharp watch upon him and hoped that I should learn more. Then I find Minks trying to play a lone hand and interfering with me.",
   "fixed": "I kept a pretty sharp watch upon him and hoped that I should learn more. Then I found Minks trying to play a lone hand and interfering with me.",
   "errors": [
    {
@@ -23021,37 +20832,31 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    },
    {
     "word": "find"
-   },
-   {
-    "word": "minks"
    }
   ],
-  "rule": "Do not put a comma between the subject \"I\" and its verb. Keep the past tense (\"kept... found\"). Names are capitalized.",
+  "rule": "Remove the comma after \"I\", because it separates the subject from its verb \"kept\". The story is in the past, so \"find\" should be \"found\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
-  }
+  },
+  "optionalGaps": [
+   "then"
+  ]
  },
  {
   "id": "forge-1155-2009-4",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "There must be, a peep-hole somewhere in the walls. Remembering how guarded she had always been in her manner he sees that he had probably been under observation all the time.",
-  "fixed": "There must be a peep-hole somewhere in the walls. Remembering how guarded she had always been in her manner, he saw that he had probably been under observation all the time.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Remembering how guarded she had always been in her manner, he sees that he had probably been under observation all the time.",
+  "fixed": "Remembering how guarded she had always been in her manner, he saw that he had probably been under observation all the time.",
   "errors": [
-   {
-    "gapAfter": "be"
-   },
-   {
-    "gapAfter": "manner"
-   },
    {
     "word": "sees"
    }
   ],
-  "rule": "Do not put a comma between a verb and what completes it (\"must be a peep-hole\"). Put a comma after an introductory phrase like \"Remembering how guarded she had always been in her manner.\" Keep the past tense (\"saw\").",
+  "rule": "The story is in the past, so \"sees\" should be \"saw\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -23062,13 +20867,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "As a result of further meditations however, she turned aside from the direct route, and entered a post office. There she ponders for some moments, a telegraph form in her hand.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "As a result of further meditations, however, she turned aside from the direct route, and entered a post office. There she ponders for some moments, a telegraph form in her hand.",
   "fixed": "As a result of further meditations, however, she turned aside from the direct route and entered a post office. There she pondered for some moments, a telegraph form in her hand.",
   "errors": [
-   {
-    "gapAfter": "meditations"
-   },
    {
     "gapAfter": "route"
    },
@@ -23076,32 +20878,29 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "ponders"
    }
   ],
-  "rule": "A word like \"however\" that interrupts the sentence is set off by commas on both sides. Do not put a comma before \"and\" when it only joins two verbs with the same subject (\"turned... and entered\"). Keep the past tense.",
+  "rule": "Remove the comma after \"route\", because one subject does both actions in \"turned aside from the direct route and entered a post office\". The story is in the past, so \"ponders\" should be \"pondered\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
-  }
+  },
+  "optionalGaps": [
+   "there"
+  ]
  },
  {
   "id": "forge-1155-2722-0",
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Tommy, retires for the night in a state of some elation. He have elaborated a careful plan for the following evening.",
-  "fixed": "Tommy retired for the night in a state of some elation. He had elaborated a careful plan for the following evening.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "Tommy, retired for the night in a state of some elation.",
+  "fixed": "Tommy retired for the night in a state of some elation.",
   "errors": [
    {
     "gapAfter": "tommy"
-   },
-   {
-    "word": "retires"
-   },
-   {
-    "word": "have"
    }
   ],
-  "rule": "Do not put a comma between a subject and its verb. Keep the past tense (\"retired... had elaborated\"). The singular \"He\" takes \"had.\"",
+  "rule": "Remove the comma after \"Tommy\", because it separates the subject from its verb \"retired\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
@@ -23112,21 +20911,18 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He leaves his cottage at seven to attend to the greenhouses; he returned at twenty minutes to eight. The servants, in the house hears the front door slam at about a quarter after seven.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He leaves his cottage at seven to attend to the greenhouses; he returned at twenty minutes to eight. The servants in the house hears the front door slam at about a quarter after seven.",
   "fixed": "He left his cottage at seven to attend to the greenhouses; he returned at twenty minutes to eight. The servants in the house heard the front door slam at about a quarter after seven.",
   "errors": [
    {
     "word": "leaves"
    },
    {
-    "gapAfter": "servants"
-   },
-   {
     "word": "hears"
    }
   ],
-  "rule": "Keep the past tense (\"left... returned\"). The subject \"servants\" is plural and \"in the house\" is not part of it, so no comma follows \"servants\" and the verb is \"heard\".",
+  "rule": "The story is in the past (\"returned\"), so \"leaves\" should be \"left\" and \"hears\" should be \"heard\".",
   "source": {
    "book": "The Mysterious Mr. Quin",
    "gutenberg": 78084
@@ -23137,21 +20933,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I, had entered the station by the main entrance in adderly Street. I now darts out again through the side exit.",
-  "fixed": "I had entered the station by the main entrance in Adderly Street. I now darted out again through the side exit.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I, had entered the station by the main entrance in Adderly Street.",
+  "fixed": "I had entered the station by the main entrance in Adderly Street.",
   "errors": [
    {
     "gapAfter": "i"
-   },
-   {
-    "word": "adderly"
-   },
-   {
-    "word": "darts"
    }
   ],
-  "rule": "Do not put a comma between the subject \"I\" and its verb. Names of streets are capitalized. Keep the past tense (\"had entered... darted\").",
+  "rule": "Remove the comma after \"I\", because it separates the subject from its verb \"had entered\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -23162,21 +20952,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "She know the value of being direct on certain occasions. Any hints, would certainly have been wasted on caroline.",
-  "fixed": "She knows the value of being direct on certain occasions. Any hints would certainly have been wasted on Caroline.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "She know the value of being direct on certain occasions.",
+  "fixed": "She knows the value of being direct on certain occasions.",
   "errors": [
    {
     "word": "know"
-   },
-   {
-    "gapAfter": "hints"
-   },
-   {
-    "word": "caroline"
    }
   ],
-  "rule": "The singular subject \"She\" takes \"knows.\" Do not put a comma between the subject \"hints\" and its verb. Names are capitalized.",
+  "rule": "The subject \"She\" is singular, so \"know\" should be \"knows\".",
   "source": {
    "book": "The Murder of Roger Ackroyd",
    "gutenberg": 69087
@@ -23187,21 +20971,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "By the following evening I judged, that he would have received the reply to his cable. I call round at his house and was told that Mr. Carton were away but would be returning on the morrow.",
-  "fixed": "By the following evening I judged that he would have received the reply to his cable. I called round at his house and was told that Mr. Carton was away but would be returning on the morrow.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "I called round at his house and was told that Mr. Carton were away but would be returning on the morrow.",
+  "fixed": "I called round at his house and was told that Mr. Carton was away but would be returning on the morrow.",
   "errors": [
-   {
-    "gapAfter": "judged"
-   },
-   {
-    "word": "call"
-   },
    {
     "word": "were"
    }
   ],
-  "rule": "Do not put a comma before a \"that\" clause that completes the verb (\"judged that...\"). Keep the past tense (\"called... was told\"). The singular \"Mr. Carton\" takes \"was.\"",
+  "rule": "The subject \"Mr. Carton\" is singular, so \"were\" should be \"was\".",
   "source": {
    "book": "The Man in the Brown Suit",
    "gutenberg": 61168
@@ -23212,13 +20990,10 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "She, thinks she had noticed an unusual note of exultance in his voice. She had the feeling that things has gone well.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "She thinks she had noticed an unusual note of exultance in his voice. She had the feeling that things has gone well.",
   "fixed": "She thought she had noticed an unusual note of exultance in his voice. She had the feeling that things had gone well.",
   "errors": [
-   {
-    "gapAfter": "she"
-   },
    {
     "word": "thinks"
    },
@@ -23226,7 +21001,7 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
     "word": "has"
    }
   ],
-  "rule": "Do not put a comma between a subject and its verb. Keep the past tense (\"thought... had noticed\"). The plural \"things\" takes \"had\" or \"have,\" never \"has.\"",
+  "rule": "The story is in the past, so \"thinks\" should be \"thought\". The subject \"things\" is plural and the story is in the past, so \"has\" should be \"had\".",
   "source": {
    "book": "The Seven Dials Mystery",
    "gutenberg": 75288
@@ -23237,21 +21012,15 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "He pushes forward and tried the closed door ahead of him. that too gave and very softly he pushed it open and went in.",
-  "fixed": "He pushed forward and tried the closed door ahead of him. That too gave, and very softly he pushed it open and went in.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find the error. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "He pushes forward and tried the closed door ahead of him.",
+  "fixed": "He pushed forward and tried the closed door ahead of him.",
   "errors": [
    {
     "word": "pushes"
-   },
-   {
-    "word": "that"
-   },
-   {
-    "gapAfter": "gave"
    }
   ],
-  "rule": "Keep the past tense (\"pushed... tried\"). Capitalize the first word of a sentence. Use a comma before \"and\" when it joins two complete sentences (\"That too gave\" and \"very softly he pushed...\").",
+  "rule": "The story is in the past (\"tried\"), so \"pushes\" should be \"pushed\".",
   "source": {
    "book": "Partners in Crime",
    "gutenberg": 78342
@@ -23262,8 +21031,8 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
   "type": "forge",
   "skill": "proofreading",
   "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "She looked so respectable that Tuppence’s heart sinks. upon Tommy’s request for Mr. Carter she showed them into a small study on the ground floor where she left them.",
+  "prompt": "A forger tampered with this witness statement, which is told in the past tense. Find both errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
+  "text": "She looked so respectable that Tuppence’s heart sinks. upon Tommy’s request for Mr. Carter, she showed them into a small study on the ground floor where she left them.",
   "fixed": "She looked so respectable that Tuppence’s heart sank. Upon Tommy’s request for Mr. Carter, she showed them into a small study on the ground floor where she left them.",
   "errors": [
    {
@@ -23271,66 +21040,16 @@ window.SAT_QUESTIONS = (window.SAT_QUESTIONS || []).concat([
    },
    {
     "word": "upon"
-   },
-   {
-    "gapAfter": "carter"
    }
   ],
-  "rule": "Keep the past tense (\"looked... sank\"). Capitalize the first word of a sentence. Put a comma after the introductory phrase \"Upon Tommy’s request for Mr. Carter.\"",
+  "rule": "The story is in the past (\"looked\"), so \"sinks\" should be \"sank\". A sentence starts with a capital letter, so \"upon\" should be \"Upon\".",
   "source": {
    "book": "The Secret Adversary",
    "gutenberg": 1155
-  }
- },
- {
-  "id": "forge-58866-1250-3",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "I got her some brandy and water, and afterwards insisted on accompanying her back to town. in the excitement I forget to relock the door.",
-  "fixed": "I got her some brandy and water and afterwards insisted on accompanying her back to town. In the excitement I forgot to relock the door.",
-  "errors": [
-   {
-    "gapAfter": "water"
-   },
-   {
-    "word": "in"
-   },
-   {
-    "word": "forget"
-   }
-  ],
-  "rule": "Do not put a comma before \"and\" when it only joins two verbs with the same subject. Capitalize the first word of a sentence. Keep the past tense (\"got... forgot\").",
-  "source": {
-   "book": "The Murder on the Links",
-   "gutenberg": 58866
-  }
- },
- {
-  "id": "forge-78342-641-1",
-  "type": "forge",
-  "skill": "proofreading",
-  "title": "The forged statement",
-  "prompt": "A forger tampered with this witness statement. Find all 3 errors. Tap a word that is wrong, or tap a space where a comma is missing or does not belong.",
-  "text": "Tuppence looked over her shoulder and nods. Tommy and the detective opens the right hand door, and stepped out into the middle of Oxford Street.",
-  "fixed": "Tuppence looked over her shoulder and nodded. Tommy and the detective opened the right hand door and stepped out into the middle of Oxford Street.",
-  "errors": [
-   {
-    "word": "nods"
-   },
-   {
-    "word": "opens"
-   },
-   {
-    "gapAfter": "door"
-   }
-  ],
-  "rule": "Keep the past tense (\"looked... nodded\"). The compound subject \"Tommy and the detective\" is plural, so the verb is \"opened.\" Do not put a comma before \"and\" when it only joins two verbs with the same subject.",
-  "source": {
-   "book": "Partners in Crime",
-   "gutenberg": 78342
-  }
+  },
+  "optionalGaps": [
+   "floor"
+  ]
  },
  {
   "id": "mark-1155-2564-0",

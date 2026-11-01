@@ -1,0 +1,287 @@
+{
+"vocab-hard-61168-1xg91m1": {
+"replace": [
+[
+"capitulated",
+"remonstrated",
+"protested forcefully"
+]
+]
+},
+"vocab-hard-61168-jvkgew": {
+"replace": [
+[
+"flagrant",
+"venial",
+"minor and easily forgiven"
+]
+],
+"rule": "'Heinous' means shockingly evil. The narrator is joking, calling a trip to the boat deck a terrible crime, which is why she says she 'decided to dare' it."
+},
+"vocab-hard-75288-1u9qyts": {
+"replace": [
+[
+"calamities",
+"idiosyncrasies",
+"odd habits or features peculiar to one person or thing"
+]
+]
+},
+"vocab-hard-78220-55huit": {
+"replace": [
+[
+"calamity",
+"cultivation",
+"the preparing and planting of land"
+]
+]
+},
+"vocab-hard-69087-1wexz44": {
+"replace": [
+[
+"vestige",
+"corollary",
+"a natural result that follows from something"
+]
+]
+},
+"vocab-hard-78084-1u6hxl4": {
+"defs": {
+"banal": "boringly ordinary and unoriginal"
+}
+},
+"vocab-hard-1155-qg35tl": {
+"rule": "'Subtle' means clever, indirect, and hard to notice. The forces worked 'behind' the scenes, quietly rather than in the open.",
+"defs": {
+"subtle": "working in a clever, indirect way that is hard to notice"
+}
+},
+"vocab-hard-1155-15805ko": {
+"defs": {
+"chided": "scolded for a fault"
+}
+},
+"vocab-hard-58866-guylxd": {
+"rule": "'Poignant' here means keenly and painfully felt. It describes Marthe's anxiety as sharp and deep, and it now has an explanation.",
+"defs": {
+"poignant": "keenly and painfully felt"
+}
+},
+"vocab-hard-58866-zt0f2g": {
+"rule": "'Malicious' means taking sly pleasure in causing trouble. The 'gleam' in Poirot's eyes is a wicked little spark, as if he is about to tease someone.",
+"defs": {
+"malicious": "taking sly pleasure in causing someone trouble"
+}
+},
+"vocab-hard-61168-k9whkk": {
+"rule": "'Insipid' means dull and flavorless. The speaker is mocking the made up stories he tells, calling them bland and uninteresting."
+},
+"vocab-hard-65238-1jskp0w": {
+"rule": "'Notorious' means famous for bad reasons. An 'adventuress' is a woman with a shady reputation, and 'did not fit into the picture' means this woman did not match that image."
+},
+"vocab-hard-61168-1oj8hw9": {
+"rule": "'Frivolous' means silly and not serious. He thinks the speaker's enjoyment of 'such things' is a silly waste of time."
+},
+"vocab-hard-61168-13squgd": {
+"rule": "'Pugnacious' means eager to fight or argue. She was not bold enough to tell someone outright that he was 'a liar,' so she was not in a combative mood."
+},
+"vocab-hard-61168-182thek": {
+"rule": "'Inert' means not moving. The narrator is 'weak as a kitten' and has to be 'hauled up and deposited', so she is limp and motionless."
+},
+"vocab-hard-61168-vc4oda": {
+"rule": "'Muster' means to gather up or summon. She walks out with as much dignity as she could pull together."
+},
+"vocab-hard-61168-1b1zyx0": {
+"rule": "'Intrinsic' means belonging to something's very nature. Even though she could not live with this woman, she saw the worth that was truly part of who the woman was."
+},
+"vocab-hard-72824-20v7fo": {
+"rule": "'Allay' means to calm or ease. He wanted a phrase that would stop his secretary from feeling 'suspicion,' so he needed to soothe that doubt."
+},
+"vocab-hard-58866-z7jvlm": {
+"rule": "'Indefensible' means impossible to justify. The writer says it may seem so 'to you', but still wants to show 'how it all came about'."
+},
+"vocab-hard-78342-q9rzg1": {
+"rule": "'Portentously' means in a pompously solemn way. 'The majesty of the law' is a joking name for a policeman, who moved as if he were very important."
+},
+"vocab-hard-61262-3sg4eq": {
+"rule": "'Sanguine' means hopeful and optimistic. 'I should have been more' hopeful shows the speaker does not feel very hopeful now, and a death from heart failure would have given him better odds."
+},
+"vocab-hard-70114-1kyn3fk": {
+"rule": "'Malign' means evil or harmful. A hidden leader 'controlled and directed' this organisation from far away, which suggests a sinister group."
+},
+"vocab-hard-65238-1mcqgsf": {
+"replace": [
+[
+"ostentatious",
+"clandestine",
+"kept secret, often because it is forbidden"
+],
+[
+"pugnacious",
+"precarious",
+"dangerously unsteady or uncertain"
+],
+[
+"querulous",
+"desolate",
+"bleak, empty, and lonely"
+]
+]
+},
+"vocab-hard-78220-1y7nh57": {
+"replace": [
+[
+"tantalized",
+"abated",
+"became less intense or strong"
+],
+[
+"bewildered",
+"transpired",
+"happened or took place"
+],
+[
+"gratified",
+"vacillated",
+"wavered between choices"
+]
+]
+},
+"vocab-hard-61168-1ou1njh": {
+"replace": [
+[
+"refuted",
+"remonstrated",
+"protested forcefully"
+]
+]
+},
+"vocab-hard-61168-19u1ait": {
+"replace": [
+[
+"eradicated",
+"bequeathed",
+"left to someone in a will"
+],
+[
+"refuted",
+"entrusted",
+"given to someone to look after"
+]
+]
+},
+"vocab-hard-78084-kyqq8d": {
+"replace": [
+[
+"cajoled",
+"bequeathed",
+"left to someone in a will"
+],
+[
+"admonished",
+"begrudged",
+"given unwillingly or resentfully"
+],
+[
+"coerced",
+"apportioned",
+"divided and handed out in shares"
+]
+]
+},
+"vocab-hard-61168-efbeoj": {
+"replace": [
+[
+"placate",
+"coerce",
+"force by threats or pressure"
+],
+[
+"vindicate",
+"browbeat",
+"bully with stern or threatening talk"
+],
+[
+"castigate",
+"goad",
+"push or provoke into action"
+]
+],
+"rule": "'Delude' means to fool or mislead. The phrase 'myself into the belief' shows she refused to trick herself into thinking it mattered."
+},
+"vocab-hard-78084-1w7e0ad": {
+"replace": [
+[
+"bestowed",
+"solicited",
+"asked for politely or formally"
+],
+[
+"scrutinized",
+"gleaned",
+"gathered slowly in small bits"
+]
+]
+},
+"vocab-hard-69087-glig3y": {
+"replace": [
+[
+"regaled",
+"commended",
+"praised formally or approvingly"
+],
+[
+"waylaid",
+"lionized",
+"treated as a celebrity"
+]
+]
+},
+"vocab-hard-65238-1yfbtev": {
+"replace": [
+[
+"tranquil",
+"salubrious",
+"healthy and pleasant"
+],
+[
+"pristine",
+"resplendent",
+"shining and splendid"
+]
+]
+},
+"vocab-hard-70114-qldt1m": {
+"drop": true
+},
+"vocab-hard-72824-1ne35mp": {
+"drop": true
+},
+"vocab-hard-65238-zekcrj": {
+"drop": true
+},
+"vocab-hard-1155-1pwlxf6": {
+"drop": true
+},
+"vocab-hard-58866-3fpc6h": {
+"drop": true
+},
+"vocab-hard-61168-1c4mxys": {
+"drop": true
+},
+"vocab-hard-72824-1babq5o": {
+"drop": true
+},
+"vocab-hard-863-12zzcjh": {
+"drop": true
+},
+"vocab-hard-70114-1shemui": {
+"drop": true
+},
+"vocab-hard-75288-5u7kyl": {
+"drop": true
+},
+"vocab-hard-78084-o295f5": {
+"drop": true
+}
+}

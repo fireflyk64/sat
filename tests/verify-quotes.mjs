@@ -64,6 +64,28 @@ for (const q of items) {
   const c = conj[w] || (conj[w] = { comma: 0, none: 0, after: 0 });
   c[q.answer === `, ${w}` ? 'comma' : q.answer === ` ${w}` ? 'none' : 'after']++;
 }
+// Forged statements stay manageable: 1 or 2 errors, each a real difference from the correct passage
+for (const q of items) {
+  if (q.type !== 'forge') continue;
+  const problems = [], T = q.text.trim().split(/\s+/), F = q.fixed.trim().split(/\s+/);
+  if (q.errors.length < 1 || q.errors.length > 2) problems.push(`${q.errors.length} errors`);
+  if (T.length !== F.length) problems.push('forged and correct passages differ in length');
+  else {
+    let diffs = 0;
+    T.forEach((t, i) => { if (t === F[i]) return; if (t.replace(/,$/, '') !== F[i].replace(/,$/, '')) diffs++; if (/,$/.test(t) !== /,$/.test(F[i])) diffs++; });
+    if (diffs !== q.errors.length) problems.push(`${q.errors.length} errors listed but ${diffs} differences in the text`);
+  }
+  if (!/Find (the error|both errors)/.test(q.prompt)) problems.push('prompt does not match the error count');
+  if ((q.errors.length === 1) !== /Find the error/.test(q.prompt)) problems.push('prompt says the wrong number of errors');
+  if (problems.length) { bad++; console.log('PROBLEM', q.id, problems.join('; ')); }
+}
+// SAT-style vocabulary: half Holmes, half Christie, each with exactly one blank in a real passage
+{
+  const sat = items.filter(q => q.level === 'sat'), holmes = sat.filter(q => q.source.author === 'Arthur Conan Doyle');
+  for (const q of sat) if (q.stem.split('___').length !== 2) { bad++; console.log('PROBLEM', q.id, 'needs exactly one blank'); }
+  console.log(`  SAT-style vocabulary: ${sat.length} questions, ${holmes.length} from Holmes, ${sat.length - holmes.length} from Christie`);
+  if (sat.length && Math.abs(holmes.length / sat.length - 0.5) > 0.1) { bad++; console.log('PROBLEM', 'SAT-style set is not an even split'); }
+}
 for (const w of ['and', 'but', 'so']) {
   const c = conj[w] || { comma: 0, none: 0, after: 0 }, total = c.comma + c.none + c.after, share = c.comma / (total || 1);
   console.log(`  "${w}": ${total} questions: comma first ${c.comma}, no comma ${c.none}, comma after ${c.after} (the comma is right ${Math.round(share * 100)}% of the time)`);

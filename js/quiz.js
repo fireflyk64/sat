@@ -138,12 +138,31 @@
   /* ---------------- tapfix: tap the word, then pick the fix ---------------- */
   function buildTapFix(item, host, onChange) {
     var hint = el('p', 'step', item.prompt1); host.appendChild(hint);
-    var sent = new Sentence(host, item.text, 'pick', onChange);
+    // In a wrong-verb question the fix choices are all forms of the verb being asked about, so seeing them first gives step 1
+    // away. They stay hidden until he commits to a word. (An agreement question's is/are gives nothing away, so it shows both.)
+    var hideChoices = item.skill === 'tense', committed = !hideChoices;
+    var commit = null;
+    var sent = new Sentence(host, item.text, 'pick', function () {
+      if (commit) commit.disabled = sent.picked < 0;
+      onChange();
+    });
     var targets = [];
     sent.tokens.forEach(function (t, i) { if (item.targetWords.indexOf(core(t.text)) >= 0) targets.push(i); });
-    host.appendChild(el('p', 'step', item.prompt2));
+    var step2 = el('p', 'step', item.prompt2);
     var chosen = null;
     var opts = el('div', 'options inline');
+    if (hideChoices) {
+      step2.hidden = true; opts.hidden = true;
+      commit = el('button', 'lockword', 'Lock in this verb'); commit.type = 'button'; commit.disabled = true;
+      commit.addEventListener('click', function () {
+        if (sent.picked < 0) return;
+        committed = true; sent.lock(); commit.remove();
+        step2.hidden = false; opts.hidden = false;
+        onChange();
+      });
+      host.appendChild(commit);
+    }
+    host.appendChild(step2);
     var btns = shuffled(item.options).map(function (o) {
       var b = el('button', 'opt', o); b.type = 'button';
       b.addEventListener('click', function () {
@@ -154,7 +173,7 @@
     });
     host.appendChild(opts);
     return {
-      ready: function () { return sent.picked >= 0 && chosen != null; },
+      ready: function () { return committed && sent.picked >= 0 && chosen != null; },
       check: function () {
         var wordOk = targets.indexOf(sent.picked) >= 0, fixOk = chosen === item.answer;
         return { correct: wordOk && fixOk, wordOk: wordOk, fixOk: fixOk };
@@ -185,13 +204,15 @@
     var stem = el('p', 'stem');
     // Vocab items can be asked two ways (same data, same 4 words): fill the blank, or match a meaning to its word
     var fillClue = false, artM = null;
-    var meaning = item.type === 'vocab' && item.definitions && item.definitions[item.answer] && Math.random() < 0.5;
+    // SAT-style questions (level 'sat') show no meaning at all: like the real test, the passage has to decide the answer.
+    var satStyle = item.level === 'sat';
+    var meaning = !satStyle && item.type === 'vocab' && item.definitions && item.definitions[item.answer] && Math.random() < 0.5;
     if (meaning) {
       var d = item.definitions[item.answer].replace(/\.$/, '');
       stem.className = 'stem meaning';
       stem.appendChild(document.createTextNode('\u201C' + d.charAt(0).toUpperCase() + d.slice(1) + '.\u201D'));
     } else {
-      if (item.type === 'vocab' && item.definitions && item.definitions[item.answer]) {
+      if (!satStyle && item.type === 'vocab' && item.definitions && item.definitions[item.answer]) {
         // pin the target: the missing word must fit the sentence AND have this meaning, so only one option can qualify
         var dd = item.definitions[item.answer].replace(/\.$/, '');
         var clue = el('p', 'clue');
@@ -217,6 +238,7 @@
       var label = o;
       if (artM) { var ar = article(o); label = (artM[1].charAt(0) === 'A' ? ar.charAt(0).toUpperCase() + ar.slice(1) : ar) + ' ' + o; }
       b.dataset.word = o;
+      if (o === '') label = 'no punctuation';   // the choice to add nothing: a blank button would look broken
       b.appendChild(el('span', 'otext', label));
       b.addEventListener('click', function () {
         if (opts.classList.contains('locked')) return;
@@ -232,7 +254,7 @@
       reveal: function () {
         opts.classList.add('locked');
         btns.forEach(function (b) {
-          var text = b.dataset.word || b.querySelector('.otext').textContent;
+          var text = b.dataset.word;
           if (text === item.answer) b.classList.add('ok');
           else if (b.classList.contains('sel')) b.classList.add('bad');
           if (item.definitions && item.definitions[text]) {
@@ -245,11 +267,12 @@
 
   /* ---------------- forge: find the planted errors ---------------- */
   function buildForge(item, host, onChange) {
-    var count = el('p', 'step', 'Errors found: 0 of ' + item.errors.length);
+    var howMany = item.errors.length === 1 ? 'this statement has 1 error' : 'this statement has ' + item.errors.length + ' errors';
+    var count = el('p', 'step', 'Marked: 0 (' + howMany + ')');
     var sent = new Sentence(host, item.text, 'forge', function () {
       var n = Object.keys(sent.selWords).filter(function (k) { return sent.selWords[k]; }).length +
               Object.keys(sent.selGaps).filter(function (k) { return sent.selGaps[k]; }).length;
-      count.textContent = 'Marked: ' + n + ' (the statement has ' + item.errors.length + ' errors)';
+      count.textContent = 'Marked: ' + n + ' (' + howMany + ')';
       onChange();
     });
     host.insertBefore(count, sent.wrap);
@@ -261,12 +284,18 @@
         if (e.gapAfter && c === e.gapAfter) { wantG.push(i); break; }
       }
     });
+    // a comma that good writers use either way, such as after a short opening phrase, is never held against him
+    var optional = {};
+    (item.optionalGaps || []).forEach(function (w) {
+      for (var i = 0; i < sent.tokens.length; i++) if (core(sent.tokens[i].text) === w) { optional[i] = w; break; }
+    });
     function sel(map) { return Object.keys(map).filter(function (k) { return map[k]; }).map(Number); }
     return {
       ready: function () { return sel(sent.selWords).length + sel(sent.selGaps).length > 0; },
       check: function () {
-        var gw = sel(sent.selWords), gg = sel(sent.selGaps);
-        return { correct: setEq(gw, wantW) && setEq(gg, wantG), gw: gw, gg: gg };
+        var gw = sel(sent.selWords), gg = sel(sent.selGaps).filter(function (i) { return optional[i] === undefined; });
+        var fine = sel(sent.selGaps).filter(function (i) { return optional[i] !== undefined; });
+        return { correct: setEq(gw, wantW) && setEq(gg, wantG), gw: gw, gg: gg, fine: fine };
       },
       reveal: function (r) {
         sent.lock();
@@ -274,6 +303,10 @@
         wantG.forEach(function (i) { sent.gaps[i].classList.add(r.gg.indexOf(i) >= 0 ? 'ok' : 'miss'); });
         r.gw.forEach(function (i) { if (wantW.indexOf(i) < 0) sent.words[i].classList.add('bad'); });
         r.gg.forEach(function (i) { if (wantG.indexOf(i) < 0) sent.gaps[i].classList.add('bad'); });
+        r.fine.forEach(function (i) {
+          sent.gaps[i].classList.add('fine');
+          host.appendChild(el('p', 'hintline', 'A comma after "' + sent.tokens[i].text + '" is fine either way, so it did not count against you.'));
+        });
       }
     };
   }

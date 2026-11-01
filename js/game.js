@@ -424,7 +424,7 @@
     else if (state.brk) hint = '';
     else if (state.running) hint = 'Tap a rolling marble to shove it';
     else if (flickable()) {
-      var cost = s.freezes.length ? '🧊 a freeze keeps your Focus' : s.focus.count ? 'this resets your Focus (' + Progress.fmt(s.focus.count) + ')' : '';
+      var cost = s.freezes > 0 ? '🧊 a freeze covers this one' : s.focus.count ? 'this costs ' + Progress.fmt(Math.min(Progress.PLAY_COST, s.focus.count)) + ' Focus' : '';
       hint = (m.complete && m.playFrom === 0 ? 'Flick the top marble and run the whole machine!' : 'Pull back on the glowing marble and let go') + (cost ? ' · ' + cost : '');
     }
     else {
@@ -463,8 +463,7 @@
 
   // ---------------------------------------------------------------- Focus, freezes, the chest
   function afterRecord(rec) {
-    if (rec.melted) { Sound.melt(); toast('🧊 A freeze melted. Earn another with 5 correct in a row.'); }
-    if (rec.freezeEarned) { Sound.freeze(); toast('🧊 Freeze earned! Play in the next ' + Progress.FREEZE_LIFE + ' questions and keep your Focus.', 4200); pulse('freezes'); }
+    if (rec.freezeEarned) { Sound.freeze(); toast('🧊 Freeze earned! It covers one play for free, any time this session.', 4200); pulse('freezes'); }
     (rec.rolls || []).forEach(function (r) {
       if (r.won && r.item) state.unrevealed[r.item] = (state.unrevealed[r.item] || 0) + 1;
       rollQueue.push(r);
@@ -477,7 +476,7 @@
   /** He just played: say what it cost him. */
   function showPlayResult(r) {
     if (r.frozen) { Sound.freeze(); toast('🧊 Freeze used. Focus stays at ' + Progress.fmt(r.kept) + '.', 2800); pulse('focus'); }
-    else if (r.lost > 0) { Sound.focusLost(); toast('Focus reset from ' + Progress.fmt(r.lost) + ' back to 0.', 3200); pulse('focus'); }
+    else if (r.lost > 0) { Sound.focusLost(); toast('Playing cost ' + Progress.fmt(r.lost) + ' Focus. You still have ' + Progress.fmt(r.now) + '.', 3200); pulse('focus'); }
     updateHud();
   }
 
@@ -528,16 +527,15 @@
     $('miniFocus').querySelector('b').textContent = Progress.fmt(f.count);
 
     var fz = s.freezes, line = $('freezes'), miniF = $('miniFreeze');
-    if (fz.length) {
-      var soonest = Math.min.apply(null, fz);
+    var more = Progress.FREEZE_EVERY - (s.streak % Progress.FREEZE_EVERY);
+    if (fz > 0) {
       line.className = 'freezes ready';
-      line.textContent = '🧊 ' + (fz.length > 1 ? fz.length + ' freezes ready' : 'Freeze ready') + ': play now and keep your Focus. Melts in ' + soonest + (soonest === 1 ? ' question.' : ' questions.');
-      miniF.textContent = '🧊 ×' + fz.length;
+      line.textContent = '🧊 ' + (fz > 1 ? fz + ' freezes ready' : 'Freeze ready') + ': ' + (fz > 1 ? 'each covers one play' : 'it covers one play') + ' for free, any time this session. ' + more + ' more in a row earns another.';
+      miniF.textContent = '🧊 ×' + fz;
       miniF.hidden = false;
     } else {
-      var more = Progress.FREEZE_EVERY - (s.streak % Progress.FREEZE_EVERY);
       line.className = 'freezes';
-      line.textContent = '🧊 ' + more + ' more in a row earns a freeze, for a break that keeps your Focus.';
+      line.textContent = '🧊 ' + more + ' more in a row earns a freeze, which covers one play for free.';
       miniF.hidden = true;
     }
   }
@@ -575,8 +573,8 @@
     go.textContent = owned ? 'Play it now' : 'None left';
     $('ciCost').textContent = busy ? 'Wait for what is happening on the machine to finish.'
       : !owned ? 'Win another by keeping your Focus up.'
-      : s.freezes.length ? '🧊 Uses a freeze, so your Focus stays at ' + Progress.fmt(s.focus.count) + '.'
-      : s.focus.count ? 'This resets your Focus from ' + Progress.fmt(s.focus.count) + ' to 0.' : '';
+      : s.freezes > 0 ? '🧊 Uses a freeze, so your Focus stays at ' + Progress.fmt(s.focus.count) + '.'
+      : s.focus.count ? 'This costs ' + Progress.fmt(Math.min(Progress.PLAY_COST, s.focus.count)) + ' Focus.' : '';
   }
 
   /** Take an item out of the chest and turn it loose on the machine. */
@@ -671,12 +669,12 @@
     var tag = document.createElement('b'); tag.textContent = 'Correct version: '; fx.appendChild(tag);
     var fixed = q.fixed || q.text;
     if (q.answer && q.type === 'vocab') {
-      var i = fixed.indexOf(q.answer);
+      var hit = new RegExp('\\b' + q.answer + '\\b').exec(fixed), i = hit ? hit.index : fixed.indexOf(q.answer);
       fx.appendChild(document.createTextNode(fixed.slice(0, i)));
       var m = document.createElement('mark'); m.textContent = q.answer; fx.appendChild(m);
       fx.appendChild(document.createTextNode(fixed.slice(i + q.answer.length)));
     } else fx.appendChild(document.createTextNode(fixed));
-    $('src').textContent = '— Agatha Christie, ' + q.source.book + ' (Project Gutenberg #' + q.source.gutenberg + ')';
+    $('src').textContent = '— ' + (q.source.author || 'Agatha Christie') + ', ' + q.source.book + ' (Project Gutenberg #' + q.source.gutenberg + ')';
     $('check').hidden = true; $('next').hidden = false; $('next').focus({ preventScroll: true });
     try { fb.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } catch (e) { /* old browsers */ }
 
@@ -957,7 +955,7 @@
     window.__sat = {
       get renderer() { return renderer; }, get track() { return track; }, get world() { return world; },
       state: state, progress: progress, onCorrectForTest: function () { var r = progress.record(state.current, true); afterRecord(r); award(state.current, r); updateHud(); },
-      deploy: deploy, endBreak: endBreak, refresh: updateHud, promptPulses: promptPulses,
+      deploy: deploy, endBreak: endBreak, refresh: updateHud, promptPulses: promptPulses, rebuild: rebuild,
       advance: function (secs) {
         for (var i = 0; i < secs * 60; i++) { var hold = false; if (state.brk) { state.brk.pg.step(1 / 60); hold = state.brk.pg.holdWorld; } if (!hold) { world.step(1 / 60); track.tick(1 / 60, nowS()); } if (state.running) track.collectStars(); renderer.update(1 / 60); renderer.updateCamera(1 / 60, focusPoint(nowS())); if (state.phase === 'finale' && nowS() > state.finaleUntil) endFinale(); }
       },

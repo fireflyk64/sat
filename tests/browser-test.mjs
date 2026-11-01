@@ -46,6 +46,9 @@ ws.onmessage = (e) => {
 };
 const send = (method, params = {}) => new Promise((res, rej) => { const i = ++seq; waiting.set(i, { res, rej }); ws.send(JSON.stringify({ id: i, method, params })); });
 await send('Page.enable'); await send('Runtime.enable');
+// The panel's one animated scroll (to the feedback after an answer) can arrive seconds late on software rendering, and move
+// a button out from under a click the test has already aimed. A real graphics card finishes it long before anyone gets there.
+await send('Page.addScriptToEvaluateOnNewDocument', { source: `{ const o = Element.prototype.scrollIntoView; Element.prototype.scrollIntoView = function (a) { o.call(this, a && typeof a === 'object' ? { ...a, behavior: 'instant' } : a); }; }` });
 await send('Emulation.setDeviceMetricsOverride', { width: 1100, height: 720, deviceScaleFactor: 1, mobile: false });
 
 async function js(expr) {
@@ -63,20 +66,21 @@ async function shot(name) { if (!SHOTS) return; const r = await send('Page.captu
 const mouse = (type, x, y, buttons = 1) => send('Input.dispatchMouseEvent', { type, x, y, button: type === 'mouseMoved' ? 'none' : 'left', buttons: type === 'mouseReleased' ? 0 : buttons, clickCount: 1 });
 async function clickAt(x, y) { await mouse('mouseMoved', x, y, 0); await mouse('mousePressed', x, y); await mouse('mouseReleased', x, y); }
 async function clickEl(expr) {
-  // scroll to it and wait for it to stop moving: the panel may still be finishing a smooth scroll
+  // scroll to it, then wait until it has stopped moving and is really under the pointer: the panel may still be finishing
+  // a smooth scroll, and software rendering can stall a frame long enough for two readings to match while it is still moving
   await js(`(${expr}).scrollIntoView({block:'center'})`);
-  let b = null;
-  for (let i = 0; i < 30; i++) {
-    const r = await js(`(()=>{const r=(${expr}).getBoundingClientRect(); return {x:r.left+r.width/2,y:r.top+r.height/2}})()`);
-    if (b && Math.abs(b.x - r.x) < 0.5 && Math.abs(b.y - r.y) < 0.5) break;
+  let b = null, still = 0;
+  for (let i = 0; i < 50 && still < 3; i++) {
+    const r = await js(`(()=>{const e=(${expr}), r=e.getBoundingClientRect(), x=r.left+r.width/2, y=r.top+r.height/2, hit=document.elementFromPoint(x,y); return {x,y,on:!!hit&&(hit===e||e.contains(hit))}})()`);
+    still = b && r.on && Math.abs(b.x - r.x) < 0.5 && Math.abs(b.y - r.y) < 0.5 ? still + 1 : 0;
     b = r; await sleep(120);
   }
   await clickAt(b.x, b.y);
 }
 // Real clicks on whichever multiple-choice answer we want
 async function answer(right) {
-  const opt = right ? `[...document.querySelectorAll('.opt')].find(b => (b.dataset.word||b.textContent) === __sat.state.current.answer)`
-                    : `[...document.querySelectorAll('.opt')].find(b => (b.dataset.word||b.textContent) !== __sat.state.current.answer)`;
+  const opt = right ? `[...document.querySelectorAll('.opt')].find(b => (b.dataset.word??b.textContent) === __sat.state.current.answer)`
+                    : `[...document.querySelectorAll('.opt')].find(b => (b.dataset.word??b.textContent) !== __sat.state.current.answer)`;
   await clickEl(opt);
   await sleep(120);
   await clickEl(`document.getElementById('check')`);
@@ -233,8 +237,15 @@ check('the bar actually fills', (await focusBar('bonus')).width === 10, (await f
 const promptDrawn = async () => {
   await js(`(()=>{const r=__sat.renderer; r.floats.length=0; r.rings.length=0; __sat.state.readyAt=0;})()`);
   await sleep(1300);
+  // what is on screen must already reflect the change: wait until at least one more frame has been drawn
+  const seen = await js('__sat.renderer.fx.time');
+  for (let i = 0; i < 40 && (await js('__sat.renderer.fx.time')) === seen; i++) await sleep(150);
   const sample = () => js(`(()=>{const f=__sat.renderer.fx,T=FX.T,m=__sat.flickable(),rings=[];let text=0;for(let i=0;i<f.n;i++){const o=i*16,t=f.data[o+5];if(t===T.RING&&Math.hypot(f.data[o]-m.x,f.data[o+1]-m.y)<0.05)rings.push(+f.data[o+2].toFixed(3));if(t===T.GLYPH)text++}return {rings,text}})()`);
-  const a = await sample(); await sleep(900); const b = await sample();
+  // half a ring cycle apart (it takes about 0.91 s), and only once a new frame has really been drawn
+  const a = await sample(), frame = await js('__sat.renderer.fx.time');
+  await sleep(450);
+  for (let i = 0; i < 40 && (await js('__sat.renderer.fx.time')) === frame; i++) await sleep(150);
+  const b = await sample();
   return { moving: JSON.stringify(a.rings) !== JSON.stringify(b.rings), text: a.text + b.text, rings: b.rings.length };
 };
 const stageBox = await js(`(()=>{const a=document.getElementById('stage').getBoundingClientRect(), b=document.getElementById('card').getBoundingClientRect();return {sx:a.left+a.width/2, sy:a.top+a.height/2, px:b.left+b.width/2, py:Math.min(b.top+40, innerHeight-20)}})()`);
@@ -254,44 +265,55 @@ await nextChoiceQuestion();
 await answer(false);
 check('a miss takes ⅓ off Focus, and the bar and the verdict both show it', (await focusBar('bonus')).count === '⅔ / 10' && (await js(`document.getElementById('focusN').textContent`)) === '⅔' && (await js(`document.getElementById('verdict').textContent`)).includes('Focus −⅓'), await js(`document.getElementById('verdict').textContent`));
 
-// no freeze yet: a flick costs him the Focus
+// no freeze yet: a flick costs him a little Focus, not everything
+await js(`(()=>{const s=__sat.progress.store; s.focus={count:6,bonus:6,rare:6,ultra:6,next:{}}; __sat.progress.save(); __sat.refresh();})()`);
 await ready();
 await js(`__sat.track.marbleFor(__sat.machine().playFrom) && 0`);
 const dirF = await js('__sat.track.exitFor(__sat.machine().playFrom).dir');
-check('the page warns what a flick will cost', (await js(`document.getElementById('hint').textContent`)).includes('resets your Focus'), await js(`document.getElementById('hint').textContent`));
+check('the page warns what a flick will cost', (await js(`document.getElementById('hint').textContent`)).includes('costs 1½ Focus'), await js(`document.getElementById('hint').textContent`));
 await mouseFlick(-dirF * 110, 70);
-check('flicking with no freeze resets Focus', (await js('__sat.state.running')) && (await js('__sat.progress.store.focus.count')) === 0 && (await focusBar('bonus')).count === '0 / 10');
+check('flicking with no freeze costs 1½ Focus, and no more', (await js('__sat.state.running')) && (await js('__sat.progress.store.focus.count')) === 4.5 && (await focusBar('bonus')).count === '4½ / 10', (await focusBar('bonus')).count);
 await runToBell();
 
 // five in a row: a freeze
 for (let i = 0; i < 5; i++) { await nextChoiceQuestion(); await answer(true); }
-check('5 correct in a row earns a freeze, and says so', (await js('__sat.progress.store.freezes.length')) === 1 && (await js(`document.getElementById('freezes').textContent`)).includes('Freeze ready'), await js(`document.getElementById('freezes').textContent`));
+check('5 correct in a row earns a freeze, and says so', (await js('__sat.progress.store.freezes')) === 1 && (await js(`document.getElementById('freezes').textContent`)).includes('Freeze ready'), await js(`document.getElementById('freezes').textContent`));
 check('the page says a flick now is safe', (await js(`document.getElementById('hint').textContent`)).includes('freeze'), await js(`document.getElementById('hint').textContent`));
 await ready();
 await shot('8-freeze-ready');
 const focusBefore = await js('__sat.progress.store.focus.count');
 const dirG = await js('__sat.track.exitFor(__sat.machine().playFrom).dir');
 await mouseFlick(-dirG * 110, 70);
-check('flicking with a freeze keeps Focus and spends the freeze', (await js('__sat.state.running')) && (await js('__sat.progress.store.focus.count')) === focusBefore && (await js('__sat.progress.store.freezes.length')) === 0, focusBefore);
+check('flicking with a freeze keeps Focus and spends the freeze', (await js('__sat.state.running')) && (await js('__sat.progress.store.focus.count')) === focusBefore && (await js('__sat.progress.store.freezes')) === 0, focusBefore);
 await runToBell();
 
 // A flick that misses the machine must not charge twice
-await js(`(()=>{ const s=__sat.progress.store; s.freezes=[5,5]; s.streak=0; __sat.progress.save(); })()`);
+// (a machine with room for another toy, so this test does not depend on how full the earlier ones left it)
+// A finished machine rebuilds 1.7s after its bell, and that locks the marble for a second. A flick landing then is
+// ignored and costs nothing, which is right, but it would not be the flick this test means to make. So wait it out.
+await sleep(2500);
+await js(`(()=>{ const s=__sat.progress.store, m=__sat.machine(); s.freezes=2; s.streak=0; m.complete=false; m.target=50; m.playFrom=null; m.pieces.length=Math.min(m.pieces.length,2); __sat.progress.save(); __sat.rebuild({}); })()`);
 await nextChoiceQuestion(); await answer(true); await ready();
 const dirH = await js('__sat.track.exitFor(__sat.machine().playFrom).dir');
+await js('__sat.state.readyAt = 1e9');
 await mouseFlick(dirH * 150, 95);
-for (let i = 0; i < 12 && await js('__sat.state.running && !__sat.track.run.engaged'); i++) await js('__sat.advance(1)');
-if (!(await js('__sat.state.running'))) {
-  const held = await js('__sat.progress.store.freezes.length');
-  await ready();
-  await mouseFlick(-dirH * 110, 70);
-  check('retrying a missed flick is free: no second freeze spent', (await js('__sat.progress.store.freezes.length')) === held, held);
-}
+check('a flick while the marble is still locked is ignored and costs nothing', !(await js('__sat.state.running')) && (await js('__sat.progress.store.freezes')) === 2, await js('__sat.progress.store.freezes'));
+await ready();
+await mouseFlick(dirH * 150, 95);
+check('a flick spends exactly one freeze', (await js('__sat.state.running')) && (await js('__sat.progress.store.freezes')) === 1, await js('__sat.progress.store.freezes'));
+// The backstops catch nearly every flick, so send this one clear of the whole machine, where no lower section can catch
+// it: everything after that is the real miss path
+await js(`(()=>{ const t=__sat.track, r=t.run, s=t.sections[r.from], b=t.bounds(); r.engaged=false; r.marble.x=b.maxX+200; r.marble.y=s.ramps[s.ramps.length-1].lowY+4; })()`);
+await js('__sat.advance(1)');
+check('a missed flick hands the marble back', !(await js('__sat.state.running')) && (await js('!!__sat.flickable()')), await js('__sat.state.running'));
+await ready();
+await mouseFlick(-dirH * 110, 70);
+check('retrying a missed flick is free: no second freeze spent', (await js('__sat.state.running')) && (await js('__sat.progress.store.freezes')) === 1, await js('__sat.progress.store.freezes'));
 await runToBell();
 
 // A roll, won through the real UI: force the dice, watch the reveal
 await nextChoiceQuestion();
-await js(`(()=>{ const s=__sat.progress.store; s.focus={count:9,bonus:9,rare:9,ultra:9}; s.freezes=[]; __sat.progress.rand=()=>0; __sat.progress.save(); })()`);
+await js(`(()=>{ const s=__sat.progress.store; s.focus={count:9,bonus:9,rare:9,ultra:9,next:{}}; s.freezes=0; s.chest={}; s.found={}; __sat.progress.rand=()=>0; __sat.progress.save(); __sat.refresh(); })()`);
 await answer(true);
 check('reaching 10 opens a roll on screen', await js(`!document.getElementById('rollBox').hidden`), await js(`document.getElementById('rollHead').textContent`));
 await sleep(1500);
@@ -321,7 +343,7 @@ check('REOPENED with localStorage wiped: the chest comes back from its cookie', 
 
 // deploying: every item through the real page
 for (const id of await js('Object.keys(REWARDS)')) {
-  await js(`(()=>{ const s=__sat.progress.store; s.chest[${JSON.stringify(id)}]=1; s.found[${JSON.stringify(id)}]=1; s.focus={count:4,bonus:4,rare:4,ultra:4}; s.freezes=[]; __sat.progress.save(); __sat.showQuestion(); __sat.refresh(); })()`);
+  await js(`(()=>{ const s=__sat.progress.store; s.chest[${JSON.stringify(id)}]=1; s.found[${JSON.stringify(id)}]=1; s.focus={count:4,bonus:4,rare:4,ultra:4}; s.freezes=0; __sat.progress.save(); __sat.showQuestion(); __sat.refresh(); })()`);
   if (await js(`document.getElementById('chestBody').hidden`)) await clickEl(`document.getElementById('chestToggle')`);
   await clickEl(`document.querySelector('[data-id="${id}"]')`);       // a real click on the chest tile
   await sleep(60);
@@ -340,13 +362,71 @@ for (const id of await js('Object.keys(REWARDS)')) {
   await mouse('mouseReleased', pt.x + 40, pt.y + 30);
   await js('__sat.advance(.5)');
   const moved = await js(`__sat.track.toppled`);
-  check(`${id}: plays through the real page, spends the item, resets Focus`, inBreak && (await js(`__sat.progress.store.chest[${JSON.stringify(id)}]`)) === 0 && (await js('__sat.progress.store.focus.count')) === 0, `${moved} dominoes down`);
+  check(`${id}: plays through the real page, spends the item, costs 1½ Focus`, inBreak && (await js(`__sat.progress.store.chest[${JSON.stringify(id)}]`)) === 0 && (await js('__sat.progress.store.focus.count')) === 2.5, `${moved} dominoes down`);
   await clickEl(`document.getElementById('breakEnd')`);
   await sleep(120);
   check(`${id}: ending the break puts the machine back`, !(await js('__sat.state.brk')) && (await js(`__sat.track.statics.every(b=>b.isStatic)`)) && (await js(`__sat.track.toppled`)) === 0 && (await js('__sat.machine().pieces.length')) === piecesB);
 }
 
-// ---------------------------------------------------------------------------------------------------------- 6: resetting
+// ----------------------------------------------------------------------- 6: fair questions
+// A wrong-verb question must not show its verb forms before he has chosen the verb
+const tenseId = await js(`SAT_QUESTIONS.find(q=>q.type==='tapfix'&&q.skill==='tense').id`);
+await js(`__sat.showQuestion(${JSON.stringify(tenseId)}); ''`); await sleep(120);
+check('wrong-verb question: the verb forms stay hidden at first', await js(`document.querySelector('#qbody .options').hidden && !!document.querySelector('.lockword')`));
+check('...and there is nothing to lock until a word is tapped', await js(`document.querySelector('.lockword').disabled`));
+const tw = await js(`(()=>{const q=__sat.state.current,bs=[...document.querySelectorAll('.sentence .w')];const i=bs.findIndex(b=>q.targetWords.includes(b.textContent.replace(/^[^A-Za-z0-9’']+|[^A-Za-z0-9’']+$/g,'').toLowerCase()));return i})()`);
+await clickEl(`document.querySelectorAll('.sentence .w')[${tw}]`);
+await sleep(60);
+check('...tapping a word still does not reveal them', await js(`document.querySelector('#qbody .options').hidden && !document.querySelector('.lockword').disabled`));
+await clickEl(`document.querySelector('.lockword')`);
+await sleep(60);
+check('...locking it in shows them', !(await js(`document.querySelector('#qbody .options').hidden`)));
+await clickEl(`[...document.querySelectorAll('#qbody .opt')].find(b=>b.textContent===__sat.state.current.answer)`);
+await sleep(60); await clickEl(`document.getElementById('check')`); await sleep(120);
+check('...and the right verb and right fix grade correct', await js(`document.getElementById('card').classList.contains('win')`));
+const agreeId = await js(`SAT_QUESTIONS.find(q=>q.type==='tapfix'&&q.skill==='agreement').id`);
+await js(`__sat.showQuestion(${JSON.stringify(agreeId)}); ''`); await sleep(120);
+check('an agreement question still shows its is/are choices, which give nothing away', !(await js(`document.querySelector('#qbody .options').hidden`)));
+
+// "No punctuation" is a real choice: it must say so, grade correctly, and light up as the right answer
+await js(`__sat.showQuestion('mc-1155-2837-0')`);
+await sleep(100);
+const noneLabel = `[...document.querySelectorAll('.opt')].find(b => b.dataset.word === '')`;
+check('the choice to add no punctuation says so', (await js(`${noneLabel}.querySelector('.otext').textContent`)) === 'no punctuation', await js(`${noneLabel}.querySelector('.otext').textContent`));
+await answer(true);
+check('...grades correct when it is the answer', (await js(`__sat.state.answered`)) && (await js(`document.getElementById('feedback').className`)).includes('good'), await js(`document.getElementById('feedback').className`));
+check('...and lights up as the right answer', await js(`${noneLabel}.classList.contains('ok')`));
+
+// SAT-style vocabulary: a passage, no meaning shown, the real test's wording, the right author
+const satId = await js(`SAT_QUESTIONS.find(q=>q.level==='sat'&&q.source.author==='Arthur Conan Doyle').id`);
+await js(`__sat.showQuestion(${JSON.stringify(satId)}); ''`); await sleep(120);
+check('SAT-style question: no meaning is shown, however many times it comes up', await js(`!document.querySelector('.clue') && !document.querySelector('.stem.meaning')`));
+check('...and it asks exactly what the test asks', (await js(`document.getElementById('qprompt').textContent`)) === 'Which choice completes the text with the most logical and precise word or phrase?');
+await js(`(()=>{const q=__sat.state.current;[...document.querySelectorAll('#qbody .opt')].find(b=>b.dataset.word===q.answer).click();})()`);
+await sleep(60); await clickEl(`document.getElementById('check')`); await sleep(120);
+check('...the right word grades correct', await js(`document.getElementById('card').classList.contains('win')`));
+check('...and a Holmes passage credits Conan Doyle', (await js(`document.getElementById('src').textContent`)).includes('Arthur Conan Doyle'), (await js(`document.getElementById('src').textContent`)).slice(0, 60));
+check('...and the meanings appear once answered', await js(`document.querySelectorAll('#qbody .opt .def').length === 4`));
+
+// A comma that is fine either way never counts against him
+const optId = await js(`(SAT_QUESTIONS.find(q=>q.type==='forge'&&(q.optionalGaps||[]).length)||{}).id`);
+await js(`__sat.showQuestion(${JSON.stringify(optId)}); ''`); await sleep(120);
+check('forgery question: the page says how many errors there are', /Find (the error|both errors)/.test(await js(`document.getElementById('qprompt').textContent`)), await js(`document.getElementById('qprompt').textContent`).then(t => t.slice(0, 70)));
+const coreJs = `(w)=>w.replace(/^[^A-Za-z0-9’']+|[^A-Za-z0-9’']+$/g,'').toLowerCase()`;
+const tapError = async (e) => {
+  const key = e.word || e.gapAfter;
+  const idx = await js(`(()=>{const core=${coreJs};return [...document.querySelectorAll('.sentence .w')].findIndex(b=>core(b.textContent)===${JSON.stringify(key)})})()`);
+  await clickEl(e.word ? `document.querySelectorAll('.sentence .w')[${idx}]` : `document.querySelectorAll('.sentence .g')[${idx}]`);
+  await sleep(40);
+};
+for (const e of await js(`__sat.state.current.errors`)) await tapError(e);
+const optWord = await js(`__sat.state.current.optionalGaps[0]`);
+await tapError({ gapAfter: optWord });
+await clickEl(`document.getElementById('check')`); await sleep(150);
+check('finding the errors and also adding an optional comma still grades correct', await js(`document.getElementById('card').classList.contains('win')`));
+check('...and says the comma was fine either way', (await js(`document.getElementById('qbody').textContent`)).includes('fine either way'), optWord);
+
+// ---------------------------------------------------------------------------------------------------------- 7: resetting
 await js(`window.confirm=()=>true`);
 await clickEl(`document.getElementById('reset')`);
 await sleep(150);

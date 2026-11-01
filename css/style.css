@@ -208,7 +208,11 @@ button.icon.on { background: var(--gold); color: #271a00; box-shadow: 0 0 16px r
 .sentence .w.ok, .sentence .g.ok { background: rgba(53,224,138,.22); outline: 2px solid var(--ok); }
 .sentence .w.miss, .sentence .g.miss { background: rgba(255,215,64,.22); outline: 2px dashed var(--gold); }
 .sentence .w.bad, .sentence .g.bad { background: rgba(255,83,112,.25); outline: 2px solid var(--bad); }
+.sentence .g.fine { background: rgba(255,255,255,.12); outline: 2px dashed var(--mute); }
 .sentence .g.miss, .sentence .g.ok { color: var(--ink); }
+button.lockword { display: block; margin-top: 8px; padding: 7px 14px; font: inherit; font-size: .92rem; font-weight: 600; color: var(--ink); background: #25165c; border: 2px solid var(--accent); border-radius: 10px; cursor: pointer; }
+button.lockword:disabled { border-color: var(--line); color: var(--mute); cursor: default; }
+.step[hidden], .options[hidden] { display: none; }
 .hintline { color: var(--gold); font-size: .92rem; margin: 6px 0 0; }
 
 .options { display: grid; gap: 8px; margin-top: 10px; }

@@ -271,34 +271,86 @@ const clock0 = () => ({ t: Date.UTC(2026, 0, 1) });
   // playing
   ({ p } = fresh([0.99]));
   answer(p, 4);
-  const reset = p.notePlay();
-  check('playing with no freeze resets Focus', reset.reset && reset.lost === 4 && p.store.focus.count === 0);
+  const played = p.notePlay();
+  check('playing with no freeze costs 1½ Focus, not everything', played.lost === 1.5 && p.store.focus.count === 2.5 && p.store.focus.bonus === 2.5 && p.store.focus.ultra === 2.5, Progress.fmt(p.store.focus.count));
+  check('...and it can show that as a fraction', Progress.fmt(2.5) === '2½' && Progress.fmt(1.5) === '1½');
+  ({ p } = fresh());
+  p.record(bank[3], true);
+  const small = p.notePlay();
+  check('...never going below zero, and only charging what he had', p.store.focus.count === 0 && small.lost === 1);
+  ({ p } = fresh([0.99]));
+  answer(p, 10);
+  p.store.freezes = 0;                     // those 10 in a row earned freezes, which would cover this play
+  p.notePlay();
+  answer(p, 1);
+  check('a rolled goal stays rolled after playing, so a break cannot be used to re-roll', p.store.focus.bonus === 9.5 && p.store.focus.next.bonus === 20);
+  ({ p } = fresh());
+  answer(p, 3); p.record(bank[9], false); p.notePlay();
+  check('misses and play costs add up without rounding drift', p.store.focus.count === Math.round((3 - 1 / 3 - 1.5) * 6) / 6, Progress.fmt(p.store.focus.count));
+
+  // vocabulary gets extra turns
+  {
+    const b = browser(), clock = clock0(), z = new Progress({ io: b.io, now: () => clock.t, rand: seeded(55) });
+    let last = null, vocab = 0, twice = 0, N = 600;
+    for (let k = 0; k < N; k++) {
+      const q = z.next(bank, last);
+      if (q.skill === 'vocab') { vocab++; if (last && last.skill === 'vocab') twice++; }
+      z.record(q, true); last = q; clock.t += 20000;
+    }
+    const share = vocab / N;
+    check('vocabulary is about a third of new questions, up from a fifth of this test bank', share > 0.29 && share < 0.38, `${(share * 100).toFixed(0)}%`);
+    check('...and still never comes up twice running', twice === 0);
+
+    // which vocabulary comes up: mostly SAT-style passages, then the drill, then the earlier questions
+    const levels = bank.map((q, k) => q.skill === 'vocab' ? { ...q, level: k % 3 === 0 ? 'sat' : k % 3 === 1 ? 'hard' : undefined } : q);
+    const b2 = browser(), z2 = new Progress({ io: b2.io, now: () => clock.t, rand: seeded(77) }), seen = { sat: 0, hard: 0, none: 0 };
+    last = null;
+    for (let k = 0; k < 900; k++) { const q = z2.next(levels, last); if (q.skill === 'vocab') seen[q.level || 'none']++; z2.record(q, true); last = q; clock.t += 20000; }
+    const all = seen.sat + seen.hard + seen.none;
+    check('among vocabulary, SAT-style passages come up most', seen.sat / all > 0.5 && seen.sat / all < 0.7 && seen.hard > seen.none, JSON.stringify(seen));
+  }
 
   // freezes
   ({ p } = fresh([0.99]));
   r = answer(p, 5).at(-1);
-  check('5 correct in a row earns a freeze', r.freezeEarned && p.store.freezes.length === 1 && p.store.freezes[0] === 5);
+  check('5 correct in a row earns a freeze', r.freezeEarned && p.store.freezes === 1);
   const kept = p.notePlay();
-  check('playing with a freeze keeps Focus and spends the freeze', kept.frozen && kept.kept === 5 && p.store.focus.count === 5 && p.store.freezes.length === 0);
+  check('playing with a freeze costs no Focus and spends the freeze', kept.frozen && kept.kept === 5 && p.store.focus.count === 5 && p.store.freezes === 0);
   check('...and the counters are untouched', p.store.focus.bonus === 5 && p.store.focus.rare === 5);
 
   ({ p } = fresh([0.99]));
-  answer(p, 5);
-  const ages = []; for (let k = 0; k < 5; k++) { const x = p.record(bank[100 + k], false); ages.push(p.store.freezes.length + (x.melted ? 'm' : '')); }
-  check('an unused freeze melts after 5 questions', ages.join() === '1,1,1,1,0m', ages.join());
-  check('wrong answers age a freeze too', Math.abs(p.store.focus.count - (5 - 5 / 3)) < 1e-6, Progress.fmt(p.store.focus.count));
+  answer(p, 15);
+  check('freezes stack, with no limit', p.store.freezes === 3);
+  for (let k = 0; k < 12; k++) p.record(bank[200 + k], false);
+  check('they do not melt, however many questions go by', p.store.freezes === 3);
+  p.notePlay(); p.notePlay();
+  check('each play spends just one', p.store.freezes === 1);
 
   ({ p } = fresh([0.99]));
   answer(p, 4); p.record(bank[60], false); answer(p, 4);
-  check('a miss breaks the "5 in a row" for a freeze', p.store.freezes.length === 0 && Math.abs(p.store.focus.count - (8 - 1 / 3)) < 1e-6);
+  check('a miss breaks the "5 in a row" for a freeze', p.store.freezes === 0 && Math.abs(p.store.focus.count - (8 - 1 / 3)) < 1e-6);
   answer(p, 1);
-  check('...and the next 5 in a row earns it', p.store.freezes.length === 1);
+  check('...and the next 5 in a row earns it', p.store.freezes === 1);
 
-  ({ p } = fresh([0.99]));
-  for (let k = 1; k <= 25; k++) { p.record(bank[k], true); if (k % 5 === 0) { const held = p.store.freezes.length; if (held > 1 && p.store.freezes[0] <= 0) failures++; } }
-  check('a steady run keeps one fresh freeze ready, so a break is always available every 5', p.store.freezes.length === 1 && p.store.freezes[0] === 5);
-  p.store.freezes = [5, 5, 5]; p.store.streak = 4; p.record(bank[0], true);
-  check('holding is capped at a few', p.store.freezes.length === 3);
+  // lasting until the session ends
+  {
+    const b = browser(), clock = clock0();
+    let z = open(b, clock);
+    for (let k = 0; k < 10; k++) z.record(bank[k], true);
+    check('earned two freezes', z.store.freezes === 2);
+    clock.t += 60000; z = open(b, clock);
+    check('a quick page reload keeps them', z.store.freezes === 2);
+    clock.t += 29 * 60000; z.record(bank[20], false);
+    check('29 minutes away keeps them', z.store.freezes === 2);
+    clock.t += 31 * 60000; z = open(b, clock);
+    check('coming back after over 30 minutes: the session ended, so they are gone', z.store.freezes === 0);
+    for (let k = 0; k < 5; k++) z.record(bank[30 + k], true);
+    clock.t += 45 * 60000; z.record(bank[40], true);
+    check('the same goes for a tab left open that long', z.store.freezes === 0 || z.store.freezes === 1 && z.store.streak % 5 === 0, z.store.freezes);
+    const oldSave = browser(); oldSave.ls = JSON.stringify({ v: 2, items: {}, skills: {}, total: 9, qn: 9, cold: {}, closed: 0, streak: 6, bestStreak: 6, score: 5, bestRun: 2, cases: 0, sessions: 1, sinceCold: 1, machine: null, focus: { count: 6, bonus: 6, rare: 6, ultra: 6 }, freezes: [3, 5] });
+    const up = open(oldSave, clock);
+    check('saves from when freezes had a countdown carry over as a count', up.store.freezes === 2);
+  }
 
   // the chest and its cookie
   const box = fresh([0.0, 0.0, 0.99]);
@@ -322,10 +374,10 @@ const clock0 = () => ({ t: Date.UTC(2026, 0, 1) });
   let q = open(survive, clock);
   answer(q, 7);
   clock.t += 86400000; q = open(survive, clock);
-  check('Focus carries across sessions: only playing resets it', q.store.focus.count === 7);
+  check('Focus carries across sessions', q.store.focus.count === 7);
   const oldSave = browser(); oldSave.ls = JSON.stringify({ v: 2, items: {}, skills: {}, total: 3, qn: 3, cold: {}, closed: 0, streak: 1, bestStreak: 2, score: 5, bestRun: 2, cases: 0, sessions: 1, sinceCold: 1, machine: null });
   const up = open(oldSave, clock);
-  check('saves from before this feature pick it up cleanly', up.store.focus.count === 0 && Array.isArray(up.store.freezes) && up.store.total === 3);
+  check('saves from before this feature pick it up cleanly', up.store.focus.count === 0 && up.store.freezes === 0 && up.store.total === 3);
 }
 
 process.exit(failures ? 1 : 0);

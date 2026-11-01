@@ -21,8 +21,9 @@
   var WINS_TO_CLOSE = 2;
 
   /*
-   * Focus: earned by correct answers since he last played. A right answer adds 1 and a miss takes away a third; playing
-   * resets it. With four choices a blind guess is right 1 time in 4, so guessing nets exactly zero: 1/4 - 3/4 x 1/3 = 0.
+   * Focus: a right answer adds 1 and a miss takes away a third. With four choices a blind guess is right 1 time in 4, so
+   * guessing nets exactly zero: 1/4 - 3/4 x 1/3 = 0. Playing without a freeze costs 1.5, a fair price rather than a
+   * disaster, so he never has to be afraid of running the machine.
    * Each tier has its own counter and its own next goal. Reaching the goal rolls: a win pays out and resets that counter
    * only, and a loss moves the goal up by `every`. A goal rolls once, so dropping below it and climbing back gains nothing.
    */
@@ -31,10 +32,16 @@
     { id: 'rare', label: 'Rare', every: 20, chance: 0.25 },
     { id: 'ultra', label: 'Ultra rare', every: 100, chance: 0.10 }
   ];
-  /* Freezes: every 5 correct IN A ROW earns one. Playing while holding one keeps Focus. Each melts after 5 questions. */
-  var FREEZE_EVERY = 5, FREEZE_LIFE = 5, FREEZE_MAX = 3;
-  var MISS_PENALTY = 1 / 3;
-  function thirds(x) { return Math.round(x * 3) / 3; }     // no rounding drift, however long the streak
+  /* Freezes: every 5 correct IN A ROW earns one, and they stack. Playing while holding one costs nothing. They last until
+     the session ends, meaning 30 minutes away: a quick page reload does not lose them. */
+  var FREEZE_EVERY = 5;
+  var MISS_PENALTY = 1 / 3, PLAY_COST = 1.5;
+  function snap(x) { return Math.round(x * 6) / 6; }       // whole sixths: no rounding drift, however long the streak
+  /* Vocabulary is the skill that pays off most directly on the real test, so it gets extra turns among new questions.
+     It can't come up twice running, so a 1 in 2 pick works out to about a third of all new questions. */
+  var VOCAB_PICK = 0.5;
+  /* Among those: mostly SAT-style passages, then the hard-word drill, and sometimes the earlier, easier questions. */
+  var SAT_VOCAB_PICK = 0.6, DRILL_VOCAB_PICK = 0.25;
 
   function browserIO() {
     return {
@@ -61,7 +68,7 @@
       v: 2, items: {}, skills: {}, total: 0, qn: 0, cold: {}, closed: 0,
       streak: 0, bestStreak: 0, score: 0, bestRun: 0, cases: 0, sessions: 0, sinceCold: 99,
       machine: null,
-      focus: { count: 0, bonus: 0, rare: 0, ultra: 0, next: {} }, freezes: [], chest: {}, found: {}
+      focus: { count: 0, bonus: 0, rare: 0, ultra: 0, next: {} }, freezes: 0, lastActive: 0, chest: {}, found: {}
     };
   }
 
@@ -100,6 +107,7 @@
     var b = blank(), k;
     for (k in b) if (s[k] === undefined) s[k] = b[k];
     if (needsMigration) this._migrate(s);
+    if (Array.isArray(s.freezes)) s.freezes = s.freezes.length;     // saved when each freeze had its own countdown
     // the chest also survives a wiped localStorage, through its own cookie
     if (!Object.keys(s.found).length) {
       var saved = unpackChest(this.io.readCookie(COOKIE_CHEST));
@@ -156,6 +164,7 @@
   Progress.prototype.beginSession = function () {
     var s = this.store;
     s.sessions++; this.session = s.sessions; this.lastAnswer = this.now();
+    if (s.lastActive && this.lastAnswer - s.lastActive > SESSION_GAP) s.freezes = 0;     // freezes last until the session ends
     s.sinceCold = 99;           // the first thing in a new session is an old miss, if there is one
     this.save();
   };
@@ -221,7 +230,16 @@
       var d = varied(due, last).slice().sort(function (a, b) { return items[a.id].due - items[b.id].due; });
       return d[0];
     }
-    if (fresh.length) { var f = varied(fresh, last); return f[Math.floor(rand() * f.length)]; }
+    if (fresh.length) {
+      var f = varied(fresh, last), vocab = f.filter(function (q) { return q.skill === 'vocab'; }), rest = f.filter(function (q) { return q.skill !== 'vocab'; });
+      var from = vocab.length && (!rest.length || rand() < VOCAB_PICK) ? vocab : rest;
+      if (from === vocab) {
+        var roll = rand(), want = roll < SAT_VOCAB_PICK ? 'sat' : roll < SAT_VOCAB_PICK + DRILL_VOCAB_PICK ? 'hard' : null;
+        var level = vocab.filter(function (q) { return (q.level || null) === want; });
+        if (level.length) from = level;
+      }
+      return from[Math.floor(rand() * from.length)];
+    }
     if (ready.length) return ready[0];
 
     // every question has been seen and nothing is due: lowest box, then whatever is due soonest
@@ -237,6 +255,7 @@
   /** Returns what happened: { correct, wasCold, closed, wins, needed, streak, tierUp } */
   Progress.prototype.record = function (q, correct) {
     this._touch();
+    this.store.lastActive = this.now();
     var s = this.store, now = this.now(), wasCold = !!s.cold[q.id], res = { correct: correct, wasCold: wasCold, closed: false };
     s.qn++;
 
@@ -277,21 +296,15 @@
 
   Progress.prototype._focus = function (res, correct) {
     var s = this.store, f = s.focus, self = this;
-    // freezes age with every question answered, right or wrong
-    var before = s.freezes.length;
-    s.freezes = s.freezes.map(function (n) { return n - 1; }).filter(function (n) { return n > 0; });
-    res.melted = before - s.freezes.length;
     res.rolls = [];
     if (!correct) {
-      res.focusLost = thirds(f.count - Math.max(0, thirds(f.count - MISS_PENALTY)));
-      f.count = Math.max(0, thirds(f.count - MISS_PENALTY));
-      TIERS.forEach(function (t) { f[t.id] = Math.max(0, thirds(f[t.id] - MISS_PENALTY)); });
+      res.focusLost = this._takeFocus(MISS_PENALTY);
       return;
     }
-    f.count = thirds(f.count + 1);
+    f.count = snap(f.count + 1);
     var goals = f.next || (f.next = {});
     TIERS.forEach(function (t) {
-      f[t.id] = thirds(f[t.id] + 1);
+      f[t.id] = snap(f[t.id] + 1);
       var goal = goals[t.id] || t.every;
       if (f[t.id] < goal - 1e-6) return;
       var won = self.rand() < t.chance, roll = { tier: t.id, label: t.label, chance: t.chance, at: f[t.id], won: won, next: goal + t.every };
@@ -299,11 +312,15 @@
       else goals[t.id] = goal + t.every;
       res.rolls.push(roll);
     });
-    if (s.streak % FREEZE_EVERY === 0) {
-      s.freezes.push(FREEZE_LIFE);
-      if (s.freezes.length > FREEZE_MAX) s.freezes.shift();
-      res.freezeEarned = true;
-    }
+    if (s.streak % FREEZE_EVERY === 0) { s.freezes++; res.freezeEarned = true; }
+  };
+
+  /** Take points off Focus and every bar, never below zero. A goal already rolled stays rolled. Returns what was really lost. */
+  Progress.prototype._takeFocus = function (n) {
+    var f = this.store.focus, before = f.count;
+    f.count = Math.max(0, snap(f.count - n));
+    TIERS.forEach(function (t) { f[t.id] = Math.max(0, snap(f[t.id] - n)); });
+    return snap(before - f.count);
   };
 
   /** Pick an item from a tier: anything goes, but one not found yet is twice as likely. */
@@ -319,23 +336,24 @@
     return ids[i];
   };
 
-  /** He played: a freeze is spent if he has one (soonest to melt first), otherwise Focus goes back to zero. */
+  /** He played: a freeze is spent if he has one, otherwise it costs a little Focus. */
   Progress.prototype.notePlay = function () {
-    var s = this.store, f = s.focus, count = f.count;
-    if (s.freezes.length) {
-      s.freezes.sort(function (a, b) { return a - b; }).shift();
+    var s = this.store;
+    s.lastActive = this.now();
+    if (s.freezes > 0) {
+      s.freezes--;
       this.save();
-      return { frozen: true, kept: count, left: s.freezes.length };
+      return { frozen: true, kept: s.focus.count, left: s.freezes };
     }
-    s.focus = { count: 0, bonus: 0, rare: 0, ultra: 0, next: {} };
+    var lost = this._takeFocus(PLAY_COST);
     this.save();
-    return { reset: true, lost: count };
+    return { lost: lost, now: s.focus.count };
   };
 
   /** How far a tier's bar is toward its next goal: 0 to `every`. */
   Progress.prototype.tierProgress = function (t) {
     var f = this.store.focus, goal = (f.next && f.next[t.id]) || t.every;
-    return Math.max(0, thirds(f[t.id] - (goal - t.every)));
+    return Math.max(0, snap(f[t.id] - (goal - t.every)));
   };
 
   /** Take one item out of the chest to play with. */
@@ -424,11 +442,11 @@
   Progress.WINS_TO_CLOSE = WINS_TO_CLOSE;
   Progress.TIERS = TIERS;
   Progress.FREEZE_EVERY = FREEZE_EVERY;
-  Progress.FREEZE_LIFE = FREEZE_LIFE;
   Progress.MISS_PENALTY = MISS_PENALTY;
+  Progress.PLAY_COST = PLAY_COST;
   /** 13.6667 -> "13⅔" */
   Progress.fmt = function (n) {
-    var w = Math.floor(n + 1e-6), r = n - w, f = r > 0.6 ? '⅔' : r > 0.3 ? '⅓' : '';
+    var w = Math.floor(n + 1e-6), sixths = Math.round((n - w) * 6), f = ['', '⅙', '⅓', '½', '⅔', '⅚'][sixths] || '';
     return (w || !f ? String(w) : '') + f;
   };
   root.Progress = Progress;

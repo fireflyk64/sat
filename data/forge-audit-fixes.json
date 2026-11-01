@@ -1,0 +1,454 @@
+{
+"forge-70114-1920-1": {
+"drop": true
+},
+"forge-863-271-0": {
+"rule": "The rest of the passage is in the past tense (\"had\", \"was\"), so \"tells\" should be \"told\"."
+},
+"forge-69087-423-3": {
+"drop": true
+},
+"forge-70114-1367-2": {
+"optional": [
+"me"
+]
+},
+"forge-58866-2052-7": {
+"drop": true
+},
+"forge-863-727-0": {
+"drop": true
+},
+"forge-72824-988-1": {
+"rule": "The other verb, \"met\", is in the past, so \"goes\" should be \"went\"."
+},
+"forge-72824-238-0": {
+"drop": true
+},
+"forge-72824-710-0": {
+"drop": true
+},
+"forge-61262-1707-1": {
+"drop": true
+},
+"forge-70114-1887-1": {
+"drop": true
+},
+"forge-61262-360-0": {
+"drop": true
+},
+"forge-72824-3000-0": {
+"optional": [
+"pale"
+]
+},
+"forge-70114-1572-0": {
+"optional": [
+"then"
+]
+},
+"forge-69087-444-0": {
+"drop": true
+},
+"forge-72824-2865-0": {
+"optional": [
+"marina"
+]
+},
+"forge-61262-1952-2": {
+"optional": [
+"deep"
+]
+},
+"forge-58866-551-0": {
+"optional": [
+"then"
+]
+},
+"forge-70114-1750-0": {
+"rule": "\"Notes\" does not go with \"I\", and \"would lead\" shows the story is in the past, so the verb is \"noted\"."
+},
+"forge-72824-981-0": {
+"optional": [
+"train"
+]
+},
+"forge-72824-1086-0": {
+"rule": "The sentence is in the past (\"stood\"), so \"goes\" should be \"went\".",
+"optional": [
+"door"
+]
+},
+"forge-61262-127-0": {
+"drop": true
+},
+"forge-69087-1039-0": {
+"optional": [
+"turned"
+]
+},
+"forge-70114-298-2": {
+"drop": true
+},
+"forge-72824-3004-0": {
+"rule": "The other verb, \"had finally driven\", is in the past, so \"goes\" should be \"went\"."
+},
+"forge-72824-2238-3": {
+"drop": true
+},
+"forge-58866-715-1": {
+"optional": [
+"past"
+]
+},
+"forge-70114-1033-0": {
+"drop": true
+},
+"forge-69087-2289-0": {
+"optional": [
+"there"
+]
+},
+"forge-69087-45-0": {
+"drop": true
+},
+"forge-70114-1716-0": {
+"drop": true
+},
+"forge-70114-328-0": {
+"optional": [
+"finally"
+]
+},
+"forge-61262-840-1": {
+"drop": true
+},
+"forge-70114-1999-0": {
+"optional": [
+"all"
+]
+},
+"forge-61262-763-0": {
+"drop": true
+},
+"forge-61168-2637-9": {
+"optional": [
+"aren’t"
+]
+},
+"forge-78342-977-5": {
+"drop": true
+},
+"forge-1155-794-5": {
+"rule": "The passage is in the past (\"was going on\"), so \"intends\" should be \"intended\"."
+},
+"forge-78342-497-1": {
+"optional": [
+"big",
+"below"
+]
+},
+"forge-72824-568-0": {
+"optional": [
+"time"
+]
+},
+"forge-61168-1754-2": {
+"drop": true
+},
+"forge-78084-2094-0": {
+"rule": "\"They\" is plural, so \"goes\" is wrong, and the story is in the past, so the verb is \"went\"."
+},
+"forge-75288-3223-5": {
+"rule": "The passage is in the past (\"had been\", \"were\"), so \"is\" should be \"was\"."
+},
+"forge-1155-1100-4": {
+"rule": "The passage is in the past (\"seemed\"), so \"listens\" should be \"listened\"."
+},
+"forge-78084-363-2": {
+"optional": [
+"time"
+]
+},
+"forge-78342-379-0": {
+"rule": "\"Miss Kingston Bruce\" is singular, so \"acknowledge\" is wrong, and the story is in the past, so the verb is \"acknowledged\"."
+},
+"forge-61168-1529-1": {
+"drop": true
+},
+"forge-65238-2900-0": {
+"rule": "The story is in the past (\"entered\", \"shut\"), so \"changes\" should be \"changed\"."
+},
+"forge-1155-865-0": {
+"rule": "The story is in the past (\"had been justified\"), so \"contains\" should be \"contained\"."
+},
+"forge-65238-1918-3": {
+"optional": [
+"parted"
+]
+},
+"forge-65238-765-0": {
+"rule": "The story is in the past (\"slept\"), so \"returns\" should be \"returned\"."
+},
+"forge-1155-776-1": {
+"drop": true
+},
+"forge-78220-3303-2": {
+"drop": true
+},
+"forge-61168-177-4": {
+"rule": "\"I\" does not take \"has\", and the story is in the past (\"went\", \"would meet\"), so the verb is \"had\". The subject \"one\" is singular, so \"get\" should be \"gets\"."
+},
+"forge-75288-427-0": {
+"drop": true
+},
+"forge-65238-286-0": {
+"rule": "The passage is in the past (\"belonged\"), so \"dislikes\" should be \"disliked\"."
+},
+"forge-61168-2627-1": {
+"rule": "The story is in the past (\"was accompanied\"), so \"comes\" should be \"came\"."
+},
+"forge-78220-3070-1": {
+"drop": true
+},
+"forge-1155-2645-6": {
+"drop": true
+},
+"forge-65238-862-0": {
+"rule": "The story is in the past (\"was not answered\", \"waited\"), so \"comes\" should be \"came\"."
+},
+"forge-75288-241-0": {
+"rule": "The story is in the past (\"was very fond\"), so \"has\" should be \"had\"."
+},
+"forge-61168-708-0": {
+"rule": "The story is in the past (\"went over\", \"joined\"), so \"welcomes\" should be \"welcomed\"."
+},
+"forge-78220-1106-3": {
+"rule": "The story is in the past (\"saw\"), so \"comes\" should be \"came\".",
+"optional": [
+"then"
+]
+},
+"forge-65238-908-2": {
+"rule": "The story is in the past (\"seemed\"), so \"thinks\" should be \"thought\"."
+},
+"forge-61168-954-0": {
+"rule": "The story is in the past (\"swept\"), so \"goes\" should be \"went\"."
+},
+"forge-1155-1532-2": {
+"rule": "The story is in the past (\"turned\"), so \"lies\" should be \"lay\"."
+},
+"forge-61168-382-1": {
+"rule": "The story is in the past (\"asked\"), so \"hand\" should be \"handed\"."
+},
+"forge-78220-1844-0": {
+"rule": "The story is in the past (\"entered\"), so \"say\" should be \"said\"."
+},
+"forge-61168-1518-3": {
+"optional": [
+"moment"
+]
+},
+"forge-61168-1986-3": {
+"drop": true
+},
+"forge-75288-1264-2": {
+"optional": [
+"brother",
+"her",
+"probability"
+]
+},
+"forge-70114-1353-0": {
+"rule": "The story is in the past (\"recognised\", \"hid\"), so \"is\" should be \"was\".",
+"optional": [
+"up"
+]
+},
+"forge-78084-1137-1": {
+"drop": true
+},
+"forge-65238-1185-0": {
+"optional": [
+"reappeared"
+]
+},
+"forge-78084-1545-1": {
+"drop": true
+},
+"forge-78084-2742-2": {
+"drop": true
+},
+"forge-61168-1116-0": {
+"optional": [
+"curious"
+]
+},
+"forge-69087-2517-0": {
+"drop": true
+},
+"forge-58866-924-0": {
+"drop": true
+},
+"forge-61168-861-1": {
+"drop": true
+},
+"forge-1155-2012-3": {
+"drop": true
+},
+"forge-75288-1442-0": {
+"optional": [
+"minutes"
+]
+},
+"forge-1155-1099-3": {
+"drop": true
+},
+"forge-61262-743-1": {
+"rule": "The story is in the past (\"set off\"), so \"wears\" should be \"wore\"."
+},
+"forge-75288-195-1": {
+"drop": true
+},
+"forge-61168-1772-0": {
+"rule": "\"I\" does not take \"has\", and the next sentence is in the past (\"was bruised\"), so the verb is \"had\". The story is in the past tense, so \"am\" should be \"was\"."
+},
+"forge-65238-225-1": {
+"optional": [
+"herzoslovakia"
+]
+},
+"forge-75288-1273-0": {
+"drop": true
+},
+"forge-61168-1340-0": {
+"optional": [
+"surely"
+]
+},
+"forge-78342-2945-2": {
+"drop": true
+},
+"forge-65238-1061-1": {
+"optional": [
+"presently"
+]
+},
+"forge-78084-387-1": {
+"rule": "The story is in the past tense, so \"hears\" should be \"heard\" to match \"rounded\"."
+},
+"forge-78084-1847-1": {
+"drop": true
+},
+"forge-78084-2096-0": {
+"optional": [
+"minute"
+]
+},
+"forge-1155-2053-0": {
+"rule": "The story is in the past tense, so \"catches\" should be \"caught\" to match \"fell\"."
+},
+"forge-1155-3058-5": {
+"optional": [
+"then"
+]
+},
+"forge-61168-2093-0": {
+"drop": true
+},
+"forge-61168-2442-0": {
+"drop": true
+},
+"forge-1155-1091-1": {
+"drop": true
+},
+"forge-78084-1968-3": {
+"rule": "The story is in the past tense (\"would be speeding\"), so \"cheers\" should be \"cheered\"."
+},
+"forge-61168-1920-1": {
+"drop": true
+},
+"forge-78220-3252-2": {
+"drop": true
+},
+"forge-61262-1322-0": {
+"drop": true
+},
+"forge-65238-3115-0": {
+"optional": [
+"her"
+]
+},
+"forge-1155-2594-2": {
+"drop": true
+},
+"forge-78084-2397-0": {
+"optional": [
+"hard"
+]
+},
+"forge-61168-537-0": {
+"drop": true
+},
+"forge-1155-1424-0": {
+"drop": true
+},
+"forge-78220-233-1": {
+"rule": "The story is in the past (\"noticed\"), so \"keeps\" should be \"kept\"."
+},
+"forge-70114-1842-0": {
+"drop": true
+},
+"forge-75288-1611-1": {
+"optional": [
+"there"
+]
+},
+"forge-69087-2773-2": {
+"drop": true
+},
+"forge-75288-252-0": {
+"optional": [
+"inside"
+]
+},
+"forge-75288-1387-0": {
+"optional": [
+"room"
+]
+},
+"forge-65238-155-7": {
+"drop": true
+},
+"forge-61168-1911-2": {
+"optional": [
+"on"
+]
+},
+"forge-61168-1284-5": {
+"drop": true
+},
+"forge-1155-434-1": {
+"optional": [
+"floor"
+]
+},
+"forge-58866-1250-3": {
+"drop": true
+},
+"forge-78342-641-1": {
+"drop": true
+},
+"forge-61262-1165-1": {
+"drop": true
+},
+"forge-78084-111-0": {
+"drop": true
+},
+"forge-78084-873-0": {
+"drop": true
+},
+"forge-75288-1960-0": {
+"drop": true
+}
+}
