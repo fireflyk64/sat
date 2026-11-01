@@ -62,7 +62,7 @@ How quality was controlled:
    (`data/audit-dropped.json`).
 3. **Vocab uniqueness review**: two further reviewers checked every vocab item so that only one option can have the shown
    meaning (no synonym distractors, accurate definitions, same part of speech). 23 items had distractors swapped, 1 was
-   removed. `tests/verify-quotes.mjs` also fails any item where an "a"/"an" before the blank would give the answer away.
+   removed. When the sentence has "a"/"an" before the blank, the game moves the article into every choice ("an ingenuous" / "a tender"), chosen by sound (an hour, a unique), so it can never hint at the answer.
 4. **Gameplay check**: all 1200 items were solved through the real UI with the right answer (all graded correct), and
    option order is shuffled every time an item is shown so the key is never in a predictable slot.
 

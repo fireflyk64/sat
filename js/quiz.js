@@ -172,11 +172,19 @@
     };
   }
 
+  // "a" or "an" by SOUND: an aardvark / an hour / an unhurried, but a cat / a unique / a Herculean
+  var AN_CONSONANT = /^(hour|honest|honor|honour|heir)/i, A_VOWEL = /^(uni|use|usu|uti|eu|one|once|ubiq)/i;
+  function article(word) {
+    if (AN_CONSONANT.test(word)) return 'an';
+    if (A_VOWEL.test(word)) return 'a';
+    return /^[aeiou]/i.test(word) ? 'an' : 'a';
+  }
+
   /* ---------------- mc + vocab: multiple choice ---------------- */
   function buildChoice(item, host, onChange) {
     var stem = el('p', 'stem');
     // Vocab items can be asked two ways (same data, same 4 words): fill the blank, or match a meaning to its word
-    var fillClue = false;
+    var fillClue = false, artM = null;
     var meaning = item.type === 'vocab' && item.definitions && item.definitions[item.answer] && Math.random() < 0.5;
     if (meaning) {
       var d = item.definitions[item.answer].replace(/\.$/, '');
@@ -192,7 +200,9 @@
         host.appendChild(clue);
         fillClue = true;
       }
-      var parts = item.stem.split('___');
+      // "a ___" / "an ___": the article moves INTO the choices ("an aardvark" vs "a cat"), so it can't hint at the answer
+      artM = item.type === 'vocab' ? item.stem.match(/\b(a|an)\s+___/i) : null;
+      var parts = (artM ? item.stem.replace(/\b(a|an)\s+___/i, '___') : item.stem).split('___');
       stem.appendChild(document.createTextNode(parts[0]));
       stem.appendChild(el('span', 'blankline', '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0'));
       stem.appendChild(document.createTextNode(parts[1] || ''));
@@ -204,7 +214,10 @@
     var btns = shuffled(item.options).map(function (o, i) {
       var b = el('button', 'opt'); b.type = 'button';
       b.appendChild(el('span', 'letter', letters[i]));
-      b.appendChild(el('span', 'otext', o));
+      var label = o;
+      if (artM) { var ar = article(o); label = (artM[1].charAt(0) === 'A' ? ar.charAt(0).toUpperCase() + ar.slice(1) : ar) + ' ' + o; }
+      b.dataset.word = o;
+      b.appendChild(el('span', 'otext', label));
       b.addEventListener('click', function () {
         if (opts.classList.contains('locked')) return;
         chosen = o; btns.forEach(function (x) { x.classList.toggle('sel', x === b); }); onChange();
@@ -219,7 +232,7 @@
       reveal: function () {
         opts.classList.add('locked');
         btns.forEach(function (b) {
-          var text = b.querySelector('.otext').textContent;
+          var text = b.dataset.word || b.querySelector('.otext').textContent;
           if (text === item.answer) b.classList.add('ok');
           else if (b.classList.contains('sel')) b.classList.add('bad');
           if (item.definitions && item.definitions[text]) {
@@ -276,6 +289,7 @@
       host.innerHTML = '';
       return BUILDERS[item.type](item, host, onChange);
     },
+    article: article,
     el: el
   };
 })(window);

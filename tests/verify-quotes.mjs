@@ -37,13 +37,7 @@ for (const q of items) {
   }
   if (!q.rule) problems.push('no rule');
   if (q.type === 'vocab') {
-    // an "a"/"an" right before the blank must not rule options out (it would give the answer away)
-    const m = q.stem.match(/\b(a|an)\s+___/i);
-    if (m) {
-      const vowel = w => /^[aeiou]/i.test(w);
-      const want = m[1].toLowerCase() === 'an';
-      if (q.options.some(o => vowel(o) !== want)) problems.push('article before the blank gives the answer away');
-    }
+    // (an "a"/"an" before the blank is folded into each choice at runtime, so it cannot hint at the answer)
     if (!q.definitions || q.options.some(o => !q.definitions[o])) problems.push('missing definition');
   }
   kinds[q.type + '/' + q.skill] = (kinds[q.type + '/' + q.skill] || 0) + 1;
