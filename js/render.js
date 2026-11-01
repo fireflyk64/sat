@@ -542,9 +542,10 @@
       for (i = 0; i < track.stars.length; i++) {
         var star = track.stars[i];
         if (star.got) continue;
-        var tw = 0.85 + 0.2 * Math.sin(now * 5 + i * 2), bob = Math.sin(now * 2.4 + i) * 0.1;
-        fx.sprite(T.GLOW, star.x, star.y + bob, 1.3, 1.3, 0, 2, 1.5, 0.3, 0.5, 0, 0, 0, 0, 2, 0);
-        fx.sprite(T.FLARE, star.x, star.y + bob, 1.1 * tw, 1.1 * tw, now * 0.7 + i, 3, 2.4, 0.8, 1, 0, 0, 0, 0, 0, 0);
+        // stars hold still along with the prompt, so nothing beside the marble moves during a study run
+        var tw = game.pulse ? 0.85 + 0.2 * Math.sin(now * 5 + i * 2) : 1, bob = game.pulse ? Math.sin(now * 2.4 + i) * 0.1 : 0;
+        fx.sprite(T.GLOW, star.x, star.y + bob, 1.3, 1.3, 0, 2, 1.5, 0.3, game.pulse ? 0.5 : 0.25, 0, 0, 0, 0, 2, 0);
+        fx.sprite(T.FLARE, star.x, star.y + bob, 1.1 * tw, 1.1 * tw, game.pulse ? now * 0.7 + i : i, game.pulse ? 3 : 1.6, game.pulse ? 2.4 : 1.3, game.pulse ? 0.8 : 0.45, 1, 0, 0, 0, 0, 0, 0);
       }
     }
 
@@ -573,6 +574,10 @@
       var fm = game.flick, ph = (now * 1.1) % 1;
       if (game.locked) {
         fx.sprite(T.RING, fm.x, fm.y, 0.75, 0.75, 0, 0.5, 0.45, 0.65, 0.8, 0, 0, 0, 0, 0.06, 0);
+      } else if (!game.pulse) {
+        // during a study run: a still ring, so the marble can be found without pulling the eye away from the question
+        var calm = game.grand ? [1.3, 1, 0.35] : [0.35, 1, 1.25];
+        fx.sprite(T.RING, fm.x, fm.y, 0.75, 0.75, 0, calm[0], calm[1], calm[2], 0.8, 0, 0, 0, 0, 0.05, 0);
       } else {
         var goldRing = game.grand;
         var rc = goldRing ? [3, 2.2, 0.6] : [0.6, 2.2, 2.8];

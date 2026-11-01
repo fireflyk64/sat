@@ -18,7 +18,7 @@
 
   var progress = new Progress();
   var world, track, renderer;
-  var MAX_PULL = 5, BASE_SPEED = 1.3;
+  var MAX_PULL = 5, BASE_SPEED = 1.3, CALM_AT_FOCUS = 5;
   var TIERS = [
     { at: 0,  skin: 'plain',  name: 'Marble',        mult: 1 },
     { at: 3,  skin: 'fire',   name: 'Fire Marble',   mult: 2 },
@@ -34,13 +34,15 @@
     queued: 0, focus: null, focusUntil: 0, readyAt: 0,
     aim: null, pointer: null, gold: false, fast: false,
     phase: 'play', finaleUntil: 0,
-    brk: null, freeRetry: false, unrevealed: {}, picked: null
+    brk: null, freeRetry: false, unrevealed: {}, picked: null, hover: false
   };
 
   function tierFor(streak) { var t = TIERS[0]; TIERS.forEach(function (x) { if (streak >= x.at) t = x; }); return t; }
   function nextTier(streak) { return TIERS.filter(function (x) { return x.at > streak; })[0] || null; }
   function rankFor(total) { var r = RANKS[0][1]; RANKS.forEach(function (x) { if (total >= x[0]) r = x[1]; }); return r; }
   function nowS() { return performance.now() / 1000; }
+  /** The flick prompt only animates when it will not break his concentration: Focus is low, or the mouse is on the play window. */
+  function promptPulses() { return state.hover || progress.store.focus.count < CALM_AT_FOCUS; }
 
   // ---------------------------------------------------------------- building
   function machine() { return progress.machine(); }
@@ -885,7 +887,7 @@
     var fm = flickable();
     renderer.draw({
       track: track, pg: state.brk && state.brk.pg, flick: state.brk ? null : (fm || restingMarble()), locked: !fm || now < state.readyAt,
-      aim: state.aim, preview: aimPreview(), lead: state.running ? leadMarble() : null,
+      aim: state.aim, preview: aimPreview(), lead: state.running ? leadMarble() : null, pulse: promptPulses(),
       grand: machine().complete && machine().playFrom === 0
     }, now);
     requestAnimationFrame(frame);
@@ -908,6 +910,8 @@
     $('check').addEventListener('click', function () { Sound.init(); checkAnswer(); });
     $('next').addEventListener('click', function () { Sound.init(); showQuestion(); });
     setupPointer();
+    $('stage').addEventListener('pointerenter', function () { state.hover = true; });
+    $('stage').addEventListener('pointerleave', function () { state.hover = false; });
     $('mute').addEventListener('click', function () { Sound.init(); Sound.muted = !Sound.muted; this.textContent = Sound.muted ? '🔇' : '🔊'; });
     $('fast').addEventListener('click', function () { state.fast = !state.fast; this.classList.toggle('on', state.fast); this.setAttribute('aria-pressed', state.fast); });
     $('finaleNext').addEventListener('click', endFinale);
@@ -953,7 +957,7 @@
     window.__sat = {
       get renderer() { return renderer; }, get track() { return track; }, get world() { return world; },
       state: state, progress: progress, onCorrectForTest: function () { var r = progress.record(state.current, true); afterRecord(r); award(state.current, r); updateHud(); },
-      deploy: deploy, endBreak: endBreak, refresh: updateHud,
+      deploy: deploy, endBreak: endBreak, refresh: updateHud, promptPulses: promptPulses,
       advance: function (secs) {
         for (var i = 0; i < secs * 60; i++) { var hold = false; if (state.brk) { state.brk.pg.step(1 / 60); hold = state.brk.pg.holdWorld; } if (!hold) { world.step(1 / 60); track.tick(1 / 60, nowS()); } if (state.running) track.collectStars(); renderer.update(1 / 60); renderer.updateCamera(1 / 60, focusPoint(nowS())); if (state.phase === 'finale' && nowS() > state.finaleUntil) endFinale(); }
       },

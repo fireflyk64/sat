@@ -39,6 +39,9 @@ all three rewards:
 Each bar has its own counter. A win pays out and resets that bar only, and a losing roll lets it try again at the next
 multiple. Each goal rolls once, so dropping below it and climbing back up does not roll again.
 
+The flick prompt stays out of the way during a study run: the marble's rings, its "pull back" text and the stars beside it only
+animate when Focus is under 5 or the mouse is over the play window. Otherwise there is just a still ring around the marble.
+
 **🧊 Freezes** let him take a short break without losing Focus. Every 5 correct **in a row** (a miss breaks this count, though
 not Focus) earns one. The next time he plays, a freeze is spent instead of Focus resetting. A freeze melts after 5 questions,
 right or wrong, and he can hold up to 3. Retrying a flick that missed the machine is free.

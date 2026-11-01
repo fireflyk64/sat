@@ -228,6 +228,28 @@ check('Focus progress bars are on show from the start', (await focusBar('bonus')
 await answer(true);
 check('a right answer moves every Focus bar', (await focusBar('bonus')).count === '1 / 10' && (await focusBar('rare')).count === '1 / 20' && (await focusBar('ultra')).count === '1 / 100');
 check('the bar actually fills', (await focusBar('bonus')).width === 10, (await focusBar('bonus')).width);
+
+// the flick prompt must not pull his eye during a study run: read what is really being drawn, across two moments
+const promptDrawn = async () => {
+  await js(`(()=>{const r=__sat.renderer; r.floats.length=0; r.rings.length=0; __sat.state.readyAt=0;})()`);
+  await sleep(1300);
+  const sample = () => js(`(()=>{const f=__sat.renderer.fx,T=FX.T,m=__sat.flickable(),rings=[];let text=0;for(let i=0;i<f.n;i++){const o=i*16,t=f.data[o+5];if(t===T.RING&&Math.hypot(f.data[o]-m.x,f.data[o+1]-m.y)<0.05)rings.push(+f.data[o+2].toFixed(3));if(t===T.GLYPH)text++}return {rings,text}})()`);
+  const a = await sample(); await sleep(900); const b = await sample();
+  return { moving: JSON.stringify(a.rings) !== JSON.stringify(b.rings), text: a.text + b.text, rings: b.rings.length };
+};
+const stageBox = await js(`(()=>{const a=document.getElementById('stage').getBoundingClientRect(), b=document.getElementById('card').getBoundingClientRect();return {sx:a.left+a.width/2, sy:a.top+a.height/2, px:b.left+b.width/2, py:Math.min(b.top+40, innerHeight-20)}})()`);
+await mouse('mouseMoved', stageBox.px, stageBox.py, 0); await sleep(100);
+check('Focus under 5, mouse on the questions: the prompt still pulses', (await js('__sat.promptPulses()')) && (await promptDrawn()).moving);
+await js(`(()=>{const s=__sat.progress.store; s.focus={count:5,bonus:5,rare:5,ultra:5,next:{}}; __sat.progress.save(); __sat.refresh();})()`);
+const calmDrawn = await promptDrawn();
+check('Focus at 5, mouse on the questions: the ball is calm', !(await js('__sat.promptPulses()')) && !calmDrawn.moving && calmDrawn.text === 0 && calmDrawn.rings === 1, JSON.stringify(calmDrawn));
+await mouse('mouseMoved', stageBox.sx, stageBox.sy, 0); await sleep(150);
+const hoverDrawn = await promptDrawn();
+check('Focus at 5, mouse on the play window: it pulses again', (await js('__sat.promptPulses()')) && hoverDrawn.moving && hoverDrawn.text > 0, JSON.stringify(hoverDrawn));
+await mouse('mouseMoved', stageBox.px, stageBox.py, 0); await sleep(150);
+check('moving the mouse back to the questions calms it again', !(await js('__sat.promptPulses()')));
+await js(`(()=>{const s=__sat.progress.store; s.focus={count:1,bonus:1,rare:1,ultra:1,next:{}}; __sat.progress.save(); __sat.refresh();})()`);
+
 await nextChoiceQuestion();
 await answer(false);
 check('a miss takes ⅓ off Focus, and the bar and the verdict both show it', (await focusBar('bonus')).count === '⅔ / 10' && (await js(`document.getElementById('focusN').textContent`)) === '⅔' && (await js(`document.getElementById('verdict').textContent`)).includes('Focus −⅓'), await js(`document.getElementById('verdict').textContent`));
