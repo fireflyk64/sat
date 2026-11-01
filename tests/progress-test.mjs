@@ -380,4 +380,36 @@ const clock0 = () => ({ t: Date.UTC(2026, 0, 1) });
   check('saves from before this feature pick it up cleanly', up.store.focus.count === 0 && up.store.freezes === 0 && up.store.total === 3);
 }
 
+// --- storylines: tagged questions stay hidden until their unlock, then take a share of the new questions
+{
+  const story = Array.from({ length: 60 }, (_, i) => ({ id: 'fire' + i, skill: ['phrases', 'agreement', 'proofreading', 'commas'][i % 4], story: 'fire' }));     // (the real set mixes skills, and the game never repeats a skill twice running)
+  const pool = [...bank.slice(0, 400), ...story], b = browser(), clock = clock0();
+  const z = new Progress({ io: b.io, now: () => clock.t, rand: seeded(5) });
+  check('the fire storyline opens at 100 right answers, the next at 400, then 800', Progress.STORY_UNLOCK.fire === 100 && Progress.STORY_UNLOCK.water === 400 && Progress.STORY_UNLOCK.breakable === 800);
+  check('before then, the next storyline and how far off it is are known', z.nextStory(pool).id === 'fire' && z.nextStory(pool).left === 100 && !z.storyOpen('fire'));
+  check('...but nothing is announced for a storyline whose questions are not written yet', z.nextStory(bank) === null && z.storyJustOpened(bank).length === 0);
+  let last = null, leaked = 0, opened = [];
+  while (z.store.total < 100) {
+    const q = z.next(pool, last);
+    if (q.story) leaked++;
+    z.record(q, true); last = q; clock.t += 20000;
+    z.storyJustOpened(pool).forEach(id => opened.push(id + '@' + z.store.total));
+  }
+  check('no story question comes up before the unlock', leaked === 0, `${leaked} came up`);
+  check('the 100th right answer is the one that opens it, exactly once', opened.join() === 'fire@100', opened.join());
+  check('after that the next storyline is the water section', z.nextStory().id === 'water' && z.nextStory().left === 300 && z.storyOpen('fire') && z.nextStory(pool) === null);
+  let fromStory = 0, fresh = 0;
+  for (let k = 0; k < 100; k++) {
+    const q = z.next(pool, last), isNew = !z.store.items[q.id];
+    if (isNew) { fresh++; if (q.story) fromStory++; }
+    z.record(q, true); last = q; clock.t += 20000;
+  }
+  check('once open, about 40% of the new questions he is given are story questions', fromStory / fresh > 0.3 && fromStory / fresh < 0.5, `${fromStory} of ${fresh} new`);
+  let more = 0; for (let k = 0; k < 600; k++) { const q = z.next(pool, last); if (q.story) more++; z.record(q, true); last = q; clock.t += 20000; }
+  const met = pool.filter(q => q.story && z.store.items[q.id]).length;
+  check('every story question gets its turn eventually', met === 60, `${met} of 60`);
+  const lock = open(browser(), clock0(), 3);
+  check('and a fresh player never sees one', Array.from({ length: 80 }, () => { const q = lock.next(pool, null); lock.record(q, true); return q; }).every(q => !q.story));
+}
+
 process.exit(failures ? 1 : 0);

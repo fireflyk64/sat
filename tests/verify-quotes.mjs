@@ -28,9 +28,24 @@ let bad = 0; const ids = new Set(); const kinds = {};
 for (const q of items) {
   const problems = [];
   if (ids.has(q.id)) problems.push('duplicate id'); ids.add(q.id);
-  const b = await book(q.source.gutenberg);
   const sentence = (q.fixed || q.text || q.stem.replace('___', q.answer)).replace(/_/g, '');
-  if (!b.words.includes(' ' + wordsOf(sentence) + ' ')) problems.push('sentence not found in the book');
+  if (q.source.original) {
+    // an invented sentence has no book to match; it must be credited to a story, and a storyline question must say which statement
+    if (!q.source.book || !q.story || !(q.seq >= 1)) problems.push('an original item needs a story, a statement number and a source');
+  } else {
+    const b = await book(q.source.gutenberg);
+    if (!b.words.includes(' ' + wordsOf(sentence) + ' ')) problems.push('sentence not found in the book');
+  }
+  if (q.type === 'strip') {
+    const T = q.text.split(/\s+/), a = q.answer || [];
+    if (!a.length || a.some((i, k) => !Number.isInteger(i) || i < 0 || i >= T.length || (k && i <= a[k - 1]))) problems.push('strip answer positions are empty, out of range or not increasing');
+    else {
+      const picked = a.map(i => T[i]).join(' '), left = T.filter((_, i) => !a.includes(i)).join(' ');
+      if (q.mode === 'strike' ? wordsOf(q.fixed) !== wordsOf(left) : wordsOf(q.fixed) !== wordsOf(picked)) problems.push('the "what is left" line does not match the answer');
+      if (q.mode === 'strike' && a.length === T.length) problems.push('strikes the whole sentence');
+    }
+    if (!['strike', 'highlight'].includes(q.mode) || !q.prompt || !q.fixedLabel) problems.push('strip needs a mode, a prompt and a label');
+  }
   if (q.type === 'mc' || q.type === 'vocab') {
     if (!q.options.includes(q.answer)) problems.push('answer not in options');
     if (new Set(q.options).size !== q.options.length) problems.push('duplicate options');

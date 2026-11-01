@@ -33,7 +33,8 @@
     cascade:    { label: 'Marble Cascade', unlock: 16, blurb: 'A gate opens and a flood of marbles pours out.' },
     portal:     { label: 'Portal',         unlock: 20, blurb: 'In one side, out the other.' },
     cradle:     { label: "Newton's Cradle", unlock: 25, blurb: 'Click. Clack. Click. Clack.' },
-    hourglass:  { label: 'Sand Timer',     unlock: 30, blurb: 'A trapdoor opens and sand runs down onto the dominoes.' }
+    hourglass:  { label: 'Sand Timer',     unlock: 30, blurb: 'A trapdoor opens and sand runs down onto the dominoes.' },
+    fuse:       { label: 'Fire Fuse',      unlock: 100, blurb: 'A flame crawls along a rope, burns it through, and the ball drops.' }
   };
 
   function rng(seed) { // mulberry32
@@ -506,6 +507,44 @@
         force: function () { this.open(); }
       };
       this._catch(sec, X + F * 0.1, Y - 0.25, 0.6, function (m) { toy.open(m); });
+      this._run(sec, r, t, 7.6, false);
+    },
+
+    /* Fire Fuse: an arriving marble lights a rope. A flame crawls along it, and when it has burned through, the ball it was
+       holding drops onto the ramp and rolls into the dominoes. */
+    fuse: function (sec, r, p) {
+      var e = this._entry(sec, r, p, 7 + r(), 10), F = e.dir, X = e.lowX, Y = e.lowY;
+      var t = this._forward(sec, X + F * 1.0, Y + 3.4, F, 8, 18 + r() * 3);
+      var gd = t.at(2.7, 0), B = { x: gd.x, y: gd.y - 1.3 };                       // where the ball hangs, a little above the ramp
+      var top = { x: B.x, y: B.y - 1.7 }, lit = { x: X + F * 0.4, y: Y - 0.1 };     // the rope's upper end, and the end the marble lights
+      var pts = [lit, top, { x: B.x, y: B.y - BALL_R }];
+      function dist(a, b) { return Math.sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y)); }
+      var lens = [dist(pts[0], pts[1]), dist(pts[1], pts[2])], total = lens[0] + lens[1], SPEED = 1.7, burn = total / SPEED;
+      var ball = this._marble(sec, B.x, B.y, { role: 'passenger', hue: 28, key: 'dropball', manualWake: true });
+      var self = this;
+      var toy = sec.toy = {
+        type: 'fuse', triggered: false, released: false, lit: -9, fuse: -1, pts: pts, lens: lens, total: total, speed: SPEED, ball: ball,
+        update: function () {
+          if (!this.triggered || this.released) return;
+          this.fuse = Math.max(0, burn - (self.time - this.lit));
+          if (this.fuse <= 0) this.release();
+        },
+        light: function (m) {
+          if (this.triggered) return;
+          this.triggered = true; this.lit = self.time; this.fuse = burn;
+          if (m) self._spend(m);
+          self.emit('toy', { what: 'ignite', kind: 'fuse', x: pts[0].x, y: pts[0].y, sec: sec });
+        },
+        release: function () {
+          if (this.released) return;
+          this.released = true; this.fuse = -1;
+          ball.manualWake = false; ball.wake(); ball.userData.live = true; ball.vx += F * 0.4;
+          self.emit('toy', { what: 'drop', kind: 'fuse', x: ball.x, y: ball.y, sec: sec });
+        },
+        force: function () { if (!this.triggered) this.light(); else this.release(); }
+      };
+      sec.passenger = ball;
+      this._catch(sec, X + F * 0.1, Y - 0.25, 0.6, function (m) { toy.light(m); });
       this._run(sec, r, t, 7.6, false);
     },
 

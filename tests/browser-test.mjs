@@ -519,6 +519,7 @@ for (let i = 0; i < 8; i++) {
   for (const [what, expr] of [['the right choice', rightChoice], ['Check', `document.getElementById('check')`]]) { const s = await onScreen(expr); if (s !== 'ok') trouble.push(`#${i} ${what}: ${s}`); }
   await tapHere(rightChoice); await sleep(100);
   await tapHere(`document.getElementById('check')`); await sleep(250);
+  for (let k = 0; k < 40 && (await js(`document.getElementById('next').hidden`)); k++) await sleep(100);      // (a busy machine can take a moment to grade)
   { const s = await onScreen(`document.getElementById('next')`); if (s !== 'ok') trouble.push(`#${i} Next: ${s}`); }
   if (i === 0) { await sleep(300); toyNote = await js(`({ shown: document.getElementById('studynote').classList.contains('show'), text: document.getElementById('studynote').textContent })`); await shot('11b-phone-answered'); }
   await tapHere(`document.getElementById('next')`); await sleep(200);
@@ -555,6 +556,44 @@ await js('__sat.endBreak()'); await tapHere(`document.getElementById('tabStudy')
 check('...and the Questions tab is one tap away', (await js('__sat.view')) === 'study' && (await js(seenStage)) === 'hidden');
 await send('Emulation.setDeviceMetricsOverride', { width: 1100, height: 720, deviceScaleFactor: 1, mobile: false });
 
+// ---------------------------------------------------------------------------------------------------------- 10: strip questions
+// Tap the words of one kind of phrase to cross them out (or highlight them). Synthetic items, so this tests the widget, not the content.
+await open('?noscale=1');
+await js(`SAT_QUESTIONS.push(
+  { id: 't-strip-1', type: 'strip', skill: 'phrases', title: 'Strip the sentence', prompt: 'Cross out every prepositional phrase. What is left is the core of the sentence.', mode: 'strike',
+    text: 'The foreman of the mill locked the door behind him.', answer: [2, 3, 4, 8, 9], fixedLabel: 'What is left', fixed: 'The foreman locked the door.',
+    rule: 'Both prepositional phrases go: "of the mill" and "behind him".', source: { original: true, book: 'The Fire at Hallam Wharf', note: 'statement 1' } },
+  { id: 't-strip-2', type: 'strip', skill: 'phrases', title: 'Find the verb phrase', prompt: 'Highlight the whole verb phrase.', mode: 'highlight',
+    text: 'The crew had been working since dawn.', answer: [2, 3, 4], fixedLabel: 'The verb phrase', fixed: 'had been working',
+    rule: 'The verb phrase is the main verb with its helpers: "had been working".', source: { original: true, book: 'The Fire at Hallam Wharf', note: 'statement 2' } }); 0`);
+const word = (i) => `document.querySelectorAll('.sentence .w')[${i}]`;
+await js(`__sat.showQuestion('t-strip-1'); 0`); await sleep(150);
+check('a strip question says what it wants and starts with nothing crossed out', (await js(`document.querySelector('.sentence').classList.contains('strike')`)) && (await js(`document.querySelector('.step').textContent`)) === 'Crossed out: 0 words' && await js(`document.getElementById('check').disabled`));
+await clickEl(word(1)); await sleep(40);
+check('tapping a word crosses it out and counts it', (await js(`document.querySelector('.step').textContent`)) === 'Crossed out: 1 word' && await js(`${word(1)}.classList.contains('sel')`));
+for (const i of [2, 3, 4, 8, 9]) { await clickEl(word(i)); await sleep(30); }
+await clickEl(word(1)); await sleep(30);       // tap again: uncrossed
+check('tapping it again takes it back', !(await js(`${word(1)}.classList.contains('sel')`)) && (await js(`document.querySelector('.step').textContent`)) === 'Crossed out: 5 words');
+await clickEl(word(1)); await sleep(30);       // ...and cross out one too many, on purpose
+await clickEl(`document.getElementById('check')`); await sleep(200);
+check('crossing out a word that belongs to no prepositional phrase is wrong', await js(`document.getElementById('card').classList.contains('lose')`));
+check('...the reveal marks it wrong, and the five right words right', (await js(`document.querySelectorAll('.sentence .w.bad').length`)) === 1 && (await js(`document.querySelectorAll('.sentence .w.ok').length`)) === 5);
+check('...and shows what is left, credited to the story and not to a book', (await js(`document.getElementById('fixedline').textContent`)).startsWith('What is left: The foreman locked the door.') && (await js(`document.getElementById('src').textContent`)) === '— The Fire at Hallam Wharf, statement 1');
+await js(`__sat.showQuestion('t-strip-1'); 0`); await sleep(150);
+for (const i of [2, 3, 4, 8, 9]) { await clickEl(word(i)); await sleep(30); }
+await clickEl(`document.getElementById('check')`); await sleep(200);
+check('crossing out exactly the prepositional phrases is right', await js(`document.getElementById('card').classList.contains('win')`));
+check('...and a missed word is shown as missed', await (async () => { await js(`__sat.showQuestion('t-strip-1'); 0`); await sleep(150); for (const i of [2, 3, 4, 8]) { await clickEl(word(i)); await sleep(30); } await clickEl(`document.getElementById('check')`); await sleep(200); return (await js(`document.querySelectorAll('.sentence .w.miss').length`)) === 1 && await js(`document.getElementById('card').classList.contains('lose')`); })());
+await js(`__sat.showQuestion('t-strip-2'); 0`); await sleep(150);
+for (const i of [2, 3, 4]) { await clickEl(word(i)); await sleep(30); }
+check('a highlight question highlights instead of striking, and counts that way', (await js(`document.querySelector('.sentence').classList.contains('hilite')`)) && (await js(`document.querySelector('.step').textContent`)) === 'Highlighted: 3 words');
+await clickEl(`document.getElementById('check')`); await sleep(200);
+check('highlighting exactly the verb phrase is right', await js(`document.getElementById('card').classList.contains('win')`));
+check('the Phrases meter stays out of sight until the fire storyline opens', !(await js(`[...document.querySelectorAll('#meters .ml')].map(e => e.textContent).join()`)).includes('Phrases'));
+await js(`__sat.progress.store.total = 100; __sat.progress.save(); __sat.showQuestion('t-strip-2'); 0`); await sleep(150);
+await js(`__sat.onCorrectForTest()`); await sleep(100);
+check('...and then it has its own meter', (await js(`[...document.querySelectorAll('#meters .ml')].map(e => e.textContent).join()`)).includes('Phrases'));
+
 // ---------------------------------------------------------------------------------------------------------- 9: the Sand Timer
 // A funnel of sand over a trapdoor: a marble arrives, the trapdoor opens, the sand runs down and knocks the row over.
 await open('?noscale=1');
@@ -569,6 +608,28 @@ const sand1 = await sandInfo();
 check('the trapdoor opens and the sand runs right out of the funnel', sand1.open && sand1.inFunnel <= 2, JSON.stringify(sand1));
 check('...and the sand knocks the row of dominoes down', sand1.fallen >= sand1.total * 0.8, `${sand1.fallen} of ${sand1.total}`);
 check('the grains are drawn as sand, not as marbles', await js(`__sat.track.sections[1].toy.grains.every(g => g.userData.sand && g.userData.small)`));
+
+// ---------------------------------------------------------------------------------------------------------- 11: the Fire Fuse
+// A marble lights a rope, a flame crawls along it, and when it has burned through the ball it held drops and rolls into the row.
+// Run the way the game runs it: a real flick from the top, all the way to the bell.
+await open('?noscale=1');
+await js(`(()=>{ const m = __sat.machine(); m.pieces = [{ id: 'p1', kind: 'dominoes', seed: 11 }, { id: 'p2', kind: 'fuse', seed: 23 }, { id: 'p3', kind: 'dominoes', seed: 35 }]; m.target = 3; m.playFrom = 0; __sat.progress.save(); __sat.rebuild({}); })()`);
+await sleep(600);
+await ready();
+const fuseInfo = () => js(`(()=>{ const t = __sat.track.sections[1], toy = t.toy; return { type: toy.type, lit: toy.triggered, dropped: toy.released, ballAsleep: toy.ball.asleep, fallen: t.dominoes.filter(d => d.userData.fell).length, total: t.dominoes.length }; })()`);
+const fuse0 = await fuseInfo();
+check('the Fire Fuse is a toy that unlocks at 100 right answers, and starts unlit with its ball hanging', (await js(`Track.KINDS.fuse.unlock`)) === 100 && fuse0.type === 'fuse' && !fuse0.lit && fuse0.ballAsleep, JSON.stringify(fuse0));
+await js(`__sat.flick(__sat.track.exitFor(0).dir * 4, -1)`);
+let sawBurning = false;
+for (let t = 0; t < 300 && (await js('__sat.state.running')); t++) {
+  await js('__sat.advance(0.5)');
+  const f = await fuseInfo();
+  if (f.lit && !f.dropped && f.ballAsleep) sawBurning = true;
+}
+const fuse1 = await fuseInfo();
+check('a marble lights it, and for a while it burns with the ball still hanging', sawBurning);
+check('when the rope has burned through the ball drops and knocks the row down', fuse1.dropped && fuse1.fallen >= fuse1.total * 0.8, JSON.stringify(fuse1));
+check('...and the whole machine runs on to the bell', !(await js('__sat.state.running')));
 
 const realErrors = pageErrors.filter(e => !/favicon/.test(e));
 check('no JavaScript errors in the whole session', realErrors.length === 0, realErrors.slice(0, 3).join(' | '));

@@ -365,6 +365,25 @@
         fx.sprite(T.RING, toy.x, toy.y, 1.8 * (1 - charge) + 0.4, 1.8 * (1 - charge) + 0.4, 0, 3, 1.8, 0.6, charge, 0, 0, 0, 0, 0.1, 0);
       }
       fx.sprite(T.DISC, toy.x, toy.y + 0.35, 0.34, 0.34, 0, 0.1, 0.1, 0.13, 1, 0, 0, 0, 0, 0, 0);
+    } else if (toy.type === 'fuse') {
+      // the rope, burnt away behind the flame; the flame is a flickering glow with embers
+      var burnt = toy.triggered ? Math.min(toy.total, Math.max(0, st - toy.lit) * toy.speed) : 0, cum = 0, tip = null, rc = hsl(30, 55, 44);
+      for (i = 0; i < toy.lens.length; i++) {
+        var p0 = toy.pts[i], p1 = toy.pts[i + 1], seg = toy.lens[i], from = toy.released ? 1 : Math.min(1, Math.max(0, burnt - cum) / seg);
+        if (from < 1) {
+          var ax0 = p0.x + (p1.x - p0.x) * from, ay0 = p0.y + (p1.y - p0.y) * from;
+          fx.sprite(T.BOX, (ax0 + p1.x) / 2, (ay0 + p1.y) / 2, seg * (1 - from) / 2, 0.035, Math.atan2(p1.y - p0.y, p1.x - p0.x), rc[0], rc[1], rc[2], 1, rc[0] * 1.5, rc[1] * 1.1, rc[2] * 0.6, 1, 0.02, 0.02, 0, 0);
+        }
+        if (toy.triggered && !toy.released && burnt >= cum && burnt <= cum + seg) { var k = (burnt - cum) / seg; tip = { x: p0.x + (p1.x - p0.x) * k, y: p0.y + (p1.y - p0.y) * k }; }
+        cum += seg;
+      }
+      if (!toy.triggered) tip = { x: toy.pts[0].x, y: toy.pts[0].y, dim: true };
+      if (tip) {
+        var fl = (tip.dim ? 0.35 + 0.15 * Math.sin(now * 6) : 1) * (0.85 + 0.15 * Math.sin(now * 41));
+        fx.sprite(T.GLOW, tip.x, tip.y, 0.95, 0.95, 0, 3, 1.5, 0.35, fl, 0, 0, 0, 0, 2, 0);
+        fx.sprite(T.GLOW, tip.x, tip.y, 0.36, 0.36, 0, 4, 3.2, 1.2, fl, 0, 0, 0, 0, 2, 0);
+        if (!tip.dim && Math.random() < 0.55) this.sparks(tip.x, tip.y, 1, 28, 1.8);
+      }
     } else if (toy.type === 'portal') {
       var f = toy.flash > 0 ? Math.exp(-(st - toy.flash) * 4) : 0, c1 = hsl(hue, 100, 60), c2 = hsl(hue + 130, 100, 65);
       [[toy.ax, toy.ay, 1], [toy.bx, toy.by, -1]].forEach(function (q) {

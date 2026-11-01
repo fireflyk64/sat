@@ -39,6 +39,9 @@
   function snap(x) { return Math.round(x * 6) / 6; }       // whole sixths: no rounding drift, however long the streak
   /* Vocabulary is the skill that pays off most directly on the real test, so it gets extra turns among new questions.
      It can't come up twice running, so a 1 in 2 pick works out to about a third of all new questions. */
+  // Storylines open by total right answers. Questions tagged with a `story` stay out of the pool until it opens; after that a share
+  // of the new questions he is given come from the open storylines until they are used up.
+  var STORY_UNLOCK = { fire: 100, water: 400, breakable: 800 }, STORY_PICK = 0.4;
   var VOCAB_PICK = 0.5;
   /* Among those: mostly SAT-style passages, then the hard-word drill, and sometimes the earlier, easier questions. */
   var SAT_VOCAB_PICK = 0.6, DRILL_VOCAB_PICK = 0.25;
@@ -208,8 +211,25 @@
     return other.length ? other : list;
   }
 
+  /** Has this storyline opened yet? */
+  Progress.prototype.storyOpen = function (id) { return this.store.total >= (STORY_UNLOCK[id] == null ? 0 : STORY_UNLOCK[id]); };
+  // (with a bank given, only storylines that have questions in it count: nothing is announced before its content exists)
+  function hasStory(bank, k) { return !bank || bank.some(function (q) { return q.story === k; }); }
+  /** Storylines that opened with the answer just recorded. */
+  Progress.prototype.storyJustOpened = function (bank) {
+    var total = this.store.total;
+    return Object.keys(STORY_UNLOCK).filter(function (k) { return STORY_UNLOCK[k] === total && total > 0 && hasStory(bank, k); });
+  };
+  /** The storyline that opens next: { id, left } */
+  Progress.prototype.nextStory = function (bank) {
+    var total = this.store.total, ids = Object.keys(STORY_UNLOCK).filter(function (k) { return STORY_UNLOCK[k] > total && hasStory(bank, k); });
+    ids.sort(function (a, b) { return STORY_UNLOCK[a] - STORY_UNLOCK[b]; });
+    return ids.length ? { id: ids[0], left: STORY_UNLOCK[ids[0]] - total } : null;
+  };
+
   Progress.prototype.next = function (bank, last) {
-    var s = this.store, now = this.now(), rand = this.rand, cold = s.cold;
+    var s = this.store, now = this.now(), rand = this.rand, cold = s.cold, self = this;
+    bank = bank.filter(function (q) { return !q.story || self.storyOpen(q.story); });
     var ready = this._coldReady(bank, last);
     if (ready.length && s.sinceCold >= 1) {
       // oldest first, keeping skills mixed where possible
@@ -231,7 +251,11 @@
       return d[0];
     }
     if (fresh.length) {
-      var f = varied(fresh, last), vocab = f.filter(function (q) { return q.skill === 'vocab'; }), rest = f.filter(function (q) { return q.skill !== 'vocab'; });
+      var f = varied(fresh, last), story = f.filter(function (q) { return q.story; });
+      if (story.length && rand() < STORY_PICK) return story[Math.floor(rand() * story.length)];
+      f = f.filter(function (q) { return !q.story; });
+      if (!f.length) f = story;
+      var vocab = f.filter(function (q) { return q.skill === 'vocab'; }), rest = f.filter(function (q) { return q.skill !== 'vocab'; });
       var from = vocab.length && (!rest.length || rand() < VOCAB_PICK) ? vocab : rest;
       if (from === vocab) {
         var roll = rand(), want = roll < SAT_VOCAB_PICK ? 'sat' : roll < SAT_VOCAB_PICK + DRILL_VOCAB_PICK ? 'hard' : null;
@@ -440,6 +464,7 @@
   };
 
   Progress.WINS_TO_CLOSE = WINS_TO_CLOSE;
+  Progress.STORY_UNLOCK = STORY_UNLOCK;
   Progress.TIERS = TIERS;
   Progress.FREEZE_EVERY = FREEZE_EVERY;
   Progress.MISS_PENALTY = MISS_PENALTY;

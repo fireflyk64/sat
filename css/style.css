@@ -160,6 +160,8 @@ button.icon.on { background: var(--gold); color: #271a00; box-shadow: 0 0 16px r
 .msus.guilty { border-color: rgba(255,215,64,.6); } .msus.guilty b { color: var(--gold); }
 .msolved { color: var(--gold); }
 .msolved[hidden] { display: none; }
+.storynext { color: var(--mute); font-size: .82rem; }
+.storynext:empty { display: none; }
 .mclues { margin: 0; padding-left: 1.5em; display: flex; flex-direction: column; gap: 3px; }
 .mclues li { color: var(--ink); }
 .mclues li.locked { color: var(--mute); opacity: .55; }
@@ -244,6 +246,11 @@ button.icon.on { background: var(--gold); color: #271a00; box-shadow: 0 0 16px r
 .sentence .w.sel, .sentence .g.sel { background: rgba(0,229,255,.28); outline: 2px solid var(--accent); }
 .sentence.mode-pick .w:not(.blank) { border-bottom-color: rgba(255,255,255,.25); }
 .sentence.locked button { cursor: default; }
+/* strip: crossing words out, or highlighting them */
+.sentence.strike .w.sel { text-decoration: line-through; text-decoration-thickness: 2px; text-decoration-color: var(--bad); color: var(--mute); background: rgba(255,83,112,.12); outline: 0; }
+.sentence.strike .w.miss { text-decoration: line-through; text-decoration-thickness: 2px; }
+.sentence.strike .w.bad { text-decoration: line-through; text-decoration-thickness: 2px; }
+.sentence.hilite .w.sel { background: rgba(255,215,64,.28); outline: 2px solid var(--gold); color: #fff; }
 .sentence .w.ok, .sentence .g.ok { background: rgba(53,224,138,.22); outline: 2px solid var(--ok); }
 .sentence .w.miss, .sentence .g.miss { background: rgba(255,215,64,.22); outline: 2px dashed var(--gold); }
 .sentence .w.bad, .sentence .g.bad { background: rgba(255,83,112,.25); outline: 2px solid var(--bad); }

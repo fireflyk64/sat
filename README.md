@@ -33,7 +33,7 @@ To add one, copy an entry in `data/mysteries.js` (four suspects, five clues, one
 
 **Toys** unlock as correct answers add up: Domino Row, Speed Ramp and Peg Field from the start, then Switchback (2),
 Catapult (4), Trampoline (6), Wrecking Ball (8), Cannon (10), Nitro Crate (13), Marble Cascade (16), Portal (20),
-Newton's Cradle (25), Sand Timer (30: a trapdoor opens under a funnel of sand, which runs down and knocks the row over).
+Newton's Cradle (25), Sand Timer (30: a trapdoor opens under a funnel of sand, which runs down and knocks the row over), Fire Fuse (100: a marble lights a rope, the flame burns it through, and the ball it held drops into the row).
 
 ## Focus: rewards for studying rather than playing
 **Focus** is what he builds by answering: a right answer adds 1 and a miss takes off ⅓, never going below 0. With four choices

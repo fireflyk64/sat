@@ -37,7 +37,7 @@
     });
   }
 
-  /* Shared sentence widget. mode: mark | forge | pick | static */
+  /* Shared sentence widget. mode: mark | forge | strip | pick | static */
   function Sentence(host, text, mode, onChange) {
     var self = this;
     this.tokens = tokenize(text);
@@ -61,7 +61,7 @@
           self.capState[i] = !self.capState[i];
           wb.textContent = self.capState[i] ? upperFirst(shown) : lowerFirst(shown);
           wb.classList.toggle('on', self.capState[i]);
-        } else if (mode === 'forge') {
+        } else if (mode === 'forge' || mode === 'strip') {
           self.selWords[i] = !self.selWords[i]; wb.classList.toggle('sel', !!self.selWords[i]);
         } else if (mode === 'pick') {
           self.words.forEach(function (b) { b.classList.remove('sel'); });
@@ -311,12 +311,39 @@
     };
   }
 
-  var BUILDERS = { mark: buildMark, tapfix: buildTapFix, mc: buildChoice, vocab: buildChoice, forge: buildForge };
+  /* ---------------- strip: cross out (or highlight) one kind of phrase by tapping its words ---------------- */
+  // item.mode 'strike' crosses words out, 'highlight' marks them; item.answer lists the word positions (the sentence split on
+  // spaces). Striking every prepositional phrase leaves the sentence's core, which is how to find the real subject.
+  function buildStrip(item, host, onChange) {
+    var strike = item.mode !== 'highlight';
+    var count = el('p', 'step', '');
+    var sent = new Sentence(host, item.text, 'strip', function () { update(); onChange(); });
+    sent.wrap.classList.add(strike ? 'strike' : 'hilite');
+    host.insertBefore(count, sent.wrap);
+    function sel() { return Object.keys(sent.selWords).filter(function (k) { return sent.selWords[k]; }).map(Number); }
+    function update() {
+      var n = sel().length;
+      count.textContent = (strike ? 'Crossed out: ' : 'Highlighted: ') + n + (n === 1 ? ' word' : ' words');
+    }
+    update();
+    var want = item.answer.slice();
+    return {
+      ready: function () { return sel().length > 0; },
+      check: function () { var got = sel(); return { correct: setEq(got, want), got: got }; },
+      reveal: function (r) {
+        sent.lock();
+        want.forEach(function (i) { sent.words[i].classList.add(r.got.indexOf(i) >= 0 ? 'ok' : 'miss'); });
+        r.got.forEach(function (i) { if (want.indexOf(i) < 0) sent.words[i].classList.add('bad'); });
+      }
+    };
+  }
+
+  var BUILDERS = { mark: buildMark, tapfix: buildTapFix, mc: buildChoice, vocab: buildChoice, forge: buildForge, strip: buildStrip };
 
   root.Quiz = {
     SKILLS: {
       commas: 'Commas', agreement: 'Agreement', tense: 'Tense',
-      proofreading: 'Proofreading', vocab: 'Vocabulary'
+      proofreading: 'Proofreading', vocab: 'Vocabulary', phrases: 'Phrases'
     },
     build: function (item, host, onChange) {
       host.innerHTML = '';

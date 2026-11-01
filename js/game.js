@@ -26,6 +26,12 @@
     { at: 8,  skin: 'prism',  name: 'Prism Marble',  mult: 4 },
     { at: 12, skin: 'nova',   name: 'Nova Marble',   mult: 5 }
   ];
+  // storylines that open with total right answers (the numbers live in Progress.STORY_UNLOCK)
+  var STORIES = {
+    fire:      { icon: '\ud83d\udd25', title: 'The Fire at Hallam Wharf', blurb: 'New grammar cases: strip a sentence to its core, agreement, and the faults that trip up young writers' },
+    water:     { icon: '\ud83c\udf0a', title: 'The Water Section', blurb: 'A traditional SAT test section' },
+    breakable: { icon: '\ud83e\uddf1', title: 'The Grab Bag', blurb: 'Hard grammar and vocabulary in one bag' }
+  };
   var RANKS = [[0, 'Constable'], [10, 'Sergeant'], [30, 'Inspector'], [70, 'Chief Inspector'], [150, 'Superintendent'], [300, 'Little Grey Cells']];
 
   var state = {
@@ -83,6 +89,11 @@
   }
 
   function award(q, res) {
+    var opened = progress.storyJustOpened(bank);
+    if (opened.length) {
+      var st = STORIES[opened[0]];
+      setTimeout(function () { Sound.unlock(); banner(st.icon + ' NEW STORYLINE', st.title, 'hot'); announce(st.icon + ' ' + st.title, st.blurb, 8000); }, 1600);
+    }
     var unlocked = progress.justUnlocked(Track.KINDS);
     if (unlocked.length) { Sound.unlock(); setTimeout(function () { banner('NEW TOY UNLOCKED', Track.KINDS[unlocked[0]].label, 'gold'); }, 300); }
 
@@ -240,6 +251,12 @@
       Sound.launch(); renderer.kick(0.8); renderer.sparks(d.x, d.y, 26, s.hue, 8);
       renderer.ring(d.x, d.y, 3, 2.6, 2, 1, 0.35, 0.1);
       score(50, d.x, d.y - 1.1, { color: [2.5, 2.3, 1] });
+    } else if (d.what === 'ignite') {
+      Sound.ignite(); renderer.kick(0.4); renderer.sparks(d.x, d.y, 22, 28, 4);
+      renderer.ring(d.x, d.y, 2.2, 2.6, 1.4, 0.6, 0.3, 0.1);
+      score(50, d.x, d.y - 1.1, { color: [2.8, 1.6, 0.6] });
+    } else if (d.what === 'drop') {
+      Sound.snap(); renderer.kick(0.6); renderer.sparks(d.x, d.y - 1.2, 18, 28, 5);
     } else if (d.what === 'pour') {
       Sound.pour(); renderer.kick(0.5); renderer.sparks(d.x, d.y + 0.4, 26, 42, 4);
       renderer.ring(d.x, d.y + 0.2, 2.6, 2.2, 1.8, 0.9, 0.35, 0.1);
@@ -447,7 +464,7 @@
   function renderMystery() {
     var my = mystery();
     if (!my) { $('mysteryToggle').parentNode.hidden = true; return; }
-    var found = cluesFound(), key = [my.id, found, state.cleared.join(), state.newClues, state.phase === 'finale'].join('|');
+    var found = cluesFound(), key = [my.id, found, state.cleared.join(), state.newClues, state.phase === 'finale', progress.store.total].join('|');
     if (key === mysteryKey) return;
     mysteryKey = key;
     $('mysteryTitle').textContent = my.title;
@@ -456,6 +473,8 @@
     count.textContent = state.phase === 'finale' ? 'solved' : found + ' of ' + my.clues.length + ' clues' + (state.newClues ? ' · ' + (state.newClues > 1 ? state.newClues + ' new' : 'new') : left === 0 ? ' · run the machine to name the culprit' : '');
     count.classList.toggle('fresh', state.newClues > 0);
     $('mysteryBrief').textContent = my.brief;
+    var nxt = progress.nextStory(bank);
+    $('storyNext').textContent = nxt ? STORIES[nxt.id].icon + ' A new storyline opens at ' + Progress.STORY_UNLOCK[nxt.id] + ' right answers: ' + nxt.left + ' to go.' : '';
     $('mysterySolved').hidden = state.phase !== 'finale';
     $('mysterySolved').textContent = 'How it was done: ' + my.solution;
     var sus = $('mysterySuspects'); sus.innerHTML = '';
@@ -637,6 +656,7 @@
   function renderMeters() {
     var host = $('meters'), s = progress.store; host.innerHTML = '';
     Object.keys(Quiz.SKILLS).forEach(function (k) {
+      if (k === 'phrases' && !progress.storyOpen('fire')) return;      // the fire storyline's skill stays out of sight until it opens
       var sk = s.skills[k] || { r: 0, t: 0 };
       var row = document.createElement('div'); row.className = 'meter';
       var lab = document.createElement('span'); lab.className = 'ml'; lab.textContent = Quiz.SKILLS[k];
@@ -855,7 +875,7 @@
     if (!res.correct) $('coldNote').textContent = rec.repeatMiss ? '🗂 Back in the cold case file. It will return until you have it.' : '🗂 Filed as a cold case. It comes back soon, and again next session.';
     $('rule').textContent = q.rule;
     var fx = $('fixedline'); fx.innerHTML = '';
-    var tag = document.createElement('b'); tag.textContent = 'Correct version: '; fx.appendChild(tag);
+    var tag = document.createElement('b'); tag.textContent = (q.fixedLabel || 'Correct version') + ': '; fx.appendChild(tag);
     var fixed = q.fixed || q.text;
     if (q.answer && q.type === 'vocab') {
       var hit = new RegExp('\\b' + q.answer + '\\b').exec(fixed), i = hit ? hit.index : fixed.indexOf(q.answer);
@@ -863,7 +883,8 @@
       var m = document.createElement('mark'); m.textContent = q.answer; fx.appendChild(m);
       fx.appendChild(document.createTextNode(fixed.slice(i + q.answer.length)));
     } else fx.appendChild(document.createTextNode(fixed));
-    $('src').textContent = '— ' + (q.source.author || 'Agatha Christie') + ', ' + q.source.book + ' (Project Gutenberg #' + q.source.gutenberg + ')';
+    $('src').textContent = q.source.original ? '— ' + q.source.book + (q.source.note ? ', ' + q.source.note : '')
+      : '— ' + (q.source.author || 'Agatha Christie') + ', ' + q.source.book + ' (Project Gutenberg #' + q.source.gutenberg + ')';
     $('check').hidden = true; $('next').hidden = false; $('next').focus({ preventScroll: true });
     try { fb.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } catch (e) { /* old browsers */ }
 

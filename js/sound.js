@@ -152,6 +152,10 @@
     tierUp: function () { var s = this; [392, 523, 659, 784].forEach(function (f, i) { s.tone(f, 0.34, 'sawtooth', 0.035, i * 0.06); s.tone(f, 0.34, 'sine', 0.07, i * 0.06); }); },
     /* The trapdoor drops and sand runs: a long soft hiss over a low thud. */
     pour: function () { this.tone(130, 0.22, 'sine', 0.16, 0, 70); this.noise(1.6, 0.06, 5200, 0.05, 1800, 1.2); this.noise(1.2, 0.035, 2600, 0.4, 900, 0.8); },
+    /* A flame catches: a quick whoosh that rises, with a low roar under it. */
+    ignite: function () { this.noise(0.7, 0.09, 700, 0, 5200, 1.4); this.tone(170, 0.55, 'sawtooth', 0.03, 0, 620); this.noise(0.5, 0.05, 2400, 0.1, 6000, 0.9); },
+    /* The rope lets go: a soft crack. */
+    snap: function () { this.noise(0.08, 0.14, 3800, 0, 900, 2); this.tone(240, 0.12, 'triangle', 0.08, 0, 90); },
     /* A found clue: a soft two-note chime, quieter than a toy locking in. */
     clue: function () { this.tone(988, 0.34, 'sine', 0.06); this.tone(1480, 0.5, 'sine', 0.05, 0.1); this.tone(2960, 0.2, 'triangle', 0.012, 0.1); },
     /* A suspect cleared: a rubber stamp coming down. */
