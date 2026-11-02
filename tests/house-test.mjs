@@ -30,7 +30,7 @@ const bricks = pg => pg.own.filter(o => o.userData.kind === 'brick');
   s.pg.pointer(cx - 12, s.track.floor.y - 7, true); s.run(0.05); s.pg.pointer(cx - 12, s.track.floor.y - 7, false); s.run(0.05);   // second house
   s.pg.pointer(cx + 6, s.track.floor.y - 2, true); s.run(0.05); s.pg.pointer(cx + 6, s.track.floor.y - 2, false); s.run(0.05);   // now a ball, rolled in from the right
   s.run(6);
-  check('...and a wrecking ball brings pieces down, which pays', (s.pg.felled || 0) > 4 && s.score > 0, `${s.pg.felled} down, score ${s.score}`);
+  check('...and a marble brings pieces down, which pays', (s.pg.felled || 0) > 4 && s.score > 0, `${s.pg.felled} down, score ${s.score}`);
 }
 
 // the Architect
@@ -52,7 +52,7 @@ const bricks = pg => pg.own.filter(o => o.userData.kind === 'brick');
   check('...and what stood on it falls', (s.pg.felled || 0) >= 2, s.pg.felled);
   // hold to drop a ball
   s.pg.pointer(x0 + 9, gy - 2, true); s.run(0.8); s.pg.pointer(x0 + 9, gy - 2, false);
-  check('holding drops a wrecking ball (and does not add a piece)', s.pg.own.some(o => o.userData.kind === 'wball') && bricks(s.pg).length <= 12);
+  check('holding rolls a marble in (and does not add a piece)', s.track.marbles.some(o => o.userData.role === 'toy' && o.userData.live) && bricks(s.pg).length <= 12);
   s.run(5);
   check('no piece blew up', s.world.bodies.every(b => isFinite(b.x) && isFinite(b.y) && isFinite(b.a)));
 }

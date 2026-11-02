@@ -369,15 +369,17 @@
   };
   Playground.prototype._height = function (col) { var n = 0; while (this._cellAt(col, n)) n++; return n; };
   /**
-   * A wrecking ball, rolled in from the side he taps on, at the height he tapped (kept to the height of the houses, so it is never
+   * The marble, rolled in from the side he taps on, at the height he tapped (kept to the height of the houses, so it is never
    * blocked by the machine above). Tap to the right of the houses and it comes from the right.
    */
   Playground.prototype._wball = function (x, y) {
     var bricks = this.own.filter(function (o) { return o.userData.kind === 'brick'; }), cx = x;
     if (bricks.length) cx = bricks.reduce(function (s, o) { return s + o.x; }, 0) / bricks.length;
     var side = x >= cx ? 1 : -1, gy = this._groundY(), hy = Math.max(gy - STORY * 3.2, Math.min(gy - 0.6, y));
-    var b = this._add({ x: x + side * 9, y: hy, circle: 0.5, density: 6, friction: 0.5, restitution: 0.15, neverSleep: true }, 'wball', { hue: 20 });
-    b.vx = -side * 12; b.vy = -0.5; this.S.swing(); return b;
+    // the ordinary marble, the one that plays the machine: live, glowing, and quick enough to topple a house
+    var m = this._marble(x + side * 9, hy, -side * 15, -0.5, 20);
+    m.userData.hue = this.hue == null ? 190 : this.hue;
+    m.w = -side * 10; this.S.swing(); return m;
   };
   /** Counts a piece as brought down once it has tipped over or dropped, and pays a little for each. */
   Playground.prototype._watchBricks = function () {
@@ -397,9 +399,9 @@
     return Math.round((x - this.gridX) / CELL_W - 2);
   };
 
-  // the rare house: a ready-made pyramid, set down wherever he taps; tapping after that drops wrecking balls
+  // the rare house: a ready-made pyramid, set down wherever he taps; tapping after that rolls the ordinary marble in
   Playground.prototype.start_house = function () { this.houses = 2; this.balls = 10; var v = this.view(); this.gridX = Math.round(((v.x0 + v.x1) / 2 - 4 * CELL_W) / CELL_W) * CELL_W; };
-  Playground.prototype.status_house = function () { return this.houses > 0 ? 'Tap to build a house (' + this.houses + ' left)' : this.balls > 0 ? 'Tap beside the house to roll a ball in (' + this.balls + ' left) · ' + (this.felled || 0) + ' down' : (this.felled || 0) + ' pieces down'; };
+  Playground.prototype.status_house = function () { return this.houses > 0 ? 'Tap to build a house (' + this.houses + ' left)' : this.balls > 0 ? 'Tap beside the house to roll a marble in (' + this.balls + ' left) · ' + (this.felled || 0) + ' down' : (this.felled || 0) + ' pieces down'; };
   Playground.prototype.step_house = function () {
     for (var i = 0; i < this.tapped.length; i++) {
       var t = this.tapped[i];
@@ -414,12 +416,12 @@
     this._watchBricks();
   };
 
-  // the ultra Architect: tap to add or take away a cell, hold to drop a ball
+  // the ultra Architect: tap to add or take away a cell, hold to roll a marble in
   Playground.prototype.start_architect = function () {
     var v = this.view(); this.gridX = Math.round(((v.x0 + v.x1) / 2 - 4 * CELL_W) / CELL_W) * CELL_W;
     this.balls = 14; this.press = null; this.hue = Math.random() * 360 | 0; this.cells = 0;
   };
-  Playground.prototype.status_architect = function () { return 'Tap: add or remove a piece · Hold: roll a ball in · ' + this.cells + ' pieces · ' + (this.felled || 0) + ' down'; };
+  Playground.prototype.status_architect = function () { return 'Tap: add or remove a piece · Hold: roll a marble in · ' + this.cells + ' pieces · ' + (this.felled || 0) + ' down'; };
   Playground.prototype.step_architect = function (dt) {
     if (this.tapped.length) this.press = { x: this.tapped[this.tapped.length - 1].x, y: this.tapped[this.tapped.length - 1].y, t: 0, fired: false };
     var pr = this.press;
