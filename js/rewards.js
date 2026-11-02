@@ -14,7 +14,9 @@
     blackhole: { tier: 'rare',  name: 'Black Hole',    icon: '🕳️', secs: 75, wide: true, how: 'Hold and drag the black hole', blurb: 'It bends the light, swallows the machine piece by piece, and ends with a big bang.' },
     meteors:   { tier: 'rare',  name: 'Meteor Storm',  icon: '☄️', secs: 75, wide: true, how: 'Tap to call down a meteor', blurb: 'Burning rocks rain down on your machine, and you get to aim a few of them.' },
     colossus:  { tier: 'rare',  name: 'The Colossus',  icon: '🗿', secs: 75, wide: true, how: 'Tap to drop a giant domino', blurb: 'Golden dominoes twenty times normal size crash through the machine and knock each other over.' },
+    house:     { tier: 'rare',  name: 'Domino House',  icon: '🏠', secs: 90, wide: true, how: 'Tap to build a house, then tap beside it to roll a ball in', blurb: 'Set down a three-storey house of dominoes and slabs, then roll wrecking balls into it and watch it come apart.' },
     flip:      { tier: 'ultra', name: 'Upside Down',   icon: '🙃', secs: 90, wide: true, how: 'Tap to flip gravity', blurb: 'Everything in the machine falls up. Then down. Then up. You decide when, and the ramps start to give way.' },
+    architect: { tier: 'ultra', name: 'The Architect', icon: '📐', secs: 120, wide: true, how: 'Tap to add or remove a piece · hold to roll a ball in', blurb: 'Design your own house, storey by storey, out of dominoes and slabs. Then hold to roll a wrecking ball in and bring it down.' },
     rewind:    { tier: 'ultra', name: 'Rewind',        icon: '⏪', secs: 90, fresh: true, how: 'Hold to rewind time, let go to play it forward', blurb: 'The whole machine runs. Then you take hold of time itself: dominoes leap back up and marbles roll uphill.' }
   };
 })(typeof window !== 'undefined' ? window : globalThis);

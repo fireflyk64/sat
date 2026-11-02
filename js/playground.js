@@ -12,6 +12,13 @@
   // pieces of the machine that can be torn loose
   var BREAKABLE = { platform: 1, wall: 1, stop: 1, pivot: 1, pad: 1, padbase: 1, cannonbase: 1, hopper: 1, peg: 1, gate: 1 };
 
+  function hslToRgb(h, s, l) {
+    h = ((h % 360) + 360) % 360 / 360;
+    var q = l < 0.5 ? l * (1 + s) : l + s - l * s, p = 2 * l - q;
+    function f(t) { t = (t + 1) % 1; return t < 1 / 6 ? p + (q - p) * 6 * t : t < 1 / 2 ? q : t < 2 / 3 ? p + (q - p) * (2 / 3 - t) * 6 : p; }
+    return [f(h + 1 / 3) * 1.6, f(h) * 1.6, f(h - 1 / 3) * 1.6];
+  }
+
   function Playground(track, id, hooks) {
     hooks = hooks || {};
     this.track = track; this.world = track.world; this.id = id;
@@ -330,6 +337,112 @@
     if (this._breakOn(o, u, imp, 18)) this.world.explode(x, y, 5, 7);
   };
 
+
+  // ---------------------------------------------------------------- domino houses (rare) and the Architect (ultra)
+  /*
+   * A house is a stack of cells. A cell is two standing dominoes with a flat slab laid across them; the next cell up
+   * stands on that slab. So a house has as many storeys as it has cells in a column, and it all comes down if you take
+   * out the right one. The ground is the machine's floor.
+   */
+  var CELL_W = 1.7, PILLAR_HW = 0.13, PILLAR_HH = 0.62, SLAB_HH = 0.12, STORY = PILLAR_HH * 2 + SLAB_HH * 2, INSET = 0.22, MAX_STORIES = 6;
+  Playground.prototype._groundY = function () { return this.track.floor ? this.track.floor.y - this.track.floor.shape.hh : this.track.bottomY(); };
+  /** Builds one cell: columns are on a fixed grid (x = col * CELL_W), levels count up from the floor. Returns its bodies. */
+  Playground.prototype._cell = function (col, level, hue) {
+    var gy = this._groundY(), x0 = this.gridX + col * CELL_W, base = gy - level * STORY, parts = [];
+    var h = (hue + level * 38) % 360;
+    [x0 + INSET, x0 + CELL_W - INSET].forEach(function (px) {
+      var d = this._add({ x: px, y: base - PILLAR_HH - 0.002, hw: PILLAR_HW, hh: PILLAR_HH, density: 0.55, friction: 0.7, restitution: 0.02, asleep: true }, 'brick', { hue: h, shape: 'pillar', col: col, level: level });
+      d.userData.a0 = 0; d.userData.y0 = d.y; parts.push(d);
+    }, this);
+    var s = this._add({ x: x0 + CELL_W / 2, y: base - PILLAR_HH * 2 - SLAB_HH - 0.004, hw: CELL_W / 2 - 0.01, hh: SLAB_HH, density: 0.7, friction: 0.9, restitution: 0.0, asleep: true }, 'brick', { hue: (h + 20) % 360, shape: 'slab', col: col, level: level });
+    s.userData.a0 = 0; s.userData.y0 = s.y; parts.push(s);
+    return parts;
+  };
+  Playground.prototype._removeCell = function (col, level) {
+    var self = this;
+    this.own.filter(function (b) { return b.userData.kind === 'brick' && b.userData.col === col && b.userData.level === level; }).forEach(function (b) { self._removeOwn(b); });
+    // whatever stood on it is woken, and falls
+    this.own.forEach(function (b) { if (b.userData.kind === 'brick' && b.userData.col === col && b.userData.level > level) { b.manualWake = false; b.wake(); } });
+  };
+  Playground.prototype._cellAt = function (col, level) {
+    return this.own.some(function (b) { return b.userData.kind === 'brick' && b.userData.col === col && b.userData.level === level; });
+  };
+  Playground.prototype._height = function (col) { var n = 0; while (this._cellAt(col, n)) n++; return n; };
+  /**
+   * A wrecking ball, rolled in from the side he taps on, at the height he tapped (kept to the height of the houses, so it is never
+   * blocked by the machine above). Tap to the right of the houses and it comes from the right.
+   */
+  Playground.prototype._wball = function (x, y) {
+    var bricks = this.own.filter(function (o) { return o.userData.kind === 'brick'; }), cx = x;
+    if (bricks.length) cx = bricks.reduce(function (s, o) { return s + o.x; }, 0) / bricks.length;
+    var side = x >= cx ? 1 : -1, gy = this._groundY(), hy = Math.max(gy - STORY * 3.2, Math.min(gy - 0.6, y));
+    var b = this._add({ x: x + side * 9, y: hy, circle: 0.5, density: 6, friction: 0.5, restitution: 0.15, neverSleep: true }, 'wball', { hue: 20 });
+    b.vx = -side * 12; b.vy = -0.5; this.S.swing(); return b;
+  };
+  /** Counts a piece as brought down once it has tipped over or dropped, and pays a little for each. */
+  Playground.prototype._watchBricks = function () {
+    var self = this;
+    this.own.forEach(function (b) {
+      var u = b.userData;
+      if (u.kind !== 'brick' || u.fell) return;
+      if (Math.abs(b.a - u.a0) > 0.9 || b.y - u.y0 > 0.6) {
+        u.fell = true; self.felled = (self.felled || 0) + 1;
+        self.R.sparks(b.x, b.y, 8, u.hue, 4); self.S.thud && self.S.thud(2);
+        self.onScore(10, b.x, b.y - 0.8);
+      }
+    });
+  };
+  Playground.prototype._houseSpot = function (x) {
+    var v = this.view(); this.gridX = this.gridX == null ? Math.round(((v.x0 + v.x1) / 2 - 4 * CELL_W) / CELL_W) * CELL_W : this.gridX;
+    return Math.round((x - this.gridX) / CELL_W - 2);
+  };
+
+  // the rare house: a ready-made pyramid, set down wherever he taps; tapping after that drops wrecking balls
+  Playground.prototype.start_house = function () { this.houses = 2; this.balls = 10; var v = this.view(); this.gridX = Math.round(((v.x0 + v.x1) / 2 - 4 * CELL_W) / CELL_W) * CELL_W; };
+  Playground.prototype.status_house = function () { return this.houses > 0 ? 'Tap to build a house (' + this.houses + ' left)' : this.balls > 0 ? 'Tap beside the house to roll a ball in (' + this.balls + ' left) · ' + (this.felled || 0) + ' down' : (this.felled || 0) + ' pieces down'; };
+  Playground.prototype.step_house = function () {
+    for (var i = 0; i < this.tapped.length; i++) {
+      var t = this.tapped[i];
+      if (this.houses > 0) {
+        var col0 = Math.round((t.x - this.gridX) / CELL_W) - 2, hue = Math.random() * 360 | 0;
+        // a pyramid: four wide, then two, then one
+        var plan = [[0, 0], [1, 0], [2, 0], [3, 0], [1, 1], [2, 1], [1, 2]];
+        plan.forEach(function (c) { this._cell(col0 + c[0], c[1], hue); }, this);
+        this.houses--; this.S.thud && this.S.thud(1); this.R.sparks(t.x, this._groundY() - 2, 24, hue, 5);
+      } else if (this.balls > 0) { this.balls--; this._wball(t.x, t.y); }
+    }
+    this._watchBricks();
+  };
+
+  // the ultra Architect: tap to add or take away a cell, hold to drop a ball
+  Playground.prototype.start_architect = function () {
+    var v = this.view(); this.gridX = Math.round(((v.x0 + v.x1) / 2 - 4 * CELL_W) / CELL_W) * CELL_W;
+    this.balls = 14; this.press = null; this.hue = Math.random() * 360 | 0; this.cells = 0;
+  };
+  Playground.prototype.status_architect = function () { return 'Tap: add or remove a piece · Hold: roll a ball in · ' + this.cells + ' pieces · ' + (this.felled || 0) + ' down'; };
+  Playground.prototype.step_architect = function (dt) {
+    if (this.tapped.length) this.press = { x: this.tapped[this.tapped.length - 1].x, y: this.tapped[this.tapped.length - 1].y, t: 0, fired: false };
+    var pr = this.press;
+    if (pr && this.down) {
+      pr.t += dt;
+      if (!pr.fired && pr.t > 0.5 && this.balls > 0) { pr.fired = true; this.balls--; this._wball(this.px, this.py); }
+    }
+    if (pr && !this.down) {      // let go
+      if (!pr.fired && pr.t < 0.5) this._architectTap(pr.x, pr.y);
+      this.press = null;
+    }
+    this._watchBricks();
+  };
+  Playground.prototype._architectTap = function (x, y) {
+    var col = Math.floor((x - this.gridX) / CELL_W), level = Math.floor((this._groundY() - y) / STORY);
+    if (level >= 0 && this._cellAt(col, level)) { this._removeCell(col, level); this.cells--; this.S.pop && this.S.pop(); return; }
+    var h = this._height(col);
+    if (h >= MAX_STORIES || this.cells >= 36) return;
+    this._cell(col, h, this.hue); this.cells++;
+    this.R.sparks(this.gridX + (col + 0.5) * CELL_W, this._groundY() - h * STORY - 0.7, 10, this.hue + h * 38, 4);
+    this.S.thud && this.S.thud(1);
+  };
+
   // ---------------------------------------------------------------- Upside Down
   Playground.prototype.start_flip = function () {
     var b = this.track.bounds(), cx = (b.minX + b.maxX) / 2;
@@ -521,6 +634,12 @@
         fx.sprite(T.BALL, b.x, b.y, b.shape.r, b.shape.r, b.a, 1, 0.42, 0.06, 1, 1, 0.8, 0.2, 1, b.a, 1);
       } else if (k === 'ceiling') {
         fx.sprite(T.BOX, b.x, b.y, b.shape.hw, b.shape.hh, 0, 0.1, 0.05, 0.2, 1, 0.8, 1.2, 2.4, 1, 0.1, 0.1);
+      } else if (k === 'brick') {
+        var hu = b.userData.hue, cc = hslToRgb(hu, b.userData.shape === 'slab' ? 0.55 : 0.8, 0.62);
+        fx.sprite(T.DOMINO, b.x, b.y, b.shape.hw, b.shape.hh, b.a, cc[0], cc[1], cc[2], 1, cc[0] * 0.55, cc[1] * 0.55, cc[2] * 0.55, 1, 0, 0.8);
+      } else if (k === 'wball') {
+        fx.sprite(T.GLOW, b.x, b.y, 2.6, 2.6, 0, 1.2, 0.5, 0.15, 0.4, 0, 0, 0, 0, 2, 0);
+        fx.sprite(T.BALL, b.x, b.y, b.shape.r, b.shape.r, b.a, 0.9, 0.3, 0.1, 1, 1, 0.6, 0.2, 1, b.a, 0);
       } else if (k === 'colossus') {
         fx.sprite(T.GLOW, b.x, b.y, 4, 11, b.a, 1, 0.68, 0.14, 0.3, 0, 0, 0, 0, 2, 0);
         fx.sprite(T.DOMINO, b.x, b.y, b.shape.hw, b.shape.hh, b.a, 1.05, 0.72, 0.18, 1, 0.62, 0.36, 0.06, 1, 0, 0.8);
