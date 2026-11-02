@@ -847,6 +847,25 @@ await send('Input.dispatchMouseEvent', { type: 'mouseReleased', x: rest.x, y: re
 await sleep(200);
 check('double-clicking a resting marble wakes it up: it is taken off the shelf and rolls as a live marble', (await js('__sat.machine().kept.length')) === rest.n - 1 && (await js('__sat.track.marbles.length')) === rest.marbles + 1 && (await js(`__sat.track.marbles.some(m => m.userData.role === 'revived' && m.userData.live)`)), JSON.stringify({ kept: await js('__sat.machine().kept.length'), was: rest.n, marbles: await js('__sat.track.marbles.length'), before: rest.marbles, roles: await js(`__sat.track.marbles.map(m => m.userData.role + ':' + m.userData.live).join()`) }));
 check('...and it is a free toy: no play was charged and no run began', !(await js('__sat.state.running')));
+// a woken marble can be slung like the main one, does not fade on its own, and goes back on the shelf after it has lain still
+await js(`__sat.advance(0.5); 0`);
+const wm = await js(`(()=>{ const m = __sat.track.marbles.find(m => m.userData.role === 'revived'); const c = __sat.renderer.worldToScreen(m.x, m.y), r = __sat.renderer.canvas.getBoundingClientRect(); return m ? { x: c.x + r.left, y: c.y + r.top } : null; })()`);
+await js(`__sat.advance(0.6); 0`);
+const wm2 = await js(`(()=>{ const m = __sat.track.marbles.find(m => m.userData.role === 'revived' && !m.userData.spent); if (!m) return null; const c = __sat.renderer.worldToScreen(m.x, m.y), r = __sat.renderer.canvas.getBoundingClientRect(); return { x: c.x + r.left, y: c.y + r.top, alive: true }; })()`);
+check('a woken marble is still there and awake after it has rolled for a moment', !!wm2 && wm2.alive, JSON.stringify(wm2));
+if (wm2) {
+  await js('__sat.renderer.cam.follow = false'); const wm3 = await js(`(()=>{ const m = __sat.track.marbles.find(m => m.userData.role === 'revived' && !m.userData.spent); const c = __sat.renderer.worldToScreen(m.x, m.y), r = __sat.renderer.canvas.getBoundingClientRect(); return { x: c.x + r.left, y: c.y + r.top }; })()`);
+  await mouse('mouseMoved', wm3.x, wm3.y, 0);
+  await send('Input.dispatchMouseEvent', { type: 'mousePressed', x: wm3.x, y: wm3.y, button: 'left', buttons: 1, clickCount: 1 });
+  await mouse('mouseMoved', wm3.x - 70, wm3.y + 20, 1);
+  await send('Input.dispatchMouseEvent', { type: 'mouseReleased', x: wm3.x - 70, y: wm3.y + 20, button: 'left', buttons: 0, clickCount: 1 });
+  await sleep(120);
+  const spd = await js(`(()=>{ const m = __sat.track.marbles.find(m => m.userData.role === 'revived' && !m.userData.spent); return m ? Math.hypot(m.vx, m.vy) : -1; })()`);
+  check('dragging a woken marble and letting go slings it, like the main one', spd > 3, String(spd));
+  check('...and that was free: no run began', !(await js('__sat.state.running')));
+  await js(`__sat.advance(12); 0`);
+  check('after it has lain still it goes back on the shelf, dim, to be woken again', (await js(`__sat.track.marbles.filter(m => m.userData.role === 'revived' && !m.userData.spent).length`)) === 0 && (await js('__sat.machine().kept.length')) >= 1);
+}
 await js(`__sat.progress.store.total = 0; __sat.progress.store.focus = { count: 0, bonus: 0, rare: 0, ultra: 0, next: {} }; __sat.progress.save(); 0`);
 
 // the secret basket and its levels

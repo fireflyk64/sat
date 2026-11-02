@@ -86,6 +86,7 @@
   function rebuild(opts) {
     opts = opts || {};
     var snap = renderer.snapshot(track);
+    track.marbles.slice().forEach(function (m) { if (m.userData.role === 'revived' && !m.userData.spent) settleRevived(m, track); });      // woken marbles go back on the shelf
     world = new Phys.World();
     track = new Track(world, machine(), { emit: onEvent, now: nowS() }); wireTrack();
     renderer.setTheme(progress.store.cases);
@@ -282,6 +283,8 @@
       Sound.pop();
       track.placeStars(machine().playFrom);
       updateHud();
+    } else if (type === 'settle') {
+      settleRevived(d.marble);
     } else if (type === 'secret') {
       state.running = false;
       var mm = machine(); (mm.secretsDone || (mm.secretsDone = {}))[mm.pieces.length] = true;
@@ -294,9 +297,9 @@
       track.secretKind = null; track.placeStars(mm.playFrom);
       setTimeout(function () { if (!state.brk && !state.running) deploy(d.kind, { secret: true }); }, 1500);
     } else if (type === 'branch') {
-      score(150, d.x, d.y - 1, { prefix: '🛣️ ', size: 0.8, color: [0.8, 2.2, 3] });
+      score(d.bonus || 150, d.x, d.y - 1, { prefix: '🛣️ ', size: 0.8, color: [0.8, 2.2, 3] });
       Sound.kick(); renderer.sparks(d.x, d.y, 30, 200, 6); renderer.ring(d.x, d.y, 2.4, 0.8, 1.6, 2.2, 0.3, 0.1);
-      toast(d.burst ? 'An extra marble takes the high road! Both roads at once.' : 'The high road! Bonus and a higher multiplier.');
+      toast(d.burst ? 'Another marble takes the high road! Both roads at once.' : 'The high road! Bonus and a higher multiplier.');
     } else if (type === 'burst') {
       score(100, d.x, d.y - 1, { prefix: '🎯 ', size: 0.85, color: [2.6, 2, 0.6] });
       Sound.kick(); Sound.pop();
@@ -1240,6 +1243,56 @@
     updateHud();
   }
 
+  // ---------------------------------------------------------------- marbles that rest on the shelf, and waking them up
+  /** The index of the resting (kept) marble nearest a world point, within `reach`, or -1. */
+  function keptNear(x, y, reach) {
+    var list = machine().kept || [], best = -1, bd = reach;
+    list.forEach(function (k, i) {
+      var s0 = track.sections.filter(function (s) { return s.id === k.pid; })[0];
+      if (!s0 || !s0.exit) return;
+      var d = Math.hypot(x - (s0.exit.x + k.dx), y - (s0.exit.y + k.dy));
+      if (d < bd) { bd = d; best = i; }
+    });
+    return best;
+  }
+  /** Takes a resting marble off the shelf and makes it a real, live one (free: no play is charged). `roll` gives it a little push. */
+  function reviveKept(i, roll) {
+    var list = machine().kept || [], k = list[i];
+    var sec = k && track.sections.filter(function (s) { return s.id === k.pid; })[0];
+    if (!sec || !sec.exit) return null;
+    list.splice(i, 1);
+    var m = track._marble(sec, sec.exit.x + k.dx, sec.exit.y + k.dy, { role: 'revived', hue: k.hue, asleep: !roll, manualWake: !roll });
+    m.userData.small = true; m.userData.live = true;       // (small: it never rings the bell or counts as the run)
+    if (roll) { m.wake(); m.vx += (sec.exit.dir || 1) * 1.2; }
+    progress.save();
+    return m;
+  }
+  /** A woken marble that has lain still goes back on the shelf, where it will be remembered. */
+  function settleRevived(m, tr) {
+    tr = tr || track;
+    if (!m || m.userData.spent || !tr.world.bodies.includes(m)) return;
+    var best = null, bd = 1e9;
+    tr.sections.forEach(function (s) { if (!s.exit) return; var d = Math.hypot(m.x - s.exit.x, m.y - s.exit.y); if (d < bd) { bd = d; best = s; } });
+    if (!best) return;
+    var list = machine().kept || (machine().kept = []);
+    list.push({ pid: best.id, dx: +(m.x - best.exit.x).toFixed(2), dy: +(m.y - best.exit.y).toFixed(2), hue: m.userData.hue | 0 });
+    if (list.length > 24) list.shift();
+    m.userData.spent = tr.time; m.ghost = true; m.userData.live = false;
+    progress.save();
+  }
+  /** The woken marble (live, or a resting one he is about to pick up) within reach of a world point. */
+  function revivedNear(x, y, reach) {
+    var best = null, bd = reach;
+    track.marbles.forEach(function (m) {
+      if (m.userData.role !== 'revived' || m.userData.spent) return;
+      var d = Math.hypot(x - m.x, y - m.y);
+      if (d < bd) { bd = d; best = m; }
+    });
+    if (best) return best;
+    var i = keptNear(x, y, reach);
+    return i < 0 ? null : reviveKept(i, false);
+  }
+
   // ---------------------------------------------------------------- pointer: flick, poke, pan, pinch
   function setupPointer() {
     var cv = renderer.canvas, pts = {}, lastDist = 0;
@@ -1264,6 +1317,15 @@
           return;
         }
         return;
+      }
+      if (Object.keys(pts).length === 1 && !state.running && state.phase !== 'finale') {      // a woken (or sleeping) shelf marble can be slung like the main one
+        var rv = revivedNear(wp.x, wp.y, Math.min(reach, 1.6));
+        if (rv) {
+          rv.userData.held = true; rv.userData.still = 0;
+          state.aim = { dx: 0, dy: 0, sx: wp.x, sy: wp.y, power: 0, id: e.pointerId, target: rv };
+          cv.classList.add('aiming');
+          return;
+        }
       }
       if (state.running) {
         var shoved = track.poke(wp.x, wp.y);
@@ -1318,6 +1380,18 @@
       if (aim && aim.id === e.pointerId) {
         state.aim = null;
         cv.classList.remove('aiming');
+        if (aim.target) {
+          var tg = aim.target; tg.userData.held = false; tg.userData.still = 0;
+          if (e.type === 'pointercancel') return;
+          var tx = aim.rx || 0, ty = aim.ry || 0, tL = Math.hypot(tx, ty);
+          if (tL >= 0.5) {
+            tg.manualWake = false; if (tg.asleep) { tg.wake(); track.world._dropArbiters(tg); }
+            var tv = aim.power * Track.FLICK_MAX;
+            tg.vx = -tx / tL * tv; tg.vy = -ty / tL * tv; tg.w = (tg.vx >= 0 ? 1 : -1) * 4;
+            Sound.flick(Math.min(1, tv / Track.FLICK_MAX)); renderer.sparks(tg.x, tg.y, 12, tg.userData.hue, 5);
+          }
+          return;
+        }
         if (e.type === 'pointercancel') return;
         var rx = aim.rx || 0, ry = aim.ry || 0, L = Math.hypot(rx, ry);
         if (L < 0.5) {
@@ -1337,20 +1411,10 @@
     // it rolls on its own for a few seconds and then fades.
     cv.addEventListener('dblclick', function (e) {
       if (state.brk || state.phase === 'finale') return;
-      var p = rel(e), wp = renderer.screenToWorld(p.x, p.y), list = machine().kept || [], best = -1, bd = 1.1;
-      list.forEach(function (k, i) {
-        var s0 = track.sections.filter(function (s) { return s.id === k.pid; })[0];
-        if (!s0 || !s0.exit) return;
-        var d = Math.hypot(wp.x - (s0.exit.x + k.dx), wp.y - (s0.exit.y + k.dy));
-        if (d < bd) { bd = d; best = i; }
-      });
-      if (best < 0) return;
-      var k = list.splice(best, 1)[0], sec = track.sections.filter(function (s) { return s.id === k.pid; })[0];
-      var m = track._marble(sec, sec.exit.x + k.dx, sec.exit.y + k.dy, { role: 'revived', hue: k.hue, asleep: false });
-      m.userData.small = true; m.userData.live = true; m.userData.expire = track.time + 9;     // (small: it never rings the bell or counts as the run)
-      m.wake(); m.vx += (sec.exit.dir || 1) * 1.2;
-      Sound.kick(); renderer.sparks(m.x, m.y, 18, k.hue, 5); renderer.ring(m.x, m.y, 1.6, 0.8, 2, 2.6, 0.3, 0.1);
-      progress.save();
+      var p = rel(e), wp = renderer.screenToWorld(p.x, p.y), i = keptNear(wp.x, wp.y, 1.1);
+      if (i < 0) return;
+      var m = reviveKept(i, true);
+      if (m) { Sound.kick(); renderer.sparks(m.x, m.y, 18, m.userData.hue, 5); renderer.ring(m.x, m.y, 1.6, 0.8, 2, 2.6, 0.3, 0.1); }
     });
 
     cv.addEventListener('wheel', function (e) {
@@ -1380,7 +1444,7 @@
   var acc = 0, lastT = 0, frames = 0, frameSum = 0;
   function aimPreview() {
     if (!state.aim) return null;
-    var fm = flickable(); if (!fm) return null;
+    var fm = state.aim.target || flickable(); if (!fm) return null;
     var rx = state.aim.rx || 0, ry = state.aim.ry || 0, L = Math.hypot(rx, ry);
     if (L < 0.01) return [];
     var v = state.aim.power * Track.FLICK_MAX, vx = -rx / L * v, vy = -ry / L * v, x = fm.x, y = fm.y, g = Track.GRAVITY, out = [];
@@ -1452,7 +1516,7 @@
     renderer.updateCamera(dt, focusPoint(now));
     var fm = flickable();
     if (!stageHidden()) renderer.draw({
-      track: track, pg: state.brk && state.brk.pg, flick: state.brk ? null : (fm || restingMarble()), locked: !fm || now < state.readyAt,
+      track: track, pg: state.brk && state.brk.pg, flick: state.brk ? null : ((state.aim && state.aim.target) || fm || restingMarble()), locked: !fm || now < state.readyAt,
       kept: keepOn() ? machine().kept : null, aim: state.aim, preview: aimPreview(), lead: state.running ? leadMarble() : null, pulse: promptPulses(),
       grand: machine().complete && machine().playFrom === 0
     }, now);

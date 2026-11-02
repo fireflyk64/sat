@@ -41,4 +41,17 @@ for (const seed of [1, 2, 3, 4, 5, 6]) {
   const high = ev.branch.filter(b => b.burst).length;
   check(`seed ${seed}: the cup bursts at the fork, an extra marble takes the high road, and the main marble still rings the bell`, ev.burst === 1 && high >= 1 && ev.bell === 1, `burst ${ev.burst}, high-road burst marbles ${high}, bell ${ev.bell}`);
 }
+
+// marbles that arrive down the chain are routed by the level's seed: low, high, or taking turns
+for (const route of ['low', 'high', 'split']) {
+  for (const seed of [1, 2, 3, 4]) {
+    const world = new Phys.World(), ev = { routed: 0, branch: 0, bell: 0 };
+    const track = new Track(world, { seed, pieces: [{ id: 'a', kind: 'dominoes', seed: seed * 7 }, { id: 'b', kind: 'fork', seed: seed * 7 + 1, route }, { id: 'c', kind: 'dominoes', seed: seed * 7 + 2 }] }, { emit(t) { if (ev[t] != null) ev[t]++; } });
+    for (let i = 0; i < 60; i++) { world.step(1 / 60); track.tick(1 / 60); }
+    track.startRun(0, track.exitFor(0).dir * 4, 0);
+    for (let i = 0; i < 70 * 60; i++) { world.step(1 / 60); track.tick(1 / 60); if (!track.run && !ev.bell) track.startRun(0, track.exitFor(0).dir * 4, 0); if (ev.bell) break; }
+    const want = route === 'low' ? ev.routed === 0 && ev.branch === 0 : ev.routed === 1 && ev.branch === 1;
+    check(`seed ${seed}, route ${route}: the arriving marble ${route === 'low' ? 'stays on the low road' : 'is sent up to the high road and lands there'}, and the chain reaches the bell`, want && ev.bell === 1, JSON.stringify(ev));
+  }
+}
 process.exit(bad ? 1 : 0);

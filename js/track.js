@@ -227,15 +227,36 @@
        little further on, behind a short wall that a flat flick bangs into: only a lob clears the wall and lands on it. */
     fork: function (sec, r, p) {
       var deg = 9 + r(), L = 11 + r() * 2.5, th = deg * RAD, F = p.dir;
-      var e = this._turn(sec, p.x, p.y, F, { gap: 3.8 + r() * 0.8, clear: CLEAR, deg: deg, L: L, over: -0.6 });
-      var dx = 2.6, dy = 1.5, x2 = e.x + F * dx, y2 = e.y + dy;
+      var e = this._turn(sec, p.x, p.y, F, { gap: 3.8 + r() * 0.8, clear: CLEAR, deg: deg, L: L, over: -1.4 });
+      var dx = 2.3 + r() * 0.7, dy = 1.3 + r() * 0.5, x2 = e.x + F * dx, y2 = e.y + dy;       // how far on, and how far below, the high road starts
       var xl = e.lowX - e.dir * 1.0, L2 = Math.abs(x2 - xl) / Math.cos(th);
       var hi = this._ramp(sec, x2, y2, e.dir, deg, L2);
       hi.body.userData.lane = 'high'; hi.body.userData.hue = sec.hue;
+      hi.bonus = r() < 0.5 ? 150 : 250;
       this._wall(sec, x2 - e.dir * 0.2, y2 - 1.3, y2 + 0.2);
       var gap = 6.4 + r() * 0.8;
       var t = this._turn(sec, e.lowX, e.lowY, e.dir, { gap: gap, clear: 3.6, deg: 8, L: 13 + r() * 3, over: 3 });
       sec.fork = hi;
+      // Where marbles that arrive down the chain go, which is decided by this level's seed: all down the low road, all down the high
+      // road, or taking turns (so that several live marbles use both). A flicked marble is never rerouted: that choice is his.
+      var roll = r();
+      sec.route = (this.recipe.pieces[sec.i] && this.recipe.pieces[sec.i].route) || (roll < 0.3 ? 'low' : roll < 0.65 ? 'high' : 'split');
+      sec.routed = 0;
+      var self = this, gx = p.x + F * 0.9, gy = p.y + 1.4;      // (just below the marble that hands over: every arrival falls through here)
+      var gate = this._static(sec, { x: gx, y: gy, circle: 1.3, isStatic: true, sensor: true }, 'sensor');
+      gate.userData.onHit = function (o) {
+        var u = o.userData;
+        if (!u || u.kind !== 'marble' || u.spent || u.routed === sec.i || u.section >= sec.i || u.role === 'toy') return;
+        if (self.run && o === self.run.marble && self.run.from === sec.i) return;
+        if (u.routeHigh == null) { u.routeHigh = sec.route === 'high' || (sec.route === 'split' && sec.routed % 2 === 0); sec.routed++; }      // (decided once per marble)
+        if (!u.routeHigh) { u.routed = sec.i; return; }
+        var shot = self._forkShot(o.x, o.y, hi);
+        if (!shot) return;      // no clear lob from here: try again a moment later, further along its fall
+        u.routed = sec.i;
+        o.manualWake = false; if (o.asleep) o.wake();
+        o.vx = shot.vx; o.vy = shot.vy; o.w = shot.vx > 0 ? 6 : -6;
+        self.emit('routed', { x: o.x, y: o.y, lane: 'high' });
+      };
       this._run(sec, r, t, gap + 1.7, false);
     },
 
@@ -748,13 +769,14 @@
     var m = ma || mb, o = ma ? b : a;
     if (m && o.userData) {
       if (o.userData.kind === 'peg') o.userData.lit = this.time;
-      if (o.userData.lane === 'high' && m.userData.role === 'burst' && !m.userData.high) {
-        m.userData.high = true;
-        this.emit('branch', { x: x, y: y, run: this.run, lane: 'high', burst: true });
+      if (o.userData.lane === 'high' && m.userData.role !== 'toy' && !m.userData.high && !(this.run && m === this.run.marble)) {
+        m.userData.high = true;      // any other marble (a burst marble, or one sent along by the chain) that lands on the high road
+        var hs = this.sections[o.userData.section], hb = hs && hs.fork ? hs.fork.bonus : 150;
+        this.emit('branch', { x: x, y: y, run: this.run, lane: 'high', burst: true, bonus: Math.round(hb * 0.6) });
       }
       if (o.userData.lane === 'high' && this.run && m === this.run.marble && !this.run.high) {
         this.run.high = true; this.run.multiplier++;
-        this.emit('branch', { x: x, y: y, run: this.run, lane: 'high' });
+        this.emit('branch', { x: x, y: y, run: this.run, lane: 'high', bonus: (this.sections[o.userData.section] && this.sections[o.userData.section].fork || {}).bonus || 150 });
       }
       if (o.userData.kind === 'domino') {
         // A marble strikes a domino below its balance point, which on its own would just shove it along upright.
@@ -821,7 +843,12 @@
       }
       if (u.spent && t - u.spent > 0.7) { this.world.remove(m); this.marbles.splice(i, 1); this.world.wakeNear(m.x, m.y, 1); continue; }
       if (u.expire && t > u.expire) { this._spend(m); }
-      if (u.small && u.live && !u.spent) {
+      if (u.role === 'revived' && !u.spent) {      // a marble he woke up stays until it has lain still for a while, then goes back to rest on the shelf
+        var sp2 = m.vx * m.vx + m.vy * m.vy;
+        u.still = (m.asleep || sp2 < 0.04) ? (u.still || 0) + dt : 0;
+        if (u.still > (u.held ? 99 : 2.2)) { this.emit('settle', { marble: m }); u.still = 0; }
+      }
+      if (u.small && u.live && !u.spent && u.role !== 'revived') {
         var sc = this.sections[u.section], ex = sc && sc.exit;
         if (ex && (m.x - ex.x) * ex.dir > -1.6 && m.y > ex.y - 2) this._spend(m);     // the flood drains away just before the exit
       }
@@ -1085,7 +1112,7 @@
         var t = (-vy + Math.sqrt(disc)) / GRAVITY, vx = dir * ax;
         if (Math.abs(x + vx * t - tp.x) > 0.45 || Math.hypot(vx, vy) > 13) continue;
         var ok = true;
-        for (var s = 1; ok && s < 14; s++) { var tt = t * s / 14 * 0.96; if (!this._clearAt(x + vx * tt, y + vy * tt + 0.5 * GRAVITY * tt * tt, BALL_R + 0.1)) ok = false; }
+        for (var s = 1; ok && s < 40; s++) { var tt = t * s / 40 * 0.97; if (!this._clearAt(x + vx * tt, y + vy * tt + 0.5 * GRAVITY * tt * tt, BALL_R + 0.16)) ok = false; }
         if (ok) { var sp = Math.hypot(vx, vy); if (!best || sp < best.sp) best = { vx: vx, vy: vy, sp: sp }; }
       }
     }
