@@ -591,6 +591,14 @@
       fx.sprite(T.FLARE, sb.x, sb.y - 0.2, 0.9, 0.9, now * 0.6, sc[0] * 1.5, sc[1] * 1.5, sc[2] * 1.5, 0.5 * sp, 0, 0, 0, 0, 0, 0);
     }
 
+    // resting baskets: a soft green glow so they read as somewhere to stop
+    if (track.rests) {
+      for (i = 0; i < track.rests.length; i++) {
+        var rb = track.rests[i], rp = 0.6 + 0.4 * Math.sin(now * 2 + i), rc = hsl(140, 90, 62);
+        fx.sprite(T.GLOW, rb.x, rb.y - 0.2, 2.2, 2.2, 0, rc[0], rc[1], rc[2], 0.3 * rp, 0, 0, 0, 0, 2, 0);
+      }
+    }
+
     // the small cup at the end of the good arc: land in the middle for three marbles
     if (track.cup && !track.cup.got) {
       var cu = track.cup, pl = 0.8 + 0.2 * Math.sin(now * 3), ch = hsl(45, 100, 62);

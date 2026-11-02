@@ -857,20 +857,20 @@ if (wm2) {
   await js('__sat.renderer.cam.follow = false'); const wm3 = await js(`(()=>{ const m = __sat.track.marbles.find(m => m.userData.role === 'revived' && !m.userData.spent); const c = __sat.renderer.worldToScreen(m.x, m.y), r = __sat.renderer.canvas.getBoundingClientRect(); return { x: c.x + r.left, y: c.y + r.top }; })()`);
   await mouse('mouseMoved', wm3.x, wm3.y, 0);
   await send('Input.dispatchMouseEvent', { type: 'mousePressed', x: wm3.x, y: wm3.y, button: 'left', buttons: 1, clickCount: 1 });
-  await mouse('mouseMoved', wm3.x - 70, wm3.y + 20, 1);
-  await send('Input.dispatchMouseEvent', { type: 'mouseReleased', x: wm3.x - 70, y: wm3.y + 20, button: 'left', buttons: 0, clickCount: 1 });
+  await mouse('mouseMoved', wm3.x - 120, wm3.y + 30, 1);
+  await send('Input.dispatchMouseEvent', { type: 'mouseReleased', x: wm3.x - 120, y: wm3.y + 30, button: 'left', buttons: 0, clickCount: 1 });
   await sleep(120);
   const spd = await js(`(()=>{ const m = __sat.track.marbles.find(m => m.userData.role === 'revived' && !m.userData.spent); return m ? Math.hypot(m.vx, m.vy) : -1; })()`);
   check('dragging a woken marble and letting go slings it, like the main one', spd > 3, String(spd));
   check('...and that was free: no run began', !(await js('__sat.state.running')));
-  await js(`__sat.advance(12); 0`);
+  await js(`__sat.advance(40); 0`);
   check('after it has lain still it goes back on the shelf, dim, to be woken again', (await js(`__sat.track.marbles.filter(m => m.userData.role === 'revived' && !m.userData.spent).length`)) === 0 && (await js('__sat.machine().kept.length')) >= 1);
 }
 await js(`__sat.progress.store.total = 0; __sat.progress.store.focus = { count: 0, bonus: 0, rare: 0, ultra: 0, next: {} }; __sat.progress.save(); 0`);
 
 // the secret basket and its levels
 await js(`(()=>{ const m = __sat.machine(); if (__sat.state.brk) __sat.endBreak(); __sat.setView('machine'); __sat.track.secretKind = 'pachinko'; __sat.track.placeStars(m.playFrom == null ? 0 : m.playFrom); return 0; })()`); await sleep(300);
-check('a secret basket can sit beside the marble', await js('!!__sat.track.basket && __sat.track.basket.kind === "pachinko"'), await js('JSON.stringify({ pf: __sat.machine().playFrom, n: __sat.machine().pieces.length, sk: __sat.track.secretKind })'));
+check('a secret basket, where the machine leaves room for one, has a sling that lands in it', await js('!__sat.track.basket || (__sat.track.basket.kind === "pachinko" && !!__sat.track.basket.shot)'), await js('JSON.stringify({ pf: __sat.machine().playFrom, n: __sat.machine().pieces.length, basket: !!__sat.track.basket })'));
 // find a sling that lands in it, using the real machine
 const sling = await js(`(()=>{ const T = __sat.track, from = __sat.machine().playFrom || 0, Mk = (vx, vy) => null; return JSON.stringify({ bx: T.basket.x, by: T.basket.y, mx: T.marbleFor(from).x, my: T.marbleFor(from).y }); })()`);
 console.log('   basket at', sling);

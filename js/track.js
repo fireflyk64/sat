@@ -121,7 +121,7 @@
   };
 
   Track.prototype._entry = function (sec, r, p, L, deg) {
-    return this._turn(sec, p.x, p.y, p.dir, { gap: 3.8 + r() * 1.2, clear: CLEAR, deg: deg, L: L, over: 2.8 });
+    return this._turn(sec, p.x, p.y, p.dir, { gap: 3.8 + r() * 1.2, clear: CLEAR, deg: deg, L: L, over: 0.9 });
   };
 
   /** A ramp carrying on in the same direction, starting below and ahead of a point. */
@@ -662,7 +662,7 @@
   // ---------------------------------------------------------------- assembling the chain
   Track.prototype._starter = function () {
     var ledge = this._ramp(null, START_X - 4.4, START_Y, 1, 7, 4.4, 'platform');
-    this._wall(null, ledge.x - 0.2, START_Y - 1.6, START_Y + 0.2);
+    this._wall(null, ledge.x - 0.2, START_Y - 0.7, START_Y + 0.2);
     var mp = ledge.at(ledge.L - 1.05, BALL_R + 0.001);
     var m = this._marble(null, mp.x, mp.y, { role: 'starter', key: 'starter' });
     this.head = { x: ledge.lowX, y: ledge.lowY, dir: 1, marble: m, ramp: ledge };
@@ -929,11 +929,15 @@
         var low = target.ramps[target.ramps.length - 1].lowY + 3;
         if (m.y > low) lost = true;
       }
-      var L = this.ledge;
-      if (L && !lost) {      // resting on the high ledge: it stays there, and he may fling it again
-        var on = Math.abs(m.x - L.x) < L.shape.hw && Math.abs(m.y - (L.y - L.shape.hh - BALL_R)) < 0.2 && m.vx * m.vx + m.vy * m.vy < 0.5;
-        run.onLedge = on ? (run.onLedge || 0) + dt : 0;
-        if (run.onLedge > 0.35) { this._rested(run); return; }
+      if (!lost && this.rests && this.rests.length) {      // resting in one of the baskets: it stays there, and he may fling it again
+        var on = null;
+        for (var ri = 0; ri < this.rests.length; ri++) {
+          var Rr = this.rests[ri];
+          if (Math.abs(m.x - Rr.x) < Rr.hw + 0.05 && m.y < Rr.y + 0.3 && m.y > Rr.y - 0.8) { m.vx *= 0.88; m.vy *= 0.9; m.w *= 0.88; }      // (the basket is padded: a marble that drops in settles)
+          if (Math.abs(m.x - Rr.x) < Rr.hw && Math.abs(m.y - Rr.y) < 0.3 && m.vx * m.vx + m.vy * m.vy < 0.5) on = Rr;
+        }
+        run.onLedge = on ? (run.onLedge || 0) + dt : 0; run.restAt = on || run.restAt;
+        if (run.onLedge > 0.35) { this._rested(run, run.restAt); return; }
       }
       if (lost || run.idle > 1.2 || this.time - run.t0 > 12) { this._respawn(run); return; }
       return;
@@ -942,11 +946,11 @@
   };
 
   /** The marble came to rest on the high ledge: it stays, asleep, and his next fling from there is free. */
-  Track.prototype._rested = function (run) {
-    var m = run.marble, L = this.ledge;
-    m.userData.home = { x: L.x, y: L.y - L.shape.hh - BALL_R - 0.01 };
+  Track.prototype._rested = function (run, R) {
+    var m = run.marble;
+    m.userData.home = { x: R.x, y: R.y };
     m.userData.live = false; m.userData.flicked = 0; m.userData.brake = false;
-    m.x = m.userData.home.x; m.y = m.userData.home.y; m.vx = m.vy = m.w = 0; m.sleep(); this.world._dropArbiters(m);
+    m.x = R.x; m.y = R.y; m.vx = m.vy = m.w = 0; m.sleep(); this.world._dropArbiters(m);
     this.run = null;
     this.emit('rested', { x: m.x, y: m.y, marble: m });
   };
@@ -1023,12 +1027,14 @@
   /** Stars hung along a good flick's arc: collect them for a bigger score multiplier. */
   Track.prototype.placeStars = function (from) {
     this.stars = [];
-    if (this.ledge) {
-      var gone = [this.ledge].concat(this.ledgeParts || []);
+    if (this.rests && this.rests.length) {
+      var gone = [];
+      this.rests.forEach(function (R) { gone = gone.concat(R.bodies); });
       gone.forEach(function (g) { this.world.remove(g); }, this);
       this.statics = this.statics.filter(function (s) { return gone.indexOf(s) < 0; });
-      this.ledge = null; this.ledgeParts = [];
     }
+    this.rests = [];
+    this._statCache = null;
     this.cup = null; this._dropBasket();
     var e = this.exitFor(from), target = this.sections[from];
     if (!target) return;
@@ -1045,20 +1051,17 @@
     // a small cup at the end of the good arc: land in the middle of it and the marble bursts into three
     var tc = T * 0.55;
     this.cup = { x: m.x + vx * tc, y: m.y + vy * tc + 0.5 * GRAVITY * tc * tc, r: 0.7, got: 0 };
-    // a small ledge up high, clear of the usual arc: a lob that lands on it comes to rest there
-    var F = e.dir || 1, apex = vy < 0 ? vy * vy / (2 * GRAVITY) : 0;
-    if (apex > LEDGE_UP - 1.0 || target.fork) F = -F;       // (and a fork's lob to the high road needs the sky in front clear)       // the usual arc climbs high here: hang the ledge behind the marble instead
-    this.ledge = this._static(null, { x: m.x + F * LEDGE_DX, y: m.y - LEDGE_UP, hw: 0.75, hh: 0.12, isStatic: true, friction: 1.2, restitution: 0.0 }, 'ledge');
-    this.ledgeParts = [-1, 1].map(function (k) {      // low lips at both ends, so a marble that lands settles instead of rolling off
-      return this._static(null, { x: this.ledge.x + k * 0.72, y: this.ledge.y - 0.22, hw: 0.07, hh: 0.1, isStatic: true, friction: 0.8, restitution: 0.0 }, 'ledge');
-    }, this);
+    this._placeRests(m, e.dir || 1, from);
     this._placeBasket(m, e.dir || 1);
   };
   /** True if a point is clear of every fixed piece of the machine by at least `pad`. */
   Track.prototype._clearAt = function (x, y, pad) {
-    for (var i = 0; i < this.world.bodies.length; i++) {
-      var s = this.world.bodies[i];
-      if (!s.isStatic || s.sensor) continue;
+    var list = this._statCache || (this._statCache = this.world.bodies.filter(function (q) { return !q.sensor && (q.isStatic || (q.asleep && q.userData && (q.userData.kind === 'domino' || q.userData.kind === 'marble' || q.userData.kind === 'plank'))); }));
+    for (var i = 0; i < list.length; i++) {
+      var s = list[i];
+      var rr = (s.shape.r || Math.hypot(s.shape.hw, s.shape.hh)) + pad;
+      if (Math.abs(x - s.x) > rr || Math.abs(y - s.y) > rr) continue;      // (far away: not worth the exact test)
+      if (this._skip && this._skip.indexOf(s) >= 0) continue;
       if (s.shape.r) { if (Math.hypot(x - s.x, y - s.y) < s.shape.r + pad) return false; continue; }
       var hw = s.shape.hw, hh = s.shape.hh, c = Math.cos(s.a), sn = Math.sin(s.a);
       var dx = x - s.x, dy = y - s.y, lx = dx * c + dy * sn, ly = -dx * sn + dy * c;
@@ -1069,7 +1072,7 @@
   };
   Track.prototype._dropBasket = function () {
     if (this.basketBodies) { this.basketBodies.forEach(function (g) { this.world.remove(g); }, this); this.statics = this.statics.filter(function (s) { return this.basketBodies.indexOf(s) < 0; }, this); }
-    this.basketBodies = []; this.basket = null;
+    this.basketBodies = []; this.basket = null; this._statCache = null;
   };
   /**
    * The secret basket: a small cup off to one side of the marble, out of the way of the machine. Sling the marble into it and
@@ -1077,17 +1080,36 @@
    */
   Track.prototype._placeBasket = function (m, F) {
     if (!this.secretKind) return;
-    var spots = [];
-    [5.5, 6.5, 4.8, 7].forEach(function (dx) { [0.5, -0.5, 1.5, -1.5, 2.5].forEach(function (dy) { spots.push([F * dx, dy], [-F * dx, dy]); }); });
-    for (var i = 0; i < spots.length; i++) {
+    var r = rng((this.recipe.seed >>> 0) + 977), spots = [], dx, dy, side;
+    for (side = -1; side <= 1; side += 2) for (dx = 3.5; dx <= 9; dx += 0.5) for (dy = -2; dy <= 8; dy += 0.5) spots.push([side * dx, dy, r()]);
+    spots.sort(function (a, b2) { return a[2] - b2[2]; });
+    var tries = 0;
+    for (var i = 0; i < spots.length && tries < 60; i++) {
       var x = m.x + spots[i][0], y = m.y + spots[i][1];
-      if (!this._clearAt(x, y, 1.9) || !this._clearAt(x, y + 1.0, 1.2)) continue;
+      if (Math.hypot(spots[i][0], spots[i][1]) < 4) continue;
+      if (this.rests && this.rests.some(function (R) { return Math.hypot(R.x - x, R.y - y) < 2.8; })) continue;
+      if (!this._clearAt(x, y, 1.5) || !this._clearAt(x, y + 1.0, 1.2)) continue;
+      tries++;
+      var bshot = this._lobTo(m.x, m.y, x, y + 0.45 - BALL_R, Track.FLICK_MAX - 0.1, 0.4, true, 0.38, 1.1, { x: x, y: y - 0.67 - BALL_R, half: 0.33 });
+      if (!bshot) continue;      // (only where a good sling can actually land)
       var add = function (o) { var g = this._static(null, o, 'basket'); this.basketBodies.push(g); return g; }.bind(this);
       add({ x: x, y: y + 0.55, hw: 0.95, hh: 0.1, isStatic: true, friction: 1.0, restitution: 0.0 });
       add({ x: x - 1.0, y: y - 0.05, hw: 0.08, hh: 0.62, isStatic: true, friction: 0.3, restitution: 0.1 });
       add({ x: x + 1.0, y: y - 0.05, hw: 0.08, hh: 0.62, isStatic: true, friction: 0.3, restitution: 0.1 });
-      this.basket = { x: x, y: y + 0.1, kind: this.secretKind, got: 0 };
+      this._statCache = null;
+      if (!this._restsStillReachable()) { this._dropBasket(); continue; }      // (it must not spoil a resting basket's lob)
+      this.basket = { x: x, y: y + 0.1, kind: this.secretKind, got: 0, shot: bshot };
       return;
+    }
+    // nowhere else to put it: the secret takes over one of the resting baskets' places
+    if (!this.basket && this.rests && this.rests.length) {
+      var R = this.rests[this.rests.length - 1], bx = R.x, by = R.y - 0.3;
+      this._removeRest(R);
+      var add2 = function (o) { var g = this._static(null, o, 'basket'); this.basketBodies.push(g); return g; }.bind(this);
+      add2({ x: bx, y: by + 0.55 + 0.3, hw: 0.95, hh: 0.1, isStatic: true, friction: 1.0, restitution: 0.0 });
+      add2({ x: bx - 1.0, y: by + 0.25 + 0.3, hw: 0.08, hh: 0.62, isStatic: true, friction: 0.3, restitution: 0.1 });
+      add2({ x: bx + 1.0, y: by + 0.25 + 0.3, hw: 0.08, hh: 0.62, isStatic: true, friction: 0.3, restitution: 0.1 });
+      this.basket = { x: bx, y: by + 0.4, kind: this.secretKind, got: 0 }; this._statCache = null;
     }
   };
   Track.prototype.collectBasket = function () {
@@ -1095,28 +1117,90 @@
     if (!k || k.got || !run) return;
     var m = run.marble;
     if (!m || m.userData.spent) return;
-    if (Math.abs(m.x - k.x) < 0.75 && Math.abs(m.y - k.y) < 0.55 && m.vx * m.vx + m.vy * m.vy < 36) {
+    if (Math.abs(m.x - k.x) < 0.75 && Math.abs(m.y - k.y) < 0.55 && m.vx * m.vx + m.vy * m.vy < 150) {
       k.got = this.time;
       this.emit('secret', { x: k.x, y: k.y, kind: k.kind });
       this._respawn(run, true);
     }
   };
-  var LEDGE_DX = 2.3, LEDGE_UP = 1.7;
+  
   /** A lob from (x, y) that clears the machine and lands near the top of the fork's high road, or null. */
   Track.prototype._forkShot = function (x, y, hi) {
-    var tp = hi.at(1.0, BALL_R + 0.05), dy = tp.y - y, dir = tp.x >= x ? 1 : -1, best = null;
-    for (var ax = 1.5; ax <= 11; ax += 0.25) {
-      for (var vy = -9.5; vy <= 1; vy += 0.25) {
+    var tp = hi.at(1.0, BALL_R + 0.05);
+    return this._lobTo(x, y, tp.x, tp.y, 13, 0.45);
+  };
+  /** The gentlest lob from (x, y) that comes down on (tx, ty) from above, clear of the machine, or null. */
+  Track.prototype._lobTo = function (x, y, tx0, ty, maxSpeed, tol, coarse, pad, minSlope, gate) {
+    var dy = ty - y, best = null, step = coarse ? 0.3 : 0.125, samples = coarse ? 20 : 40;
+    (coarse ? [0, 0.8, -0.8] : [0, 0.5, -0.5, 1, -1]).forEach(function (off) {      // (the landing spot may be anywhere within `tol` of the target)
+      var tx = tx0 + off * tol;
+      for (var vy = -maxSpeed; vy <= 1; vy += step) {
         var disc = vy * vy + 2 * GRAVITY * dy;
         if (disc < 0) continue;
-        var t = (-vy + Math.sqrt(disc)) / GRAVITY, vx = dir * ax;
-        if (Math.abs(x + vx * t - tp.x) > 0.45 || Math.hypot(vx, vy) > 13) continue;
-        var ok = true;
-        for (var s = 1; ok && s < 40; s++) { var tt = t * s / 40 * 0.97; if (!this._clearAt(x + vx * tt, y + vy * tt + 0.5 * GRAVITY * tt * tt, BALL_R + 0.16)) ok = false; }
-        if (ok) { var sp = Math.hypot(vx, vy); if (!best || sp < best.sp) best = { vx: vx, vy: vy, sp: sp }; }
+        var t = (-vy + Math.sqrt(disc)) / GRAVITY, vx = (tx - x) / t;       // (the flight time fixes the sideways speed that lands on target)
+        var sp = Math.hypot(vx, vy);
+        if (sp > maxSpeed || Math.abs(vx) < 1.0 || (best && sp >= best.sp)) continue;
+        if (minSlope && vy + GRAVITY * t < minSlope * Math.abs(vx)) continue;      // (it must come down into a basket, not skim across its edge)
+        if (gate) {      // at the height of the basket's rim the marble must be over the opening, so it drops in and does not catch an edge
+          var gd = vy * vy + 2 * GRAVITY * (gate.y - y);
+          if (gd < 0) continue;
+          var tg = (-vy + Math.sqrt(gd)) / GRAVITY;
+          if (Math.abs(x + vx * tg - gate.x) > gate.half) continue;
+        }
+        var ok = true, ns = Math.min(200, Math.max(samples, Math.ceil(sp * t / 0.3)));      // (a sample every ~third of a unit: ramps are thin)
+        for (var s = 1; ok && s < ns; s++) { var tt = t * s / ns * 0.97; if (tt < 0.18) continue; if (!this._clearAt(x + vx * tt, y + vy * tt + 0.5 * GRAVITY * tt * tt, pad || BALL_R + 0.16)) ok = false; }
+        if (ok) best = { vx: vx, vy: vy, sp: sp };
       }
-    }
+    }, this);
     return best;
+  };
+  /**
+   * Resting baskets: a few small baskets well away from the start and off to the sides, each needing a strong, well-aimed lob. A
+   * marble that comes to rest in one stays there and can be flung again for free. Which spots, and how many (up to three), depends on the
+   * level's seed. Only spots that a flick at nearly full strength can reach are used.
+   */
+  Track.prototype._placeRests = function (m, F, from) {
+    this.restFrom = m;
+    var r = rng((this.recipe.seed >>> 0) + from * 31 + 7), cands = [], dx, dy, side;
+    for (side = -1; side <= 1; side += 2) for (dx = 4.5; dx <= 10; dx += 0.5) for (dy = -2; dy <= 6; dy += 0.5) cands.push([side * dx, dy, r()]);
+    cands.sort(function (a, b) { return a[2] - b[2]; });
+    var want = 2 + (r() < 0.5 ? 1 : 0), tried = 0;
+    for (var i = 0; i < cands.length && this.rests.length < want && tried < 30; i++) {
+      var cx = m.x + cands[i][0], cy = m.y + cands[i][1], h = -cands[i][1];
+      var need = Math.sqrt(GRAVITY * (h + Math.sqrt(cands[i][0] * cands[i][0] + h * h)));     // the least launch speed that can get there at all
+      if (need > 9.4 || Math.hypot(cands[i][0], cands[i][1]) < 4.5) continue;                                                  // hard, but within a full flick
+      if (this.rests.some(function (R) { return Math.hypot(R.x - cx, R.y - cy) < 2.6; })) continue;
+      if (!this._clearAt(cx, cy + 0.2, 1.3)) continue;
+      tried++;
+      var top = cy + 0.3, shot = this._lobTo(m.x, m.y, cx, top - 0.1 - BALL_R - 0.05, Track.FLICK_MAX - 0.05, 0.42, true, 0.38, 1.1, { x: cx, y: top - 0.8 - BALL_R, half: 0.3 });
+      if (!shot) continue;
+      var bodies = [], add = function (o) { var g = this._static(null, o, 'ledge'); bodies.push(g); return g; }.bind(this);
+      add({ x: cx, y: top, hw: 0.8, hh: 0.1, isStatic: true, friction: 1.2, restitution: 0.0 });
+      add({ x: cx - 0.86, y: top - 0.4, hw: 0.07, hh: 0.4, isStatic: true, friction: 0.5, restitution: 0.0 });
+      add({ x: cx + 0.86, y: top - 0.4, hw: 0.07, hh: 0.4, isStatic: true, friction: 0.5, restitution: 0.0 });
+      var R = { x: cx, y: top - 0.1 - BALL_R - 0.01, hw: 0.8, bodies: bodies, shot: shot };
+      this.rests.push(R); this._statCache = null;
+      // a basket must not spoil another basket's lob, or the fork's high road (its lob from the cup)
+      if (!this._restsStillReachable() || (this.sections[from] && this.sections[from].fork && this.cup && !this._forkShot(this.cup.x, this.cup.y, this.sections[from].fork))) this._removeRest(R);
+    }
+  };
+  Track.prototype._removeRest = function (R) {
+    R.bodies.forEach(function (g) { this.world.remove(g); }, this);
+    this.statics = this.statics.filter(function (s) { return R.bodies.indexOf(s) < 0; });
+    this.rests = this.rests.filter(function (q) { return q !== R; });
+    this._statCache = null;
+  };
+  /** True if every basket's planned lob is still clear (checked with that basket's own pieces set aside). */
+  Track.prototype._restsStillReachable = function () {
+    var m = this.restFrom, ok = true;
+    this.rests.forEach(function (R) {
+      if (!ok) return;
+      this._skip = R.bodies; this._statCache = null;
+      var s = this._lobTo(m.x, m.y, R.x, R.y - 0.05, Track.FLICK_MAX - 0.05, 0.42, true, 0.38, 1.1, { x: R.x, y: R.y + 0.1 + BALL_R + 0.01 - 0.8 - BALL_R, half: 0.3 });
+      if (!s) ok = false; else R.shot = s;
+    }, this);
+    this._skip = null; this._statCache = null;
+    return ok;
   };
   Track.prototype.collectCup = function () {
     var c = this.cup, run = this.run;
