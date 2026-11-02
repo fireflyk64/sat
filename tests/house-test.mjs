@@ -26,6 +26,17 @@ const bricks = pg => pg.own.filter(o => o.userData.kind === 'brick');
   s.run(4);
   const drift = Math.max(...bricks(s.pg).map((b, i) => Math.hypot(b.x - start[i][0], b.y - start[i][1]) + Math.abs(b.a - start[i][2])));
   check('the house stands by itself for four seconds', drift < 0.05, drift.toFixed(3));
+  // a second house dropped on the first builds higher, not through it
+  {
+    const t = setup('house'); const x = (t.b.minX + t.b.maxX) / 2, y = t.track.floor.y - 3;
+    const tapAt = () => { t.pg.pointer(x, y, true); t.run(0.05); t.pg.pointer(x, y, false); t.run(0.05); };
+    tapAt(); const top1 = Math.min(...bricks(t.pg).map(b => b.y)); tapAt();
+    const top2 = Math.min(...bricks(t.pg).map(b => b.y));
+    check('a house dropped on another builds higher (42 pieces, taller)', bricks(t.pg).length === 42 && top2 < top1 - 3, `${top1.toFixed(1)} -> ${top2.toFixed(1)}`);
+    const st = bricks(t.pg).map(b => [b.x, b.y, b.a]); t.run(4);
+    const dr = Math.max(...bricks(t.pg).map((b, i) => Math.hypot(b.x - st[i][0], b.y - st[i][1]) + Math.abs(b.a - st[i][2])));
+    check('...and the double house stands', dr < 0.05, dr.toFixed(3));
+  }
   s.pg.pointer(0, 0, false);
   s.pg.pointer(cx - 12, s.track.floor.y - 7, true); s.run(0.05); s.pg.pointer(cx - 12, s.track.floor.y - 7, false); s.run(0.05);   // second house
   s.pg.pointer(cx + 6, s.track.floor.y - 2, true); s.run(0.05); s.pg.pointer(cx + 6, s.track.floor.y - 2, false); s.run(0.05);   // now a ball, rolled in from the right

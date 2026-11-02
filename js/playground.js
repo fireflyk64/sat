@@ -409,7 +409,10 @@
         var col0 = Math.round((t.x - this.gridX) / CELL_W) - 2, hue = Math.random() * 360 | 0;
         // a pyramid: four wide, then two, then one
         var plan = [[0, 0], [1, 0], [2, 0], [3, 0], [1, 1], [2, 1], [1, 2]];
-        plan.forEach(function (c) { this._cell(col0 + c[0], c[1], hue); }, this);
+        // dropped on an existing house, it builds on top: each column starts at the height that is already there
+        var base = {};
+        plan.forEach(function (c) { var col = col0 + c[0]; if (base[col] == null) base[col] = this._height(col); }, this);
+        plan.forEach(function (c) { var col = col0 + c[0], lv = base[col] + c[1]; if (lv < MAX_STORIES + 2) this._cell(col, lv, hue); }, this);
         this.houses--; this.S.thud && this.S.thud(1); this.R.sparks(t.x, this._groundY() - 2, 24, hue, 5);
       } else if (this.balls > 0) { this.balls--; this._wball(t.x, t.y); }
     }

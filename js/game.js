@@ -269,6 +269,10 @@
       Sound.pop();
       track.placeStars(machine().playFrom);
       updateHud();
+    } else if (type === 'branch') {
+      score(150, d.x, d.y - 1, { prefix: '🛣️ ', size: 0.8, color: [0.8, 2.2, 3] });
+      Sound.kick(); renderer.sparks(d.x, d.y, 30, 200, 6); renderer.ring(d.x, d.y, 2.4, 0.8, 1.6, 2.2, 0.3, 0.1);
+      toast('The high road! Bonus and a higher multiplier.');
     } else if (type === 'burst') {
       score(100, d.x, d.y - 1, { prefix: '🎯 ', size: 0.85, color: [2.6, 2, 0.6] });
       Sound.kick(); Sound.pop();

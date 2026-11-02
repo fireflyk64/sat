@@ -34,6 +34,7 @@
     portal:     { label: 'Portal',         unlock: 20, blurb: 'In one side, out the other.' },
     cradle:     { label: "Newton's Cradle", unlock: 25, blurb: 'Click. Clack. Click. Clack.' },
     hourglass:  { label: 'Sand Timer',     unlock: 30, blurb: 'A trapdoor opens and sand runs down onto the dominoes.' },
+    fork:       { label: 'The Fork',       unlock: 45, blurb: 'Two roads. A flat flick takes the short one; a high lob lands the long road for a bonus.' },
     fuse:       { label: 'Fire Fuse',      unlock: 100, blurb: 'A flame crawls along a rope, burns it through, and the ball drops.' }
   };
 
@@ -219,6 +220,22 @@
       var gap = 6.2 + r() * 1.2;
       var t = this._turn(sec, e.lowX, e.lowY, e.dir, { gap: gap, clear: 3.4, deg: 8, L: 13 + r() * 3, over: 3 });
       sec.boost = e;
+      this._run(sec, r, t, gap + 1.7, false);
+    },
+
+    /* The Fork: two roads into the same run. The low road is the ordinary entry. The high road is a second ramp beneath it and a
+       little further on, behind a short wall that a flat flick bangs into: only a lob clears the wall and lands on it. */
+    fork: function (sec, r, p) {
+      var deg = 9 + r(), L = 11 + r() * 2.5, th = deg * RAD, F = p.dir;
+      var e = this._turn(sec, p.x, p.y, F, { gap: 3.8 + r() * 0.8, clear: CLEAR, deg: deg, L: L, over: -0.6 });
+      var dx = 2.6, dy = 1.5, x2 = e.x + F * dx, y2 = e.y + dy;
+      var xl = e.lowX - e.dir * 1.0, L2 = Math.abs(x2 - xl) / Math.cos(th);
+      var hi = this._ramp(sec, x2, y2, e.dir, deg, L2);
+      hi.body.userData.lane = 'high'; hi.body.userData.hue = sec.hue;
+      this._wall(sec, x2 - e.dir * 0.2, y2 - 1.3, y2 + 0.2);
+      var gap = 6.4 + r() * 0.8;
+      var t = this._turn(sec, e.lowX, e.lowY, e.dir, { gap: gap, clear: 3.6, deg: 8, L: 13 + r() * 3, over: 3 });
+      sec.fork = hi;
       this._run(sec, r, t, gap + 1.7, false);
     },
 
@@ -731,6 +748,10 @@
     var m = ma || mb, o = ma ? b : a;
     if (m && o.userData) {
       if (o.userData.kind === 'peg') o.userData.lit = this.time;
+      if (o.userData.lane === 'high' && this.run && m === this.run.marble && !this.run.high) {
+        this.run.high = true; this.run.multiplier++;
+        this.emit('branch', { x: x, y: y, run: this.run, lane: 'high' });
+      }
       if (o.userData.kind === 'domino') {
         // A marble strikes a domino below its balance point, which on its own would just shove it along upright.
         // Convert the hit into a forward tip so the row topples as a wave rather than bunching up like a train.
