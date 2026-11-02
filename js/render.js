@@ -337,7 +337,7 @@
     var lit = sec && sec.litT ? Math.exp(-(st - sec.litT) * 1.8) : 0, sw = b.shape.hw || 0, sh = b.shape.hh || 0;
     if (kind === 'platform') {
       this._slab(fx, P, sw, sh, hue, 16 + lit * 14, (sec && sec.started ? 3.2 : 2.3) + lit * 3.2, alpha);
-    } else if (kind === 'wall' || kind === 'ledge' || kind === 'hopper' || kind === 'stop' || kind === 'pivot' || kind === 'padbase' || kind === 'cannonbase') {
+    } else if (kind === 'wall' || kind === 'ledge' || kind === 'basket' || kind === 'hopper' || kind === 'stop' || kind === 'pivot' || kind === 'padbase' || kind === 'cannonbase') {
       this._slab(fx, P, sw, sh, hue + 25, 16, 2 + lit, alpha);
     } else if (kind === 'funnel') {
       this._slab(fx, P, sw, sh, 40, 24, 2.6 + lit, alpha);
@@ -582,6 +582,13 @@
         fx.sprite(T.GLOW, star.x, star.y + bob, 1.3, 1.3, 0, 2, 1.5, 0.3, game.pulse ? 0.5 : 0.25, 0, 0, 0, 0, 2, 0);
         fx.sprite(T.FLARE, star.x, star.y + bob, 1.1 * tw, 1.1 * tw, game.pulse ? now * 0.7 + i : i, game.pulse ? 3 : 1.6, game.pulse ? 2.4 : 1.3, game.pulse ? 0.8 : 0.45, 1, 0, 0, 0, 0, 0, 0);
       }
+    }
+
+    // the secret basket: a shimmer, so he knows it is there and a little odd
+    if (track.basket && !track.basket.got) {
+      var sb = track.basket, sp = 0.6 + 0.4 * Math.sin(now * 2.2), sc = hsl((now * 40) % 360, 100, 65);
+      fx.sprite(T.GLOW, sb.x, sb.y, 2.4, 2.4, 0, sc[0], sc[1], sc[2], 0.35 * sp, 0, 0, 0, 0, 2, 0);
+      fx.sprite(T.FLARE, sb.x, sb.y - 0.2, 0.9, 0.9, now * 0.6, sc[0] * 1.5, sc[1] * 1.5, sc[2] * 1.5, 0.5 * sp, 0, 0, 0, 0, 0, 0);
     }
 
     // the small cup at the end of the good arc: land in the middle for three marbles

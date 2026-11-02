@@ -52,4 +52,22 @@ for (const seed of [5, 1, 2, 3, 4, 6, 7, 8]) {
   check(`seed ${seed}: a lob exists that comes to rest on the ledge`, !!found, found && JSON.stringify(found));
   }
 }
+
+// the secret basket: it appears clear of the machine, and a sling can drop the marble into it
+{
+  for (const seed of [5, 1, 2, 3, 4, 6]) {
+    const mk = () => { const world = new Phys.World(), ev = { secret: 0, lost: 0 }; const track = new Track(world, recipe(seed), { emit(t) { if (ev[t] != null) ev[t]++; } }); track.secretKind = 'pachinko'; for (let i = 0; i < 60; i++) { world.step(1 / 60); track.tick(1 / 60); } track.placeStars(0); return { world, ev, track }; };
+    const { track } = mk();
+    if (!track.basket) { check(`seed ${seed}: a basket is placed`, false); continue; }
+    const m = track.exitFor(0).marble, F = track.exitFor(0).dir;
+    let found = null;
+    for (let vx = -9; vx <= 9 && !found; vx += 0.5) for (let vy = -9.5; vy <= -1; vy += 0.5) {
+      if (Math.hypot(vx, vy) > Track.FLICK_MAX) continue;
+      const s = mk(); s.track.startRun(0, vx, vy);
+      for (let i = 0; i < 200; i++) { s.world.step(1 / 60); s.track.tick(1 / 60); s.track.collectBasket(); if (s.ev.secret) break; }
+      if (s.ev.secret) { found = { vx, vy }; break; }
+    }
+    check(`seed ${seed}: a basket is placed (${(track.basket.x - m.x).toFixed(1)}, ${(track.basket.y - m.y).toFixed(1)} from the marble) and a sling can land in it`, !!found, found && JSON.stringify(found));
+  }
+}
 process.exit(bad ? 1 : 0);

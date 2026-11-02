@@ -57,7 +57,20 @@
   var KEEP_MARBLES_AT = 12;
   function keepOn() { return progress.store.total >= KEEP_MARBLES_AT; }
   /** Hook the machine up to the unlocks that need it: where retired marbles are remembered, so they survive the machine growing. */
+  /**
+   * Is a secret basket on offer? One in roughly three machine sizes has one (decided by the machine's seed, so a reload shows the same),
+   * once he has some experience, and not again after he has found it for that size.
+   */
+  function secretKindNow() {
+    var m = machine(), n = m.pieces.length;
+    if (progress.store.total < 60 || n < 3 || (m.secretsDone && m.secretsDone[n])) return null;
+    var r = Track.rng((m.seed >>> 0) + n * 977);
+    if (r() > 0.34) return null;
+    var kinds = Object.keys(window.SECRETS || {});
+    return kinds.length ? kinds[Math.floor(r() * kinds.length)] : null;
+  }
   function wireTrack() {
+    track.secretKind = secretKindNow();
     track.keepMarbles = keepOn();
     track.onKeep = function (m) {
       var sec = track.sections[m.userData.section];
@@ -269,6 +282,17 @@
       Sound.pop();
       track.placeStars(machine().playFrom);
       updateHud();
+    } else if (type === 'secret') {
+      state.running = false;
+      var mm = machine(); (mm.secretsDone || (mm.secretsDone = {}))[mm.pieces.length] = true;
+      mm.retry = true; mm.spent = false; progress.save();
+      renderer.trails = {};
+      renderer.sparks(d.x, d.y, 80, 45, 9); renderer.ring(d.x, d.y, 4, 1, 2.6, 2, 0.5, 0.1);
+      Sound.kick(); Sound.pop();
+      var info = window.SECRETS[d.kind];
+      banner('SECRET FOUND', info ? info.name : '', 'gold');
+      track.secretKind = null; track.placeStars(mm.playFrom);
+      setTimeout(function () { if (!state.brk && !state.running) deploy(d.kind, { secret: true }); }, 1500);
     } else if (type === 'branch') {
       score(150, d.x, d.y - 1, { prefix: '🛣️ ', size: 0.8, color: [0.8, 2.2, 3] });
       Sound.kick(); renderer.sparks(d.x, d.y, 30, 200, 6); renderer.ring(d.x, d.y, 2.4, 0.8, 1.6, 2.2, 0.3, 0.1);
@@ -1093,13 +1117,14 @@
   }
 
   /** Take an item out of the chest and turn it loose on the machine. */
-  function deploy(id) {
-    var item = REWARDS[id];
+  function deploy(id, opts) {
+    opts = opts || {};
+    var item = REWARDS[id] || (opts.secret && window.SECRETS[id]);
     if (!item || state.running || state.brk || state.phase === 'finale') return;
-    if (!progress.useItem(id)) return;
+    if (!opts.secret && !progress.useItem(id)) return;
     Sound.init();
     if (narrowNow()) setView('machine');
-    showPlayResult(progress.notePlay());
+    if (!opts.secret) showPlayResult(progress.notePlay());      // (a secret level is a gift, not a play)
     state.picked = null; state.chain = 0; state.runScore = 0; state.aim = null;
     var c = renderer.cam;
     c.follow = false; c.zoomGoal = null; state.focus = null;
@@ -1115,7 +1140,7 @@
       onScore: function (n, x, y) { score(n, x, y, { size: 0.8, color: [3, 2.2, 0.8] }); }
     });
     state.brk = { id: id, pg: pg, left: item.secs, secs: item.secs };
-    if (pg.focus()) { c.follow = true; c.zoom = 0.92; }
+    if (pg.focus()) { c.follow = true; c.zoom = pg.focus().zoom || 0.92; }
     $('breakIcon').textContent = item.icon;
     $('breakName').textContent = item.name;
     $('breakHow').textContent = item.how;
@@ -1130,6 +1155,8 @@
     var b = state.brk;
     if (!b) return;
     state.brk = null;
+    var prize = b.pg.prize ? b.pg.prize() : null;
+    if (prize) { progress.store.freezes = (progress.store.freezes || 0) + prize.freezes; progress.save(); setTimeout(function () { toast('🧊 ' + prize.text); }, 600); }
     b.pg.end(renderer.fx);
     $('breakBar').classList.remove('show');
     $('stage').classList.remove('breaking');
@@ -1402,7 +1429,7 @@
     }
     if (steps === maxSteps) acc = 0;
     if (state.running) {
-      track.collectStars(); track.collectCup();
+      track.collectStars(); track.collectCup(); track.collectBasket();
       // a last line of defence: no run can hang forever
       if (track.run && !track.run.over && track.time - track.run.t0 > 420) track._ring(null);
     }
@@ -1531,7 +1558,7 @@
       deploy: deploy, endBreak: endBreak, refresh: updateHud, promptPulses: promptPulses, section: { start: startSection, finish: finishSection, leave: leaveSection, review: function () { if (state.sect) showSectionReview(); }, tick: function (secs) { if (state.sect) { state.sect.elapsed += secs; updateSectionClock(); } }, get state() { return state.sect; } },
       rebuild: rebuild, mystery: mystery, cluesFound: cluesFound, setView: setView, stageHidden: stageHidden, showDueClue: showDueClue,
       advance: function (secs) {
-        for (var i = 0; i < secs * 60; i++) { var hold = false; if (state.brk) { state.brk.pg.step(1 / 60); hold = state.brk.pg.holdWorld; } if (!hold) { world.step(1 / 60); track.tick(1 / 60, nowS()); } if (state.running) track.collectStars(); renderer.update(1 / 60); renderer.updateCamera(1 / 60, focusPoint(nowS())); if (state.phase === 'finale' && nowS() > state.finaleUntil) endFinale(); }
+        for (var i = 0; i < secs * 60; i++) { var hold = false; if (state.brk) { state.brk.pg.step(1 / 60); hold = state.brk.pg.holdWorld; } if (!hold) { world.step(1 / 60); track.tick(1 / 60, nowS()); } if (state.running) { track.collectStars(); track.collectCup(); track.collectBasket(); } renderer.update(1 / 60); renderer.updateCamera(1 / 60, focusPoint(nowS())); if (state.phase === 'finale' && nowS() > state.finaleUntil) endFinale(); }
       },
       focusPoint: function () { return focusPoint(nowS()); },
       flick: beginRun, canFlick: canFlick, flickable: flickable, machine: machine, endFinale: endFinale, showQuestion: showQuestion

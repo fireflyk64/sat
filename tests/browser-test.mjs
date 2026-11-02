@@ -849,6 +849,19 @@ check('double-clicking a resting marble wakes it up: it is taken off the shelf a
 check('...and it is a free toy: no play was charged and no run began', !(await js('__sat.state.running')));
 await js(`__sat.progress.store.total = 0; __sat.progress.store.focus = { count: 0, bonus: 0, rare: 0, ultra: 0, next: {} }; __sat.progress.save(); 0`);
 
+// the secret basket and its levels
+await js(`(()=>{ const m = __sat.machine(); if (__sat.state.brk) __sat.endBreak(); __sat.setView('machine'); __sat.track.secretKind = 'pachinko'; __sat.track.placeStars(m.playFrom == null ? 0 : m.playFrom); return 0; })()`); await sleep(300);
+check('a secret basket can sit beside the marble', await js('!!__sat.track.basket && __sat.track.basket.kind === "pachinko"'), await js('JSON.stringify({ pf: __sat.machine().playFrom, n: __sat.machine().pieces.length, sk: __sat.track.secretKind })'));
+// find a sling that lands in it, using the real machine
+const sling = await js(`(()=>{ const T = __sat.track, from = __sat.machine().playFrom || 0, Mk = (vx, vy) => null; return JSON.stringify({ bx: T.basket.x, by: T.basket.y, mx: T.marbleFor(from).x, my: T.marbleFor(from).y }); })()`);
+console.log('   basket at', sling);
+await js(`__sat.deploy('pachinko', { secret: true }); 0`); await sleep(400);
+check('a secret level opens as a break, and it was a gift: no Focus charged', (await js('!!__sat.state.brk && __sat.state.brk.id === "pachinko"')));
+await js(`__sat.advance(1.5); 0`);
+check('the camera is on the secret board and there are bins to read', await js('__sat.state.brk.pg.status().includes("marbles left")'));
+await js(`__sat.endBreak(); 0`); await sleep(300);
+check('and the break ends cleanly, back to the machine', !(await js('!!__sat.state.brk')));
+
 const realErrors = pageErrors.filter(e => !/favicon/.test(e));
 check('no JavaScript errors in the whole session', realErrors.length === 0, realErrors.slice(0, 3).join(' | '));
 

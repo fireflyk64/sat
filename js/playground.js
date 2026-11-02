@@ -26,7 +26,10 @@
     this.S = hooks.sound || NULL_SOUND;
     this.view = hooks.view || function () { var b = track.bounds(); return { x0: b.minX - 4, y0: b.minY, x1: b.maxX + 4, y1: Math.min(b.maxY, b.minY + 40) }; };
     this.onScore = hooks.onScore || NOOP;
-    this.secs = (root.REWARDS && root.REWARDS[id] && root.REWARDS[id].secs) || 60;
+    var def = (root.REWARDS && root.REWARDS[id]) || (root.SECRETS && root.SECRETS[id]);
+    this.secs = (def && def.secs) || 60;
+    this.secret = !!(root.SECRETS && root.SECRETS[id]);
+    if (this.secret) { var tb = track.bounds(); this.sx = tb.maxX + 26; }
     this.t = 0;
     this.down = false; this.px = 0; this.py = 0; this.heldT = 0; this.tapped = [];
     this.own = [];
@@ -448,6 +451,66 @@
     this.S.thud && this.S.thud(1);
   };
 
+
+  // ---------------------------------------------------------------- secret levels (found through the basket)
+  /** What a secret level has earned, read when it ends: { freezes, text }. */
+  Playground.prototype.prize = function () {
+    if (this.id === 'pachinko' && this.jackpots > 0) return { freezes: 1, text: 'Jackpot! +1 freeze' };
+    if (this.id === 'pyramid' && (this.felled || 0) >= 30) return { freezes: 1, text: 'The pyramid is down. +1 freeze' };
+    return null;
+  };
+
+  Playground.prototype.start_pachinko = function () {
+    var gy = this._groundY(), cx = this.sx, W = 15, self = this;
+    this.cx = cx; this.gy = gy; this.left = 12; this.jackpots = 0; this.bins = [20, 50, 200, 50, 20]; this.binW = W / 5; this.settled = 0;
+    var wall = function (x) { self._add({ x: x, y: gy - 9, hw: 0.2, hh: 9.5, isStatic: true, friction: 0.1, restitution: 0.3 }, 'pwall'); };
+    wall(cx - W / 2 - 0.2); wall(cx + W / 2 + 0.2);
+    for (var d = 1; d < 5; d++) this._add({ x: cx - W / 2 + d * this.binW, y: gy - 1.6, hw: 0.08, hh: 1.6, isStatic: true, friction: 0.2, restitution: 0.15 }, 'pwall');
+    for (var row = 0; row < 8; row++) {
+      var y = gy - 14 + row * 1.35, off = row % 2 ? 0.95 : 0;
+      for (var x = cx - W / 2 + 1.2 + off; x < cx + W / 2 - 1.2; x += 1.9) this._add({ x: x, y: y, circle: 0.2, isStatic: true, friction: 0.1, restitution: 0.55 }, 'ppeg', { lit: -9 });
+    }
+  };
+  Playground.prototype.status_pachinko = function () { return this.left + ' marbles left · ' + this.jackpots + ' jackpot' + (this.jackpots === 1 ? '' : 's'); };
+  Playground.prototype.step_pachinko = function () {
+    var self = this, W = 15;
+    for (var i = 0; i < this.tapped.length && this.left > 0; i++) {
+      var x = Math.max(this.cx - W / 2 + 0.6, Math.min(this.cx + W / 2 - 0.6, this.tapped[i].x));
+      this._marble(x, this.gy - 16.5, (Math.random() - 0.5) * 0.4, 0, 40); this.left--; this.S.pop && this.S.pop();
+    }
+    this.track.marbles.slice().forEach(function (m) {
+      if (m.userData.role !== 'toy' || m.userData.payed || m.userData.gone) return;
+      var sp2 = m.vx * m.vx + m.vy * m.vy;
+      if (m.y < self.gy - 0.8) {      // balanced on a peg or a divider: shake it loose
+        m.userData.still = sp2 < 0.09 ? (m.userData.still || 0) + 1 / 60 : 0;
+        if (m.userData.still > 1.2) { m.userData.still = 0; m.manualWake = false; m.wake(); m.vx += (m.x < self.cx ? 1 : -1) * 2.2; m.vy -= 1.5; }
+      }
+      if (m.y > self.gy - 0.8 && sp2 < 2.5) {
+        m.userData.payed = true;
+        var bin = Math.max(0, Math.min(4, Math.floor((m.x - (self.cx - W / 2)) / self.binW)));
+        var pts = self.bins[bin]; self.onScore(pts, m.x, m.y - 1); self.settled++;
+        self.R.sparks(m.x, m.y, bin === 2 ? 60 : 14, bin === 2 ? 45 : 190, bin === 2 ? 8 : 4);
+        if (bin === 2) { self.jackpots++; self.S.boom && self.S.boom(1); } else self.S.peg && self.S.peg(self.settled);
+        m.userData.expire = self.track.time + 1.2;
+      }
+    });
+  };
+  Playground.prototype.hit_pachinko = function (a, b, ua, ub) {
+    if (ua.kind === 'ppeg') ua.lit = this.t; else if (ub.kind === 'ppeg') ub.lit = this.t;
+  };
+
+  Playground.prototype.start_pyramid = function () {
+    var cx = this.sx; this.cx = cx; this.left = 12; this.gy = this._groundY();
+    this.gridX = cx - 3.5 * CELL_W;
+    var plan = [[0, 7], [1, 5], [2, 3], [3, 1]];       // [level, cells], each row narrower and centred
+    plan.forEach(function (r) { var start = (7 - r[1]) / 2; for (var c = 0; c < r[1]; c++) this._cell(start + c, r[0], 45); }, this);
+  };
+  Playground.prototype.status_pyramid = function () { return this.left + ' marbles left · ' + (this.felled || 0) + ' pieces down (30 earns a freeze)'; };
+  Playground.prototype.step_pyramid = function () {
+    for (var i = 0; i < this.tapped.length && this.left > 0; i++) { this.left--; this._wball(this.tapped[i].x, this.tapped[i].y); }
+    this._watchBricks();
+  };
+
   // ---------------------------------------------------------------- Upside Down
   Playground.prototype.start_flip = function () {
     var b = this.track.bounds(), cx = (b.minX + b.maxX) / 2;
@@ -613,6 +676,7 @@
   };
   /** Rewind keeps the camera on the action, in either direction. */
   Playground.prototype.focus = function () {
+    if (this.secret) return { x: this.sx, y: this._groundY() - 8, zoom: 0.8 };
     if (this.id !== 'rewind') return null;
     var i = Math.max(0, Math.min(this.len - 1, Math.floor(this.mode === 'live' ? this.len - 1 : this.head)));
     return { x: this.cam[i * 2], y: this.cam[i * 2 + 1] + 1, zoom: 0.92, fast: this.mode === 'back' };
@@ -639,6 +703,12 @@
         fx.sprite(T.BALL, b.x, b.y, b.shape.r, b.shape.r, b.a, 1, 0.42, 0.06, 1, 1, 0.8, 0.2, 1, b.a, 1);
       } else if (k === 'ceiling') {
         fx.sprite(T.BOX, b.x, b.y, b.shape.hw, b.shape.hh, 0, 0.1, 0.05, 0.2, 1, 0.8, 1.2, 2.4, 1, 0.1, 0.1);
+      } else if (k === 'ppeg') {
+        var fl = Math.exp(-(this.t - b.userData.lit) * 6), pc = hslToRgb(200, 0.9, 0.6), pd = hslToRgb(260, 0.9, 0.4);
+        fx.sprite(T.PEG, b.x, b.y, b.shape.r, b.shape.r, 0, pc[0], pc[1], pc[2], 1, pd[0], pd[1], pd[2], 1, fl, 0);
+        if (fl > 0.05) fx.sprite(T.GLOW, b.x, b.y, 1.1, 1.1, 0, pc[0] * 2, pc[1] * 2, pc[2] * 2, fl, 0, 0, 0, 0, 2, 0);
+      } else if (k === 'pwall') {
+        fx.sprite(T.BOX, b.x, b.y, b.shape.hw, b.shape.hh, 0, 0.5, 0.7, 1.4, 1, 0.2, 0.3, 0.7, 1, 0.03, 0.03);
       } else if (k === 'brick') {
         var hu = b.userData.hue, cc = hslToRgb(hu, b.userData.shape === 'slab' ? 0.55 : 0.8, 0.62);
         fx.sprite(T.DOMINO, b.x, b.y, b.shape.hw, b.shape.hh, b.a, cc[0], cc[1], cc[2], 1, cc[0] * 0.55, cc[1] * 0.55, cc[2] * 0.55, 1, 0, 0.8);
@@ -648,6 +718,13 @@
       } else if (k === 'colossus') {
         fx.sprite(T.GLOW, b.x, b.y, 4, 11, b.a, 1, 0.68, 0.14, 0.3, 0, 0, 0, 0, 2, 0);
         fx.sprite(T.DOMINO, b.x, b.y, b.shape.hw, b.shape.hh, b.a, 1.05, 0.72, 0.18, 1, 0.62, 0.36, 0.06, 1, 0, 0.8);
+      }
+    }
+    if (this.id === 'pachinko') {      // the five bins, with the jackpot glowing in the middle
+      for (i = 0; i < 5; i++) {
+        var bx = this.cx - 7.5 + (i + 0.5) * this.binW, jp = i === 2, pulse = 0.7 + 0.3 * Math.sin(now * 4);
+        if (jp) fx.sprite(T.GLOW, bx, this.gy - 1, 2.4, 2.4, 0, 2.4, 1.8, 0.4, 0.5 * pulse, 0, 0, 0, 0, 2, 0);
+        fx.text(String(this.bins[i]), bx, this.gy - 0.9, jp ? 0.75 : 0.55, jp ? 3 : 1.4, jp ? 2.4 : 1.8, jp ? 0.6 : 2.4, 1);
       }
     }
     if (this.grid) {

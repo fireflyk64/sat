@@ -19,4 +19,9 @@
     architect: { tier: 'ultra', name: 'The Architect', icon: '📐', secs: 120, wide: true, how: 'Tap to add or remove a piece · hold to roll a marble in', blurb: 'Design your own house, storey by storey, out of dominoes and slabs. Then hold to roll a marble in and bring it down.' },
     rewind:    { tier: 'ultra', name: 'Rewind',        icon: '⏪', secs: 90, fresh: true, how: 'Hold to rewind time, let go to play it forward', blurb: 'The whole machine runs. Then you take hold of time itself: dominoes leap back up and marbles roll uphill.' }
   };
+  /* Secret levels: found by slinging the marble into the secret basket, never won from the chest. */
+  root.SECRETS = {
+    pachinko: { tier: 'secret', name: 'The Pachinko Vault', icon: '🎰', secs: 60, how: 'Tap to drop a marble. Aim for the glowing middle.', blurb: 'A hidden board of pegs. Twelve marbles, five bins, and a jackpot in the middle that earns a freeze.' },
+    pyramid:  { tier: 'secret', name: 'The Golden Pyramid', icon: '🔺', secs: 75, how: 'Tap beside the pyramid to roll a marble in', blurb: 'A hidden golden pyramid of dominoes and slabs. Bring down thirty pieces for a freeze.' }
+  };
 })(typeof window !== 'undefined' ? window : globalThis);

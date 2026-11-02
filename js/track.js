@@ -921,13 +921,13 @@
   };
 
   /** A flick that missed the machine: put the marble back. Nothing is lost, flick again. */
-  Track.prototype._respawn = function (run) {
+  Track.prototype._respawn = function (run, quiet) {
     var m = run.marble, h = m.userData.home;
     if (!this.world.bodies.includes(m)) { this.world.add(m); if (!this.marbles.includes(m)) this.marbles.push(m); }
     m.userData.spent = 0; m.userData.live = false; m.userData.flicked = 0; m.userData.brake = false; m.ghost = false;
     m.x = h.x; m.y = h.y; m.vx = m.vy = m.w = 0; m.a = 0; m.sleep(); this.world._dropArbiters(m);
     this.run = null;
-    this.emit('lost', { x: m.x, y: m.y, marble: m });
+    if (!quiet) this.emit('lost', { x: m.x, y: m.y, marble: m });
   };
 
   /** Find the next thing that should have moved and give it a push, so a chain always reaches the bell. */
@@ -998,7 +998,7 @@
       this.statics = this.statics.filter(function (s) { return gone.indexOf(s) < 0; });
       this.ledge = null; this.ledgeParts = [];
     }
-    this.cup = null;
+    this.cup = null; this._dropBasket();
     var e = this.exitFor(from), target = this.sections[from];
     if (!target) return;
     var m0 = e.marble, hm = m0.userData;
@@ -1021,6 +1021,54 @@
     this.ledgeParts = [-1, 1].map(function (k) {      // low lips at both ends, so a marble that lands settles instead of rolling off
       return this._static(null, { x: this.ledge.x + k * 0.72, y: this.ledge.y - 0.22, hw: 0.07, hh: 0.1, isStatic: true, friction: 0.8, restitution: 0.0 }, 'ledge');
     }, this);
+    this._placeBasket(m, e.dir || 1);
+  };
+  /** True if a point is clear of every fixed piece of the machine by at least `pad`. */
+  Track.prototype._clearAt = function (x, y, pad) {
+    for (var i = 0; i < this.world.bodies.length; i++) {
+      var s = this.world.bodies[i];
+      if (!s.isStatic || s.sensor) continue;
+      if (s.shape.r) { if (Math.hypot(x - s.x, y - s.y) < s.shape.r + pad) return false; continue; }
+      var hw = s.shape.hw, hh = s.shape.hh, c = Math.cos(s.a), sn = Math.sin(s.a);
+      var dx = x - s.x, dy = y - s.y, lx = dx * c + dy * sn, ly = -dx * sn + dy * c;
+      var ex = Math.max(0, Math.abs(lx) - hw), ey = Math.max(0, Math.abs(ly) - hh);
+      if (Math.hypot(ex, ey) < pad) return false;
+    }
+    return true;
+  };
+  Track.prototype._dropBasket = function () {
+    if (this.basketBodies) { this.basketBodies.forEach(function (g) { this.world.remove(g); }, this); this.statics = this.statics.filter(function (s) { return this.basketBodies.indexOf(s) < 0; }, this); }
+    this.basketBodies = []; this.basket = null;
+  };
+  /**
+   * The secret basket: a small cup off to one side of the marble, out of the way of the machine. Sling the marble into it and
+   * the game opens a secret level. It only exists when the game has set `secretKind`; it picks the first spot that is clear.
+   */
+  Track.prototype._placeBasket = function (m, F) {
+    if (!this.secretKind) return;
+    var spots = [];
+    [5.5, 6.5, 4.8, 7].forEach(function (dx) { [0.5, -0.5, 1.5, -1.5, 2.5].forEach(function (dy) { spots.push([F * dx, dy], [-F * dx, dy]); }); });
+    for (var i = 0; i < spots.length; i++) {
+      var x = m.x + spots[i][0], y = m.y + spots[i][1];
+      if (!this._clearAt(x, y, 1.9) || !this._clearAt(x, y + 1.0, 1.2)) continue;
+      var add = function (o) { var g = this._static(null, o, 'basket'); this.basketBodies.push(g); return g; }.bind(this);
+      add({ x: x, y: y + 0.55, hw: 0.95, hh: 0.1, isStatic: true, friction: 1.0, restitution: 0.0 });
+      add({ x: x - 1.0, y: y - 0.05, hw: 0.08, hh: 0.62, isStatic: true, friction: 0.3, restitution: 0.1 });
+      add({ x: x + 1.0, y: y - 0.05, hw: 0.08, hh: 0.62, isStatic: true, friction: 0.3, restitution: 0.1 });
+      this.basket = { x: x, y: y + 0.1, kind: this.secretKind, got: 0 };
+      return;
+    }
+  };
+  Track.prototype.collectBasket = function () {
+    var k = this.basket, run = this.run;
+    if (!k || k.got || !run) return;
+    var m = run.marble;
+    if (!m || m.userData.spent) return;
+    if (Math.abs(m.x - k.x) < 0.75 && Math.abs(m.y - k.y) < 0.55 && m.vx * m.vx + m.vy * m.vy < 36) {
+      k.got = this.time;
+      this.emit('secret', { x: k.x, y: k.y, kind: k.kind });
+      this._respawn(run, true);
+    }
   };
   var LEDGE_DX = 2.3, LEDGE_UP = 1.7;
   Track.prototype.collectCup = function () {
