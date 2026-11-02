@@ -22,6 +22,7 @@
   /* Secret levels: found by slinging the marble into the secret basket, never won from the chest. */
   root.SECRETS = {
     pachinko: { tier: 'secret', name: 'The Pachinko Vault', icon: '🎰', secs: 60, how: 'Tap to drop a marble. Aim for the glowing middle.', blurb: 'A hidden board of pegs. Twelve marbles, five bins, and a jackpot in the middle that earns a freeze.' },
+    cannon:   { tier: 'secret', name: 'The Cannon Gallery', icon: '💥', secs: 60, how: 'Hold to aim, let go to fire. You only get one shot.', blurb: 'A hidden shooting gallery: one cannonball and seven towers that fall on each other. Bring down thirty pieces for a freeze.' },
     pyramid:  { tier: 'secret', name: 'The Golden Pyramid', icon: '🔺', secs: 75, how: 'Tap beside the pyramid to roll a marble in', blurb: 'A hidden golden pyramid of dominoes and slabs. Bring down thirty pieces for a freeze.' }
   };
 })(typeof window !== 'undefined' ? window : globalThis);

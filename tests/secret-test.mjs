@@ -39,4 +39,17 @@ function setup(id) {
   s.run(6);
   check('marbles rolled in from either side bring it down', (s.pg.felled || 0) >= 30 && !!s.pg.prize(), `${s.pg.felled} down`);
 }
+{
+  const s = setup('cannon');
+  const bricks = () => s.pg.own.filter(o => o.userData.kind === 'brick');
+  check('the gallery is seven towers (18 cells, 54 pieces)', bricks().length === 3 * 18, bricks().length);
+  const st = bricks().map(b => [b.x, b.y, b.a]); s.run(4);
+  const dr = Math.max(...bricks().map((b, i) => Math.hypot(b.x - st[i][0], b.y - st[i][1]) + Math.abs(b.a - st[i][2])));
+  check('it stands by itself', dr < 0.05, dr.toFixed(3));
+  // aim at the first domino, a little above the floor
+  s.pg.pointer(s.pg.cx - 3.5, s.pg.gy - 2.2, true); s.run(0.3); s.pg.pointer(s.pg.cx - 3.5, s.pg.gy - 2.2, false); s.run(14);
+  check('one shot brings the towers down', (s.pg.felled || 0) >= 30 && !!s.pg.prize(), `${s.pg.felled} down`);
+  s.pg.pointer(0, 0, true); s.run(0.1); s.pg.pointer(0, 0, false); s.run(1);
+  check('a second shot is not allowed', s.track.marbles.filter(m => m.userData.role === 'toy').length === 1);
+}
 process.exit(bad ? 1 : 0);

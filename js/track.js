@@ -748,6 +748,10 @@
     var m = ma || mb, o = ma ? b : a;
     if (m && o.userData) {
       if (o.userData.kind === 'peg') o.userData.lit = this.time;
+      if (o.userData.lane === 'high' && m.userData.role === 'burst' && !m.userData.high) {
+        m.userData.high = true;
+        this.emit('branch', { x: x, y: y, run: this.run, lane: 'high', burst: true });
+      }
       if (o.userData.lane === 'high' && this.run && m === this.run.marble && !this.run.high) {
         this.run.high = true; this.run.multiplier++;
         this.emit('branch', { x: x, y: y, run: this.run, lane: 'high' });
@@ -1016,7 +1020,7 @@
     this.cup = { x: m.x + vx * tc, y: m.y + vy * tc + 0.5 * GRAVITY * tc * tc, r: 0.7, got: 0 };
     // a small ledge up high, clear of the usual arc: a lob that lands on it comes to rest there
     var F = e.dir || 1, apex = vy < 0 ? vy * vy / (2 * GRAVITY) : 0;
-    if (apex > LEDGE_UP - 1.0) F = -F;       // the usual arc climbs high here: hang the ledge behind the marble instead
+    if (apex > LEDGE_UP - 1.0 || target.fork) F = -F;       // (and a fork's lob to the high road needs the sky in front clear)       // the usual arc climbs high here: hang the ledge behind the marble instead
     this.ledge = this._static(null, { x: m.x + F * LEDGE_DX, y: m.y - LEDGE_UP, hw: 0.75, hh: 0.12, isStatic: true, friction: 1.2, restitution: 0.0 }, 'ledge');
     this.ledgeParts = [-1, 1].map(function (k) {      // low lips at both ends, so a marble that lands settles instead of rolling off
       return this._static(null, { x: this.ledge.x + k * 0.72, y: this.ledge.y - 0.22, hw: 0.07, hh: 0.1, isStatic: true, friction: 0.8, restitution: 0.0 }, 'ledge');
@@ -1071,6 +1075,22 @@
     }
   };
   var LEDGE_DX = 2.3, LEDGE_UP = 1.7;
+  /** A lob from (x, y) that clears the machine and lands near the top of the fork's high road, or null. */
+  Track.prototype._forkShot = function (x, y, hi) {
+    var tp = hi.at(1.0, BALL_R + 0.05), dy = tp.y - y, dir = tp.x >= x ? 1 : -1, best = null;
+    for (var ax = 1.5; ax <= 11; ax += 0.25) {
+      for (var vy = -9.5; vy <= 1; vy += 0.25) {
+        var disc = vy * vy + 2 * GRAVITY * dy;
+        if (disc < 0) continue;
+        var t = (-vy + Math.sqrt(disc)) / GRAVITY, vx = dir * ax;
+        if (Math.abs(x + vx * t - tp.x) > 0.45 || Math.hypot(vx, vy) > 13) continue;
+        var ok = true;
+        for (var s = 1; ok && s < 14; s++) { var tt = t * s / 14 * 0.96; if (!this._clearAt(x + vx * tt, y + vy * tt + 0.5 * GRAVITY * tt * tt, BALL_R + 0.1)) ok = false; }
+        if (ok) { var sp = Math.hypot(vx, vy); if (!best || sp < best.sp) best = { vx: vx, vy: vy, sp: sp }; }
+      }
+    }
+    return best;
+  };
   Track.prototype.collectCup = function () {
     var c = this.cup, run = this.run;
     if (!c || c.got || !run) return;
@@ -1080,10 +1100,13 @@
     if (dx * dx + dy * dy > c.r * c.r || m.vx * m.vx + m.vy * m.vy < 9) return;       // (it has to be flying, not rolling along)
     c.got = this.time;
     var sec = this.sections[run.from] || null;
+    var fork = sec && sec.fork ? this._forkShot(c.x, c.y, sec.fork) : null;      // at a fork, one of the extra marbles is sent down the other road
     [-1, 1].forEach(function (k) {
       var nb = this._marble(sec, c.x, c.y, { small: true, role: 'burst', hue: (this.baseHue + 120 * k + 360) % 360, asleep: false });
-      nb.userData.live = true; nb.userData.expire = this.time + 9; nb.manualWake = false;
-      nb.vx = m.vx + k * 2.4; nb.vy = m.vy * 0.8 - 1.2; nb.w = k * 5;
+      nb.userData.live = true; nb.userData.expire = this.time + 14; nb.manualWake = false;
+      if (fork && k === 1) { nb.vx = fork.vx; nb.vy = fork.vy; nb.w = fork.vx > 0 ? 6 : -6; }
+      else { nb.vx = m.vx + k * 2.4; nb.vy = m.vy * 0.8 - 1.2; nb.w = k * 5; }
+      var sp = Math.hypot(nb.vx, nb.vy) || 1; nb.x += nb.vx / sp * 0.85; nb.y += nb.vy / sp * 0.85;      // (apart from the marble that burst it, so they do not shove each other)
     }, this);
     this.emit('burst', { x: c.x, y: c.y, run: run });
   };

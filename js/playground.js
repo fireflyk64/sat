@@ -456,7 +456,7 @@
   /** What a secret level has earned, read when it ends: { freezes, text }. */
   Playground.prototype.prize = function () {
     if (this.id === 'pachinko' && this.jackpots > 0) return { freezes: 1, text: 'Jackpot! +1 freeze' };
-    if (this.id === 'pyramid' && (this.felled || 0) >= 30) return { freezes: 1, text: 'The pyramid is down. +1 freeze' };
+    if ((this.id === 'pyramid' || this.id === 'cannon') && (this.felled || 0) >= 30) return { freezes: 1, text: '' + (this.id === 'cannon' ? 'One shot, and the gallery is down' : 'The pyramid is down') + '. +1 freeze' };
     return null;
   };
 
@@ -499,6 +499,32 @@
     if (ua.kind === 'ppeg') ua.lit = this.t; else if (ub.kind === 'ppeg') ub.lit = this.t;
   };
 
+
+  // The cannon gallery: one shot. Hold to aim (the barrel follows your finger and a dotted arc shows where the ball will go), let go to fire.
+  Playground.prototype.start_cannon = function () {
+    var cx = this.sx, gy = this._groundY(), self = this;
+    this.cx = cx; this.gy = gy; this.fired = false; this.aimAt = null;
+    this.muzzle = { x: cx - 9, y: gy - 1.7 };
+    this._add({ x: cx - 9.6, y: gy - 0.5, hw: 1.0, hh: 0.5, isStatic: true, friction: 0.5 }, 'pwall');
+    // seven towers in a row, two to four cells high: a hit tower falls on its neighbour
+    this.gridX = cx - 2.5 * CELL_W;
+    [2, 3, 2, 4, 2, 3, 2].forEach(function (h, col) { for (var L = 0; L < h; L++) self._cell(col, L, 190 + col * 25); });
+  };
+  Playground.prototype.status_cannon = function () { return (this.fired ? 'Fired! ' : 'One shot · hold to aim, let go to fire · ') + (this.felled || 0) + ' pieces down (30 earns a freeze)'; };
+  Playground.prototype._aimVel = function (tx, ty) {
+    var m = this.muzzle, dx = tx - m.x, dy = ty - m.y, T = Math.max(0.45, Math.min(1.5, Math.hypot(dx, dy) / 15)), g = this.world.gy || 14;
+    return { vx: dx / T, vy: dy / T - 0.5 * g * T };
+  };
+  Playground.prototype.step_cannon = function () {
+    if (!this.fired && this.down) this.aimAt = { x: this.px, y: this.py };
+    if (!this.fired && this.released && this.aimAt) {
+      var v = this._aimVel(this.aimAt.x, this.aimAt.y);
+      var m = this.track._marble(null, this.muzzle.x, this.muzzle.y, { r: 0.5, density: 7, asleep: false, role: 'toy', hue: 20 });
+      m.vx = v.vx; m.vy = v.vy; m.w = 8; m.userData.live = true; m.userData.expire = this.track.time + 30;
+      this.fired = true; this.stall = 0; this.S.boom && this.S.boom(1); this.R.sparks(this.muzzle.x, this.muzzle.y, 40, 30, 8); this.R.boom && this.R.boom(this.muzzle.x, this.muzzle.y, 0.4);
+    }
+    this._watchBricks();
+  };
   Playground.prototype.start_pyramid = function () {
     var cx = this.sx; this.cx = cx; this.left = 12; this.gy = this._groundY();
     this.gridX = cx - 3.5 * CELL_W;
@@ -718,6 +744,19 @@
       } else if (k === 'colossus') {
         fx.sprite(T.GLOW, b.x, b.y, 4, 11, b.a, 1, 0.68, 0.14, 0.3, 0, 0, 0, 0, 2, 0);
         fx.sprite(T.DOMINO, b.x, b.y, b.shape.hw, b.shape.hh, b.a, 1.05, 0.72, 0.18, 1, 0.62, 0.36, 0.06, 1, 0, 0.8);
+      }
+    }
+    if (this.id === 'cannon') {
+      var mz = this.muzzle, ang = this.aimAt ? Math.atan2(this.aimAt.y - mz.y, this.aimAt.x - mz.x) : -0.3;
+      fx.sprite(T.BOX, mz.x + Math.cos(ang) * 0.9, mz.y + Math.sin(ang) * 0.9, 1.1, 0.3, ang, 0.35, 0.4, 0.5, 1, 0.12, 0.14, 0.2, 1, 0.1, 0.1);
+      fx.sprite(T.DISC, mz.x, mz.y, 0.65, 0.65, 0, 0.3, 0.33, 0.42, 1, 0, 0, 0, 0, 0, 0);
+      if (!this.fired && this.aimAt && this.down) {
+        var av = this._aimVel(this.aimAt.x, this.aimAt.y), gg = this.world.gy || 14;
+        for (var s = 1; s <= 22; s++) {
+          var tt = s * 0.06, ax = mz.x + av.vx * tt, ay = mz.y + av.vy * tt + 0.5 * gg * tt * tt, af = 1 - s / 26;
+          fx.sprite(T.GLOW, ax, ay, 0.24, 0.24, 0, 2.4 * af, 1.6 * af, 0.5, af, 0, 0, 0, 0, 1.2, 0);
+          fx.sprite(T.DISC, ax, ay, 0.06, 0.06, 0, 2, 2, 2, af, 0, 0, 0, 0, 0, 0);
+        }
       }
     }
     if (this.id === 'pachinko') {      // the five bins, with the jackpot glowing in the middle
