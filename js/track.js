@@ -846,7 +846,7 @@
       if (u.role === 'revived' && !u.spent) {      // a marble he woke up stays until it has lain still for a while, then goes back to rest on the shelf
         var sp2 = m.vx * m.vx + m.vy * m.vy;
         u.still = (m.asleep || sp2 < 0.04) ? (u.still || 0) + dt : 0;
-        if (u.still > (u.held ? 99 : 2.2)) { this.emit('settle', { marble: m }); u.still = 0; }
+        if (u.still > (u.held ? 99 : 2.2) || m.y > this.bottomY() + 1 || !isFinite(m.x) || !isFinite(m.y) || Math.abs(m.x) > 400) { this.emit('settle', { marble: m }); u.still = 0; }
       }
       if (u.small && u.live && !u.spent && u.role !== 'revived') {
         var sc = this.sections[u.section], ex = sc && sc.exit;

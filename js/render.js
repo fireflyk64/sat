@@ -625,7 +625,7 @@
     // marbles that have been handed on stay where they were (the "Marbles stay" unlock): dim, still, with no glow
     if (game.kept && game.kept.length) {
       for (i = 0; i < game.kept.length; i++) {
-        var kp = game.kept[i], ks = track.sections.filter(function (s0) { return s0.id === kp.pid; })[0];
+        var kp = game.kept[i], ks = kp.awake ? null : track.sections.filter(function (s0) { return s0.id === kp.pid; })[0];
         if (!ks || !ks.exit) continue;
         var kx = ks.exit.x + kp.dx, ky = ks.exit.y + kp.dy, kc = hsl(kp.hue, 55, 46), kd = hsl(kp.hue + 40, 60, 60);
         fx.sprite(T.BALL, kx, ky, 0.3, 0.3, i * 1.7, kc[0], kc[1], kc[2], 0.62, kd[0], kd[1], kd[2], 1, i, 0);

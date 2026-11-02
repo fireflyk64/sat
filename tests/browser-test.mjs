@@ -845,7 +845,7 @@ await send('Input.dispatchMouseEvent', { type: 'mouseReleased', x: rest.x, y: re
 await send('Input.dispatchMouseEvent', { type: 'mousePressed', x: rest.x, y: rest.y, button: 'left', buttons: 1, clickCount: 2 });
 await send('Input.dispatchMouseEvent', { type: 'mouseReleased', x: rest.x, y: rest.y, button: 'left', buttons: 0, clickCount: 2 });
 await sleep(200);
-check('double-clicking a resting marble wakes it up: it is taken off the shelf and rolls as a live marble', (await js('__sat.machine().kept.length')) === rest.n - 1 && (await js('__sat.track.marbles.length')) === rest.marbles + 1 && (await js(`__sat.track.marbles.some(m => m.userData.role === 'revived' && m.userData.live)`)), JSON.stringify({ kept: await js('__sat.machine().kept.length'), was: rest.n, marbles: await js('__sat.track.marbles.length'), before: rest.marbles, roles: await js(`__sat.track.marbles.map(m => m.userData.role + ':' + m.userData.live).join()`) }));
+check('double-clicking a resting marble wakes it up: it is taken off the shelf and rolls as a live marble', (await js('__sat.machine().kept.filter(k => !k.awake).length')) === rest.n - 1 && (await js('__sat.machine().kept.length')) === rest.n && (await js('__sat.track.marbles.length')) === rest.marbles + 1 && (await js(`__sat.track.marbles.some(m => m.userData.role === 'revived' && m.userData.live)`)), JSON.stringify({ kept: await js('__sat.machine().kept.length'), was: rest.n, marbles: await js('__sat.track.marbles.length'), before: rest.marbles, roles: await js(`__sat.track.marbles.map(m => m.userData.role + ':' + m.userData.live).join()`) }));
 check('...and it is a free toy: no play was charged and no run began', !(await js('__sat.state.running')));
 // a woken marble can be slung like the main one, does not fade on its own, and goes back on the shelf after it has lain still
 await js(`__sat.advance(0.5); 0`);
@@ -864,7 +864,18 @@ if (wm2) {
   check('dragging a woken marble and letting go slings it, like the main one', spd > 3, String(spd));
   check('...and that was free: no run began', !(await js('__sat.state.running')));
   await js(`__sat.advance(40); 0`);
-  check('after it has lain still it goes back on the shelf, dim, to be woken again', (await js(`__sat.track.marbles.filter(m => m.userData.role === 'revived' && !m.userData.spent).length`)) === 0 && (await js('__sat.machine().kept.length')) >= 1);
+  check('after it has lain still it goes back on the shelf, dim, to be woken again', (await js(`__sat.track.marbles.filter(m => m.userData.role === 'revived' && !m.userData.spent).length`)) === 0 && (await js('__sat.machine().kept.filter(k => !k.awake).length')) === rest.n);
+}
+// a woken marble can never be lost: even flung off the edge of the world, it comes back to the shelf
+{
+  const idx = await js(`(()=>{ const k = __sat.machine().kept; const i = k.findIndex(x => !x.awake); return i; })()`);
+  if (idx >= 0) {
+    const n0 = await js('__sat.machine().kept.length');
+    await js(`(()=>{ const i = ${idx}; const T = __sat.track, k = __sat.machine().kept[i]; const dummy = null; return 0; })()`);
+    const r = await js(`(()=>{ const m = __sat.reviveForTest(${idx}); m.x = 9999; m.y = 9999; return !!m; })()`);
+    await js(`__sat.advance(1); 0`);
+    check('a woken marble flung out of the world is back on the shelf, not lost', r && (await js('__sat.machine().kept.length')) === n0 && (await js('__sat.machine().kept.filter(k => k.awake).length')) === 0, await js('JSON.stringify(__sat.machine().kept.map(k => !!k.awake))'));
+  }
 }
 await js(`__sat.progress.store.total = 0; __sat.progress.store.focus = { count: 0, bonus: 0, rare: 0, ultra: 0, next: {} }; __sat.progress.save(); 0`);
 

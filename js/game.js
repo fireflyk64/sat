@@ -77,7 +77,7 @@
       if (!sec || !sec.exit) return;
       var mm = machine(), list = mm.kept || (mm.kept = []);
       list.push({ pid: sec.id, dx: +(m.x - sec.exit.x).toFixed(2), dy: +(m.y - sec.exit.y).toFixed(2), hue: m.userData.hue | 0 });
-      if (list.length > 24) list.shift();
+      if (list.length > 200) list.shift();
       progress.save();
     };
   }
@@ -86,7 +86,7 @@
   function rebuild(opts) {
     opts = opts || {};
     var snap = renderer.snapshot(track);
-    track.marbles.slice().forEach(function (m) { if (m.userData.role === 'revived' && !m.userData.spent) settleRevived(m, track); });      // woken marbles go back on the shelf
+    track.marbles.slice().forEach(function (m) { if (m.userData.role === 'revived') settleRevived(m, track); });      // woken marbles go back on the shelf
     world = new Phys.World();
     track = new Track(world, machine(), { emit: onEvent, now: nowS() }); wireTrack();
     renderer.setTheme(progress.store.cases);
@@ -1248,6 +1248,7 @@
   function keptNear(x, y, reach) {
     var list = machine().kept || [], best = -1, bd = reach;
     list.forEach(function (k, i) {
+      if (k.awake) return;
       var s0 = track.sections.filter(function (s) { return s.id === k.pid; })[0];
       if (!s0 || !s0.exit) return;
       var d = Math.hypot(x - (s0.exit.x + k.dx), y - (s0.exit.y + k.dy));
@@ -1260,9 +1261,9 @@
     var list = machine().kept || [], k = list[i];
     var sec = k && track.sections.filter(function (s) { return s.id === k.pid; })[0];
     if (!sec || !sec.exit) return null;
-    list.splice(i, 1);
+    k.awake = true;      // (it stays in the saved list the whole time it is awake, so it can never be lost: it is only hidden from the shelf)
     var m = track._marble(sec, sec.exit.x + k.dx, sec.exit.y + k.dy, { role: 'revived', hue: k.hue, asleep: !roll, manualWake: !roll });
-    m.userData.small = true; m.userData.live = true;       // (small: it never rings the bell or counts as the run)
+    m.userData.small = true; m.userData.live = true; m.userData.ref = k;       // (small: it never rings the bell or counts as the run)
     if (roll) { m.wake(); m.vx += (sec.exit.dir || 1) * 1.2; }
     progress.save();
     return m;
@@ -1270,14 +1271,20 @@
   /** A woken marble that has lain still goes back on the shelf, where it will be remembered. */
   function settleRevived(m, tr) {
     tr = tr || track;
-    if (!m || m.userData.spent || !tr.world.bodies.includes(m)) return;
-    var best = null, bd = 1e9;
+    if (!m || m.userData.settled) return;
+    m.userData.settled = true;
+    var ref = m.userData.ref, best = null, bd = 1e9;
     tr.sections.forEach(function (s) { if (!s.exit) return; var d = Math.hypot(m.x - s.exit.x, m.y - s.exit.y); if (d < bd) { bd = d; best = s; } });
-    if (!best) return;
     var list = machine().kept || (machine().kept = []);
-    list.push({ pid: best.id, dx: +(m.x - best.exit.x).toFixed(2), dy: +(m.y - best.exit.y).toFixed(2), hue: m.userData.hue | 0 });
-    if (list.length > 24) list.shift();
-    m.userData.spent = tr.time; m.ghost = true; m.userData.live = false;
+    // somewhere it cannot rest (flung off the edge, or far away): it goes back to where it was picked up from
+    var lost = !isFinite(m.x) || !isFinite(m.y) || !best || bd > 16 || m.y > tr.bottomY() + 1;
+    if (ref && lost) { ref.awake = false; }
+    else if (best) {
+      var dx = +(m.x - best.exit.x).toFixed(2), dy = +(m.y - best.exit.y).toFixed(2);
+      if (ref) { ref.pid = best.id; ref.dx = dx; ref.dy = dy; ref.awake = false; }
+      else list.push({ pid: best.id, dx: dx, dy: dy, hue: m.userData.hue | 0 });
+    }
+    if (tr.world.bodies.includes(m)) { m.userData.spent = tr.time; m.ghost = true; m.userData.live = false; }
     progress.save();
   }
   /** The woken marble (live, or a resting one he is about to pick up) within reach of a world point. */
@@ -1526,6 +1533,7 @@
   // ---------------------------------------------------------------- startup
   function init() {
     renderer = new Renderer($('world'), { lofi: params.get('lofi') === '1', reduced: reduced, quality: params.has('q0') ? 0 : null });
+    (machine().kept || []).forEach(function (k) { k.awake = false; });      // (a marble that was awake when the page closed is back on the shelf where it was)
     machine();
     // loaded in the middle of a run: that flick was spent (and paid for) before it played, so it does not come back
     (function () { var m0 = machine(); if (m0.spent) { m0.spent = false; m0.playFrom = m0.complete ? 0 : null; progress.save(); } })();
@@ -1616,7 +1624,11 @@
     requestAnimationFrame(frame);
 
     // test + debugging hook
+    function settleAll() { track.marbles.slice().forEach(function (m) { if (m.userData.role === 'revived') settleRevived(m, track); }); }
+    window.addEventListener('pagehide', settleAll);
+    document.addEventListener('visibilitychange', function () { if (document.hidden) settleAll(); });
     window.__sat = {
+      reviveForTest: function (i) { return reviveKept(i, true); },
       get renderer() { return renderer; }, get view() { return state.view; }, get track() { return track; }, get world() { return world; },
       state: state, progress: progress, onCorrectForTest: function () { var r = progress.record(state.current, true); afterRecord(r); award(state.current, r); updateHud(); },
       deploy: deploy, endBreak: endBreak, refresh: updateHud, promptPulses: promptPulses, section: { start: startSection, finish: finishSection, leave: leaveSection, review: function () { if (state.sect) showSectionReview(); }, tick: function (secs) { if (state.sect) { state.sect.elapsed += secs; updateSectionClock(); } }, get state() { return state.sect; } },
